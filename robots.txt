@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sonandogu-ops.github.io/sitemap.xml
+Sitemap: https://sonandogu.com/sitemap.xml
