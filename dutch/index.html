@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://sonandogu.com/dutch/">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F4F1">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sonandogu.com/dutch/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-dutch.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<title>더치페이 계산기 - N빵 정산, 송금 메시지까지 한 번에 | 손안의도구</title>
+<meta name="description" content="1차는 다 같이, 2차는 마신 사람만. 복잡한 모임 정산도 누가 누구에게 얼마 보내면 되는지 한 번에 계산하고, 카톡에 붙여넣을 송금 메시지까지 만들어 드려요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="더치페이 계산기 - 누가 누구에게 얼마, 한 번에">
+<meta property="og:description" content="1차·2차 따로, 마신 사람만 따로. 송금 메시지까지 자동으로.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"더치페이 정산은 어떻게 계산하나요?","acceptedAnswer":{"@type":"Answer","text":"항목마다 참여한 사람끼리 금액을 똑같이 나눠 각자 쓴 돈을 구하고, 각자 실제로 낸 돈과 비교합니다. 더 낸 사람은 받고 덜 낸 사람은 보내면 되며, 송금 횟수가 가장 적어지도록 짝을 지어줍니다."}},
+{"@type":"Question","name":"2차에 일부만 참여했으면 어떻게 하나요?","acceptedAnswer":{"@type":"Answer","text":"항목마다 참여한 사람을 따로 고를 수 있어요. 2차에 간 사람만 선택하면 그 사람들끼리만 나눠서 계산합니다."}},
+{"@type":"Question","name":"1인당 금액이 딱 떨어지지 않으면요?","acceptedAnswer":{"@type":"Answer","text":"10원, 100원, 1,000원 단위로 올려서 보내도록 설정할 수 있어요. 올려서 생긴 잔돈이 얼마인지도 함께 보여드립니다."}}
+]}
+</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.hero{padding:36px 0 22px}
+@media (min-width:920px){.hero{padding:64px 0 28px}}
+.hero h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 12px}
+.hero p{font-size:17px; color:var(--muted); margin:0; max-width:34em}
+.tabs{display:inline-flex; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:4px; margin-bottom:16px}
+.tabs button{font:inherit; font-size:15px; font-weight:700; color:var(--muted); background:none; border:none; border-radius:12px; padding:10px 18px; cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink); color:var(--bg)}
+.work{display:grid; gap:18px}
+.work>*{min-width:0}
+@media (min-width:920px){.work{grid-template-columns:1fr 420px; gap:32px; align-items:start}.res{position:sticky; top:78px}}
+[hidden]{display:none!important}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:26px; box-shadow:var(--shadow); padding:20px 18px}
+.card+.card{margin-top:14px}
+.card h2{font-size:17px; font-weight:800; letter-spacing:-.03em; margin:0 0 12px; display:flex; align-items:center; gap:8px}
+.card h2 .n{width:22px; height:22px; border-radius:7px; background:var(--ink); color:var(--bg); font-size:12px; display:grid; place-items:center}
+.card h2 small{margin-left:auto; font-size:13px; color:var(--muted); font-weight:600}
+.box{background:var(--field); border-radius:16px; padding:10px 14px 8px; border:1.5px solid transparent; transition:border-color .2s, box-shadow .2s, background .2s}
+.box:focus-within{background:var(--surface); border-color:var(--orange); box-shadow:0 0 0 5px rgba(255,90,31,.13)}
+.box label{display:block; font-size:12px; font-weight:700; color:var(--muted)}
+.box input,.box select{width:100%; min-width:0; font:inherit; font-size:17px; font-weight:700; color:var(--ink); background:none; border:none; outline:none; padding:2px 0 0}
+.box input::placeholder{color:var(--faint); opacity:.7; font-weight:500}
+.box.big input{font-size:28px; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.num input{font-variant-numeric:tabular-nums}
+.g2{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.stepper{display:flex; align-items:center; justify-content:space-between; background:var(--field); border-radius:16px; padding:8px}
+.stepper button{width:46px; height:46px; border-radius:12px; border:1px solid var(--line); background:var(--surface); font:inherit; font-size:22px; font-weight:700; color:var(--ink); cursor:pointer}
+.stepper span{font-size:24px; font-weight:800; letter-spacing:-.03em}
+.lbl{font-size:12px; font-weight:700; color:var(--muted); margin:14px 0 6px 2px}
+.seg2{display:flex; gap:6px; flex-wrap:wrap}
+.seg2 button{flex:1; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:12px; padding:10px 6px; cursor:pointer; white-space:nowrap}
+.seg2 button[aria-pressed="true"]{color:var(--orange); border-color:var(--orange); background:rgba(255,90,31,.06)}
+.people{display:flex; flex-wrap:wrap; gap:8px}
+.pp{display:flex; align-items:center; gap:2px; background:var(--field); border:1.5px solid transparent; border-radius:999px; padding:4px 4px 4px 14px}
+.pp:focus-within{border-color:var(--orange); background:var(--surface)}
+.pp input{width:5.5em; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:none; outline:none}
+.pp button{width:28px; height:28px; border-radius:50%; border:none; background:none; color:var(--muted); font-size:16px; cursor:pointer}
+.pp button:hover{color:var(--orange)}
+.addp{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:999px; padding:8px 14px; cursor:pointer}
+.item{border:1px solid var(--line); border-radius:20px; padding:12px; margin-bottom:10px}
+.item .top2{display:grid; grid-template-columns:1.2fr 1fr 36px; gap:6px}
+.item .top2 .box{padding:8px 12px 6px}
+.item .top2 .box input{font-size:16px}
+.del{font:inherit; font-size:18px; color:var(--muted); background:none; border:1px solid var(--line); border-radius:12px; cursor:pointer}
+.del:hover{color:var(--orange); border-color:var(--orange)}
+.row2{display:flex; align-items:center; gap:8px; margin-top:10px; flex-wrap:wrap}
+.row2 .k{font-size:12.5px; font-weight:700; color:var(--muted); min-width:3.6em}
+.row2 select{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:10px; padding:7px 10px}
+.chips{display:flex; flex-wrap:wrap; gap:5px; flex:1}
+.chip{font:inherit; font-size:13.5px; font-weight:700; border-radius:999px; padding:6px 11px; cursor:pointer; border:1.5px solid var(--line); background:none; color:var(--faint)}
+.chip[aria-pressed="true"]{border-color:var(--ink); background:var(--ink); color:var(--bg)}
+.mini{font:inherit; font-size:12.5px; font-weight:700; color:var(--muted); background:none; border:none; text-decoration:underline; cursor:pointer; padding:0}
+.addi{width:100%; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:16px; padding:12px; cursor:pointer}
+.addi:hover,.addp:hover{border-color:var(--ink)}
+
+.disp{position:relative; overflow:hidden; border-radius:28px; padding:22px 20px 18px; color:#F4F4F1;
+  background:radial-gradient(120% 140% at 100% 0%, rgba(255,106,51,.28) 0%, rgba(255,106,51,0) 45%), linear-gradient(160deg,#202126 0%,#121316 100%);
+  box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.07)}
+.disp .cap{font-size:14px; color:rgba(244,244,241,.6)}
+.disp .big{font-size:clamp(40px,10vw,52px); font-weight:800; letter-spacing:-.05em; line-height:1.1; margin:4px 0; font-variant-numeric:tabular-nums}
+.disp .big .u{font-size:.45em; color:#FF8A3D; margin-left:4px; letter-spacing:-.02em}
+.disp .sub{font-size:14px; color:rgba(244,244,241,.6); line-height:1.6}
+.disp .sub b{color:#fff}
+.tr{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:8px}
+.tr li{display:flex; align-items:center; justify-content:space-between; gap:10px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:12px 14px}
+.tr .who{font-size:16px; font-weight:700}
+.tr .who i{font-style:normal; color:rgba(244,244,241,.45); margin:0 6px}
+.tr .amt{font-size:19px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.tr .none{justify-content:center; color:rgba(244,244,241,.55); font-size:15px}
+.tbl2{width:100%; border-collapse:collapse; margin-top:14px; font-size:13.5px; font-variant-numeric:tabular-nums}
+.tbl2 th,.tbl2 td{padding:8px 4px; border-bottom:1px solid rgba(255,255,255,.08); text-align:right}
+.tbl2 th:first-child,.tbl2 td:first-child{text-align:left}
+.tbl2 th{color:rgba(244,244,241,.5); font-weight:700; font-size:12px}
+.tbl2 .plus{color:#7CE3A8}.tbl2 .minus{color:#FF8A3D}
+.acts{display:grid; grid-template-columns:1fr auto; gap:8px; margin-top:16px}
+.acts button{font:inherit; font-size:15px; font-weight:800; border-radius:16px; padding:14px; cursor:pointer; border:none}
+.copy{color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); box-shadow:0 8px 20px -8px rgba(255,90,31,.8)}
+.copy:disabled{opacity:.35; box-shadow:none; cursor:default}
+.reset{color:#F4F4F1; background:rgba(255,255,255,.08)!important}
+.preview{margin-top:12px; white-space:pre-wrap; font-size:12.5px; line-height:1.6; color:rgba(244,244,241,.55); background:rgba(0,0,0,.25); border-radius:14px; padding:12px; max-height:160px; overflow:auto}
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+.guide{margin-top:88px}
+.guide h2{font-size:clamp(24px,4vw,32px); font-weight:800; letter-spacing:-.04em; margin:0 0 20px}
+.fgrid{display:grid; gap:12px}
+@media (min-width:720px){.fgrid{grid-template-columns:repeat(2,1fr)}}
+.f{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px}
+.f h3{font-size:16px; font-weight:800; margin:0 0 8px; letter-spacing:-.02em}
+.f p{margin:0; font-size:14.5px; color:var(--muted)}
+.f strong{color:var(--ink)}
+.faq{margin-top:56px}
+.faq details{border-top:1px solid var(--line); padding:18px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer; font-weight:700; font-size:16px; list-style:none; display:flex; justify-content:space-between; gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+"; color:var(--muted); font-weight:500; font-size:22px; line-height:1; transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:10px 0 0; color:var(--muted)}
+
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient></defs><rect width="26" height="26" rx="8" fill="url(#lg)"/><rect x="7" y="11.5" width="12" height="3" rx="1.5" fill="#fff"/><rect x="11.5" y="7" width="3" height="7.5" rx="1.5" fill="#fff" opacity=".55"/></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<div class="container">
+  <section class="hero">
+    <h1>더치페이 계산기</h1>
+    <p>1차는 다 같이, 2차는 마신 사람만. 누가 누구에게 얼마 보내면 되는지 한 번에 정리하고, 카톡에 붙여넣을 메시지까지 만들어 드려요.</p>
+  </section>
+
+  <div class="tabs" role="group" aria-label="정산 방식"><button data-m="simple" aria-pressed="true">간단 N빵</button><button data-m="detail" aria-pressed="false">상세 정산</button></div>
+
+  <div class="work">
+    <main>
+      <section id="simpleView">
+        <div class="card">
+          <h2><span class="n">1</span>총 금액과 인원</h2>
+          <div class="box big num"><label for="sTotal">총 금액 (원)</label><input id="sTotal" inputmode="numeric" placeholder="121,000" autocomplete="off"></div>
+          <div class="lbl">인원</div>
+          <div class="stepper"><button id="sMinus" aria-label="인원 줄이기">−</button><span id="sN">4명</span><button id="sPlus" aria-label="인원 늘리기">＋</button></div>
+          <div class="lbl">1인당 금액 끝자리</div>
+          <div class="seg2" id="sUnit"><button data-u="1" aria-pressed="false">그대로</button><button data-u="10" aria-pressed="false">10원 올림</button><button data-u="100" aria-pressed="true">100원 올림</button><button data-u="1000" aria-pressed="false">1,000원 올림</button></div>
+        </div>
+      </section>
+
+      <section id="detailView" hidden>
+        <div class="card">
+          <h2><span class="n">1</span>함께한 사람<small id="pCount"></small></h2>
+          <div class="people" id="people"></div>
+        </div>
+        <div class="card">
+          <h2><span class="n">2</span>쓴 돈</h2>
+          <div id="items"></div>
+          <button class="addi" id="addItem">＋ 항목 추가 (2차, 택시비…)</button>
+        </div>
+        <div class="card">
+          <h2><span class="n">3</span>송금 금액 끝자리</h2>
+          <div class="seg2" id="dUnit"><button data-u="1" aria-pressed="false">1원까지</button><button data-u="10" aria-pressed="true">10원 반올림</button><button data-u="100" aria-pressed="false">100원 반올림</button></div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="res">
+      <div class="disp" aria-live="polite">
+        <div id="outSimple">
+          <div class="cap" id="sCap">총 금액을 넣어주세요</div>
+          <div class="big" id="sBig">0<span class="u">원</span></div>
+          <div class="sub" id="sSub"></div>
+        </div>
+        <div id="outDetail" hidden>
+          <div class="cap" id="dCap">총 0원</div>
+          <div class="sub">이렇게 보내면 끝나요</div>
+          <ul class="tr" id="trList"></ul>
+          <table class="tbl2" id="dTable"></table>
+        </div>
+        <div class="preview" id="preview" hidden></div>
+        <div class="acts"><button class="copy" id="copyBtn" disabled>카톡에 붙여넣을 메시지 복사</button><button class="reset" id="resetBtn">초기화</button></div>
+      </div>
+    </aside>
+  </div>
+
+  <section class="guide">
+    <h2>이렇게 계산해요</h2>
+    <div class="fgrid">
+      <div class="f"><h3>항목마다 참여한 사람끼리</h3><p>1차 고깃집은 네 명이 나누고, 2차 호프는 간 사람 세 명만 나눠요. 항목마다 <strong>함께한 사람</strong>을 골라주면 각자 쓴 돈이 정확히 계산돼요.</p></div>
+      <div class="f"><h3>낸 돈과 쓴 돈의 차이</h3><p>각자 실제로 결제한 돈에서 자기 몫을 빼면, 받을 사람과 보낼 사람이 나뉘어요. 이 차이를 맞추는 게 정산이에요.</p></div>
+      <div class="f"><h3>송금은 가장 적은 횟수로</h3><p>누가 누구에게 보낼지 짝을 지을 때, <strong>송금 횟수가 최대한 적게</strong> 되도록 큰 금액끼리 먼저 맞춰요. 다섯 명이 정산해도 송금은 보통 네 번 이하예요.</p></div>
+      <div class="f"><h3>끝자리 정리</h3><p>간단 N빵에서는 1인당 금액을 원하는 단위로 올려서, 남는 잔돈이 얼마인지 함께 보여줘요. 상세 정산은 송금액을 10원이나 100원 단위로 반올림할 수 있어요.</p></div>
+    </div>
+    <div class="faq">
+      <h2>자주 묻는 질문</h2>
+      <details><summary>한 사람이 전부 결제했어요</summary><p>간단 N빵에 총 금액과 인원만 넣으면 1인당 보낼 돈이 바로 나와요. 항목이 여러 개거나 일부만 참여했다면 상세 정산을 써주세요.</p></details>
+      <details><summary>여러 명이 나눠서 결제했어요</summary><p>상세 정산에서 항목마다 결제한 사람을 고르면, 서로 주고받을 금액을 정리해서 최소한의 송금으로 알려드려요.</p></details>
+      <details><summary>입력한 내용은 저장되나요?</summary><p>이 기기의 브라우저에만 임시로 저장돼서, 창을 닫았다 다시 열어도 이어서 할 수 있어요. 서버로는 전송되지 않고, 초기화를 누르면 바로 지워져요.</p></details>
+    </div>
+  </section>
+</div>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const KEY='sonandogu-dutch-v1';
+const won=n=>Math.round(n).toLocaleString('ko-KR');
+const num=v=>{const n=parseFloat(String(v).replace(/,/g,''));return isFinite(n)?n:0;};
+function fmtInput(el){const pos=el.selectionStart??el.value.length, keep=el.value.slice(0,pos).replace(/\D/g,'').length;
+  const raw=el.value.replace(/\D/g,'').replace(/^0+(?=\d)/,''), out=raw.replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  el.value=out; let c=0,p=0; while(p<out.length&&c<keep){if(/\d/.test(out[p]))c++;p++;} try{el.setSelectionRange(p,p);}catch(e){}}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+const DEF=()=>({mode:'simple',s:{total:'',n:4,unit:100},people:['나','친구1','친구2','친구3'],items:[{name:'1차',amount:'',payer:0,parts:[0,1,2,3]}],dunit:10});
+let S; try{S=JSON.parse(localStorage.getItem(KEY))||DEF();}catch(e){S=DEF();}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}};
+let copyText='';
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{S.mode=b.dataset.m; paint();});
+
+/* ---------- simple ---------- */
+$('sTotal').addEventListener('input',e=>{fmtInput(e.target); S.s.total=e.target.value; calc();});
+$('sMinus').onclick=()=>{S.s.n=Math.max(2,S.s.n-1); paint();};
+$('sPlus').onclick=()=>{S.s.n=Math.min(50,S.s.n+1); paint();};
+document.querySelectorAll('#sUnit button').forEach(b=>b.onclick=()=>{S.s.unit=+b.dataset.u; paint();});
+document.querySelectorAll('#dUnit button').forEach(b=>b.onclick=()=>{S.dunit=+b.dataset.u; paint();});
+
+/* ---------- people ---------- */
+function paintPeople(){
+  const box=$('people'); box.innerHTML='';
+  S.people.forEach((nm,i)=>{
+    const d=document.createElement('div'); d.className='pp';
+    d.innerHTML=`<input aria-label="${i+1}번째 사람 이름" maxlength="10"><button aria-label="삭제">×</button>`;
+    const inp=d.querySelector('input'); inp.value=nm;
+    inp.oninput=()=>{S.people[i]=inp.value; paintItems(true); calc();};
+    d.querySelector('button').onclick=()=>removePerson(i);
+    box.append(d);
+  });
+  if(S.people.length<20){const a=document.createElement('button'); a.className='addp'; a.textContent='＋ 사람 추가'; a.onclick=()=>{S.people.push('친구'+S.people.length); S.items.forEach(it=>it.parts.push(S.people.length-1)); paint(); const ins=box.querySelectorAll('input'); ins[ins.length-1].select();}; box.append(a);}
+  $('pCount').textContent=S.people.length+'명';
+}
+function removePerson(k){
+  if(S.people.length<=2){say('최소 두 명은 있어야 해요');return;}
+  S.people.splice(k,1);
+  S.items.forEach(it=>{ if(it.payer===k) it.payer=0; else if(it.payer>k) it.payer--; it.parts=it.parts.filter(x=>x!==k).map(x=>x>k?x-1:x); });
+  paint();
+}
+const pname=i=>(S.people[i]||'').trim()||`${i+1}번`;
+
+/* ---------- items ---------- */
+function paintItems(namesOnly){
+  const box=$('items');
+  if(namesOnly){ box.querySelectorAll('.item').forEach((el,ii)=>{ const sel=el.querySelector('select'); [...sel.options].forEach((o,i)=>o.textContent=pname(i)); el.querySelectorAll('.chip').forEach((c,i)=>c.textContent=pname(i)); }); return; }
+  box.innerHTML='';
+  S.items.forEach((it,ii)=>{
+    const d=document.createElement('div'); d.className='item';
+    d.innerHTML=`<div class="top2"><div class="box"><label>항목</label><input class="nm" maxlength="20" placeholder="1차 고깃집"></div>
+      <div class="box num"><label>금액</label><input class="am" inputmode="numeric" placeholder="120,000"></div><button class="del" aria-label="항목 삭제">×</button></div>
+      <div class="row2"><span class="k">결제</span><select aria-label="결제한 사람"></select></div>
+      <div class="row2"><span class="k">함께</span><div class="chips"></div><button class="mini">모두</button></div>`;
+    const nm=d.querySelector('.nm'), am=d.querySelector('.am'), sel=d.querySelector('select'), chips=d.querySelector('.chips');
+    nm.value=it.name; am.value=it.amount;
+    nm.oninput=()=>{it.name=nm.value; calc();};
+    am.oninput=()=>{fmtInput(am); it.amount=am.value; calc();};
+    S.people.forEach((_,i)=>{const o=document.createElement('option'); o.value=i; o.textContent=pname(i); sel.append(o);
+      const c=document.createElement('button'); c.className='chip'; c.textContent=pname(i); c.setAttribute('aria-pressed',it.parts.includes(i));
+      c.onclick=()=>{ if(it.parts.includes(i)){ if(it.parts.length<=1){say('한 명 이상은 함께해야 해요');return;} it.parts=it.parts.filter(x=>x!==i);} else it.parts.push(i); c.setAttribute('aria-pressed',it.parts.includes(i)); calc(); };
+      chips.append(c);});
+    sel.value=it.payer; sel.onchange=()=>{it.payer=+sel.value; calc();};
+    d.querySelector('.mini').onclick=()=>{it.parts=S.people.map((_,i)=>i); paintItems(); calc();};
+    d.querySelector('.del').onclick=()=>{ if(S.items.length<=1){Object.assign(it,{name:'',amount:''}); } else S.items.splice(ii,1); paintItems(); calc(); };
+    box.append(d);
+  });
+}
+$('addItem').onclick=()=>{ if(S.items.length>=30) return; S.items.push({name:(S.items.length+1)+'차',amount:'',payer:0,parts:S.people.map((_,i)=>i)}); paintItems(); calc(); const ins=$('items').querySelectorAll('.am'); ins[ins.length-1].focus(); };
+
+/* ---------- calc ---------- */
+const LINK='https://sonandogu.com/dutch/';
+function calc(){
+  save();
+  if(S.mode==='simple'){
+    const T=num(S.s.total), n=S.s.n, u=S.s.unit;
+    if(!T){$('sCap').textContent='총 금액을 넣어주세요'; $('sBig').innerHTML='0<span class="u">원</span>'; $('sSub').textContent=''; setCopy(''); return;}
+    const exact=T/n, per=u===1?Math.floor(exact):Math.ceil(exact/u)*u, rest=per*n-T;
+    $('sCap').textContent=`총 ${won(T)}원 ÷ ${n}명`;
+    $('sBig').innerHTML=`${won(per)}<span class="u">원씩</span>`;
+    let sub;
+    if(u===1){ const r=T-per*n; sub= r? `딱 떨어지지 않아서 <b>${won(r)}원</b>이 모자라요. 한 명이 ${won(per+r)}원을 내거나 끝자리를 올려보세요.` : '딱 떨어져요!'; }
+    else sub= rest? `모두 이렇게 보내면 결제한 사람에게 <b>${won(rest)}원</b>이 남아요. (정확히는 1인당 ${won(Math.round(exact*100)/100)}원)` : '딱 떨어져요!';
+    $('sSub').innerHTML=sub;
+    setCopy(`[N빵 정산]\n총 ${won(T)}원 ÷ ${n}명\n1인당 ${won(per)}원씩 보내주세요${rest&&u!==1?` (잔돈 ${won(rest)}원)`:''}\n\n손안의도구 더치페이 계산기\n${LINK}`);
+    return;
+  }
+  const n=S.people.length, paid=Array(n).fill(0), owed=Array(n).fill(0); let total=0; const lines=[];
+  S.items.forEach(it=>{const a=num(it.amount); if(!a||!it.parts.length) return; total+=a; paid[it.payer]+=a; const sh=a/it.parts.length; it.parts.forEach(j=>owed[j]+=sh);
+    lines.push(`- ${(it.name||'항목').trim()} ${won(a)}원 (${pname(it.payer)} 결제, ${it.parts.length===n?'모두':it.parts.map(pname).join('·')})`);});
+  $('dCap').textContent=`총 ${won(total)}원`;
+  const bal=paid.map((p,i)=>p-owed[i]);
+  const cr=bal.map((b,i)=>[i,b]).filter(x=>x[1]>0.5).sort((a,b)=>b[1]-a[1]);
+  const db=bal.map((b,i)=>[i,-b]).filter(x=>x[1]>0.5).sort((a,b)=>b[1]-a[1]);
+  const tr=[]; let a=0,b=0;
+  while(a<db.length&&b<cr.length){const m=Math.min(db[a][1],cr[b][1]); tr.push([db[a][0],cr[b][0],m]); db[a][1]-=m; cr[b][1]-=m; if(db[a][1]<0.5)a++; if(cr[b][1]<0.5)b++;}
+  const u=S.dunit; const tr2=tr.map(([f,t,m])=>[f,t,Math.round(m/u)*u]).filter(x=>x[2]>0);
+  const ul=$('trList');
+  if(!total){ ul.innerHTML='<li class="none">쓴 돈을 넣으면 송금할 금액이 나와요</li>'; $('dTable').innerHTML=''; setCopy(''); return; }
+  ul.innerHTML= tr2.length? tr2.map(([f,t,m])=>`<li><span class="who">${esc(pname(f))}<i>→</i>${esc(pname(t))}</span><span class="amt">${won(m)}원</span></li>`).join('') : '<li class="none">이미 딱 맞게 냈어요. 보낼 돈이 없어요!</li>';
+  $('dTable').innerHTML='<tr><th>이름</th><th>낸 돈</th><th>쓴 돈</th><th>차액</th></tr>'+S.people.map((_,i)=>{const d=Math.round(bal[i]); return `<tr><td>${esc(pname(i))}</td><td>${won(paid[i])}</td><td>${won(owed[i])}</td><td class="${d>0?'plus':d<0?'minus':''}">${d>0?'+':''}${won(d)}</td></tr>`;}).join('');
+  setCopy(`[정산] 총 ${won(total)}원\n${lines.join('\n')}\n\n${tr2.length?'송금\n'+tr2.map(([f,t,m])=>`${pname(f)} → ${pname(t)} ${won(m)}원`).join('\n'):'보낼 돈 없음'}\n\n손안의도구 더치페이 계산기\n${LINK}`);
+}
+function setCopy(t){copyText=t; $('copyBtn').disabled=!t; const p=$('preview'); p.hidden=!t; p.textContent=t;}
+$('copyBtn').onclick=async()=>{ try{await navigator.clipboard.writeText(copyText); say('복사했어요. 카톡에 붙여넣으세요');}catch(e){say('복사하지 못했어요');} };
+$('resetBtn').onclick=()=>{ if(!confirm('입력한 내용을 모두 지울까요?')) return; const m=S.mode; S=DEF(); S.mode=m; try{localStorage.removeItem(KEY);}catch(e){} paint(); };
+
+function paint(){
+  document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.m===S.mode));
+  $('simpleView').hidden=S.mode!=='simple'; $('detailView').hidden=S.mode!=='detail';
+  $('outSimple').hidden=S.mode!=='simple'; $('outDetail').hidden=S.mode!=='detail';
+  $('sTotal').value=S.s.total; $('sN').textContent=S.s.n+'명';
+  document.querySelectorAll('#sUnit button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.u===S.s.unit));
+  document.querySelectorAll('#dUnit button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.u===S.dunit));
+  paintPeople(); paintItems(); calc();
+}
+const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1600);}
+paint();
+</script>
+</body>
+</html>
