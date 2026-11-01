@@ -3,38 +3,242 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>손안의도구 - 자주 쓰는 계산기와 생활 도구 모음</title>
-<meta name="description" content="퍼센트 계산기를 비롯해 일상에서 자주 쓰는 계산기와 도구를 설치 없이 바로 쓸 수 있는 손안의도구.">
+<title>퍼센트 계산기 - % 계산, 할인율, 증가율 한 번에 | 손안의도구</title>
 <meta property="og:site_name" content="손안의도구">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<style>
-:root{--bg:#F7F8FB;--surface:#FFFFFF;--ink:#1B2350;--muted:#5B6386;--line:#DDE1EE;--mark:#FFE15A;--focus:#3D5AFE;color-scheme:light}
-@media (prefers-color-scheme:dark){:root{--bg:#12152A;--surface:#1A1E38;--ink:#E9ECFA;--muted:#A0A7C8;--line:#2C3256;--mark:#8A7414;--focus:#8C9EFF;color-scheme:dark}}
-*{box-sizing:border-box}html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-.wrap{max-width:640px;margin:0 auto;padding:48px 20px 64px}
-h1{font-size:clamp(40px,10vw,56px);font-weight:800;letter-spacing:-.04em;line-height:1.05;margin:0 0 10px}
-.lede{color:var(--muted);margin:0 0 36px}
-.tool{display:block;text-decoration:none;color:inherit;background:var(--surface);border-top:3px solid var(--ink);padding:20px;margin-bottom:14px}
-.tool:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
-.tool strong{font-size:20px;background:linear-gradient(transparent 60%,var(--mark) 60%)}
-.tool p{margin:6px 0 0;color:var(--muted);font-size:15px}
-.soon{color:var(--muted);font-size:14px;margin-top:24px}
-footer{margin-top:56px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+<meta name="description" content="문장에 숫자만 넣으면 바로 계산되는 퍼센트 계산기. 몇 %인지, 몇 % 올랐는지, 할인가와 원래 가격까지 한 페이지에서 계산하세요.">
+<meta property="og:title" content="퍼센트 계산기 - 문장에 숫자만 넣으면 끝">
+<meta property="og:description" content="% 계산, 증감률, 할인가, 원래 가격 계산을 한 번에.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+
+.hero{display:grid; gap:28px; padding:36px 0 0}
+.hero>*{min-width:0}
+@media (min-width:920px){.hero{grid-template-columns:1fr 460px; gap:64px; padding-top:72px; align-items:start}}
+.intro h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 16px}
+.intro p{font-size:17px; color:var(--muted); margin:0 0 24px; max-width:30em}
+.checks{display:flex; flex-wrap:wrap; gap:8px 18px; margin:0; padding:0; list-style:none; font-size:14px; font-weight:600}
+.checks li{display:flex; align-items:center; gap:7px}
+.checks li::before{content:""; width:16px; height:16px; border-radius:50%; background:var(--orange) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.3 2.2 4.7-4.8' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+@media (max-width:919px){.intro p,.checks{display:none}.intro h1{margin:0}}
+
+.card{background:var(--surface); border:1px solid var(--line); border-radius:28px; box-shadow:var(--shadow); padding:8px}
+.seg{position:relative; display:flex; gap:2px; background:var(--field); border-radius:20px; padding:4px; overflow-x:auto; scrollbar-width:none}
+.seg::-webkit-scrollbar{display:none}
+.seg .pill{position:absolute; top:4px; bottom:4px; left:0; width:0; background:var(--surface); border-radius:16px; box-shadow:0 1px 2px rgba(20,21,24,.08), 0 4px 12px -4px rgba(20,21,24,.12); transition:transform .32s cubic-bezier(.2,.8,.2,1), width .32s cubic-bezier(.2,.8,.2,1)}
+.seg button{position:relative; z-index:1; flex:1 0 auto; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:none; border:none; padding:10px 12px; border-radius:16px; cursor:pointer; white-space:nowrap; transition:color .2s}
+.seg button[aria-pressed="true"]{color:var(--ink)}
+
+.inputs{display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:14px 8px 6px}
+.toggle{grid-column:1/-1; display:flex; gap:6px}
+.toggle[hidden]{display:none}
+.toggle button{flex:1; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:14px; padding:9px; cursor:pointer}
+.toggle button[aria-pressed="true"]{color:var(--orange); border-color:var(--orange); background:rgba(255,90,31,.06)}
+.box{position:relative; background:var(--field); border-radius:18px; padding:12px 14px 10px; border:1.5px solid transparent; transition:border-color .2s, box-shadow .2s, background .2s; cursor:text}
+.box:focus-within{background:var(--surface); border-color:var(--orange); box-shadow:0 0 0 5px rgba(255,90,31,.13)}
+.box label{display:block; font-size:12px; font-weight:700; color:var(--muted)}
+.box .row{display:flex; align-items:baseline; gap:4px}
+.box input{width:100%; min-width:0; font:inherit; font-size:28px; font-weight:750; letter-spacing:-.04em; color:var(--ink); background:none; border:none; outline:none; padding:2px 0 0; font-variant-numeric:tabular-nums}
+.box input::placeholder{color:var(--faint); opacity:.6}
+.box .unit{font-size:18px; font-weight:700; color:var(--muted)}
+.presets{grid-column:1/-1; display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; padding:2px 0}
+.presets[hidden]{display:none}
+.presets button{flex:none; font:inherit; font-size:13px; font-weight:700; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:6px 12px; cursor:pointer; font-variant-numeric:tabular-nums}
+.presets button:hover{color:var(--ink); border-color:var(--ink)}
+
+.display{position:relative; overflow:hidden; margin-top:8px; border-radius:22px; padding:22px 20px 18px; color:#F4F4F1;
+  background:radial-gradient(120% 140% at 100% 0%, rgba(255,106,51,.28) 0%, rgba(255,106,51,0) 45%), linear-gradient(160deg,#202126 0%,#121316 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.display::after{content:""; position:absolute; inset:0; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E"); pointer-events:none}
+.caption{font-size:14px; color:rgba(244,244,241,.6); min-height:1.6em; font-variant-numeric:tabular-nums}
+.result{font-size:clamp(40px,10vw,54px); font-weight:800; letter-spacing:-.05em; line-height:1.1; margin:4px 0 2px; font-variant-numeric:tabular-nums; word-break:break-all}
+.result .u{font-size:.5em; font-weight:700; letter-spacing:-.02em; color:var(--orange2); margin-left:6px}
+.result.empty{font-size:20px; font-weight:600; letter-spacing:-.02em; color:rgba(244,244,241,.45)}
+.dfoot{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,.08)}
+.formula{font-size:12.5px; color:rgba(244,244,241,.5); font-variant-numeric:tabular-nums}
+.copy{flex:none; display:inline-flex; align-items:center; gap:6px; font:inherit; font-size:13px; font-weight:700; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); border:none; border-radius:12px; padding:9px 14px; cursor:pointer; box-shadow:0 6px 16px -6px rgba(255,90,31,.7)}
+.copy[disabled]{opacity:.35; box-shadow:none; cursor:default}
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+
+.guide{margin-top:88px}
+.guide h2{font-size:clamp(24px,4vw,32px); font-weight:800; letter-spacing:-.04em; margin:0 0 20px}
+.fgrid{display:grid; gap:12px}
+@media (min-width:720px){.fgrid{grid-template-columns:repeat(2,1fr)}}
+.f{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px}
+.f h3{font-size:16px; font-weight:800; margin:0 0 10px; letter-spacing:-.02em}
+.f code{display:inline-block; font-family:inherit; font-size:14px; font-weight:700; background:var(--field); border-radius:10px; padding:6px 10px; font-variant-numeric:tabular-nums}
+.f p{margin:10px 0 0; font-size:14px; color:var(--muted)}
+.faq{margin-top:56px}
+.faq details{border-top:1px solid var(--line); padding:18px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer; font-weight:700; font-size:16px; list-style:none; display:flex; justify-content:space-between; gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+"; color:var(--muted); font-weight:500; font-size:22px; line-height:1; transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:10px 0 0; color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"퍼센트는 어떻게 계산하나요?","acceptedAnswer":{"@type":"Answer","text":"전체 값에 퍼센트를 곱하고 100으로 나누면 됩니다. 50,000의 20%는 50,000 × 20 ÷ 100 = 10,000입니다."}},
+{"@type":"Question","name":"증가율은 어떻게 구하나요?","acceptedAnswer":{"@type":"Answer","text":"(바뀐 값 - 처음 값) ÷ 처음 값 × 100입니다. 200에서 250이 되면 25% 증가입니다."}},
+{"@type":"Question","name":"할인된 가격으로 원래 가격을 알 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"할인가 ÷ (1 - 할인율 ÷ 100)으로 구합니다. 30% 할인해서 14,000원이면 원래 가격은 20,000원입니다."}}
+]}
+</script>
 </head>
 <body>
-<div class="wrap">
-  <h1>손안의도구</h1>
-  <p class="lede">설치도 가입도 없이, 필요할 때 바로 꺼내 쓰는 계산기와 생활 도구.</p>
-  <main>
-    <a class="tool" href="/percent/">
-      <strong>퍼센트 계산기</strong>
-      <p>몇 %인지, 몇 % 올랐는지, 할인가와 원래 가격까지 한 번에</p>
-    </a>
-  </main>
-  <p class="soon">새 도구가 계속 추가됩니다.</p>
-  <footer>손안의도구 · 입력한 내용은 어디에도 저장되지 않습니다.</footer>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient></defs><rect width="26" height="26" rx="8" fill="url(#lg)"/><rect x="7" y="11.5" width="12" height="3" rx="1.5" fill="#fff"/><rect x="11.5" y="7" width="3" height="7.5" rx="1.5" fill="#fff" opacity=".55"/></svg>손안의도구</a><nav><a href="/">전체 도구</a></nav></div></header>
+<div class="container">
+  <section class="hero">
+    <div class="intro">
+      <h1>퍼센트 계산기</h1>
+      <p>할인가, 증감률, 비율, 원래 가격까지. 숫자 두 개만 넣으면 끝나는 가장 빠른 퍼센트 계산.</p>
+      <ul class="checks"><li>설치·가입 없음</li><li>입력 즉시 계산</li><li>기기 밖으로 전송 안 함</li></ul>
+    </div>
+
+    <main class="card">
+      <nav class="seg" aria-label="계산 종류"><span class="pill" aria-hidden="true"></span>
+        <button data-mode="of" aria-pressed="true">A의 B%</button>
+        <button data-mode="ratio" aria-pressed="false">비율</button>
+        <button data-mode="change" aria-pressed="false">증감률</button>
+        <button data-mode="apply" aria-pressed="false">할인·인상</button>
+        <button data-mode="original" aria-pressed="false">원래 가격</button>
+      </nav>
+      <div class="inputs">
+        <div class="toggle" hidden><button data-dir="down" aria-pressed="true">할인</button><button data-dir="up" aria-pressed="false">인상</button></div>
+        <div class="box" data-for="a"><label for="a"></label><div class="row"><input id="a" inputmode="decimal" autocomplete="off"><span class="unit" id="ua"></span></div></div>
+        <div class="box" data-for="b"><label for="b"></label><div class="row"><input id="b" inputmode="decimal" autocomplete="off"><span class="unit" id="ub"></span></div></div>
+        <div class="presets" aria-label="자주 쓰는 퍼센트"></div>
+      </div>
+      <div class="display" aria-live="polite">
+        <div class="caption" id="cap"></div>
+        <div class="result empty" id="res">숫자를 넣으면 바로 나와요</div>
+        <div class="dfoot"><span class="formula" id="fx">공식이 여기에 표시됩니다</span>
+          <button class="copy" id="copy" disabled><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="4" y="4" width="8.5" height="8.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9.5 2.5V2a1 1 0 0 0-1-1H2.5a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1H3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>복사</button>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <section class="guide">
+    <h2>공식 한눈에 보기</h2>
+    <div class="fgrid">
+      <div class="f"><h3>어떤 값의 몇 %</h3><code>전체 × 퍼센트 ÷ 100</code><p>50,000원의 20%는 10,000원</p></div>
+      <div class="f"><h3>A는 B의 몇 %</h3><code>A ÷ B × 100</code><p>60문제 중 45문제를 맞히면 75%</p></div>
+      <div class="f"><h3>증가율·감소율</h3><code>(바뀐 값 − 처음 값) ÷ 처음 값 × 100</code><p>월급 200만 원 → 250만 원이면 25% 인상</p></div>
+      <div class="f"><h3>할인가·인상가</h3><code>원래 값 × (1 ∓ 퍼센트 ÷ 100)</code><p>35,000원을 15% 할인하면 29,750원</p></div>
+      <div class="f"><h3>원래 가격 거꾸로 찾기</h3><code>할인가 ÷ (1 − 할인율 ÷ 100)</code><p>30% 할인해서 14,000원이면 원래 20,000원</p></div>
+    </div>
+
+    <div class="faq">
+      <h2>자주 묻는 질문</h2>
+      <details><summary>20% 할인 후 다시 20% 올리면 원래 가격이 되나요?</summary><p>아닙니다. 10,000원을 20% 내리면 8,000원이고, 여기서 20% 올리면 9,600원입니다. 두 번째 계산의 기준이 8,000원으로 바뀌기 때문입니다.</p></details>
+      <details><summary>퍼센트와 퍼센트포인트는 뭐가 다른가요?</summary><p>금리가 2%에서 3%가 되면 1%포인트 오른 것이고, 비율로 따지면 50% 오른 것입니다. 뉴스의 %p는 퍼센트 값끼리의 단순한 차이를 뜻합니다.</p></details>
+      <details><summary>소수점은 어떻게 표시되나요?</summary><p>결과는 소수점 둘째 자리까지 반올림해서 보여줍니다.</p></details>
+    </div>
+  </section>
 </div>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span>입력한 숫자는 기기 밖으로 나가지 않습니다.</span></footer>
+<div class="toast" id="toast">복사했어요</div>
+
+<script>
+const toNum=v=>{const n=parseFloat(String(v).replace(/,/g,''));return isFinite(n)?n:null;};
+const fmt=n=>(Math.round(n*100)/100).toLocaleString('ko-KR',{maximumFractionDigits:2});
+function formatInput(el){
+  const pos=el.selectionStart??el.value.length;
+  const keep=el.value.slice(0,pos).replace(/[^0-9.]/g,'').length;
+  let raw=el.value.replace(/[^0-9.]/g,'');
+  const i=raw.indexOf('.'); if(i>-1) raw=raw.slice(0,i+1)+raw.slice(i+1).replace(/\./g,'');
+  let [int,dec]=raw.split('.'); int=(int||'').replace(/^0+(?=\d)/,'');
+  const out=int.replace(/\B(?=(\d{3})+(?!\d))/g,',')+(dec!==undefined?'.'+dec:'');
+  el.value=out; let c=0,p=0; while(p<out.length&&c<keep){if(/[0-9.]/.test(out[p]))c++;p++;}
+  try{el.setSelectionRange(p,p);}catch(e){}
+}
+const PCT=[5,10,15,20,30,50];
+const MODES={
+  of:{la:'전체 값',lb:'퍼센트',ub:'%',pa:'50,000',pb:'20',pre:'b',
+    run:(a,b)=>({cap:`${fmt(a)}의 ${fmt(b)}%는`,n:a*b/100,u:'',fx:`${fmt(a)} × ${fmt(b)} ÷ 100`})},
+  ratio:{la:'부분 값',lb:'전체 값',ub:'',pa:'45',pb:'60',
+    run:(a,b)=>b===0?null:({cap:`${fmt(a)}은(는) ${fmt(b)}의`,n:a/b*100,u:'%',fx:`${fmt(a)} ÷ ${fmt(b)} × 100`})},
+  change:{la:'처음 값',lb:'바뀐 값',ub:'',pa:'200',pb:'250',
+    run:(a,b)=>{if(a===0)return null;const r=(b-a)/a*100;return{cap:`${fmt(a)} → ${fmt(b)}`,n:Math.abs(r),u:r>0?'% 증가':r<0?'% 감소':'% 변화 없음',fx:`(${fmt(b)} − ${fmt(a)}) ÷ ${fmt(a)} × 100`};}},
+  apply:{la:'원래 값',lb:'퍼센트',ub:'%',pa:'35,000',pb:'15',toggle:true,pre:'b',
+    run:(a,b,d)=>{const up=d==='up';const r=a*(1+(up?b:-b)/100);return{cap:`${fmt(a)}에서 ${fmt(b)}% ${up?'인상':'할인'}하면`,n:r,u:'',fx:`차액 ${fmt(Math.abs(r-a))}`};}},
+  original:{la:'할인된 가격',lb:'할인율',ub:'%',pa:'14,000',pb:'30',pre:'b',
+    run:(a,b)=>b>=100?null:({cap:`${fmt(b)}% 할인 전 원래 가격`,n:a/(1-b/100),u:'',fx:`${fmt(a)} ÷ (1 − ${fmt(b)} ÷ 100)`})}
+};
+const $=id=>document.getElementById(id);
+const A=$('a'),B=$('b'),res=$('res'),cap=$('cap'),fx=$('fx'),copy=$('copy'),toast=$('toast');
+const toggle=document.querySelector('.toggle'),presets=document.querySelector('.presets'),seg=document.querySelector('.seg'),pill=seg.querySelector('.pill');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let mode='of',dir='down',shown=null,anim=0;const saved={};
+
+function movePill(){const b=seg.querySelector('[aria-pressed="true"]');pill.style.width=b.offsetWidth+'px';pill.style.transform=`translateX(${b.offsetLeft}px)`;}
+function setMode(m){
+  saved[mode]=[A.value,B.value]; mode=m; const c=MODES[m];
+  seg.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===m));
+  movePill();
+  document.querySelector('label[for=a]').textContent=c.la; document.querySelector('label[for=b]').textContent=c.lb;
+  $('ua').textContent=''; $('ub').textContent=c.ub; A.placeholder=c.pa; B.placeholder=c.pb;
+  [A.value,B.value]=saved[m]||['',''];
+  toggle.hidden=!c.toggle;
+  presets.innerHTML=''; presets.hidden=!c.pre;
+  if(c.pre) PCT.forEach(p=>{const b=document.createElement('button');b.textContent=p+'%';b.onclick=()=>{B.value=String(p);run();};presets.append(b);});
+  shown=null; run();
+}
+function paint(n,u){res.textContent=fmt(n);if(u){const s=document.createElement('span');s.className='u';s.textContent=u;res.append(s);}}
+function run(){
+  const a=toNum(A.value),b=toNum(B.value);
+  const r=(a===null||b===null)?null:MODES[mode].run(a,b,dir);
+  cancelAnimationFrame(anim);
+  if(!r){res.className='result empty';res.textContent=(a!==null&&b!==null)?'계산할 수 없는 값이에요':'숫자를 넣으면 바로 나와요';
+    cap.textContent='';fx.textContent='공식이 여기에 표시됩니다';copy.disabled=true;shown=null;return;}
+  res.className='result'; cap.textContent=r.cap; fx.textContent=r.fx; copy.disabled=false;
+  copy.dataset.v=fmt(r.n)+(r.u.startsWith('%')?'%':'');
+  const from=shown===null?r.n*0.9:shown, to=r.n; shown=to;
+  if(reduce||from===to){paint(to,r.u);return;}
+  const t0=performance.now(),D=260;
+  const step=t=>{const k=Math.min(1,(t-t0)/D),e=1-Math.pow(1-k,3);paint(k<1?from+(to-from)*e:to,r.u);if(k<1)anim=requestAnimationFrame(step);};
+  anim=requestAnimationFrame(step);
+}
+seg.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+toggle.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{dir=b.dataset.dir;toggle.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));run();}));
+document.querySelectorAll('.box').forEach(x=>x.addEventListener('click',()=>$(x.dataset.for).focus()));
+[A,B].forEach(el=>el.addEventListener('input',()=>{formatInput(el);run();}));
+copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(copy.dataset.v);toast.textContent='복사했어요';}catch(e){toast.textContent='복사하지 못했어요';}
+  toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1400);});
+addEventListener('resize',movePill);
+setMode('of');
+</script>
 </body>
 </html>
