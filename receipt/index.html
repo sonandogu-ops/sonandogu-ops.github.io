@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>간이영수증 작성기 - 무료 양식 작성, 이미지·PDF 저장 | 손안의도구</title>
+<meta name="description" content="빈칸만 채우면 간이영수증이 완성됩니다. 금액 한글 자동 변환, 합계 자동 계산, 도장 이미지 넣기, 이미지 저장과 인쇄까지 무료로.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="간이영수증 작성기 - 빈칸만 채우면 완성">
+<meta property="og:description" content="합계 자동 계산, 한글 금액 변환, 이미지·PDF 저장.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"간이영수증은 얼마까지 비용 처리가 되나요?","acceptedAnswer":{"@type":"Answer","text":"사업자의 일반 경비는 건당 3만 원(부가세 포함) 이하라면 간이영수증으로 증빙할 수 있습니다. 3만 원을 넘으면 세금계산서, 신용카드 매출전표, 현금영수증 같은 적격증빙이 원칙이며, 간이영수증만 있으면 거래 사실이 입증되더라도 금액의 2%가 증빙불비가산세로 붙을 수 있습니다."}},
+{"@type":"Question","name":"간이영수증은 누가 작성하나요?","acceptedAnswer":{"@type":"Answer","text":"물건이나 서비스를 판 공급자가 직접 작성해 구매자에게 줍니다. 구매자가 공급자 대신 작성하거나 실제와 다른 내용을 적으면 허위 증빙이 되어 처벌받을 수 있습니다."}},
+{"@type":"Question","name":"금액 앞에 일금, 뒤에 원정을 붙이는 이유는 뭔가요?","acceptedAnswer":{"@type":"Answer","text":"숫자를 덧붙여 금액을 고치는 위조를 막기 위해서입니다. 한글로 일금 일십이만원정처럼 적으면 앞뒤로 글자를 끼워 넣기 어렵습니다."}}
+]}
+</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+
+.hero{padding:36px 0 22px}
+@media (min-width:920px){.hero{padding:64px 0 28px}}
+.hero h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 12px}
+.hero p{font-size:17px; color:var(--muted); margin:0; max-width:34em}
+.work{display:grid; gap:20px}
+.work>*{min-width:0}
+@media (min-width:920px){.work{grid-template-columns:1fr 470px; gap:40px; align-items:start}.preview{position:sticky; top:78px}}
+
+.card{background:var(--surface); border:1px solid var(--line); border-radius:28px; box-shadow:var(--shadow); padding:22px 18px}
+.sec+.sec{margin-top:26px; padding-top:22px; border-top:1px solid var(--line)}
+.sec h2{font-size:17px; font-weight:800; letter-spacing:-.03em; margin:0 0 12px; display:flex; align-items:center; gap:8px}
+.sec h2 .n{width:22px; height:22px; border-radius:7px; background:var(--ink); color:var(--bg); font-size:12px; display:grid; place-items:center}
+.g{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.full{grid-column:1/-1}
+.box{background:var(--field); border-radius:16px; padding:10px 14px 8px; border:1.5px solid transparent; transition:border-color .2s, box-shadow .2s, background .2s}
+.box:focus-within{background:var(--surface); border-color:var(--orange); box-shadow:0 0 0 5px rgba(255,90,31,.13)}
+.box label{display:block; font-size:12px; font-weight:700; color:var(--muted)}
+.box input,.box select{width:100%; min-width:0; font:inherit; font-size:16px; font-weight:650; color:var(--ink); background:none; border:none; outline:none; padding:2px 0 0}
+.box input::placeholder{color:var(--faint); opacity:.7; font-weight:500}
+.seg2{display:flex; gap:6px}
+.seg2 button{flex:1; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:14px; padding:10px; cursor:pointer}
+.seg2 button[aria-pressed="true"]{color:var(--orange); border-color:var(--orange); background:rgba(255,90,31,.06)}
+.items{display:flex; flex-direction:column; gap:8px}
+.it{display:grid; grid-template-columns:1.7fr .7fr 1.2fr 36px; gap:6px; align-items:stretch}
+.it .box{padding:8px 10px 6px}
+.it .box input{font-size:15px}
+.it .num input{text-align:right; font-variant-numeric:tabular-nums}
+.del{font:inherit; font-size:18px; color:var(--muted); background:none; border:1px solid var(--line); border-radius:12px; cursor:pointer}
+.del:hover{color:var(--orange); border-color:var(--orange)}
+.add{margin-top:8px; width:100%; font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:14px; padding:11px; cursor:pointer}
+.add:hover{border-color:var(--ink)}
+.add[disabled]{opacity:.4; cursor:default}
+.stamp{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+.stamp label.btn{font-size:14px; font-weight:700; border:1px solid var(--line); border-radius:12px; padding:9px 14px; cursor:pointer}
+.stamp label.btn:hover{border-color:var(--ink)}
+.stamp input{position:absolute; opacity:0; width:1px; height:1px}
+.stamp .hint{font-size:13px; color:var(--muted)}
+.stamp button{font:inherit; font-size:13px; color:var(--muted); background:none; border:none; text-decoration:underline; cursor:pointer}
+
+.preview .stage{background:linear-gradient(160deg,#202126,#121316); border-radius:28px; padding:22px; box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.07)}
+.paper{background:#fff; color:#B4232F; width:100%; max-width:426px; margin:0 auto; padding:22px 20px 18px; font-family:"Pretendard Variable","Pretendard",sans-serif; letter-spacing:0; border-radius:4px; box-shadow:0 20px 40px -16px rgba(0,0,0,.6)}
+.paper *{border-color:#B4232F}
+.ptitle{text-align:center; font-size:26px; font-weight:800; letter-spacing:.4em; margin:0 0 2px; padding-left:.4em}
+.psub{text-align:center; font-size:12px; margin-bottom:12px}
+.ptop{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:8px; font-size:13px}
+.pto{font-size:16px; font-weight:700; border-bottom:1.5px solid; min-width:58%; padding:0 2px 2px}
+.pto b{color:#1d1d1f; font-weight:700}
+table.pt{width:100%; border-collapse:collapse; table-layout:fixed; font-size:12px; margin-bottom:-1.5px}
+table.pt th,table.pt td{border:1.5px solid; padding:6px 5px; height:30px; word-break:break-all}
+table.pt th{font-weight:600; text-align:center; background:#FFF6F6}
+table.pt td{color:#1d1d1f; font-weight:600; font-size:12.5px}
+th.vert{width:26px; line-height:1.5}
+.own{position:relative}
+.own .in{position:absolute; right:4px; top:50%; transform:translateY(-50%); color:#B4232F; font-size:11px}
+.own img{position:absolute; right:-4px; top:50%; transform:translateY(-50%); width:38px; height:38px; object-fit:contain; mix-blend-mode:multiply}
+.tot{text-align:right; font-variant-numeric:tabular-nums}
+.kor{font-size:11px; color:#1d1d1f; text-align:right; margin-top:2px; font-weight:500}
+.pmsg{text-align:center; font-size:14px; font-weight:700; padding:9px 0; border-left:1.5px solid; border-right:1.5px solid; border-bottom:1.5px solid}
+.pitems td{text-align:right; font-variant-numeric:tabular-nums}
+.pitems td.l{text-align:left}
+.pitems td.c{text-align:center}
+.pitems tfoot th{background:#FFF6F6}
+.pitems tfoot td{font-size:14px; font-weight:800}
+.pfoot{margin-top:10px; font-size:10.5px; text-align:center; color:#B4232F; opacity:.8}
+
+.acts{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px}
+.acts button{font:inherit; font-size:15px; font-weight:800; border-radius:16px; padding:14px; cursor:pointer; border:none}
+.save{color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); box-shadow:0 8px 20px -8px rgba(255,90,31,.8)}
+.print{color:var(--ink); background:var(--surface); border:1px solid var(--line)!important}
+.note{font-size:13px; color:var(--muted); margin:12px 4px 0; line-height:1.5}
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+
+.guide{margin-top:88px}
+.guide h2{font-size:clamp(24px,4vw,32px); font-weight:800; letter-spacing:-.04em; margin:0 0 20px}
+.fgrid{display:grid; gap:12px}
+@media (min-width:720px){.fgrid{grid-template-columns:repeat(2,1fr)}}
+.f{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px}
+.f h3{font-size:16px; font-weight:800; margin:0 0 8px; letter-spacing:-.02em}
+.f p{margin:0; font-size:14.5px; color:var(--muted)}
+.f strong{color:var(--ink)}
+.faq{margin-top:56px}
+.faq details{border-top:1px solid var(--line); padding:18px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer; font-weight:700; font-size:16px; list-style:none; display:flex; justify-content:space-between; gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+"; color:var(--muted); font-weight:500; font-size:22px; line-height:1; transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:10px 0 0; color:var(--muted)}
+
+@media print{
+  @page{size:A5 portrait; margin:10mm}
+  body{background:#fff}
+  body *{visibility:hidden}
+  #paper,#paper *{visibility:visible}
+  #paper{position:absolute; left:0; top:0; box-shadow:none; max-width:none; width:128mm}
+  .top{display:none}
+}
+@media (max-width:400px){.paper{padding:16px 12px 14px}.ptitle{font-size:22px}table.pt{font-size:11px}table.pt td{font-size:11.5px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient></defs><rect width="26" height="26" rx="8" fill="url(#lg)"/><rect x="7" y="11.5" width="12" height="3" rx="1.5" fill="#fff"/><rect x="11.5" y="7" width="3" height="7.5" rx="1.5" fill="#fff" opacity=".55"/></svg>손안의도구</a><nav><a href="/">전체 도구</a></nav></div></header>
+<div class="container">
+  <section class="hero">
+    <h1>간이영수증 작성기</h1>
+    <p>빈칸만 채우면 합계와 한글 금액이 자동으로 들어갑니다. 이미지로 저장하거나 바로 인쇄하세요.</p>
+  </section>
+
+  <div class="work">
+    <main class="card">
+      <div class="sec">
+        <h2><span class="n">1</span>공급자 정보</h2>
+        <div class="g">
+          <div class="box full"><label for="biz">사업자등록번호</label><input id="biz" inputmode="numeric" placeholder="123-45-67890" autocomplete="off"></div>
+          <div class="box"><label for="name">상호</label><input id="name" placeholder="손안상회"></div>
+          <div class="box"><label for="owner">성명(대표자)</label><input id="owner" placeholder="홍길동"></div>
+          <div class="box full"><label for="addr">사업장 소재지</label><input id="addr" placeholder="광주광역시 ○○구 ○○로 12"></div>
+          <div class="box"><label for="type">업태</label><input id="type" placeholder="소매"></div>
+          <div class="box"><label for="item">종목</label><input id="item" placeholder="잡화"></div>
+          <div class="full stamp">
+            <label class="btn" for="stampFile">도장 이미지 넣기</label><input type="file" id="stampFile" accept="image/*">
+            <span class="hint" id="stampHint">배경이 흰 도장 사진이면 자연스럽게 찍혀요</span>
+            <button id="stampDel" hidden>지우기</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec">
+        <h2><span class="n">2</span>받는 사람과 날짜</h2>
+        <div class="g">
+          <div class="box"><label for="to">공급받는 자</label><input id="to" placeholder="○○○"></div>
+          <div class="box"><label for="date">작성일</label><input id="date" type="date"></div>
+          <div class="box"><label for="no">번호 (선택)</label><input id="no" placeholder="001"></div>
+          <div class="box"><label for="memo">비고 (선택)</label><input id="memo" placeholder=""></div>
+          <div class="full seg2" id="kind"><button data-k="영수" aria-pressed="true">영수</button><button data-k="청구" aria-pressed="false">청구</button></div>
+          <div class="full seg2" id="copyfor"><button data-c="공급받는자용" aria-pressed="true">공급받는자용</button><button data-c="공급자용" aria-pressed="false">공급자용</button></div>
+        </div>
+      </div>
+
+      <div class="sec">
+        <h2><span class="n">3</span>품목</h2>
+        <div class="items" id="items"></div>
+        <button class="add" id="add">+ 품목 추가</button>
+      </div>
+    </main>
+
+    <aside class="preview">
+      <div class="stage">
+        <div class="paper" id="paper">
+          <div class="ptitle">영수증</div>
+          <div class="psub" id="pFor">(공급받는자용)</div>
+          <div class="ptop"><div class="pto"><b id="pTo"></b> 귀하</div><div>No. <span id="pNo" style="color:#1d1d1f;font-weight:600"></span></div></div>
+          <table class="pt">
+            <colgroup><col style="width:26px"><col style="width:22%"><col><col style="width:16%"><col></colgroup>
+            <tr><th rowspan="4" class="vert">공<br>급<br>자</th><th>사업자<br>등록번호</th><td colspan="3" id="pBiz"></td></tr>
+            <tr><th>상호</th><td id="pName"></td><th>성명</th><td class="own"><span id="pOwner"></span><span class="in">(인)</span><img id="pStamp" alt="" hidden></td></tr>
+            <tr><th>사업장<br>소재지</th><td colspan="3" id="pAddr"></td></tr>
+            <tr><th>업태</th><td id="pType"></td><th>종목</th><td id="pItem"></td></tr>
+          </table>
+          <table class="pt">
+            <colgroup><col style="width:30%"><col><col style="width:22%"></colgroup>
+            <tr><th>작성년월일</th><th>공급대금총액</th><th>비고</th></tr>
+            <tr><td id="pDate" style="text-align:center"></td><td><div class="tot" id="pTotal"></div><div class="kor" id="pKor"></div></td><td id="pMemo"></td></tr>
+          </table>
+          <div class="pmsg" id="pMsg">위 금액을 정히 영수함</div>
+          <table class="pt pitems">
+            <colgroup><col style="width:15%"><col><col style="width:12%"><col style="width:20%"><col style="width:22%"></colgroup>
+            <thead><tr><th>월일</th><th>품목</th><th>수량</th><th>단가</th><th>금액</th></tr></thead>
+            <tbody id="pRows"></tbody>
+            <tfoot><tr><th colspan="4">합계</th><td id="pSum"></td></tr></tfoot>
+          </table>
+        </div>
+      </div>
+      <div class="acts"><button class="save" id="save">이미지로 저장</button><button class="print" id="print">인쇄 · PDF</button></div>
+      <p class="note">입력한 내용은 이 기기 안에서만 처리되고 어디에도 저장되지 않습니다. 영수증은 실제로 물건이나 서비스를 판 공급자가 사실대로 작성해야 합니다.</p>
+    </aside>
+  </div>
+
+  <section class="guide">
+    <h2>간이영수증, 이것만 알면 됩니다</h2>
+    <div class="fgrid">
+      <div class="f"><h3>3만 원 이하는 간이영수증으로 충분</h3><p>사업자의 일반 경비는 건당 <strong>3만 원(부가세 포함) 이하</strong>라면 간이영수증으로 증빙할 수 있고 가산세도 붙지 않습니다.</p></div>
+      <div class="f"><h3>3만 원을 넘으면 적격증빙</h3><p>세금계산서, 계산서, 신용카드 매출전표, 지출증빙용 현금영수증이 원칙입니다. 간이영수증만 있으면 거래 사실이 입증돼도 <strong>금액의 2%가 증빙불비가산세</strong>로 붙을 수 있습니다.</p></div>
+      <div class="f"><h3>경조사비는 20만 원까지</h3><p>거래처 경조사비는 건당 20만 원까지 청첩장, 부고 같은 자료로 증빙이 가능합니다.</p></div>
+      <div class="f"><h3>작성은 공급자가</h3><p>물건이나 서비스를 판 사람이 직접 작성해서 건넵니다. 사실과 다르게 적으면 허위 증빙이 되니 주의하세요.</p></div>
+    </div>
+    <div class="faq">
+      <h2>자주 묻는 질문</h2>
+      <details><summary>3만 원이 넘는 걸 여러 장으로 나눠 받아도 되나요?</summary><p>한 번의 거래를 쪼개서 3만 원 이하로 맞추는 건 인정되지 않습니다. 건당 거래 금액은 실제 거래 단위로 판단합니다.</p></details>
+      <details><summary>금액 앞에 '일금', 뒤에 '원정'은 왜 붙이나요?</summary><p>숫자를 덧붙여 금액을 고치는 위조를 막기 위해서입니다. 이 작성기는 합계를 '일금 일십이만삼천원정'처럼 자동으로 바꿔 넣습니다.</p></details>
+      <details><summary>영수와 청구는 뭐가 다른가요?</summary><p>영수는 돈을 이미 받았다는 뜻이고, 청구는 앞으로 받을 돈을 요청한다는 뜻입니다.</p></details>
+      <details><summary>도장이 꼭 있어야 하나요?</summary><p>법으로 정해진 건 아니지만, 공급자를 확인하는 의미로 날인하는 경우가 많습니다. 도장 사진을 넣으면 (인) 자리에 찍힙니다.</p></details>
+    </div>
+    <p class="note" style="margin-top:20px">세법 기준은 바뀔 수 있으니 중요한 판단은 세무서나 세무 전문가에게 확인하세요.</p>
+  </section>
+</div>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span>입력한 숫자는 기기 밖으로 나가지 않습니다.</span></footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const toNum=v=>{const n=parseFloat(String(v).replace(/,/g,''));return isFinite(n)?n:0;};
+const comma=n=>Math.round(n).toLocaleString('ko-KR');
+function fmtNum(el){
+  const pos=el.selectionStart??el.value.length;
+  const keep=el.value.slice(0,pos).replace(/[^0-9]/g,'').length;
+  const raw=el.value.replace(/[^0-9]/g,'').replace(/^0+(?=\d)/,'');
+  const out=raw.replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  el.value=out; let c=0,p=0; while(p<out.length&&c<keep){if(/\d/.test(out[p]))c++;p++;}
+  try{el.setSelectionRange(p,p);}catch(e){}
+}
+function korean(n){
+  n=Math.floor(n); if(n<=0) return '';
+  const d=['','일','이','삼','사','오','육','칠','팔','구'], u=['','십','백','천'], big=['','만','억','조'];
+  let s='', g=0;
+  while(n>0){
+    const part=n%10000; n=Math.floor(n/10000);
+    if(part){ let t=''; const ds=String(part).padStart(4,'0').split('').map(Number);
+      ds.forEach((x,i)=>{ if(x) t+=d[x]+u[3-i]; });
+      s=t+big[g]+s; }
+    g++;
+  }
+  return '일금 '+s+'원정';
+}
+const MAX=8;
+const itemsEl=$('items');
+function addRow(v={}){
+  if(itemsEl.children.length>=MAX) return;
+  const r=document.createElement('div'); r.className='it';
+  r.innerHTML=`<div class="box"><label>품목</label><input class="iname" placeholder="볼펜"></div>
+  <div class="box num"><label>수량</label><input class="iqty" inputmode="numeric" placeholder="1"></div>
+  <div class="box num"><label>단가</label><input class="iprice" inputmode="numeric" placeholder="1,500"></div>
+  <button class="del" aria-label="품목 삭제">×</button>`;
+  r.querySelector('.iname').value=v.n||''; r.querySelector('.iqty').value=v.q||''; r.querySelector('.iprice').value=v.p||'';
+  r.querySelectorAll('.iqty,.iprice').forEach(i=>i.addEventListener('input',()=>{fmtNum(i);render();}));
+  r.querySelector('.iname').addEventListener('input',render);
+  r.querySelector('.del').addEventListener('click',()=>{ if(itemsEl.children.length>1){r.remove();} else {r.querySelectorAll('input').forEach(i=>i.value='');} render(); });
+  itemsEl.append(r); render();
+}
+$('add').addEventListener('click',()=>{addRow(); const l=itemsEl.lastElementChild; l&&l.querySelector('.iname').focus();});
+
+let kind='영수', copyFor='공급받는자용', stamp=null;
+document.querySelectorAll('#kind button').forEach(b=>b.addEventListener('click',()=>{kind=b.dataset.k;document.querySelectorAll('#kind button').forEach(x=>x.setAttribute('aria-pressed',x===b));render();}));
+document.querySelectorAll('#copyfor button').forEach(b=>b.addEventListener('click',()=>{copyFor=b.dataset.c;document.querySelectorAll('#copyfor button').forEach(x=>x.setAttribute('aria-pressed',x===b));render();}));
+
+$('biz').addEventListener('input',e=>{const d=e.target.value.replace(/\D/g,'').slice(0,10);e.target.value=d.length>5?d.slice(0,3)+'-'+d.slice(3,5)+'-'+d.slice(5):d.length>3?d.slice(0,3)+'-'+d.slice(3):d;render();});
+['name','owner','addr','type','item','to','date','no','memo'].forEach(id=>$(id).addEventListener('input',render));
+
+$('stampFile').addEventListener('change',e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const rd=new FileReader(); rd.onload=()=>{stamp=rd.result; $('stampHint').textContent='도장이 들어갔어요'; $('stampDel').hidden=false; render();}; rd.readAsDataURL(f);
+});
+$('stampDel').addEventListener('click',()=>{stamp=null;$('stampFile').value='';$('stampHint').textContent='배경이 흰 도장 사진이면 자연스럽게 찍혀요';$('stampDel').hidden=true;render();});
+
+const t=new Date(); $('date').value=`${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
+
+function render(){
+  const v=id=>$(id).value.trim();
+  $('pTo').textContent=v('to'); $('pNo').textContent=v('no');
+  $('pBiz').textContent=v('biz'); $('pName').textContent=v('name'); $('pOwner').textContent=v('owner');
+  $('pAddr').textContent=v('addr'); $('pType').textContent=v('type'); $('pItem').textContent=v('item');
+  $('pMemo').textContent=v('memo'); $('pFor').textContent='('+copyFor+')';
+  $('pMsg').textContent= kind==='영수' ? '위 금액을 정히 영수함' : '위 금액을 청구함';
+  const img=$('pStamp'); if(stamp){img.src=stamp;img.hidden=false;} else {img.hidden=true;img.removeAttribute('src');}
+  let md='';
+  if(v('date')){const [y,m,d]=v('date').split('-'); $('pDate').textContent=`${y}. ${+m}. ${+d}.`; md=`${+m}/${+d}`;} else $('pDate').textContent='';
+  let sum=0; const rows=[...itemsEl.children].map(r=>{
+    const n=r.querySelector('.iname').value.trim(), q=toNum(r.querySelector('.iqty').value), p=toNum(r.querySelector('.iprice').value);
+    const amt=(q||(p?1:0))*p; sum+=amt; return {n,q,p,amt};
+  });
+  let html='';
+  for(let i=0;i<MAX;i++){
+    const r=rows[i]; const has=r&&(r.n||r.p);
+    html+= has ? `<tr><td class="c">${md}</td><td class="l"></td><td class="c">${r.q?comma(r.q):(r.p?'1':'')}</td><td>${r.p?comma(r.p):''}</td><td>${r.amt?comma(r.amt):''}</td></tr>`
+               : '<tr><td></td><td></td><td></td><td></td><td></td></tr>';
+  }
+  $('pRows').innerHTML=html;
+  [...$('pRows').children].forEach((tr,i)=>{const r=rows[i]; if(r&&(r.n||r.p)) tr.children[1].textContent=r.n;});
+  $('pSum').textContent=sum?comma(sum):'';
+  $('pTotal').textContent=sum?'₩'+comma(sum):'';
+  $('pKor').textContent=korean(sum);
+  $('add').disabled=itemsEl.children.length>=MAX;
+}
+const toast=$('toast');
+function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1600);}
+$('save').addEventListener('click',async()=>{
+  if(!window.html2canvas){say('잠시 후 다시 눌러주세요');return;}
+  try{
+    const c=await html2canvas($('paper'),{scale:3,backgroundColor:'#ffffff'});
+    const a=document.createElement('a'); a.href=c.toDataURL('image/png');
+    a.download=`간이영수증_${$('date').value||'작성'}.png`; document.body.append(a); a.click(); a.remove();
+    say('이미지로 저장했어요');
+  }catch(e){say('저장하지 못했어요. 인쇄 · PDF를 이용해주세요');}
+});
+$('print').addEventListener('click',()=>window.print());
+addRow();
+</script>
+</body>
+</html>
