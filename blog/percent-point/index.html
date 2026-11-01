@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F4F1">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sonandogu.com/blog/percent-point/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-percentpoint.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<title>퍼센트와 퍼센트포인트 차이, 금리 2%→3%는 몇 % 오른 걸까 | 손안의도구</title>
+<meta name="description" content="금리가 2%에서 3%가 되면 1% 오른 걸까, 50% 오른 걸까? 퍼센트와 퍼센트포인트(%p)의 차이, 증가율 계산법, 50% 떨어지고 50% 오르면 본전이 안 되는 이유까지 그림으로 쉽게 풀었어요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="금리 2%에서 3%, 1% 올랐다는 말이 틀린 이유">
+<meta property="og:description" content="퍼센트와 퍼센트포인트 차이, 그림으로 쉽게.">
+<link rel="canonical" href="https://sonandogu.com/blog/percent-point/">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "금리 2%에서 3%, 1% 올랐다는 말이 틀린 이유", "datePublished": "2026-11-02", "author": {"@type": "Organization", "name": "손안의도구"}, "publisher": {"@type": "Organization", "name": "손안의도구"}, "mainEntityOfPage": "https://sonandogu.com/blog/percent-point/", "image": "https://sonandogu.com/assets/og-percentpoint.jpg"}</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.post{max-width:700px; padding:36px 0 0}
+@media (min-width:920px){.post{padding-top:60px}}
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:14px}
+.crumb a{color:var(--muted); text-decoration:none}
+.post h1{font-size:clamp(30px,6vw,46px); font-weight:800; letter-spacing:-.05em; line-height:1.15; margin:0 0 14px}
+.meta{font-size:14px; color:var(--muted); margin:0 0 30px}
+.post h2{font-size:clamp(21px,3.6vw,26px); font-weight:800; letter-spacing:-.04em; line-height:1.3; margin:52px 0 14px}
+.post p{font-size:16.5px; line-height:1.85; margin:0 0 16px}
+.post strong{font-weight:750}
+.formula{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:14px; padding:16px 18px; font-size:17px; font-weight:750; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex{background:rgba(255,90,31,.07); border-radius:14px; padding:14px 18px; font-size:15.5px; line-height:1.8; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex b{color:var(--orange)}
+.tbl{overflow-x:auto; margin:0 0 16px}
+table{width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums}
+th,td{padding:11px 10px; border-bottom:1px solid var(--line); text-align:left}
+th{color:var(--muted); font-weight:700; font-size:13.5px}
+td:last-child,th:last-child{text-align:right}
+.mini{position:relative; overflow:hidden; border-radius:26px; padding:20px; color:#F4F4F1; margin:6px 0 34px;
+  background:radial-gradient(110% 140% at 100% 0%, rgba(255,106,51,.26) 0%, rgba(255,106,51,0) 50%), linear-gradient(160deg,#202126 0%,#121316 100%); box-shadow:var(--shadow)}
+.mini h3{margin:0 0 12px; font-size:15px; font-weight:800}
+.mini .row{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.mini label{display:block; font-size:12px; font-weight:700; color:rgba(244,244,241,.55); margin:0 0 5px 2px}
+.mini input{width:100%; font:inherit; font-size:22px; font-weight:750; color:#F4F4F1; background:rgba(255,255,255,.07); border:1.5px solid rgba(255,255,255,.1); border-radius:14px; padding:10px 12px; outline:none; font-variant-numeric:tabular-nums}
+.mini input:focus{border-color:#FF6A33}
+.mini input::placeholder{color:rgba(244,244,241,.3)}
+.mini .out{margin-top:14px; font-size:15px; color:rgba(244,244,241,.6); min-height:1.5em}
+.mini .out b{font-size:30px; color:#fff; letter-spacing:-.04em; margin:0 4px}
+.mini .out em{font-style:normal; color:#FF8A3D; font-weight:700}
+.mini a{display:inline-block; margin-top:12px; color:#FF8A3D; font-weight:700; font-size:14px; text-decoration:none}
+.next{margin-top:56px; display:grid; gap:10px}
+.next a{display:flex; justify-content:space-between; align-items:center; gap:12px; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:18px 20px; box-shadow:var(--shadow)}
+.next a:hover{border-color:var(--ink)}
+.next strong{display:block; font-size:17px; font-weight:800; letter-spacing:-.03em}
+.next span{font-size:14px; color:var(--muted)}
+.next i{font-style:normal; font-size:20px; color:var(--muted)}
+
+.ill{margin:6px 0 26px; background:var(--surface); border:1px solid var(--line); border-radius:24px; padding:16px 12px 12px; box-shadow:var(--shadow)}
+.ill svg{display:block; width:100%; height:auto}
+.ill figcaption{text-align:center; font-size:13.5px; color:var(--muted); margin-top:6px}
+.ill .tag{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .hole{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .tp{font-size:20px; font-weight:700; fill:var(--muted)}
+.ill .tbig{font-size:46px; font-weight:800; fill:var(--ink); letter-spacing:-2px}
+.ill .strike{stroke:#FF5A1F; stroke-width:5; stroke-linecap:round}
+.ill .st{font-size:30px; font-weight:800; fill:#fff}
+.ill .st2{font-size:26px; font-weight:800; fill:#FF8A3D}
+.ill .q{font-size:80px; font-weight:800; fill:var(--faint)}
+.ill .lbl text{font-size:17px; font-weight:700; fill:var(--muted)}
+.ill .val text{font-size:20px; font-weight:800; fill:var(--ink)}
+.ill .bar0{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .bar1{fill:#FFB48A}
+.ill .bar2{fill:#FF5A1F}
+.ill .ghost{stroke:var(--ink); stroke-width:2; stroke-dasharray:6 6; opacity:.5}
+.ill .arr{fill:none; stroke:var(--faint); stroke-width:3; stroke-linecap:round}
+.ill .arr2{fill:none; stroke:var(--ink); stroke-width:2; opacity:.5}
+.ill .note{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .btl{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .cap{fill:var(--line)}
+.ill .btlf{fill:#FF5A1F}
+.ill .capf{fill:#FF8A3D}
+.ill .bp{font-size:30px; font-weight:800; fill:var(--muted)}
+.ill .free{font-size:22px; font-weight:800; fill:#fff}
+.ill .cap2{font-size:18px; font-weight:800; fill:var(--ink)}
+.quiz{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px 22px; margin:26px 0 8px; box-shadow:var(--shadow)}
+.quiz .qh{font-size:13px; font-weight:800; color:var(--orange); margin:0 0 6px}
+.quiz .qq{font-size:17px; font-weight:750; margin:0 0 12px; line-height:1.6}
+.quiz summary{display:inline-block; cursor:pointer; list-style:none; font-size:14.5px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); padding:9px 16px; border-radius:12px}
+.quiz summary::-webkit-details-marker{display:none}
+.quiz details[open] summary{display:none}
+.quiz details p{margin:0; font-size:16px; line-height:1.75}
+.quiz details b{color:var(--orange)}
+.keys{display:grid; gap:10px; margin:0 0 18px}
+@media (min-width:640px){.keys{grid-template-columns:repeat(3,1fr)}}
+.keys div{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:16px}
+.keys b{display:block; font-size:16px; font-weight:800; color:var(--orange); margin-bottom:4px}
+.keys span{font-size:14.5px; color:var(--muted); line-height:1.6}
+
+.ill .ok{fill:#1FA968}.ill .okt{fill:#1FA968; font-size:16px; font-weight:800}
+.ill .warn{fill:#FF5A1F}.ill .warnt{fill:#FF5A1F; font-size:16px; font-weight:800}
+.ill .axis{stroke:var(--line); stroke-width:3}
+.ill .tick{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .paper{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .ln2{stroke:var(--line); stroke-width:3; stroke-linecap:round}
+.ill .red{fill:#B4232F; font-weight:800}
+.ill .node{fill:var(--field); stroke:var(--faint); stroke-width:2}
+.ill .nodeb{fill:var(--surface); stroke:var(--ink); stroke-width:3}
+.ill .path{stroke:var(--line); stroke-width:4; fill:none}
+.ill .hot{stroke:#FF5A1F; stroke-width:6; fill:none; stroke-linecap:round; stroke-dasharray:2 12}
+.ill .dot{fill:#FF5A1F}
+.ill .p3{stroke:var(--faint); stroke-width:4; fill:none; stroke-linecap:round}
+.ill .p5{stroke:#FF5A1F; stroke-width:5; fill:none; stroke-linecap:round}
+.ill .grid{stroke:var(--line); stroke-width:1.5}
+</style>
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient></defs><rect width="26" height="26" rx="8" fill="url(#lg)"/><rect x="7" y="11.5" width="12" height="3" rx="1.5" fill="#fff"/><rect x="11.5" y="7" width="3" height="7.5" rx="1.5" fill="#fff" opacity=".55"/></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<div class="container"><article class="post">
+  <div class="crumb"><a href="/blog/">블로그</a> / 생활 계산</div>
+  <h1>금리 2%에서 3%,<br>1% 올랐다는 말이 틀린 이유</h1>
+  <p class="meta">2026년 11월 2일 · 4분이면 읽어요</p>
+
+  <figure class="ill" aria-label="100에서 50% 떨어지면 50, 다시 50% 오르면 75. 원래대로 돌아오지 않는다">
+    <svg viewBox="0 0 640 300">
+      <rect x="70" y="50" width="110" height="200" rx="16" class="bar0"/>
+      <rect x="265" y="150" width="110" height="100" rx="16" class="bar2"/>
+      <rect x="460" y="100" width="110" height="150" rx="16" class="bar1"/>
+      <line x1="450" y1="50" x2="580" y2="50" class="ghost"/>
+      <g class="val"><text x="125" y="38" text-anchor="middle">100</text><text x="320" y="138" text-anchor="middle">50</text><text x="515" y="88" text-anchor="middle">75</text></g>
+      <path d="M190 120 C225 140 240 150 256 175" class="arr"/><path d="M385 180 C420 150 435 135 452 125" class="arr"/>
+      <text x="222" y="112" class="warnt" text-anchor="middle">−50%</text><text x="420" y="132" class="okt" text-anchor="middle">+50%</text>
+      <text x="575" y="42" class="note" text-anchor="end">원래는 100</text>
+      <g class="lbl"><text x="125" y="280" text-anchor="middle">처음</text><text x="320" y="280" text-anchor="middle">반토막</text><text x="515" y="280" text-anchor="middle">50% 회복?</text></g>
+    </svg>
+  </figure>
+
+  <p>뉴스에서 "대출 금리가 2%에서 3%로 올랐다"는 소식이 나왔어요. 옆에 있던 친구가 "1%밖에 안 올랐네" 하고 넘겼죠. 그런데 1억 원을 빌렸다면 1년 이자가 200만 원에서 300만 원이 돼요. 이자가 <strong>절반이나 늘었는데</strong> 1%밖에 안 올랐다니, 뭔가 이상하죠.</p>
+  <p>친구 말이 틀린 건 단위를 섞어 써서예요. 이럴 때 써야 하는 말이 따로 있어요. 바로 <strong>퍼센트포인트(%p)</strong>예요.</p>
+
+  <div class="quiz">
+    <p class="qh">잠깐, 먼저 맞혀볼까요?</p>
+    <p class="qq">어떤 정당 지지율이 40%에서 44%가 됐어요. 몇 % 올랐다고 해야 할까요?</p>
+    <details><summary>정답 보기</summary><p><b>4%p 올랐고, 비율로는 10% 올랐어요.</b> 40에서 44로 4만큼 늘었으니 퍼센트포인트로는 4%p, 원래 값 40에 비해 10% 커졌으니 증가율은 10%예요. 둘 다 맞는 말이지만 뜻이 완전히 달라요.</p></details>
+  </div>
+
+  <h2>%p는 '차이', %는 '비율'</h2>
+  <p>퍼센트포인트는 퍼센트로 표시된 두 값을 그냥 빼는 거예요. 2%에서 3%가 되면 3 − 2 = 1, 그래서 1%p 상승이에요. 반면 퍼센트로 말하는 증가율은 처음 값에 비해 얼마나 커졌는지를 봐요. 1만큼 늘었는데 처음이 2였으니 50% 증가예요.</p>
+  <div class="formula">증가율(%) = (바뀐 값 − 처음 값) ÷ 처음 값 × 100</div>
+  <p>그래서 금리, 지지율, 실업률처럼 원래 퍼센트로 표시되는 숫자가 변할 땐 %p를 쓰는 게 정확해요. 뉴스에서 "%p"라는 표현이 보이면 "아, 단순한 차이를 말하는구나" 하고 읽으면 돼요.</p>
+
+  <div class="mini">
+    <h3>증가율 바로 계산해보기</h3>
+    <div class="row">
+      <div><label for="mA">처음 값</label><input id="mA" inputmode="decimal" placeholder="2"></div>
+      <div><label for="mB">바뀐 값</label><input id="mB" inputmode="decimal" placeholder="3"></div>
+    </div>
+    <div class="out" id="mOut">두 값을 넣으면 몇 % 변했는지 알려드려요</div>
+    <a href="/percent/">더 많은 계산은 퍼센트 계산기에서 →</a>
+  </div>
+
+  <h2>50% 떨어지고 50% 오르면 본전일까?</h2>
+  <p>퍼센트의 또 다른 함정이에요. 100만 원짜리 주식이 50% 떨어지면 50만 원이 되죠. 여기서 다시 50% 오르면 원래대로 100만 원일 것 같지만, 실제로는 <strong>75만 원</strong>이에요. 두 번째 50%는 100만 원이 아니라 50만 원을 기준으로 계산되니까요.</p>
+  <p>반토막 난 걸 원래대로 돌리려면 50%가 아니라 100%가 올라야 해요. 떨어진 폭이 클수록 회복에 필요한 상승률은 훨씬 가파르게 커져요.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>떨어진 폭</th><th>본전까지 필요한 상승</th></tr></thead>
+    <tbody>
+      <tr><td>−10%</td><td>+11.1%</td></tr>
+      <tr><td>−20%</td><td>+25%</td></tr>
+      <tr><td>−30%</td><td>+42.9%</td></tr>
+      <tr><td>−50%</td><td>+100%</td></tr>
+      <tr><td>−75%</td><td>+300%</td></tr>
+    </tbody>
+  </table></div>
+  <p>투자에서 "잃지 않는 게 먼저"라는 말이 나오는 이유가 이 표에 다 들어 있어요.</p>
+
+  <h2>뉴스 숫자, 이렇게 읽어보세요</h2>
+  <div class="keys">
+    <div><b>%p가 보이면</b><span>두 퍼센트 값의 단순한 차이</span></div>
+    <div><b>%가 보이면</b><span>처음 값에 비해 몇 배 변했는지</span></div>
+    <div><b>떨어졌다 오르면</b><span>기준이 바뀌어서 본전이 안 돼요</span></div>
+  </div>
+  <p>숫자 하나에도 기준이 숨어 있어요. "무엇에 비해서"를 한 번만 떠올리면 헷갈릴 일이 확 줄어요. 직접 계산하기 귀찮을 땐 퍼센트 계산기의 "증감률" 버튼에 처음 값과 바뀐 값만 넣으면 돼요.</p>
+
+  <nav class="next" aria-label="관련 글과 도구"><a href="/percent/"><span><strong>퍼센트 계산기</strong><span>증감률, 비율, 할인가를 한 번에</span></span><i>→</i></a><a href="/blog/salary-raise/"><span><strong>연봉 5% 인상, 진짜 얼마나 오른 걸까?</strong><span>인상률, 실질 인상률, 복리 효과</span></span><i>→</i></a></nav>
+</article></div>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
+<script>
+const A=document.getElementById('mA'),B=document.getElementById('mB'),O=document.getElementById('mOut');
+const num=v=>{const n=parseFloat(String(v).replace(/,/g,''));return isFinite(n)?n:null;};
+const fmt=n=>(Math.round(n*100)/100).toLocaleString('ko-KR');
+function f(el){let r=el.value.replace(/[^0-9.]/g,'');const i=r.indexOf('.');if(i>-1)r=r.slice(0,i+1)+r.slice(i+1).replace(/\./g,'');el.value=r;}
+function run(){const a=num(A.value),b=num(B.value);
+  if(a===null||b===null||a===0){O.textContent='두 값을 넣으면 몇 % 변했는지 알려드려요';return;}
+  const r=(b-a)/a*100, d=b-a;
+  O.innerHTML='<b>'+fmt(Math.abs(r))+'%</b> '+(r>=0?'증가':'감소')+' · 퍼센트 값이라면 <em>'+fmt(Math.abs(d))+'%p</em> '+(d>=0?'상승':'하락');}
+[A,B].forEach(el=>el.addEventListener('input',()=>{f(el);run();}));
+</script>
+</body>
+</html>

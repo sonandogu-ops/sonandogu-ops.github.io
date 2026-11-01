@@ -11,15 +11,15 @@
 <meta property="og:image" content="https://sonandogu.com/assets/og-discount.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<title>할인율 계산하는 법 - 할인가, 할인율, 원래 가격, 중복 할인까지 | 손안의도구</title>
-<meta name="description" content="할인율 계산 공식을 예시로 쉽게 정리했어요. 할인가 구하기, 할인율 거꾸로 구하기, 원래 가격 찾기, 20%+10% 중복 할인, 1+1과 2+1이 몇 % 할인인지까지.">
+<title>20% 할인에 10% 더, 왜 30%가 아닐까? 할인율 계산 쉽게 이해하기 | 손안의도구</title>
+<meta name="description" content="10만 원 패딩에 20% 할인과 10% 쿠폰을 썼는데 왜 72,000원일까? 중복 할인의 비밀, 2+1이 몇 % 할인인지, 원래 가격 거꾸로 찾는 법까지 그림으로 쉽게 풀었어요.">
 <meta property="og:site_name" content="손안의도구">
-<meta property="og:title" content="할인율 계산하는 법 - 할인가, 할인율, 원래 가격, 중복 할인까지 | 손안의도구">
-<meta property="og:description" content="할인율 계산 공식을 예시로 쉽게 정리했어요. 할인가 구하기, 할인율 거꾸로 구하기, 원래 가격 찾기, 20%+10% 중복 할인, 1+1과 2+1이 몇 % 할인인지까지.">
+<meta property="og:title" content="20% 할인에 10% 더, 왜 30%가 아닐까?">
+<meta property="og:description" content="중복 할인의 비밀부터 2+1 할인율까지 그림으로 쉽게.">
 <link rel="canonical" href="https://sonandogu.com/blog/discount-rate/">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"할인율 계산, 공식 하나면 끝나요","datePublished":"2026-11-02","author":{"@type":"Organization","name":"손안의도구"},"publisher":{"@type":"Organization","name":"손안의도구"},"mainEntityOfPage":"https://sonandogu.com/blog/discount-rate/"}
+{"@context":"https://schema.org","@type":"Article","headline":"20% 할인에 10% 더, 왜 30%가 아닐까?","datePublished":"2026-11-02","author":{"@type":"Organization","name":"손안의도구"},"publisher":{"@type":"Organization","name":"손안의도구"},"mainEntityOfPage":"https://sonandogu.com/blog/discount-rate/"}
 </script>
 <style>:root{
   --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
@@ -91,6 +91,47 @@ td:last-child,th:last-child{text-align:right}
 .next strong{display:block; font-size:17px; font-weight:800; letter-spacing:-.03em}
 .next span{font-size:14px; color:var(--muted)}
 .next i{font-style:normal; font-size:20px; color:var(--muted)}
+
+.ill{margin:6px 0 26px; background:var(--surface); border:1px solid var(--line); border-radius:24px; padding:16px 12px 12px; box-shadow:var(--shadow)}
+.ill svg{display:block; width:100%; height:auto}
+.ill figcaption{text-align:center; font-size:13.5px; color:var(--muted); margin-top:6px}
+.ill .tag{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .hole{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .tp{font-size:20px; font-weight:700; fill:var(--muted)}
+.ill .tbig{font-size:46px; font-weight:800; fill:var(--ink); letter-spacing:-2px}
+.ill .strike{stroke:#FF5A1F; stroke-width:5; stroke-linecap:round}
+.ill .st{font-size:30px; font-weight:800; fill:#fff}
+.ill .st2{font-size:26px; font-weight:800; fill:#FF8A3D}
+.ill .q{font-size:80px; font-weight:800; fill:var(--faint)}
+.ill .lbl text{font-size:17px; font-weight:700; fill:var(--muted)}
+.ill .val text{font-size:20px; font-weight:800; fill:var(--ink)}
+.ill .bar0{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .bar1{fill:#FFB48A}
+.ill .bar2{fill:#FF5A1F}
+.ill .ghost{stroke:var(--ink); stroke-width:2; stroke-dasharray:6 6; opacity:.5}
+.ill .arr{fill:none; stroke:var(--faint); stroke-width:3; stroke-linecap:round}
+.ill .arr2{fill:none; stroke:var(--ink); stroke-width:2; opacity:.5}
+.ill .note{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .btl{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .cap{fill:var(--line)}
+.ill .btlf{fill:#FF5A1F}
+.ill .capf{fill:#FF8A3D}
+.ill .bp{font-size:30px; font-weight:800; fill:var(--muted)}
+.ill .free{font-size:22px; font-weight:800; fill:#fff}
+.ill .cap2{font-size:18px; font-weight:800; fill:var(--ink)}
+.quiz{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px 22px; margin:26px 0 8px; box-shadow:var(--shadow)}
+.quiz .qh{font-size:13px; font-weight:800; color:var(--orange); margin:0 0 6px}
+.quiz .qq{font-size:17px; font-weight:750; margin:0 0 12px; line-height:1.6}
+.quiz summary{display:inline-block; cursor:pointer; list-style:none; font-size:14.5px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); padding:9px 16px; border-radius:12px}
+.quiz summary::-webkit-details-marker{display:none}
+.quiz details[open] summary{display:none}
+.quiz details p{margin:0; font-size:16px; line-height:1.75}
+.quiz details b{color:var(--orange)}
+.keys{display:grid; gap:10px; margin:0 0 18px}
+@media (min-width:640px){.keys{grid-template-columns:repeat(3,1fr)}}
+.keys div{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:16px}
+.keys b{display:block; font-size:16px; font-weight:800; color:var(--orange); margin-bottom:4px}
+.keys span{font-size:14.5px; color:var(--muted); line-height:1.6}
 </style>
 </head>
 <body>
@@ -98,71 +139,108 @@ td:last-child,th:last-child{text-align:right}
 
 <div class="container"><article class="post">
   <div class="crumb"><a href="/blog/">블로그</a> / 생활 계산</div>
-  <h1>할인율 계산,<br>공식 하나면 끝나요</h1>
-  <p class="meta">2026년 11월 2일 · 3분이면 읽어요</p>
+  <h1>20% 할인에 10% 더,<br>왜 30%가 아닐까?</h1>
+  <p class="meta">2026년 11월 2일 · 4분이면 읽어요</p>
 
-  <p>"30% 세일"이라는 문구를 보고 머릿속으로 계산하다가 결국 휴대폰 계산기를 꺼낸 적, 다들 있을 거예요. 할인 계산은 사실 곱셈 한 번이면 끝나는데, 순서가 헷갈리거나 할인이 두 번 겹치면 갑자기 어려워지죠. 자주 쓰는 경우만 골라서 예시로 정리해봤어요.</p>
+  <figure class="ill" aria-hidden="true">
+    <svg viewBox="0 0 640 300">
+      <defs><linearGradient id="og1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient></defs>
+      <g transform="translate(90 55) rotate(-8)">
+        <path d="M0 40 L50 0 H300 a16 16 0 0 1 16 16 V204 a16 16 0 0 1-16 16 H50 L0 180 Z" class="tag"/>
+        <circle cx="40" cy="110" r="12" class="hole"/>
+        <text x="190" y="92" class="tp" text-anchor="middle">정가</text>
+        <text x="190" y="140" class="tbig" text-anchor="middle">100,000</text>
+        <line x1="110" y1="128" x2="270" y2="128" class="strike"/>
+      </g>
+      <g transform="translate(500 80) rotate(10)"><circle r="54" fill="url(#og1)"/><text y="12" class="st" text-anchor="middle">−20%</text></g>
+      <g transform="translate(565 190) rotate(-6)"><circle r="44" fill="#141518"/><text y="10" class="st2" text-anchor="middle">+10%</text></g>
+      <text x="455" y="270" class="q" text-anchor="middle">?</text>
+    </svg>
+  </figure>
 
-  <div class="mini">
-    <h3>할인율 바로 계산해보기</h3>
-    <div class="row">
-      <div><label for="mA">원래 가격</label><input id="mA" inputmode="numeric" placeholder="50,000"></div>
-      <div><label for="mB">할인된 가격</label><input id="mB" inputmode="numeric" placeholder="35,000"></div>
-    </div>
-    <div class="out" id="mOut">두 가격을 넣으면 몇 % 할인인지 알려드려요</div>
-    <a href="/percent/">할인가·원래 가격 계산은 퍼센트 계산기에서 →</a>
+  <p>세일 마지막 날이었어요. 장바구니에 담아둔 10만 원짜리 패딩이 20% 할인 중이었고, 마침 앱에서 "추가 10% 할인 쿠폰"까지 떴죠. 20에 10을 더하면 30, 그러니까 7만 원이겠구나 싶었는데 결제창에 찍힌 숫자는 <strong>72,000원</strong>이었어요.</p>
+  <p>쿠폰이 덜 적용된 걸까, 아니면 뭔가 속은 걸까. 결론부터 말하면 둘 다 아니에요. 계산은 정확했고, 우리가 할인을 "더하기"로 생각했던 게 문제였어요.</p>
+
+  <div class="quiz">
+    <p class="qh">잠깐, 먼저 맞혀볼까요?</p>
+    <p class="qq">5만 원짜리 운동화를 30% 할인한 뒤, 거기서 다시 20% 할인하면 얼마일까요?</p>
+    <details><summary>정답 보기</summary><p><b>28,000원</b>이에요. 50%를 깎은 25,000원이 아니라, 30% 깎은 35,000원에서 다시 20%를 깎으니까요. 실제 할인율은 44%예요.</p></details>
   </div>
 
-  <h2>할인된 가격 구하기</h2>
-  <p>가장 많이 쓰는 계산이에요. 원래 가격에서 할인율만큼 빼면 되는데, 한 번에 끝내려면 <strong>남는 비율을 곱하는 게</strong> 제일 빨라요. 30% 할인이면 70%를 내는 거니까 0.7을 곱하면 되죠.</p>
-  <div class="formula">할인된 가격 = 원래 가격 × (1 − 할인율 ÷ 100)</div>
-  <div class="ex">49,000원짜리 운동화를 30% 할인하면<br>49,000 × 0.7 = <b>34,300원</b> (14,700원 아낌)</div>
+  <h2>추가 할인은 '이미 깎인 가격'에서 깎아요</h2>
+  <p>비밀은 기준이 바뀐다는 데 있어요. 첫 번째 20%는 10만 원에서 깎지만, 두 번째 10%는 10만 원이 아니라 <strong>이미 깎인 8만 원</strong>에서 깎아요. 8만 원의 10%는 8천 원이니까, 결과는 72,000원이 되는 거죠.</p>
 
-  <h2>몇 % 할인인지 거꾸로 구하기</h2>
-  <p>가격표에 할인 전 가격과 할인 후 가격만 적혀 있을 때가 있어요. 이럴 땐 깎인 금액이 원래 가격의 몇 퍼센트인지 보면 돼요.</p>
-  <div class="formula">할인율 = (원래 가격 − 할인된 가격) ÷ 원래 가격 × 100</div>
-  <div class="ex">89,000원 → 62,300원이면<br>(89,000 − 62,300) ÷ 89,000 × 100 = <b>30% 할인</b></div>
+  <figure class="ill" aria-label="100,000원에서 20% 할인하면 80,000원, 다시 10% 할인하면 72,000원이 된다. 30% 할인이었다면 70,000원.">
+    <svg viewBox="0 0 640 300">
+      <g class="lbl">
+        <text x="110" y="268" text-anchor="middle">정가</text>
+        <text x="320" y="268" text-anchor="middle">20% 할인</text>
+        <text x="530" y="268" text-anchor="middle">10% 추가</text>
+      </g>
+      <rect x="60" y="40" width="100" height="200" rx="16" class="bar0"/>
+      <rect x="270" y="80" width="100" height="160" rx="16" class="bar1"/>
+      <rect x="480" y="96" width="100" height="144" rx="16" class="bar2"/>
+      <line x1="380" y1="100" x2="590" y2="100" class="ghost"/>
+      <g class="val"><text x="110" y="28" text-anchor="middle">100,000</text><text x="320" y="68" text-anchor="middle">80,000</text><text x="530" y="84" text-anchor="middle">72,000</text></g>
+      <path d="M170 140 C210 120 230 120 262 140" class="arr"/><path d="M380 160 C420 140 440 140 472 160" class="arr"/>
+      <text x="468" y="94" class="note" text-anchor="end">30%였다면 70,000</text>
+    </svg>
+    <figcaption>두 번째 할인은 8만 원을 기준으로 계산돼요</figcaption>
+  </figure>
 
-  <h2>할인 전 원래 가격 찾기</h2>
-  <p>"25% 할인해서 18,000원"이라고만 쓰여 있을 때, 원래 얼마였는지 궁금하죠. 여기서 흔히 하는 실수가 18,000원에 25%를 다시 더하는 건데, 그러면 22,500원이 나와서 틀려요. 할인된 가격은 원래 가격의 75%니까 <strong>0.75로 나눠야</strong> 해요.</p>
-  <div class="formula">원래 가격 = 할인된 가격 ÷ (1 − 할인율 ÷ 100)</div>
-  <div class="ex">25% 할인해서 18,000원이면<br>18,000 ÷ 0.75 = <b>24,000원</b></div>
-
-  <h2>20% 할인에 10% 추가 할인, 30%가 아니에요</h2>
-  <p>"전 품목 20% 할인, 앱 결제 시 10% 추가 할인" 같은 문구, 그냥 더해서 30%라고 생각하기 쉬워요. 하지만 추가 할인은 이미 깎인 가격에서 한 번 더 깎는 거라 실제로는 <strong>28%</strong>예요.</p>
-  <div class="ex">100,000원 상품이라면<br>20% 할인 → 80,000원<br>여기서 10% 추가 할인 → 80,000 × 0.9 = 72,000원<br>총 할인율 = <b>28%</b> (30%였다면 70,000원)</div>
-  <p>두 할인율을 a, b라고 하면 실제 할인율은 <strong>100 − (100 − a) × (100 − b) ÷ 100</strong>으로 구할 수 있어요. 자주 보이는 조합을 표로 정리해뒀어요.</p>
+  <p>그래서 할인율 두 개가 겹치면 단순히 더한 것보다 항상 조금 덜 깎여요. 할인이 클수록 그 차이도 커지고요.</p>
   <div class="tbl"><table>
     <thead><tr><th>할인 조합</th><th>더하면</th><th>실제 할인율</th></tr></thead>
     <tbody>
       <tr><td>10% + 10%</td><td>20%</td><td>19%</td></tr>
       <tr><td>20% + 10%</td><td>30%</td><td>28%</td></tr>
-      <tr><td>30% + 10%</td><td>40%</td><td>37%</td></tr>
       <tr><td>30% + 20%</td><td>50%</td><td>44%</td></tr>
       <tr><td>50% + 20%</td><td>70%</td><td>60%</td></tr>
+      <tr><td>50% + 50%</td><td>100%</td><td>75%</td></tr>
     </tbody>
   </table></div>
-  <p>참고로 할인 순서를 바꿔도 결과는 같아요. 20% 먼저 하든 10% 먼저 하든 72,000원이 나와요.</p>
+  <p>마지막 줄이 재밌어요. 50% 할인에 50%를 더 깎아도 공짜가 되진 않아요. 반값의 반값이니까 정가의 4분의 1은 내야 하죠.</p>
+  <p>참고로 순서는 상관없어요. 10%를 먼저 깎든 20%를 먼저 깎든 결과는 똑같이 72,000원이에요. 곱하기는 순서를 바꿔도 같으니까요.</p>
 
-  <h2>1+1, 2+1은 몇 % 할인일까</h2>
-  <p>편의점에서 자주 보는 묶음 행사도 할인율로 바꿔보면 비교하기 쉬워요. 받는 개수 중 공짜인 개수의 비율을 보면 돼요.</p>
-  <div class="tbl"><table>
-    <thead><tr><th>행사</th><th>계산</th><th>할인율</th></tr></thead>
-    <tbody>
-      <tr><td>1+1</td><td>2개 중 1개 무료</td><td>50%</td></tr>
-      <tr><td>2+1</td><td>3개 중 1개 무료</td><td>약 33.3%</td></tr>
-      <tr><td>3+1</td><td>4개 중 1개 무료</td><td>25%</td></tr>
-    </tbody>
-  </table></div>
-  <p>그러니까 2+1 행사 상품을 다른 곳에서 35% 할인하고 있다면, 굳이 세 개를 살 필요 없이 그쪽이 더 싸요. 물론 다 쓸 거라면 얘기가 달라지지만요.</p>
+  <div class="mini">
+    <h3>내 장바구니도 계산해보기</h3>
+    <div class="row">
+      <div><label for="mA">원래 가격</label><input id="mA" inputmode="numeric" placeholder="100,000"></div>
+      <div><label for="mB">결제한 가격</label><input id="mB" inputmode="numeric" placeholder="72,000"></div>
+    </div>
+    <div class="out" id="mOut">두 가격을 넣으면 실제로 몇 % 할인받았는지 알려드려요</div>
+    <a href="/percent/">할인가·원래 가격 계산은 퍼센트 계산기에서 →</a>
+  </div>
 
-  <h2>헷갈릴 때 기억할 것</h2>
-  <p>할인 계산은 결국 "원래 가격의 몇 %를 내는가"를 떠올리면 대부분 풀려요. 30% 할인은 70%를 내는 것, 할인가에서 원래 가격을 찾을 땐 더하지 말고 나누는 것, 할인이 겹치면 더하지 말고 곱하는 것. 이 세 가지만 기억해도 계산 실수는 거의 없어요.</p>
-  <p>숫자 넣기가 귀찮을 땐 퍼센트 계산기의 "할인·인상"과 "원래 가격" 버튼을 쓰면 바로 나와요.</p>
+  <h2>2+1은 35% 할인보다 좋을까?</h2>
+  <p>편의점 앞에서 한 번쯤 고민해봤을 거예요. 2+1은 세 개 값을 두 개 값에 사는 거라, 할인율로 바꾸면 <strong>약 33%</strong>예요. 1+1은 50%, 3+1은 25%고요.</p>
+
+  <figure class="ill" aria-label="음료 세 병 중 한 병이 공짜인 2+1은 약 33% 할인과 같다.">
+    <svg viewBox="0 0 640 262">
+      <g transform="translate(150 30)"><rect x="0" y="30" width="80" height="150" rx="22" class="btl"/><rect x="22" y="0" width="36" height="40" rx="8" class="cap"/><text x="40" y="118" class="bp" text-anchor="middle">₩</text></g>
+      <g transform="translate(280 30)"><rect x="0" y="30" width="80" height="150" rx="22" class="btl"/><rect x="22" y="0" width="36" height="40" rx="8" class="cap"/><text x="40" y="118" class="bp" text-anchor="middle">₩</text></g>
+      <g transform="translate(410 30)"><rect x="0" y="30" width="80" height="150" rx="22" class="btlf"/><rect x="22" y="0" width="36" height="40" rx="8" class="capf"/><text x="40" y="116" class="free" text-anchor="middle">공짜</text></g>
+      <text x="320" y="254" class="cap2" text-anchor="middle">3개 중 1개 무료 = 약 33% 할인</text>
+    </svg>
+  </figure>
+
+  <p>그러니까 같은 음료를 다른 곳에서 35% 할인하고 있다면 그쪽이 개당 더 싸요. 게다가 2+1은 세 개를 다 마셔야 33%고, 하나 남겨서 버리면 할인 효과가 확 줄어들죠. 반대로 어차피 다 먹을 거라면 2+1이 하나 더 들고 오는 기분까지 덤으로 줘요. 숫자만큼이나 "다 쓸 건가"가 중요한 셈이에요.</p>
+
+  <h2>원래 가격 거꾸로 찾기, 여기서 다들 틀려요</h2>
+  <p>중고 거래 글에서 "정가에서 25% 할인해서 18,000원에 드려요"라는 문장을 봤다고 해볼게요. 원래 얼마였을까요? 많은 사람이 18,000원에 25%를 더해서 22,500원이라고 답하는데, 틀렸어요.</p>
+  <p>18,000원은 정가의 75%예요. 그러니까 더하는 게 아니라 <strong>0.75로 나눠야</strong> 해요. 18,000 ÷ 0.75 = <strong>24,000원</strong>. 22,500원에서 25%를 깎으면 16,875원이 나오니까 앞뒤가 안 맞죠.</p>
+
+  <h2>세 가지만 기억하면 돼요</h2>
+  <div class="keys">
+    <div><b>30% 할인</b><span>70%를 낸다는 뜻. 0.7을 곱하면 끝</span></div>
+    <div><b>할인 + 할인</b><span>더하지 말고 곱하기. 20%+10%는 28%</span></div>
+    <div><b>원래 가격 찾기</b><span>더하지 말고 나누기. 25% 할인가 ÷ 0.75</span></div>
+  </div>
+  <p>다음에 결제창 숫자가 예상과 다르면, 당황하지 말고 "기준이 바뀌었구나"를 떠올려보세요. 그래도 귀찮을 땐 퍼센트 계산기의 "할인·인상"과 "원래 가격" 버튼이 대신 계산해줘요.</p>
 
   <nav class="next" aria-label="관련 도구">
     <a href="/percent/"><span><strong>퍼센트 계산기</strong><span>할인가, 증감률, 원래 가격을 한 번에</span></span><i>→</i></a>
-    <a href="/blog/"><span><strong>블로그 글 더 보기</strong><span>생활에 쓸모 있는 계산과 정보</span></span><i>→</i></a>
+    <a href="/blog/percent-point/"><span><strong>금리 2%에서 3%, 1% 올랐다는 말이 틀린 이유</strong><span>퍼센트와 퍼센트포인트 차이</span></span><i>→</i></a>
   </nav>
 </article></div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
@@ -172,10 +250,10 @@ const num=v=>{const n=parseFloat(String(v).replace(/,/g,''));return isFinite(n)?
 const fmt=n=>(Math.round(n*10)/10).toLocaleString('ko-KR');
 function f(el){const d=el.value.replace(/[^0-9]/g,'').replace(/^0+(?=\d)/,'');el.value=d.replace(/\B(?=(\d{3})+(?!\d))/g,',');}
 function run(){const a=num(A.value),b=num(B.value);
-  if(a===null||b===null||a<=0){O.textContent='두 가격을 넣으면 몇 % 할인인지 알려드려요';return;}
+  if(a===null||b===null||a<=0){O.textContent='두 가격을 넣으면 실제로 몇 % 할인받았는지 알려드려요';return;}
   const r=(a-b)/a*100;
   if(r<0){O.innerHTML='오히려 <b>'+fmt(-r)+'%</b> 비싸졌어요';return;}
-  O.innerHTML='<b>'+fmt(r)+'%</b> 할인 · <em>'+Math.round(a-b).toLocaleString('ko-KR')+'원</em> 아낌';}
+  O.innerHTML='실제로 <b>'+fmt(r)+'%</b> 할인 · <em>'+Math.round(a-b).toLocaleString('ko-KR')+'원</em> 아낌';}
 [A,B].forEach(el=>el.addEventListener('input',()=>{f(el);run();}));
 </script>
 </body>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F4F1">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sonandogu.com/blog/yut-rules/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-yut-post.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<title>윷놀이 규칙 총정리: 지름길, 업기, 잡기, 빽도까지 | 손안의도구</title>
+<meta name="description" content="명절마다 윷놀이하다 싸우는 이유는 집집마다 규칙이 달라서예요. 도개걸윷모 뜻과 확률, 지름길·업기·잡기, 빽도와 낙처럼 자주 갈리는 규칙까지 한 번에 정리했어요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="윷놀이 하다 싸우는 이유, 집집마다 규칙이 달라서예요">
+<meta property="og:description" content="도개걸윷모 확률부터 빽도, 낙까지 윷놀이 규칙 총정리.">
+<link rel="canonical" href="https://sonandogu.com/blog/yut-rules/">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "윷놀이 하다 싸우는 이유, 집집마다 규칙이 달라서예요", "datePublished": "2026-11-02", "author": {"@type": "Organization", "name": "손안의도구"}, "publisher": {"@type": "Organization", "name": "손안의도구"}, "mainEntityOfPage": "https://sonandogu.com/blog/yut-rules/", "image": "https://sonandogu.com/assets/og-yut-post.jpg"}</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.post{max-width:700px; padding:36px 0 0}
+@media (min-width:920px){.post{padding-top:60px}}
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:14px}
+.crumb a{color:var(--muted); text-decoration:none}
+.post h1{font-size:clamp(30px,6vw,46px); font-weight:800; letter-spacing:-.05em; line-height:1.15; margin:0 0 14px}
+.meta{font-size:14px; color:var(--muted); margin:0 0 30px}
+.post h2{font-size:clamp(21px,3.6vw,26px); font-weight:800; letter-spacing:-.04em; line-height:1.3; margin:52px 0 14px}
+.post p{font-size:16.5px; line-height:1.85; margin:0 0 16px}
+.post strong{font-weight:750}
+.formula{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:14px; padding:16px 18px; font-size:17px; font-weight:750; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex{background:rgba(255,90,31,.07); border-radius:14px; padding:14px 18px; font-size:15.5px; line-height:1.8; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex b{color:var(--orange)}
+.tbl{overflow-x:auto; margin:0 0 16px}
+table{width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums}
+th,td{padding:11px 10px; border-bottom:1px solid var(--line); text-align:left}
+th{color:var(--muted); font-weight:700; font-size:13.5px}
+td:last-child,th:last-child{text-align:right}
+.mini{position:relative; overflow:hidden; border-radius:26px; padding:20px; color:#F4F4F1; margin:6px 0 34px;
+  background:radial-gradient(110% 140% at 100% 0%, rgba(255,106,51,.26) 0%, rgba(255,106,51,0) 50%), linear-gradient(160deg,#202126 0%,#121316 100%); box-shadow:var(--shadow)}
+.mini h3{margin:0 0 12px; font-size:15px; font-weight:800}
+.mini .row{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.mini label{display:block; font-size:12px; font-weight:700; color:rgba(244,244,241,.55); margin:0 0 5px 2px}
+.mini input{width:100%; font:inherit; font-size:22px; font-weight:750; color:#F4F4F1; background:rgba(255,255,255,.07); border:1.5px solid rgba(255,255,255,.1); border-radius:14px; padding:10px 12px; outline:none; font-variant-numeric:tabular-nums}
+.mini input:focus{border-color:#FF6A33}
+.mini input::placeholder{color:rgba(244,244,241,.3)}
+.mini .out{margin-top:14px; font-size:15px; color:rgba(244,244,241,.6); min-height:1.5em}
+.mini .out b{font-size:30px; color:#fff; letter-spacing:-.04em; margin:0 4px}
+.mini .out em{font-style:normal; color:#FF8A3D; font-weight:700}
+.mini a{display:inline-block; margin-top:12px; color:#FF8A3D; font-weight:700; font-size:14px; text-decoration:none}
+.next{margin-top:56px; display:grid; gap:10px}
+.next a{display:flex; justify-content:space-between; align-items:center; gap:12px; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:18px 20px; box-shadow:var(--shadow)}
+.next a:hover{border-color:var(--ink)}
+.next strong{display:block; font-size:17px; font-weight:800; letter-spacing:-.03em}
+.next span{font-size:14px; color:var(--muted)}
+.next i{font-style:normal; font-size:20px; color:var(--muted)}
+
+.ill{margin:6px 0 26px; background:var(--surface); border:1px solid var(--line); border-radius:24px; padding:16px 12px 12px; box-shadow:var(--shadow)}
+.ill svg{display:block; width:100%; height:auto}
+.ill figcaption{text-align:center; font-size:13.5px; color:var(--muted); margin-top:6px}
+.ill .tag{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .hole{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .tp{font-size:20px; font-weight:700; fill:var(--muted)}
+.ill .tbig{font-size:46px; font-weight:800; fill:var(--ink); letter-spacing:-2px}
+.ill .strike{stroke:#FF5A1F; stroke-width:5; stroke-linecap:round}
+.ill .st{font-size:30px; font-weight:800; fill:#fff}
+.ill .st2{font-size:26px; font-weight:800; fill:#FF8A3D}
+.ill .q{font-size:80px; font-weight:800; fill:var(--faint)}
+.ill .lbl text{font-size:17px; font-weight:700; fill:var(--muted)}
+.ill .val text{font-size:20px; font-weight:800; fill:var(--ink)}
+.ill .bar0{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .bar1{fill:#FFB48A}
+.ill .bar2{fill:#FF5A1F}
+.ill .ghost{stroke:var(--ink); stroke-width:2; stroke-dasharray:6 6; opacity:.5}
+.ill .arr{fill:none; stroke:var(--faint); stroke-width:3; stroke-linecap:round}
+.ill .arr2{fill:none; stroke:var(--ink); stroke-width:2; opacity:.5}
+.ill .note{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .btl{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .cap{fill:var(--line)}
+.ill .btlf{fill:#FF5A1F}
+.ill .capf{fill:#FF8A3D}
+.ill .bp{font-size:30px; font-weight:800; fill:var(--muted)}
+.ill .free{font-size:22px; font-weight:800; fill:#fff}
+.ill .cap2{font-size:18px; font-weight:800; fill:var(--ink)}
+.quiz{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px 22px; margin:26px 0 8px; box-shadow:var(--shadow)}
+.quiz .qh{font-size:13px; font-weight:800; color:var(--orange); margin:0 0 6px}
+.quiz .qq{font-size:17px; font-weight:750; margin:0 0 12px; line-height:1.6}
+.quiz summary{display:inline-block; cursor:pointer; list-style:none; font-size:14.5px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); padding:9px 16px; border-radius:12px}
+.quiz summary::-webkit-details-marker{display:none}
+.quiz details[open] summary{display:none}
+.quiz details p{margin:0; font-size:16px; line-height:1.75}
+.quiz details b{color:var(--orange)}
+.keys{display:grid; gap:10px; margin:0 0 18px}
+@media (min-width:640px){.keys{grid-template-columns:repeat(3,1fr)}}
+.keys div{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:16px}
+.keys b{display:block; font-size:16px; font-weight:800; color:var(--orange); margin-bottom:4px}
+.keys span{font-size:14.5px; color:var(--muted); line-height:1.6}
+
+.ill .ok{fill:#1FA968}.ill .okt{fill:#1FA968; font-size:16px; font-weight:800}
+.ill .warn{fill:#FF5A1F}.ill .warnt{fill:#FF5A1F; font-size:16px; font-weight:800}
+.ill .axis{stroke:var(--line); stroke-width:3}
+.ill .tick{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .paper{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .ln2{stroke:var(--line); stroke-width:3; stroke-linecap:round}
+.ill .red{fill:#B4232F; font-weight:800}
+.ill .node{fill:var(--field); stroke:var(--faint); stroke-width:2}
+.ill .nodeb{fill:var(--surface); stroke:var(--ink); stroke-width:3}
+.ill .path{stroke:var(--line); stroke-width:4; fill:none}
+.ill .hot{stroke:#FF5A1F; stroke-width:6; fill:none; stroke-linecap:round; stroke-dasharray:2 12}
+.ill .dot{fill:#FF5A1F}
+.ill .p3{stroke:var(--faint); stroke-width:4; fill:none; stroke-linecap:round}
+.ill .p5{stroke:#FF5A1F; stroke-width:5; fill:none; stroke-linecap:round}
+.ill .grid{stroke:var(--line); stroke-width:1.5}
+</style>
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient></defs><rect width="26" height="26" rx="8" fill="url(#lg)"/><rect x="7" y="11.5" width="12" height="3" rx="1.5" fill="#fff"/><rect x="11.5" y="7" width="3" height="7.5" rx="1.5" fill="#fff" opacity=".55"/></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<div class="container"><article class="post">
+  <div class="crumb"><a href="/blog/">블로그</a> / 전통 놀이</div>
+  <h1>윷놀이 하다 싸우는 이유,<br>집집마다 규칙이 달라서예요</h1>
+  <p class="meta">2026년 11월 2일 · 4분이면 읽어요</p>
+
+  <figure class="ill" aria-label="윷판 그림. 모서리에 멈추면 대각선 지름길로 간다">
+    <svg viewBox="0 0 640 350">
+      <g transform="translate(170 25)">
+        <rect x="0" y="0" width="300" height="300" rx="6" class="path"/>
+        <line x1="300" y1="0" x2="0" y2="300" class="path"/><line x1="0" y1="0" x2="300" y2="300" class="path"/>
+        <path d="M300 300 L300 0 L150 150 L0 300" class="hot"/>
+        <circle cx="300" cy="300" r="16" class="nodeb"/><circle cx="300" cy="0" r="16" class="nodeb"/><circle cx="0" cy="0" r="16" class="nodeb"/><circle cx="0" cy="300" r="16" class="nodeb"/><circle cx="150" cy="150" r="16" class="nodeb"/>
+        <g class="node"><circle cx="300" cy="60" r="9"/><circle cx="300" cy="120" r="9"/><circle cx="300" cy="180" r="9"/><circle cx="300" cy="240" r="9"/>
+        <circle cx="60" cy="0" r="9"/><circle cx="120" cy="0" r="9"/><circle cx="180" cy="0" r="9"/><circle cx="240" cy="0" r="9"/>
+        <circle cx="0" cy="60" r="9"/><circle cx="0" cy="120" r="9"/><circle cx="0" cy="180" r="9"/><circle cx="0" cy="240" r="9"/>
+        <circle cx="60" cy="300" r="9"/><circle cx="120" cy="300" r="9"/><circle cx="180" cy="300" r="9"/><circle cx="240" cy="300" r="9"/>
+        <circle cx="250" cy="50" r="9"/><circle cx="200" cy="100" r="9"/><circle cx="100" cy="200" r="9"/><circle cx="50" cy="250" r="9"/>
+        <circle cx="50" cy="50" r="9"/><circle cx="100" cy="100" r="9"/><circle cx="200" cy="200" r="9"/><circle cx="250" cy="250" r="9"/></g>
+        <circle cx="300" cy="0" r="9" class="dot"/>
+      </g>
+      <text x="520" y="40" class="note">모서리에 딱 멈추면</text>
+      <text x="520" y="62" class="note">다음엔 대각선으로</text>
+      <text x="520" y="330" class="tick">출발·도착</text>
+    </svg>
+  </figure>
+
+  <p>설날 큰집, 윷판이 깔리고 판이 무르익을 즈음이면 꼭 한 번은 언성이 높아져요. "빽도 있는 거 아니었어?", "윷이 판 밖으로 나갔으니 무효지!", "출발점에 섰으면 끝난 거 아냐?" 누구 말도 틀린 건 아니에요. 윷놀이는 집집마다, 동네마다 규칙이 조금씩 다르거든요.</p>
+  <p>그래서 판을 벌이기 전에 딱 3분만 규칙을 맞추면 싸울 일이 거의 없어요. 다들 아는 기본부터 자주 갈리는 부분까지 정리해봤어요.</p>
+
+  <div class="quiz">
+    <p class="qh">잠깐, 먼저 맞혀볼까요?</p>
+    <p class="qq">윷가락 네 개를 던질 때, 도·개·걸·윷·모 중에 가장 자주 나오는 건 뭘까요?</p>
+    <details><summary>정답 보기</summary><p><b>개</b>예요. 윷가락이 앞뒤 반반으로 떨어진다고 하면 개가 나올 확률은 37.5%로, 윷이나 모(각각 6.25%)보다 여섯 배나 높아요. 두 개가 앞, 두 개가 뒤로 떨어지는 경우의 수가 여섯 가지나 되거든요.</p></details>
+  </div>
+
+  <h2>도개걸윷모, 이름에 동물이 숨어 있어요</h2>
+  <p>평평한 면이 위로 1개면 도(1칸), 2개면 개(2칸), 3개면 걸(3칸), 4개 모두면 윷(4칸), 하나도 없으면 모(5칸)예요. 흔히 알려진 설로는 각 이름이 가축을 뜻한다고 해요. 도는 돼지, 개는 개, 걸은 양, 윷은 소, 모는 말. 몸집이 크고 빠른 동물일수록 많이 간다고 생각하면 외우기 쉬워요.</p>
+  <p>윷이나 모가 나오면 <strong>한 번 더</strong> 던져요. 이렇게 결과가 여러 개 쌓이면 원하는 순서로, 원하는 말에 나눠 쓸 수 있어요.</p>
+
+  <h2>판을 뒤집는 세 가지 규칙</h2>
+  <div class="keys">
+    <div><b>지름길</b><span>모서리나 가운데 방에 정확히 멈추면 다음 차례에 대각선으로</span></div>
+    <div><b>업기</b><span>우리 말이 있는 칸에 서면 함께 업고 움직여요</span></div>
+    <div><b>잡기</b><span>상대 말이 있는 칸에 서면 잡아서 처음으로. 그리고 한 번 더</span></div>
+  </div>
+  <p>지름길에서 많이들 헷갈리는 게 "지나가는 것"과 "멈추는 것"의 차이예요. 모서리를 지나치기만 하면 원래 길로 계속 가고, 그 칸에 딱 멈춰야만 다음에 대각선으로 꺾을 수 있어요. 가운데 방에 멈추면 출발점 쪽으로 가는 가장 짧은 길을 타요.</p>
+  <p>업기는 양날의 검이에요. 말 두세 개가 한꺼번에 달리니 빠르지만, 잡히는 순간 전부 처음으로 돌아가요. 판이 후반으로 갈수록 업은 말을 노리는 수 싸움이 재미의 핵심이에요.</p>
+
+  <h2>집마다 다른 규칙, 시작 전에 정하세요</h2>
+  <p><strong>빽도</strong>는 윷가락 하나에 표시를 해두고, 그 윷 하나만 평평한 면이 나오면 한 칸 뒤로 가는 규칙이에요. 아예 안 쓰는 집도 있고, 판에 말이 없을 때 빽도가 나오면 그냥 넘어가는 집, 출발점으로 바로 들어가는 집도 있어요.</p>
+  <p><strong>낙</strong>은 윷가락이 정해둔 판(멍석이나 담요) 밖으로 떨어지면 무효로 치는 규칙이에요. 던지기 전에 "어디까지가 판인지"를 정해두면 다툴 일이 없어요.</p>
+  <p><strong>완주 기준</strong>도 갈려요. 출발점에 딱 도착하면 끝으로 치는 집도 있고, 출발점을 지나쳐야 끝으로 치는 집도 있어요.</p>
+  <p>규칙이 다르다고 틀린 게 아니에요. 그 집의 전통일 뿐이죠. 다만 판이 끝난 뒤에 따지면 싸움이 되니까, 첫 윷을 던지기 전에 "빽도 쓰고, 낙 있고, 출발점 지나야 완주" 하는 식으로 한 줄만 합의해두세요.</p>
+
+  <h2>윷이 없어도 괜찮아요</h2>
+  <p>윷가락이 어디 갔는지 모르겠거나, 멀리 사는 가족과 화면으로 같이 하고 싶다면 손안의도구의 온라인 윷놀이를 써보세요. 윷판 29칸 그대로에 지름길, 업기, 잡기가 자동으로 적용되고, 팀마다 십이지 띠 동물로 말을 고를 수 있어요. 빽도도 켜고 끌 수 있어서 우리 집 규칙에 맞추기 쉬워요.</p>
+
+  <nav class="next" aria-label="관련 글과 도구"><a href="/traditional/yut/"><span><strong>온라인 윷놀이</strong><span>윷판, 십이지 말, 2~4팀 대결</span></span><i>→</i></a><a href="/blog/discount-rate/"><span><strong>20% 할인에 10% 더, 왜 30%가 아닐까?</strong><span>결제창 숫자가 예상과 달랐던 이유</span></span><i>→</i></a></nav>
+</article></div>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
+
+</body>
+</html>
