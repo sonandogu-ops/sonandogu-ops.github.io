@@ -160,6 +160,10 @@ footer .fl a:hover{color:var(--ink)}
 
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
 </style>
 </head>
 <body>
@@ -214,6 +218,7 @@ footer .fl a:hover{color:var(--ink)}
           <div class="sub">이렇게 보내면 끝나요</div>
           <ul class="tr" id="trList"></ul>
           <table class="tbl2" id="dTable"></table>
+          <div class="sub" id="dNote" style="margin-top:10px;font-size:12.5px"></div>
         </div>
         <div class="preview" id="preview" hidden></div>
         <div class="acts"><button class="copy" id="copyBtn" disabled>카톡에 붙여넣을 메시지 복사</button><button class="reset" id="resetBtn">초기화</button></div>
@@ -227,7 +232,7 @@ footer .fl a:hover{color:var(--ink)}
       <div class="f"><h3>항목마다 참여한 사람끼리</h3><p>1차 고깃집은 네 명이 나누고, 2차 호프는 간 사람 세 명만 나눠요. 항목마다 <strong>함께한 사람</strong>을 골라주면 각자 쓴 돈이 정확히 계산돼요.</p></div>
       <div class="f"><h3>낸 돈과 쓴 돈의 차이</h3><p>각자 실제로 결제한 돈에서 자기 몫을 빼면, 받을 사람과 보낼 사람이 나뉘어요. 이 차이를 맞추는 게 정산이에요.</p></div>
       <div class="f"><h3>송금은 가장 적은 횟수로</h3><p>누가 누구에게 보낼지 짝을 지을 때, <strong>송금 횟수가 최대한 적게</strong> 되도록 큰 금액끼리 먼저 맞춰요. 다섯 명이 정산해도 송금은 보통 네 번 이하예요.</p></div>
-      <div class="f"><h3>끝자리 정리</h3><p>간단 N빵에서는 1인당 금액을 원하는 단위로 올려서, 남는 잔돈이 얼마인지 함께 보여줘요. 상세 정산은 송금액을 10원이나 100원 단위로 반올림할 수 있어요.</p></div>
+      <div class="f"><h3>끝자리 정리</h3><p>간단 N빵에서는 1인당 금액을 원하는 단위로 올려서, 남는 잔돈이 얼마인지 함께 보여줘요. 상세 정산은 송금액을 10원이나 100원 단위로 반올림할 수 있고, 반올림 때문에 생기는 차이가 몇 원인지 함께 보여줘요. 모든 계산은 소수점 없이 원 단위 정수로 하고, 나눠떨어지지 않는 1원은 앞 순서 사람에게 1원씩 배정해요.</p></div>
     </div>
     <div class="faq">
       <h2>자주 묻는 질문</h2>
@@ -235,6 +240,7 @@ footer .fl a:hover{color:var(--ink)}
       <details><summary>여러 명이 나눠서 결제했어요</summary><p>상세 정산에서 항목마다 결제한 사람을 고르면, 서로 주고받을 금액을 정리해서 최소한의 송금으로 알려드려요.</p></details>
       <details><summary>입력한 내용은 저장되나요?</summary><p>이 기기의 브라우저에만 임시로 저장돼서, 창을 닫았다 다시 열어도 이어서 할 수 있어요. 서버로는 전송되지 않고, 초기화를 누르면 바로 지워져요.</p></details>
     </div>
+  <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/dutch-pay/">N빵하면 왜 꼭 누군가 서운할까? →</a></div>
   </section>
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
@@ -281,6 +287,8 @@ function paintPeople(){
 }
 function removePerson(k){
   if(S.people.length<=2){say('최소 두 명은 있어야 해요');return;}
+  const paidItem=S.items.find(it=>it.payer===k&&num(it.amount)>0);
+  if(paidItem){say(`${pname(k)}이(가) 결제한 항목이 있어요. 결제한 사람을 먼저 바꿔주세요`);return;}
   S.people.splice(k,1);
   S.items.forEach(it=>{ if(it.payer===k) it.payer=0; else if(it.payer>k) it.payer--; it.parts=it.parts.filter(x=>x!==k).map(x=>x>k?x-1:x); });
   paint();
@@ -326,27 +334,40 @@ function calc(){
     $('sBig').innerHTML=`${won(per)}<span class="u">원씩</span>`;
     let sub;
     if(u===1){ const r=T-per*n; sub= r? `딱 떨어지지 않아서 <b>${won(r)}원</b>이 모자라요. 한 명이 ${won(per+r)}원을 내거나 끝자리를 올려보세요.` : '딱 떨어져요!'; }
-    else sub= rest? `모두 이렇게 보내면 결제한 사람에게 <b>${won(rest)}원</b>이 남아요. (정확히는 1인당 ${won(Math.round(exact*100)/100)}원)` : '딱 떨어져요!';
+    else sub= rest? `모두 이렇게 보내면 결제한 사람에게 <b>${won(rest)}원</b>이 남아요. (정확히는 1인당 ${(Math.round(exact*100)/100).toLocaleString('ko-KR',{maximumFractionDigits:2})}원)` : '딱 떨어져요!';
     $('sSub').innerHTML=sub;
     setCopy(`[N빵 정산]\n총 ${won(T)}원 ÷ ${n}명\n1인당 ${won(per)}원씩 보내주세요${rest&&u!==1?` (잔돈 ${won(rest)}원)`:''}\n\n손안의도구 더치페이 계산기\n${LINK}`);
     return;
   }
-  const n=S.people.length, paid=Array(n).fill(0), owed=Array(n).fill(0); let total=0; const lines=[];
-  S.items.forEach(it=>{const a=num(it.amount); if(!a||!it.parts.length) return; total+=a; paid[it.payer]+=a; const sh=a/it.parts.length; it.parts.forEach(j=>owed[j]+=sh);
+  const R=settle(S.people.length,S.items.map(it=>({a:Math.round(num(it.amount)),payer:it.payer,parts:it.parts})),S.dunit);
+  const {paid,owed,bal,total,tr,resid}=R; const n=S.people.length;
+  const lines=[]; S.items.forEach(it=>{const a=Math.round(num(it.amount)); if(!a||!it.parts.length) return;
     lines.push(`- ${(it.name||'항목').trim()} ${won(a)}원 (${pname(it.payer)} 결제, ${it.parts.length===n?'모두':it.parts.map(pname).join('·')})`);});
   $('dCap').textContent=`총 ${won(total)}원`;
-  const bal=paid.map((p,i)=>p-owed[i]);
-  const cr=bal.map((b,i)=>[i,b]).filter(x=>x[1]>0.5).sort((a,b)=>b[1]-a[1]);
-  const db=bal.map((b,i)=>[i,-b]).filter(x=>x[1]>0.5).sort((a,b)=>b[1]-a[1]);
-  const tr=[]; let a=0,b=0;
-  while(a<db.length&&b<cr.length){const m=Math.min(db[a][1],cr[b][1]); tr.push([db[a][0],cr[b][0],m]); db[a][1]-=m; cr[b][1]-=m; if(db[a][1]<0.5)a++; if(cr[b][1]<0.5)b++;}
-  const u=S.dunit; const tr2=tr.map(([f,t,m])=>[f,t,Math.round(m/u)*u]).filter(x=>x[2]>0);
   const ul=$('trList');
-  if(!total){ ul.innerHTML='<li class="none">쓴 돈을 넣으면 송금할 금액이 나와요</li>'; $('dTable').innerHTML=''; setCopy(''); return; }
-  ul.innerHTML= tr2.length? tr2.map(([f,t,m])=>`<li><span class="who">${esc(pname(f))}<i>→</i>${esc(pname(t))}</span><span class="amt">${won(m)}원</span></li>`).join('') : '<li class="none">이미 딱 맞게 냈어요. 보낼 돈이 없어요!</li>';
-  $('dTable').innerHTML='<tr><th>이름</th><th>낸 돈</th><th>쓴 돈</th><th>차액</th></tr>'+S.people.map((_,i)=>{const d=Math.round(bal[i]); return `<tr><td>${esc(pname(i))}</td><td>${won(paid[i])}</td><td>${won(owed[i])}</td><td class="${d>0?'plus':d<0?'minus':''}">${d>0?'+':''}${won(d)}</td></tr>`;}).join('');
-  setCopy(`[정산] 총 ${won(total)}원\n${lines.join('\n')}\n\n${tr2.length?'송금\n'+tr2.map(([f,t,m])=>`${pname(f)} → ${pname(t)} ${won(m)}원`).join('\n'):'보낼 돈 없음'}\n\n손안의도구 더치페이 계산기\n${LINK}`);
+  if(!total){ ul.innerHTML='<li class="none">쓴 돈을 넣으면 송금할 금액이 나와요</li>'; $('dTable').innerHTML=''; $('dNote').textContent=''; setCopy(''); return; }
+  ul.innerHTML= tr.length? tr.map(([f,t,m])=>`<li><span class="who">${esc(pname(f))}<i>→</i>${esc(pname(t))}</span><span class="amt">${won(m)}원</span></li>`).join('') : '<li class="none">이미 딱 맞게 냈어요. 보낼 돈이 없어요!</li>';
+  $('dTable').innerHTML='<tr><th>이름</th><th>낸 돈</th><th>쓴 돈</th><th>차액</th></tr>'+S.people.map((_,i)=>{const d=bal[i]; return `<tr><td>${esc(pname(i))}</td><td>${won(paid[i])}</td><td>${won(owed[i])}</td><td class="${d>0?'plus':d<0?'minus':''}">${d>0?'+':''}${won(d)}</td></tr>`;}).join('');
+  const mx=Math.max(0,...resid.map(Math.abs));
+  $('dNote').textContent= mx? `${S.dunit}원 단위로 반올림해서 실제 금액과 사람마다 최대 ${won(mx)}원 차이가 나요. 정확히 맞추려면 "1원까지"를 고르세요.` : (S.dunit>1? '반올림해도 금액이 정확히 맞아요.' : '1원 단위까지 정확히 맞아요.');
+  setCopy(`[정산] 총 ${won(total)}원\n${lines.join('\n')}\n\n${tr.length?'송금\n'+tr.map(([f,t,m])=>`${pname(f)} → ${pname(t)} ${won(m)}원`).join('\n'):'보낼 돈 없음'}\n\n손안의도구 더치페이 계산기\n${LINK}`);
 }
+/* 정수(원) 단위로만 계산: 항목 금액을 참여자 수로 나눈 몫을 모두에게, 남는 원은 앞 순서 참여자에게 1원씩 */
+function settle(n,items,unit){
+  const paid=Array(n).fill(0), owed=Array(n).fill(0); let total=0;
+  items.forEach(({a,payer,parts})=>{ if(!a||a<0||!parts.length) return; total+=a; paid[payer]+=a;
+    const ps=[...parts].sort((x,y)=>x-y), base=Math.floor(a/ps.length); let r=a-base*ps.length;
+    ps.forEach(j=>{ owed[j]+=base+(r>0?1:0); if(r>0) r--; }); });
+  const bal=paid.map((p,i)=>p-owed[i]);
+  const cr=bal.map((b,i)=>[i,b]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]||a[0]-b[0]);
+  const db=bal.map((b,i)=>[i,-b]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]||a[0]-b[0]);
+  const raw=[]; let i=0,j=0;
+  while(i<db.length&&j<cr.length){ const m=Math.min(db[i][1],cr[j][1]); raw.push([db[i][0],cr[j][0],m]); db[i][1]-=m; cr[j][1]-=m; if(!db[i][1])i++; if(!cr[j][1])j++; }
+  const tr=raw.map(([f,t,m])=>[f,t,unit>1?Math.round(m/unit)*unit:m]).filter(x=>x[2]>0);
+  const resid=bal.slice(); tr.forEach(([f,t,m])=>{resid[f]+=m; resid[t]-=m;});
+  return {paid,owed,bal,total,tr,resid};
+}
+window.__settle=settle;
 function setCopy(t){copyText=t; $('copyBtn').disabled=!t; const p=$('preview'); p.hidden=!t; p.textContent=t;}
 $('copyBtn').onclick=async()=>{ try{await navigator.clipboard.writeText(copyText); say('복사했어요. 카톡에 붙여넣으세요');}catch(e){say('복사하지 못했어요');} };
 $('resetBtn').onclick=()=>{ if(!confirm('입력한 내용을 모두 지울까요?')) return; const m=S.mode; S=DEF(); S.mode=m; try{localStorage.removeItem(KEY);}catch(e){} paint(); };
