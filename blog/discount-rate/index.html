@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>할인율 계산하는 법 - 할인가, 할인율, 원래 가격, 중복 할인까지 | 손안의도구</title>
+<meta name="description" content="할인율 계산 공식을 예시로 쉽게 정리했어요. 할인가 구하기, 할인율 거꾸로 구하기, 원래 가격 찾기, 20%+10% 중복 할인, 1+1과 2+1이 몇 % 할인인지까지.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="할인율 계산하는 법 - 할인가, 할인율, 원래 가격, 중복 할인까지 | 손안의도구">
+<meta property="og:description" content="할인율 계산 공식을 예시로 쉽게 정리했어요. 할인가 구하기, 할인율 거꾸로 구하기, 원래 가격 찾기, 20%+10% 중복 할인, 1+1과 2+1이 몇 % 할인인지까지.">
+<link rel="canonical" href="https://sonandogu.com/blog/discount-rate/">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"할인율 계산, 공식 하나면 끝나요","datePublished":"2026-11-02","author":{"@type":"Organization","name":"손안의도구"},"publisher":{"@type":"Organization","name":"손안의도구"},"mainEntityOfPage":"https://sonandogu.com/blog/discount-rate/"}
+</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.post{max-width:700px; padding:36px 0 0}
+@media (min-width:920px){.post{padding-top:60px}}
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:14px}
+.crumb a{color:var(--muted); text-decoration:none}
+.post h1{font-size:clamp(30px,6vw,46px); font-weight:800; letter-spacing:-.05em; line-height:1.15; margin:0 0 14px}
+.meta{font-size:14px; color:var(--muted); margin:0 0 30px}
+.post h2{font-size:clamp(21px,3.6vw,26px); font-weight:800; letter-spacing:-.04em; line-height:1.3; margin:52px 0 14px}
+.post p{font-size:16.5px; line-height:1.85; margin:0 0 16px}
+.post strong{font-weight:750}
+.formula{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:14px; padding:16px 18px; font-size:17px; font-weight:750; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex{background:rgba(255,90,31,.07); border-radius:14px; padding:14px 18px; font-size:15.5px; line-height:1.8; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex b{color:var(--orange)}
+.tbl{overflow-x:auto; margin:0 0 16px}
+table{width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums}
+th,td{padding:11px 10px; border-bottom:1px solid var(--line); text-align:left}
+th{color:var(--muted); font-weight:700; font-size:13.5px}
+td:last-child,th:last-child{text-align:right}
+.mini{position:relative; overflow:hidden; border-radius:26px; padding:20px; color:#F4F4F1; margin:6px 0 34px;
+  background:radial-gradient(110% 140% at 100% 0%, rgba(255,106,51,.26) 0%, rgba(255,106,51,0) 50%), linear-gradient(160deg,#202126 0%,#121316 100%); box-shadow:var(--shadow)}
+.mini h3{margin:0 0 12px; font-size:15px; font-weight:800}
+.mini .row{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.mini label{display:block; font-size:12px; font-weight:700; color:rgba(244,244,241,.55); margin:0 0 5px 2px}
+.mini input{width:100%; font:inherit; font-size:22px; font-weight:750; color:#F4F4F1; background:rgba(255,255,255,.07); border:1.5px solid rgba(255,255,255,.1); border-radius:14px; padding:10px 12px; outline:none; font-variant-numeric:tabular-nums}
+.mini input:focus{border-color:#FF6A33}
+.mini input::placeholder{color:rgba(244,244,241,.3)}
+.mini .out{margin-top:14px; font-size:15px; color:rgba(244,244,241,.6); min-height:1.5em}
+.mini .out b{font-size:30px; color:#fff; letter-spacing:-.04em; margin:0 4px}
+.mini .out em{font-style:normal; color:#FF8A3D; font-weight:700}
+.mini a{display:inline-block; margin-top:12px; color:#FF8A3D; font-weight:700; font-size:14px; text-decoration:none}
+.next{margin-top:56px; display:grid; gap:10px}
+.next a{display:flex; justify-content:space-between; align-items:center; gap:12px; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:18px 20px; box-shadow:var(--shadow)}
+.next a:hover{border-color:var(--ink)}
+.next strong{display:block; font-size:17px; font-weight:800; letter-spacing:-.03em}
+.next span{font-size:14px; color:var(--muted)}
+.next i{font-style:normal; font-size:20px; color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient></defs><rect width="26" height="26" rx="8" fill="url(#lg)"/><rect x="7" y="11.5" width="12" height="3" rx="1.5" fill="#fff"/><rect x="11.5" y="7" width="3" height="7.5" rx="1.5" fill="#fff" opacity=".55"/></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+
+<div class="container"><article class="post">
+  <div class="crumb"><a href="/blog/">블로그</a> / 생활 계산</div>
+  <h1>할인율 계산,<br>공식 하나면 끝나요</h1>
+  <p class="meta">2026년 11월 2일 · 3분이면 읽어요</p>
+
+  <p>"30% 세일"이라는 문구를 보고 머릿속으로 계산하다가 결국 휴대폰 계산기를 꺼낸 적, 다들 있을 거예요. 할인 계산은 사실 곱셈 한 번이면 끝나는데, 순서가 헷갈리거나 할인이 두 번 겹치면 갑자기 어려워지죠. 자주 쓰는 경우만 골라서 예시로 정리해봤어요.</p>
+
+  <div class="mini">
+    <h3>할인율 바로 계산해보기</h3>
+    <div class="row">
+      <div><label for="mA">원래 가격</label><input id="mA" inputmode="numeric" placeholder="50,000"></div>
+      <div><label for="mB">할인된 가격</label><input id="mB" inputmode="numeric" placeholder="35,000"></div>
+    </div>
+    <div class="out" id="mOut">두 가격을 넣으면 몇 % 할인인지 알려드려요</div>
+    <a href="/percent/">할인가·원래 가격 계산은 퍼센트 계산기에서 →</a>
+  </div>
+
+  <h2>할인된 가격 구하기</h2>
+  <p>가장 많이 쓰는 계산이에요. 원래 가격에서 할인율만큼 빼면 되는데, 한 번에 끝내려면 <strong>남는 비율을 곱하는 게</strong> 제일 빨라요. 30% 할인이면 70%를 내는 거니까 0.7을 곱하면 되죠.</p>
+  <div class="formula">할인된 가격 = 원래 가격 × (1 − 할인율 ÷ 100)</div>
+  <div class="ex">49,000원짜리 운동화를 30% 할인하면<br>49,000 × 0.7 = <b>34,300원</b> (14,700원 아낌)</div>
+
+  <h2>몇 % 할인인지 거꾸로 구하기</h2>
+  <p>가격표에 할인 전 가격과 할인 후 가격만 적혀 있을 때가 있어요. 이럴 땐 깎인 금액이 원래 가격의 몇 퍼센트인지 보면 돼요.</p>
+  <div class="formula">할인율 = (원래 가격 − 할인된 가격) ÷ 원래 가격 × 100</div>
+  <div class="ex">89,000원 → 62,300원이면<br>(89,000 − 62,300) ÷ 89,000 × 100 = <b>30% 할인</b></div>
+
+  <h2>할인 전 원래 가격 찾기</h2>
+  <p>"25% 할인해서 18,000원"이라고만 쓰여 있을 때, 원래 얼마였는지 궁금하죠. 여기서 흔히 하는 실수가 18,000원에 25%를 다시 더하는 건데, 그러면 22,500원이 나와서 틀려요. 할인된 가격은 원래 가격의 75%니까 <strong>0.75로 나눠야</strong> 해요.</p>
+  <div class="formula">원래 가격 = 할인된 가격 ÷ (1 − 할인율 ÷ 100)</div>
+  <div class="ex">25% 할인해서 18,000원이면<br>18,000 ÷ 0.75 = <b>24,000원</b></div>
+
+  <h2>20% 할인에 10% 추가 할인, 30%가 아니에요</h2>
+  <p>"전 품목 20% 할인, 앱 결제 시 10% 추가 할인" 같은 문구, 그냥 더해서 30%라고 생각하기 쉬워요. 하지만 추가 할인은 이미 깎인 가격에서 한 번 더 깎는 거라 실제로는 <strong>28%</strong>예요.</p>
+  <div class="ex">100,000원 상품이라면<br>20% 할인 → 80,000원<br>여기서 10% 추가 할인 → 80,000 × 0.9 = 72,000원<br>총 할인율 = <b>28%</b> (30%였다면 70,000원)</div>
+  <p>두 할인율을 a, b라고 하면 실제 할인율은 <strong>100 − (100 − a) × (100 − b) ÷ 100</strong>으로 구할 수 있어요. 자주 보이는 조합을 표로 정리해뒀어요.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>할인 조합</th><th>더하면</th><th>실제 할인율</th></tr></thead>
+    <tbody>
+      <tr><td>10% + 10%</td><td>20%</td><td>19%</td></tr>
+      <tr><td>20% + 10%</td><td>30%</td><td>28%</td></tr>
+      <tr><td>30% + 10%</td><td>40%</td><td>37%</td></tr>
+      <tr><td>30% + 20%</td><td>50%</td><td>44%</td></tr>
+      <tr><td>50% + 20%</td><td>70%</td><td>60%</td></tr>
+    </tbody>
+  </table></div>
+  <p>참고로 할인 순서를 바꿔도 결과는 같아요. 20% 먼저 하든 10% 먼저 하든 72,000원이 나와요.</p>
+
+  <h2>1+1, 2+1은 몇 % 할인일까</h2>
+  <p>편의점에서 자주 보는 묶음 행사도 할인율로 바꿔보면 비교하기 쉬워요. 받는 개수 중 공짜인 개수의 비율을 보면 돼요.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>행사</th><th>계산</th><th>할인율</th></tr></thead>
+    <tbody>
+      <tr><td>1+1</td><td>2개 중 1개 무료</td><td>50%</td></tr>
+      <tr><td>2+1</td><td>3개 중 1개 무료</td><td>약 33.3%</td></tr>
+      <tr><td>3+1</td><td>4개 중 1개 무료</td><td>25%</td></tr>
+    </tbody>
+  </table></div>
+  <p>그러니까 2+1 행사 상품을 다른 곳에서 35% 할인하고 있다면, 굳이 세 개를 살 필요 없이 그쪽이 더 싸요. 물론 다 쓸 거라면 얘기가 달라지지만요.</p>
+
+  <h2>헷갈릴 때 기억할 것</h2>
+  <p>할인 계산은 결국 "원래 가격의 몇 %를 내는가"를 떠올리면 대부분 풀려요. 30% 할인은 70%를 내는 것, 할인가에서 원래 가격을 찾을 땐 더하지 말고 나누는 것, 할인이 겹치면 더하지 말고 곱하는 것. 이 세 가지만 기억해도 계산 실수는 거의 없어요.</p>
+  <p>숫자 넣기가 귀찮을 땐 퍼센트 계산기의 "할인·인상"과 "원래 가격" 버튼을 쓰면 바로 나와요.</p>
+
+  <nav class="next" aria-label="관련 도구">
+    <a href="/percent/"><span><strong>퍼센트 계산기</strong><span>할인가, 증감률, 원래 가격을 한 번에</span></span><i>→</i></a>
+    <a href="/blog/"><span><strong>블로그 글 더 보기</strong><span>생활에 쓸모 있는 계산과 정보</span></span><i>→</i></a>
+  </nav>
+</article></div>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
+<script>
+const A=document.getElementById('mA'),B=document.getElementById('mB'),O=document.getElementById('mOut');
+const num=v=>{const n=parseFloat(String(v).replace(/,/g,''));return isFinite(n)?n:null;};
+const fmt=n=>(Math.round(n*10)/10).toLocaleString('ko-KR');
+function f(el){const d=el.value.replace(/[^0-9]/g,'').replace(/^0+(?=\d)/,'');el.value=d.replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+function run(){const a=num(A.value),b=num(B.value);
+  if(a===null||b===null||a<=0){O.textContent='두 가격을 넣으면 몇 % 할인인지 알려드려요';return;}
+  const r=(a-b)/a*100;
+  if(r<0){O.innerHTML='오히려 <b>'+fmt(-r)+'%</b> 비싸졌어요';return;}
+  O.innerHTML='<b>'+fmt(r)+'%</b> 할인 · <em>'+Math.round(a-b).toLocaleString('ko-KR')+'원</em> 아낌';}
+[A,B].forEach(el=>el.addEventListener('input',()=>{f(el);run();}));
+</script>
+</body>
+</html>

@@ -107,6 +107,9 @@ footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
 .faq details[open] summary::after{transform:rotate(45deg)}
 .faq p{margin:10px 0 0; color:var(--muted)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
@@ -117,7 +120,7 @@ footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
 </script>
 </head>
 <body>
-<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient></defs><rect width="26" height="26" rx="8" fill="url(#lg)"/><rect x="7" y="11.5" width="12" height="3" rx="1.5" fill="#fff"/><rect x="11.5" y="7" width="3" height="7.5" rx="1.5" fill="#fff" opacity=".55"/></svg>손안의도구</a><nav><a href="/">전체 도구</a></nav></div></header>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient></defs><rect width="26" height="26" rx="8" fill="url(#lg)"/><rect x="7" y="11.5" width="12" height="3" rx="1.5" fill="#fff"/><rect x="11.5" y="7" width="3" height="7.5" rx="1.5" fill="#fff" opacity=".55"/></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
 <div class="container">
   <section class="hero">
     <div class="intro">
@@ -168,7 +171,7 @@ footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
     </div>
   </section>
 </div>
-<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span>입력한 숫자는 기기 밖으로 나가지 않습니다.</span></footer>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
 <div class="toast" id="toast">복사했어요</div>
 
 <script>
