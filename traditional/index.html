@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>전통 놀이 - 온라인 윷놀이와 우리 놀이 모음 | 손안의도구</title>
+<meta name="description" content="명절에도, 평소에도 폰 하나로 즐기는 우리 전통 놀이. 윷판과 띠 동물 말까지 갖춘 온라인 윷놀이부터.">
+<meta property="og:site_name" content="손안의도구">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+
+.hero{padding:64px 0 36px}
+.hero h1{font-size:clamp(40px,9vw,72px); font-weight:800; letter-spacing:-.055em; line-height:1.04; margin:0 0 18px}
+.hero h1 span{color:var(--faint)}
+.hero p{font-size:18px; color:var(--muted); margin:0; max-width:28em}
+.grid{display:grid; gap:12px; grid-template-columns:1fr}
+@media (min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:960px){.grid{grid-template-columns:repeat(3,1fr)}}
+.t{position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; min-height:200px; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:28px; padding:22px; box-shadow:var(--shadow); transition:transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s}
+.t:hover{transform:translateY(-4px)}
+.ic{width:56px; height:56px; border-radius:18px; display:grid; place-items:center; font-weight:800; font-size:28px; color:#fff; background:linear-gradient(145deg,#FF8A3D,#FF4A12); box-shadow:0 10px 24px -10px rgba(255,90,31,.8), inset 0 1px 0 rgba(255,255,255,.35)}
+.t strong{display:block; font-size:21px; font-weight:800; letter-spacing:-.035em; margin-top:28px}
+.t .d{display:block; font-size:14px; color:var(--muted); margin-top:2px}
+.t .go{position:absolute; top:22px; right:22px; width:34px; height:34px; border-radius:50%; border:1px solid var(--line); display:grid; place-items:center; color:var(--muted); transition:all .3s}
+.t:hover .go{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.soon{min-height:200px; border-radius:28px; border:1px solid var(--line); padding:22px; display:flex; flex-direction:column; justify-content:space-between; color:var(--muted)}
+.soon .ic{background:var(--field); color:var(--faint); box-shadow:none}
+.soon strong{display:block; font-size:19px; font-weight:800; letter-spacing:-.03em; color:var(--muted)}
+.soon .tag{display:inline-block; font-size:12px; font-weight:700; padding:4px 10px; border-radius:999px; background:var(--field); margin-top:6px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:12px}
+.crumb a{color:var(--muted); text-decoration:none}
+</style>
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient></defs><rect width="26" height="26" rx="8" fill="url(#lg)"/><rect x="7" y="11.5" width="12" height="3" rx="1.5" fill="#fff"/><rect x="11.5" y="7" width="3" height="7.5" rx="1.5" fill="#fff" opacity=".55"/></svg>손안의도구</a><nav><a href="/">전체 도구</a></nav></div></header>
+<div class="container">
+  <section class="hero">
+    <div class="crumb"><a href="/">전체 도구</a> / 전통 놀이</div>
+    <h1>모이면 한 판,<br><span>우리 놀이.</span></h1>
+    <p>명절에도 평소에도, 도구 없이 폰 하나로 즐기는 전통 놀이.</p>
+  </section>
+  <main class="grid">
+    <a class="t" href="/traditional/yut/">
+      <span class="ic" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 28 28" fill="#fff"><rect x="3" y="4" width="4" height="20" rx="2"/><rect x="9.3" y="4" width="4" height="20" rx="2" opacity=".75"/><rect x="15.6" y="4" width="4" height="20" rx="2"/><rect x="21.9" y="4" width="4" height="20" rx="2" opacity=".75"/></svg></span>
+      <span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span><strong>윷놀이</strong><span class="d">윷판, 십이지 말, 2~4팀 대결</span></span>
+    </a>
+    <div class="soon"><span class="ic" aria-hidden="true">+</span><span><strong>다음 놀이</strong><span class="tag">곧 공개</span></span></div>
+  </main>
+</div>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span>입력한 숫자는 기기 밖으로 나가지 않습니다.</span></footer>
+</body>
+</html>
