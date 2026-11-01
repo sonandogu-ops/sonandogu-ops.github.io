@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>퍼센트 계산기 - % 계산, 할인율, 증가율 한 번에 | 손안의도구</title>
+<meta property="og:site_name" content="손안의도구">
+<meta name="description" content="문장에 숫자만 넣으면 바로 계산되는 퍼센트 계산기. 몇 %인지, 몇 % 올랐는지, 할인가와 원래 가격까지 한 페이지에서 계산하세요.">
+<meta property="og:title" content="퍼센트 계산기 - 문장에 숫자만 넣으면 끝">
+<meta property="og:description" content="% 계산, 증감률, 할인가, 원래 가격 계산을 한 번에.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --bg:#F7F8FB; --surface:#FFFFFF; --ink:#1B2350; --muted:#5B6386;
+  --line:#DDE1EE; --mark:#FFE15A; --field:#EEF1FA; --focus:#3D5AFE;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#12152A; --surface:#1A1E38; --ink:#E9ECFA; --muted:#A0A7C8;
+    --line:#2C3256; --mark:#8A7414; --field:#242a4c; --focus:#8C9EFF;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:640px; margin:0 auto; padding:40px 20px 64px}
+header{margin-bottom:32px}
+.glyph{
+  font-size:clamp(88px,22vw,140px); font-weight:800; line-height:.85;
+  letter-spacing:-.04em; margin:0 0 12px; color:var(--ink);
+}
+h1{font-size:26px; font-weight:700; margin:0 0 6px; letter-spacing:-.02em}
+.lede{color:var(--muted); margin:0; font-size:16px}
+
+.calc{
+  background:var(--surface); border-top:3px solid var(--ink);
+  padding:22px 20px 20px; margin-bottom:18px;
+}
+.calc h2{font-size:14px; font-weight:600; color:var(--muted); margin:0 0 14px}
+.sentence{
+  font-size:20px; font-weight:500; margin:0; line-height:2.3;
+  word-break:keep-all;
+}
+.sentence input,.sentence select{
+  font:inherit; font-weight:700; color:var(--ink);
+  background:var(--field); border:none; border-bottom:2px solid var(--ink);
+  padding:2px 8px; margin:0 2px; width:7.2em; text-align:right;
+  border-radius:4px 4px 0 0; font-variant-numeric:tabular-nums;
+}
+.sentence input.short{width:3.6em}
+.sentence select{width:auto; text-align:left; cursor:pointer}
+.sentence input:focus,.sentence select:focus{outline:2px solid var(--focus); outline-offset:2px}
+.answer{
+  display:flex; align-items:flex-end; justify-content:space-between;
+  gap:12px; margin-top:16px; padding-top:14px; border-top:1px dashed var(--line);
+}
+.result{
+  font-size:32px; font-weight:800; letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums; word-break:break-all;
+  background:linear-gradient(transparent 58%, var(--mark) 58%);
+  padding:0 2px;
+}
+.result.empty{background:none; color:var(--muted); font-size:18px; font-weight:500}
+.formula{font-size:13px; color:var(--muted); margin-top:4px; font-variant-numeric:tabular-nums}
+.copy{
+  flex:none; font:inherit; font-size:14px; font-weight:600;
+  background:none; color:var(--ink); border:1.5px solid var(--ink);
+  border-radius:6px; padding:6px 12px; cursor:pointer;
+}
+.copy:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
+.copy[hidden]{display:none}
+
+article{margin-top:48px}
+article h2{font-size:20px; margin:36px 0 10px; letter-spacing:-.01em}
+article h3{font-size:16px; margin:22px 0 4px}
+article p{margin:0 0 10px; color:var(--ink)}
+article .ex{color:var(--muted); font-size:15px}
+footer{margin-top:56px; font-size:13px; color:var(--muted); border-top:1px solid var(--line); padding-top:16px}
+@media (max-width:420px){
+  .sentence{font-size:18px}
+  .result{font-size:28px}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"퍼센트는 어떻게 계산하나요?","acceptedAnswer":{"@type":"Answer","text":"전체 값에 퍼센트를 곱하고 100으로 나누면 됩니다. 50,000의 20%는 50,000 × 20 ÷ 100 = 10,000입니다."}},
+{"@type":"Question","name":"증가율은 어떻게 구하나요?","acceptedAnswer":{"@type":"Answer","text":"(바뀐 값 - 처음 값) ÷ 처음 값 × 100입니다. 200에서 250이 되면 25% 증가입니다."}},
+{"@type":"Question","name":"할인된 가격으로 원래 가격을 알 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"할인가 ÷ (1 - 할인율 ÷ 100)으로 구합니다. 30% 할인해서 14,000원이면 원래 가격은 20,000원입니다."}}
+]}
+</script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="glyph" aria-hidden="true">%</p>
+    <h1>퍼센트 계산기</h1>
+    <p class="lede">문장 속 빈칸에 숫자만 넣으면 바로 계산됩니다.</p>
+  </header>
+
+  <main>
+    <section class="calc" data-type="of">
+      <h2>몇 퍼센트는 얼마일까</h2>
+      <p class="sentence"><input aria-label="전체 값" inputmode="decimal" placeholder="50,000">의 <input class="short" aria-label="퍼센트" inputmode="decimal" placeholder="20">%는</p>
+      <div class="answer"><div><div class="result empty">숫자를 넣어주세요</div><div class="formula"></div></div><button class="copy" hidden>복사</button></div>
+    </section>
+
+    <section class="calc" data-type="ratio">
+      <h2>전체에서 몇 퍼센트일까</h2>
+      <p class="sentence"><input aria-label="부분 값" inputmode="decimal" placeholder="45">은(는) <input aria-label="전체 값" inputmode="decimal" placeholder="60">의</p>
+      <div class="answer"><div><div class="result empty">숫자를 넣어주세요</div><div class="formula"></div></div><button class="copy" hidden>복사</button></div>
+    </section>
+
+    <section class="calc" data-type="change">
+      <h2>몇 퍼센트 올랐을까, 내렸을까</h2>
+      <p class="sentence"><input aria-label="처음 값" inputmode="decimal" placeholder="200">에서 <input aria-label="바뀐 값" inputmode="decimal" placeholder="250">(으)로 바뀌면</p>
+      <div class="answer"><div><div class="result empty">숫자를 넣어주세요</div><div class="formula"></div></div><button class="copy" hidden>복사</button></div>
+    </section>
+
+    <section class="calc" data-type="apply">
+      <h2>퍼센트만큼 올리거나 내리면</h2>
+      <p class="sentence"><input aria-label="처음 값" inputmode="decimal" placeholder="35,000">을(를) <input class="short" aria-label="퍼센트" inputmode="decimal" placeholder="15">% <select aria-label="올리기 또는 내리기"><option value="down">할인하면</option><option value="up">올리면</option></select></p>
+      <div class="answer"><div><div class="result empty">숫자를 넣어주세요</div><div class="formula"></div></div><button class="copy" hidden>복사</button></div>
+    </section>
+
+    <section class="calc" data-type="original">
+      <h2>할인 전 원래 가격은</h2>
+      <p class="sentence"><input class="short" aria-label="할인율" inputmode="decimal" placeholder="30">% 할인해서 <input aria-label="할인된 가격" inputmode="decimal" placeholder="14,000">원이면 원래 가격은</p>
+      <div class="answer"><div><div class="result empty">숫자를 넣어주세요</div><div class="formula"></div></div><button class="copy" hidden>복사</button></div>
+    </section>
+  </main>
+
+  <article>
+    <h2>퍼센트 계산 공식</h2>
+    <h3>어떤 값의 몇 %</h3>
+    <p>전체 값 × 퍼센트 ÷ 100</p>
+    <p class="ex">예: 50,000원의 20%는 50,000 × 20 ÷ 100 = 10,000원</p>
+
+    <h3>A는 B의 몇 %</h3>
+    <p>A ÷ B × 100</p>
+    <p class="ex">예: 60문제 중 45문제를 맞혔다면 45 ÷ 60 × 100 = 75%</p>
+
+    <h3>증가율, 감소율</h3>
+    <p>(바뀐 값 − 처음 값) ÷ 처음 값 × 100</p>
+    <p class="ex">예: 월급이 200만 원에서 250만 원이 되면 25% 인상</p>
+
+    <h3>할인가, 인상가</h3>
+    <p>할인: 원래 값 × (1 − 퍼센트 ÷ 100) · 인상: 원래 값 × (1 + 퍼센트 ÷ 100)</p>
+    <p class="ex">예: 35,000원짜리 옷을 15% 할인하면 29,750원</p>
+
+    <h3>원래 가격 거꾸로 찾기</h3>
+    <p>할인된 가격 ÷ (1 − 할인율 ÷ 100)</p>
+    <p class="ex">예: 30% 할인해서 14,000원이면 원래 가격은 20,000원</p>
+
+    <h2>자주 묻는 질문</h2>
+    <h3>20% 할인 후 다시 20% 올리면 원래 가격이 되나요?</h3>
+    <p>아닙니다. 10,000원을 20% 내리면 8,000원이 되고, 여기서 20% 올리면 9,600원입니다. 두 번째 계산의 기준이 8,000원으로 바뀌었기 때문입니다.</p>
+    <h3>퍼센트와 퍼센트포인트는 뭐가 다른가요?</h3>
+    <p>금리가 2%에서 3%가 되면 1%포인트 오른 것이고, 비율로 따지면 50% 오른 것입니다. 뉴스에서 %p라고 쓰는 건 퍼센트 값끼리의 단순한 차이를 말합니다.</p>
+    <h3>소수점은 어떻게 표시되나요?</h3>
+    <p>결과는 소수점 둘째 자리까지 반올림해서 보여줍니다.</p>
+  </article>
+
+  <footer>손안의도구 · 입력한 숫자는 어디에도 저장되지 않습니다.</footer>
+</div>
+
+<script>
+const toNum = v => { const n = parseFloat(String(v).replace(/,/g,'')); return isFinite(n) ? n : null; };
+const fmt = n => (Math.round(n*100)/100).toLocaleString('ko-KR',{maximumFractionDigits:2});
+
+function formatInput(el){
+  const pos = el.selectionStart ?? el.value.length;
+  const keep = el.value.slice(0,pos).replace(/[^0-9.]/g,'').length;
+  let raw = el.value.replace(/[^0-9.]/g,'');
+  const i = raw.indexOf('.');
+  if(i > -1) raw = raw.slice(0,i+1) + raw.slice(i+1).replace(/\./g,'');
+  let [int, dec] = raw.split('.');
+  int = (int||'').replace(/^0+(?=\d)/,'');
+  const out = int.replace(/\B(?=(\d{3})+(?!\d))/g,',') + (dec !== undefined ? '.'+dec : '');
+  el.value = out;
+  let c = 0, p = 0;
+  while(p < out.length && c < keep){ if(/[0-9.]/.test(out[p])) c++; p++; }
+  try{ el.setSelectionRange(p,p); }catch(e){}
+}
+
+const calcs = {
+  of(a,b){ return {val:fmt(a*b/100), f:`${fmt(a)} × ${fmt(b)} ÷ 100`}; },
+  ratio(a,b){ if(b===0) return null; return {val:fmt(a/b*100)+'%', f:`${fmt(a)} ÷ ${fmt(b)} × 100`}; },
+  change(a,b){
+    if(a===0) return null;
+    const r = (b-a)/a*100;
+    const word = r > 0 ? ' 증가' : r < 0 ? ' 감소' : ' (변화 없음)';
+    return {val:fmt(Math.abs(r))+'%'+word, f:`(${fmt(b)} − ${fmt(a)}) ÷ ${fmt(a)} × 100`};
+  },
+  apply(a,b,mode){
+    const up = mode === 'up';
+    const res = a*(1+(up?b:-b)/100);
+    return {val:fmt(res), f:`${fmt(a)} × (1 ${up?'+':'−'} ${fmt(b)} ÷ 100) · 차액 ${fmt(Math.abs(res-a))}`};
+  },
+  original(b,a){
+    if(b>=100) return null;
+    return {val:fmt(a/(1-b/100)), f:`${fmt(a)} ÷ (1 − ${fmt(b)} ÷ 100)`};
+  }
+};
+
+document.querySelectorAll('.calc').forEach(sec=>{
+  const [i1,i2] = sec.querySelectorAll('input');
+  const sel = sec.querySelector('select');
+  const out = sec.querySelector('.result');
+  const form = sec.querySelector('.formula');
+  const btn = sec.querySelector('.copy');
+  const run = ()=>{
+    const a = toNum(i1.value), b = toNum(i2.value);
+    const r = (a===null||b===null) ? null : calcs[sec.dataset.type](a,b,sel&&sel.value);
+    if(!r){
+      out.textContent = (a!==null&&b!==null) ? '계산할 수 없는 값입니다' : '숫자를 넣어주세요';
+      out.classList.add('empty'); form.textContent=''; btn.hidden = true; return;
+    }
+    out.textContent = r.val; out.classList.remove('empty');
+    form.textContent = r.f; btn.hidden = false; btn.textContent = '복사';
+  };
+  [i1,i2].forEach(el=>el.addEventListener('input',()=>{formatInput(el); run();}));
+  if(sel) sel.addEventListener('change',run);
+  btn.addEventListener('click',async()=>{
+    try{ await navigator.clipboard.writeText(out.textContent); btn.textContent='복사됨'; }
+    catch(e){ btn.textContent='복사 실패'; }
+  });
+});
+</script>
+</body>
+</html>
