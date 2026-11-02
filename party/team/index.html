@@ -217,6 +217,24 @@ footer .fl a:hover{color:var(--ink)}
 .toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
 .toast.on{opacity:1; transform:translate(-50%,0)}
 @media (prefers-reduced-motion:reduce){.tm{transition:none}}
+
+.burst{position:absolute; width:8px; height:8px; border-radius:2px; pointer-events:none; animation:fly 1s cubic-bezier(.2,.8,.3,1) forwards; z-index:6}
+@keyframes fly{to{transform:translate(var(--dx),var(--dy)) rotate(var(--r)); opacity:0}}
+.drum{display:inline-block; animation:drum .25s steps(2) infinite}
+@keyframes drum{50%{transform:translateY(-2px)}}
+
+.pool{display:flex; flex-wrap:wrap; gap:6px; justify-content:center; padding:12px; border-radius:18px; background:rgba(255,255,255,.04); border:1px dashed rgba(255,255,255,.14); min-height:52px; margin-top:12px}
+.pool span,.mem span{display:inline-block; background:rgba(255,255,255,.12); border-radius:999px; padding:6px 12px; font-size:14.5px; font-weight:700; color:#F4F4F1}
+.pool.shake span{animation:jit .18s ease-in-out infinite alternate}
+.pool.shake span:nth-child(3n){animation-duration:.22s}.pool.shake span:nth-child(3n+1){animation-duration:.15s}
+@keyframes jit{from{transform:translate(-2px,1px) rotate(-3deg)}to{transform:translate(2px,-1px) rotate(3deg)}}
+.pool span.gone{visibility:hidden}
+.pool.empty{display:none}
+.tm{opacity:1; transform:none; border-top:3px solid var(--tc); background:rgba(255,255,255,.05)}
+.tm h3 .em{font-size:20px}
+.tm .mem{min-height:34px}
+.mem span{background:var(--tcs)}
+@media (prefers-reduced-motion:reduce){.pool.shake span{animation:none}}
 .rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
 .rel b{font-size:13px; color:var(--orange); font-weight:800}
 .rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
@@ -250,6 +268,7 @@ footer .fl a:hover{color:var(--ink)}
     <aside class="res">
       <div class="disp" aria-live="polite">
         <div class="cap" id="cap">결과가 여기에 나와요</div>
+        <div class="pool empty" id="pool"></div>
         <div class="teams" id="teams"><div class="empty">참가자를 적고 팀 나누기를 눌러주세요</div></div>
         <div class="acts2"><button class="a" id="again" disabled>다시 섞기</button><button class="b" id="copy" disabled>결과 복사</button></div>
       </div>
@@ -277,9 +296,15 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1600);}
 const store={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d;}catch(e){return d;}},set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
 
+function burst(host,cx,cy,count,col){ if(reduce) return; const cols=[col,'#FFE07A','#FFFFFF','#FF8A3D','#7CE3A8'];
+  for(let k=0;k<count;k++){const s=document.createElement('span'); s.className='burst'; s.style.left=cx+'px'; s.style.top=cy+'px'; s.style.background=cols[k%cols.length];
+    const a=Math.random()*Math.PI*2, r=40+Math.random()*80; s.style.setProperty('--dx',Math.cos(a)*r+'px'); s.style.setProperty('--dy',(Math.sin(a)*r-30)+'px'); s.style.setProperty('--r',(Math.random()*540)+'deg');
+    host.append(s); setTimeout(()=>s.remove(),1050);} }
+
 const COL=["#FF5A1F", "#3D7BFF", "#1FA968", "#A855F7", "#E8A100", "#E0457B", "#0EA5B7", "#6B7280", "#8B5CF6", "#16A34A"];
+const TEAMS=[['🦊','여우팀'],['🐻','곰팀'],['🐰','토끼팀'],['🐯','호랑이팀'],['🐼','판다팀'],['🐧','펭귄팀'],['🐱','고양이팀'],['🐶','강아지팀'],['🐹','햄스터팀'],['🦁','사자팀']];
 const S=Object.assign({names:'',mode:'teams',n:2},store.get('sonandogu-team-v1',{}));
-let last=null;
+let last=null, busy=false;
 const parse=t=>{const out=[],seen=new Set(); t.split(/[\n,，]/).map(s=>s.trim()).filter(Boolean).forEach(s=>{if(!seen.has(s)){seen.add(s);out.push(s.slice(0,20));}}); return out.slice(0,200);};
 function paint(){
   $('names').value=S.names;
@@ -293,30 +318,40 @@ $('names').addEventListener('input',e=>{S.names=e.target.value; paint();});
 document.querySelectorAll('#mode button').forEach(b=>b.onclick=()=>{S.mode=b.dataset.m; S.n=2; paint();});
 $('minus').onclick=()=>{S.n=Math.max(S.mode==='teams'?2:1,S.n-1); paint();};
 $('plus').onclick=()=>{S.n=Math.min(S.mode==='teams'?10:50,S.n+1); paint();};
-function split(names,mode,n){
-  const k= mode==='teams'? n : Math.ceil(names.length/n);
-  const sh=shuffle(names), teams=Array.from({length:k},()=>[]);
-  sh.forEach((nm,i)=>teams[i%k].push(nm));
-  return teams;
-}
+function split(names,mode,n){ const k= mode==='teams'? n : Math.ceil(names.length/n); const sh=shuffle(names), teams=Array.from({length:k},()=>[]); sh.forEach((nm,i)=>teams[i%k].push(nm)); return teams; }
 window.__split=split;
+const hex2=(h,a)=>{const n=parseInt(h.slice(1),16); return `rgba(${n>>16},${(n>>8)&255},${n&255},${a})`;};
 function run(){
+  if(busy) return;
   const names=parse(S.names);
   if(names.length<2){say('참가자를 두 명 이상 적어주세요');return;}
   const k= S.mode==='teams'? S.n : Math.ceil(names.length/S.n);
   if(k>names.length){say('팀 수가 참가자보다 많아요');return;}
   if(k<2){say('두 팀 이상이 되도록 인원을 줄여주세요');return;}
+  busy=true; $('go').disabled=true; $('again').disabled=true; $('copy').disabled=true;
   last=split(names,S.mode,S.n);
-  $('cap').textContent=`${names.length}명 → ${last.length}팀`;
+  const order=[]; const maxLen=Math.max(...last.map(t=>t.length)); for(let r=0;r<maxLen;r++) last.forEach((t,ti)=>{ if(t[r]!==undefined) order.push([ti,t[r]]); });
+  $('cap').innerHTML=`${names.length}명 → ${last.length}팀 · <span class="drum">섞는 중</span>`;
+  const pool=$('pool'); pool.classList.remove('empty'); pool.innerHTML='';
+  const chipOf={}; shuffle(names).forEach(nm=>{const s=document.createElement('span'); s.textContent=nm; pool.append(s); chipOf[nm]=s;});
   const box=$('teams'); box.innerHTML='';
-  last.forEach((t,i)=>{const d=document.createElement('div'); d.className='tm';
-    d.innerHTML=`<h3><i style="background:${COL[i%COL.length]}"></i>${String.fromCharCode(65+i)}팀<small>${t.length}명</small></h3><div class="mem"></div>`;
-    const m=d.querySelector('.mem'); t.forEach(nm=>{const s=document.createElement('span'); s.textContent=nm; m.append(s);}); box.append(d);
-    setTimeout(()=>d.classList.add('on'), reduce?0:120*i+30);});
-  $('again').disabled=false; $('copy').disabled=false;
+  const mems=last.map((t,i)=>{const d=document.createElement('div'); d.className='tm on'; const c=COL[i%COL.length]; d.style.setProperty('--tc',c); d.style.setProperty('--tcs',hex2(c,.32));
+    d.innerHTML=`<h3><span class="em">${TEAMS[i%TEAMS.length][0]}</span>${TEAMS[i%TEAMS.length][1]}<small>${t.length}명</small></h3><div class="mem"></div>`; box.append(d); return d.querySelector('.mem');});
+  const finish=()=>{ pool.classList.add('empty'); $('cap').textContent=`${names.length}명 → ${last.length}팀 완성!`; busy=false; $('go').disabled=false; $('again').disabled=false; $('copy').disabled=false;
+    const d=$('.disp')||document.querySelector('.disp'); burst(d, d.clientWidth/2, 40, 22, '#FF5A1F'); };
+  if(reduce){ order.forEach(([ti,nm])=>{const s=document.createElement('span'); s.textContent=nm; mems[ti].append(s);}); finish(); return; }
+  pool.classList.add('shake');
+  setTimeout(()=>{ pool.classList.remove('shake'); const gap=Math.max(60,Math.min(180,2600/order.length));
+    order.forEach(([ti,nm],idx)=>setTimeout(()=>{
+      const from=chipOf[nm].getBoundingClientRect(); chipOf[nm].classList.add('gone');
+      const s=document.createElement('span'); s.textContent=nm; mems[ti].append(s); const to=s.getBoundingClientRect();
+      s.animate([{transform:`translate(${from.left-to.left}px,${from.top-to.top}px) scale(1.05)`,opacity:.9},{transform:'none',opacity:1}],{duration:480,easing:'cubic-bezier(.2,.8,.2,1)'});
+      if(idx===order.length-1) setTimeout(finish,520);
+    }, idx*gap));
+  }, 900);
 }
 $('go').onclick=run; $('again').onclick=run;
-$('copy').onclick=async()=>{ if(!last) return; const t='[팀 나누기 결과]\n'+last.map((m,i)=>`${String.fromCharCode(65+i)}팀: ${m.join(', ')}`).join('\n')+'\n\n손안의도구 팀 나누기\nhttps://sonandogu.com/party/team/';
+$('copy').onclick=async()=>{ if(!last) return; const t='[팀 나누기 결과]\n'+last.map((m,i)=>`${TEAMS[i%TEAMS.length][0]} ${TEAMS[i%TEAMS.length][1]}: ${m.join(', ')}`).join('\n')+'\n\n손안의도구 팀 나누기\nhttps://sonandogu.com/party/team/';
   try{await navigator.clipboard.writeText(t); say('복사했어요');}catch(e){say('복사하지 못했어요');} };
 paint();
 </script>

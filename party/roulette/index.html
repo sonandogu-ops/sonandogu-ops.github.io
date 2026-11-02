@@ -18,7 +18,7 @@
 <meta property="og:title" content="룰렛 돌리기 - 점심 메뉴부터 커피 내기까지">
 <meta property="og:description" content="항목만 적으면 바로 돌리는 공정한 룰렛.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "룰렛 결과는 공정한가요?", "acceptedAnswer": {"@type": "Answer", "text": "버튼을 누르는 순간 브라우저의 보안 난수로 당첨 칸을 고르고, 바늘이 그 칸에 멈추도록 돌려요. 모든 칸의 확률이 같아요."}}, {"@type": "Question", "name": "항목은 몇 개까지 넣을 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "2개부터 16개까지 넣을 수 있어요."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "룰렛 결과는 공정한가요?", "acceptedAnswer": {"@type": "Answer", "text": "버튼을 누르는 순간 브라우저의 보안 난수로 당첨 칸을 고르고, 바늘이 그 칸에 멈추도록 돌려요. 모든 칸의 확률이 같아요."}}, {"@type": "Question", "name": "항목은 몇 개까지 넣을 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "2개부터 16개까지 넣을 수 있어요."}}, {"@type": "Question", "name": "순서를 정할 때도 쓸 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "결과가 나온 뒤 빼고 다시를 누르면 그 항목을 빼고 바로 다시 돌려요. 한 명씩 빼가며 순서를 정할 수 있어요."}}]}</script>
 <style>:root{
   --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
   --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
@@ -230,6 +230,41 @@ footer .fl a:hover{color:var(--ink)}
 .pop{animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
 @keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
 @media (prefers-reduced-motion:reduce){.wheel{transition:none}.pop{animation:none}}
+
+.burst{position:absolute; width:8px; height:8px; border-radius:2px; pointer-events:none; animation:fly 1s cubic-bezier(.2,.8,.3,1) forwards; z-index:6}
+@keyframes fly{to{transform:translate(var(--dx),var(--dy)) rotate(var(--r)); opacity:0}}
+.drum{display:inline-block; animation:drum .25s steps(2) infinite}
+@keyframes drum{50%{transform:translateY(-2px)}}
+
+.wheelbox{position:relative; width:100%; max-width:360px; margin:4px auto 0; aspect-ratio:1}
+.wheel{transition:none!important; position:absolute; inset:7%; width:86%; height:86%; filter:drop-shadow(0 14px 26px rgba(0,0,0,.45))}
+.rim{position:absolute; inset:2%; border-radius:50%; background:radial-gradient(circle at 50% 35%,#3A3C45,#15161A 70%); box-shadow:inset 0 2px 0 rgba(255,255,255,.12), 0 18px 40px -12px rgba(0,0,0,.7)}
+.lights{position:absolute; inset:2%; border-radius:50%}
+.lights span{position:absolute; width:8px; height:8px; margin:-4px; border-radius:50%; background:#FFE9B0; box-shadow:0 0 8px #FFC24D; opacity:.35}
+.spinning .lights span{animation:blink .5s ease-in-out infinite alternate}
+.spinning .lights span:nth-child(odd){animation-delay:.25s}
+.won .lights span{opacity:1; animation:none}
+@keyframes blink{to{opacity:1}}
+.pin{position:absolute; left:50%; top:-2%; width:34px; height:44px; transform:translateX(-50%); transform-origin:50% 20%; z-index:3; border:none}
+.pin svg{width:100%; height:100%; filter:drop-shadow(0 4px 6px rgba(0,0,0,.5))}
+.pin.tick{animation:tick .14s ease-out}
+@keyframes tick{40%{transform:translateX(-50%) rotate(-22deg)}}
+.hub{position:absolute; left:50%; top:50%; width:21%; height:21%; transform:translate(-50%,-50%); border-radius:50%; background:radial-gradient(circle at 40% 35%,#FF9A55,#FF4A12); border:4px solid #F4F4F1; display:grid; place-items:center; font-size:13px; font-weight:900; color:#fff; letter-spacing:-.02em; box-shadow:0 6px 14px rgba(0,0,0,.4); cursor:pointer; z-index:3}
+.hub:active{transform:translate(-50%,-50%) scale(.95)}
+.rcard{margin:16px auto 0; max-width:300px; text-align:center; border-radius:22px; padding:14px 16px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); min-height:84px; display:flex; flex-direction:column; justify-content:center}
+.rcard .k{font-size:13px; color:rgba(244,244,241,.6)}
+.rcard .v{font-size:30px; font-weight:900; letter-spacing:-.04em; line-height:1.2}
+.rcard.show{animation:rpop .5s cubic-bezier(.2,1.5,.4,1)}
+@keyframes rpop{0%{transform:scale(.7); opacity:0}100%{transform:scale(1); opacity:1}}
+.hist{display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-top:12px; min-height:28px}
+.hist span{font-size:12.5px; font-weight:700; color:rgba(244,244,241,.7); background:rgba(255,255,255,.07); border-radius:999px; padding:5px 10px}
+.hist span:first-child{color:#141518; background:#FFE07A}
+.acts3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:14px}
+.acts3 button{font:inherit; font-size:14px; font-weight:800; border-radius:14px; padding:12px 6px; cursor:pointer; border:none}
+.acts3 .a{grid-column:1/-1; font-size:16px; padding:15px; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); box-shadow:0 10px 24px -10px rgba(255,90,31,.85)}
+.acts3 .b{color:#F4F4F1; background:rgba(255,255,255,.1)}
+.acts3 button:disabled{opacity:.4; cursor:default}
+@media (prefers-reduced-motion:reduce){.spinning .lights span{animation:none}.pin.tick,.rcard.show{animation:none}}
 .rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
 .rel b{font-size:13px; color:var(--orange); font-weight:800}
 .rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
@@ -255,9 +290,13 @@ footer .fl a:hover{color:var(--ink)}
     </main>
     <aside class="res">
       <div class="disp">
-        <div class="wheelbox"><div class="pin" aria-hidden="true"></div><svg class="wheel" id="wheel" viewBox="0 0 300 300" aria-hidden="true"></svg><div class="hub" aria-hidden="true">GO</div></div>
-        <div class="rres" aria-live="polite"><div class="k" id="rk">돌려볼까요?</div><div class="v" id="rv"></div></div>
-        <div class="acts2"><button class="a" id="spin">룰렛 돌리기</button><button class="b" id="copy" disabled>결과 복사</button></div>
+        <div class="wheelbox" id="wbox"><div class="rim"></div><div class="lights" id="lights"></div>
+          <div class="pin" id="pin" aria-hidden="true"><svg viewBox="0 0 34 44"><path d="M17 42 L3 10 A14 14 0 1 1 31 10 Z" fill="#F4F4F1"/><circle cx="17" cy="13" r="5" fill="#FF5A1F"/></svg></div>
+          <svg class="wheel" id="wheel" viewBox="0 0 300 300" aria-hidden="true"></svg>
+          <button class="hub" id="hub" aria-label="룰렛 돌리기">돌려!</button></div>
+        <div class="rcard" id="rcard" aria-live="polite"><div class="k" id="rk">가운데를 누르거나 아래 버튼을 눌러요</div><div class="v" id="rv"></div></div>
+        <div class="hist" id="hist"></div>
+        <div class="acts3"><button class="a" id="spin">룰렛 돌리기</button><button class="b" id="drop" disabled>빼고 다시</button><button class="b" id="copy" disabled>결과 복사</button><button class="b" id="clearh">기록 지우기</button></div>
       </div>
     </aside>
   </div>
@@ -278,20 +317,28 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1600);}
 const store={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d;}catch(e){return d;}},set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
 
+function burst(host,cx,cy,count,col){ if(reduce) return; const cols=[col,'#FFE07A','#FFFFFF','#FF8A3D','#7CE3A8'];
+  for(let k=0;k<count;k++){const s=document.createElement('span'); s.className='burst'; s.style.left=cx+'px'; s.style.top=cy+'px'; s.style.background=cols[k%cols.length];
+    const a=Math.random()*Math.PI*2, r=40+Math.random()*80; s.style.setProperty('--dx',Math.cos(a)*r+'px'); s.style.setProperty('--dy',(Math.sin(a)*r-30)+'px'); s.style.setProperty('--r',(Math.random()*540)+'deg');
+    host.append(s); setTimeout(()=>s.remove(),1050);} }
+
 const PRE={lunch:['김치찌개','돈가스','짜장면','쌀국수','김밥','제육볶음','샐러드','국밥'],dinner:['치킨','피자','삼겹살','초밥','떡볶이','마라탕'],coffee:['나','친구1','친구2','친구3'],num:['1','2','3','4','5','6']};
 const COLS=['#FF5A1F','#2E3038','#FF8A3D','#3D7BFF','#1FA968','#A855F7','#E8A100','#E0457B'];
-let items=store.get('sonandogu-roulette-v1',PRE.lunch); let rot=0, busy=false, lastRes='';
-function save(){store.set('sonandogu-roulette-v1',items);}
+let items=store.get('sonandogu-roulette-v1',PRE.lunch), rot=0, busy=false, lastK=-1, lastRes='', hist=[];
+const save=()=>store.set('sonandogu-roulette-v1',items);
+const colOf=(i,n)=>COLS[(n>1&&i===n-1&&i%COLS.length===0)?1:i%COLS.length];
+(function(){const L=$('lights'); for(let k=0;k<24;k++){const s=document.createElement('span'); const a=k/24*2*Math.PI; s.style.left=(50+Math.cos(a)*46.6)+'%'; s.style.top=(50+Math.sin(a)*46.6)+'%'; L.append(s);} })();
 function draw(){
-  const n=items.length, svg=$('wheel'); let h='';
+  const n=items.length, svg=$('wheel');
+  let h='<defs><radialGradient id="shine" cx=".5" cy=".5" r=".5"><stop offset=".55" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".22"/></radialGradient><radialGradient id="gl" cx=".35" cy=".25" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>';
   items.forEach((t,i)=>{const a0=(i/n)*2*Math.PI-Math.PI/2, a1=((i+1)/n)*2*Math.PI-Math.PI/2;
     const x0=150+150*Math.cos(a0), y0=150+150*Math.sin(a0), x1=150+150*Math.cos(a1), y1=150+150*Math.sin(a1);
-    const col=COLS[i%COLS.length===0&&i===n-1&&n>1?1:i%COLS.length];
-    h+=`<path d="M150 150 L${x0.toFixed(2)} ${y0.toFixed(2)} A150 150 0 ${n===1?1:0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)} Z" fill="${col}" stroke="#F4F4F1" stroke-width="2"/>`;
-    const am=(a0+a1)/2, tx=150+95*Math.cos(am), ty=150+95*Math.sin(am), deg=am*180/Math.PI;
+    h+=`<path d="M150 150 L${x0.toFixed(2)} ${y0.toFixed(2)} A150 150 0 0 1 ${x1.toFixed(2)} ${y1.toFixed(2)} Z" fill="${colOf(i,n)}" stroke="rgba(255,255,255,.9)" stroke-width="2"/>`;
+    const am=(a0+a1)/2, tx=150+100*Math.cos(am), ty=150+100*Math.sin(am), deg=am*180/Math.PI;
     const label=(t||'?').length>6?(t||'?').slice(0,6)+'…':(t||'?');
-    h+=`<text x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" transform="rotate(${(deg+ (Math.cos(am)<0?180:0)).toFixed(1)} ${tx.toFixed(1)} ${ty.toFixed(1)})">${label.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}</text>`;});
-  svg.innerHTML=h;
+    h+=`<text x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" transform="rotate(${deg.toFixed(1)} ${tx.toFixed(1)} ${ty.toFixed(1)})" style="font-size:${n>10?12:15}px;paint-order:stroke;stroke:rgba(0,0,0,.25);stroke-width:3px">${label.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}</text>`;});
+  h+='<circle cx="150" cy="150" r="150" fill="url(#shine)"/><circle cx="150" cy="150" r="150" fill="url(#gl)"/>';
+  svg.innerHTML=h; svg.style.transform=`rotate(${rot}deg)`;
 }
 function list(){
   const box=$('items'); box.innerHTML='';
@@ -302,19 +349,35 @@ function list(){
   if(items.length<16){const a=document.createElement('button'); a.className='add2'; a.textContent='＋ 항목 추가'; a.onclick=()=>{items.push('항목'+(items.length+1)); save(); list(); draw(); const ins=box.querySelectorAll('input'); ins[ins.length-1].select();}; box.append(a);}
   $('cnt').textContent=items.length+'개';
 }
-document.querySelectorAll('.presets button').forEach(b=>b.onclick=()=>{items=PRE[b.dataset.p].slice(); save(); list(); draw(); $('rk').textContent='돌려볼까요?'; $('rv').textContent='';});
+document.querySelectorAll('.presets button').forEach(b=>b.onclick=()=>{if(busy) return; items=PRE[b.dataset.p].slice(); save(); list(); draw(); resetCard();});
+function resetCard(){ $('rk').textContent='가운데를 누르거나 아래 버튼을 눌러요'; $('rv').textContent=''; $('rcard').style.background=''; $('rcard').style.color=''; $('drop').disabled=true; }
 function pick(n){return rnd(n);}
 window.__pick=pick;
-$('spin').onclick=()=>{
+function spin(){
   if(busy) return; const n=items.length; if(n<2) return;
-  busy=true; $('spin').disabled=true; $('rk').textContent='돌아가는 중…'; $('rv').textContent='';
+  busy=true; $('spin').disabled=true; $('drop').disabled=true; $('wbox').classList.add('spinning'); $('wbox').classList.remove('won');
+  $('rk').innerHTML='<span class="drum">두구두구</span>…'; $('rv').textContent=''; $('rcard').style.background=''; $('rcard').style.color='';
   const k=pick(n), seg=360/n, inside=seg*(0.15+0.7*(rnd(1000)/1000));
-  const target=360-(k*seg+inside);           // 바늘(위쪽)이 k번째 칸 안쪽에 오도록
-  const base=Math.ceil(rot/360)*360;
-  rot=base+(reduce?0:360*6)+target;
-  $('wheel').style.transform=`rotate(${rot}deg)`;
-  setTimeout(()=>{ lastRes=items[k]||'?'; $('rk').textContent='결과는'; const v=$('rv'); v.textContent=lastRes; v.classList.remove('pop'); void v.offsetWidth; v.classList.add('pop'); busy=false; $('spin').disabled=false; $('copy').disabled=false; }, reduce?100:4300);
-};
+  const from=rot, to=Math.ceil(rot/360)*360+(reduce?0:360*6)+(360-(k*seg+inside));
+  const dur=reduce?1:4800, t0=performance.now(); let lastSeg=-1; const pin=$('pin'), wh=$('wheel');
+  const ease=t=>1-Math.pow(1-t,4);
+  const step=now=>{const t=Math.min(1,(now-t0)/dur), cur=from+(to-from)*ease(t); wh.style.transform=`rotate(${cur}deg)`;
+    const at=Math.floor((((360-cur%360)%360)+360)%360/seg); if(at!==lastSeg){ if(lastSeg!==-1&&!reduce){pin.classList.remove('tick'); void pin.offsetWidth; pin.classList.add('tick');} lastSeg=at; }
+    if(t<1) requestAnimationFrame(step); else done(k,to);};
+  requestAnimationFrame(step);
+}
+function done(k,to){
+  rot=to; busy=false; lastK=k; lastRes=items[k]||'?';
+  const c=$('rcard'), col=colOf(k,items.length); c.style.background=col; c.style.color=col==='#E8A100'||col==='#FF8A3D'?'#141518':'#fff';
+  $('rk').textContent='결과는'; $('rv').textContent=lastRes; c.classList.remove('show'); void c.offsetWidth; c.classList.add('show');
+  $('wbox').classList.remove('spinning'); $('wbox').classList.add('won');
+  const wb=$('wbox'); burst(wb, wb.clientWidth/2, wb.clientHeight*0.1, 28, col);
+  hist.unshift(lastRes); hist=hist.slice(0,8); $('hist').innerHTML=hist.map(h=>`<span>${h.replace(/</g,'&lt;')}</span>`).join('');
+  $('spin').disabled=false; $('copy').disabled=false; $('drop').disabled=items.length<=2;
+}
+$('spin').onclick=spin; $('hub').onclick=spin;
+$('drop').onclick=()=>{ if(busy||lastK<0||items.length<=2) return; items.splice(lastK,1); lastK=-1; save(); list(); draw(); resetCard(); setTimeout(spin,250); };
+$('clearh').onclick=()=>{hist=[]; $('hist').innerHTML='';};
 $('copy').onclick=async()=>{ try{await navigator.clipboard.writeText(`[룰렛 결과] ${lastRes}\n(${items.join(', ')} 중에서)\n\n손안의도구 룰렛\nhttps://sonandogu.com/party/roulette/`); say('복사했어요');}catch(e){say('복사하지 못했어요');} };
 list(); draw();
 </script>

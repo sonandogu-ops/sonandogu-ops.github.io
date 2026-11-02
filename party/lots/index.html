@@ -226,6 +226,34 @@ footer .fl a:hover{color:var(--ink)}
 @media (prefers-reduced-motion:reduce){.lot{transition:none}}
 .pb{font:inherit; font-size:13px; font-weight:700; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:6px 12px; cursor:pointer}
 .pb:hover{color:var(--ink); border-color:var(--ink)}
+
+.burst{position:absolute; width:8px; height:8px; border-radius:2px; pointer-events:none; animation:fly 1s cubic-bezier(.2,.8,.3,1) forwards; z-index:6}
+@keyframes fly{to{transform:translate(var(--dx),var(--dy)) rotate(var(--r)); opacity:0}}
+.drum{display:inline-block; animation:drum .25s steps(2) infinite}
+@keyframes drum{50%{transform:translateY(-2px)}}
+
+.grid2{display:grid; grid-template-columns:repeat(auto-fill,minmax(68px,1fr)); gap:10px; margin-top:14px; perspective:900px; position:relative}
+.lot{position:relative; aspect-ratio:3/4; border:none; padding:0; background:none; cursor:pointer; transform-style:preserve-3d; transition:transform .6s cubic-bezier(.3,1.3,.5,1)}
+.lot .f{background:linear-gradient(150deg,#3A3C45,#1E1F24); border:1px solid rgba(255,255,255,.12); overflow:hidden; transition:visibility 0s .28s}
+.lot.open .f{visibility:hidden}
+.lot .f::before{content:""; position:absolute; inset:6px; border-radius:10px; border:1.5px dashed rgba(255,255,255,.18)}
+.lot .f::after{content:""; position:absolute; inset:0; background:repeating-linear-gradient(135deg,rgba(255,255,255,.04) 0 6px,transparent 6px 12px)}
+.lot .f .no{position:relative; z-index:1; font-size:22px; font-weight:900; color:#F4F4F1}
+.lot .f .q{position:absolute; bottom:8px; left:0; right:0; z-index:1; font-size:10px; font-weight:800; color:rgba(244,244,241,.45); letter-spacing:.08em}
+.lot .b{font-size:12.5px; flex-direction:column; gap:2px; background:rgba(255,255,255,.14); color:rgba(244,244,241,.85); transition:opacity .4s}
+.lot .b .ic2{font-size:22px; line-height:1}
+.lot .b.win{background:linear-gradient(150deg,#FFB067,#FF4A12); box-shadow:0 0 0 2px #FFE07A, 0 10px 26px -6px rgba(255,90,31,.9)}
+.lot.lift{animation:lift .7s ease-in-out}
+@keyframes lift{0%{transform:translateY(0)}30%{transform:translateY(-10px) rotate(-4deg)}45%{transform:translateY(-10px) rotate(4deg)}60%{transform:translateY(-10px) rotate(-3deg)}75%{transform:translateY(-10px) rotate(2deg)}100%{transform:translateY(-4px)}}
+.lot.open{transform:rotateY(180deg)}
+.lot.open.dim .b{opacity:.5}
+.banner{margin-top:14px; text-align:center; border-radius:20px; padding:14px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); min-height:66px; display:flex; flex-direction:column; justify-content:center}
+.banner .k{font-size:13px; color:rgba(244,244,241,.6)}
+.banner .v{font-size:24px; font-weight:900; letter-spacing:-.03em}
+.banner.hot{background:linear-gradient(150deg,#FFB067,#FF4A12); color:#141518; animation:rpop .5s cubic-bezier(.2,1.5,.4,1)}
+.banner.hot .k{color:rgba(20,21,24,.7)}
+@keyframes rpop{0%{transform:scale(.8); opacity:0}100%{transform:scale(1); opacity:1}}
+@media (prefers-reduced-motion:reduce){.lot{transition:none}.lot.lift,.banner.hot{animation:none}}
 .rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
 .rel b{font-size:13px; color:var(--orange); font-weight:800}
 .rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
@@ -259,6 +287,7 @@ footer .fl a:hover{color:var(--ink)}
       <div class="disp" aria-live="polite">
         <div class="stat"><span id="st1">카드를 하나씩 눌러 뒤집어요</span><span id="st2"></span></div>
         <div class="grid2" id="grid"></div>
+        <div class="banner" id="banner" aria-live="polite"><div class="k">카드를 눌러 한 장씩 뒤집어요</div><div class="v" id="bv"></div></div>
         <div class="acts2"><button class="a" id="reset">다시 섞기</button><button class="b" id="openAll">전부 공개</button></div>
       </div>
     </aside>
@@ -280,6 +309,11 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1600);}
 const store={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d;}catch(e){return d;}},set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
 
+function burst(host,cx,cy,count,col){ if(reduce) return; const cols=[col,'#FFE07A','#FFFFFF','#FF8A3D','#7CE3A8'];
+  for(let k=0;k<count;k++){const s=document.createElement('span'); s.className='burst'; s.style.left=cx+'px'; s.style.top=cy+'px'; s.style.background=cols[k%cols.length];
+    const a=Math.random()*Math.PI*2, r=40+Math.random()*80; s.style.setProperty('--dx',Math.cos(a)*r+'px'); s.style.setProperty('--dy',(Math.sin(a)*r-30)+'px'); s.style.setProperty('--r',(Math.random()*540)+'deg');
+    host.append(s); setTimeout(()=>s.remove(),1050);} }
+
 const S=Object.assign({n:6,k:1,label:'당첨!'},store.get('sonandogu-lots-v1',{}));
 let deck=[], opened=0, wins=0;
 function paint(){ $('nVal').textContent=S.n+'명'; $('kVal').textContent=S.k+'명'; $('label').value=S.label; store.set('sonandogu-lots-v1',S); }
@@ -287,23 +321,29 @@ $('nMinus').onclick=()=>{S.n=Math.max(2,S.n-1); S.k=Math.min(S.k,S.n-1); paint()
 $('nPlus').onclick=()=>{S.n=Math.min(30,S.n+1); paint(); make();};
 $('kMinus').onclick=()=>{S.k=Math.max(1,S.k-1); paint(); make();};
 $('kPlus').onclick=()=>{S.k=Math.min(S.n-1,S.k+1); paint(); make();};
-$('label').addEventListener('input',e=>{S.label=e.target.value; paint(); document.querySelectorAll('.b.win').forEach(x=>x.textContent=S.label||'당첨!');});
-document.querySelectorAll('.pb').forEach(b=>b.onclick=()=>{S.label=b.dataset.v; paint(); document.querySelectorAll('.b.win').forEach(x=>x.textContent=S.label);});
+const lab=()=>S.label||'당첨!';
+$('label').addEventListener('input',e=>{S.label=e.target.value; paint(); document.querySelectorAll('.b.win .t3').forEach(x=>x.textContent=lab());});
+document.querySelectorAll('.pb').forEach(b=>b.onclick=()=>{S.label=b.dataset.v; paint(); document.querySelectorAll('.b.win .t3').forEach(x=>x.textContent=lab());});
 function deal(n,k){ return shuffle(Array.from({length:n},(_,i)=>i<k)); }
 window.__deal=deal;
-function stat(){ $('st1').textContent= opened? `${opened}장 뒤집음` : '카드를 하나씩 눌러 뒤집어요'; $('st2').innerHTML=`당첨 <b>${wins}</b> / ${S.k}`; }
+function stat(){ $('st1').textContent= opened? `${opened}장 뒤집음 · 남은 카드 ${S.n-opened}장` : '카드를 하나씩 눌러 뒤집어요'; $('st2').innerHTML=`당첨 <b>${wins}</b> / ${S.k}`; }
+function banner(k,v,hot){const b=$('banner'); b.classList.remove('hot'); void b.offsetWidth; if(hot) b.classList.add('hot'); b.querySelector('.k').textContent=k; $('bv').textContent=v;}
 function make(){
   deck=deal(S.n,S.k); opened=0; wins=0;
   const g=$('grid'); g.innerHTML='';
   deck.forEach((w,i)=>{const b=document.createElement('button'); b.className='lot'; b.setAttribute('aria-label',`${i+1}번 카드`);
-    b.innerHTML=`<span class="f">${i+1}</span><span class="b${w?' win':''}">${w?(S.label||'당첨!'):'통과'}</span>`;
-    b.onclick=()=>{ if(b.classList.contains('open')) return; b.classList.add('open'); opened++; if(w){wins++; say(`${i+1}번, ${S.label||'당첨!'}`);} stat();
-      if(wins===S.k && opened<S.n) setTimeout(()=>say('당첨이 모두 나왔어요!'),500); };
+    b.innerHTML=`<span class="f"><span class="no">${i+1}</span><span class="q">TOUCH</span></span><span class="b${w?' win':''}"><span class="ic2">${w?'🎉':'🙂'}</span><span class="t3">${w?lab():'통과'}</span></span>`;
+    b.onclick=()=>{ if(b.dataset.busy||b.classList.contains('open')) return; b.dataset.busy=1;
+      const reveal=()=>{ b.classList.remove('lift'); b.classList.add('open'); opened++;
+        if(w){ wins++; banner(`${i+1}번 카드`, lab(), true); const gb=g.getBoundingClientRect(), cb=b.getBoundingClientRect(); setTimeout(()=>burst(g, cb.left-gb.left+cb.width/2, cb.top-gb.top+cb.height/2, 26, '#FF5A1F'),250); }
+        else { banner(`${i+1}번 카드`, '통과! 휴', false); setTimeout(()=>b.classList.add('dim'),900); }
+        stat(); if(wins===S.k && opened<S.n) setTimeout(()=>banner('끝!', `당첨이 모두 나왔어요`, true),1400); };
+      if(reduce) reveal(); else { b.classList.add('lift'); setTimeout(reveal,700); } };
     g.append(b);});
-  stat();
+  stat(); banner('카드를 눌러 한 장씩 뒤집어요','',false);
 }
 $('make').onclick=()=>{make(); say('새로 섞었어요');}; $('reset').onclick=()=>{make(); say('새로 섞었어요');};
-$('openAll').onclick=()=>{document.querySelectorAll('.lot:not(.open)').forEach(b=>b.click());};
+$('openAll').onclick=()=>{ document.querySelectorAll('.lot:not(.open)').forEach((b,k)=>{ b.dataset.busy=1; const i=[...b.parentNode.children].indexOf(b), w=deck[i]; setTimeout(()=>{ b.classList.add('open'); opened++; if(w) wins++; else b.classList.add('dim'); stat(); }, reduce?0:k*60); }); banner('전체 공개','모든 카드를 뒤집었어요',false); };
 paint(); make();
 </script>
 </div>
