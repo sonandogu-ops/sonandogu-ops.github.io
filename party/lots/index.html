@@ -226,6 +226,10 @@ footer .fl a:hover{color:var(--ink)}
 @media (prefers-reduced-motion:reduce){.lot{transition:none}}
 .pb{font:inherit; font-size:13px; font-weight:700; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:6px 12px; cursor:pointer}
 .pb:hover{color:var(--ink); border-color:var(--ink)}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
 </style>
 </head>
 <body>
@@ -265,6 +269,7 @@ footer .fl a:hover{color:var(--ink)}
       <div class="f"><h3>폰 하나 돌려가며</h3><p>모인 사람이 차례로 폰을 받아 카드 한 장씩 고르면 돼요. 누가 무엇을 뽑을지는 섞는 순간 무작위로 정해지고, 뒤집기 전까진 아무도 몰라요.</p></div>
       <div class="f"><h3>당첨은 몇 명이든</h3><p>참가 인원은 2~30명, 당첨은 1명부터 인원보다 한 명 적게까지 정할 수 있어요. 당첨 문구도 "커피 쏘기", "설거지"처럼 바꿀 수 있어요.</p></div>
     </div>
+  <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/random-decision/">"아무거나"가 제일 어려운 이유 →</a></div>
   </section>
 <div class="toast" id="toast"></div>
 <script>

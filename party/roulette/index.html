@@ -230,6 +230,10 @@ footer .fl a:hover{color:var(--ink)}
 .pop{animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
 @keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
 @media (prefers-reduced-motion:reduce){.wheel{transition:none}.pop{animation:none}}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
 </style>
 </head>
 <body>
@@ -263,6 +267,7 @@ footer .fl a:hover{color:var(--ink)}
       <div class="f"><h3>결과는 미리 정해지지 않아요</h3><p>버튼을 누르는 순간 브라우저의 보안 난수로 당첨 칸을 고르고, 바늘이 그 칸에 멈추도록 돌려요. 모든 칸의 확률은 똑같아요.</p></div>
       <div class="f"><h3>항목은 최대 16개</h3><p>칸이 너무 많으면 글자가 안 보여서 16개까지 넣을 수 있어요. 입력한 항목은 이 기기에만 저장돼요.</p></div>
     </div>
+  <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/random-decision/">"아무거나"가 제일 어려운 이유 →</a></div>
   </section>
 <div class="toast" id="toast"></div>
 <script>
