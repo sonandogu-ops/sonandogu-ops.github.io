@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://sonandogu.com/party/roulette/">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F4F1">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sonandogu.com/party/roulette/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-roulette.jpg?v=2">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<title>룰렛 돌리기 - 점심 메뉴, 커피 내기 랜덤 룰렛 | 손안의도구</title>
+<meta name="description" content="항목만 적으면 바로 돌리는 랜덤 룰렛. 점심 메뉴 고르기, 커피 내기, 순서 정하기까지. 모든 칸의 확률이 같은 공정한 룰렛이에요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="룰렛 돌리기 - 점심 메뉴부터 커피 내기까지">
+<meta property="og:description" content="항목만 적으면 바로 돌리는 공정한 룰렛.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "룰렛 결과는 공정한가요?", "acceptedAnswer": {"@type": "Answer", "text": "버튼을 누르는 순간 브라우저의 보안 난수로 당첨 칸을 고르고, 바늘이 그 칸에 멈추도록 돌려요. 모든 칸의 확률이 같아요."}}, {"@type": "Question", "name": "항목은 몇 개까지 넣을 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "2개부터 16개까지 넣을 수 있어요."}}]}</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.hero{padding:36px 0 22px}
+@media (min-width:920px){.hero{padding:64px 0 28px}}
+.hero h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 12px}
+.hero p{font-size:17px; color:var(--muted); margin:0; max-width:34em}
+.tabs{display:inline-flex; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:4px; margin-bottom:16px}
+.tabs button{font:inherit; font-size:15px; font-weight:700; color:var(--muted); background:none; border:none; border-radius:12px; padding:10px 18px; cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink); color:var(--bg)}
+.work{display:grid; gap:18px}
+.work>*{min-width:0}
+@media (min-width:920px){.work{grid-template-columns:1fr 420px; gap:32px; align-items:start}.res{position:sticky; top:78px}}
+[hidden]{display:none!important}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:26px; box-shadow:var(--shadow); padding:20px 18px}
+.card+.card{margin-top:14px}
+.card h2{font-size:17px; font-weight:800; letter-spacing:-.03em; margin:0 0 12px; display:flex; align-items:center; gap:8px}
+.card h2 .n{width:22px; height:22px; border-radius:7px; background:var(--ink); color:var(--bg); font-size:12px; display:grid; place-items:center}
+.card h2 small{margin-left:auto; font-size:13px; color:var(--muted); font-weight:600}
+.box{background:var(--field); border-radius:16px; padding:10px 14px 8px; border:1.5px solid transparent; transition:border-color .2s, box-shadow .2s, background .2s}
+.box:focus-within{background:var(--surface); border-color:var(--orange); box-shadow:0 0 0 5px rgba(255,90,31,.13)}
+.box label{display:block; font-size:12px; font-weight:700; color:var(--muted)}
+.box input,.box select{width:100%; min-width:0; font:inherit; font-size:17px; font-weight:700; color:var(--ink); background:none; border:none; outline:none; padding:2px 0 0}
+.box input::placeholder{color:var(--faint); opacity:.7; font-weight:500}
+.box.big input{font-size:28px; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.num input{font-variant-numeric:tabular-nums}
+.g2{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.stepper{display:flex; align-items:center; justify-content:space-between; background:var(--field); border-radius:16px; padding:8px}
+.stepper button{width:46px; height:46px; border-radius:12px; border:1px solid var(--line); background:var(--surface); font:inherit; font-size:22px; font-weight:700; color:var(--ink); cursor:pointer}
+.stepper span{font-size:24px; font-weight:800; letter-spacing:-.03em}
+.lbl{font-size:12px; font-weight:700; color:var(--muted); margin:14px 0 6px 2px}
+.seg2{display:flex; gap:6px; flex-wrap:wrap}
+.seg2 button{flex:1; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:12px; padding:10px 6px; cursor:pointer; white-space:nowrap}
+.seg2 button[aria-pressed="true"]{color:var(--orange); border-color:var(--orange); background:rgba(255,90,31,.06)}
+.people{display:flex; flex-wrap:wrap; gap:8px}
+.pp{display:flex; align-items:center; gap:2px; background:var(--field); border:1.5px solid transparent; border-radius:999px; padding:4px 4px 4px 14px}
+.pp:focus-within{border-color:var(--orange); background:var(--surface)}
+.pp input{width:5.5em; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:none; outline:none}
+.pp button{width:28px; height:28px; border-radius:50%; border:none; background:none; color:var(--muted); font-size:16px; cursor:pointer}
+.pp button:hover{color:var(--orange)}
+.addp{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:999px; padding:8px 14px; cursor:pointer}
+.item{border:1px solid var(--line); border-radius:20px; padding:12px; margin-bottom:10px}
+.item .top2{display:grid; grid-template-columns:1.2fr 1fr 36px; gap:6px}
+.item .top2 .box{padding:8px 12px 6px}
+.item .top2 .box input{font-size:16px}
+.del{font:inherit; font-size:18px; color:var(--muted); background:none; border:1px solid var(--line); border-radius:12px; cursor:pointer}
+.del:hover{color:var(--orange); border-color:var(--orange)}
+.row2{display:flex; align-items:center; gap:8px; margin-top:10px; flex-wrap:wrap}
+.row2 .k{font-size:12.5px; font-weight:700; color:var(--muted); min-width:3.6em}
+.row2 select{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:10px; padding:7px 10px}
+.chips{display:flex; flex-wrap:wrap; gap:5px; flex:1}
+.chip{font:inherit; font-size:13.5px; font-weight:700; border-radius:999px; padding:6px 11px; cursor:pointer; border:1.5px solid var(--line); background:none; color:var(--faint)}
+.chip[aria-pressed="true"]{border-color:var(--ink); background:var(--ink); color:var(--bg)}
+.mini{font:inherit; font-size:12.5px; font-weight:700; color:var(--muted); background:none; border:none; text-decoration:underline; cursor:pointer; padding:0}
+.addi{width:100%; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:16px; padding:12px; cursor:pointer}
+.addi:hover,.addp:hover{border-color:var(--ink)}
+
+.disp{position:relative; overflow:hidden; border-radius:28px; padding:22px 20px 18px; color:#F4F4F1;
+  background:radial-gradient(120% 140% at 100% 0%, rgba(255,106,51,.28) 0%, rgba(255,106,51,0) 45%), linear-gradient(160deg,#202126 0%,#121316 100%);
+  box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.07)}
+.disp .cap{font-size:14px; color:rgba(244,244,241,.6)}
+.disp .big{font-size:clamp(40px,10vw,52px); font-weight:800; letter-spacing:-.05em; line-height:1.1; margin:4px 0; font-variant-numeric:tabular-nums}
+.disp .big .u{font-size:.45em; color:#FF8A3D; margin-left:4px; letter-spacing:-.02em}
+.disp .sub{font-size:14px; color:rgba(244,244,241,.6); line-height:1.6}
+.disp .sub b{color:#fff}
+.tr{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:8px}
+.tr li{display:flex; align-items:center; justify-content:space-between; gap:10px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:12px 14px}
+.tr .who{font-size:16px; font-weight:700}
+.tr .who i{font-style:normal; color:rgba(244,244,241,.45); margin:0 6px}
+.tr .amt{font-size:19px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.tr .none{justify-content:center; color:rgba(244,244,241,.55); font-size:15px}
+.tbl2{width:100%; border-collapse:collapse; margin-top:14px; font-size:13.5px; font-variant-numeric:tabular-nums}
+.tbl2 th,.tbl2 td{padding:8px 4px; border-bottom:1px solid rgba(255,255,255,.08); text-align:right}
+.tbl2 th:first-child,.tbl2 td:first-child{text-align:left}
+.tbl2 th{color:rgba(244,244,241,.5); font-weight:700; font-size:12px}
+.tbl2 .plus{color:#7CE3A8}.tbl2 .minus{color:#FF8A3D}
+.acts{display:grid; grid-template-columns:1fr auto; gap:8px; margin-top:16px}
+.acts button{font:inherit; font-size:15px; font-weight:800; border-radius:16px; padding:14px; cursor:pointer; border:none}
+.copy{color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); box-shadow:0 8px 20px -8px rgba(255,90,31,.8)}
+.copy:disabled{opacity:.35; box-shadow:none; cursor:default}
+.reset{color:#F4F4F1; background:rgba(255,255,255,.08)!important}
+.preview{margin-top:12px; white-space:pre-wrap; font-size:12.5px; line-height:1.6; color:rgba(244,244,241,.55); background:rgba(0,0,0,.25); border-radius:14px; padding:12px; max-height:160px; overflow:auto}
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+.guide{margin-top:88px}
+.guide h2{font-size:clamp(24px,4vw,32px); font-weight:800; letter-spacing:-.04em; margin:0 0 20px}
+.fgrid{display:grid; gap:12px}
+@media (min-width:720px){.fgrid{grid-template-columns:repeat(2,1fr)}}
+.f{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px}
+.f h3{font-size:16px; font-weight:800; margin:0 0 8px; letter-spacing:-.02em}
+.f p{margin:0; font-size:14.5px; color:var(--muted)}
+.f strong{color:var(--ink)}
+.faq{margin-top:56px}
+.faq details{border-top:1px solid var(--line); padding:18px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer; font-weight:700; font-size:16px; list-style:none; display:flex; justify-content:space-between; gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+"; color:var(--muted); font-weight:500; font-size:22px; line-height:1; transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:10px 0 0; color:var(--muted)}
+
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.days{display:grid; grid-template-columns:repeat(7,1fr); gap:6px}
+.day{background:var(--field); border-radius:14px; padding:8px 4px 6px; text-align:center; border:1.5px solid transparent}
+.day:focus-within{border-color:var(--orange); background:var(--surface)}
+.day label{display:block; font-size:12px; font-weight:800; color:var(--muted)}
+.day input{width:100%; font:inherit; font-size:18px; font-weight:800; text-align:center; color:var(--ink); background:none; border:none; outline:none; padding:2px 0; font-variant-numeric:tabular-nums}
+.day input::placeholder{color:var(--faint); opacity:.6}
+.day.we label{color:var(--orange)}
+.quick{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-top:10px; font-size:13px; color:var(--muted)}
+.quick select{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:10px; padding:6px 8px}
+.quick button{font:inherit; font-size:13px; font-weight:700; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:7px 12px; cursor:pointer}
+.optrow{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--line); font-size:14.5px; font-weight:700}
+.optrow:first-of-type{border-top:none}
+.optrow small{display:block; font-size:12.5px; color:var(--muted); font-weight:500; margin-top:2px}
+.sw{position:relative; flex:none; width:46px; height:28px; border-radius:999px; background:var(--field); border:1px solid var(--line); cursor:pointer; padding:0}
+.sw::after{content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .2s}
+.sw[aria-checked="true"]{background:var(--orange); border-color:var(--orange)}
+.sw[aria-checked="true"]::after{transform:translateX(18px)}
+.wrow{display:flex; gap:8px; align-items:stretch}
+.wrow .box{flex:1}
+.minbtn{font:inherit; font-size:13px; font-weight:700; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:0 12px; cursor:pointer; white-space:nowrap}
+.warn{margin-top:8px; font-size:13px; font-weight:700; color:#D9480F}
+.lines{margin-top:14px; display:flex; flex-direction:column; gap:2px}
+.ln{display:flex; justify-content:space-between; font-size:14px; padding:7px 0; border-bottom:1px solid rgba(255,255,255,.08); font-variant-numeric:tabular-nums}
+.ln span:first-child{color:rgba(244,244,241,.6)}
+.ln b{font-weight:800}
+.ln.sum{border-bottom:none; font-size:15px}
+.badge{display:inline-block; font-size:12.5px; font-weight:800; padding:4px 10px; border-radius:999px; margin-top:10px}
+.badge.ok{background:rgba(124,227,168,.15); color:#7CE3A8}
+.badge.no{background:rgba(255,138,61,.15); color:#FF8A3D}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:12px}
+.crumb a{color:var(--muted); text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+
+.names{width:100%; min-height:180px; font:inherit; font-size:16px; line-height:1.7; color:var(--ink); background:var(--field); border:1.5px solid transparent; border-radius:16px; padding:12px 14px; resize:vertical; outline:none}
+.names:focus{border-color:var(--orange); background:var(--surface); box-shadow:0 0 0 5px rgba(255,90,31,.13)}
+.hint{font-size:13px; color:var(--muted); margin-top:8px}
+.go{display:block; width:100%; margin-top:16px; font:inherit; font-size:17px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); border:none; border-radius:18px; padding:16px; cursor:pointer; box-shadow:0 12px 28px -10px rgba(255,90,31,.85)}
+
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+.acts2{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px}
+.acts2 button{font:inherit; font-size:15px; font-weight:800; border-radius:14px; padding:13px; cursor:pointer; border:none}
+.acts2 .a{color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F)}
+.acts2 .b{color:#F4F4F1; background:rgba(255,255,255,.1)}
+.acts2 button:disabled{opacity:.4; cursor:default}
+
+.chips2{display:flex; flex-wrap:wrap; gap:8px}
+.it2{display:flex; align-items:center; background:var(--field); border:1.5px solid transparent; border-radius:999px; padding:4px 4px 4px 14px}
+.it2:focus-within{border-color:var(--orange); background:var(--surface)}
+.it2 input{width:6.5em; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:none; outline:none}
+.it2 button{width:28px; height:28px; border-radius:50%; border:none; background:none; color:var(--muted); font-size:16px; cursor:pointer}
+.add2{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:999px; padding:8px 14px; cursor:pointer}
+.presets{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px}
+.presets button{font:inherit; font-size:13px; font-weight:700; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:6px 12px; cursor:pointer}
+.presets button:hover{color:var(--ink); border-color:var(--ink)}
+.wheelbox{position:relative; width:100%; max-width:340px; margin:6px auto 0; aspect-ratio:1}
+.wheel{width:100%; height:100%; transition:transform 4.2s cubic-bezier(.12,.75,.12,1); filter:drop-shadow(0 12px 24px rgba(0,0,0,.4))}
+.wheel text{font-family:"Pretendard Variable",sans-serif; font-weight:800; fill:#fff; font-size:15px}
+.pin{position:absolute; left:50%; top:-6px; transform:translateX(-50%); width:0; height:0; border-left:14px solid transparent; border-right:14px solid transparent; border-top:26px solid #F4F4F1; filter:drop-shadow(0 3px 4px rgba(0,0,0,.4)); z-index:2}
+.hub{position:absolute; left:50%; top:50%; width:20%; height:20%; transform:translate(-50%,-50%); border-radius:50%; background:#1B1C20; border:4px solid #F4F4F1; display:grid; place-items:center; font-size:12px; font-weight:800; color:#FF8A3D}
+.rres{text-align:center; margin-top:14px; min-height:62px}
+.rres .k{font-size:13px; color:rgba(244,244,241,.55)}
+.rres .v{font-size:32px; font-weight:800; letter-spacing:-.04em}
+.pop{animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){.wheel{transition:none}.pop{animation:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<div class="container">
+
+  <section class="hero">
+    <div class="crumb"><a href="/">전체 도구</a> / <a href="/party/">모임 놀이</a> / 룰렛</div>
+    <h1>룰렛 돌리기</h1>
+    <p>점심 메뉴도, 커피 내기도 돌려서 정해요. 항목은 마음대로 바꿀 수 있어요.</p>
+  </section>
+  <div class="work">
+    <main>
+      <div class="card">
+        <h2><span class="n">1</span>룰렛 항목<small id="cnt"></small></h2>
+        <div class="chips2" id="items"></div>
+        <div class="presets"><span style="font-size:13px;color:var(--muted);align-self:center">예시:</span><button data-p="lunch">점심 메뉴</button><button data-p="dinner">저녁 메뉴</button><button data-p="coffee">커피 내기</button><button data-p="num">숫자 1~6</button></div>
+      </div>
+    </main>
+    <aside class="res">
+      <div class="disp">
+        <div class="wheelbox"><div class="pin" aria-hidden="true"></div><svg class="wheel" id="wheel" viewBox="0 0 300 300" aria-hidden="true"></svg><div class="hub" aria-hidden="true">GO</div></div>
+        <div class="rres" aria-live="polite"><div class="k" id="rk">돌려볼까요?</div><div class="v" id="rv"></div></div>
+        <div class="acts2"><button class="a" id="spin">룰렛 돌리기</button><button class="b" id="copy" disabled>결과 복사</button></div>
+      </div>
+    </aside>
+  </div>
+  <section class="guide">
+    <h2>공정하게 돌아가요</h2>
+    <div class="fgrid">
+      <div class="f"><h3>결과는 미리 정해지지 않아요</h3><p>버튼을 누르는 순간 브라우저의 보안 난수로 당첨 칸을 고르고, 바늘이 그 칸에 멈추도록 돌려요. 모든 칸의 확률은 똑같아요.</p></div>
+      <div class="f"><h3>항목은 최대 16개</h3><p>칸이 너무 많으면 글자가 안 보여서 16개까지 넣을 수 있어요. 입력한 항목은 이 기기에만 저장돼요.</p></div>
+    </div>
+  </section>
+<div class="toast" id="toast"></div>
+<script>
+const $=id=>document.getElementById(id);
+const rnd=n=>{ if(n<=1) return 0; const lim=Math.floor(4294967296/n)*n, a=new Uint32Array(1); let x; do{crypto.getRandomValues(a); x=a[0];}while(x>=lim); return x%n; };
+const shuffle=arr=>{const a=arr.slice(); for(let i=a.length-1;i>0;i--){const j=rnd(i+1); [a[i],a[j]]=[a[j],a[i]];} return a;};
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1600);}
+const store={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d;}catch(e){return d;}},set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+
+const PRE={lunch:['김치찌개','돈가스','짜장면','쌀국수','김밥','제육볶음','샐러드','국밥'],dinner:['치킨','피자','삼겹살','초밥','떡볶이','마라탕'],coffee:['나','친구1','친구2','친구3'],num:['1','2','3','4','5','6']};
+const COLS=['#FF5A1F','#2E3038','#FF8A3D','#3D7BFF','#1FA968','#A855F7','#E8A100','#E0457B'];
+let items=store.get('sonandogu-roulette-v1',PRE.lunch); let rot=0, busy=false, lastRes='';
+function save(){store.set('sonandogu-roulette-v1',items);}
+function draw(){
+  const n=items.length, svg=$('wheel'); let h='';
+  items.forEach((t,i)=>{const a0=(i/n)*2*Math.PI-Math.PI/2, a1=((i+1)/n)*2*Math.PI-Math.PI/2;
+    const x0=150+150*Math.cos(a0), y0=150+150*Math.sin(a0), x1=150+150*Math.cos(a1), y1=150+150*Math.sin(a1);
+    const col=COLS[i%COLS.length===0&&i===n-1&&n>1?1:i%COLS.length];
+    h+=`<path d="M150 150 L${x0.toFixed(2)} ${y0.toFixed(2)} A150 150 0 ${n===1?1:0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)} Z" fill="${col}" stroke="#F4F4F1" stroke-width="2"/>`;
+    const am=(a0+a1)/2, tx=150+95*Math.cos(am), ty=150+95*Math.sin(am), deg=am*180/Math.PI;
+    const label=(t||'?').length>6?(t||'?').slice(0,6)+'…':(t||'?');
+    h+=`<text x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" transform="rotate(${(deg+ (Math.cos(am)<0?180:0)).toFixed(1)} ${tx.toFixed(1)} ${ty.toFixed(1)})">${label.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}</text>`;});
+  svg.innerHTML=h;
+}
+function list(){
+  const box=$('items'); box.innerHTML='';
+  items.forEach((t,i)=>{const d=document.createElement('div'); d.className='it2'; d.innerHTML='<input maxlength="12" aria-label="항목"><button aria-label="삭제">×</button>';
+    const inp=d.querySelector('input'); inp.value=t; inp.oninput=()=>{items[i]=inp.value; save(); draw();};
+    d.querySelector('button').onclick=()=>{ if(items.length<=2){say('두 개 이상은 있어야 돌릴 수 있어요');return;} items.splice(i,1); save(); list(); draw(); };
+    box.append(d);});
+  if(items.length<16){const a=document.createElement('button'); a.className='add2'; a.textContent='＋ 항목 추가'; a.onclick=()=>{items.push('항목'+(items.length+1)); save(); list(); draw(); const ins=box.querySelectorAll('input'); ins[ins.length-1].select();}; box.append(a);}
+  $('cnt').textContent=items.length+'개';
+}
+document.querySelectorAll('.presets button').forEach(b=>b.onclick=()=>{items=PRE[b.dataset.p].slice(); save(); list(); draw(); $('rk').textContent='돌려볼까요?'; $('rv').textContent='';});
+function pick(n){return rnd(n);}
+window.__pick=pick;
+$('spin').onclick=()=>{
+  if(busy) return; const n=items.length; if(n<2) return;
+  busy=true; $('spin').disabled=true; $('rk').textContent='돌아가는 중…'; $('rv').textContent='';
+  const k=pick(n), seg=360/n, inside=seg*(0.15+0.7*(rnd(1000)/1000));
+  const target=360-(k*seg+inside);           // 바늘(위쪽)이 k번째 칸 안쪽에 오도록
+  const base=Math.ceil(rot/360)*360;
+  rot=base+(reduce?0:360*6)+target;
+  $('wheel').style.transform=`rotate(${rot}deg)`;
+  setTimeout(()=>{ lastRes=items[k]||'?'; $('rk').textContent='결과는'; const v=$('rv'); v.textContent=lastRes; v.classList.remove('pop'); void v.offsetWidth; v.classList.add('pop'); busy=false; $('spin').disabled=false; $('copy').disabled=false; }, reduce?100:4300);
+};
+$('copy').onclick=async()=>{ try{await navigator.clipboard.writeText(`[룰렛 결과] ${lastRes}\n(${items.join(', ')} 중에서)\n\n손안의도구 룰렛\nhttps://sonandogu.com/party/roulette/`); say('복사했어요');}catch(e){say('복사하지 못했어요');} };
+list(); draw();
+</script>
+</div>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
+</body>
+</html>

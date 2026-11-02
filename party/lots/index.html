@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://sonandogu.com/party/lots/">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F4F1">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sonandogu.com/party/lots/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-lots.jpg?v=2">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<title>제비뽑기 - 온라인 당첨자 뽑기, 벌칙 정하기 | 손안의도구</title>
+<meta name="description" content="참가 인원과 당첨 수만 정하면 카드를 한 장씩 뒤집는 온라인 제비뽑기. 커피 내기, 벌칙, 경품 추첨, 순서 정하기에 써보세요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="제비뽑기 - 한 장씩 뒤집는 두근두근 추첨">
+<meta property="og:description" content="참가 인원과 당첨 수만 정하면 끝.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "제비뽑기 결과는 언제 정해지나요?", "acceptedAnswer": {"@type": "Answer", "text": "제비 섞기를 누르는 순간 브라우저의 보안 난수로 당첨 카드가 무작위로 정해지고, 뒤집기 전까지는 화면에 드러나지 않아요."}}, {"@type": "Question", "name": "몇 명까지 할 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "참가 인원은 2명부터 30명까지, 당첨은 1명부터 인원보다 한 명 적게까지 정할 수 있어요."}}]}</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.hero{padding:36px 0 22px}
+@media (min-width:920px){.hero{padding:64px 0 28px}}
+.hero h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 12px}
+.hero p{font-size:17px; color:var(--muted); margin:0; max-width:34em}
+.tabs{display:inline-flex; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:4px; margin-bottom:16px}
+.tabs button{font:inherit; font-size:15px; font-weight:700; color:var(--muted); background:none; border:none; border-radius:12px; padding:10px 18px; cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink); color:var(--bg)}
+.work{display:grid; gap:18px}
+.work>*{min-width:0}
+@media (min-width:920px){.work{grid-template-columns:1fr 420px; gap:32px; align-items:start}.res{position:sticky; top:78px}}
+[hidden]{display:none!important}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:26px; box-shadow:var(--shadow); padding:20px 18px}
+.card+.card{margin-top:14px}
+.card h2{font-size:17px; font-weight:800; letter-spacing:-.03em; margin:0 0 12px; display:flex; align-items:center; gap:8px}
+.card h2 .n{width:22px; height:22px; border-radius:7px; background:var(--ink); color:var(--bg); font-size:12px; display:grid; place-items:center}
+.card h2 small{margin-left:auto; font-size:13px; color:var(--muted); font-weight:600}
+.box{background:var(--field); border-radius:16px; padding:10px 14px 8px; border:1.5px solid transparent; transition:border-color .2s, box-shadow .2s, background .2s}
+.box:focus-within{background:var(--surface); border-color:var(--orange); box-shadow:0 0 0 5px rgba(255,90,31,.13)}
+.box label{display:block; font-size:12px; font-weight:700; color:var(--muted)}
+.box input,.box select{width:100%; min-width:0; font:inherit; font-size:17px; font-weight:700; color:var(--ink); background:none; border:none; outline:none; padding:2px 0 0}
+.box input::placeholder{color:var(--faint); opacity:.7; font-weight:500}
+.box.big input{font-size:28px; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.num input{font-variant-numeric:tabular-nums}
+.g2{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.stepper{display:flex; align-items:center; justify-content:space-between; background:var(--field); border-radius:16px; padding:8px}
+.stepper button{width:46px; height:46px; border-radius:12px; border:1px solid var(--line); background:var(--surface); font:inherit; font-size:22px; font-weight:700; color:var(--ink); cursor:pointer}
+.stepper span{font-size:24px; font-weight:800; letter-spacing:-.03em}
+.lbl{font-size:12px; font-weight:700; color:var(--muted); margin:14px 0 6px 2px}
+.seg2{display:flex; gap:6px; flex-wrap:wrap}
+.seg2 button{flex:1; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:12px; padding:10px 6px; cursor:pointer; white-space:nowrap}
+.seg2 button[aria-pressed="true"]{color:var(--orange); border-color:var(--orange); background:rgba(255,90,31,.06)}
+.people{display:flex; flex-wrap:wrap; gap:8px}
+.pp{display:flex; align-items:center; gap:2px; background:var(--field); border:1.5px solid transparent; border-radius:999px; padding:4px 4px 4px 14px}
+.pp:focus-within{border-color:var(--orange); background:var(--surface)}
+.pp input{width:5.5em; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:none; outline:none}
+.pp button{width:28px; height:28px; border-radius:50%; border:none; background:none; color:var(--muted); font-size:16px; cursor:pointer}
+.pp button:hover{color:var(--orange)}
+.addp{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:999px; padding:8px 14px; cursor:pointer}
+.item{border:1px solid var(--line); border-radius:20px; padding:12px; margin-bottom:10px}
+.item .top2{display:grid; grid-template-columns:1.2fr 1fr 36px; gap:6px}
+.item .top2 .box{padding:8px 12px 6px}
+.item .top2 .box input{font-size:16px}
+.del{font:inherit; font-size:18px; color:var(--muted); background:none; border:1px solid var(--line); border-radius:12px; cursor:pointer}
+.del:hover{color:var(--orange); border-color:var(--orange)}
+.row2{display:flex; align-items:center; gap:8px; margin-top:10px; flex-wrap:wrap}
+.row2 .k{font-size:12.5px; font-weight:700; color:var(--muted); min-width:3.6em}
+.row2 select{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:10px; padding:7px 10px}
+.chips{display:flex; flex-wrap:wrap; gap:5px; flex:1}
+.chip{font:inherit; font-size:13.5px; font-weight:700; border-radius:999px; padding:6px 11px; cursor:pointer; border:1.5px solid var(--line); background:none; color:var(--faint)}
+.chip[aria-pressed="true"]{border-color:var(--ink); background:var(--ink); color:var(--bg)}
+.mini{font:inherit; font-size:12.5px; font-weight:700; color:var(--muted); background:none; border:none; text-decoration:underline; cursor:pointer; padding:0}
+.addi{width:100%; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:16px; padding:12px; cursor:pointer}
+.addi:hover,.addp:hover{border-color:var(--ink)}
+
+.disp{position:relative; overflow:hidden; border-radius:28px; padding:22px 20px 18px; color:#F4F4F1;
+  background:radial-gradient(120% 140% at 100% 0%, rgba(255,106,51,.28) 0%, rgba(255,106,51,0) 45%), linear-gradient(160deg,#202126 0%,#121316 100%);
+  box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.07)}
+.disp .cap{font-size:14px; color:rgba(244,244,241,.6)}
+.disp .big{font-size:clamp(40px,10vw,52px); font-weight:800; letter-spacing:-.05em; line-height:1.1; margin:4px 0; font-variant-numeric:tabular-nums}
+.disp .big .u{font-size:.45em; color:#FF8A3D; margin-left:4px; letter-spacing:-.02em}
+.disp .sub{font-size:14px; color:rgba(244,244,241,.6); line-height:1.6}
+.disp .sub b{color:#fff}
+.tr{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:8px}
+.tr li{display:flex; align-items:center; justify-content:space-between; gap:10px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:12px 14px}
+.tr .who{font-size:16px; font-weight:700}
+.tr .who i{font-style:normal; color:rgba(244,244,241,.45); margin:0 6px}
+.tr .amt{font-size:19px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.tr .none{justify-content:center; color:rgba(244,244,241,.55); font-size:15px}
+.tbl2{width:100%; border-collapse:collapse; margin-top:14px; font-size:13.5px; font-variant-numeric:tabular-nums}
+.tbl2 th,.tbl2 td{padding:8px 4px; border-bottom:1px solid rgba(255,255,255,.08); text-align:right}
+.tbl2 th:first-child,.tbl2 td:first-child{text-align:left}
+.tbl2 th{color:rgba(244,244,241,.5); font-weight:700; font-size:12px}
+.tbl2 .plus{color:#7CE3A8}.tbl2 .minus{color:#FF8A3D}
+.acts{display:grid; grid-template-columns:1fr auto; gap:8px; margin-top:16px}
+.acts button{font:inherit; font-size:15px; font-weight:800; border-radius:16px; padding:14px; cursor:pointer; border:none}
+.copy{color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); box-shadow:0 8px 20px -8px rgba(255,90,31,.8)}
+.copy:disabled{opacity:.35; box-shadow:none; cursor:default}
+.reset{color:#F4F4F1; background:rgba(255,255,255,.08)!important}
+.preview{margin-top:12px; white-space:pre-wrap; font-size:12.5px; line-height:1.6; color:rgba(244,244,241,.55); background:rgba(0,0,0,.25); border-radius:14px; padding:12px; max-height:160px; overflow:auto}
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+.guide{margin-top:88px}
+.guide h2{font-size:clamp(24px,4vw,32px); font-weight:800; letter-spacing:-.04em; margin:0 0 20px}
+.fgrid{display:grid; gap:12px}
+@media (min-width:720px){.fgrid{grid-template-columns:repeat(2,1fr)}}
+.f{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px}
+.f h3{font-size:16px; font-weight:800; margin:0 0 8px; letter-spacing:-.02em}
+.f p{margin:0; font-size:14.5px; color:var(--muted)}
+.f strong{color:var(--ink)}
+.faq{margin-top:56px}
+.faq details{border-top:1px solid var(--line); padding:18px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer; font-weight:700; font-size:16px; list-style:none; display:flex; justify-content:space-between; gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+"; color:var(--muted); font-weight:500; font-size:22px; line-height:1; transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:10px 0 0; color:var(--muted)}
+
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.days{display:grid; grid-template-columns:repeat(7,1fr); gap:6px}
+.day{background:var(--field); border-radius:14px; padding:8px 4px 6px; text-align:center; border:1.5px solid transparent}
+.day:focus-within{border-color:var(--orange); background:var(--surface)}
+.day label{display:block; font-size:12px; font-weight:800; color:var(--muted)}
+.day input{width:100%; font:inherit; font-size:18px; font-weight:800; text-align:center; color:var(--ink); background:none; border:none; outline:none; padding:2px 0; font-variant-numeric:tabular-nums}
+.day input::placeholder{color:var(--faint); opacity:.6}
+.day.we label{color:var(--orange)}
+.quick{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-top:10px; font-size:13px; color:var(--muted)}
+.quick select{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:10px; padding:6px 8px}
+.quick button{font:inherit; font-size:13px; font-weight:700; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:7px 12px; cursor:pointer}
+.optrow{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--line); font-size:14.5px; font-weight:700}
+.optrow:first-of-type{border-top:none}
+.optrow small{display:block; font-size:12.5px; color:var(--muted); font-weight:500; margin-top:2px}
+.sw{position:relative; flex:none; width:46px; height:28px; border-radius:999px; background:var(--field); border:1px solid var(--line); cursor:pointer; padding:0}
+.sw::after{content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .2s}
+.sw[aria-checked="true"]{background:var(--orange); border-color:var(--orange)}
+.sw[aria-checked="true"]::after{transform:translateX(18px)}
+.wrow{display:flex; gap:8px; align-items:stretch}
+.wrow .box{flex:1}
+.minbtn{font:inherit; font-size:13px; font-weight:700; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:0 12px; cursor:pointer; white-space:nowrap}
+.warn{margin-top:8px; font-size:13px; font-weight:700; color:#D9480F}
+.lines{margin-top:14px; display:flex; flex-direction:column; gap:2px}
+.ln{display:flex; justify-content:space-between; font-size:14px; padding:7px 0; border-bottom:1px solid rgba(255,255,255,.08); font-variant-numeric:tabular-nums}
+.ln span:first-child{color:rgba(244,244,241,.6)}
+.ln b{font-weight:800}
+.ln.sum{border-bottom:none; font-size:15px}
+.badge{display:inline-block; font-size:12.5px; font-weight:800; padding:4px 10px; border-radius:999px; margin-top:10px}
+.badge.ok{background:rgba(124,227,168,.15); color:#7CE3A8}
+.badge.no{background:rgba(255,138,61,.15); color:#FF8A3D}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:12px}
+.crumb a{color:var(--muted); text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+
+.names{width:100%; min-height:180px; font:inherit; font-size:16px; line-height:1.7; color:var(--ink); background:var(--field); border:1.5px solid transparent; border-radius:16px; padding:12px 14px; resize:vertical; outline:none}
+.names:focus{border-color:var(--orange); background:var(--surface); box-shadow:0 0 0 5px rgba(255,90,31,.13)}
+.hint{font-size:13px; color:var(--muted); margin-top:8px}
+.go{display:block; width:100%; margin-top:16px; font:inherit; font-size:17px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); border:none; border-radius:18px; padding:16px; cursor:pointer; box-shadow:0 12px 28px -10px rgba(255,90,31,.85)}
+
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+.acts2{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px}
+.acts2 button{font:inherit; font-size:15px; font-weight:800; border-radius:14px; padding:13px; cursor:pointer; border:none}
+.acts2 .a{color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F)}
+.acts2 .b{color:#F4F4F1; background:rgba(255,255,255,.1)}
+.acts2 button:disabled{opacity:.4; cursor:default}
+
+.rowx{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.lbl2{font-size:12px; font-weight:700; color:var(--muted); margin:0 0 6px 2px}
+.box input{font-variant-numeric:tabular-nums}
+.grid2{display:grid; grid-template-columns:repeat(auto-fill,minmax(64px,1fr)); gap:8px; margin-top:14px; perspective:800px}
+.lot{position:relative; aspect-ratio:3/4; border:none; padding:0; background:none; cursor:pointer; transform-style:preserve-3d; transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.lot .f,.lot .b{position:absolute; inset:0; border-radius:14px; backface-visibility:hidden; -webkit-backface-visibility:hidden; display:grid; place-items:center; font-family:inherit; font-weight:800}
+.lot .f{background:linear-gradient(160deg,#34363E,#202126); color:rgba(244,244,241,.85); font-size:20px; border:1px solid rgba(255,255,255,.1)}
+.lot .b{transform:rotateY(180deg); background:rgba(255,255,255,.12); color:rgba(244,244,241,.7); font-size:13px}
+.lot .b.win{background:linear-gradient(160deg,#FF8A3D,#FF4A12); color:#141518; font-size:14px; box-shadow:0 8px 20px -6px rgba(255,90,31,.8)}
+.lot.open{transform:rotateY(180deg); cursor:default}
+.stat{display:flex; justify-content:space-between; font-size:14px; color:rgba(244,244,241,.6)}
+.stat b{color:#fff}
+.go{display:block; width:100%; margin-top:16px; font:inherit; font-size:17px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); border:none; border-radius:18px; padding:16px; cursor:pointer; box-shadow:0 12px 28px -10px rgba(255,90,31,.85)}
+@media (prefers-reduced-motion:reduce){.lot{transition:none}}
+.pb{font:inherit; font-size:13px; font-weight:700; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:6px 12px; cursor:pointer}
+.pb:hover{color:var(--ink); border-color:var(--ink)}
+</style>
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<div class="container">
+
+  <section class="hero">
+    <div class="crumb"><a href="/">전체 도구</a> / <a href="/party/">모임 놀이</a> / 제비뽑기</div>
+    <h1>제비뽑기</h1>
+    <p>몇 명 중 몇 명이 당첨인지만 정하면, 한 사람씩 카드를 골라 뒤집어요. 벌칙도, 경품도, 순서 정하기도 두근두근하게.</p>
+  </section>
+  <div class="work">
+    <main>
+      <div class="card">
+        <h2><span class="n">1</span>제비 만들기</h2>
+        <div class="rowx">
+          <div><div class="lbl2">참가 인원</div><div class="stepper"><button id="nMinus" aria-label="인원 줄이기">−</button><span id="nVal">6명</span><button id="nPlus" aria-label="인원 늘리기">＋</button></div></div>
+          <div><div class="lbl2">당첨 수</div><div class="stepper"><button id="kMinus" aria-label="당첨 줄이기">−</button><span id="kVal">1명</span><button id="kPlus" aria-label="당첨 늘리기">＋</button></div></div>
+        </div>
+        <div class="lbl">당첨 문구</div>
+        <div class="box"><label for="label">당첨 카드에 보일 말</label><input id="label" maxlength="10" placeholder="당첨!"></div>
+        <div class="presets" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px"><button class="pb" data-v="당첨!">당첨!</button><button class="pb" data-v="커피 쏘기">커피 쏘기</button><button class="pb" data-v="설거지">설거지</button><button class="pb" data-v="1등">1등</button></div>
+        <button class="go" id="make">제비 섞기</button>
+      </div>
+    </main>
+    <aside class="res">
+      <div class="disp" aria-live="polite">
+        <div class="stat"><span id="st1">카드를 하나씩 눌러 뒤집어요</span><span id="st2"></span></div>
+        <div class="grid2" id="grid"></div>
+        <div class="acts2"><button class="a" id="reset">다시 섞기</button><button class="b" id="openAll">전부 공개</button></div>
+      </div>
+    </aside>
+  </div>
+  <section class="guide">
+    <h2>이렇게 써요</h2>
+    <div class="fgrid">
+      <div class="f"><h3>폰 하나 돌려가며</h3><p>모인 사람이 차례로 폰을 받아 카드 한 장씩 고르면 돼요. 누가 무엇을 뽑을지는 섞는 순간 무작위로 정해지고, 뒤집기 전까진 아무도 몰라요.</p></div>
+      <div class="f"><h3>당첨은 몇 명이든</h3><p>참가 인원은 2~30명, 당첨은 1명부터 인원보다 한 명 적게까지 정할 수 있어요. 당첨 문구도 "커피 쏘기", "설거지"처럼 바꿀 수 있어요.</p></div>
+    </div>
+  </section>
+<div class="toast" id="toast"></div>
+<script>
+const $=id=>document.getElementById(id);
+const rnd=n=>{ if(n<=1) return 0; const lim=Math.floor(4294967296/n)*n, a=new Uint32Array(1); let x; do{crypto.getRandomValues(a); x=a[0];}while(x>=lim); return x%n; };
+const shuffle=arr=>{const a=arr.slice(); for(let i=a.length-1;i>0;i--){const j=rnd(i+1); [a[i],a[j]]=[a[j],a[i]];} return a;};
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1600);}
+const store={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d;}catch(e){return d;}},set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+
+const S=Object.assign({n:6,k:1,label:'당첨!'},store.get('sonandogu-lots-v1',{}));
+let deck=[], opened=0, wins=0;
+function paint(){ $('nVal').textContent=S.n+'명'; $('kVal').textContent=S.k+'명'; $('label').value=S.label; store.set('sonandogu-lots-v1',S); }
+$('nMinus').onclick=()=>{S.n=Math.max(2,S.n-1); S.k=Math.min(S.k,S.n-1); paint(); make();};
+$('nPlus').onclick=()=>{S.n=Math.min(30,S.n+1); paint(); make();};
+$('kMinus').onclick=()=>{S.k=Math.max(1,S.k-1); paint(); make();};
+$('kPlus').onclick=()=>{S.k=Math.min(S.n-1,S.k+1); paint(); make();};
+$('label').addEventListener('input',e=>{S.label=e.target.value; paint(); document.querySelectorAll('.b.win').forEach(x=>x.textContent=S.label||'당첨!');});
+document.querySelectorAll('.pb').forEach(b=>b.onclick=()=>{S.label=b.dataset.v; paint(); document.querySelectorAll('.b.win').forEach(x=>x.textContent=S.label);});
+function deal(n,k){ return shuffle(Array.from({length:n},(_,i)=>i<k)); }
+window.__deal=deal;
+function stat(){ $('st1').textContent= opened? `${opened}장 뒤집음` : '카드를 하나씩 눌러 뒤집어요'; $('st2').innerHTML=`당첨 <b>${wins}</b> / ${S.k}`; }
+function make(){
+  deck=deal(S.n,S.k); opened=0; wins=0;
+  const g=$('grid'); g.innerHTML='';
+  deck.forEach((w,i)=>{const b=document.createElement('button'); b.className='lot'; b.setAttribute('aria-label',`${i+1}번 카드`);
+    b.innerHTML=`<span class="f">${i+1}</span><span class="b${w?' win':''}">${w?(S.label||'당첨!'):'통과'}</span>`;
+    b.onclick=()=>{ if(b.classList.contains('open')) return; b.classList.add('open'); opened++; if(w){wins++; say(`${i+1}번, ${S.label||'당첨!'}`);} stat();
+      if(wins===S.k && opened<S.n) setTimeout(()=>say('당첨이 모두 나왔어요!'),500); };
+    g.append(b);});
+  stat();
+}
+$('make').onclick=()=>{make(); say('새로 섞었어요');}; $('reset').onclick=()=>{make(); say('새로 섞었어요');};
+$('openAll').onclick=()=>{document.querySelectorAll('.lot:not(.open)').forEach(b=>b.click());};
+paint(); make();
+</script>
+</div>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
+</body>
+</html>
