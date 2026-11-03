@@ -184,13 +184,13 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
         <div class="dfoot"><span class="formula" id="fx">공식이 여기에 표시됩니다</span>
           <button class="copy" id="copy" disabled><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="4" y="4" width="8.5" height="8.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9.5 2.5V2a1 1 0 0 0-1-1H2.5a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1H3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>복사</button>
         </div>
-        <div class="endo" id="endo" data-p="surprised"><img src="/assets/endo/surprised.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">앗, 빈칸을 채워주셔야 계산할 수 있어요!</div></div>
+        <div class="endo" id="endo" data-p="wave"><img src="/assets/endo/wave.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">숫자 두 개만 넣으면 바로 계산해드릴게요!</div></div>
       </div>
     </main>
   </section>
 
   <section class="guide">
-    <div class="tip"><img src="/assets/endo/scroll.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>할인율이 두 번 겹치면 더하지 말고 곱하세요. 20% 할인에 10% 추가 할인은 30%가 아니라 28%예요. "할인·인상" 버튼으로 한 번씩 계산해보면 바로 보여요.</p></div></div>
+    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>할인율이 두 번 겹치면 더하지 말고 곱하세요. 20% 할인에 10% 추가 할인은 30%가 아니라 28%예요. "할인·인상" 버튼으로 한 번씩 계산해보면 바로 보여요.</p></div></div>
     <h2>공식 한눈에 보기</h2>
     <div class="fgrid">
       <div class="f"><h3>어떤 값의 몇 %</h3><code>전체 × 퍼센트 ÷ 100</code><p>50,000원의 20%는 10,000원</p></div>
@@ -262,10 +262,10 @@ function run(){
   const a=toNum(A.value),b=toNum(B.value);
   const r=(a===null||b===null)?null:MODES[mode].run(a,b,dir);
   cancelAnimationFrame(anim);
-  if(!r){ if(a!==null&&b!==null) endo('peek','이 값으론 계산이 안 돼요. 0으로 나누고 있진 않나요?'); else endo('surprised','앗, 빈칸을 채워주셔야 계산할 수 있어요!');
+  if(!r){ if(a!==null&&b!==null) endo('oops','이 값으론 계산이 안 돼요. 0으로 나누고 있진 않나요?'); else if(a===null&&b===null) endo('wave','숫자 두 개만 넣으면 바로 계산해드릴게요!'); else endo('surprised','앗, 빈칸을 하나 더 채워주세요!');
   res.className='result empty';res.textContent=(a!==null&&b!==null)?'계산할 수 없는 값이에요':'숫자를 넣으면 바로 나와요';
     cap.textContent='';fx.textContent='공식이 여기에 표시됩니다';copy.disabled=true;shown=null;return;}
-  if(mode==='apply'&&dir!=='up') endo('sit',`이만큼 아꼈어요! ${fmt(Math.abs(a-r.n))}원 절약`); else if(mode==='original') endo('point','이게 할인 전 원래 가격이에요!'); else endo('sit','계산 완료! 오늘도 깔끔하게 끝났죠?');
+  if(mode==='apply'&&dir!=='up') endo('saving',`이만큼 아꼈어요! ${fmt(Math.abs(a-r.n))}원 절약`); else if(mode==='original') endo('detective','할인 전 원래 가격을 찾아냈어요!'); else endo('thumbs','계산 완료! 오늘도 깔끔하게 끝났죠?');
   res.className='result'; cap.textContent=r.cap; fx.textContent=r.fx; copy.disabled=false;
   copy.dataset.v=fmt(r.n)+(r.u.startsWith('%')?'%':'');
   const from=shown===null?r.n*0.9:shown, to=r.n; shown=to;

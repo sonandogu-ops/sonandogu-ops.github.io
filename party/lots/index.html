@@ -281,6 +281,7 @@ footer .fl a:hover{color:var(--ink)}
 .jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
 .jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
 .jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jumpres img{flex:none; width:30px; height:30px; object-fit:contain; margin:-6px -2px -6px -6px}
 .jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
 .res{scroll-margin-top:66px}
 @media (min-width:920px){.jumpres{display:none!important}}
@@ -325,7 +326,7 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
     </aside>
   </div>
   <section class="guide">
-    <div class="tip"><img src="/assets/endo/scroll.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>폰을 한 바퀴 돌려가며 한 장씩 고르면 제일 재밌어요. 당첨 문구를 "설거지", "커피 쏘기"처럼 바꾸면 벌칙 정하기로도 딱이에요.</p></div></div>
+    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>폰을 한 바퀴 돌려가며 한 장씩 고르면 제일 재밌어요. 당첨 문구를 "설거지", "커피 쏘기"처럼 바꾸면 벌칙 정하기로도 딱이에요.</p></div></div>
     <h2>이렇게 써요</h2>
     <div class="fgrid">
       <div class="f"><h3>폰 하나 돌려가며</h3><p>모인 사람이 차례로 폰을 받아 카드 한 장씩 고르면 돼요. 누가 무엇을 뽑을지는 섞는 순간 무작위로 정해지고, 뒤집기 전까진 아무도 몰라요.</p></div>
@@ -368,7 +369,7 @@ function make(){
     b.innerHTML=`<span class="f"><span class="no">${i+1}</span><span class="q">TOUCH</span></span><span class="b${w?' win':''}"><span class="ic2">${w?'🎉':'🙂'}</span><span class="t3">${w?lab():'통과'}</span></span>`;
     b.onclick=()=>{ if(b.dataset.busy||b.classList.contains('open')) return; b.dataset.busy=1;
       const reveal=()=>{ b.classList.remove('lift'); b.classList.add('open'); opened++;
-        if(w){ wins++; endo('surprised',`${i+1}번에서 ${lab()} 나왔어요!`); banner(`${i+1}번 카드`, lab(), true); const gb=g.getBoundingClientRect(), cb=b.getBoundingClientRect(); setTimeout(()=>burst(g, cb.left-gb.left+cb.width/2, cb.top-gb.top+cb.height/2, 26, '#FF5A1F'),250); }
+        if(w){ wins++; endo('saving',`${i+1}번에서 ${lab()} 나왔어요!`); banner(`${i+1}번 카드`, lab(), true); const gb=g.getBoundingClientRect(), cb=b.getBoundingClientRect(); setTimeout(()=>burst(g, cb.left-gb.left+cb.width/2, cb.top-gb.top+cb.height/2, 26, '#FF5A1F'),250); }
         else { endo('sit','통과! 다음 사람 차례예요'); banner(`${i+1}번 카드`, '통과! 휴', false); setTimeout(()=>b.classList.add('dim'),900); }
         stat(); if(wins===S.k && opened<S.n) setTimeout(()=>banner('끝!', `당첨이 모두 나왔어요`, true),1400); };
       endo('walk','두근두근…'); if(reduce) reveal(); else { b.classList.add('lift'); setTimeout(reveal,700); } };
@@ -381,7 +382,7 @@ paint(); make();
 </script>
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
-<button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><span id="jrText"></span><b>↓</b></button>
+<button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><img src="/assets/endo/lookback.webp" width="30" height="30" alt=""><span id="jrText"></span><b>↓</b></button>
 <script>
 (function(){const T=document.querySelector('aside.res'), B=document.getElementById('jumpres'), X=document.getElementById('jrText'); if(!T||!B) return;
  const sum=()=>{try{return ('카드 뽑으러 가기');}catch(e){return '결과 보기';}};

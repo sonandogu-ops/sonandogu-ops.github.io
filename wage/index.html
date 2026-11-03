@@ -221,6 +221,7 @@ footer .fl a:hover{color:var(--ink)}
 .jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
 .jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
 .jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jumpres img{flex:none; width:30px; height:30px; object-fit:contain; margin:-6px -2px -6px -6px}
 .jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
 .res{scroll-margin-top:66px}
 @media (min-width:920px){.jumpres{display:none!important}}
@@ -272,13 +273,13 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
         <span class="badge" id="badge" hidden></span>
         <div class="lines" id="lines"></div>
         <div class="sub" id="note" style="margin-top:12px;font-size:12.5px"></div>
-        <div class="endo" id="endo" data-p="surprised"><img src="/assets/endo/surprised.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">시급과 일하는 시간을 넣으면 주휴수당까지 계산해드려요!</div></div>
+        <div class="endo" id="endo" data-p="wave"><img src="/assets/endo/wave.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">시급과 일하는 시간을 넣으면 주휴수당까지 계산해드려요!</div></div>
       </div>
     </aside>
   </div>
 
   <section class="guide">
-    <div class="tip"><img src="/assets/endo/scroll.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>주휴수당은 그 주에 정해진 날을 모두 나와야 받을 수 있어요. 지각이나 조퇴는 괜찮지만 결근하면 그 주 주휴수당이 빠질 수 있어요.</p></div></div>
+    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>주휴수당은 그 주에 정해진 날을 모두 나와야 받을 수 있어요. 지각이나 조퇴는 괜찮지만 결근하면 그 주 주휴수당이 빠질 수 있어요.</p></div></div>
     <h2>주휴수당, 이것만 알면 돼요</h2>
     <div class="fgrid">
       <div class="f"><h3>받을 수 있는 조건</h3><p>1주에 일하기로 한 시간이 <strong>15시간 이상</strong>이고, 그 주에 정해진 근무일을 <strong>모두 나왔다면</strong> 받을 수 있어요. 알바, 5인 미만 가게도 똑같이 적용돼요.</p></div>
@@ -353,14 +354,14 @@ function calc(){
   const w=$('minWarn');
   if(wage && wage<MIN[S.year]){ w.hidden=false; w.textContent=`${S.year}년 최저임금(${won(MIN[S.year])}원)보다 낮아요. 최저임금보다 적게 주는 건 법 위반이에요.`; } else w.hidden=true;
   const R=compute(wage,dayMin,S.five,nightMin);
-  if(!wage||!R.weekMin){ endo('surprised', !wage? '앗, 시급을 먼저 채워주세요!' : '앗, 요일별 근무시간을 채워주셔야 계산할 수 있어요!'); $('cap').textContent='시급과 근무시간을 넣어주세요'; $('month').innerHTML='0<span class="u">원</span>'; $('lines').innerHTML=''; $('badge').hidden=true; $('note').textContent=''; $('monthSub').textContent='한 달 예상 급여'; return; }
+  if(!wage||!R.weekMin){ if(!wage) endo('surprised','앗, 시급을 먼저 채워주세요!'); else endo('wave','요일별로 일하는 시간을 넣어주세요!'); $('cap').textContent='시급과 근무시간을 넣어주세요'; $('month').innerHTML='0<span class="u">원</span>'; $('lines').innerHTML=''; $('badge').hidden=true; $('note').textContent=''; $('monthSub').textContent='한 달 예상 급여'; return; }
   const taxed=v=>S.tax? v-Math.floor(v*0.03/10)*10-Math.floor(v*0.003/10)*10 : v;
   const mp=Math.round(R.monthPay), wp=Math.round(R.weekPay);
   $('cap').textContent=`주 ${hrs(R.weekMin/60)}시간 · ${R.workDays}일 근무 · 시급 ${won(wage)}원`;
   $('month').innerHTML=`${won(taxed(mp))}<span class="u">원</span>`;
   $('monthSub').textContent= S.tax? `한 달 예상 급여 (3.3% 공제 후, 세전 ${won(mp)}원)` : '한 달 예상 급여 (세전)';
   const b=$('badge'); b.hidden=false;
-  if(wage<MIN[S.year]) endo('peek',`잠깐! 시급이 ${S.year}년 최저임금보다 낮아요`); else if(R.eligible) endo('sit','주휴수당까지 꼼꼼하게 챙겼어요!'); else endo('point',`주 15시간까지 ${hrs(15-R.weekMin/60)}시간! 넘으면 주휴수당이 붙어요`);
+  if(wage<MIN[S.year]) endo('oops',`잠깐! 시급이 ${S.year}년 최저임금보다 낮아요`); else if(R.eligible) endo('thumbs','주휴수당까지 꼼꼼하게 챙겼어요!'); else endo('detective',`주 15시간까지 ${hrs(15-R.weekMin/60)}시간! 넘으면 주휴수당이 붙어요`);
   if(R.eligible){ b.className='badge ok'; b.textContent=`주휴수당 대상 · 주 ${hrs(R.holiMin/60)}시간분`; }
   else { b.className='badge no'; b.textContent=`주휴수당 대상 아님 · 주 15시간부터 (${hrs(15-R.weekMin/60)}시간 부족)`; }
   let L=`<div class="ln"><span>기본급 (주 ${hrs(R.weekMin/60)}시간)</span><b>${won(R.base)}원</b></div>`;
@@ -378,7 +379,7 @@ function paint(){
 }
 paint();
 </script>
-<button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><span id="jrText"></span><b>↓</b></button>
+<button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><img src="/assets/endo/lookback.webp" width="30" height="30" alt=""><span id="jrText"></span><b>↓</b></button>
 <script>
 (function(){const T=document.querySelector('aside.res'), B=document.getElementById('jumpres'), X=document.getElementById('jrText'); if(!T||!B) return;
  const sum=()=>{try{return ('한 달 '+document.getElementById('month').textContent+' 보기');}catch(e){return '결과 보기';}};

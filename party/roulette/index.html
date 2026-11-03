@@ -292,6 +292,7 @@ footer .fl a:hover{color:var(--ink)}
 .jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
 .jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
 .jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jumpres img{flex:none; width:30px; height:30px; object-fit:contain; margin:-6px -2px -6px -6px}
 .jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
 .res{scroll-margin-top:66px}
 @media (min-width:920px){.jumpres{display:none!important}}
@@ -333,7 +334,7 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
     </aside>
   </div>
   <section class="guide">
-    <div class="tip"><img src="/assets/endo/scroll.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>후보는 3~5개로 줄여서 돌리면 결과에 더 쉽게 만족해요. 순서를 정할 땐 결과가 나온 뒤 "빼고 다시"를 누르면 한 명씩 빼가며 돌릴 수 있어요.</p></div></div>
+    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>후보는 3~5개로 줄여서 돌리면 결과에 더 쉽게 만족해요. 순서를 정할 땐 결과가 나온 뒤 "빼고 다시"를 누르면 한 명씩 빼가며 돌릴 수 있어요.</p></div></div>
     <h2>공정하게 돌아가요</h2>
     <div class="fgrid">
       <div class="f"><h3>결과는 미리 정해지지 않아요</h3><p>버튼을 누르는 순간 브라우저의 보안 난수로 당첨 칸을 고르고, 바늘이 그 칸에 멈추도록 돌려요. 모든 칸의 확률은 똑같아요.</p></div>
@@ -400,7 +401,7 @@ function spin(){
   requestAnimationFrame(step);
 }
 function done(k,to){
-  rot=to; busy=false; lastK=k; lastRes=items[k]||'?'; endo('sit',`오늘은 ${lastRes}! 룰렛이 정했어요`);
+  rot=to; busy=false; lastK=k; lastRes=items[k]||'?'; endo('thumbs',`오늘은 ${lastRes}! 룰렛이 정했어요`);
   const c=$('rcard'), col=colOf(k,items.length); c.style.background=col; c.style.color=col==='#E8A100'||col==='#FF8A3D'?'#141518':'#fff';
   $('rk').textContent='결과는'; $('rv').textContent=lastRes; c.classList.remove('show'); void c.offsetWidth; c.classList.add('show');
   $('wbox').classList.remove('spinning'); $('wbox').classList.add('won');
@@ -416,7 +417,7 @@ list(); draw();
 </script>
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
-<button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><span id="jrText"></span><b>↓</b></button>
+<button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><img src="/assets/endo/lookback.webp" width="30" height="30" alt=""><span id="jrText"></span><b>↓</b></button>
 <script>
 (function(){const T=document.querySelector('aside.res'), B=document.getElementById('jumpres'), X=document.getElementById('jrText'); if(!T||!B) return;
  const sum=()=>{try{return ('룰렛 돌리러 가기');}catch(e){return '결과 보기';}};

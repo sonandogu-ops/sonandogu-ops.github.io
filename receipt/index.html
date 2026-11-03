@@ -188,6 +188,7 @@ footer .fl a:hover{color:var(--ink)}
 .jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
 .jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
 .jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jumpres img{flex:none; width:30px; height:30px; object-fit:contain; margin:-6px -2px -6px -6px}
 .jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
 .res{scroll-margin-top:66px}
 @media (min-width:920px){.jumpres{display:none!important}}
@@ -271,14 +272,14 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
           </table>
         </div>
       </div>
-      <div class="endo light" id="endo" data-p="point"><img src="/assets/endo/point.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">품목과 금액을 넣으면 영수증이 완성돼요!</div></div>
+      <div class="endo light" id="endo" data-p="wave"><img src="/assets/endo/wave.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">품목과 금액을 넣으면 영수증이 완성돼요!</div></div>
       <div class="acts"><button class="save" id="save">이미지로 저장</button><button class="print" id="print">인쇄 · PDF</button></div>
       <p class="note">입력한 내용은 이 기기 안에서만 처리되고 어디에도 저장되지 않습니다. 영수증은 실제로 물건이나 서비스를 판 공급자가 사실대로 작성해야 합니다.</p>
     </aside>
   </div>
 
   <section class="guide">
-    <div class="tip"><img src="/assets/endo/scroll.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>사업자 경비는 건당 3만 원(부가세 포함)까지 간이영수증으로 증빙할 수 있어요. 넘으면 카드나 현금영수증을 받는 게 좋아요.</p></div></div>
+    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>사업자 경비는 건당 3만 원(부가세 포함)까지 간이영수증으로 증빙할 수 있어요. 넘으면 카드나 현금영수증을 받는 게 좋아요.</p></div></div>
     <h2>간이영수증, 이것만 알면 됩니다</h2>
     <div class="fgrid">
       <div class="f"><h3>3만 원 이하는 간이영수증으로 충분</h3><p>사업자의 일반 경비는 건당 <strong>3만 원(부가세 포함) 이하</strong>라면 간이영수증으로 증빙할 수 있고 가산세도 붙지 않습니다.</p></div>
@@ -382,7 +383,7 @@ function render(){
   $('pSum').textContent=sum?comma(sum):'';
   $('pTotal').textContent=sum?'₩'+comma(sum):'';
   $('pKor').textContent=korean(sum);
-  if(!sum) endo('point','품목과 금액을 넣으면 영수증이 완성돼요!'); else if(!v('name')) endo('surprised','앗, 공급자 상호가 비어 있어요!'); else endo('sit',`합계 ${comma(sum)}원, 영수증 완성! 저장하거나 인쇄해요`);
+  if(!sum) endo('wave','품목과 금액을 넣으면 영수증이 완성돼요!'); else if(!v('name')) endo('surprised','앗, 공급자 상호가 비어 있어요!'); else endo('blueprint',`합계 ${comma(sum)}원, 영수증 완성! 저장하거나 인쇄해요`);
   $('add').disabled=itemsEl.children.length>=MAX;
 }
 const toast=$('toast');
@@ -399,7 +400,7 @@ $('save').addEventListener('click',async()=>{
 $('print').addEventListener('click',()=>window.print());
 addRow();
 </script>
-<button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><span id="jrText"></span><b>↓</b></button>
+<button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><img src="/assets/endo/lookback.webp" width="30" height="30" alt=""><span id="jrText"></span><b>↓</b></button>
 <script>
 (function(){const T=document.querySelector('aside.preview'), B=document.getElementById('jumpres'), X=document.getElementById('jrText'); if(!T||!B) return;
  const sum=()=>{try{return ((document.getElementById('pSum').textContent? '합계 '+document.getElementById('pSum').textContent+'원 · 영수증 보기' : '영수증 미리보기'));}catch(e){return '결과 보기';}};

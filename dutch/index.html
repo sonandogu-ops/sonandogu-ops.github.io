@@ -187,6 +187,7 @@ footer .fl a:hover{color:var(--ink)}
 .jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
 .jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
 .jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jumpres img{flex:none; width:30px; height:30px; object-fit:contain; margin:-6px -2px -6px -6px}
 .jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
 .res{scroll-margin-top:66px}
 @media (min-width:920px){.jumpres{display:none!important}}
@@ -251,7 +252,7 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
           <table class="tbl2" id="dTable"></table>
           <div class="sub" id="dNote" style="margin-top:10px;font-size:12.5px"></div>
         </div>
-        <div class="endo" id="endo" data-p="surprised"><img src="/assets/endo/surprised.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">총 금액을 넣으면 1인당 금액을 바로 알려드려요!</div></div>
+        <div class="endo" id="endo" data-p="wave"><img src="/assets/endo/wave.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">총 금액을 넣으면 1인당 금액을 바로 알려드려요!</div></div>
         <div class="preview" id="preview" hidden></div>
         <div class="acts"><button class="copy" id="copyBtn" disabled>카톡에 붙여넣을 메시지 복사</button><button class="reset" id="resetBtn">초기화</button></div>
       </div>
@@ -259,7 +260,7 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
   </div>
 
   <section class="guide">
-    <div class="tip"><img src="/assets/endo/scroll.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>2차에 안 간 친구가 있다면 상세 정산에서 항목마다 "함께"한 사람만 골라주세요. 서운한 사람 없이 각자 쓴 만큼만 나눠져요.</p></div></div>
+    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>2차에 안 간 친구가 있다면 상세 정산에서 항목마다 "함께"한 사람만 골라주세요. 서운한 사람 없이 각자 쓴 만큼만 나눠져요.</p></div></div>
     <h2>이렇게 계산해요</h2>
     <div class="fgrid">
       <div class="f"><h3>항목마다 참여한 사람끼리</h3><p>1차 고깃집은 네 명이 나누고, 2차 호프는 간 사람 세 명만 나눠요. 항목마다 <strong>함께한 사람</strong>을 골라주면 각자 쓴 돈이 정확히 계산돼요.</p></div>
@@ -361,7 +362,7 @@ function calc(){
   save();
   if(S.mode==='simple'){
     const T=num(S.s.total), n=S.s.n, u=S.s.unit;
-    if(!T){ endo('surprised','앗, 총 금액을 먼저 채워주세요!'); $('sCap').textContent='총 금액을 넣어주세요'; $('sBig').innerHTML='0<span class="u">원</span>'; $('sSub').textContent=''; setCopy(''); return;}
+    if(!T){ endo('wave','총 금액만 넣으면 1인당 금액을 바로 알려드려요!'); $('sCap').textContent='총 금액을 넣어주세요'; $('sBig').innerHTML='0<span class="u">원</span>'; $('sSub').textContent=''; setCopy(''); return;}
     const exact=T/n, per=u===1?Math.floor(exact):Math.ceil(exact/u)*u, rest=per*n-T;
     $('sCap').textContent=`총 ${won(T)}원 ÷ ${n}명`;
     $('sBig').innerHTML=`${won(per)}<span class="u">원씩</span>`;
@@ -369,7 +370,7 @@ function calc(){
     if(u===1){ const r=T-per*n; sub= r? `딱 떨어지지 않아서 <b>${won(r)}원</b>이 모자라요. 한 명이 ${won(per+r)}원을 내거나 끝자리를 올려보세요.` : '딱 떨어져요!'; }
     else sub= rest? `모두 이렇게 보내면 결제한 사람에게 <b>${won(rest)}원</b>이 남아요. (정확히는 1인당 ${(Math.round(exact*100)/100).toLocaleString('ko-KR',{maximumFractionDigits:2})}원)` : '딱 떨어져요!';
     $('sSub').innerHTML=sub;
-    endo('sit', rest&&u!==1? `정산 끝! 잔돈 ${won(rest)}원은 결제한 분 몫이에요` : '정산 끝! 이제 송금만 하면 돼요');
+    endo('thumbs', rest&&u!==1? `정산 끝! 잔돈 ${won(rest)}원은 결제한 분 몫이에요` : '정산 끝! 이제 송금만 하면 돼요');
     setCopy(`[N빵 정산]\n총 ${won(T)}원 ÷ ${n}명\n1인당 ${won(per)}원씩 보내주세요${rest&&u!==1?` (잔돈 ${won(rest)}원)`:''}\n\n손안의도구 더치페이 계산기\n${LINK}`);
     return;
   }
@@ -379,8 +380,8 @@ function calc(){
     lines.push(`- ${(it.name||'항목').trim()} ${won(a)}원 (${pname(it.payer)} 결제, ${it.parts.length===n?'모두':it.parts.map(pname).join('·')})`);});
   $('dCap').textContent=`총 ${won(total)}원`;
   const ul=$('trList');
-  if(!total){ endo('surprised','앗, 쓴 돈을 하나 이상 넣어주세요!'); ul.innerHTML='<li class="none">쓴 돈을 넣으면 송금할 금액이 나와요</li>'; $('dTable').innerHTML=''; $('dNote').textContent=''; setCopy(''); return; }
-  endo('sit', tr.length? `정산 끝! 송금 ${tr.length}번이면 깔끔하게 끝나요` : '이미 딱 맞게 냈어요. 보낼 돈이 없어요!');
+  if(!total){ endo('abacus','쓴 돈을 넣어주면 제가 주판알을 튕겨볼게요!'); ul.innerHTML='<li class="none">쓴 돈을 넣으면 송금할 금액이 나와요</li>'; $('dTable').innerHTML=''; $('dNote').textContent=''; setCopy(''); return; }
+  endo('thumbs', tr.length? `정산 끝! 송금 ${tr.length}번이면 깔끔하게 끝나요` : '이미 딱 맞게 냈어요. 보낼 돈이 없어요!');
   ul.innerHTML= tr.length? tr.map(([f,t,m])=>`<li><span class="who">${esc(pname(f))}<i>→</i>${esc(pname(t))}</span><span class="amt">${won(m)}원</span></li>`).join('') : '<li class="none">이미 딱 맞게 냈어요. 보낼 돈이 없어요!</li>';
   $('dTable').innerHTML='<tr><th>이름</th><th>낸 돈</th><th>쓴 돈</th><th>차액</th></tr>'+S.people.map((_,i)=>{const d=bal[i]; return `<tr><td>${esc(pname(i))}</td><td>${won(paid[i])}</td><td>${won(owed[i])}</td><td class="${d>0?'plus':d<0?'minus':''}">${d>0?'+':''}${won(d)}</td></tr>`;}).join('');
   const mx=Math.max(0,...resid.map(Math.abs));
@@ -419,7 +420,7 @@ function paint(){
 const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1600);}
 paint();
 </script>
-<button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><span id="jrText"></span><b>↓</b></button>
+<button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><img src="/assets/endo/lookback.webp" width="30" height="30" alt=""><span id="jrText"></span><b>↓</b></button>
 <script>
 (function(){const T=document.querySelector('aside.res'), B=document.getElementById('jumpres'), X=document.getElementById('jrText'); if(!T||!B) return;
  const sum=()=>{try{return ((document.getElementById('outSimple').hidden? document.getElementById('dCap').textContent+' · 송금 '+document.querySelectorAll('#trList li:not(.none)').length+'번' : '1인당 '+document.getElementById('sBig').textContent));}catch(e){return '결과 보기';}};

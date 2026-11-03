@@ -284,6 +284,7 @@ footer .fl a:hover{color:var(--ink)}
 .jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
 .jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
 .jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jumpres img{flex:none; width:30px; height:30px; object-fit:contain; margin:-6px -2px -6px -6px}
 .jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
 .res{scroll-margin-top:66px}
 @media (min-width:920px){.jumpres{display:none!important}}
@@ -334,7 +335,7 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
     </aside>
   </div>
   <section class="guide">
-    <div class="tip"><img src="/assets/endo/scroll.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>이 사다리는 결과를 먼저 공평하게 섞은 뒤 사다리를 그려요. 어느 자리를 골라도 유불리가 없으니 안심하고 고르세요.</p></div></div>
+    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>이 사다리는 결과를 먼저 공평하게 섞은 뒤 사다리를 그려요. 어느 자리를 골라도 유불리가 없으니 안심하고 고르세요.</p></div></div>
     <h2>공정한 사다리를 만드는 법</h2>
     <div class="fgrid">
       <div class="f"><h3>결과를 먼저, 사다리는 나중에</h3><p>손안의도구의 사다리는 먼저 보안 난수로 <strong>누가 어떤 결과를 받을지 완전히 공평하게</strong> 정하고, 그 결과가 나오도록 가로줄을 그려요. 그래서 위치에 따라 유리하거나 불리한 자리가 없어요.</p></div>
@@ -461,7 +462,7 @@ function burst(j,count,col){
 }
 function showAll(){ $('board').classList.remove('covered'); const n=L.n; for(let i=0;i<n;i++) if(!shown.has(i)&&!running.has(i)) go(i,true);
   const m=$('mapres'); m.hidden=false; m.innerHTML=[...Array(n).keys()].map(i=>{const e=trace(L,i).end; return `<li><span>${(S.names[i]||(i+1)+'번').replace(/</g,'&lt;')}<i>→</i></span><span>${(S.results[e]||'꽝').replace(/</g,'&lt;')}</span></li>`;}).join('');
-  $('legend').textContent='전체 결과예요'; endo('sit','전체 결과가 나왔어요!'); $('copy').disabled=false; }
+  $('legend').textContent='전체 결과예요'; endo('thumbs','전체 결과가 나왔어요!'); $('copy').disabled=false; }
 function make(){ fit(); L=buildLadder(S.n); shown=new Set(); running=new Set(); $('board').classList.add('covered'); $('mapres').hidden=true; $('legend').textContent='위의 이름을 눌러보세요'; $('copy').disabled=true; draw(); endo('point','위의 이름을 눌러 출발시켜 보세요!'); }
 $('make').onclick=()=>{make(); say('새 사다리를 만들었어요');};
 $('all').onclick=showAll;
@@ -471,7 +472,7 @@ inputs(); make();
 </script>
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
-<button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><span id="jrText"></span><b>↓</b></button>
+<button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><img src="/assets/endo/lookback.webp" width="30" height="30" alt=""><span id="jrText"></span><b>↓</b></button>
 <script>
 (function(){const T=document.querySelector('aside.res'), B=document.getElementById('jumpres'), X=document.getElementById('jrText'); if(!T||!B) return;
  const sum=()=>{try{return ('사다리 타러 가기');}catch(e){return '결과 보기';}};
