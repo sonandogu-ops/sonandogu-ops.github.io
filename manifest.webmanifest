@@ -1,7 +1,7 @@
 {
  "name": "손안의도구 - 계산기, 생활 도구, 놀이",
  "short_name": "손안의도구",
- "description": "설치도 가입도 없이 바로 꺼내 쓰는 계산기와 생활 도구, 놀이 모음",
+ "description": "가입 없이 바로 꺼내 쓰는 계산기와 생활 도구, 놀이 모음",
  "lang": "ko",
  "start_url": "/?source=pwa",
  "scope": "/",
