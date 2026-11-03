@@ -102,6 +102,17 @@ footer .fl a:hover{color:var(--ink)}
 .cat .t strong{margin-top:0; font-size:17px}
 .cat .t .d{font-size:13.5px}
 .cat .t .go{position:static; flex:none; width:30px; height:30px}
+
+#calc{--c1:#FF8A3D; --c2:#FF4A12; --tint:rgba(255,90,31,.08)}
+#tools{--c1:#5E9BFF; --c2:#2F66F0; --tint:rgba(47,102,240,.08)}
+#play{--c1:#3DCB8C; --c2:#12985B; --tint:rgba(18,152,91,.09)}
+.cat .ic{background:linear-gradient(145deg,var(--c1),var(--c2)); box-shadow:0 10px 22px -10px var(--c2), inset 0 1px 0 rgba(255,255,255,.35)}
+.ch h2{display:flex; align-items:center; gap:9px}
+.ch h2::before{content:""; width:10px; height:10px; border-radius:50%; background:linear-gradient(145deg,var(--c1),var(--c2)); box-shadow:0 0 0 4px var(--tint)}
+.cat .t{border-left:3px solid transparent; transition:transform .3s cubic-bezier(.2,.8,.2,1), border-color .2s, background .2s}
+.cat .t:hover{border-left-color:var(--c2); background:linear-gradient(90deg,var(--tint),var(--surface) 60%)}
+.cat .t:hover .go{background:var(--c2); border-color:var(--c2); color:#fff}
+.cat .t:focus-visible{outline-color:var(--c2)}
 </style>
 </head>
 <body>
