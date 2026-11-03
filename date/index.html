@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
+<link rel="canonical" href="https://sonandogu.com/date/">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F4F1">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sonandogu.com/date/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-date.jpg?v=2">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<title>날짜 계산기 - D-day, 100일 기념일, 며칠 뒤 요일, 두 날짜 사이 | 손안의도구</title>
+<meta name="description" content="D-day 계산, 만난 지 며칠, 100일·200일·1000일 기념일과 1주년 날짜, 며칠 뒤가 무슨 요일인지, 두 날짜 사이 기간까지 한 번에 계산해요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="날짜 계산기 - D-day부터 기념일까지">
+<meta property="og:description" content="D-day, 100일, 며칠 뒤 요일, 사이 기간.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "연애 100일은 어떻게 계산하나요?", "acceptedAnswer": {"@type": "Answer", "text": "만난 날을 1일로 세는 게 일반적이라, 100일째는 만난 날로부터 99일 뒤예요. 이 계산기는 기본이 이 방식이고, 스위치로 첫날을 0일로 세는 방식도 쓸 수 있어요."}}, {"@type": "Question", "name": "D-day에서 D-30과 D+30은 뭐가 다른가요?", "acceptedAnswer": {"@type": "Answer", "text": "D-30은 그날까지 30일 남았다는 뜻이고, D+30은 그날로부터 30일 지났다는 뜻이에요."}}, {"@type": "Question", "name": "1월 31일의 1개월 뒤는 언제인가요?", "acceptedAnswer": {"@type": "Answer", "text": "2월에는 31일이 없어서 그 달의 마지막 날인 2월 28일(윤년이면 29일)로 계산해요."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "날짜 계산기", "item": "https://sonandogu.com/date/"}]}</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.hero{padding:36px 0 22px}
+@media (min-width:920px){.hero{padding:64px 0 28px}}
+.hero h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 12px}
+.hero p{font-size:17px; color:var(--muted); margin:0; max-width:34em}
+.tabs{display:inline-flex; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:4px; margin-bottom:16px}
+.tabs button{font:inherit; font-size:15px; font-weight:700; color:var(--muted); background:none; border:none; border-radius:12px; padding:10px 18px; cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink); color:var(--bg)}
+.work{display:grid; gap:18px}
+.work>*{min-width:0}
+@media (min-width:920px){.work{grid-template-columns:1fr 420px; gap:32px; align-items:start}.res{position:sticky; top:78px}}
+[hidden]{display:none!important}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:26px; box-shadow:var(--shadow); padding:20px 18px}
+.card+.card{margin-top:14px}
+.card h2{font-size:17px; font-weight:800; letter-spacing:-.03em; margin:0 0 12px; display:flex; align-items:center; gap:8px}
+.card h2 .n{width:22px; height:22px; border-radius:7px; background:var(--ink); color:var(--bg); font-size:12px; display:grid; place-items:center}
+.card h2 small{margin-left:auto; font-size:13px; color:var(--muted); font-weight:600}
+.box{background:var(--field); border-radius:16px; padding:10px 14px 8px; border:1.5px solid transparent; transition:border-color .2s, box-shadow .2s, background .2s}
+.box:focus-within{background:var(--surface); border-color:var(--orange); box-shadow:0 0 0 5px rgba(255,90,31,.13)}
+.box label{display:block; font-size:12px; font-weight:700; color:var(--muted)}
+.box input,.box select{width:100%; min-width:0; font:inherit; font-size:17px; font-weight:700; color:var(--ink); background:none; border:none; outline:none; padding:2px 0 0}
+.box input::placeholder{color:var(--faint); opacity:.7; font-weight:500}
+.box.big input{font-size:28px; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.num input{font-variant-numeric:tabular-nums}
+.g2{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.stepper{display:flex; align-items:center; justify-content:space-between; background:var(--field); border-radius:16px; padding:8px}
+.stepper button{width:46px; height:46px; border-radius:12px; border:1px solid var(--line); background:var(--surface); font:inherit; font-size:22px; font-weight:700; color:var(--ink); cursor:pointer}
+.stepper span{font-size:24px; font-weight:800; letter-spacing:-.03em}
+.lbl{font-size:12px; font-weight:700; color:var(--muted); margin:14px 0 6px 2px}
+.seg2{display:flex; gap:6px; flex-wrap:wrap}
+.seg2 button{flex:1; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:12px; padding:10px 6px; cursor:pointer; white-space:nowrap}
+.seg2 button[aria-pressed="true"]{color:var(--orange); border-color:var(--orange); background:rgba(255,90,31,.06)}
+.people{display:flex; flex-wrap:wrap; gap:8px}
+.pp{display:flex; align-items:center; gap:2px; background:var(--field); border:1.5px solid transparent; border-radius:999px; padding:4px 4px 4px 14px}
+.pp:focus-within{border-color:var(--orange); background:var(--surface)}
+.pp input{width:5.5em; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:none; outline:none}
+.pp button{width:28px; height:28px; border-radius:50%; border:none; background:none; color:var(--muted); font-size:16px; cursor:pointer}
+.pp button:hover{color:var(--orange)}
+.addp{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:999px; padding:8px 14px; cursor:pointer}
+.item{border:1px solid var(--line); border-radius:20px; padding:12px; margin-bottom:10px}
+.item .top2{display:grid; grid-template-columns:1.2fr 1fr 36px; gap:6px}
+.item .top2 .box{padding:8px 12px 6px}
+.item .top2 .box input{font-size:16px}
+.del{font:inherit; font-size:18px; color:var(--muted); background:none; border:1px solid var(--line); border-radius:12px; cursor:pointer}
+.del:hover{color:var(--orange); border-color:var(--orange)}
+.row2{display:flex; align-items:center; gap:8px; margin-top:10px; flex-wrap:wrap}
+.row2 .k{font-size:12.5px; font-weight:700; color:var(--muted); min-width:3.6em}
+.row2 select{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:10px; padding:7px 10px}
+.chips{display:flex; flex-wrap:wrap; gap:5px; flex:1}
+.chip{font:inherit; font-size:13.5px; font-weight:700; border-radius:999px; padding:6px 11px; cursor:pointer; border:1.5px solid var(--line); background:none; color:var(--faint)}
+.chip[aria-pressed="true"]{border-color:var(--ink); background:var(--ink); color:var(--bg)}
+.mini{font:inherit; font-size:12.5px; font-weight:700; color:var(--muted); background:none; border:none; text-decoration:underline; cursor:pointer; padding:0}
+.addi{width:100%; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:16px; padding:12px; cursor:pointer}
+.addi:hover,.addp:hover{border-color:var(--ink)}
+
+.disp{position:relative; overflow:hidden; border-radius:28px; padding:22px 20px 18px; color:#F4F4F1;
+  background:radial-gradient(120% 140% at 100% 0%, rgba(255,106,51,.28) 0%, rgba(255,106,51,0) 45%), linear-gradient(160deg,#202126 0%,#121316 100%);
+  box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.07)}
+.disp .cap{font-size:14px; color:rgba(244,244,241,.6)}
+.disp .big{font-size:clamp(40px,10vw,52px); font-weight:800; letter-spacing:-.05em; line-height:1.1; margin:4px 0; font-variant-numeric:tabular-nums}
+.disp .big .u{font-size:.45em; color:#FF8A3D; margin-left:4px; letter-spacing:-.02em}
+.disp .sub{font-size:14px; color:rgba(244,244,241,.6); line-height:1.6}
+.disp .sub b{color:#fff}
+.tr{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:8px}
+.tr li{display:flex; align-items:center; justify-content:space-between; gap:10px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:12px 14px}
+.tr .who{font-size:16px; font-weight:700}
+.tr .who i{font-style:normal; color:rgba(244,244,241,.45); margin:0 6px}
+.tr .amt{font-size:19px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.tr .none{justify-content:center; color:rgba(244,244,241,.55); font-size:15px}
+.tbl2{width:100%; border-collapse:collapse; margin-top:14px; font-size:13.5px; font-variant-numeric:tabular-nums}
+.tbl2 th,.tbl2 td{padding:8px 4px; border-bottom:1px solid rgba(255,255,255,.08); text-align:right}
+.tbl2 th:first-child,.tbl2 td:first-child{text-align:left}
+.tbl2 th{color:rgba(244,244,241,.5); font-weight:700; font-size:12px}
+.tbl2 .plus{color:#7CE3A8}.tbl2 .minus{color:#FF8A3D}
+.acts{display:grid; grid-template-columns:1fr auto; gap:8px; margin-top:16px}
+.acts button{font:inherit; font-size:15px; font-weight:800; border-radius:16px; padding:14px; cursor:pointer; border:none}
+.copy{color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); box-shadow:0 8px 20px -8px rgba(255,90,31,.8)}
+.copy:disabled{opacity:.35; box-shadow:none; cursor:default}
+.reset{color:#F4F4F1; background:rgba(255,255,255,.08)!important}
+.preview{margin-top:12px; white-space:pre-wrap; font-size:12.5px; line-height:1.6; color:rgba(244,244,241,.55); background:rgba(0,0,0,.25); border-radius:14px; padding:12px; max-height:160px; overflow:auto}
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+.guide{margin-top:88px}
+.guide h2{font-size:clamp(24px,4vw,32px); font-weight:800; letter-spacing:-.04em; margin:0 0 20px}
+.fgrid{display:grid; gap:12px}
+@media (min-width:720px){.fgrid{grid-template-columns:repeat(2,1fr)}}
+.f{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px}
+.f h3{font-size:16px; font-weight:800; margin:0 0 8px; letter-spacing:-.02em}
+.f p{margin:0; font-size:14.5px; color:var(--muted)}
+.f strong{color:var(--ink)}
+.faq{margin-top:56px}
+.faq details{border-top:1px solid var(--line); padding:18px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer; font-weight:700; font-size:16px; list-style:none; display:flex; justify-content:space-between; gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+"; color:var(--muted); font-weight:500; font-size:22px; line-height:1; transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:10px 0 0; color:var(--muted)}
+
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.days{display:grid; grid-template-columns:repeat(7,1fr); gap:6px}
+.day{background:var(--field); border-radius:14px; padding:8px 4px 6px; text-align:center; border:1.5px solid transparent}
+.day:focus-within{border-color:var(--orange); background:var(--surface)}
+.day label{display:block; font-size:12px; font-weight:800; color:var(--muted)}
+.day input{width:100%; font:inherit; font-size:18px; font-weight:800; text-align:center; color:var(--ink); background:none; border:none; outline:none; padding:2px 0; font-variant-numeric:tabular-nums}
+.day input::placeholder{color:var(--faint); opacity:.6}
+.day.we label{color:var(--orange)}
+.quick{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-top:10px; font-size:13px; color:var(--muted)}
+.quick select{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:10px; padding:6px 8px}
+.quick button{font:inherit; font-size:13px; font-weight:700; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:7px 12px; cursor:pointer}
+.optrow{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--line); font-size:14.5px; font-weight:700}
+.optrow:first-of-type{border-top:none}
+.optrow small{display:block; font-size:12.5px; color:var(--muted); font-weight:500; margin-top:2px}
+.sw{position:relative; flex:none; width:46px; height:28px; border-radius:999px; background:var(--field); border:1px solid var(--line); cursor:pointer; padding:0}
+.sw::after{content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .2s}
+.sw[aria-checked="true"]{background:var(--orange); border-color:var(--orange)}
+.sw[aria-checked="true"]::after{transform:translateX(18px)}
+.wrow{display:flex; gap:8px; align-items:stretch}
+.wrow .box{flex:1}
+.minbtn{font:inherit; font-size:13px; font-weight:700; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:0 12px; cursor:pointer; white-space:nowrap}
+.warn{margin-top:8px; font-size:13px; font-weight:700; color:#D9480F}
+.lines{margin-top:14px; display:flex; flex-direction:column; gap:2px}
+.ln{display:flex; justify-content:space-between; font-size:14px; padding:7px 0; border-bottom:1px solid rgba(255,255,255,.08); font-variant-numeric:tabular-nums}
+.ln span:first-child{color:rgba(244,244,241,.6)}
+.ln b{font-weight:800}
+.ln.sum{border-bottom:none; font-size:15px}
+.badge{display:inline-block; font-size:12.5px; font-weight:800; padding:4px 10px; border-radius:999px; margin-top:10px}
+.badge.ok{background:rgba(124,227,168,.15); color:#7CE3A8}
+.badge.no{background:rgba(255,138,61,.15); color:#FF8A3D}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.endo{display:flex; align-items:flex-end; gap:10px; margin-top:14px}
+.endo img{flex:none; width:64px; height:64px; object-fit:contain; filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
+.endo .say{position:relative; flex:1; background:#F4F4F1; color:#141518; font-size:14px; font-weight:700; line-height:1.45; border-radius:16px 16px 16px 4px; padding:10px 13px; margin-bottom:8px; letter-spacing:-.01em}
+.endo .say::before{content:""; position:absolute; left:-6px; bottom:8px; border:6px solid transparent; border-right-color:#F4F4F1; border-left:0}
+.endo.light .say{background:var(--field); color:var(--ink)}
+.endo.light .say::before{border-right-color:var(--field)}
+.endo.light img{filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
+.endo.pop img{animation:endoHop .5s cubic-bezier(.3,1.6,.5,1)}
+.endo.pop .say{animation:endoSay .35s ease-out}
+.endo[data-p="walk"] img,.endo[data-p="run"] img{animation:endoWalk .45s ease-in-out infinite}
+@keyframes endoHop{0%{transform:translateY(8px) scale(.9)}60%{transform:translateY(-6px)}100%{transform:none}}
+@keyframes endoSay{from{opacity:0; transform:translateX(-6px)}to{opacity:1; transform:none}}
+@keyframes endoWalk{50%{transform:translateY(-4px) rotate(-3deg)}}
+.tip{display:flex; gap:16px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:14px 18px; margin:0 0 22px; box-shadow:var(--shadow)}
+.tip img{width:80px; height:80px; object-fit:contain; flex:none}
+.tip b{display:block; font-size:13px; color:var(--orange); font-weight:800; margin-bottom:2px}
+.tip p{margin:0; font-size:15px; line-height:1.6}
+@media (prefers-reduced-motion:reduce){.endo.pop img,.endo.pop .say,.endo[data-p] img{animation:none!important}}
+
+.jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
+.jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
+.jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jumpres img{flex:none; width:30px; height:30px; object-fit:contain; margin:-6px -2px -6px -6px}
+.jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
+.res{scroll-margin-top:66px}
+@media (min-width:920px){.jumpres{display:none!important}}
+@media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
+@media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:12px}
+.crumb a{color:var(--muted); text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+.src{margin-top:12px; font-size:12px; line-height:1.6; color:rgba(244,244,241,.5)}
+.src a{color:rgba(244,244,241,.7)}
+
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:12px}
+.crumb a{color:var(--muted); text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+
+.hero{padding:36px 0 22px}
+@media (min-width:920px){.hero{padding:64px 0 28px}}
+.hero h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 12px}
+.hero p{font-size:17px; color:var(--muted); margin:0; max-width:34em}
+.box input[type=date]{font-size:20px; font-weight:800; letter-spacing:-.02em; padding:4px 0 2px; color-scheme:light dark}
+.g2{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.row3{display:grid; grid-template-columns:1fr 1.1fr; gap:8px; margin-top:8px}
+.quick2{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px}
+.quick2 button{font:inherit; font-size:13px; font-weight:700; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:6px 12px; cursor:pointer}
+.quick2 button:hover{color:var(--ink); border-color:var(--ink)}
+.optrow{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0 0; margin-top:12px; border-top:1px solid var(--line); font-size:14.5px; font-weight:700}
+.optrow small{display:block; font-size:12.5px; color:var(--muted); font-weight:500; margin-top:2px}
+.sw{position:relative; flex:none; width:46px; height:28px; border-radius:999px; background:var(--field); border:1px solid var(--line); cursor:pointer; padding:0}
+.sw::after{content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .2s}
+.sw[aria-checked="true"]{background:var(--orange); border-color:var(--orange)}
+.sw[aria-checked="true"]::after{transform:translateX(18px)}
+.pane[hidden]{display:none}
+.ms{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:6px}
+.ms li{display:grid; grid-template-columns:74px 1fr auto; gap:8px; align-items:center; background:rgba(255,255,255,.06); border-radius:14px; padding:10px 12px; font-size:14px; font-variant-numeric:tabular-nums}
+.ms li b{font-weight:800}
+.ms li span{color:rgba(244,244,241,.7)}
+.ms li em{font-style:normal; font-weight:800; font-size:13px; padding:3px 9px; border-radius:999px; background:rgba(255,255,255,.1)}
+.ms li.next{background:rgba(255,138,61,.16); border:1px solid rgba(255,138,61,.35)}
+.ms li.next em{background:#FF5A1F; color:#141518}
+.ms li.past{opacity:.5}
+.acts2{display:grid; grid-template-columns:1fr; gap:8px; margin-top:16px}
+.acts2 button{font:inherit; font-size:15px; font-weight:800; border-radius:14px; padding:13px; cursor:pointer; border:none; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F)}
+.acts2 button:disabled{opacity:.4; cursor:default}
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+
+.jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
+.jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
+.jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jumpres img{flex:none; width:30px; height:30px; object-fit:contain; margin:-6px -2px -6px -6px}
+.jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
+.res{scroll-margin-top:66px}
+@media (min-width:920px){.jumpres{display:none!important}}
+@media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
+@media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
+
+/* 날짜 계산기: 밝은 결과 판 */
+.disp.lite{color:var(--ink); background:radial-gradient(120% 120% at 100% 0%, rgba(47,102,240,.10) 0%, rgba(47,102,240,0) 55%), var(--surface); border:1px solid var(--line); box-shadow:var(--shadow)}
+.disp.lite::after{display:none}
+.disp.lite .cap,.disp.lite .sub{color:var(--muted)}
+.disp.lite .big{color:var(--ink)}
+.disp.lite .big .u{color:#2F66F0}
+.disp.lite .ms li{background:var(--field)}
+.disp.lite .ms li span{color:var(--muted)}
+.disp.lite .ms li em{background:var(--surface); color:var(--ink); border:1px solid var(--line)}
+.disp.lite .ms li.next{background:rgba(47,102,240,.08); border:1px solid rgba(47,102,240,.3)}
+.disp.lite .ms li.next em{background:#2F66F0; border-color:#2F66F0; color:#fff}
+.disp.lite .ms li.past{opacity:.45}
+.disp.lite .endo .say{background:var(--field); color:var(--ink)}
+.disp.lite .endo .say::before{border-right-color:var(--field)}
+.disp.lite .endo img{filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
+
+.saved{margin-bottom:14px}
+.saved h2 small{margin-left:auto; font-size:12.5px; color:var(--muted); font-weight:600}
+.sv{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px}
+.sv li{display:grid; grid-template-columns:1fr auto 30px; gap:10px; align-items:center; background:var(--field); border:1px solid transparent; border-radius:16px; padding:10px 10px 10px 14px; cursor:pointer}
+.sv li:hover{border-color:var(--line)}
+.sv li.on{border-color:#2F66F0; background:rgba(47,102,240,.07)}
+.sv .nm{font-size:15px; font-weight:800; letter-spacing:-.02em; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.sv .dt{display:block; font-size:12.5px; color:var(--muted); font-weight:600; margin-top:1px}
+.sv .bd{font-size:14px; font-weight:900; color:#fff; background:#2F66F0; border-radius:999px; padding:5px 11px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.sv .bd.today{background:#FF5A1F}
+.sv .bd.past{background:var(--faint)}
+.sv .x{width:30px; height:30px; border-radius:50%; border:none; background:none; color:var(--muted); font-size:17px; cursor:pointer}
+.sv .x:hover{color:var(--orange)}
+.svnote{font-size:12.5px; color:var(--muted); margin:10px 2px 0}
+.acts2{grid-template-columns:1fr 1fr!important}
+.acts2 .sb{color:#fff!important; background:#2F66F0!important}
+.namebox{display:flex; gap:8px; margin-top:12px}
+.namebox[hidden]{display:none}
+.namebox input{flex:1; min-width:0; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:var(--field); border:1.5px solid transparent; border-radius:12px; padding:10px 12px; outline:none}
+.namebox input:focus{border-color:#2F66F0; background:var(--surface)}
+.namebox button{font:inherit; font-size:14px; font-weight:800; color:#fff; background:#2F66F0; border:none; border-radius:12px; padding:0 16px; cursor:pointer}
+</style>
+</head>
+<body>
+<script>
+async function shareOut(t){ const touch=matchMedia('(pointer:coarse)').matches; if(navigator.share&&touch){ try{ await navigator.share({text:t}); return 'shared'; }catch(e){ if(e&&e.name==='AbortError') return 'abort'; } } await navigator.clipboard.writeText(t); return 'copied'; }
+document.addEventListener('DOMContentLoaded',()=>{ if(navigator.share&&matchMedia('(pointer:coarse)').matches){ document.querySelectorAll('[data-share]').forEach(b=>b.textContent=b.dataset.share); } });
+</script>
+<script>
+(function(){try{const k='sonandogu-recent',p=location.pathname,a=JSON.parse(localStorage.getItem(k)||'[]').filter(x=>x!==p);a.unshift(p);localStorage.setItem(k,JSON.stringify(a.slice(0,4)));}catch(e){}})();
+</script>
+<script>
+function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const img=e.querySelector('img'), src='/assets/endo/'+p+'.webp'; if(img.getAttribute('src')!==src) img.setAttribute('src',src); e.dataset.p=p; const s=e.querySelector('.say'); if(s.textContent!==m){ s.textContent=m; if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); } } }
+</script>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<div class="container">
+
+  <section class="hero">
+    <div class="crumb"><a href="/">전체 도구</a> / <a href="/#tools">생활 도구</a> / 날짜 계산기</div>
+    <h1>날짜 계산기</h1>
+    <p>D-day, 만난 지 며칠, 100일·1000일 기념일, 며칠 뒤가 무슨 요일인지까지. 날짜 계산은 여기서 한 번에.</p>
+  </section>
+  <div class="work">
+    <main>
+      <div class="card saved" id="savedCard" hidden>
+        <h2><span class="n" style="background:#2F66F0">★</span>내가 저장한 날짜<small>오늘 기준으로 자동 계산</small></h2>
+        <ul class="sv" id="sv"></ul>
+        <p class="svnote">저장한 날짜는 이 기기의 브라우저에만 보관돼요.</p>
+      </div>
+      <div class="card">
+        <div class="seg2" id="mode"><button data-m="dday" aria-pressed="true">D-day</button><button data-m="anniv" aria-pressed="false">기념일</button><button data-m="add" aria-pressed="false">며칠 뒤</button><button data-m="between" aria-pressed="false">사이 기간</button></div>
+      </div>
+      <div class="card pane" id="p-dday">
+        <h2><span class="n">1</span>목표 날짜</h2>
+        <div class="box"><label for="dT">그날은</label><input type="date" id="dT"></div>
+        <div class="quick2"><button data-q="xmas">크리스마스</button><button data-q="eoy">올해 마지막 날</button><button data-q="ny">새해 첫날</button><button data-q="p100">오늘부터 100일 뒤</button></div>
+      </div>
+      <div class="card pane" id="p-anniv" hidden>
+        <h2><span class="n">1</span>시작한 날</h2>
+        <div class="box"><label for="aS">만난 날, 시작한 날</label><input type="date" id="aS"></div>
+        <div class="optrow"><span>시작한 날을 1일로 세기<small>연애 기념일은 보통 첫날을 1일로 세요</small></span><button class="sw" id="aOne" role="switch" aria-checked="true" aria-label="시작한 날을 1일로 세기"></button></div>
+      </div>
+      <div class="card pane" id="p-add" hidden>
+        <h2><span class="n">1</span>기준 날짜와 기간</h2>
+        <div class="box"><label for="xS">기준 날짜</label><input type="date" id="xS"></div>
+        <div class="row3">
+          <div class="box num"><label for="xN">얼마나</label><input id="xN" inputmode="numeric" placeholder="30" autocomplete="off"></div>
+          <div class="seg2" id="xU" style="flex-wrap:nowrap"><button data-u="d" aria-pressed="true">일</button><button data-u="w" aria-pressed="false">주</button><button data-u="m" aria-pressed="false">개월</button></div>
+        </div>
+        <div class="seg2" id="xDir" style="margin-top:8px"><button data-d="1" aria-pressed="true">뒤 (+)</button><button data-d="-1" aria-pressed="false">전 (−)</button></div>
+      </div>
+      <div class="card pane" id="p-between" hidden>
+        <h2><span class="n">1</span>두 날짜</h2>
+        <div class="g2"><div class="box"><label for="bA">시작</label><input type="date" id="bA"></div><div class="box"><label for="bB">끝</label><input type="date" id="bB"></div></div>
+        <div class="optrow"><span>마지막 날도 포함하기<small>여행 일수처럼 양쪽 날을 모두 셀 때</small></span><button class="sw" id="bInc" role="switch" aria-checked="false" aria-label="마지막 날 포함"></button></div>
+      </div>
+    </main>
+    <aside class="res">
+      <div class="disp lite" aria-live="polite">
+        <div class="cap" id="cap">날짜를 골라주세요</div>
+        <div class="big" id="big">-</div>
+        <div class="sub" id="sub"></div>
+        <ul class="ms" id="ms" hidden></ul>
+        <div class="endo" id="endo" data-p="wave"><img src="/assets/endo/wave.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">그날이 언제예요? 날짜만 고르면 돼요!</div></div>
+        <div class="acts2"><button class="sb" id="saveBtn" disabled>이 날짜 저장</button><button id="share" disabled data-share="결과 공유">결과 복사</button></div>
+        <div class="namebox" id="nameBox" hidden><input id="nameIn" maxlength="20" placeholder="이름 (예: 우리 기념일, 수능)" aria-label="저장할 이름"><button id="nameOk">저장하기</button></div>
+      </div>
+    </aside>
+  </div>
+  <section class="guide">
+    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>연애 기념일은 만난 날을 1일로 세요. 그래서 100일은 만난 날로부터 99일 뒤예요. 기념일 탭에서 1주년, 1000일까지 한눈에 볼 수 있어요.</p></div></div>
+    <h2>날짜 계산, 이것만 알면 돼요</h2>
+    <div class="fgrid">
+      <div class="f"><h3>D-day 읽는 법</h3><p>D-30은 그날까지 <strong>30일 남았다</strong>는 뜻이고, D+30은 그날로부터 <strong>30일 지났다</strong>는 뜻이에요. 바로 그날이 D-day예요.</p></div>
+      <div class="f"><h3>100일은 99일 뒤</h3><p>연애 기념일은 만난 날을 1일로 세서, 100일째 되는 날은 만난 날로부터 <strong>99일 뒤</strong>예요. 첫날을 0일로 세는 방식이 필요하면 스위치를 끄면 돼요.</p></div>
+      <div class="f"><h3>개월 계산</h3><p>1월 31일에서 1개월 뒤처럼 그 달에 같은 날짜가 없으면, 그 달의 <strong>마지막 날</strong>로 맞춰요. 2월이면 28일이나 29일이 돼요.</p></div>
+      <div class="f"><h3>사이 기간</h3><p>3월 1일부터 3월 3일까지는 기본으로 2일이에요. 여행처럼 양쪽 날을 모두 세려면 "마지막 날도 포함하기"를 켜면 3일이 돼요.</p></div>
+    </div>
+    <div class="faq">
+      <h2>자주 묻는 질문</h2>
+      <details><summary>1주년은 365일째인가요?</summary><p>달력으로 같은 날짜가 돌아오는 날을 1주년으로 보여드려요. 윤년이 끼면 366일 뒤가 될 수 있어요. 365일째는 따로 "365일"로 보여드려요.</p></details>
+      <details><summary>입력한 날짜는 저장되나요?</summary><p>다음에 다시 보기 편하도록 이 기기의 브라우저에만 저장돼요. 서버로는 보내지 않아요.</p></details>
+    </div>
+  </section>
+<div class="toast" id="toast"></div>
+<script>
+const $=id=>document.getElementById(id);
+const WD=['일','월','화','수','목','금','토'];
+const pad=n=>String(n).padStart(2,'0');
+const dn=s=>{ if(!s) return null; const [y,m,d]=s.split('-').map(Number); if(!y||!m||!d) return null; return Math.round(Date.UTC(y,m-1,d)/86400000); };
+const ds=n=>{ const t=new Date(n*86400000); return `${t.getUTCFullYear()}-${pad(t.getUTCMonth()+1)}-${pad(t.getUTCDate())}`; };
+const kr=n=>{ const t=new Date(n*86400000); return `${t.getUTCFullYear()}년 ${t.getUTCMonth()+1}월 ${t.getUTCDate()}일 (${WD[t.getUTCDay()]})`; };
+const krs=n=>{ const t=new Date(n*86400000); return `${t.getUTCFullYear()}.${pad(t.getUTCMonth()+1)}.${pad(t.getUTCDate())} (${WD[t.getUTCDay()]})`; };
+const today=()=>{ const t=new Date(); return Math.round(Date.UTC(t.getFullYear(),t.getMonth(),t.getDate())/86400000); };
+const addMonths=(n,k)=>{ const t=new Date(n*86400000); let y=t.getUTCFullYear(), m=t.getUTCMonth()+k, d=t.getUTCDate(); y+=Math.floor(m/12); m=((m%12)+12)%12; const last=new Date(Date.UTC(y,m+1,0)).getUTCDate(); return Math.round(Date.UTC(y,m,Math.min(d,last))/86400000); };
+const wk=n=>{ const a=Math.abs(n), w=Math.floor(a/7), r=a%7; return w? `${w}주${r?' '+r+'일':''}` : `${r}일`; };
+window.__date={dn,ds,addMonths};
+const KEY='sonandogu-date-v1';
+const T=today();
+const DEF={mode:'dday',dT:ds(addMonths(T,1)),aS:ds(T-99),aOne:true,xS:ds(T),xN:'100',xU:'d',xDir:1,bA:ds(T),bB:ds(T+30),bInc:false};
+let S; try{S=Object.assign({},DEF,JSON.parse(localStorage.getItem(KEY))||{});}catch(e){S=Object.assign({},DEF);}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}};
+let shareText='';
+function setRes(cap,big,sub){ $('cap').textContent=cap; $('big').innerHTML=big; $('sub').textContent=sub; }
+function calc(){
+  save(); const ms=$('ms'); ms.hidden=true; ms.innerHTML=''; const t=today();
+  if(S.mode==='dday'){
+    const d=dn(S.dT); if(d===null){ setRes('목표 날짜를 골라주세요','-',''); endo('wave','그날이 언제예요? 날짜만 고르면 돼요!'); return off(); }
+    const k=d-t;
+    if(k>0){ setRes(`${kr(d)}까지`,`D-${k.toLocaleString('ko-KR')}`,`${k.toLocaleString('ko-KR')}일 남았어요 · ${wk(k)}`); endo(k<=7?'surprised':'thumbs', k<=7? `${k}일 남았어요! 금방이에요` : `${k.toLocaleString('ko-KR')}일 남았어요. 차근차근 가봐요!`); }
+    else if(k===0){ setRes(kr(d),'D-day','바로 오늘이에요!'); endo('saving','오늘이 바로 그날이에요!'); }
+    else { setRes(`${kr(d)}부터`,`D+${(-k).toLocaleString('ko-KR')}`,`${(-k).toLocaleString('ko-KR')}일 지났어요 · ${wk(k)}`); endo('lookback',`벌써 ${(-k).toLocaleString('ko-KR')}일 지났어요`); }
+    shareText=`[D-day] ${kr(d)}\n${$('big').textContent} · ${$('sub').textContent}`;
+  }
+  if(S.mode==='anniv'){
+    const s=dn(S.aS); if(s===null){ setRes('시작한 날을 골라주세요','-',''); endo('wave','언제 시작했어요? 날짜를 골라주세요!'); return off(); }
+    const off1=S.aOne?1:0, cnt=t-s+off1;
+    if(t<s){ setRes(`${kr(s)} 시작`,`D-${(s-t).toLocaleString('ko-KR')}`,'아직 시작 전이에요'); endo('detective','아직 시작 전인 날짜예요!'); }
+    else { setRes(`${kr(s)}부터`,`${cnt.toLocaleString('ko-KR')}<span class="u">일째</span>`,S.aOne?'시작한 날을 1일로 셌어요':'시작한 날을 0일로 셌어요'); }
+    const list=[];
+    [100,200,300,365,500,700,1000,1500,2000,3000].forEach(n=>list.push([`${n.toLocaleString('ko-KR')}일`, s+n-off1]));
+    for(let y=1;y<=10;y++) list.push([`${y}주년`, addMonths(s,12*y)]);
+    list.sort((a,b)=>a[1]-b[1]);
+    let nextFound=false, shownPast=0; const pastItems=list.filter(x=>x[1]<t); const keepPast=pastItems.slice(-2).map(x=>x[0]);
+    let fut=0; list.forEach(([name,d])=>{ if(d<t && !keepPast.includes(name)) return; if(d>=t){ if(fut>=6) return; fut++; } const li=document.createElement('li'); const k=d-t;
+      if(d<t) li.className='past'; else if(!nextFound){ li.className='next'; nextFound=true; }
+      li.innerHTML=`<b>${name}</b><span>${krs(d)}</span><em>${k===0?'오늘':k>0?'D-'+k.toLocaleString('ko-KR'):'지남'}</em>`; ms.append(li); });
+    ms.hidden=false;
+    const nx=list.find(x=>x[1]>=t);
+    if(t>=s) endo(nx&&nx[1]===t?'saving':'thumbs', nx? (nx[1]===t? `오늘이 바로 ${nx[0]}이에요! 축하해요` : `다음 ${nx[0]}까지 ${(nx[1]-t).toLocaleString('ko-KR')}일 남았어요`) : '오래오래 함께해요!');
+    shareText=`[기념일] ${kr(s)}부터 오늘 ${cnt.toLocaleString('ko-KR')}일째`+(nx?`\n다음 ${nx[0]}: ${krs(nx[1])}`:'');
+  }
+  if(S.mode==='add'){
+    const s=dn(S.xS), n=parseInt(String(S.xN).replace(/\D/g,''),10);
+    if(s===null||!n){ setRes('기준 날짜와 기간을 넣어주세요','-',''); endo('wave','며칠 뒤가 궁금한지 숫자만 넣어주세요!'); return off(); }
+    const sign=S.xDir, r= S.xU==='m'? addMonths(s,sign*n) : s+sign*n*(S.xU==='w'?7:1);
+    const unit=S.xU==='m'?'개월':S.xU==='w'?'주':'일';
+    setRes(`${krs(s)}에서 ${n.toLocaleString('ko-KR')}${unit} ${sign>0?'뒤':'전'}`, kr(r).replace(/ \(.\)$/,''), `${WD[new Date(r*86400000).getUTCDay()]}요일 · 오늘 기준 ${r===t?'오늘':r>t?'D-'+(r-t).toLocaleString('ko-KR'):'D+'+(t-r).toLocaleString('ko-KR')}`);
+    $('big').style.fontSize='clamp(28px,7vw,38px)';
+    endo('thumbs',`${WD[new Date(r*86400000).getUTCDay()]}요일이에요!`);
+    shareText=`[날짜 계산] ${krs(s)}에서 ${n}${unit} ${sign>0?'뒤':'전'}은\n${kr(r)}`;
+  } else $('big').style.fontSize='';
+  if(S.mode==='between'){
+    const a=dn(S.bA), b=dn(S.bB); if(a===null||b===null){ setRes('두 날짜를 골라주세요','-',''); endo('wave','시작과 끝 날짜를 골라주세요!'); return off(); }
+    const lo=Math.min(a,b), hi=Math.max(a,b), n=hi-lo+(S.bInc?1:0);
+    let months=0; while(addMonths(lo,months+1)<=hi) months++; const rest=hi-addMonths(lo,months);
+    setRes(`${krs(lo)} ~ ${krs(hi)}`,`${n.toLocaleString('ko-KR')}<span class="u">일</span>`,`${wk(n)}${months?` · ${months}개월 ${rest}일`:''}${S.bInc?' (마지막 날 포함)':''}`);
+    endo(a>b?'detective':'thumbs', a>b? '끝 날짜가 더 앞이라 순서를 바꿔 계산했어요' : `${n.toLocaleString('ko-KR')}일이에요!`);
+    shareText=`[기간 계산] ${krs(lo)} ~ ${krs(hi)}\n${n.toLocaleString('ko-KR')}일 (${$('sub').textContent})`;
+  }
+  $('share').disabled=false; $('saveBtn').disabled=!(S.mode==='dday'||S.mode==='anniv'); if($('saveBtn').disabled) $('nameBox').hidden=true;
+  if(typeof renderSv==='function') renderSv();
+}
+function off(){ $('share').disabled=true; $('saveBtn').disabled=true; shareText=''; }
+function paint(){
+  document.querySelectorAll('#mode button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.m===S.mode));
+  ['dday','anniv','add','between'].forEach(m=>$('p-'+m).hidden=m!==S.mode);
+  $('dT').value=S.dT; $('aS').value=S.aS; $('xS').value=S.xS; $('xN').value=S.xN; $('bA').value=S.bA; $('bB').value=S.bB;
+  $('aOne').setAttribute('aria-checked',S.aOne); $('bInc').setAttribute('aria-checked',S.bInc);
+  document.querySelectorAll('#xU button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.u===S.xU));
+  document.querySelectorAll('#xDir button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.d===S.xDir));
+  calc();
+}
+document.querySelectorAll('#mode button').forEach(b=>b.onclick=()=>{S.mode=b.dataset.m; paint();});
+[['dT','dT'],['aS','aS'],['xS','xS'],['bA','bA'],['bB','bB']].forEach(([id,k])=>$(id).addEventListener('input',e=>{S[k]=e.target.value; calc();}));
+$('xN').addEventListener('input',e=>{e.target.value=e.target.value.replace(/\D/g,'').slice(0,5); S.xN=e.target.value; calc();});
+$('aOne').onclick=()=>{S.aOne=!S.aOne; paint();}; $('bInc').onclick=()=>{S.bInc=!S.bInc; paint();};
+document.querySelectorAll('#xU button').forEach(b=>b.onclick=()=>{S.xU=b.dataset.u; paint();});
+document.querySelectorAll('#xDir button').forEach(b=>b.onclick=()=>{S.xDir=+b.dataset.d; paint();});
+document.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{ const t=today(), y=new Date(t*86400000).getUTCFullYear(); let d;
+  if(b.dataset.q==='xmas'){ d=dn(`${y}-12-25`); if(d<t) d=dn(`${y+1}-12-25`); }
+  if(b.dataset.q==='eoy'){ d=dn(`${y}-12-31`); }
+  if(b.dataset.q==='ny'){ d=dn(`${y+1}-01-01`); }
+  if(b.dataset.q==='p100'){ d=t+100; }
+  S.dT=ds(d); paint(); });
+$('share').onclick=async()=>{ if(!shareText) return; try{ const r=await shareOut(shareText+'\n\n손안의도구 날짜 계산기\nhttps://sonandogu.com/date/'); if(r==='copied') say('복사했어요'); }catch(e){ say('공유하지 못했어요'); } };
+
+/* ---- 저장한 날짜 ---- */
+const SKEY='sonandogu-date-saved';
+const loadSv=()=>{try{return JSON.parse(localStorage.getItem(SKEY))||[];}catch(e){return [];}};
+const saveSv=a=>{try{localStorage.setItem(SKEY,JSON.stringify(a));}catch(e){}};
+function badge(it){ const t=today(); if(it.t==='dday'){ const k=dn(it.d)-t; return k>0?['D-'+k.toLocaleString('ko-KR'),'']:k===0?['D-day','today']:['D+'+(-k).toLocaleString('ko-KR'),'past']; }
+  const c=t-dn(it.d)+(it.one?1:0); return c>=1||(!it.one&&c>=0)? [c.toLocaleString('ko-KR')+'일째',''] : ['D-'+(dn(it.d)-t).toLocaleString('ko-KR'),'']; }
+function renderSv(){ const a=loadSv(), ul=$('sv'); ul.innerHTML=''; $('savedCard').hidden=!a.length;
+  a.forEach((it,i)=>{ const li=document.createElement('li'); const [b,cls]=badge(it); const on=(S.mode===it.t)&&((it.t==='dday'&&S.dT===it.d)||(it.t==='anniv'&&S.aS===it.d&&S.aOne===it.one));
+    if(on) li.className='on';
+    li.innerHTML=`<span><span class="nm"></span><span class="dt">${it.t==='dday'?'D-day':'기념일'} · ${krs(dn(it.d))}</span></span><span class="bd ${cls}">${b}</span><button class="x" aria-label="삭제">×</button>`;
+    li.querySelector('.nm').textContent=it.n;
+    li.onclick=e=>{ if(e.target.classList.contains('x')) return; if(it.t==='dday'){S.mode='dday'; S.dT=it.d;} else {S.mode='anniv'; S.aS=it.d; S.aOne=it.one;} paint(); window.scrollTo({top:0,behavior:'smooth'}); };
+    li.querySelector('.x').onclick=()=>{ if(!confirm(`"${it.n}"을(를) 지울까요?`)) return; const b2=loadSv(); b2.splice(i,1); saveSv(b2); renderSv(); say('지웠어요'); };
+    ul.append(li); }); }
+$('saveBtn').onclick=()=>{ const nb=$('nameBox'); nb.hidden=!nb.hidden; if(!nb.hidden){ $('nameIn').value= S.mode==='dday'? `D-day ${krs(dn(S.dT)).slice(5,10)}` : '우리 기념일'; $('nameIn').select(); } };
+$('nameOk').onclick=()=>{ const n=($('nameIn').value||'').trim()||'저장한 날짜'; const a=loadSv(); const it=S.mode==='dday'?{t:'dday',d:S.dT,n}:{t:'anniv',d:S.aS,one:S.aOne,n};
+  const dup=a.findIndex(x=>x.t===it.t&&x.d===it.d); if(dup>=0) a.splice(dup,1); a.unshift(it); saveSv(a.slice(0,12)); $('nameBox').hidden=true; renderSv(); say('저장했어요. 다음에 오면 바로 보여요');
+  endo('thumbs',`"${n}" 저장 완료! 올 때마다 계산해둘게요`); };
+$('nameIn').addEventListener('keydown',e=>{ if(e.key==='Enter') $('nameOk').click(); });
+const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1600);}
+paint();
+</script>
+</div>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+<button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><img src="/assets/endo/lookback.webp" width="30" height="30" alt=""><span id="jrText"></span><b>↓</b></button>
+<script>
+(function(){const T=document.querySelector('aside.res'), B=document.getElementById('jumpres'), X=document.getElementById('jrText'); if(!T||!B) return;
+ const sum=()=>{try{return (document.getElementById('big').textContent+' · 결과 보기');}catch(e){return '결과 보기';}};
+ let below=false, vis=false;
+ const upd=()=>{ const r=T.getBoundingClientRect(); below=r.top>innerHeight-40; vis=below&&innerWidth<920; B.hidden=!vis; if(vis) X.textContent=sum(); };
+ addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); document.addEventListener('input',()=>setTimeout(upd,60)); document.addEventListener('click',()=>setTimeout(upd,120));
+ B.onclick=()=>T.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+ setTimeout(upd,300);
+})();
+</script>
+</body>
+</html>
