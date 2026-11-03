@@ -118,7 +118,7 @@ footer .fl a:hover{color:var(--ink)}
 .cat .t:hover .go{background:var(--c2); border-color:var(--c2); color:#fff}
 .cat .t:focus-visible{outline-color:var(--c2)}
 
-.jump{display:flex; gap:6px; margin-top:18px; overflow-x:auto; scrollbar-width:none; padding-bottom:2px}
+.jump-old{display:flex; gap:6px; margin-top:18px; overflow-x:auto; scrollbar-width:none; padding-bottom:2px}
 .jump::-webkit-scrollbar{display:none}
 .jump a{flex:none; display:inline-flex; align-items:center; gap:7px; font-size:14px; font-weight:700; color:var(--ink); text-decoration:none; background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:8px 14px}
 .jump a:hover{border-color:var(--ink)}
@@ -151,6 +151,43 @@ footer .fl a:hover{color:var(--ink)}
 .rgrid a .ic svg{width:20px; height:20px}
 .jump .inst{flex:none; display:inline-flex; align-items:center; gap:7px; font:inherit; font-size:14px; font-weight:800; color:#fff; background:var(--ink); border:none; border-radius:999px; padding:8px 14px; cursor:pointer}
 .jump .inst[hidden]{display:none}
+
+.finder{margin-top:18px; display:flex; flex-direction:column; gap:10px}
+.srch{display:flex; align-items:center; gap:10px; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:0 14px; color:var(--muted); box-shadow:var(--shadow)}
+.srch:focus-within{border-color:var(--orange); box-shadow:0 0 0 5px rgba(255,90,31,.12)}
+.srch input{flex:1; min-width:0; font:inherit; font-size:16px; font-weight:600; color:var(--ink); background:none; border:none; outline:none; padding:13px 0}
+.srch input::placeholder{color:var(--faint); font-weight:500}
+.tabs2{display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; padding-bottom:2px}
+.tabs2::-webkit-scrollbar{display:none}
+.tabs2 button{flex:none; display:inline-flex; align-items:center; gap:7px; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:999px; padding:8px 14px; cursor:pointer}
+.tabs2 button[aria-selected="true"]{color:var(--bg); background:var(--ink); border-color:var(--ink)}
+.tabs2 button i{width:8px; height:8px; border-radius:50%}
+.tabs2 .inst{color:#fff; background:var(--orange); border-color:var(--orange)}
+.tabs2 .inst[hidden]{display:none}
+.nores{text-align:center; padding:30px 0 10px; color:var(--muted)}
+.nores img{display:block; margin:0 auto 8px; width:72px; height:72px; object-fit:contain}
+.nores p{margin:0; font-size:15px; line-height:1.7}
+.nores a{color:var(--orange); font-weight:700; text-decoration:none}
+.cat[hidden],.recent[hidden]{display:none!important}
+.cat a.t[hidden]{display:none!important}
+.rgrid a{padding:8px 14px 8px 8px; border-radius:16px; font-size:14px; box-shadow:none}
+.rgrid a .ic{width:32px; height:32px; border-radius:10px}
+@media (max-width:639px){
+  .cat .grid{display:block; background:var(--surface); border:1px solid var(--line); border-radius:22px; overflow:hidden; box-shadow:var(--shadow)}
+  .cat .t{flex-direction:row; align-items:center; gap:12px; padding:12px 14px; border-radius:0; border:0; border-bottom:1px solid var(--line); box-shadow:none; background:none; min-height:0}
+  .cat .t:last-child{border-bottom:0}
+  .cat a.t:not([hidden]):last-of-type{border-bottom:0}
+  .cat .t:hover{background:var(--tint); transform:none}
+  .cat .t:active{background:var(--tint)}
+  .cat .ic{width:38px; height:38px; border-radius:12px; font-size:17px; box-shadow:none}
+  .cat .ic svg{width:21px; height:21px}
+  .cat .t strong{font-size:15.5px; line-height:1.3}
+  .cat .t .d{display:block; font-size:12.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .cat .t .go{display:block; position:static; width:auto; height:auto; border:0; background:none!important; color:var(--faint)!important}
+  .cat .t .go svg{display:none}
+  .cat .t .go::after{content:"›"; font-size:24px; line-height:1; font-weight:300}
+  .cat{margin-top:22px}
+}
 </style>
 </head>
 <body>
@@ -159,35 +196,39 @@ footer .fl a:hover{color:var(--ink)}
   <section class="hero">
     <h1>꺼내서 쓰고,<br><span>바로 닫으세요.</span></h1>
     <p>계산기부터 생활 도구, 함께 즐기는 놀이까지. 설치도 가입도 없이 필요한 순간 바로 꺼내 쓰세요.</p>
-    <nav class="jump" aria-label="분류 바로가기"><a href="#calc"><i style="background:#FF5A1F"></i>계산기</a><a href="#tools"><i style="background:#2F66F0"></i>생활 도구</a><a href="#play"><i style="background:#12985B"></i>놀이</a><a href="/blog/"><i style="background:var(--muted)"></i>블로그</a><button class="inst" id="inst" hidden><i style="background:#FF5A1F"></i>앱으로 설치</button></nav>
+    <div class="finder">
+      <label class="srch"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="도구 찾기 (예: 할인, 정산, 사다리)" aria-label="도구 검색" autocomplete="off"></label>
+      <div class="tabs2" role="tablist" aria-label="분류"><button role="tab" data-t="all" aria-selected="true">전체</button><button role="tab" data-t="calc" aria-selected="false"><i style="background:#FF5A1F"></i>계산기</button><button role="tab" data-t="tools" aria-selected="false"><i style="background:#2F66F0"></i>생활 도구</button><button role="tab" data-t="play" aria-selected="false"><i style="background:#12985B"></i>놀이</button><button class="inst" id="inst" hidden><i style="background:#FF5A1F"></i>앱으로 설치</button></div>
+    </div>
   </section>
   <main>
   <section class="recent" id="recent" hidden>
     <div class="ch"><h2>최근 쓴 도구</h2></div>
     <div class="rgrid" id="rgrid"></div>
   </section>
+  <div class="nores" id="noRes" hidden><img src="/assets/endo/detective.webp" width="72" height="72" alt=""><p>찾는 도구가 아직 없어요.<br><a href="mailto:sonandogu@gmail.com?subject=%5B%EC%86%90%EC%95%88%EC%9D%98%EB%8F%84%EA%B5%AC%5D%20%EB%A7%8C%EB%93%A4%EC%96%B4%EC%A3%BC%EC%84%B8%EC%9A%94">이런 도구 만들어주세요 →</a></p></div>
   <section class="cat" id="calc">
     <div class="ch"><h2>계산기</h2><span class="cs">숫자 몇 개로 끝내는</span></div>
     <div class="grid">
-      <a class="t" href="/percent/"><span class="ic" aria-hidden="true">%</span><span class="tx"><strong>퍼센트 계산기</strong><span class="d">할인가, 증감률, 비율, 원래 가격</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-      <a class="t" href="/dutch/"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="8" cy="8" r="3.2"/><circle cx="18" cy="8" r="3.2"/><path d="M3 21c0-3 2.2-5 5-5s5 2 5 5M13 21c0-3 2.2-5 5-5s5 2 5 5"/></svg></span><span class="tx"><strong>더치페이 계산기</strong><span class="d">N빵 정산, 송금 메시지까지</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-      <a class="t" href="/wage/"><span class="ic" aria-hidden="true">₩</span><span class="tx"><strong>알바 급여 계산기</strong><span class="d">주휴수당 포함 주급·월급</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="t" href="/percent/" data-kw="퍼센트 할인 할인율 증감률 비율 원래가격 % 세일"><span class="ic" aria-hidden="true">%</span><span class="tx"><strong>퍼센트 계산기</strong><span class="d">할인가, 증감률, 비율, 원래 가격</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="t" href="/dutch/" data-kw="더치페이 n빵 엔빵 정산 나누기 송금 모임"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="8" cy="8" r="3.2"/><circle cx="18" cy="8" r="3.2"/><path d="M3 21c0-3 2.2-5 5-5s5 2 5 5M13 21c0-3 2.2-5 5-5s5 2 5 5"/></svg></span><span class="tx"><strong>더치페이 계산기</strong><span class="d">N빵 정산, 송금 메시지까지</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="t" href="/wage/" data-kw="알바 급여 주휴수당 월급 시급 최저임금"><span class="ic" aria-hidden="true">₩</span><span class="tx"><strong>알바 급여 계산기</strong><span class="d">주휴수당 포함 주급·월급</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
   </section>
   <section class="cat" id="tools">
     <div class="ch"><h2>생활 도구</h2><span class="cs">일과 생활에 필요한</span></div>
     <div class="grid">
-      <a class="t" href="/receipt/"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h14v20l-3.5-2-3.5 2-3.5-2L6 23z"/><path d="M10 9h6M10 13h6"/></svg></span><span class="tx"><strong>간이영수증 작성기</strong><span class="d">한글 금액 자동, 이미지·PDF 저장</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="t" href="/receipt/" data-kw="영수증 간이영수증 양식 증빙 사업자"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h14v20l-3.5-2-3.5 2-3.5-2L6 23z"/><path d="M10 9h6M10 13h6"/></svg></span><span class="tx"><strong>간이영수증 작성기</strong><span class="d">한글 금액 자동, 이미지·PDF 저장</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
   </section>
   <section class="cat" id="play">
     <div class="ch"><h2>놀이</h2><span class="cs">모이면 한 판</span><span class="sl"><a href="/traditional/">전통 놀이</a><a href="/party/">모임 놀이</a></span></div>
     <div class="grid">
-      <a class="t" href="/traditional/yut/"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 28 28" fill="#fff"><rect x="3" y="4" width="4" height="20" rx="2"/><rect x="9.3" y="4" width="4" height="20" rx="2" opacity=".75"/><rect x="15.6" y="4" width="4" height="20" rx="2"/><rect x="21.9" y="4" width="4" height="20" rx="2" opacity=".75"/></svg></span><span class="tx"><strong>온라인 윷놀이</strong><span class="d">윷판, 십이지 말, 2~4팀 대결</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-      <a class="t" href="/party/team/"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="7" cy="8" r="2.6"/><circle cx="19" cy="8" r="2.6"/><path d="M2.5 19c0-2.6 2-4.4 4.5-4.4s4.5 1.8 4.5 4.4M14.5 19c0-2.6 2-4.4 4.5-4.4s4.5 1.8 4.5 4.4"/><path d="M13 4v18" stroke-dasharray="2 3"/></svg></span><span class="tx"><strong>팀 나누기</strong><span class="d">이름만 적으면 공평하게 랜덤</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-      <a class="t" href="/party/roulette/"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2"><circle cx="13" cy="14" r="9"/><path d="M13 5v18M4 14h18M6.6 7.6l12.8 12.8M19.4 7.6L6.6 20.4" stroke-width="1.4"/><path d="M10.5 1.8h5L13 5z" fill="#fff" stroke="none"/></svg></span><span class="tx"><strong>룰렛 돌리기</strong><span class="d">점심 메뉴부터 커피 내기까지</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-      <a class="t" href="/party/ladder/"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M6 3v20M13 3v20M20 3v20M6 8h7M13 13h7M6 18h7"/></svg></span><span class="tx"><strong>사다리타기</strong><span class="d">이름을 누르면 길이 그려져요</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-      <a class="t" href="/party/lots/"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"><rect x="3" y="6" width="10" height="14" rx="2" transform="rotate(-10 8 13)"/><rect x="12" y="5" width="10" height="14" rx="2" transform="rotate(8 17 12)"/></svg></span><span class="tx"><strong>제비뽑기</strong><span class="d">한 장씩 뒤집는 두근두근 추첨</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="t" href="/traditional/yut/" data-kw="윷놀이 윷 전통 명절 설날 십이지"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 28 28" fill="#fff"><rect x="3" y="4" width="4" height="20" rx="2"/><rect x="9.3" y="4" width="4" height="20" rx="2" opacity=".75"/><rect x="15.6" y="4" width="4" height="20" rx="2"/><rect x="21.9" y="4" width="4" height="20" rx="2" opacity=".75"/></svg></span><span class="tx"><strong>온라인 윷놀이</strong><span class="d">윷판, 십이지 말, 2~4팀 대결</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="t" href="/party/team/" data-kw="팀 나누기 조 편성 랜덤 편가르기"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="7" cy="8" r="2.6"/><circle cx="19" cy="8" r="2.6"/><path d="M2.5 19c0-2.6 2-4.4 4.5-4.4s4.5 1.8 4.5 4.4M14.5 19c0-2.6 2-4.4 4.5-4.4s4.5 1.8 4.5 4.4"/><path d="M13 4v18" stroke-dasharray="2 3"/></svg></span><span class="tx"><strong>팀 나누기</strong><span class="d">이름만 적으면 공평하게 랜덤</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="t" href="/party/roulette/" data-kw="룰렛 점심 메뉴 랜덤 뽑기 커피"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2"><circle cx="13" cy="14" r="9"/><path d="M13 5v18M4 14h18M6.6 7.6l12.8 12.8M19.4 7.6L6.6 20.4" stroke-width="1.4"/><path d="M10.5 1.8h5L13 5z" fill="#fff" stroke="none"/></svg></span><span class="tx"><strong>룰렛 돌리기</strong><span class="d">점심 메뉴부터 커피 내기까지</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="t" href="/party/ladder/" data-kw="사다리 사다리타기 게임 당첨 순서"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M6 3v20M13 3v20M20 3v20M6 8h7M13 13h7M6 18h7"/></svg></span><span class="tx"><strong>사다리타기</strong><span class="d">이름을 누르면 길이 그려져요</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="t" href="/party/lots/" data-kw="제비뽑기 추첨 당첨 벌칙 뽑기"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"><rect x="3" y="6" width="10" height="14" rx="2" transform="rotate(-10 8 13)"/><rect x="12" y="5" width="10" height="14" rx="2" transform="rotate(8 17 12)"/></svg></span><span class="tx"><strong>제비뽑기</strong><span class="d">한 장씩 뒤집는 두근두근 추첨</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
   </section>
   </main>
@@ -201,10 +242,34 @@ footer .fl a:hover{color:var(--ink)}
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
 <script>
-(function(){try{const a=JSON.parse(localStorage.getItem('sonandogu-recent')||'[]'); const box=document.getElementById('rgrid'); let n=0;
- a.forEach(p=>{const c=document.querySelector('.cat a.t[href="'+p+'"]'); if(!c) return; const ic=c.querySelector('.ic'); const bg=getComputedStyle(ic).backgroundImage;
-  const l=document.createElement('a'); l.href=p; l.innerHTML='<span class="ic"></span><span></span>'; l.querySelector('.ic').innerHTML=ic.innerHTML; l.querySelector('.ic').style.backgroundImage=bg; l.lastChild.textContent=c.querySelector('strong').textContent; box.append(l); n++;});
- if(n) document.getElementById('recent').hidden=false;}catch(e){}})();
+(function(){
+ const cats=[...document.querySelectorAll('.cat')], cards=[...document.querySelectorAll('.cat a.t')], q=document.getElementById('q'), tabs=[...document.querySelectorAll('.tabs2 [data-t]')];
+ let recent=[]; try{recent=JSON.parse(localStorage.getItem('sonandogu-recent')||'[]');}catch(e){}
+ const box=document.getElementById('rgrid'); let n=0;
+ recent.forEach(p=>{const c=document.querySelector('.cat a.t[href="'+p+'"]'); if(!c||n>=4) return; const ic=c.querySelector('.ic');
+   const l=document.createElement('a'); l.href=p; l.innerHTML='<span class="ic"></span><span></span>'; l.querySelector('.ic').innerHTML=ic.innerHTML; l.querySelector('.ic').style.backgroundImage=getComputedStyle(ic).backgroundImage; l.lastChild.textContent=c.querySelector('strong').textContent; box.append(l); n++;});
+ const rec=new Set(recent.slice(0,4).filter(p=>document.querySelector('.cat a.t[href="'+p+'"]')));
+ let tab='all';
+ const norm=s=>s.toLowerCase().replace(/\s+/g,'');
+ function apply(){
+   const term=norm(q.value);
+   document.getElementById('recent').hidden=!(rec.size&&tab==='all'&&!term);
+   let shown=0;
+   cats.forEach(sec=>{ let vis=0; const inTab=tab==='all'||sec.id===tab;
+     sec.querySelectorAll('a.t').forEach(c=>{ const txt=norm(c.textContent+' '+(c.dataset.kw||''));
+       let ok=inTab && (!term||txt.includes(term));
+       if(ok&&tab==='all'&&!term&&rec.has(c.getAttribute('href'))) ok=false;
+       c.hidden=!ok; if(ok) vis++; });
+     sec.hidden=!vis; shown+=vis; });
+   document.getElementById('noRes').hidden=shown>0;
+ }
+ function setTab(t,scroll){ tab=t; tabs.forEach(b=>b.setAttribute('aria-selected',b.dataset.t===t)); apply();
+   if(scroll&&t!=='all'){ const s=document.getElementById(t); if(s) s.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}); } }
+ tabs.forEach(b=>b.onclick=()=>{ setTab(b.dataset.t,false); history.replaceState(null,'',b.dataset.t==='all'?location.pathname:'#'+b.dataset.t); });
+ q.addEventListener('input',()=>{ if(q.value&&tab!=='all') setTab('all'); else apply(); });
+ const fromHash=()=>{const t=location.hash.slice(1); if(['calc','tools','play'].includes(t)){ q.value=''; setTab(t,true);} else apply();};
+ addEventListener('hashchange',fromHash); fromHash();
+})();
 let _dp=null; addEventListener('beforeinstallprompt',e=>{e.preventDefault(); _dp=e; const b=document.getElementById('inst'); if(b){b.hidden=false; b.onclick=async()=>{_dp.prompt(); await _dp.userChoice; _dp=null; b.hidden=true;};}});
 </script>
 </body>
