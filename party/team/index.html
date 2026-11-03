@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
 <link rel="canonical" href="https://sonandogu.com/party/team/">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -19,6 +23,7 @@
 <meta property="og:description" content="랜덤 조 편성, 결과 복사까지.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "팀은 어떻게 무작위로 나누나요?", "acceptedAnswer": {"@type": "Answer", "text": "브라우저의 보안 난수로 참가자 순서를 섞은 뒤 팀마다 차례로 한 명씩 배정해요. 그래서 팀 사이 인원 차이는 최대 한 명이에요."}}, {"@type": "Question", "name": "팀당 인원으로도 나눌 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 팀당 인원을 정하면 필요한 팀 수를 자동으로 계산해서 나눠요."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "모임 놀이", "item": "https://sonandogu.com/party/"}, {"@type": "ListItem", "position": 3, "name": "팀 나누기", "item": "https://sonandogu.com/party/team/"}]}</script>
 <style>:root{
   --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
   --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
@@ -272,6 +277,13 @@ footer .fl a:hover{color:var(--ink)}
 </head>
 <body>
 <script>
+async function shareOut(t){ const touch=matchMedia('(pointer:coarse)').matches; if(navigator.share&&touch){ try{ await navigator.share({text:t}); return 'shared'; }catch(e){ if(e&&e.name==='AbortError') return 'abort'; } } await navigator.clipboard.writeText(t); return 'copied'; }
+document.addEventListener('DOMContentLoaded',()=>{ if(navigator.share&&matchMedia('(pointer:coarse)').matches){ document.querySelectorAll('[data-share]').forEach(b=>b.textContent=b.dataset.share); } });
+</script>
+<script>
+(function(){try{const k='sonandogu-recent',p=location.pathname,a=JSON.parse(localStorage.getItem(k)||'[]').filter(x=>x!==p);a.unshift(p);localStorage.setItem(k,JSON.stringify(a.slice(0,4)));}catch(e){}})();
+</script>
+<script>
 function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const img=e.querySelector('img'), src='/assets/endo/'+p+'.webp'; if(img.getAttribute('src')!==src) img.setAttribute('src',src); e.dataset.p=p; const s=e.querySelector('.say'); if(s.textContent!==m){ s.textContent=m; if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); } } }
 </script>
 <header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
@@ -386,7 +398,7 @@ function run(){
 }
 $('go').onclick=run; $('again').onclick=run;
 $('copy').onclick=async()=>{ if(!last) return; const t='[팀 나누기 결과]\n'+last.map((m,i)=>`${TEAMS[i%TEAMS.length][0]} ${TEAMS[i%TEAMS.length][1]}: ${m.join(', ')}`).join('\n')+'\n\n손안의도구 팀 나누기\nhttps://sonandogu.com/party/team/';
-  try{await navigator.clipboard.writeText(t); say('복사했어요');}catch(e){say('복사하지 못했어요');} };
+  try{const _r=await shareOut(t); if(_r==='copied') say('복사했어요');}catch(e){say('공유하지 못했어요');} };
 paint();
 </script>
 </div>
@@ -402,5 +414,6 @@ paint();
  setTimeout(upd,300);
 })();
 </script>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
 </body>
 </html>

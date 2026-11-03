@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="theme-color" content="#F4F4F1">
@@ -233,5 +237,6 @@ function run(){const a=num(A.value),b=num(B.value);
   O.innerHTML=(r>=0?'<b>'+fmt(r)+'%</b> 인상':'<b>'+fmt(-r)+'%</b> 감소')+' · 세전 월 <em>'+fmt(Math.abs(m))+'만 원</em> 차이';}
 [A,B].forEach(el=>el.addEventListener('input',()=>{f(el);run();}));
 </script>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
 </body>
 </html>

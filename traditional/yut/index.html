@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="theme-color" content="#F4F4F1">
@@ -25,6 +29,7 @@
 {"@type":"Question","name":"빽도는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"표시된 윷가락 하나만 평평한 면이 나오면 빽도로, 판 위의 말 하나가 한 칸 뒤로 갑니다. 판에 말이 없으면 그냥 넘어갑니다."}}
 ]}
 </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "전통 놀이", "item": "https://sonandogu.com/traditional/"}, {"@type": "ListItem", "position": 3, "name": "온라인 윷놀이", "item": "https://sonandogu.com/traditional/yut/"}]}</script>
 <style>:root{
   --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
   --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
@@ -241,6 +246,13 @@ footer .fl a:hover{color:var(--ink)}
 </style>
 </head>
 <body>
+<script>
+async function shareOut(t){ const touch=matchMedia('(pointer:coarse)').matches; if(navigator.share&&touch){ try{ await navigator.share({text:t}); return 'shared'; }catch(e){ if(e&&e.name==='AbortError') return 'abort'; } } await navigator.clipboard.writeText(t); return 'copied'; }
+document.addEventListener('DOMContentLoaded',()=>{ if(navigator.share&&matchMedia('(pointer:coarse)').matches){ document.querySelectorAll('[data-share]').forEach(b=>b.textContent=b.dataset.share); } });
+</script>
+<script>
+(function(){try{const k='sonandogu-recent',p=location.pathname,a=JSON.parse(localStorage.getItem(k)||'[]').filter(x=>x!==p);a.unshift(p);localStorage.setItem(k,JSON.stringify(a.slice(0,4)));}catch(e){}})();
+</script>
 <script>
 function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const img=e.querySelector('img'), src='/assets/endo/'+p+'.webp'; if(img.getAttribute('src')!==src) img.setAttribute('src',src); e.dataset.p=p; const s=e.querySelector('.say'); if(s.textContent!==m){ s.textContent=m; if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); } } }
 </script>
@@ -582,5 +594,6 @@ addEventListener('keydown',e=>{ if(e.code==='Space'&&!$('gameView').hidden&&!/IN
 const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1500);}
 paintSetup();
 </script>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
 </body>
 </html>

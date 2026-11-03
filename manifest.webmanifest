@@ -1,0 +1,47 @@
+{
+ "name": "손안의도구 - 계산기, 생활 도구, 놀이",
+ "short_name": "손안의도구",
+ "description": "설치도 가입도 없이 바로 꺼내 쓰는 계산기와 생활 도구, 놀이 모음",
+ "lang": "ko",
+ "start_url": "/?source=pwa",
+ "scope": "/",
+ "display": "standalone",
+ "background_color": "#F4F4F1",
+ "theme_color": "#FF5A1F",
+ "icons": [
+  {
+   "src": "/assets/icons/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "/assets/icons/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "/assets/icons/icon-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ],
+ "shortcuts": [
+  {
+   "name": "더치페이 계산기",
+   "url": "/dutch/"
+  },
+  {
+   "name": "퍼센트 계산기",
+   "url": "/percent/"
+  },
+  {
+   "name": "사다리타기",
+   "url": "/party/ladder/"
+  },
+  {
+   "name": "룰렛 돌리기",
+   "url": "/party/roulette/"
+  }
+ ]
+}

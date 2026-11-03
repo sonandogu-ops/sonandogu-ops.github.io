@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
 <link rel="canonical" href="https://sonandogu.com/">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -137,6 +141,16 @@ footer .fl a:hover{color:var(--ink)}
   .cat .t .go{display:none}
   .posts{margin-top:44px}
 }
+
+.recent{margin-top:22px}
+.recent .ch h2::before{background:var(--ink); box-shadow:0 0 0 4px rgba(0,0,0,.06)}
+.rgrid{display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; padding:2px 2px 6px; margin:0 -2px}
+.rgrid::-webkit-scrollbar{display:none}
+.rgrid a{flex:none; display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:10px 16px 10px 10px; box-shadow:var(--shadow); font-weight:800; font-size:14.5px}
+.rgrid a .ic{width:36px; height:36px; border-radius:12px; font-size:17px; display:grid; place-items:center; color:#fff}
+.rgrid a .ic svg{width:20px; height:20px}
+.jump .inst{flex:none; display:inline-flex; align-items:center; gap:7px; font:inherit; font-size:14px; font-weight:800; color:#fff; background:var(--ink); border:none; border-radius:999px; padding:8px 14px; cursor:pointer}
+.jump .inst[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -145,9 +159,13 @@ footer .fl a:hover{color:var(--ink)}
   <section class="hero">
     <h1>꺼내서 쓰고,<br><span>바로 닫으세요.</span></h1>
     <p>계산기부터 생활 도구, 함께 즐기는 놀이까지. 설치도 가입도 없이 필요한 순간 바로 꺼내 쓰세요.</p>
-    <nav class="jump" aria-label="분류 바로가기"><a href="#calc"><i style="background:#FF5A1F"></i>계산기</a><a href="#tools"><i style="background:#2F66F0"></i>생활 도구</a><a href="#play"><i style="background:#12985B"></i>놀이</a><a href="/blog/"><i style="background:var(--muted)"></i>블로그</a></nav>
+    <nav class="jump" aria-label="분류 바로가기"><a href="#calc"><i style="background:#FF5A1F"></i>계산기</a><a href="#tools"><i style="background:#2F66F0"></i>생활 도구</a><a href="#play"><i style="background:#12985B"></i>놀이</a><a href="/blog/"><i style="background:var(--muted)"></i>블로그</a><button class="inst" id="inst" hidden><i style="background:#FF5A1F"></i>앱으로 설치</button></nav>
   </section>
   <main>
+  <section class="recent" id="recent" hidden>
+    <div class="ch"><h2>최근 쓴 도구</h2></div>
+    <div class="rgrid" id="rgrid"></div>
+  </section>
   <section class="cat" id="calc">
     <div class="ch"><h2>계산기</h2><span class="cs">숫자 몇 개로 끝내는</span></div>
     <div class="grid">
@@ -181,5 +199,13 @@ footer .fl a:hover{color:var(--ink)}
   </section>
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+<script>
+(function(){try{const a=JSON.parse(localStorage.getItem('sonandogu-recent')||'[]'); const box=document.getElementById('rgrid'); let n=0;
+ a.forEach(p=>{const c=document.querySelector('.cat a.t[href="'+p+'"]'); if(!c) return; const ic=c.querySelector('.ic'); const bg=getComputedStyle(ic).backgroundImage;
+  const l=document.createElement('a'); l.href=p; l.innerHTML='<span class="ic"></span><span></span>'; l.querySelector('.ic').innerHTML=ic.innerHTML; l.querySelector('.ic').style.backgroundImage=bg; l.lastChild.textContent=c.querySelector('strong').textContent; box.append(l); n++;});
+ if(n) document.getElementById('recent').hidden=false;}catch(e){}})();
+let _dp=null; addEventListener('beforeinstallprompt',e=>{e.preventDefault(); _dp=e; const b=document.getElementById('inst'); if(b){b.hidden=false; b.onclick=async()=>{_dp.prompt(); await _dp.userChoice; _dp=null; b.hidden=true;};}});
+</script>
 </body>
 </html>

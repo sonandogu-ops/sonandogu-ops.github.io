@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="theme-color" content="#F4F4F1">
@@ -92,6 +96,7 @@ footer .fl a:hover{color:var(--ink)}
 
 <h2>3. 브라우저 저장소 이용</h2>
 <p>일부 도구는 편의를 위해 이용자 기기의 브라우저 저장소(로컬 스토리지)를 사용합니다. 예를 들어 온라인 윷놀이는 진행 중인 게임을 이어서 할 수 있도록 게임 상태를 기기에 저장합니다. 이 정보는 기기 밖으로 전송되지 않으며, 브라우저의 사이트 데이터 삭제 기능으로 언제든 지울 수 있습니다.</p>
+<p>첫 화면의 "최근 쓴 도구"를 보여주기 위해 최근에 연 도구의 주소 몇 개를 같은 방식으로 기기에 저장하고, 빠르게 열리고 인터넷이 끊겨도 일부 페이지를 볼 수 있도록 사이트 파일을 브라우저 캐시에 저장할 수 있습니다. 어느 것도 운영자에게 전송되지 않습니다.</p>
 
 <h2>4. 쿠키와 광고</h2>
 <p>사이트는 운영비 마련을 위해 Google 애드센스 등 제3자 광고를 게재할 수 있습니다.</p>
@@ -120,5 +125,6 @@ footer .fl a:hover{color:var(--ink)}
 
 </main></div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
 </body>
 </html>
