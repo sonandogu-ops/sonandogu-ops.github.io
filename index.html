@@ -113,6 +113,30 @@ footer .fl a:hover{color:var(--ink)}
 .cat .t:hover{border-left-color:var(--c2); background:linear-gradient(90deg,var(--tint),var(--surface) 60%)}
 .cat .t:hover .go{background:var(--c2); border-color:var(--c2); color:#fff}
 .cat .t:focus-visible{outline-color:var(--c2)}
+
+.jump{display:flex; gap:6px; margin-top:18px; overflow-x:auto; scrollbar-width:none; padding-bottom:2px}
+.jump::-webkit-scrollbar{display:none}
+.jump a{flex:none; display:inline-flex; align-items:center; gap:7px; font-size:14px; font-weight:700; color:var(--ink); text-decoration:none; background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:8px 14px}
+.jump a:hover{border-color:var(--ink)}
+.jump i{width:8px; height:8px; border-radius:50%}
+.cat{scroll-margin-top:70px}
+@media (max-width:639px){
+  .hero{padding:26px 0 6px}
+  .hero h1{font-size:34px; margin-bottom:12px}
+  .hero p{font-size:15px}
+  .cat{margin-top:26px}
+  .ch{margin-bottom:10px}
+  .ch h2{font-size:19px}
+  .cat .grid{grid-template-columns:1fr 1fr; gap:8px}
+  .cat .t{flex-direction:column; align-items:flex-start; gap:10px; padding:14px 14px 15px; border-left:0; border-radius:20px}
+  .cat .t:hover{border-left:0; transform:none}
+  .cat .ic{width:40px; height:40px; border-radius:13px; font-size:19px}
+  .cat .ic svg{width:22px; height:22px}
+  .cat .t strong{font-size:15px; line-height:1.3}
+  .cat .t .d{display:none}
+  .cat .t .go{display:none}
+  .posts{margin-top:44px}
+}
 </style>
 </head>
 <body>
@@ -121,6 +145,7 @@ footer .fl a:hover{color:var(--ink)}
   <section class="hero">
     <h1>꺼내서 쓰고,<br><span>바로 닫으세요.</span></h1>
     <p>계산기부터 생활 도구, 함께 즐기는 놀이까지. 설치도 가입도 없이 필요한 순간 바로 꺼내 쓰세요.</p>
+    <nav class="jump" aria-label="분류 바로가기"><a href="#calc"><i style="background:#FF5A1F"></i>계산기</a><a href="#tools"><i style="background:#2F66F0"></i>생활 도구</a><a href="#play"><i style="background:#12985B"></i>놀이</a><a href="/blog/"><i style="background:var(--muted)"></i>블로그</a></nav>
   </section>
   <main>
   <section class="cat" id="calc">

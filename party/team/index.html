@@ -258,6 +258,15 @@ footer .fl a:hover{color:var(--ink)}
 .tip b{display:block; font-size:13px; color:var(--orange); font-weight:800; margin-bottom:2px}
 .tip p{margin:0; font-size:15px; line-height:1.6}
 @media (prefers-reduced-motion:reduce){.endo.pop img,.endo.pop .say,.endo[data-p] img{animation:none!important}}
+
+.jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
+.jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
+.jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
+.res{scroll-margin-top:66px}
+@media (min-width:920px){.jumpres{display:none!important}}
+@media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
+@media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
 </style>
 </head>
 <body>
@@ -381,5 +390,16 @@ paint();
 </script>
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
+<button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><span id="jrText"></span><b>↓</b></button>
+<script>
+(function(){const T=document.querySelector('aside.res'), B=document.getElementById('jumpres'), X=document.getElementById('jrText'); if(!T||!B) return;
+ const sum=()=>{try{return ('팀 나누기 결과 보러 가기');}catch(e){return '결과 보기';}};
+ let below=false, vis=false;
+ const upd=()=>{ const r=T.getBoundingClientRect(); below=r.top>innerHeight-40; vis=below&&innerWidth<920; B.hidden=!vis; if(vis) X.textContent=sum(); };
+ addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); document.addEventListener('input',()=>setTimeout(upd,60)); document.addEventListener('click',()=>setTimeout(upd,120));
+ B.onclick=()=>T.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+ setTimeout(upd,300);
+})();
+</script>
 </body>
 </html>
