@@ -198,9 +198,31 @@ footer .fl a:hover{color:var(--ink)}
 .rel b{font-size:13px; color:var(--orange); font-weight:800}
 .rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
 .rel a:hover{color:var(--orange)}
+
+.endo{display:flex; align-items:flex-end; gap:10px; margin-top:14px}
+.endo img{flex:none; width:64px; height:64px; object-fit:contain; filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
+.endo .say{position:relative; flex:1; background:#F4F4F1; color:#141518; font-size:14px; font-weight:700; line-height:1.45; border-radius:16px 16px 16px 4px; padding:10px 13px; margin-bottom:8px; letter-spacing:-.01em}
+.endo .say::before{content:""; position:absolute; left:-6px; bottom:8px; border:6px solid transparent; border-right-color:#F4F4F1; border-left:0}
+.endo.light .say{background:var(--field); color:var(--ink)}
+.endo.light .say::before{border-right-color:var(--field)}
+.endo.light img{filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
+.endo.pop img{animation:endoHop .5s cubic-bezier(.3,1.6,.5,1)}
+.endo.pop .say{animation:endoSay .35s ease-out}
+.endo[data-p="walk"] img,.endo[data-p="run"] img{animation:endoWalk .45s ease-in-out infinite}
+@keyframes endoHop{0%{transform:translateY(8px) scale(.9)}60%{transform:translateY(-6px)}100%{transform:none}}
+@keyframes endoSay{from{opacity:0; transform:translateX(-6px)}to{opacity:1; transform:none}}
+@keyframes endoWalk{50%{transform:translateY(-4px) rotate(-3deg)}}
+.tip{display:flex; gap:16px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:14px 18px; margin:0 0 22px; box-shadow:var(--shadow)}
+.tip img{width:80px; height:80px; object-fit:contain; flex:none}
+.tip b{display:block; font-size:13px; color:var(--orange); font-weight:800; margin-bottom:2px}
+.tip p{margin:0; font-size:15px; line-height:1.6}
+@media (prefers-reduced-motion:reduce){.endo.pop img,.endo.pop .say,.endo[data-p] img{animation:none!important}}
 </style>
 </head>
 <body>
+<script>
+function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const img=e.querySelector('img'), src='/assets/endo/'+p+'.webp'; if(img.getAttribute('src')!==src) img.setAttribute('src',src); e.dataset.p=p; const s=e.querySelector('.say'); if(s.textContent!==m){ s.textContent=m; if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); } } }
+</script>
 <header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
 <div class="container">
   <section class="hero">
@@ -241,11 +263,13 @@ footer .fl a:hover{color:var(--ink)}
         <span class="badge" id="badge" hidden></span>
         <div class="lines" id="lines"></div>
         <div class="sub" id="note" style="margin-top:12px;font-size:12.5px"></div>
+        <div class="endo" id="endo" data-p="surprised"><img src="/assets/endo/surprised.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">시급과 일하는 시간을 넣으면 주휴수당까지 계산해드려요!</div></div>
       </div>
     </aside>
   </div>
 
   <section class="guide">
+    <div class="tip"><img src="/assets/endo/scroll.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>주휴수당은 그 주에 정해진 날을 모두 나와야 받을 수 있어요. 지각이나 조퇴는 괜찮지만 결근하면 그 주 주휴수당이 빠질 수 있어요.</p></div></div>
     <h2>주휴수당, 이것만 알면 돼요</h2>
     <div class="fgrid">
       <div class="f"><h3>받을 수 있는 조건</h3><p>1주에 일하기로 한 시간이 <strong>15시간 이상</strong>이고, 그 주에 정해진 근무일을 <strong>모두 나왔다면</strong> 받을 수 있어요. 알바, 5인 미만 가게도 똑같이 적용돼요.</p></div>
@@ -320,13 +344,14 @@ function calc(){
   const w=$('minWarn');
   if(wage && wage<MIN[S.year]){ w.hidden=false; w.textContent=`${S.year}년 최저임금(${won(MIN[S.year])}원)보다 낮아요. 최저임금보다 적게 주는 건 법 위반이에요.`; } else w.hidden=true;
   const R=compute(wage,dayMin,S.five,nightMin);
-  if(!wage||!R.weekMin){ $('cap').textContent='시급과 근무시간을 넣어주세요'; $('month').innerHTML='0<span class="u">원</span>'; $('lines').innerHTML=''; $('badge').hidden=true; $('note').textContent=''; $('monthSub').textContent='한 달 예상 급여'; return; }
+  if(!wage||!R.weekMin){ endo('surprised', !wage? '앗, 시급을 먼저 채워주세요!' : '앗, 요일별 근무시간을 채워주셔야 계산할 수 있어요!'); $('cap').textContent='시급과 근무시간을 넣어주세요'; $('month').innerHTML='0<span class="u">원</span>'; $('lines').innerHTML=''; $('badge').hidden=true; $('note').textContent=''; $('monthSub').textContent='한 달 예상 급여'; return; }
   const taxed=v=>S.tax? v-Math.floor(v*0.03/10)*10-Math.floor(v*0.003/10)*10 : v;
   const mp=Math.round(R.monthPay), wp=Math.round(R.weekPay);
   $('cap').textContent=`주 ${hrs(R.weekMin/60)}시간 · ${R.workDays}일 근무 · 시급 ${won(wage)}원`;
   $('month').innerHTML=`${won(taxed(mp))}<span class="u">원</span>`;
   $('monthSub').textContent= S.tax? `한 달 예상 급여 (3.3% 공제 후, 세전 ${won(mp)}원)` : '한 달 예상 급여 (세전)';
   const b=$('badge'); b.hidden=false;
+  if(wage<MIN[S.year]) endo('peek',`잠깐! 시급이 ${S.year}년 최저임금보다 낮아요`); else if(R.eligible) endo('sit','주휴수당까지 꼼꼼하게 챙겼어요!'); else endo('point',`주 15시간까지 ${hrs(15-R.weekMin/60)}시간! 넘으면 주휴수당이 붙어요`);
   if(R.eligible){ b.className='badge ok'; b.textContent=`주휴수당 대상 · 주 ${hrs(R.holiMin/60)}시간분`; }
   else { b.className='badge no'; b.textContent=`주휴수당 대상 아님 · 주 15시간부터 (${hrs(15-R.weekMin/60)}시간 부족)`; }
   let L=`<div class="ln"><span>기본급 (주 ${hrs(R.weekMin/60)}시간)</span><b>${won(R.base)}원</b></div>`;

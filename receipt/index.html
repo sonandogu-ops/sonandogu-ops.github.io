@@ -165,9 +165,31 @@ footer .fl a:hover{color:var(--ink)}
 .rel b{font-size:13px; color:var(--orange); font-weight:800}
 .rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
 .rel a:hover{color:var(--orange)}
+
+.endo{display:flex; align-items:flex-end; gap:10px; margin-top:14px}
+.endo img{flex:none; width:64px; height:64px; object-fit:contain; filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
+.endo .say{position:relative; flex:1; background:#F4F4F1; color:#141518; font-size:14px; font-weight:700; line-height:1.45; border-radius:16px 16px 16px 4px; padding:10px 13px; margin-bottom:8px; letter-spacing:-.01em}
+.endo .say::before{content:""; position:absolute; left:-6px; bottom:8px; border:6px solid transparent; border-right-color:#F4F4F1; border-left:0}
+.endo.light .say{background:var(--field); color:var(--ink)}
+.endo.light .say::before{border-right-color:var(--field)}
+.endo.light img{filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
+.endo.pop img{animation:endoHop .5s cubic-bezier(.3,1.6,.5,1)}
+.endo.pop .say{animation:endoSay .35s ease-out}
+.endo[data-p="walk"] img,.endo[data-p="run"] img{animation:endoWalk .45s ease-in-out infinite}
+@keyframes endoHop{0%{transform:translateY(8px) scale(.9)}60%{transform:translateY(-6px)}100%{transform:none}}
+@keyframes endoSay{from{opacity:0; transform:translateX(-6px)}to{opacity:1; transform:none}}
+@keyframes endoWalk{50%{transform:translateY(-4px) rotate(-3deg)}}
+.tip{display:flex; gap:16px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:14px 18px; margin:0 0 22px; box-shadow:var(--shadow)}
+.tip img{width:80px; height:80px; object-fit:contain; flex:none}
+.tip b{display:block; font-size:13px; color:var(--orange); font-weight:800; margin-bottom:2px}
+.tip p{margin:0; font-size:15px; line-height:1.6}
+@media (prefers-reduced-motion:reduce){.endo.pop img,.endo.pop .say,.endo[data-p] img{animation:none!important}}
 </style>
 </head>
 <body>
+<script>
+function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const img=e.querySelector('img'), src='/assets/endo/'+p+'.webp'; if(img.getAttribute('src')!==src) img.setAttribute('src',src); e.dataset.p=p; const s=e.querySelector('.say'); if(s.textContent!==m){ s.textContent=m; if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); } } }
+</script>
 <header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
 <div class="container">
   <section class="hero">
@@ -240,12 +262,14 @@ footer .fl a:hover{color:var(--ink)}
           </table>
         </div>
       </div>
+      <div class="endo light" id="endo" data-p="point"><img src="/assets/endo/point.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">품목과 금액을 넣으면 영수증이 완성돼요!</div></div>
       <div class="acts"><button class="save" id="save">이미지로 저장</button><button class="print" id="print">인쇄 · PDF</button></div>
       <p class="note">입력한 내용은 이 기기 안에서만 처리되고 어디에도 저장되지 않습니다. 영수증은 실제로 물건이나 서비스를 판 공급자가 사실대로 작성해야 합니다.</p>
     </aside>
   </div>
 
   <section class="guide">
+    <div class="tip"><img src="/assets/endo/scroll.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>사업자 경비는 건당 3만 원(부가세 포함)까지 간이영수증으로 증빙할 수 있어요. 넘으면 카드나 현금영수증을 받는 게 좋아요.</p></div></div>
     <h2>간이영수증, 이것만 알면 됩니다</h2>
     <div class="fgrid">
       <div class="f"><h3>3만 원 이하는 간이영수증으로 충분</h3><p>사업자의 일반 경비는 건당 <strong>3만 원(부가세 포함) 이하</strong>라면 간이영수증으로 증빙할 수 있고 가산세도 붙지 않습니다.</p></div>
@@ -349,6 +373,7 @@ function render(){
   $('pSum').textContent=sum?comma(sum):'';
   $('pTotal').textContent=sum?'₩'+comma(sum):'';
   $('pKor').textContent=korean(sum);
+  if(!sum) endo('point','품목과 금액을 넣으면 영수증이 완성돼요!'); else if(!v('name')) endo('surprised','앗, 공급자 상호가 비어 있어요!'); else endo('sit',`합계 ${comma(sum)}원, 영수증 완성! 저장하거나 인쇄해요`);
   $('add').disabled=itemsEl.children.length>=MAX;
 }
 const toast=$('toast');

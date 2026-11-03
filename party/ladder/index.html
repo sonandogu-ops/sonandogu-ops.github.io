@@ -261,9 +261,31 @@ footer .fl a:hover{color:var(--ink)}
 .rel b{font-size:13px; color:var(--orange); font-weight:800}
 .rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
 .rel a:hover{color:var(--orange)}
+
+.endo{display:flex; align-items:flex-end; gap:10px; margin-top:14px}
+.endo img{flex:none; width:64px; height:64px; object-fit:contain; filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
+.endo .say{position:relative; flex:1; background:#F4F4F1; color:#141518; font-size:14px; font-weight:700; line-height:1.45; border-radius:16px 16px 16px 4px; padding:10px 13px; margin-bottom:8px; letter-spacing:-.01em}
+.endo .say::before{content:""; position:absolute; left:-6px; bottom:8px; border:6px solid transparent; border-right-color:#F4F4F1; border-left:0}
+.endo.light .say{background:var(--field); color:var(--ink)}
+.endo.light .say::before{border-right-color:var(--field)}
+.endo.light img{filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
+.endo.pop img{animation:endoHop .5s cubic-bezier(.3,1.6,.5,1)}
+.endo.pop .say{animation:endoSay .35s ease-out}
+.endo[data-p="walk"] img,.endo[data-p="run"] img{animation:endoWalk .45s ease-in-out infinite}
+@keyframes endoHop{0%{transform:translateY(8px) scale(.9)}60%{transform:translateY(-6px)}100%{transform:none}}
+@keyframes endoSay{from{opacity:0; transform:translateX(-6px)}to{opacity:1; transform:none}}
+@keyframes endoWalk{50%{transform:translateY(-4px) rotate(-3deg)}}
+.tip{display:flex; gap:16px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:14px 18px; margin:0 0 22px; box-shadow:var(--shadow)}
+.tip img{width:80px; height:80px; object-fit:contain; flex:none}
+.tip b{display:block; font-size:13px; color:var(--orange); font-weight:800; margin-bottom:2px}
+.tip p{margin:0; font-size:15px; line-height:1.6}
+@media (prefers-reduced-motion:reduce){.endo.pop img,.endo.pop .say,.endo[data-p] img{animation:none!important}}
 </style>
 </head>
 <body>
+<script>
+function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const img=e.querySelector('img'), src='/assets/endo/'+p+'.webp'; if(img.getAttribute('src')!==src) img.setAttribute('src',src); e.dataset.p=p; const s=e.querySelector('.say'); if(s.textContent!==m){ s.textContent=m; if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); } } }
+</script>
 <header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
 <div class="container">
 
@@ -295,6 +317,7 @@ footer .fl a:hover{color:var(--ink)}
           <svg id="svg" aria-hidden="true"></svg>
           <div class="bots" id="bots"></div>
         </div>
+        <div class="endo" id="endo" data-p="point"><img src="/assets/endo/point.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">위의 이름을 눌러 출발시켜 보세요!</div></div>
         <div class="legend" id="legend" aria-live="polite">위의 이름을 눌러보세요</div>
         <ul class="mapres" id="mapres" hidden></ul>
         <div class="acts2"><button class="a" id="all">전체 결과 보기</button><button class="b" id="copy" disabled>결과 복사</button></div>
@@ -302,6 +325,7 @@ footer .fl a:hover{color:var(--ink)}
     </aside>
   </div>
   <section class="guide">
+    <div class="tip"><img src="/assets/endo/scroll.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>이 사다리는 결과를 먼저 공평하게 섞은 뒤 사다리를 그려요. 어느 자리를 골라도 유불리가 없으니 안심하고 고르세요.</p></div></div>
     <h2>공정한 사다리를 만드는 법</h2>
     <div class="fgrid">
       <div class="f"><h3>결과를 먼저, 사다리는 나중에</h3><p>손안의도구의 사다리는 먼저 보안 난수로 <strong>누가 어떤 결과를 받을지 완전히 공평하게</strong> 정하고, 그 결과가 나오도록 가로줄을 그려요. 그래서 위치에 따라 유리하거나 불리한 자리가 없어요.</p></div>
@@ -406,12 +430,12 @@ function go(i,quick){
   const tok=document.createElementNS(NS,'g'); tok.setAttribute('class','tok'); tok.dataset.i=i;
   tok.innerHTML=`<circle r="13" fill="${COL[i%COL.length]}"/><text>${emo(S.names[i],i)}</text>`; tg.append(tok);
   const fin=()=>{ running.delete(i); shown.add(i); labels(); const res=S.results[end]||'꽝';
-    $('legend').textContent=`${S.names[i]||(i+1)+'번'} → ${res}${NOWIN.test(res)?'':'!'}`; $('copy').disabled=false;
+    $('legend').textContent=`${S.names[i]||(i+1)+'번'} → ${res}${NOWIN.test(res)?'':'!'}`; if(!quick) endo(NOWIN.test(res)?'sit':'surprised', NOWIN.test(res)? `${S.names[i]||(i+1)+'번'}은(는) ${res}, 휴!` : `${S.names[i]||(i+1)+'번'}이(가) ${res}에 도착!`); $('copy').disabled=false;
     if(!quick&&!reduce) burst(end, NOWIN.test(res)?6:18, COL[i%COL.length]);
     if(shown.size===n) setTimeout(showAll, quick?0:500); };
   const place=t=>{const pt=p.getPointAtLength(t*len); tok.setAttribute('transform',`translate(${pt.x} ${pt.y})`);};
   if(reduce||quick){ place(1); fin(); return; }
-  running.add(i); labels(); $('legend').innerHTML='<span class="drum">두구두구</span>…';
+  running.add(i); labels(); endo('walk',`${S.names[i]||(i+1)+'번'} 내려가는 중…`); $('legend').innerHTML='<span class="drum">두구두구</span>…';
   p.style.strokeDasharray=len; p.style.strokeDashoffset=len;
   const dur=Math.min(3200, 1400+len*2.2), t0=performance.now();
   const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
@@ -428,8 +452,8 @@ function burst(j,count,col){
 }
 function showAll(){ $('board').classList.remove('covered'); const n=L.n; for(let i=0;i<n;i++) if(!shown.has(i)&&!running.has(i)) go(i,true);
   const m=$('mapres'); m.hidden=false; m.innerHTML=[...Array(n).keys()].map(i=>{const e=trace(L,i).end; return `<li><span>${(S.names[i]||(i+1)+'번').replace(/</g,'&lt;')}<i>→</i></span><span>${(S.results[e]||'꽝').replace(/</g,'&lt;')}</span></li>`;}).join('');
-  $('legend').textContent='전체 결과예요'; $('copy').disabled=false; }
-function make(){ fit(); L=buildLadder(S.n); shown=new Set(); running=new Set(); $('board').classList.add('covered'); $('mapres').hidden=true; $('legend').textContent='위의 이름을 눌러보세요'; $('copy').disabled=true; draw(); }
+  $('legend').textContent='전체 결과예요'; endo('sit','전체 결과가 나왔어요!'); $('copy').disabled=false; }
+function make(){ fit(); L=buildLadder(S.n); shown=new Set(); running=new Set(); $('board').classList.add('covered'); $('mapres').hidden=true; $('legend').textContent='위의 이름을 눌러보세요'; $('copy').disabled=true; draw(); endo('point','위의 이름을 눌러 출발시켜 보세요!'); }
 $('make').onclick=()=>{make(); say('새 사다리를 만들었어요');};
 $('all').onclick=showAll;
 $('copy').onclick=async()=>{ const n=L.n; const lines=[...shown].sort((a,b)=>a-b).map(i=>`${S.names[i]||(i+1)+'번'} → ${S.results[trace(L,i).end]||'꽝'}`);
