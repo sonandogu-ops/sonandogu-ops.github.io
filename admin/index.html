@@ -128,6 +128,7 @@ footer .fl a:hover{color:var(--ink)}
       <div class="row" style="justify-content:space-between"><div><b>올리기 전에 내가 먼저 확인하기</b><div class="note">켜면 새 댓글이 "검토 대기"로 들어와서, 공개를 눌러야 모두에게 보여요.</div></div><button class="sw" id="mod" role="switch" aria-checked="true" aria-label="검토 후 공개"></button></div>
     </div>
     <div class="tabsA" id="tabs"></div>
+    <div class="row" style="margin:-4px 0 12px"><button class="btn r" id="bulk">이 목록 전부 삭제</button><span class="note">광고나 도배가 한꺼번에 들어왔을 때 쓰세요.</span></div>
     <div id="list"></div>
   </div>
 </main></div>
@@ -151,27 +152,30 @@ au.onAuthStateChanged(auth,async u=>{
   try{ const s=await fs.getDoc(fs.doc(db,'settings','main')); if(!s.exists()) await fs.setDoc(fs.doc(db,'settings','main'),{moderation:true}); const m=(s.exists()?s.data().moderation:true); $('mod').setAttribute('aria-checked',m); }catch(e){ $('list').innerHTML='<p class="note">아직 관리 권한이 없어요. 위 UID를 보안 규칙에 넣고 게시한 뒤 새로고침하세요.</p>'; return; }
   load();
 });
+$('bulk').onclick=async()=>{ if(!curList.length) return; if(!confirm(`지금 보이는 ${curList.length}개를 모두 지울까요? 되돌릴 수 없어요.`)) return; for(const x of curList){ await fs.deleteDoc(fs.doc(db,'comments',x.id)); } const ids=new Set(curList.map(x=>x.id)); all=all.filter(x=>!ids.has(x.id)&&!ids.has(x.parent)); render(); };
 $('mod').onclick=async()=>{ const v=$('mod').getAttribute('aria-checked')!=='true'; await fs.setDoc(fs.doc(db,'settings','main'),{moderation:v},{merge:true}); $('mod').setAttribute('aria-checked',v); };
 async function load(){
   const snap=await fs.getDocs(fs.query(fs.collection(db,'comments'),fs.orderBy('createdAt','desc'),fs.limit(500)));
   all=snap.docs.map(d=>({id:d.id,...d.data()})); render();
 }
+let curList=[];
 function render(){
   const top=all.filter(c=>!c.parent), req=top.filter(c=>c.kind==='request');
   const groups={pending:top.filter(c=>c.status==='pending'), private:top.filter(c=>c.status==='private'&&c.kind!=='request'), request:req, public:top.filter(c=>c.status==='public'), hidden:top.filter(c=>c.status==='hidden')};
   const names={pending:'검토 대기',private:'비공개 의견',request:'도구 요청',public:'공개됨',hidden:'숨김'};
   $('tabs').innerHTML=Object.keys(groups).map(k=>`<button data-k="${k}" aria-pressed="${k===tab}">${names[k]}<b>${groups[k].length}</b></button>`).join('');
   $('tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{tab=b.dataset.k; render();});
-  const L=groups[tab];
+  const L=groups[tab]; curList=L;
   $('list').innerHTML=L.length? L.map(c=>{ const reps=all.filter(r=>r.parent===c.id);
     return `<div class="item" data-id="${c.id}"><div class="m"><span class="st ${c.status}">${LBL[c.status]||c.status}</span><a href="${esc(c.page)}" target="_blank">${esc(c.page)}</a><b>${esc(c.nick)}</b><span>${c.createdAt?c.createdAt.toDate().toLocaleString('ko-KR'):''}</span></div>
     <p>${esc(c.text)}</p>${reps.map(r=>`<div class="reps"><b>내 답글</b> · ${esc(r.text)}</div>`).join('')}
-    <div class="row">${c.status!=='public'&&c.kind!=='request'?'<button class="btn b" data-a="public">공개하기</button>':''}${c.status!=='hidden'?'<button class="btn" data-a="hidden">숨기기</button>':''}<button class="btn r" data-a="del">삭제</button><button class="btn" data-a="reply">답글 쓰기</button></div>
+    <div class="row">${c.status!=='public'&&c.kind!=='request'?'<button class="btn b" data-a="public">공개하기</button>':''}${c.status!=='hidden'?'<button class="btn" data-a="hidden">숨기기</button>':''}<button class="btn r" data-a="del">삭제</button><button class="btn r" data-a="same">같은 내용 모두 삭제</button><button class="btn" data-a="reply">답글 쓰기</button></div>
     <div class="rbox" hidden><textarea placeholder="개발자로 답글을 달아요. 공개 댓글에 단 답글은 모두에게 보여요."></textarea><div class="row" style="margin-top:6px"><button class="btn p" data-a="send">답글 올리기</button></div></div></div>`;}).join('') : '<p class="note">여기엔 아직 아무것도 없어요.</p>';
   $('list').querySelectorAll('.item').forEach(el=>{ const id=el.dataset.id, c=all.find(x=>x.id===id);
     el.querySelectorAll('[data-a]').forEach(b=>b.onclick=async()=>{ const a=b.dataset.a;
       if(a==='public'||a==='hidden'){ await fs.updateDoc(fs.doc(db,'comments',id),{status:a}); c.status=a; render(); }
       if(a==='del'){ if(!confirm('완전히 지울까요? 되돌릴 수 없어요.')) return; await fs.deleteDoc(fs.doc(db,'comments',id)); all=all.filter(x=>x.id!==id&&x.parent!==id); render(); }
+      if(a==='same'){ const key=(c.text||'').replace(/\s/g,''); const tgt=all.filter(x=>!x.parent&&(x.text||'').replace(/\s/g,'')===key); if(!confirm(`같은 내용 ${tgt.length}개를 모두 지울까요?`)) return; for(const x of tgt) await fs.deleteDoc(fs.doc(db,'comments',x.id)); const ids=new Set(tgt.map(x=>x.id)); all=all.filter(x=>!ids.has(x.id)&&!ids.has(x.parent)); render(); }
       if(a==='reply'){ el.querySelector('.rbox').hidden=false; el.querySelector('textarea').focus(); }
       if(a==='send'){ const t=el.querySelector('textarea').value.trim(); if(!t) return; const ref=await fs.addDoc(fs.collection(db,'comments'),{page:c.page,parent:id,nick:'손안의도구',text:t,status:'public',isDev:true,kind:'reply',createdAt:fs.serverTimestamp()}); all.push({id:ref.id,page:c.page,parent:id,text:t,status:'public'}); render(); }
     }); });
