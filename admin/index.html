@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F4F1">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sonandogu.com/about/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-default.jpg?v=3">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="사이트 소개 | 손안의도구">
+<meta property="og:description" content="필요할 때 꺼내 쓰는 손안의 도구 상자.">
+<title>관리 | 손안의도구</title>
+<meta name="description" content="손안의도구는 계산기부터 생활 도구, 함께 즐기는 놀이까지 가입 없이 바로 쓰는 무료 사이트입니다. 만든 이유와 운영 원칙, 마스코트 엔도, 문의 방법을 안내합니다.">
+<meta property="og:site_name" content="손안의도구">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.doc{max-width:720px; padding:40px 0 0}
+@media (min-width:920px){.doc{padding-top:64px}}
+.doc h1{font-size:clamp(32px,6vw,48px); font-weight:800; letter-spacing:-.05em; line-height:1.1; margin:0 0 12px}
+.doc .lead{font-size:17px; color:var(--muted); margin:0 0 36px}
+.doc h2{font-size:20px; font-weight:800; letter-spacing:-.03em; margin:40px 0 10px}
+.doc p,.doc li{font-size:15.5px; line-height:1.75}
+.doc p{margin:0 0 12px}
+.doc ul{margin:0 0 12px; padding-left:20px}
+.doc li{margin-bottom:6px}
+.doc a{color:var(--orange); font-weight:600}
+.box{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px 22px; margin:0 0 12px}
+.box h3{font-size:16px; font-weight:800; margin:0 0 6px; letter-spacing:-.02em}
+.box p{margin:0; color:var(--muted); font-size:15px}
+.meta{font-size:14px; color:var(--muted); margin-top:40px}
+.tools{display:grid; gap:10px}
+@media (min-width:640px){.tools{grid-template-columns:repeat(3,1fr)}}
+.tools a{display:block; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:16px}
+.tools a:hover{border-color:var(--ink)}
+.tools strong{display:block; font-size:16px; font-weight:800; letter-spacing:-.02em}
+.tools span{font-size:13.5px; color:var(--muted)}
+.pet{display:flex; gap:18px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px; margin:0 0 12px}
+.pet img{flex:none; width:100px; height:100px; object-fit:contain}
+.pet p{margin:0; color:var(--muted); font-size:15px}
+
+.adm{max-width:860px; padding:32px 0 60px}
+.adm h1{font-size:30px; font-weight:800; letter-spacing:-.04em; margin:0 0 6px}
+.adm .lead{color:var(--muted); margin:0 0 20px}
+.panel{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px; margin-bottom:14px; box-shadow:var(--shadow)}
+.btn{font:inherit; font-size:14px; font-weight:800; border-radius:12px; padding:9px 14px; cursor:pointer; border:1px solid var(--line); background:var(--surface); color:var(--ink)}
+.btn.p{background:linear-gradient(180deg,#FF8A3D,#FF5A1F); color:#141518; border:none}
+.btn.b{background:#2F66F0; color:#fff; border:none}
+.btn.r{color:#C2410C}
+.row{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+.uid{font-family:ui-monospace,monospace; font-size:13px; background:var(--field); border-radius:10px; padding:8px 10px; word-break:break-all}
+.tabsA{display:flex; gap:6px; flex-wrap:wrap; margin:6px 0 12px}
+.tabsA button{font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:7px 13px; cursor:pointer}
+.tabsA button[aria-pressed="true"]{color:var(--bg); background:var(--ink); border-color:var(--ink)}
+.tabsA b{margin-left:4px; color:var(--orange)}
+.item{border:1px solid var(--line); border-radius:16px; padding:14px; margin-bottom:10px; background:var(--surface)}
+.item .m{display:flex; gap:8px; flex-wrap:wrap; align-items:center; font-size:12.5px; color:var(--muted); margin-bottom:6px}
+.item .m a{color:var(--orange); font-weight:700; text-decoration:none}
+.st{font-size:11.5px; font-weight:800; border-radius:999px; padding:2px 8px; color:#fff}
+.st.pending{background:#E8A100}.st.private{background:#7C3AED}.st.public{background:#1FA968}.st.hidden{background:#6B7280}
+.item p{margin:0 0 10px; white-space:pre-wrap; word-break:break-word; line-height:1.65}
+.item textarea{width:100%; min-height:70px; font:inherit; font-size:14.5px; background:var(--field); border:1.5px solid transparent; border-radius:12px; padding:10px; margin-top:8px; outline:none; color:var(--ink)}
+.item .reps{margin-top:8px; padding:10px 12px; border-radius:12px; background:rgba(255,90,31,.07); font-size:14px}
+.sw{position:relative; flex:none; width:46px; height:28px; border-radius:999px; background:var(--field); border:1px solid var(--line); cursor:pointer; padding:0}
+.sw::after{content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .2s}
+.sw[aria-checked="true"]{background:var(--orange); border-color:var(--orange)}
+.sw[aria-checked="true"]::after{transform:translateX(18px)}
+.note{font-size:13px; color:var(--muted)}
+</style>
+<script src="/assets/firebase-config.js"></script>
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<div class="container"><main class="adm">
+  <h1>댓글 관리</h1>
+  <p class="lead">익명 댓글과 후기, 비공개 의견, 도구 요청을 확인하고 답하는 곳이에요. 이 주소는 검색에 노출되지 않아요.</p>
+  <div class="panel" id="login">
+    <div class="row"><button class="btn p" id="gin">구글 계정으로 로그인</button><span class="note" id="lmsg"></span></div>
+  </div>
+  <div id="app" hidden>
+    <div class="panel">
+      <div class="row" style="justify-content:space-between"><div><b id="who"></b><div class="note">처음 한 번은 아래 내 UID를 보안 규칙에 넣어야 관리할 수 있어요.</div></div><button class="btn" id="gout">로그아웃</button></div>
+      <div class="uid" id="uid" style="margin-top:10px"></div>
+    </div>
+    <div class="panel">
+      <div class="row" style="justify-content:space-between"><div><b>올리기 전에 내가 먼저 확인하기</b><div class="note">켜면 새 댓글이 "검토 대기"로 들어와서, 공개를 눌러야 모두에게 보여요.</div></div><button class="sw" id="mod" role="switch" aria-checked="true" aria-label="검토 후 공개"></button></div>
+    </div>
+    <div class="tabsA" id="tabs"></div>
+    <div id="list"></div>
+  </div>
+</main></div>
+<script type="module">
+const V='10.12.2'; const cfg=window.SONANDOGU_FIREBASE||{};
+const $=id=>document.getElementById(id);
+if(!cfg.apiKey||/^PASTE/.test(cfg.apiKey)){ $('lmsg').textContent='먼저 /assets/firebase-config.js 에 Firebase 설정을 넣어주세요.'; $('gin').disabled=true; }
+else{
+const app=await import(`https://www.gstatic.com/firebasejs/${V}/firebase-app.js`);
+const au=await import(`https://www.gstatic.com/firebasejs/${V}/firebase-auth.js`);
+const fs=await import(`https://www.gstatic.com/firebasejs/${V}/firebase-firestore.js`);
+const A=app.initializeApp(cfg), auth=au.getAuth(A), db=fs.getFirestore(A);
+$('gin').onclick=()=>au.signInWithPopup(auth,new au.GoogleAuthProvider()).catch(e=>$('lmsg').textContent='로그인 실패: '+e.code);
+$('gout').onclick=()=>au.signOut(auth);
+const esc=s=>String(s??'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const LBL={pending:'검토 대기',private:'비공개',public:'공개',hidden:'숨김'};
+let all=[], tab='pending';
+au.onAuthStateChanged(auth,async u=>{
+  $('login').hidden=!!u; $('app').hidden=!u; if(!u) return;
+  $('who').textContent=u.email; $('uid').textContent='내 UID: '+u.uid;
+  try{ const s=await fs.getDoc(fs.doc(db,'settings','main')); if(!s.exists()) await fs.setDoc(fs.doc(db,'settings','main'),{moderation:true}); const m=(s.exists()?s.data().moderation:true); $('mod').setAttribute('aria-checked',m); }catch(e){ $('list').innerHTML='<p class="note">아직 관리 권한이 없어요. 위 UID를 보안 규칙에 넣고 게시한 뒤 새로고침하세요.</p>'; return; }
+  load();
+});
+$('mod').onclick=async()=>{ const v=$('mod').getAttribute('aria-checked')!=='true'; await fs.setDoc(fs.doc(db,'settings','main'),{moderation:v},{merge:true}); $('mod').setAttribute('aria-checked',v); };
+async function load(){
+  const snap=await fs.getDocs(fs.query(fs.collection(db,'comments'),fs.orderBy('createdAt','desc'),fs.limit(500)));
+  all=snap.docs.map(d=>({id:d.id,...d.data()})); render();
+}
+function render(){
+  const top=all.filter(c=>!c.parent), req=top.filter(c=>c.kind==='request');
+  const groups={pending:top.filter(c=>c.status==='pending'), private:top.filter(c=>c.status==='private'&&c.kind!=='request'), request:req, public:top.filter(c=>c.status==='public'), hidden:top.filter(c=>c.status==='hidden')};
+  const names={pending:'검토 대기',private:'비공개 의견',request:'도구 요청',public:'공개됨',hidden:'숨김'};
+  $('tabs').innerHTML=Object.keys(groups).map(k=>`<button data-k="${k}" aria-pressed="${k===tab}">${names[k]}<b>${groups[k].length}</b></button>`).join('');
+  $('tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{tab=b.dataset.k; render();});
+  const L=groups[tab];
+  $('list').innerHTML=L.length? L.map(c=>{ const reps=all.filter(r=>r.parent===c.id);
+    return `<div class="item" data-id="${c.id}"><div class="m"><span class="st ${c.status}">${LBL[c.status]||c.status}</span><a href="${esc(c.page)}" target="_blank">${esc(c.page)}</a><b>${esc(c.nick)}</b><span>${c.createdAt?c.createdAt.toDate().toLocaleString('ko-KR'):''}</span></div>
+    <p>${esc(c.text)}</p>${reps.map(r=>`<div class="reps"><b>내 답글</b> · ${esc(r.text)}</div>`).join('')}
+    <div class="row">${c.status!=='public'&&c.kind!=='request'?'<button class="btn b" data-a="public">공개하기</button>':''}${c.status!=='hidden'?'<button class="btn" data-a="hidden">숨기기</button>':''}<button class="btn r" data-a="del">삭제</button><button class="btn" data-a="reply">답글 쓰기</button></div>
+    <div class="rbox" hidden><textarea placeholder="개발자로 답글을 달아요. 공개 댓글에 단 답글은 모두에게 보여요."></textarea><div class="row" style="margin-top:6px"><button class="btn p" data-a="send">답글 올리기</button></div></div></div>`;}).join('') : '<p class="note">여기엔 아직 아무것도 없어요.</p>';
+  $('list').querySelectorAll('.item').forEach(el=>{ const id=el.dataset.id, c=all.find(x=>x.id===id);
+    el.querySelectorAll('[data-a]').forEach(b=>b.onclick=async()=>{ const a=b.dataset.a;
+      if(a==='public'||a==='hidden'){ await fs.updateDoc(fs.doc(db,'comments',id),{status:a}); c.status=a; render(); }
+      if(a==='del'){ if(!confirm('완전히 지울까요? 되돌릴 수 없어요.')) return; await fs.deleteDoc(fs.doc(db,'comments',id)); all=all.filter(x=>x.id!==id&&x.parent!==id); render(); }
+      if(a==='reply'){ el.querySelector('.rbox').hidden=false; el.querySelector('textarea').focus(); }
+      if(a==='send'){ const t=el.querySelector('textarea').value.trim(); if(!t) return; const ref=await fs.addDoc(fs.collection(db,'comments'),{page:c.page,parent:id,nick:'손안의도구',text:t,status:'public',isDev:true,kind:'reply',createdAt:fs.serverTimestamp()}); all.push({id:ref.id,page:c.page,parent:id,text:t,status:'public'}); render(); }
+    }); });
+}
+}
+</script>
+
+</body>
+</html>

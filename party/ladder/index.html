@@ -296,6 +296,7 @@ footer .fl a:hover{color:var(--ink)}
 @media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
 @media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
 </style>
+<link rel="stylesheet" href="/assets/comments.css">
 </head>
 <body>
 <script>
@@ -359,6 +360,7 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
       <details><summary>몇 명까지 할 수 있나요?</summary><p>2명부터 10명까지 할 수 있어요. 참가자와 결과의 수는 항상 같아요.</p></details>
     </div>
   <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/random-decision/">"아무거나"가 제일 어려운 이유 →</a></div>
+  <div data-comments data-kind="review" data-page="/party/ladder/"></div>
   </section>
 <div class="toast" id="toast"></div>
 <script>
@@ -482,6 +484,7 @@ $('copy').onclick=async()=>{ const n=L.n; const lines=[...shown].sort((a,b)=>a-b
   try{const _r=await shareOut('[사다리타기 결과]\n'+lines.join('\n')+'\n\n손안의도구 사다리타기\nhttps://sonandogu.com/party/ladder/'); if(_r==='copied') say('복사했어요');}catch(e){say('공유하지 못했어요');} };
 inputs(); make();
 </script>
+  <section class="cmts" data-page="/party/ladder/" data-kind="tool"></section>
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
 <button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><img src="/assets/endo/lookback.webp" width="30" height="30" alt=""><span id="jrText"></span><b>↓</b></button>
@@ -496,5 +499,6 @@ inputs(); make();
 })();
 </script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+<script type="module" src="/assets/comments.js"></script>
 </body>
 </html>

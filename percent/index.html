@@ -158,6 +158,7 @@ footer .fl a:hover{color:var(--ink)}
 {"@type":"Question","name":"할인된 가격으로 원래 가격을 알 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"할인가 ÷ (1 - 할인율 ÷ 100)으로 구합니다. 30% 할인해서 14,000원이면 원래 가격은 20,000원입니다."}}
 ]}
 </script>
+<link rel="stylesheet" href="/assets/comments.css">
 </head>
 <body>
 <script>
@@ -223,7 +224,9 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
       <details><summary>소수점은 어떻게 표시되나요?</summary><p>결과는 소수점 둘째 자리까지 반올림해서 보여줍니다.</p></details>
     </div>
   <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/discount-rate/">20% 할인에 10% 더, 왜 30%가 아닐까? →</a><a href="/blog/percent-point/">금리 2%에서 3%, 1% 올랐다는 말이 틀린 이유 →</a></div>
+  <div data-comments data-kind="review" data-page="/percent/"></div>
   </section>
+  <section class="cmts" data-page="/percent/" data-kind="tool"></section>
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
 <div class="toast" id="toast">복사했어요</div>
@@ -300,5 +303,6 @@ addEventListener('resize',movePill);
 setMode('of');
 </script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+<script type="module" src="/assets/comments.js"></script>
 </body>
 </html>

@@ -293,6 +293,7 @@ footer .fl a:hover{color:var(--ink)}
 @media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
 @media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
 </style>
+<link rel="stylesheet" href="/assets/comments.css">
 </head>
 <body>
 <script>
@@ -345,6 +346,7 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
       <div class="f"><h3>당첨은 몇 명이든</h3><p>참가 인원은 2~30명, 당첨은 1명부터 인원보다 한 명 적게까지 정할 수 있어요. 당첨 문구도 "커피 쏘기", "설거지"처럼 바꿀 수 있어요.</p></div>
     </div>
   <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/random-decision/">"아무거나"가 제일 어려운 이유 →</a></div>
+  <div data-comments data-kind="review" data-page="/party/lots/"></div>
   </section>
 <div class="toast" id="toast"></div>
 <script>
@@ -392,6 +394,7 @@ $('make').onclick=()=>{make(); say('새로 섞었어요');}; $('reset').onclick=
 $('openAll').onclick=()=>{ document.querySelectorAll('.lot:not(.open)').forEach((b,k)=>{ b.dataset.busy=1; const i=[...b.parentNode.children].indexOf(b), w=deck[i]; setTimeout(()=>{ b.classList.add('open'); opened++; if(w) wins++; else b.classList.add('dim'); stat(); }, reduce?0:k*60); }); banner('전체 공개','모든 카드를 뒤집었어요',false); };
 paint(); make();
 </script>
+  <section class="cmts" data-page="/party/lots/" data-kind="tool"></section>
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
 <button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><img src="/assets/endo/lookback.webp" width="30" height="30" alt=""><span id="jrText"></span><b>↓</b></button>
@@ -406,5 +409,6 @@ paint(); make();
 })();
 </script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+<script type="module" src="/assets/comments.js"></script>
 </body>
 </html>

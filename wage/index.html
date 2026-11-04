@@ -238,6 +238,7 @@ footer .fl a:hover{color:var(--ink)}
 .src{margin-top:12px; font-size:12px; line-height:1.6; color:rgba(244,244,241,.5)}
 .src a{color:rgba(244,244,241,.7)}
 </style>
+<link rel="stylesheet" href="/assets/comments.css">
 </head>
 <body>
 <script>
@@ -314,7 +315,9 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
       <details><summary>계산 결과를 그대로 믿어도 되나요?</summary><p>법에 정해진 기준으로 계산하지만, 근로계약 내용이나 휴게시간, 수당 약정에 따라 실제 급여는 달라질 수 있어요. 받을 돈이 맞지 않는 것 같으면 고용노동부 상담센터(국번 없이 1350)에 문의해보세요.</p></details>
     </div>
   <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/weekly-holiday-pay/">주 14시간 알바, 1시간 차이로 사라지는 돈 →</a></div>
+  <div data-comments data-kind="review" data-page="/wage/"></div>
   </section>
+  <section class="cmts" data-page="/wage/" data-kind="tool"></section>
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
 <script>
@@ -410,5 +413,6 @@ paint();
 })();
 </script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+<script type="module" src="/assets/comments.js"></script>
 </body>
 </html>

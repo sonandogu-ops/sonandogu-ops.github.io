@@ -202,6 +202,7 @@ footer .fl a:hover{color:var(--ink)}
 .crumb a{color:var(--muted); text-decoration:none}
 .crumb a:hover{color:var(--ink)}
 </style>
+<link rel="stylesheet" href="/assets/comments.css">
 </head>
 <body>
 <script>
@@ -291,7 +292,9 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
       <details><summary>입력한 내용은 저장되나요?</summary><p>이 기기의 브라우저에만 임시로 저장돼서, 창을 닫았다 다시 열어도 이어서 할 수 있어요. 서버로는 전송되지 않고, 초기화를 누르면 바로 지워져요.</p></details>
     </div>
   <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/dutch-pay/">N빵하면 왜 꼭 누군가 서운할까? →</a></div>
+  <div data-comments data-kind="review" data-page="/dutch/"></div>
   </section>
+  <section class="cmts" data-page="/dutch/" data-kind="tool"></section>
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
 <div class="toast" id="toast"></div>
@@ -448,5 +451,6 @@ paint();
 })();
 </script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+<script type="module" src="/assets/comments.js"></script>
 </body>
 </html>

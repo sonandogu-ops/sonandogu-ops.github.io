@@ -244,6 +244,7 @@ footer .fl a:hover{color:var(--ink)}
 .tip p{margin:0; font-size:15px; line-height:1.6}
 @media (prefers-reduced-motion:reduce){.endo.pop img,.endo.pop .say,.endo[data-p] img{animation:none!important}}
 </style>
+<link rel="stylesheet" href="/assets/comments.css">
 </head>
 <body>
 <script>
@@ -340,7 +341,9 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
       <details><summary>지역마다 규칙이 다르던데요?</summary><p>윷놀이는 집집마다 규칙이 조금씩 다릅니다. 이 판은 가장 널리 쓰이는 규칙을 따르고, 빽도는 설정에서 켜고 끌 수 있어요.</p></details>
     </div>
   <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/yut-rules/">윷놀이 하다 싸우는 이유, 집집마다 규칙이 달라서예요 →</a></div>
+  <div data-comments data-kind="review" data-page="/traditional/yut/"></div>
   </section>
+  <section class="cmts" data-page="/traditional/yut/" data-kind="tool"></section>
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
 <div class="over" id="over" hidden><div class="win"><div class="av" id="wAv"></div><h3 id="wNm"></h3><p>모든 말을 먼저 완주시켰어요!</p><button class="a" id="again">같은 팀으로 한 판 더</button><button class="b" id="toSetup">처음부터 다시 설정</button></div></div>
@@ -595,5 +598,6 @@ const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add(
 paintSetup();
 </script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+<script type="module" src="/assets/comments.js"></script>
 </body>
 </html>

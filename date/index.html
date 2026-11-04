@@ -319,6 +319,7 @@ footer .fl a:hover{color:var(--ink)}
 .rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
 .rel a:hover{color:var(--orange)}
 </style>
+<link rel="stylesheet" href="/assets/comments.css">
 </head>
 <body>
 <script>
@@ -401,6 +402,7 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
       <details><summary>입력한 날짜는 저장되나요?</summary><p>다음에 다시 보기 편하도록 이 기기의 브라우저에만 저장돼요. 서버로는 보내지 않아요.</p></details>
     </div>
   <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/anniversary-count/">100일 이벤트, 하루 늦은 이유 →</a></div>
+  <div data-comments data-kind="review" data-page="/date/"></div>
   </section>
 <div class="toast" id="toast"></div>
 <script>
@@ -517,6 +519,7 @@ $('nameIn').addEventListener('keydown',e=>{ if(e.key==='Enter') $('nameOk').clic
 const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1600);}
 paint();
 </script>
+  <section class="cmts" data-page="/date/" data-kind="tool"></section>
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
@@ -531,5 +534,6 @@ paint();
  setTimeout(upd,300);
 })();
 </script>
+<script type="module" src="/assets/comments.js"></script>
 </body>
 </html>
