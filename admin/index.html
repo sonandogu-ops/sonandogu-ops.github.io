@@ -8,6 +8,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="손안의도구">
 
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon-192.png">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="theme-color" content="#F4F4F1">
@@ -122,7 +125,7 @@ footer .fl a:hover{color:var(--ink)}
   <div id="app" hidden>
     <div class="panel">
       <div class="row" style="justify-content:space-between"><div><b id="who"></b><div class="note">처음 한 번은 아래 내 UID를 보안 규칙에 넣어야 관리할 수 있어요.</div></div><button class="btn" id="gout">로그아웃</button></div>
-      <div class="uid" id="uid" style="margin-top:10px"></div>
+      <div class="row" style="margin-top:10px"><div class="uid" id="uid" style="flex:1"></div><button class="btn b" id="copyUid">UID 복사</button></div>
     </div>
     <div class="panel">
       <div class="row" style="justify-content:space-between"><div><b>올리기 전에 내가 먼저 확인하기</b><div class="note">켜면 새 댓글이 "검토 대기"로 들어와서, 공개를 눌러야 모두에게 보여요.</div></div><button class="sw" id="mod" role="switch" aria-checked="true" aria-label="검토 후 공개"></button></div>
@@ -148,7 +151,7 @@ const LBL={pending:'검토 대기',private:'비공개',public:'공개',hidden:'�
 let all=[], tab='pending';
 au.onAuthStateChanged(auth,async u=>{
   $('login').hidden=!!u; $('app').hidden=!u; if(!u) return;
-  $('who').textContent=u.email; $('uid').textContent='내 UID: '+u.uid;
+  $('who').textContent=u.email; $('uid').textContent='내 UID: '+u.uid; $('copyUid').onclick=async()=>{ try{ await navigator.clipboard.writeText(u.uid); $('copyUid').textContent='복사됨!'; }catch(e){ prompt('아래 UID를 복사하세요', u.uid); } };
   try{ const s=await fs.getDoc(fs.doc(db,'settings','main')); if(!s.exists()) await fs.setDoc(fs.doc(db,'settings','main'),{moderation:true}); const m=(s.exists()?s.data().moderation:true); $('mod').setAttribute('aria-checked',m); }catch(e){ $('list').innerHTML='<p class="note">아직 관리 권한이 없어요. 위 UID를 보안 규칙에 넣고 게시한 뒤 새로고침하세요. (오류: '+esc(e.code||e.message)+')</p>'; return; }
   load();
 });
