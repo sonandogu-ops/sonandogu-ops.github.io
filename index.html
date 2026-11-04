@@ -294,7 +294,8 @@ let _dp=null; addEventListener('beforeinstallprompt',e=>{e.preventDefault(); _dp
   const l=document.createElement('a'); l.href='/date/'; l.innerHTML='<span></span><b></b>'; l.firstChild.textContent=it.n; l.lastChild.textContent=b; box.append(l); });
  const r=document.getElementById('recent'); if(r&&!document.getElementById('q').value&&(!location.hash||location.hash==='#')) r.hidden=false; }catch(e){}})();
 </script>
-<script type="module" src="/assets/comments.js?v=3"></script>
+<script src="/assets/firebase-config.js?v=4"></script>
+<script type="module" src="/assets/comments.js?v=4"></script>
 <script type="module">
 const f=document.getElementById('reqf'); if(f) f.addEventListener('submit',async e=>{ e.preventDefault(); const t=document.getElementById('reqT'), m=document.getElementById('reqM');
   const q=document.getElementById('q').value.trim(); const C=window.__sonandoguComments; if(!C){ m.hidden=false; m.className='reqm no'; m.textContent='잠시 뒤 다시 시도해주세요.'; return; }

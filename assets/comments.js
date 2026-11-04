@@ -33,11 +33,12 @@ export async function submit({page,nick,text,priv,kind}){
   if(L.length&&Date.now()-L[L.length-1].t<30000) return {ok:false,msg:'조금 전에 글을 남겼어요. 30초 뒤에 다시 올려주세요.'};
   if(L.length>=10) return {ok:false,msg:'하루에 남길 수 있는 글을 모두 썼어요. 내일 다시 남겨주세요.'};
   if(L.some(x=>x.h===text.replace(/\s/g,''))) return {ok:false,msg:'이미 똑같은 내용을 남겼어요.'};
-  if(!await boot()) return {ok:false,msg:'댓글 기능을 준비하고 있어요. 조금만 기다려주세요!'};
+  let okb=false; try{ okb=await boot(); }catch(e){ console.warn('[댓글] Firebase 불러오기 실패',e); return {ok:false,msg:'댓글 서버에 연결하지 못했어요. 광고 차단 프로그램이 켜져 있다면 잠시 꺼주세요.'}; }
+  if(!okb){ console.warn('[댓글] 설정값 없음', window.SONANDOGU_FIREBASE); return {ok:false,msg:'댓글 기능을 준비하고 있어요. 조금만 기다려주세요!'}; }
   const st=await getSettings();
   const status= priv||kind==='request' ? 'private' : (st.moderation?'pending':'public');
   try{ await fs.addDoc(fs.collection(db,'comments'),{page,nick:nick||'익명',text,status,kind:kind||'comment',createdAt:fs.serverTimestamp()}); }
-  catch(e){ return {ok:false,msg:'올리지 못했어요. 홍보나 부적절한 표현이 섞여 있진 않은지 확인하고 잠시 뒤 다시 시도해주세요.'}; }
+  catch(e){ console.warn('[댓글] 저장 실패',e); return {ok:false,msg:'올리지 못했어요. 홍보나 부적절한 표현이 섞여 있진 않은지 확인하고 잠시 뒤 다시 시도해주세요. ('+(e.code||'error')+')'}; }
   try{ L.push({t:Date.now(),h:text.replace(/\s/g,'')}); localStorage.setItem('sonandogu-cmt-log',JSON.stringify(L.slice(-10))); }catch(e){}
   return {ok:true,status};
 }
