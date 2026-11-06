@@ -305,5 +305,6 @@ const f=document.getElementById('reqf'); if(f) f.addEventListener('submit',async
   const r=await C.submit({page:'/request/',nick:'도구 요청',text:(t.value.trim()||q)+(q&&t.value.trim()?' (검색어: '+q+')':''),priv:true,kind:'request'});
   m.hidden=false; m.className='reqm '+(r.ok?'ok':'no'); m.textContent=r.ok?'요청을 전달했어요. 고마워요!':r.msg; if(r.ok) t.value=''; });
 </script>
+<script src="/assets/analytics.js?v=2" defer></script>
 </body>
 </html>
