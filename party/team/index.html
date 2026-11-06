@@ -276,6 +276,29 @@ footer .fl a:hover{color:var(--ink)}
 @media (min-width:920px){.jumpres{display:none!important}}
 @media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
 @media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
+
+#rmWrap .wheelbox[hidden]{display:none}
+#rmWrap .wheelbox{position:relative; width:100%; max-width:300px; margin:6px auto 0; aspect-ratio:1}
+#rmWrap .wheel{position:absolute; inset:4%; width:92%; height:92%; filter:drop-shadow(0 12px 22px rgba(0,0,0,.45))}
+#rmWrap .wheel text{font-family:"Pretendard Variable",sans-serif; font-weight:800; fill:#fff}
+#rmWrap .pin{position:absolute; left:50%; top:-3%; width:30px; height:40px; transform:translateX(-50%); transform-origin:50% 20%; z-index:3}
+#rmWrap .pin svg{width:100%; height:100%; filter:drop-shadow(0 4px 6px rgba(0,0,0,.5))}
+#rmWrap .pin.tick{animation:tick .14s ease-out}
+@keyframes tick{40%{transform:translateX(-50%) rotate(-22deg)}}
+#rmWrap .hub{position:absolute; left:50%; top:50%; width:22%; height:22%; transform:translate(-50%,-50%); border-radius:50%; background:radial-gradient(circle at 40% 35%,#FF9A55,#FF4A12); border:4px solid #F4F4F1; color:#fff; font:inherit; font-size:13px; font-weight:900; cursor:pointer; z-index:3; box-shadow:0 6px 14px rgba(0,0,0,.4)}
+.rmPick{margin:12px auto 0; text-align:center; flex-wrap:wrap; gap:4px; font-size:15px; font-weight:700; color:rgba(244,244,241,.75); min-height:48px; display:flex; align-items:center; justify-content:center; padding:10px 12px; border-radius:16px; background:rgba(255,255,255,.06)}
+.rmPick b{font-size:20px; color:#fff; margin:0 4px}
+.rmPick.hot{background:linear-gradient(150deg,#FFB067,#FF4A12); color:#141518; animation:rpop .45s cubic-bezier(.2,1.5,.4,1)}
+.rmPick.hot b{color:#141518}
+@keyframes rpop{0%{transform:scale(.85); opacity:0}100%{transform:scale(1); opacity:1}}
+.rmBtns{display:grid; grid-template-columns:1.4fr 1fr; gap:8px; margin-top:10px}
+.rmBtns button{font:inherit; font-size:15px; font-weight:800; border-radius:14px; padding:12px; cursor:pointer; border:none}
+.rmBtns .a{color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F)}
+.rmBtns .b{color:#F4F4F1; background:rgba(255,255,255,.1)}
+.rmBtns button:disabled{opacity:.4; cursor:default}
+.mem span.new{animation:rpop .45s cubic-bezier(.2,1.5,.4,1); box-shadow:0 0 0 2px #FFE07A}
+.slot{display:inline-block; border:1.5px dashed rgba(255,255,255,.18); border-radius:999px; padding:6px 14px; font-size:13px; color:rgba(244,244,241,.35)}
+@media (prefers-reduced-motion:reduce){.rmPick.hot,.mem span.new,#rmWrap .pin.tick{animation:none}}
 </style>
 <link rel="stylesheet" href="/assets/comments.css?v=3">
 <meta name="google-adsense-account" content="ca-pub-1007904420767851">
@@ -312,6 +335,8 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
         <div class="seg2" id="mode"><button data-m="teams" aria-pressed="true">팀 개수로</button><button data-m="size" aria-pressed="false">팀당 인원으로</button></div>
         <div class="lbl" id="numLbl">팀 개수</div>
         <div class="stepper"><button id="minus" aria-label="줄이기">−</button><span id="num">2팀</span><button id="plus" aria-label="늘리기">＋</button></div>
+        <div class="lbl">결과 보는 방식</div>
+        <div class="seg2" id="view"><button data-v="instant" aria-pressed="true">한 번에 보기</button><button data-v="wheel" aria-pressed="false">🎡 룰렛으로 한 명씩</button></div>
         <button class="go" id="go">팀 나누기</button>
       </div>
     </main>
@@ -319,6 +344,11 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
       <div class="disp" aria-live="polite">
         <div class="cap" id="cap">결과가 여기에 나와요</div>
         <div class="endo" id="endo" data-p="point"><img src="/assets/endo/point.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">이름을 적고 팀 나누기를 눌러보세요!</div></div>
+        <div id="rmWrap" hidden>
+          <div class="wheelbox" id="rmBox"><div class="pin" aria-hidden="true"><svg viewBox="0 0 34 44"><path d="M17 42 L3 10 A14 14 0 1 1 31 10 Z" fill="#F4F4F1"/><circle cx="17" cy="13" r="5" fill="#FF5A1F"/></svg></div><svg class="wheel" id="rmWheel" viewBox="0 0 300 300" aria-hidden="true"></svg><button class="hub" id="rmHub" aria-label="룰렛 돌리기">돌려!</button></div>
+          <div class="rmPick" id="rmPick" aria-live="polite">룰렛을 돌려 첫 번째 사람을 뽑아요</div>
+          <div class="rmBtns"><button class="a" id="rmSpin">룰렛 돌리기</button><button class="b" id="rmAll">남은 사람 한 번에</button></div>
+        </div>
         <div class="pool empty" id="pool"></div>
         <div class="teams" id="teams"><div class="empty">참가자를 적고 팀 나누기를 눌러주세요</div></div>
         <div class="acts2"><button class="a" id="again" disabled>다시 섞기</button><button class="b" id="copy" disabled>결과 복사</button></div>
@@ -326,7 +356,7 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
     </aside>
   </div>
   <section class="guide">
-    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>조별과제처럼 인원이 딱 안 떨어질 땐 "팀당 인원으로"를 써보세요. 몇 팀이 필요한지 알아서 계산하고, 팀끼리 인원 차이는 한 명을 넘지 않아요.</p></div></div>
+    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>두근두근하게 정하고 싶다면 "룰렛으로 한 명씩"을 골라보세요. 룰렛이 한 명씩 뽑을 때마다 인원이 적은 팀부터 차례로 채워져요. 조별과제처럼 인원이 딱 안 떨어질 땐 "팀당 인원으로"를 써보세요. 몇 팀이 필요한지 알아서 계산하고, 팀끼리 인원 차이는 한 명을 넘지 않아요.</p></div></div>
     <h2>공평하게 나누는 방법</h2>
     <div class="fgrid">
       <div class="f"><h3>진짜 무작위</h3><p>브라우저의 보안 난수로 순서를 섞어서, 누가 어느 팀이 될지 미리 알 수 없어요. 누를 때마다 새로 섞여요.</p></div>
@@ -337,7 +367,7 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
       <details><summary>입력한 이름은 저장되나요?</summary><p>다음에 다시 쓰기 편하도록 이 기기의 브라우저에만 저장돼요. 서버로는 보내지 않아요.</p></details>
       <details><summary>결과를 단톡방에 올리고 싶어요</summary><p>결과 복사를 누르면 팀별 명단이 글로 복사돼요. 카톡에 그대로 붙여넣으면 돼요.</p></details>
     </div>
-  <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/random-decision/">"아무거나"가 제일 어려운 이유 →</a></div>
+  <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/team-picking/">팀 정하기, 왜 늘 누군가 서운할까 →</a><a href="/blog/random-decision/">"아무거나"가 제일 어려운 이유 →</a></div>
   <div data-comments data-kind="review" data-page="/party/team/"></div>
   </section>
 <div class="toast" id="toast"></div>
@@ -411,6 +441,75 @@ paint();
   <section class="cmts" data-page="/party/team/" data-kind="tool"></section>
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
+<script>
+(function(){
+ const $$=id=>document.getElementById(id);
+ const josa=(w,a,b)=>{ const c=(w||'').trim().slice(-1).charCodeAt(0); if(c>=0xAC00&&c<=0xD7A3) return w+(((c-0xAC00)%28)?a:b); return w+a+'('+b+')'; };
+ let view='instant', busy=false, rem=[], teamsR=[], rot=0;
+ const COLS=['#FF5A1F','#2E3038','#FF8A3D','#3D7BFF','#1FA968','#A855F7','#E8A100','#E0457B'];
+ const colOf=(i,n)=>COLS[(n>1&&i===n-1&&i%COLS.length===0)?1:i%COLS.length];
+ function setView(v){ view=v; document.querySelectorAll('#view button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===v)); $$('go').textContent= v==='wheel'?'🎡 룰렛 준비하기':'팀 나누기'; if(v==='instant'){ $$('rmWrap').hidden=true; } }
+ document.querySelectorAll('#view button').forEach(b=>b.onclick=()=>setView(b.dataset.v));
+ function draw(){
+   const n=rem.length, svg=$$('rmWheel'); let h='';
+   $$('rmBox').hidden=!n; if(!n){ svg.innerHTML=''; return; }
+   rem.forEach((t,i)=>{ const a0=(i/n)*2*Math.PI-Math.PI/2, a1=((i+1)/n)*2*Math.PI-Math.PI/2;
+     const x0=150+150*Math.cos(a0), y0=150+150*Math.sin(a0), x1=150+150*Math.cos(a1), y1=150+150*Math.sin(a1);
+     h+= n===1? `<circle cx="150" cy="150" r="150" fill="${colOf(0,1)}"/>` : `<path d="M150 150 L${x0.toFixed(2)} ${y0.toFixed(2)} A150 150 0 0 1 ${x1.toFixed(2)} ${y1.toFixed(2)} Z" fill="${colOf(i,n)}" stroke="rgba(255,255,255,.9)" stroke-width="2"/>`;
+     const am=(a0+a1)/2, tx=150+98*Math.cos(am), ty=150+98*Math.sin(am), deg=am*180/Math.PI, lab=t.length>5?t.slice(0,5)+'…':t;
+     h+=`<text x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" transform="rotate(${deg.toFixed(1)} ${tx.toFixed(1)} ${ty.toFixed(1)})" style="font-size:${n>12?11:14}px;paint-order:stroke;stroke:rgba(0,0,0,.25);stroke-width:3px">${lab.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}</text>`; });
+   svg.innerHTML=h; svg.style.transform=`rotate(${rot}deg)`;
+ }
+ const hex2=(h,a)=>{const n=parseInt(h.slice(1),16); return `rgba(${n>>16},${(n>>8)&255},${n&255},${a})`;};
+ function teamsView(){
+   const box=$$('teams'); box.innerHTML='';
+   const total=teamsR.reduce((a,t)=>a+t.cap,0);
+   teamsR.forEach((t,i)=>{ const d=document.createElement('div'); d.className='tm on'; const c=COL[i%COL.length]; d.style.setProperty('--tc',c); d.style.setProperty('--tcs',hex2(c,.32));
+     d.innerHTML=`<h3><span class="em">${TEAMS[i%TEAMS.length][0]}</span>${TEAMS[i%TEAMS.length][1]}<small>${t.m.length}/${t.cap}명</small></h3><div class="mem"></div>`;
+     const m=d.querySelector('.mem'); t.m.forEach((nm,j)=>{const s=document.createElement('span'); s.textContent=nm; if(t.fresh===j) s.className='new'; m.append(s);});
+     for(let k=t.m.length;k<t.cap;k++){ const s=document.createElement('span'); s.className='slot'; s.textContent='?'; m.append(s); }
+     box.append(d); });
+ }
+ function nextTeam(){ let best=0; teamsR.forEach((t,i)=>{ if(t.m.length<teamsR[best].m.length) best=i; }); return best; }   // 인원이 가장 적은 팀부터 차례로
+ function prepare(){
+   const names=parse(S.names);
+   if(names.length<2){ endo('surprised','앗, 참가자를 두 명 이상 적어주세요!'); say('참가자를 두 명 이상 적어주세요'); return; }
+   const k= S.mode==='teams'? S.n : Math.ceil(names.length/S.n);
+   if(k>names.length){ say('팀 수가 참가자보다 많아요'); return; } if(k<2){ say('두 팀 이상이 되도록 인원을 줄여주세요'); return; }
+   rem=names.slice(); rot=0;
+   teamsR=Array.from({length:k},(_,i)=>({m:[],cap:Math.floor(names.length/k)+(i<names.length%k?1:0)}));
+   $$('rmWrap').hidden=false; $$('pool').classList.add('empty'); last=null; $$('copy').disabled=true; $$('again').disabled=false;
+   $$('cap').textContent=`${names.length}명 → ${k}팀 · 룰렛으로 한 명씩`;
+   const p=$$('rmPick'); p.className='rmPick'; p.textContent='룰렛을 돌려 첫 번째 사람을 뽑아요';
+   $$('rmSpin').disabled=false; $$('rmAll').disabled=false; draw(); teamsView(); endo('point','가운데를 눌러 첫 번째 사람을 뽑아보세요!');
+ }
+ function assign(name){ const ti=nextTeam(); const t=teamsR[ti]; t.m.push(name); teamsR.forEach(x=>x.fresh=-1); t.fresh=t.m.length-1; rem.splice(rem.indexOf(name),1); return ti; }
+ function done(){ last=teamsR.map(t=>t.m.slice()); $$('copy').disabled=false; $$('rmSpin').disabled=true; $$('rmAll').disabled=true; $$('cap').textContent=`${last.flat().length}명 → ${last.length}팀 완성!`; endo('thumbs','룰렛이 팀을 모두 정했어요!'); const d=document.querySelector('.disp'); if(typeof burst==='function') burst(d,d.clientWidth/2,40,24,'#FF5A1F'); }
+ function spin(){
+   if(busy||!rem.length) return; busy=true; $$('rmSpin').disabled=true; $$('rmAll').disabled=true;
+   const n=rem.length, k=rnd(n), name=rem[k], seg=360/n, inside=seg*(0.2+0.6*(rnd(1000)/1000));
+   const from=rot, to=Math.ceil(rot/360)*360+(reduce?0:360*5)+(360-(k*seg+inside)); const dur=reduce?1:3600, t0=performance.now(); let lastSeg=-1; const pin=document.querySelector('#rmWrap .pin'), wh=$$('rmWheel');
+   const p=$$('rmPick'); p.className='rmPick'; p.innerHTML='<span class="drum">두구두구</span>…'; endo('run','누가 뽑힐까요?');
+   const ease=t=>1-Math.pow(1-t,4);
+   const step=now=>{ const t=Math.min(1,(now-t0)/dur), cur=from+(to-from)*ease(t); wh.style.transform=`rotate(${cur}deg)`;
+     const at=Math.floor((((360-cur%360)%360)+360)%360/seg); if(at!==lastSeg){ if(lastSeg!==-1&&!reduce){pin.classList.remove('tick'); void pin.offsetWidth; pin.classList.add('tick');} lastSeg=at; }
+     if(t<1) requestAnimationFrame(step); else {
+       rot=0; const ti=assign(name); const tn=TEAMS[ti%TEAMS.length];
+       p.className='rmPick hot'; p.innerHTML=`<b></b> → ${tn[0]} ${tn[1]}!`; p.querySelector('b').textContent=name;
+       endo('saving',`${josa(name,'은','는')} ${tn[1]}!`); teamsView();
+       setTimeout(()=>{ draw(); busy=false; if(rem.length===1){ const last1=rem[0]; const tj=assign(last1); teamsView(); draw(); const tm=TEAMS[tj%TEAMS.length]; p.innerHTML=`마지막 <b></b> → ${tm[0]} ${tm[1]}`; p.querySelector('b').textContent=last1; done(); }
+         else if(!rem.length) done(); else { $$('rmSpin').disabled=false; $$('rmAll').disabled=false; } }, reduce?0:700);
+     } };
+   requestAnimationFrame(step);
+ }
+ function all(){ if(busy) return; shuffle(rem).forEach(nm=>assign(nm)); teamsR.forEach(x=>x.fresh=-1); draw(); teamsView(); const p=$$('rmPick'); p.className='rmPick hot'; p.textContent='남은 사람을 한 번에 배정했어요'; done(); }
+ window.__teamWheel={assign,nextTeam,prepareFor:(names,k)=>{rem=names.slice(); teamsR=Array.from({length:k},(_,i)=>({m:[],cap:Math.floor(names.length/k)+(i<names.length%k?1:0)}));}, state:()=>({rem,teamsR})};
+ $$('rmSpin').onclick=spin; $$('rmHub').onclick=spin; $$('rmAll').onclick=all;
+ const origGo=$$('go').onclick, origAgain=$$('again').onclick;
+ $$('go').onclick=()=>{ if(view==='wheel') prepare(); else { $$('rmWrap').hidden=true; origGo&&origGo(); } };
+ $$('again').onclick=()=>{ if(view==='wheel') prepare(); else origAgain&&origAgain(); };
+})();
+</script>
 <button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><img src="/assets/endo/lookback.webp" width="30" height="30" alt=""><span id="jrText"></span><b>↓</b></button>
 <script>
 (function(){const T=document.querySelector('aside.res'), B=document.getElementById('jumpres'), X=document.getElementById('jrText'); if(!T||!B) return;
