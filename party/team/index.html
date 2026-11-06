@@ -208,6 +208,13 @@ footer .fl a:hover{color:var(--ink)}
 .names{width:100%; min-height:180px; font:inherit; font-size:16px; line-height:1.7; color:var(--ink); background:var(--field); border:1.5px solid transparent; border-radius:16px; padding:12px 14px; resize:vertical; outline:none}
 .names:focus{border-color:var(--orange); background:var(--surface); box-shadow:0 0 0 5px rgba(255,90,31,.13)}
 .hint{font-size:13px; color:var(--muted); margin-top:8px}
+.lbl small{font-weight:500; margin-left:4px}
+.tnames{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px}
+.tnames label{display:flex; align-items:center; gap:6px; background:var(--field); border:1.5px solid transparent; border-radius:12px; padding:0 10px; transition:border-color .2s, background .2s}
+.tnames label:focus-within{border-color:var(--orange); background:var(--surface)}
+.tnames .e{font-size:18px; line-height:1}
+.tnames input{flex:1; min-width:0; font:inherit; font-size:16px; color:var(--ink); background:transparent; border:0; outline:0; padding:10px 0}
+.tnames input::placeholder{color:var(--muted); opacity:.8}
 .go{display:block; width:100%; margin-top:16px; font:inherit; font-size:17px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); border:none; border-radius:18px; padding:16px; cursor:pointer; box-shadow:0 12px 28px -10px rgba(255,90,31,.85)}
 .teams{display:grid; gap:10px; margin-top:14px}
 .tm{background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:18px; padding:14px; opacity:0; transform:translateY(8px); transition:all .35s cubic-bezier(.2,.8,.2,1)}
@@ -337,6 +344,7 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
         <div class="stepper"><button id="minus" aria-label="줄이기">−</button><span id="num">2팀</span><button id="plus" aria-label="늘리기">＋</button></div>
         <div class="lbl">결과 보는 방식</div>
         <div class="seg2" id="view"><button data-v="instant" aria-pressed="true">한 번에 보기</button><button data-v="wheel" aria-pressed="false">🎡 룰렛으로 한 명씩</button></div>
+        <div id="tnWrap" hidden><div class="lbl">팀 이름<small>비워두면 기본 이름이 붙어요</small></div><div class="tnames" id="tnames"></div></div>
         <button class="go" id="go">팀 나누기</button>
       </div>
     </main>
@@ -434,7 +442,7 @@ function run(){
   }, 900);
 }
 $('go').onclick=run; $('again').onclick=run;
-$('copy').onclick=async()=>{ if(!last) return; const t='[팀 나누기 결과]\n'+last.map((m,i)=>`${TEAMS[i%TEAMS.length][0]} ${TEAMS[i%TEAMS.length][1]}: ${m.join(', ')}`).join('\n')+'\n\n손안의도구 팀 나누기\nhttps://sonandogu.com/party/team/';
+$('copy').onclick=async()=>{ if(!last) return; const t='[팀 나누기 결과]\n'+last.map((m,i)=>`${window.__useCustom?window.__teamLabel(i):TEAMS[i%TEAMS.length][0]+' '+TEAMS[i%TEAMS.length][1]}: ${m.join(', ')}`).join('\n')+'\n\n손안의도구 팀 나누기\nhttps://sonandogu.com/party/team/';
   try{const _r=await shareOut(t); if(_r==='copied') say('복사했어요');}catch(e){say('공유하지 못했어요');} };
 paint();
 </script>
@@ -446,9 +454,31 @@ paint();
  const $$=id=>document.getElementById(id);
  const josa=(w,a,b)=>{ const c=(w||'').trim().slice(-1).charCodeAt(0); if(c>=0xAC00&&c<=0xD7A3) return w+(((c-0xAC00)%28)?a:b); return w+a+'('+b+')'; };
  let view='instant', busy=false, rem=[], teamsR=[], rot=0;
+ const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+ let custom=store.get('sonandogu-team-names-v1',[]); if(!Array.isArray(custom)) custom=[];
+ const tnEmoji=i=>TEAMS[i%TEAMS.length][0];
+ const tnName=i=>{ const c=String(custom[i]||'').trim(); return c||TEAMS[i%TEAMS.length][1]; };
+ window.__teamLabel=i=>tnEmoji(i)+' '+tnName(i); window.__useCustom=false;
+ const teamCount=()=>{ const n=parse(S.names).length; if(n<2) return 0; const k=S.mode==='teams'?S.n:Math.ceil(n/S.n); return (k<2||k>n)?0:k; };
+ let shownK=-1;
+ function renderNames(force){
+   const wrap=$$('tnWrap'), k=teamCount();
+   wrap.hidden=!(view==='wheel'&&k>0);
+   if(wrap.hidden) return;
+   const kk=Math.min(k,20);
+   if(!force&&shownK===kk) return; shownK=kk;
+   const box=$$('tnames'); box.innerHTML='';
+   for(let i=0;i<kk;i++){ const l=document.createElement('label'), e=document.createElement('span'), inp=document.createElement('input');
+     e.className='e'; e.textContent=tnEmoji(i); inp.type='text'; inp.maxLength=10; inp.value=custom[i]||''; inp.placeholder=TEAMS[i%TEAMS.length][1]; inp.setAttribute('aria-label',(i+1)+'번째 팀 이름');
+     inp.addEventListener('input',()=>{ custom[i]=inp.value; store.set('sonandogu-team-names-v1',custom); if(teamsR.length&&!$$('rmWrap').hidden) teamsView(); });
+     l.append(e,inp); box.append(l); }
+ }
+ ['input'].forEach(ev=>$$('names').addEventListener(ev,()=>renderNames()));
+ document.querySelectorAll('#mode button').forEach(b=>b.addEventListener('click',()=>renderNames()));
+ $$('minus').addEventListener('click',()=>renderNames()); $$('plus').addEventListener('click',()=>renderNames());
  const COLS=['#FF5A1F','#2E3038','#FF8A3D','#3D7BFF','#1FA968','#A855F7','#E8A100','#E0457B'];
  const colOf=(i,n)=>COLS[(n>1&&i===n-1&&i%COLS.length===0)?1:i%COLS.length];
- function setView(v){ view=v; document.querySelectorAll('#view button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===v)); $$('go').textContent= v==='wheel'?'🎡 룰렛 준비하기':'팀 나누기'; if(v==='instant'){ $$('rmWrap').hidden=true; } }
+ function setView(v){ view=v; document.querySelectorAll('#view button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===v)); $$('go').textContent= v==='wheel'?'🎡 룰렛 준비하기':'팀 나누기'; if(v==='instant'){ $$('rmWrap').hidden=true; } renderNames(true); }
  document.querySelectorAll('#view button').forEach(b=>b.onclick=()=>setView(b.dataset.v));
  function draw(){
    const n=rem.length, svg=$$('rmWheel'); let h='';
@@ -465,7 +495,7 @@ paint();
    const box=$$('teams'); box.innerHTML='';
    const total=teamsR.reduce((a,t)=>a+t.cap,0);
    teamsR.forEach((t,i)=>{ const d=document.createElement('div'); d.className='tm on'; const c=COL[i%COL.length]; d.style.setProperty('--tc',c); d.style.setProperty('--tcs',hex2(c,.32));
-     d.innerHTML=`<h3><span class="em">${TEAMS[i%TEAMS.length][0]}</span>${TEAMS[i%TEAMS.length][1]}<small>${t.m.length}/${t.cap}명</small></h3><div class="mem"></div>`;
+     d.innerHTML=`<h3><span class="em">${tnEmoji(i)}</span>${esc(tnName(i))}<small>${t.m.length}/${t.cap}명</small></h3><div class="mem"></div>`;
      const m=d.querySelector('.mem'); t.m.forEach((nm,j)=>{const s=document.createElement('span'); s.textContent=nm; if(t.fresh===j) s.className='new'; m.append(s);});
      for(let k=t.m.length;k<t.cap;k++){ const s=document.createElement('span'); s.className='slot'; s.textContent='?'; m.append(s); }
      box.append(d); });
@@ -478,13 +508,13 @@ paint();
    if(k>names.length){ say('팀 수가 참가자보다 많아요'); return; } if(k<2){ say('두 팀 이상이 되도록 인원을 줄여주세요'); return; }
    rem=names.slice(); rot=0;
    teamsR=Array.from({length:k},(_,i)=>({m:[],cap:Math.floor(names.length/k)+(i<names.length%k?1:0)}));
-   $$('rmWrap').hidden=false; $$('pool').classList.add('empty'); last=null; $$('copy').disabled=true; $$('again').disabled=false;
+   $$('rmWrap').hidden=false; $$('pool').classList.add('empty'); last=null; window.__useCustom=false; $$('copy').disabled=true; $$('again').disabled=false;
    $$('cap').textContent=`${names.length}명 → ${k}팀 · 룰렛으로 한 명씩`;
    const p=$$('rmPick'); p.className='rmPick'; p.textContent='룰렛을 돌려 첫 번째 사람을 뽑아요';
    $$('rmSpin').disabled=false; $$('rmAll').disabled=false; draw(); teamsView(); endo('point','가운데를 눌러 첫 번째 사람을 뽑아보세요!');
  }
  function assign(name){ const ti=nextTeam(); const t=teamsR[ti]; t.m.push(name); teamsR.forEach(x=>x.fresh=-1); t.fresh=t.m.length-1; rem.splice(rem.indexOf(name),1); return ti; }
- function done(){ last=teamsR.map(t=>t.m.slice()); $$('copy').disabled=false; $$('rmSpin').disabled=true; $$('rmAll').disabled=true; $$('cap').textContent=`${last.flat().length}명 → ${last.length}팀 완성!`; endo('thumbs','룰렛이 팀을 모두 정했어요!'); const d=document.querySelector('.disp'); if(typeof burst==='function') burst(d,d.clientWidth/2,40,24,'#FF5A1F'); }
+ function done(){ window.__useCustom=true; last=teamsR.map(t=>t.m.slice()); $$('copy').disabled=false; $$('rmSpin').disabled=true; $$('rmAll').disabled=true; $$('cap').textContent=`${last.flat().length}명 → ${last.length}팀 완성!`; endo('thumbs','룰렛이 팀을 모두 정했어요!'); const d=document.querySelector('.disp'); if(typeof burst==='function') burst(d,d.clientWidth/2,40,24,'#FF5A1F'); }
  function spin(){
    if(busy||!rem.length) return; busy=true; $$('rmSpin').disabled=true; $$('rmAll').disabled=true;
    const n=rem.length, k=rnd(n), name=rem[k], seg=360/n, inside=seg*(0.2+0.6*(rnd(1000)/1000));
@@ -494,10 +524,10 @@ paint();
    const step=now=>{ const t=Math.min(1,(now-t0)/dur), cur=from+(to-from)*ease(t); wh.style.transform=`rotate(${cur}deg)`;
      const at=Math.floor((((360-cur%360)%360)+360)%360/seg); if(at!==lastSeg){ if(lastSeg!==-1&&!reduce){pin.classList.remove('tick'); void pin.offsetWidth; pin.classList.add('tick');} lastSeg=at; }
      if(t<1) requestAnimationFrame(step); else {
-       rot=0; const ti=assign(name); const tn=TEAMS[ti%TEAMS.length];
-       p.className='rmPick hot'; p.innerHTML=`<b></b> → ${tn[0]} ${tn[1]}!`; p.querySelector('b').textContent=name;
-       endo('saving',`${josa(name,'은','는')} ${tn[1]}!`); teamsView();
-       setTimeout(()=>{ draw(); busy=false; if(rem.length===1){ const last1=rem[0]; const tj=assign(last1); teamsView(); draw(); const tm=TEAMS[tj%TEAMS.length]; p.innerHTML=`마지막 <b></b> → ${tm[0]} ${tm[1]}`; p.querySelector('b').textContent=last1; done(); }
+       rot=0; const ti=assign(name); const tnm=tnName(ti);
+       p.className='rmPick hot'; p.innerHTML=`<b></b> → ${tnEmoji(ti)} <span class="tnm"></span>!`; p.querySelector('b').textContent=name; p.querySelector('.tnm').textContent=tnm;
+       endo('saving',`${josa(name,'은','는')} ${tnm}!`); teamsView();
+       setTimeout(()=>{ draw(); busy=false; if(rem.length===1){ const last1=rem[0]; const tj=assign(last1); teamsView(); draw(); p.innerHTML=`마지막 <b></b> → ${tnEmoji(tj)} <span class="tnm"></span>`; p.querySelector('b').textContent=last1; p.querySelector('.tnm').textContent=tnName(tj); done(); }
          else if(!rem.length) done(); else { $$('rmSpin').disabled=false; $$('rmAll').disabled=false; } }, reduce?0:700);
      } };
    requestAnimationFrame(step);
@@ -505,9 +535,10 @@ paint();
  function all(){ if(busy) return; shuffle(rem).forEach(nm=>assign(nm)); teamsR.forEach(x=>x.fresh=-1); draw(); teamsView(); const p=$$('rmPick'); p.className='rmPick hot'; p.textContent='남은 사람을 한 번에 배정했어요'; done(); }
  window.__teamWheel={assign,nextTeam,prepareFor:(names,k)=>{rem=names.slice(); teamsR=Array.from({length:k},(_,i)=>({m:[],cap:Math.floor(names.length/k)+(i<names.length%k?1:0)}));}, state:()=>({rem,teamsR})};
  $$('rmSpin').onclick=spin; $$('rmHub').onclick=spin; $$('rmAll').onclick=all;
+ renderNames(true);
  const origGo=$$('go').onclick, origAgain=$$('again').onclick;
- $$('go').onclick=()=>{ if(view==='wheel') prepare(); else { $$('rmWrap').hidden=true; origGo&&origGo(); } };
- $$('again').onclick=()=>{ if(view==='wheel') prepare(); else origAgain&&origAgain(); };
+ $$('go').onclick=()=>{ if(view==='wheel') prepare(); else { window.__useCustom=false; $$('rmWrap').hidden=true; origGo&&origGo(); } };
+ $$('again').onclick=()=>{ if(view==='wheel') prepare(); else { window.__useCustom=false; origAgain&&origAgain(); } };
 })();
 </script>
 <button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><img src="/assets/endo/lookback.webp" width="30" height="30" alt=""><span id="jrText"></span><b>↓</b></button>
