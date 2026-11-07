@@ -203,6 +203,7 @@ footer .fl a:hover{color:var(--ink)}
 .reqm.ok{color:#12804E}.reqm.no{color:#C2410C}
 </style>
 <link rel="stylesheet" href="/assets/comments.css?v=3">
+<link rel="stylesheet" href="/assets/favorites.css?v=1">
 <meta name="google-adsense-account" content="ca-pub-1007904420767851">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
 </head>
@@ -219,7 +220,7 @@ footer .fl a:hover{color:var(--ink)}
   </section>
   <main>
   <section class="recent" id="recent" hidden>
-    <div class="ch"><h2>내 바로가기</h2><span class="cs">최근 쓴 도구와 저장한 날짜</span></div>
+    <div class="ch"><h2>내 툴박스</h2><span class="cs" id="fsub">로그인하면 기기가 바뀌어도 내 즐겨찾기가 유지돼요!</span><button type="button" class="fedit" id="fedit" hidden>순서 편집</button></div>
     <div class="rgrid" id="rgrid"></div>
     <div class="mydays" id="mydays"></div>
   </section>
@@ -260,28 +261,26 @@ footer .fl a:hover{color:var(--ink)}
   </section>
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
+<script src="/assets/firebase-config.js?v=4"></script>
+<script src="/assets/favorites.js?v=1"></script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
 <script>
 (function(){
  const cats=[...document.querySelectorAll('.cat')], cards=[...document.querySelectorAll('.cat a.t')], q=document.getElementById('q'), tabs=[...document.querySelectorAll('.tabs2 [data-t]')];
- let recent=[]; try{recent=JSON.parse(localStorage.getItem('sonandogu-recent')||'[]');}catch(e){}
- const box=document.getElementById('rgrid'); let n=0;
- recent.forEach(p=>{const c=document.querySelector('.cat a.t[href="'+p+'"]'); if(!c||n>=4) return; const ic=c.querySelector('.ic');
-   const l=document.createElement('a'); l.href=p; l.innerHTML='<span class="ic"></span><span></span>'; l.querySelector('.ic').innerHTML=ic.innerHTML; l.querySelector('.ic').style.backgroundImage=getComputedStyle(ic).backgroundImage; l.lastChild.textContent=c.querySelector('strong').textContent; box.append(l); n++;});
- const rec=new Set(recent.slice(0,4).filter(p=>document.querySelector('.cat a.t[href="'+p+'"]')));
+ const favSet=()=>new Set(window.SonFav?window.SonFav.list():[]);
  let tab='all';
  const norm=s=>s.toLowerCase().replace(/\s+/g,'');
  function apply(){
    const term=norm(q.value);
-   document.getElementById('recent').hidden=!((rec.size||document.getElementById('mydays').children.length)&&tab==='all'&&!term);
+   const F=favSet(); document.getElementById('recent').hidden=!((F.size||document.getElementById('mydays').children.length)&&tab==='all'&&!term);
    let shown=0;
    cats.forEach(sec=>{ let vis=0; const inTab=tab==='all'||sec.id===tab;
      sec.querySelectorAll('a.t').forEach(c=>{ const txt=norm(c.textContent+' '+(c.dataset.kw||''));
        let ok=inTab && (!term||txt.includes(term));
-       if(ok&&tab==='all'&&!term&&rec.has(c.getAttribute('href'))) ok=false;
+       if(ok&&tab==='all'&&!term&&F.has(c.getAttribute('href'))) ok=false;
        c.hidden=!ok; if(ok) vis++; });
      sec.hidden=!vis; shown+=vis; });
-   document.getElementById('noRes').hidden=shown>0;
+   document.getElementById('noRes').hidden=shown>0||(tab==='all'&&!term&&F.size>0);
  }
  function setTab(t,scroll){ tab=t; tabs.forEach(b=>b.setAttribute('aria-selected',b.dataset.t===t)); apply();
    if(scroll&&t!=='all'){ const s=document.getElementById(t); if(s) s.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}); } }
@@ -289,6 +288,7 @@ footer .fl a:hover{color:var(--ink)}
  q.addEventListener('input',()=>{ if(q.value&&tab!=='all') setTab('all'); else apply(); });
  const fromHash=()=>{const t=location.hash.slice(1); if(['calc','tools','play'].includes(t)){ q.value=''; setTab(t,true);} else apply();};
  addEventListener('hashchange',fromHash); fromHash();
+ if(window.SonFav) window.SonFav.onChange(apply);
 })();
 let _dp=null; addEventListener('beforeinstallprompt',e=>{e.preventDefault(); _dp=e; const b=document.getElementById('inst'); if(b){b.hidden=false; b.onclick=async()=>{_dp.prompt(); await _dp.userChoice; _dp=null; b.hidden=true;};}});
 </script>
@@ -299,7 +299,6 @@ let _dp=null; addEventListener('beforeinstallprompt',e=>{e.preventDefault(); _dp
   const l=document.createElement('a'); l.href='/date/'; l.innerHTML='<span></span><b></b>'; l.firstChild.textContent=it.n; l.lastChild.textContent=b; box.append(l); });
  const r=document.getElementById('recent'); if(r&&!document.getElementById('q').value&&(!location.hash||location.hash==='#')) r.hidden=false; }catch(e){}})();
 </script>
-<script src="/assets/firebase-config.js?v=4"></script>
 <script type="module" src="/assets/comments.js?v=4"></script>
 <script type="module">
 const f=document.getElementById('reqf'); if(f) f.addEventListener('submit',async e=>{ e.preventDefault(); const t=document.getElementById('reqT'), m=document.getElementById('reqM');

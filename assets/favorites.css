@@ -1,0 +1,69 @@
+/* 손안의도구 즐겨찾기(마이 툴박스) · 로그인 UI */
+
+/* 도구 카드의 별 */
+.fav{flex:none; width:34px; height:34px; margin:-2px -2px -2px 0; display:grid; place-items:center; border-radius:50%; color:var(--faint); cursor:pointer; -webkit-tap-highlight-color:transparent; transition:color .2s, background .2s, transform .2s}
+.fav svg{display:block; width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.9; stroke-linejoin:round}
+.fav:hover{color:#F5A100; background:rgba(245,161,0,.12)}
+.fav[aria-pressed="true"]{color:#F5A100}
+.fav[aria-pressed="true"] svg{fill:currentColor}
+.fav:active{transform:scale(.88)}
+.fav:focus-visible{outline:2px solid var(--orange); outline-offset:2px}
+
+/* 헤더 로그인 / 마이 버튼 */
+.acct{font:inherit; font-size:13px; font-weight:800; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:6px 13px; cursor:pointer; display:inline-flex; align-items:center; gap:7px; line-height:1.2}
+.acct:hover{border-color:var(--ink)}
+.acct .av{width:20px; height:20px; border-radius:50%; background:linear-gradient(145deg,#FF8A3D,#FF4A12); color:#fff; font-size:11px; font-weight:900; display:grid; place-items:center}
+.top nav{align-items:center}
+@media (max-width:460px){ .top nav a[href="/"]{display:none} .top nav{gap:12px!important} }
+
+/* 내 툴박스 */
+.recent .ch{align-items:center}
+.recent .ch .cs{font-size:13.5px}
+.flink{font:inherit; font-size:inherit; font-weight:800; color:var(--orange); background:none; border:0; padding:0; margin-left:4px; cursor:pointer; text-decoration:underline; text-underline-offset:3px}
+.fedit{margin-left:auto; font:inherit; font-size:13.5px; font-weight:700; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:5px 12px; cursor:pointer}
+.fedit:hover{color:var(--ink); border-color:var(--ink)}
+.fedit[hidden]{display:none}
+.recent .rgrid{flex-wrap:wrap; overflow:visible; gap:8px; padding:2px 0 4px; margin:0}
+.fchip{display:flex; align-items:center; gap:2px; background:var(--surface); border:1px solid var(--line); border-radius:16px}
+.fchip a{border:0!important; background:none!important; box-shadow:none!important; border-radius:16px!important}
+.fchip .fc{flex:none; width:30px; height:34px; display:grid; place-items:center; font:inherit; font-size:16px; font-weight:800; color:var(--muted); background:none; border:0; cursor:pointer; border-radius:10px}
+.fchip .fc:hover:not(:disabled){color:var(--ink); background:var(--field)}
+.fchip .fc:disabled{opacity:.25; cursor:default}
+.fchip .fc.x{color:#C2410C}
+.fchip.editing{border-style:dashed; border-color:var(--orange)}
+.fempty{margin:0; font-size:14px; color:var(--muted)}
+
+/* 로그인 모달 */
+.fmodal{position:fixed; inset:0; z-index:60; display:grid; place-items:center; padding:20px; background:rgba(14,15,17,.55); -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px)}
+.fmodal[hidden]{display:none}
+.fbox{position:relative; width:100%; max-width:380px; background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:26px; padding:26px 22px 20px; box-shadow:var(--shadow); text-align:center}
+.fbox h2{margin:0 0 8px; font-size:20px; font-weight:800; letter-spacing:-.04em; line-height:1.35}
+.fbox .fl1{margin:0 0 18px; font-size:15px; color:var(--muted); line-height:1.65}
+.fgoogle{width:100%; display:flex; align-items:center; justify-content:center; gap:10px; font:inherit; font-size:15.5px; font-weight:800; color:#141518; background:#fff; border:1.5px solid rgba(20,21,24,.18); border-radius:14px; padding:13px 14px; cursor:pointer}
+.fgoogle:hover:not(:disabled){border-color:#141518}
+.fgoogle:disabled{opacity:.6; cursor:default}
+.fgoogle svg{width:20px; height:20px; flex:none}
+.fmsg{min-height:20px; margin:12px 0 0; font-size:13.5px; font-weight:700; color:#C2410C; line-height:1.55}
+.fmsg.ok{color:#12804E}
+.fsmall{margin:10px 0 0; font-size:12.5px; color:var(--faint); line-height:1.65}
+.fsmall a{color:var(--muted)}
+.fclose{position:absolute; top:10px; right:10px; width:34px; height:34px; display:grid; place-items:center; font:inherit; font-size:20px; color:var(--muted); background:none; border:0; border-radius:50%; cursor:pointer}
+.fclose:hover{background:var(--field); color:var(--ink)}
+
+/* 마이페이지 패널 */
+.fpanel{position:fixed; z-index:40; top:56px; right:max(12px, calc((100vw - 1040px)/2 + 12px)); width:min(300px, calc(100vw - 24px)); background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:20px; padding:16px; box-shadow:var(--shadow)}
+.fpanel[hidden]{display:none}
+.fpanel b{display:block; font-size:16px; font-weight:800; letter-spacing:-.03em; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.fpanel .em{display:block; font-size:13px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.fpanel p{margin:12px 0; font-size:13.5px; color:var(--muted); line-height:1.65}
+.fpanel button{width:100%; font:inherit; font-size:14px; font-weight:800; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:12px; padding:10px; cursor:pointer}
+.fpanel button:hover{border-color:var(--ink)}
+
+/* 안내 토스트 */
+.ftip{position:fixed; z-index:50; left:50%; bottom:max(16px, env(safe-area-inset-bottom,0px)); transform:translateX(-50%); width:min(420px, calc(100vw - 24px)); display:flex; align-items:center; gap:10px; background:var(--ink); color:var(--bg); border-radius:18px; padding:12px 12px 12px 16px; box-shadow:0 18px 40px -12px rgba(0,0,0,.45); font-size:14px; font-weight:700; line-height:1.5}
+.ftip[hidden]{display:none}
+.ftip span{flex:1; min-width:0}
+.ftip button{flex:none; font:inherit; font-size:13.5px; font-weight:800; border:0; border-radius:12px; padding:8px 12px; cursor:pointer}
+.ftip .go2{color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F)}
+.ftip .x2{color:inherit; background:rgba(128,128,128,.25); padding:8px 11px}
+@media (prefers-reduced-motion:no-preference){ .ftip:not([hidden]){animation:ftin .3s cubic-bezier(.2,1,.3,1)} @keyframes ftin{from{opacity:0; transform:translate(-50%,10px)}to{opacity:1; transform:translate(-50%,0)}} }
