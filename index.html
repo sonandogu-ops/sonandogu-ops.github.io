@@ -201,6 +201,65 @@ footer .fl a:hover{color:var(--ink)}
 .reqf button{flex:none; font:inherit; font-size:14.5px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); border:none; border-radius:14px; padding:0 16px; cursor:pointer}
 .reqm{margin:10px 0 0; font-size:14px; font-weight:700}
 .reqm.ok{color:#12804E}.reqm.no{color:#C2410C}
+
+/* ===== 정돈 레이아웃: 헤더 검색 + 목록형 도구 (깃허브 파일 목록 느낌) ===== */
+.top .in{gap:12px; padding:10px 20px}
+.hsrch{flex:1 1 0; min-width:0; max-width:420px; display:flex; align-items:center; gap:8px; margin-left:8px; background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:0 10px; color:var(--muted)}
+.hsrch:focus-within{border-color:var(--orange); box-shadow:0 0 0 4px rgba(255,90,31,.12)}
+.hsrch svg{flex:none}
+.hsrch input{flex:1; min-width:0; width:100%; font:inherit; font-size:14.5px; font-weight:600; color:var(--ink); background:none; border:0; outline:0; padding:8px 0}
+.hsrch input::placeholder{color:var(--faint); font-weight:500}
+.hsrch kbd{flex:none; font:inherit; font-size:12px; font-weight:700; color:var(--faint); border:1px solid var(--line); border-radius:6px; padding:0 6px; line-height:18px}
+.hsrch:focus-within kbd{display:none}
+.top nav{margin-left:auto}
+.brand{flex:none; white-space:nowrap}
+.top nav{flex:none; white-space:nowrap}
+.hero{padding:20px 0 4px}
+.hero h1{font-size:clamp(22px,3.2vw,28px); letter-spacing:-.04em; line-height:1.3; margin:0 0 4px}
+.hero p{font-size:14.5px; max-width:none}
+.finder{margin-top:14px; gap:0}
+.cat{margin-top:20px}
+.cat:first-of-type{margin-top:6px}
+.ch{margin:0 0 8px}
+.ch h2{font-size:16px}
+.cs{font-size:13px}
+.cat .grid{display:block; background:var(--surface); border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:none}
+.cat .t{display:flex; flex-direction:row; align-items:center; gap:12px; min-height:0; padding:10px 14px; border:0; border-bottom:1px solid var(--line); border-radius:0; box-shadow:none; background:none; transform:none}
+.cat .t:hover{background:var(--tint); transform:none; border-left:0}
+.cat a.t:not([hidden]):last-of-type{border-bottom:0}
+.cat .ic{width:34px; height:34px; border-radius:10px; font-size:16px; box-shadow:none}
+.cat .ic svg{width:19px; height:19px}
+.cat .tx{flex:1; min-width:0; display:flex; align-items:baseline; gap:12px}
+.cat .t strong{flex:none; margin:0; font-size:15px; line-height:1.35}
+.cat .t .d{display:block; flex:1; min-width:0; margin:0; font-size:13.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.cat .t .go{display:block; position:static; width:auto; height:auto; border:0; background:none!important; color:var(--faint)!important}
+.cat .t .go svg{display:none}
+.cat .t .go::after{content:"\203A"; font-size:22px; line-height:1; font-weight:300}
+.cat .t:hover .go{color:var(--ink)!important}
+.recent{margin-top:14px}
+.posts{margin-top:36px}
+.pi{margin-bottom:8px; padding:13px 16px; border-radius:14px; box-shadow:none}
+.pi strong{font-size:16px; margin-bottom:2px}
+.pt{margin-bottom:6px}
+@media (max-width:639px){
+  .top .in{padding:9px 14px; gap:8px}
+  .hsrch{margin-left:0}
+  .hsrch kbd{display:none}
+  .top nav a{display:none}
+  .brand{flex:none; white-space:nowrap; font-size:15px}
+  .acct{flex:none; white-space:nowrap}
+  .ch .cs{display:none}
+  .sl{flex:none}
+  .hero{padding:14px 0 2px}
+  .hero h1{font-size:21px}
+  .hero p{font-size:13.5px}
+  .finder{margin-top:10px}
+  .cat .t{padding:11px 12px}
+  .cat .tx{display:block}
+  .cat .t strong{display:block; font-size:15px}
+  .cat .t .d{font-size:12.5px; margin-top:1px}
+  .posts{margin-top:28px}
+}
 </style>
 <link rel="stylesheet" href="/assets/comments.css?v=3">
 <link rel="stylesheet" href="/assets/favorites.css?v=1">
@@ -208,13 +267,12 @@ footer .fl a:hover{color:var(--ink)}
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
 </head>
 <body>
-<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><label class="hsrch"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="도구 검색" aria-label="도구 검색 (예: 할인, 정산, 사다리)" autocomplete="off"><kbd aria-hidden="true">/</kbd></label><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
 <div class="container">
   <section class="hero">
-    <h1>꺼내서 쓰고,<br><span>바로 닫으세요.</span></h1>
+    <h1>꺼내서 쓰고, <span>바로 닫으세요.</span></h1>
     <p>계산기부터 생활 도구, 함께 즐기는 놀이까지. 가입 없이 필요한 순간 바로 꺼내 쓰세요.</p>
     <div class="finder">
-      <label class="srch"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="도구 찾기 (예: 할인, 정산, 사다리)" aria-label="도구 검색" autocomplete="off"></label>
       <div class="tabs2" role="tablist" aria-label="분류"><button role="tab" data-t="all" aria-selected="true">전체</button><button role="tab" data-t="calc" aria-selected="false"><i style="background:#FF5A1F"></i>계산기</button><button role="tab" data-t="tools" aria-selected="false"><i style="background:#2F66F0"></i>생활 도구</button><button role="tab" data-t="play" aria-selected="false"><i style="background:#12985B"></i>놀이</button><button class="inst" id="inst" hidden><i style="background:#FF5A1F"></i>앱으로 설치</button></div>
     </div>
   </section>
@@ -226,7 +284,7 @@ footer .fl a:hover{color:var(--ink)}
   </section>
   <div class="nores" id="noRes" hidden><img src="/assets/endo/detective.webp" width="72" height="72" alt=""><p>찾는 도구가 아직 없어요.<br>어떤 도구가 필요한지 알려주시면 엔도가 개발자에게 전할게요.</p>
     <form class="reqf" id="reqf" novalidate><textarea id="reqT" maxlength="300" placeholder="예) 만 나이 계산기가 있으면 좋겠어요"></textarea><button type="submit">요청 보내기</button></form>
-    <p class="reqm" id="reqM" hidden></p></div><div class="cmsg rmsg" hidden></div></div></div>
+    <p class="reqm" id="reqM" hidden></p></div><div class="cmsg rmsg" hidden></div>
   <section class="cat" id="calc">
     <div class="ch"><h2>계산기</h2><span class="cs">숫자 몇 개로 끝내는</span></div>
     <div class="grid">
@@ -260,7 +318,7 @@ footer .fl a:hover{color:var(--ink)}
     <a class="pi" href="/blog/random-decision/"><span class="pt">모임 놀이</span><strong>"아무거나"가 제일 어려운 이유</strong><span class="pd">점심 메뉴 20분 고민, 룰렛이 답일 때</span></a>
   </section>
 </div>
-<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/blog/">블로그</a><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
 <script src="/assets/firebase-config.js?v=4"></script>
 <script src="/assets/favorites.js?v=1"></script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
@@ -287,6 +345,7 @@ footer .fl a:hover{color:var(--ink)}
  q.addEventListener('input',()=>{ if(q.value&&tab!=='all') setTab('all'); else apply(); });
  const fromHash=()=>{const t=location.hash.slice(1); if(['calc','tools','play'].includes(t)){ q.value=''; setTab(t,true);} else apply();};
  addEventListener('hashchange',fromHash); fromHash();
+ addEventListener('keydown',e=>{ if(e.key==='/'&&!e.metaKey&&!e.ctrlKey&&!e.altKey&&!/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||'')){ e.preventDefault(); q.focus(); } });
  if(window.SonFav) window.SonFav.onChange(apply);
 })();
 let _dp=null; addEventListener('beforeinstallprompt',e=>{e.preventDefault(); _dp=e; const b=document.getElementById('inst'); if(b){b.hidden=false; b.onclick=async()=>{_dp.prompt(); await _dp.userChoice; _dp=null; b.hidden=true;};}});
