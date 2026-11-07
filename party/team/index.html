@@ -364,7 +364,7 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
     </aside>
   </div>
   <section class="guide">
-    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>두근두근하게 정하고 싶다면 "룰렛으로 한 명씩"을 골라보세요. 룰렛이 한 명씩 뽑을 때마다 인원이 적은 팀부터 차례로 채워져요. 조별과제처럼 인원이 딱 안 떨어질 땐 "팀당 인원으로"를 써보세요. 몇 팀이 필요한지 알아서 계산하고, 팀끼리 인원 차이는 한 명을 넘지 않아요.</p></div></div>
+    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>두근두근하게 정하고 싶다면 "룰렛으로 한 명씩"을 골라보세요. 룰렛이 한 명씩 뽑을 때마다 인원이 적은 팀부터 차례로 채워져요. 조별과제처럼 인원이 딱 안 떨어질 땐 "팀당 인원으로"를 써보세요. 몇 팀이 필요한지 알아서 계산하고, 팀끼리 인원 차이는 한 명을 넘지 않아요. 팀 이름도 원하는 대로 바꿀 수 있어요. 비워두면 여우팀, 곰팀 같은 기본 이름이 붙어요.</p></div></div>
     <h2>공평하게 나누는 방법</h2>
     <div class="fgrid">
       <div class="f"><h3>진짜 무작위</h3><p>브라우저의 보안 난수로 순서를 섞어서, 누가 어느 팀이 될지 미리 알 수 없어요. 누를 때마다 새로 섞여요.</p></div>
@@ -427,7 +427,7 @@ function run(){
   const chipOf={}; shuffle(names).forEach(nm=>{const s=document.createElement('span'); s.textContent=nm; pool.append(s); chipOf[nm]=s;});
   const box=$('teams'); box.innerHTML='';
   const mems=last.map((t,i)=>{const d=document.createElement('div'); d.className='tm on'; const c=COL[i%COL.length]; d.style.setProperty('--tc',c); d.style.setProperty('--tcs',hex2(c,.32));
-    d.innerHTML=`<h3><span class="em">${TEAMS[i%TEAMS.length][0]}</span>${TEAMS[i%TEAMS.length][1]}<small>${t.length}명</small></h3><div class="mem"></div>`; box.append(d); return d.querySelector('.mem');});
+    d.innerHTML=`<h3><span class="em">${TEAMS[i%TEAMS.length][0]}</span><span class="tname">${(window.__tnEsc?window.__tnEsc(window.__tnName(i)):TEAMS[i%TEAMS.length][1])}</span><small>${t.length}명</small></h3><div class="mem"></div>`; box.append(d); return d.querySelector('.mem');});
   const finish=()=>{ endo('thumbs','팀 완성! 공평하게 나눴어요'); pool.classList.add('empty'); $('cap').textContent=`${names.length}명 → ${last.length}팀 완성!`; busy=false; $('go').disabled=false; $('again').disabled=false; $('copy').disabled=false;
     const d=$('.disp')||document.querySelector('.disp'); burst(d, d.clientWidth/2, 40, 22, '#FF5A1F'); };
   if(reduce){ order.forEach(([ti,nm])=>{const s=document.createElement('span'); s.textContent=nm; mems[ti].append(s);}); finish(); return; }
@@ -442,7 +442,7 @@ function run(){
   }, 900);
 }
 $('go').onclick=run; $('again').onclick=run;
-$('copy').onclick=async()=>{ if(!last) return; const t='[팀 나누기 결과]\n'+last.map((m,i)=>`${window.__useCustom?window.__teamLabel(i):TEAMS[i%TEAMS.length][0]+' '+TEAMS[i%TEAMS.length][1]}: ${m.join(', ')}`).join('\n')+'\n\n손안의도구 팀 나누기\nhttps://sonandogu.com/party/team/';
+$('copy').onclick=async()=>{ if(!last) return; const t='[팀 나누기 결과]\n'+last.map((m,i)=>`${window.__teamLabel?window.__teamLabel(i):TEAMS[i%TEAMS.length][0]+' '+TEAMS[i%TEAMS.length][1]}: ${m.join(', ')}`).join('\n')+'\n\n손안의도구 팀 나누기\nhttps://sonandogu.com/party/team/';
   try{const _r=await shareOut(t); if(_r==='copied') say('복사했어요');}catch(e){say('공유하지 못했어요');} };
 paint();
 </script>
@@ -458,19 +458,19 @@ paint();
  let custom=store.get('sonandogu-team-names-v1',[]); if(!Array.isArray(custom)) custom=[];
  const tnEmoji=i=>TEAMS[i%TEAMS.length][0];
  const tnName=i=>{ const c=String(custom[i]||'').trim(); return c||TEAMS[i%TEAMS.length][1]; };
- window.__teamLabel=i=>tnEmoji(i)+' '+tnName(i); window.__useCustom=false;
+ window.__teamLabel=i=>tnEmoji(i)+' '+tnName(i); window.__tnName=tnName; window.__tnEsc=esc;
  const teamCount=()=>{ const n=parse(S.names).length; if(n<2) return 0; const k=S.mode==='teams'?S.n:Math.ceil(n/S.n); return (k<2||k>n)?0:k; };
  let shownK=-1;
  function renderNames(force){
    const wrap=$$('tnWrap'), k=teamCount();
-   wrap.hidden=!(view==='wheel'&&k>0);
+   wrap.hidden=!(k>0);
    if(wrap.hidden) return;
    const kk=Math.min(k,20);
    if(!force&&shownK===kk) return; shownK=kk;
    const box=$$('tnames'); box.innerHTML='';
    for(let i=0;i<kk;i++){ const l=document.createElement('label'), e=document.createElement('span'), inp=document.createElement('input');
      e.className='e'; e.textContent=tnEmoji(i); inp.type='text'; inp.maxLength=10; inp.value=custom[i]||''; inp.placeholder=TEAMS[i%TEAMS.length][1]; inp.setAttribute('aria-label',(i+1)+'번째 팀 이름');
-     inp.addEventListener('input',()=>{ custom[i]=inp.value; store.set('sonandogu-team-names-v1',custom); if(teamsR.length&&!$$('rmWrap').hidden) teamsView(); });
+     inp.addEventListener('input',()=>{ custom[i]=inp.value; store.set('sonandogu-team-names-v1',custom); const h=$$('teams').children[i], tg=h&&h.querySelector('.tname'); if(tg) tg.textContent=tnName(i); });
      l.append(e,inp); box.append(l); }
  }
  ['input'].forEach(ev=>$$('names').addEventListener(ev,()=>renderNames()));
@@ -495,7 +495,7 @@ paint();
    const box=$$('teams'); box.innerHTML='';
    const total=teamsR.reduce((a,t)=>a+t.cap,0);
    teamsR.forEach((t,i)=>{ const d=document.createElement('div'); d.className='tm on'; const c=COL[i%COL.length]; d.style.setProperty('--tc',c); d.style.setProperty('--tcs',hex2(c,.32));
-     d.innerHTML=`<h3><span class="em">${tnEmoji(i)}</span>${esc(tnName(i))}<small>${t.m.length}/${t.cap}명</small></h3><div class="mem"></div>`;
+     d.innerHTML=`<h3><span class="em">${tnEmoji(i)}</span><span class="tname">${esc(tnName(i))}</span><small>${t.m.length}/${t.cap}명</small></h3><div class="mem"></div>`;
      const m=d.querySelector('.mem'); t.m.forEach((nm,j)=>{const s=document.createElement('span'); s.textContent=nm; if(t.fresh===j) s.className='new'; m.append(s);});
      for(let k=t.m.length;k<t.cap;k++){ const s=document.createElement('span'); s.className='slot'; s.textContent='?'; m.append(s); }
      box.append(d); });
@@ -508,13 +508,13 @@ paint();
    if(k>names.length){ say('팀 수가 참가자보다 많아요'); return; } if(k<2){ say('두 팀 이상이 되도록 인원을 줄여주세요'); return; }
    rem=names.slice(); rot=0;
    teamsR=Array.from({length:k},(_,i)=>({m:[],cap:Math.floor(names.length/k)+(i<names.length%k?1:0)}));
-   $$('rmWrap').hidden=false; $$('pool').classList.add('empty'); last=null; window.__useCustom=false; $$('copy').disabled=true; $$('again').disabled=false;
+   $$('rmWrap').hidden=false; $$('pool').classList.add('empty'); last=null; $$('copy').disabled=true; $$('again').disabled=false;
    $$('cap').textContent=`${names.length}명 → ${k}팀 · 룰렛으로 한 명씩`;
    const p=$$('rmPick'); p.className='rmPick'; p.textContent='룰렛을 돌려 첫 번째 사람을 뽑아요';
    $$('rmSpin').disabled=false; $$('rmAll').disabled=false; draw(); teamsView(); endo('point','가운데를 눌러 첫 번째 사람을 뽑아보세요!');
  }
  function assign(name){ const ti=nextTeam(); const t=teamsR[ti]; t.m.push(name); teamsR.forEach(x=>x.fresh=-1); t.fresh=t.m.length-1; rem.splice(rem.indexOf(name),1); return ti; }
- function done(){ window.__useCustom=true; last=teamsR.map(t=>t.m.slice()); $$('copy').disabled=false; $$('rmSpin').disabled=true; $$('rmAll').disabled=true; $$('cap').textContent=`${last.flat().length}명 → ${last.length}팀 완성!`; endo('thumbs','룰렛이 팀을 모두 정했어요!'); const d=document.querySelector('.disp'); if(typeof burst==='function') burst(d,d.clientWidth/2,40,24,'#FF5A1F'); }
+ function done(){ last=teamsR.map(t=>t.m.slice()); $$('copy').disabled=false; $$('rmSpin').disabled=true; $$('rmAll').disabled=true; $$('cap').textContent=`${last.flat().length}명 → ${last.length}팀 완성!`; endo('thumbs','룰렛이 팀을 모두 정했어요!'); const d=document.querySelector('.disp'); if(typeof burst==='function') burst(d,d.clientWidth/2,40,24,'#FF5A1F'); }
  function spin(){
    if(busy||!rem.length) return; busy=true; $$('rmSpin').disabled=true; $$('rmAll').disabled=true;
    const n=rem.length, k=rnd(n), name=rem[k], seg=360/n, inside=seg*(0.2+0.6*(rnd(1000)/1000));
@@ -537,8 +537,8 @@ paint();
  $$('rmSpin').onclick=spin; $$('rmHub').onclick=spin; $$('rmAll').onclick=all;
  renderNames(true);
  const origGo=$$('go').onclick, origAgain=$$('again').onclick;
- $$('go').onclick=()=>{ if(view==='wheel') prepare(); else { window.__useCustom=false; $$('rmWrap').hidden=true; origGo&&origGo(); } };
- $$('again').onclick=()=>{ if(view==='wheel') prepare(); else { window.__useCustom=false; origAgain&&origAgain(); } };
+ $$('go').onclick=()=>{ if(view==='wheel') prepare(); else { $$('rmWrap').hidden=true; origGo&&origGo(); } };
+ $$('again').onclick=()=>{ if(view==='wheel') prepare(); else origAgain&&origAgain(); };
 })();
 </script>
 <button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><img src="/assets/endo/lookback.webp" width="30" height="30" alt=""><span id="jrText"></span><b>↓</b></button>
