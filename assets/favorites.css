@@ -29,7 +29,10 @@
 .fchip .fc{flex:none; width:30px; height:34px; display:grid; place-items:center; font:inherit; font-size:16px; font-weight:800; color:var(--muted); background:none; border:0; cursor:pointer; border-radius:10px}
 .fchip .fc:hover:not(:disabled){color:var(--ink); background:var(--field)}
 .fchip .fc:disabled{opacity:.25; cursor:default}
-.fchip .fc.x{color:#C2410C}
+.fchip .fc.st{width:34px; color:#F5A100; margin-right:2px; border-radius:50%}
+.fchip .fc.st svg{display:block; width:19px; height:19px; fill:currentColor; stroke:currentColor; stroke-width:1.9; stroke-linejoin:round}
+.fchip .fc.st:hover{background:rgba(245,161,0,.14)}
+.fchip .fc:focus-visible{outline:2px solid var(--orange); outline-offset:1px}
 .fchip.editing{border-style:dashed; border-color:var(--orange)}
 .fempty{margin:0; font-size:14px; color:var(--muted)}
 

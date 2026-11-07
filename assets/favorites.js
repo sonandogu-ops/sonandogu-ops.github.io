@@ -146,13 +146,17 @@ function drawChips(){
     var i1=el('span','ic'); i1.innerHTML=ic.innerHTML; i1.style.backgroundImage=getComputedStyle(ic).backgroundImage; a.appendChild(i1); a.appendChild(el('span',null,labelOf(h)));
     w.appendChild(a);
     if(editing){
-      var L=el('button','fc','‹'), R=el('button','fc','›'), X=el('button','fc x','✕');
-      [L,R,X].forEach(function(b){b.type='button';});
-      L.setAttribute('aria-label',labelOf(h)+' 앞으로'); R.setAttribute('aria-label',labelOf(h)+' 뒤로'); X.setAttribute('aria-label',labelOf(h)+' 고정 해제');
+      var L=el('button','fc','‹'), R=el('button','fc','›');
+      [L,R].forEach(function(b){b.type='button';});
+      L.setAttribute('aria-label',labelOf(h)+' 앞으로'); R.setAttribute('aria-label',labelOf(h)+' 뒤로');
       L.disabled=i===0; R.disabled=i===favs.length-1;
-      L.onclick=function(){move(i,-1);}; R.onclick=function(){move(i,1);}; X.onclick=function(){toggle(h);};
-      w.appendChild(L); w.appendChild(R); w.appendChild(X);
+      L.onclick=function(){move(i,-1);}; R.onclick=function(){move(i,1);};
+      w.appendChild(L); w.appendChild(R);
     }
+    // 개수와 상관없이 언제든 별을 눌러 툴박스에서 뺄 수 있다
+    var S=el('button','fc st'); S.type='button'; S.innerHTML=STAR; S.setAttribute('aria-label',labelOf(h)+' 고정 해제'); S.setAttribute('title','고정 해제');
+    S.onclick=function(){toggle(h);};
+    w.appendChild(S);
     box.appendChild(w);
   });
 }
