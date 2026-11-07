@@ -3,30 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="manifest" href="/manifest.webmanifest">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="손안의도구">
-
-<link rel="canonical" href="https://sonandogu.com/party/team/">
-<link rel="icon" href="/favicon.ico" sizes="48x48">
-<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon-192.png">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<meta name="theme-color" content="#F4F4F1">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://sonandogu.com/party/team/">
-<meta property="og:image" content="https://sonandogu.com/assets/og-team.jpg?v=2">
-<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<title>팀 나누기 · 팀 정하기 룰렛 - 랜덤 조 편성을 공평하게 | 손안의도구</title>
-<meta name="description" content="이름만 적으면 룰렛처럼 무작위로 팀을 정해드려요. 팀 개수나 팀당 인원으로 공평하게 나누고, 결과를 카톡으로 바로 공유하세요. 조별과제, 체육대회, 게임 편 가르기에.">
+<title>퍼센트 계산기 - % 계산, 할인율, 증가율 한 번에 | 손안의도구</title>
 <meta property="og:site_name" content="손안의도구">
-<meta property="og:title" content="팀 나누기 · 팀 정하기 룰렛 - 이름만 적으면 공평하게">
-<meta property="og:description" content="랜덤 조 편성, 결과 복사까지.">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "팀은 어떻게 무작위로 나누나요?", "acceptedAnswer": {"@type": "Answer", "text": "브라우저의 보안 난수로 참가자 순서를 섞은 뒤 팀마다 차례로 한 명씩 배정해요. 그래서 팀 사이 인원 차이는 최대 한 명이에요."}}, {"@type": "Question", "name": "팀당 인원으로도 나눌 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 팀당 인원을 정하면 필요한 팀 수를 자동으로 계산해서 나눠요."}}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "모임 놀이", "item": "https://sonandogu.com/party/"}, {"@type": "ListItem", "position": 3, "name": "팀 나누기", "item": "https://sonandogu.com/party/team/"}]}</script>
+<meta name="description" content="문장에 숫자만 넣으면 바로 계산되는 퍼센트 계산기. 몇 %인지, 몇 % 올랐는지, 할인가와 원래 가격까지 한 페이지에서 계산하세요.">
+<meta property="og:title" content="퍼센트 계산기 - 문장에 숫자만 넣으면 끝">
+<meta property="og:description" content="% 계산, 증감률, 할인가, 원래 가격 계산을 한 번에.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <style>:root{
   --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
   --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
@@ -58,99 +40,64 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-of
 .container{max-width:1040px; margin:0 auto; padding:0 20px}
 footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
 footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
-footer .fl{display:flex; gap:16px}
-footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
-footer .fl a:hover{color:var(--ink)}
 
-.hero{padding:36px 0 22px}
-@media (min-width:920px){.hero{padding:64px 0 28px}}
-.hero h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 12px}
-.hero p{font-size:17px; color:var(--muted); margin:0; max-width:34em}
-.tabs{display:inline-flex; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:4px; margin-bottom:16px}
-.tabs button{font:inherit; font-size:15px; font-weight:700; color:var(--muted); background:none; border:none; border-radius:12px; padding:10px 18px; cursor:pointer}
-.tabs button[aria-pressed="true"]{background:var(--ink); color:var(--bg)}
-.work{display:grid; gap:18px}
-.work>*{min-width:0}
-@media (min-width:920px){.work{grid-template-columns:1fr 420px; gap:32px; align-items:start}.res{position:sticky; top:78px}}
-[hidden]{display:none!important}
-.card{background:var(--surface); border:1px solid var(--line); border-radius:26px; box-shadow:var(--shadow); padding:20px 18px}
-.card+.card{margin-top:14px}
-.card h2{font-size:17px; font-weight:800; letter-spacing:-.03em; margin:0 0 12px; display:flex; align-items:center; gap:8px}
-.card h2 .n{width:22px; height:22px; border-radius:7px; background:var(--ink); color:var(--bg); font-size:12px; display:grid; place-items:center}
-.card h2 small{margin-left:auto; font-size:13px; color:var(--muted); font-weight:600}
-.box{background:var(--field); border-radius:16px; padding:10px 14px 8px; border:1.5px solid transparent; transition:border-color .2s, box-shadow .2s, background .2s}
+.hero{display:grid; gap:28px; padding:36px 0 0}
+.hero>*{min-width:0}
+@media (min-width:920px){.hero{grid-template-columns:1fr 460px; gap:64px; padding-top:72px; align-items:start}}
+.intro h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 16px}
+.intro p{font-size:17px; color:var(--muted); margin:0 0 24px; max-width:30em}
+.checks{display:flex; flex-wrap:wrap; gap:8px 18px; margin:0; padding:0; list-style:none; font-size:14px; font-weight:600}
+.checks li{display:flex; align-items:center; gap:7px}
+.checks li::before{content:""; width:16px; height:16px; border-radius:50%; background:var(--orange) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.3 2.2 4.7-4.8' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+@media (max-width:919px){.intro p,.checks{display:none}.intro h1{margin:0}}
+
+.card{background:var(--surface); border:1px solid var(--line); border-radius:28px; box-shadow:var(--shadow); padding:8px}
+.seg{position:relative; display:flex; gap:2px; background:var(--field); border-radius:20px; padding:4px; overflow-x:auto; scrollbar-width:none}
+.seg::-webkit-scrollbar{display:none}
+.seg .pill{position:absolute; top:4px; bottom:4px; left:0; width:0; background:var(--surface); border-radius:16px; box-shadow:0 1px 2px rgba(20,21,24,.08), 0 4px 12px -4px rgba(20,21,24,.12); transition:transform .32s cubic-bezier(.2,.8,.2,1), width .32s cubic-bezier(.2,.8,.2,1)}
+.seg button{position:relative; z-index:1; flex:1 0 auto; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:none; border:none; padding:10px 12px; border-radius:16px; cursor:pointer; white-space:nowrap; transition:color .2s}
+.seg button[aria-pressed="true"]{color:var(--ink)}
+
+.inputs{display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:14px 8px 6px}
+.toggle{grid-column:1/-1; display:flex; gap:6px}
+.toggle[hidden]{display:none}
+.toggle button{flex:1; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:14px; padding:9px; cursor:pointer}
+.toggle button[aria-pressed="true"]{color:var(--orange); border-color:var(--orange); background:rgba(255,90,31,.06)}
+.box{position:relative; background:var(--field); border-radius:18px; padding:12px 14px 10px; border:1.5px solid transparent; transition:border-color .2s, box-shadow .2s, background .2s; cursor:text}
 .box:focus-within{background:var(--surface); border-color:var(--orange); box-shadow:0 0 0 5px rgba(255,90,31,.13)}
 .box label{display:block; font-size:12px; font-weight:700; color:var(--muted)}
-.box input,.box select{width:100%; min-width:0; font:inherit; font-size:17px; font-weight:700; color:var(--ink); background:none; border:none; outline:none; padding:2px 0 0}
-.box input::placeholder{color:var(--faint); opacity:.7; font-weight:500}
-.box.big input{font-size:28px; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
-.num input{font-variant-numeric:tabular-nums}
-.g2{display:grid; grid-template-columns:1fr 1fr; gap:8px}
-.stepper{display:flex; align-items:center; justify-content:space-between; background:var(--field); border-radius:16px; padding:8px}
-.stepper button{width:46px; height:46px; border-radius:12px; border:1px solid var(--line); background:var(--surface); font:inherit; font-size:22px; font-weight:700; color:var(--ink); cursor:pointer}
-.stepper span{font-size:24px; font-weight:800; letter-spacing:-.03em}
-.lbl{font-size:12px; font-weight:700; color:var(--muted); margin:14px 0 6px 2px}
-.seg2{display:flex; gap:6px; flex-wrap:wrap}
-.seg2 button{flex:1; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:12px; padding:10px 6px; cursor:pointer; white-space:nowrap}
-.seg2 button[aria-pressed="true"]{color:var(--orange); border-color:var(--orange); background:rgba(255,90,31,.06)}
-.people{display:flex; flex-wrap:wrap; gap:8px}
-.pp{display:flex; align-items:center; gap:2px; background:var(--field); border:1.5px solid transparent; border-radius:999px; padding:4px 4px 4px 14px}
-.pp:focus-within{border-color:var(--orange); background:var(--surface)}
-.pp input{width:5.5em; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:none; outline:none}
-.pp button{width:28px; height:28px; border-radius:50%; border:none; background:none; color:var(--muted); font-size:16px; cursor:pointer}
-.pp button:hover{color:var(--orange)}
-.addp{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:999px; padding:8px 14px; cursor:pointer}
-.item{border:1px solid var(--line); border-radius:20px; padding:12px; margin-bottom:10px}
-.item .top2{display:grid; grid-template-columns:1.2fr 1fr 36px; gap:6px}
-.item .top2 .box{padding:8px 12px 6px}
-.item .top2 .box input{font-size:16px}
-.del{font:inherit; font-size:18px; color:var(--muted); background:none; border:1px solid var(--line); border-radius:12px; cursor:pointer}
-.del:hover{color:var(--orange); border-color:var(--orange)}
-.row2{display:flex; align-items:center; gap:8px; margin-top:10px; flex-wrap:wrap}
-.row2 .k{font-size:12.5px; font-weight:700; color:var(--muted); min-width:3.6em}
-.row2 select{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:10px; padding:7px 10px}
-.chips{display:flex; flex-wrap:wrap; gap:5px; flex:1}
-.chip{font:inherit; font-size:13.5px; font-weight:700; border-radius:999px; padding:6px 11px; cursor:pointer; border:1.5px solid var(--line); background:none; color:var(--faint)}
-.chip[aria-pressed="true"]{border-color:var(--ink); background:var(--ink); color:var(--bg)}
-.mini{font:inherit; font-size:12.5px; font-weight:700; color:var(--muted); background:none; border:none; text-decoration:underline; cursor:pointer; padding:0}
-.addi{width:100%; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:16px; padding:12px; cursor:pointer}
-.addi:hover,.addp:hover{border-color:var(--ink)}
+.box .row{display:flex; align-items:baseline; gap:4px}
+.box input{width:100%; min-width:0; font:inherit; font-size:28px; font-weight:750; letter-spacing:-.04em; color:var(--ink); background:none; border:none; outline:none; padding:2px 0 0; font-variant-numeric:tabular-nums}
+.box input::placeholder{color:var(--faint); opacity:.6}
+.box .unit{font-size:18px; font-weight:700; color:var(--muted)}
+.presets{grid-column:1/-1; display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; padding:2px 0}
+.presets[hidden]{display:none}
+.presets button{flex:none; font:inherit; font-size:13px; font-weight:700; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:6px 12px; cursor:pointer; font-variant-numeric:tabular-nums}
+.presets button:hover{color:var(--ink); border-color:var(--ink)}
 
-.disp{position:relative; overflow:hidden; border-radius:28px; padding:22px 20px 18px; color:#F4F4F1;
+.display{position:relative; overflow:hidden; margin-top:8px; border-radius:22px; padding:22px 20px 18px; color:#F4F4F1;
   background:radial-gradient(120% 140% at 100% 0%, rgba(255,106,51,.28) 0%, rgba(255,106,51,0) 45%), linear-gradient(160deg,#202126 0%,#121316 100%);
-  box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.07)}
-.disp .cap{font-size:14px; color:rgba(244,244,241,.6)}
-.disp .big{font-size:clamp(40px,10vw,52px); font-weight:800; letter-spacing:-.05em; line-height:1.1; margin:4px 0; font-variant-numeric:tabular-nums}
-.disp .big .u{font-size:.45em; color:#FF8A3D; margin-left:4px; letter-spacing:-.02em}
-.disp .sub{font-size:14px; color:rgba(244,244,241,.6); line-height:1.6}
-.disp .sub b{color:#fff}
-.tr{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:8px}
-.tr li{display:flex; align-items:center; justify-content:space-between; gap:10px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:12px 14px}
-.tr .who{font-size:16px; font-weight:700}
-.tr .who i{font-style:normal; color:rgba(244,244,241,.45); margin:0 6px}
-.tr .amt{font-size:19px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
-.tr .none{justify-content:center; color:rgba(244,244,241,.55); font-size:15px}
-.tbl2{width:100%; border-collapse:collapse; margin-top:14px; font-size:13.5px; font-variant-numeric:tabular-nums}
-.tbl2 th,.tbl2 td{padding:8px 4px; border-bottom:1px solid rgba(255,255,255,.08); text-align:right}
-.tbl2 th:first-child,.tbl2 td:first-child{text-align:left}
-.tbl2 th{color:rgba(244,244,241,.5); font-weight:700; font-size:12px}
-.tbl2 .plus{color:#7CE3A8}.tbl2 .minus{color:#FF8A3D}
-.acts{display:grid; grid-template-columns:1fr auto; gap:8px; margin-top:16px}
-.acts button{font:inherit; font-size:15px; font-weight:800; border-radius:16px; padding:14px; cursor:pointer; border:none}
-.copy{color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); box-shadow:0 8px 20px -8px rgba(255,90,31,.8)}
-.copy:disabled{opacity:.35; box-shadow:none; cursor:default}
-.reset{color:#F4F4F1; background:rgba(255,255,255,.08)!important}
-.preview{margin-top:12px; white-space:pre-wrap; font-size:12.5px; line-height:1.6; color:rgba(244,244,241,.55); background:rgba(0,0,0,.25); border-radius:14px; padding:12px; max-height:160px; overflow:auto}
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.display::after{content:""; position:absolute; inset:0; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E"); pointer-events:none}
+.caption{font-size:14px; color:rgba(244,244,241,.6); min-height:1.6em; font-variant-numeric:tabular-nums}
+.result{font-size:clamp(40px,10vw,54px); font-weight:800; letter-spacing:-.05em; line-height:1.1; margin:4px 0 2px; font-variant-numeric:tabular-nums; word-break:break-all}
+.result .u{font-size:.5em; font-weight:700; letter-spacing:-.02em; color:var(--orange2); margin-left:6px}
+.result.empty{font-size:20px; font-weight:600; letter-spacing:-.02em; color:rgba(244,244,241,.45)}
+.dfoot{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,.08)}
+.formula{font-size:12.5px; color:rgba(244,244,241,.5); font-variant-numeric:tabular-nums}
+.copy{flex:none; display:inline-flex; align-items:center; gap:6px; font:inherit; font-size:13px; font-weight:700; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); border:none; border-radius:12px; padding:9px 14px; cursor:pointer; box-shadow:0 6px 16px -6px rgba(255,90,31,.7)}
+.copy[disabled]{opacity:.35; box-shadow:none; cursor:default}
 .toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
 .toast.on{opacity:1; transform:translate(-50%,0)}
+
 .guide{margin-top:88px}
 .guide h2{font-size:clamp(24px,4vw,32px); font-weight:800; letter-spacing:-.04em; margin:0 0 20px}
 .fgrid{display:grid; gap:12px}
 @media (min-width:720px){.fgrid{grid-template-columns:repeat(2,1fr)}}
 .f{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px}
-.f h3{font-size:16px; font-weight:800; margin:0 0 8px; letter-spacing:-.02em}
-.f p{margin:0; font-size:14.5px; color:var(--muted)}
-.f strong{color:var(--ink)}
+.f h3{font-size:16px; font-weight:800; margin:0 0 10px; letter-spacing:-.02em}
+.f code{display:inline-block; font-family:inherit; font-size:14px; font-weight:700; background:var(--field); border-radius:10px; padding:6px 10px; font-variant-numeric:tabular-nums}
+.f p{margin:10px 0 0; font-size:14px; color:var(--muted)}
 .faq{margin-top:56px}
 .faq details{border-top:1px solid var(--line); padding:18px 0}
 .faq details:last-child{border-bottom:1px solid var(--line)}
@@ -159,402 +106,139 @@ footer .fl a:hover{color:var(--ink)}
 .faq summary::after{content:"+"; color:var(--muted); font-weight:500; font-size:22px; line-height:1; transition:transform .2s}
 .faq details[open] summary::after{transform:rotate(45deg)}
 .faq p{margin:10px 0 0; color:var(--muted)}
-
-
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
-.rel b{font-size:13px; color:var(--orange); font-weight:800}
-.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
-.rel a:hover{color:var(--orange)}
-
-.days{display:grid; grid-template-columns:repeat(7,1fr); gap:6px}
-.day{background:var(--field); border-radius:14px; padding:8px 4px 6px; text-align:center; border:1.5px solid transparent}
-.day:focus-within{border-color:var(--orange); background:var(--surface)}
-.day label{display:block; font-size:12px; font-weight:800; color:var(--muted)}
-.day input{width:100%; font:inherit; font-size:18px; font-weight:800; text-align:center; color:var(--ink); background:none; border:none; outline:none; padding:2px 0; font-variant-numeric:tabular-nums}
-.day input::placeholder{color:var(--faint); opacity:.6}
-.day.we label{color:var(--orange)}
-.quick{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-top:10px; font-size:13px; color:var(--muted)}
-.quick select{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:10px; padding:6px 8px}
-.quick button{font:inherit; font-size:13px; font-weight:700; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:7px 12px; cursor:pointer}
-.optrow{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--line); font-size:14.5px; font-weight:700}
-.optrow:first-of-type{border-top:none}
-.optrow small{display:block; font-size:12.5px; color:var(--muted); font-weight:500; margin-top:2px}
-.sw{position:relative; flex:none; width:46px; height:28px; border-radius:999px; background:var(--field); border:1px solid var(--line); cursor:pointer; padding:0}
-.sw::after{content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .2s}
-.sw[aria-checked="true"]{background:var(--orange); border-color:var(--orange)}
-.sw[aria-checked="true"]::after{transform:translateX(18px)}
-.wrow{display:flex; gap:8px; align-items:stretch}
-.wrow .box{flex:1}
-.minbtn{font:inherit; font-size:13px; font-weight:700; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:0 12px; cursor:pointer; white-space:nowrap}
-.warn{margin-top:8px; font-size:13px; font-weight:700; color:#D9480F}
-.lines{margin-top:14px; display:flex; flex-direction:column; gap:2px}
-.ln{display:flex; justify-content:space-between; font-size:14px; padding:7px 0; border-bottom:1px solid rgba(255,255,255,.08); font-variant-numeric:tabular-nums}
-.ln span:first-child{color:rgba(244,244,241,.6)}
-.ln b{font-weight:800}
-.ln.sum{border-bottom:none; font-size:15px}
-.badge{display:inline-block; font-size:12.5px; font-weight:800; padding:4px 10px; border-radius:999px; margin-top:10px}
-.badge.ok{background:rgba(124,227,168,.15); color:#7CE3A8}
-.badge.no{background:rgba(255,138,61,.15); color:#FF8A3D}
-.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
-.rel b{font-size:13px; color:var(--orange); font-weight:800}
-.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
-.rel a:hover{color:var(--orange)}
-
-.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:12px}
-.crumb a{color:var(--muted); text-decoration:none}
-.crumb a:hover{color:var(--ink)}
-
-.names{width:100%; min-height:180px; font:inherit; font-size:16px; line-height:1.7; color:var(--ink); background:var(--field); border:1.5px solid transparent; border-radius:16px; padding:12px 14px; resize:vertical; outline:none}
-.names:focus{border-color:var(--orange); background:var(--surface); box-shadow:0 0 0 5px rgba(255,90,31,.13)}
-.hint{font-size:13px; color:var(--muted); margin-top:8px}
-.lbl small{font-weight:500; margin-left:4px}
-.tnames{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px}
-.tnames label{display:flex; align-items:center; gap:6px; background:var(--field); border:1.5px solid transparent; border-radius:12px; padding:0 10px; transition:border-color .2s, background .2s}
-.tnames label:focus-within{border-color:var(--orange); background:var(--surface)}
-.tnames .e{font-size:18px; line-height:1}
-.tnames input{flex:1; min-width:0; font:inherit; font-size:16px; color:var(--ink); background:transparent; border:0; outline:0; padding:10px 0}
-.tnames input::placeholder{color:var(--muted); opacity:.8}
-.go{display:block; width:100%; margin-top:16px; font:inherit; font-size:17px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); border:none; border-radius:18px; padding:16px; cursor:pointer; box-shadow:0 12px 28px -10px rgba(255,90,31,.85)}
-.teams{display:grid; gap:10px; margin-top:14px}
-.tm{background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:18px; padding:14px; opacity:0; transform:translateY(8px); transition:all .35s cubic-bezier(.2,.8,.2,1)}
-.tm.on{opacity:1; transform:none}
-.tm h3{margin:0 0 8px; font-size:15px; font-weight:800; display:flex; align-items:center; gap:8px}
-.tm h3 i{width:12px; height:12px; border-radius:50%}
-.tm h3 small{margin-left:auto; color:rgba(244,244,241,.5); font-weight:600}
-.mem{display:flex; flex-wrap:wrap; gap:6px}
-.mem span{background:rgba(255,255,255,.1); border-radius:999px; padding:6px 12px; font-size:15px; font-weight:700}
-.acts2{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px}
-.acts2 button{font:inherit; font-size:15px; font-weight:800; border-radius:14px; padding:13px; cursor:pointer; border:none}
-.acts2 .a{color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F)}
-.acts2 .b{color:#F4F4F1; background:rgba(255,255,255,.1)}
-.empty{color:rgba(244,244,241,.5); font-size:15px; padding:20px 0; text-align:center}
-.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
-.toast.on{opacity:1; transform:translate(-50%,0)}
-@media (prefers-reduced-motion:reduce){.tm{transition:none}}
-
-.burst{position:absolute; width:8px; height:8px; border-radius:2px; pointer-events:none; animation:fly 1s cubic-bezier(.2,.8,.3,1) forwards; z-index:6}
-@keyframes fly{to{transform:translate(var(--dx),var(--dy)) rotate(var(--r)); opacity:0}}
-.drum{display:inline-block; animation:drum .25s steps(2) infinite}
-@keyframes drum{50%{transform:translateY(-2px)}}
-
-.pool{display:flex; flex-wrap:wrap; gap:6px; justify-content:center; padding:12px; border-radius:18px; background:rgba(255,255,255,.04); border:1px dashed rgba(255,255,255,.14); min-height:52px; margin-top:12px}
-.pool span,.mem span{display:inline-block; background:rgba(255,255,255,.12); border-radius:999px; padding:6px 12px; font-size:14.5px; font-weight:700; color:#F4F4F1}
-.pool.shake span{animation:jit .18s ease-in-out infinite alternate}
-.pool.shake span:nth-child(3n){animation-duration:.22s}.pool.shake span:nth-child(3n+1){animation-duration:.15s}
-@keyframes jit{from{transform:translate(-2px,1px) rotate(-3deg)}to{transform:translate(2px,-1px) rotate(3deg)}}
-.pool span.gone{visibility:hidden}
-.pool.empty{display:none}
-.tm{opacity:1; transform:none; border-top:3px solid var(--tc); background:rgba(255,255,255,.05)}
-.tm h3 .em{font-size:20px}
-.tm .mem{min-height:34px}
-.mem span{background:var(--tcs)}
-@media (prefers-reduced-motion:reduce){.pool.shake span{animation:none}}
-.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
-.rel b{font-size:13px; color:var(--orange); font-weight:800}
-.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
-.rel a:hover{color:var(--orange)}
-
-.endo{display:flex; align-items:flex-end; gap:10px; margin-top:14px}
-.endo img{flex:none; width:64px; height:64px; object-fit:contain; filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
-.endo .say{position:relative; flex:1; background:#F4F4F1; color:#141518; font-size:14px; font-weight:700; line-height:1.45; border-radius:16px 16px 16px 4px; padding:10px 13px; margin-bottom:8px; letter-spacing:-.01em}
-.endo .say::before{content:""; position:absolute; left:-6px; bottom:8px; border:6px solid transparent; border-right-color:#F4F4F1; border-left:0}
-.endo.light .say{background:var(--field); color:var(--ink)}
-.endo.light .say::before{border-right-color:var(--field)}
-.endo.light img{filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
-.endo.pop img{animation:endoHop .5s cubic-bezier(.3,1.6,.5,1)}
-.endo.pop .say{animation:endoSay .35s ease-out}
-.endo[data-p="walk"] img,.endo[data-p="run"] img{animation:endoWalk .45s ease-in-out infinite}
-@keyframes endoHop{0%{transform:translateY(8px) scale(.9)}60%{transform:translateY(-6px)}100%{transform:none}}
-@keyframes endoSay{from{opacity:0; transform:translateX(-6px)}to{opacity:1; transform:none}}
-@keyframes endoWalk{50%{transform:translateY(-4px) rotate(-3deg)}}
-.tip{display:flex; gap:16px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:14px 18px; margin:0 0 22px; box-shadow:var(--shadow)}
-.tip img{width:80px; height:80px; object-fit:contain; flex:none}
-.tip b{display:block; font-size:13px; color:var(--orange); font-weight:800; margin-bottom:2px}
-.tip p{margin:0; font-size:15px; line-height:1.6}
-@media (prefers-reduced-motion:reduce){.endo.pop img,.endo.pop .say,.endo[data-p] img{animation:none!important}}
-
-.jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
-.jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
-.jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-.jumpres img{flex:none; width:30px; height:30px; object-fit:contain; margin:-6px -2px -6px -6px}
-.jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
-.res{scroll-margin-top:66px}
-@media (min-width:920px){.jumpres{display:none!important}}
-@media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
-@media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
-
-#rmWrap .wheelbox[hidden]{display:none}
-#rmWrap .wheelbox{position:relative; width:100%; max-width:300px; margin:6px auto 0; aspect-ratio:1}
-#rmWrap .wheel{position:absolute; inset:4%; width:92%; height:92%; filter:drop-shadow(0 12px 22px rgba(0,0,0,.45))}
-#rmWrap .wheel text{font-family:"Pretendard Variable",sans-serif; font-weight:800; fill:#fff}
-#rmWrap .pin{position:absolute; left:50%; top:-3%; width:30px; height:40px; transform:translateX(-50%); transform-origin:50% 20%; z-index:3}
-#rmWrap .pin svg{width:100%; height:100%; filter:drop-shadow(0 4px 6px rgba(0,0,0,.5))}
-#rmWrap .pin.tick{animation:tick .14s ease-out}
-@keyframes tick{40%{transform:translateX(-50%) rotate(-22deg)}}
-#rmWrap .hub{position:absolute; left:50%; top:50%; width:22%; height:22%; transform:translate(-50%,-50%); border-radius:50%; background:radial-gradient(circle at 40% 35%,#FF9A55,#FF4A12); border:4px solid #F4F4F1; color:#fff; font:inherit; font-size:13px; font-weight:900; cursor:pointer; z-index:3; box-shadow:0 6px 14px rgba(0,0,0,.4)}
-.rmPick{margin:12px auto 0; text-align:center; flex-wrap:wrap; gap:4px; font-size:15px; font-weight:700; color:rgba(244,244,241,.75); min-height:48px; display:flex; align-items:center; justify-content:center; padding:10px 12px; border-radius:16px; background:rgba(255,255,255,.06)}
-.rmPick b{font-size:20px; color:#fff; margin:0 4px}
-.rmPick.hot{background:linear-gradient(150deg,#FFB067,#FF4A12); color:#141518; animation:rpop .45s cubic-bezier(.2,1.5,.4,1)}
-.rmPick.hot b{color:#141518}
-@keyframes rpop{0%{transform:scale(.85); opacity:0}100%{transform:scale(1); opacity:1}}
-.rmBtns{display:grid; grid-template-columns:1.4fr 1fr; gap:8px; margin-top:10px}
-.rmBtns button{font:inherit; font-size:15px; font-weight:800; border-radius:14px; padding:12px; cursor:pointer; border:none}
-.rmBtns .a{color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F)}
-.rmBtns .b{color:#F4F4F1; background:rgba(255,255,255,.1)}
-.rmBtns button:disabled{opacity:.4; cursor:default}
-.mem span.new{animation:rpop .45s cubic-bezier(.2,1.5,.4,1); box-shadow:0 0 0 2px #FFE07A}
-.slot{display:inline-block; border:1.5px dashed rgba(255,255,255,.18); border-radius:999px; padding:6px 14px; font-size:13px; color:rgba(244,244,241,.35)}
-@media (prefers-reduced-motion:reduce){.rmPick.hot,.mem span.new,#rmWrap .pin.tick{animation:none}}
 </style>
-<link rel="stylesheet" href="/assets/comments.css?v=3">
-<meta name="google-adsense-account" content="ca-pub-1007904420767851">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"퍼센트는 어떻게 계산하나요?","acceptedAnswer":{"@type":"Answer","text":"전체 값에 퍼센트를 곱하고 100으로 나누면 됩니다. 50,000의 20%는 50,000 × 20 ÷ 100 = 10,000입니다."}},
+{"@type":"Question","name":"증가율은 어떻게 구하나요?","acceptedAnswer":{"@type":"Answer","text":"(바뀐 값 - 처음 값) ÷ 처음 값 × 100입니다. 200에서 250이 되면 25% 증가입니다."}},
+{"@type":"Question","name":"할인된 가격으로 원래 가격을 알 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"할인가 ÷ (1 - 할인율 ÷ 100)으로 구합니다. 30% 할인해서 14,000원이면 원래 가격은 20,000원입니다."}}
+]}
+</script>
 </head>
 <body>
-<script>
-async function shareOut(t){ const touch=matchMedia('(pointer:coarse)').matches; if(navigator.share&&touch){ try{ await navigator.share({text:t}); return 'shared'; }catch(e){ if(e&&e.name==='AbortError') return 'abort'; } } await navigator.clipboard.writeText(t); return 'copied'; }
-document.addEventListener('DOMContentLoaded',()=>{ if(navigator.share&&matchMedia('(pointer:coarse)').matches){ document.querySelectorAll('[data-share]').forEach(b=>b.textContent=b.dataset.share); } });
-</script>
-<script>
-(function(){try{const k='sonandogu-recent',p=location.pathname,a=JSON.parse(localStorage.getItem(k)||'[]').filter(x=>x!==p);a.unshift(p);localStorage.setItem(k,JSON.stringify(a.slice(0,4)));}catch(e){}})();
-</script>
-<script>
-function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const img=e.querySelector('img'), src='/assets/endo/'+p+'.webp'; if(img.getAttribute('src')!==src) img.setAttribute('src',src); e.dataset.p=p; const s=e.querySelector('.say'); if(s.textContent!==m){ s.textContent=m; if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); } } }
-</script>
-<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient></defs><rect width="26" height="26" rx="8" fill="url(#lg)"/><rect x="7" y="11.5" width="12" height="3" rx="1.5" fill="#fff"/><rect x="11.5" y="7" width="3" height="7.5" rx="1.5" fill="#fff" opacity=".55"/></svg>손안의도구</a><nav><a href="/">전체 도구</a></nav></div></header>
 <div class="container">
-
   <section class="hero">
-    <div class="crumb"><a href="/">전체 도구</a> / <a href="/party/">모임 놀이</a> / 팀 나누기</div>
-    <h1>팀 나누기</h1>
-    <p>이름만 적으면 룰렛처럼 무작위로 팀을 정해드려요. 체육대회, 조별과제, 게임 편 가르기까지 공평하게.</p>
-  </section>
-  <div class="work">
-    <main>
-      <div class="card">
-        <h2><span class="n">1</span>참가자<small id="cnt">0명</small></h2>
-        <textarea class="names" id="names" placeholder="한 줄에 한 명씩, 또는 쉼표로 구분해서 적어주세요&#10;예) 호랑이, 토끼, 강아지, 고양이, 판다, 다람쥐"></textarea>
-        <div class="hint">같은 이름은 한 번만 들어가요.</div>
+    <div class="intro">
+      <h1>퍼센트 계산기</h1>
+      <p>할인가, 증감률, 비율, 원래 가격까지. 숫자 두 개만 넣으면 끝나는 가장 빠른 퍼센트 계산.</p>
+      <ul class="checks"><li>설치·가입 없음</li><li>입력 즉시 계산</li><li>기기 밖으로 전송 안 함</li></ul>
+    </div>
+
+    <main class="card">
+      <nav class="seg" aria-label="계산 종류"><span class="pill" aria-hidden="true"></span>
+        <button data-mode="of" aria-pressed="true">A의 B%</button>
+        <button data-mode="ratio" aria-pressed="false">비율</button>
+        <button data-mode="change" aria-pressed="false">증감률</button>
+        <button data-mode="apply" aria-pressed="false">할인·인상</button>
+        <button data-mode="original" aria-pressed="false">원래 가격</button>
+      </nav>
+      <div class="inputs">
+        <div class="toggle" hidden><button data-dir="down" aria-pressed="true">할인</button><button data-dir="up" aria-pressed="false">인상</button></div>
+        <div class="box" data-for="a"><label for="a"></label><div class="row"><input id="a" inputmode="decimal" autocomplete="off"><span class="unit" id="ua"></span></div></div>
+        <div class="box" data-for="b"><label for="b"></label><div class="row"><input id="b" inputmode="decimal" autocomplete="off"><span class="unit" id="ub"></span></div></div>
+        <div class="presets" aria-label="자주 쓰는 퍼센트"></div>
       </div>
-      <div class="card">
-        <h2><span class="n">2</span>나누는 방법</h2>
-        <div class="seg2" id="mode"><button data-m="teams" aria-pressed="true">팀 개수로</button><button data-m="size" aria-pressed="false">팀당 인원으로</button></div>
-        <div class="lbl" id="numLbl">팀 개수</div>
-        <div class="stepper"><button id="minus" aria-label="줄이기">−</button><span id="num">2팀</span><button id="plus" aria-label="늘리기">＋</button></div>
-        <div class="lbl">결과 보는 방식</div>
-        <div class="seg2" id="view"><button data-v="instant" aria-pressed="true">한 번에 보기</button><button data-v="wheel" aria-pressed="false">🎡 룰렛으로 한 명씩</button></div>
-        <div id="tnWrap" hidden><div class="lbl">팀 이름<small>비워두면 기본 이름이 붙어요</small></div><div class="tnames" id="tnames"></div></div>
-        <button class="go" id="go">팀 나누기</button>
+      <div class="display" aria-live="polite">
+        <div class="caption" id="cap"></div>
+        <div class="result empty" id="res">숫자를 넣으면 바로 나와요</div>
+        <div class="dfoot"><span class="formula" id="fx">공식이 여기에 표시됩니다</span>
+          <button class="copy" id="copy" disabled><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="4" y="4" width="8.5" height="8.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9.5 2.5V2a1 1 0 0 0-1-1H2.5a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1H3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>복사</button>
+        </div>
       </div>
     </main>
-    <aside class="res">
-      <div class="disp" aria-live="polite">
-        <div class="cap" id="cap">결과가 여기에 나와요</div>
-        <div class="endo" id="endo" data-p="point"><img src="/assets/endo/point.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">이름을 적고 팀 나누기를 눌러보세요!</div></div>
-        <div id="rmWrap" hidden>
-          <div class="wheelbox" id="rmBox"><div class="pin" aria-hidden="true"><svg viewBox="0 0 34 44"><path d="M17 42 L3 10 A14 14 0 1 1 31 10 Z" fill="#F4F4F1"/><circle cx="17" cy="13" r="5" fill="#FF5A1F"/></svg></div><svg class="wheel" id="rmWheel" viewBox="0 0 300 300" aria-hidden="true"></svg><button class="hub" id="rmHub" aria-label="룰렛 돌리기">돌려!</button></div>
-          <div class="rmPick" id="rmPick" aria-live="polite">룰렛을 돌려 첫 번째 사람을 뽑아요</div>
-          <div class="rmBtns"><button class="a" id="rmSpin">룰렛 돌리기</button><button class="b" id="rmAll">남은 사람 한 번에</button></div>
-        </div>
-        <div class="pool empty" id="pool"></div>
-        <div class="teams" id="teams"><div class="empty">참가자를 적고 팀 나누기를 눌러주세요</div></div>
-        <div class="acts2"><button class="a" id="again" disabled>다시 섞기</button><button class="b" id="copy" disabled>결과 복사</button></div>
-      </div>
-    </aside>
-  </div>
+  </section>
+
   <section class="guide">
-    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>두근두근하게 정하고 싶다면 "룰렛으로 한 명씩"을 골라보세요. 룰렛이 한 명씩 뽑을 때마다 인원이 적은 팀부터 차례로 채워져요. 조별과제처럼 인원이 딱 안 떨어질 땐 "팀당 인원으로"를 써보세요. 몇 팀이 필요한지 알아서 계산하고, 팀끼리 인원 차이는 한 명을 넘지 않아요.</p></div></div>
-    <h2>공평하게 나누는 방법</h2>
+    <h2>공식 한눈에 보기</h2>
     <div class="fgrid">
-      <div class="f"><h3>진짜 무작위</h3><p>브라우저의 보안 난수로 순서를 섞어서, 누가 어느 팀이 될지 미리 알 수 없어요. 누를 때마다 새로 섞여요.</p></div>
-      <div class="f"><h3>인원은 최대한 고르게</h3><p>나눠떨어지지 않으면 팀 사이 인원 차이가 <strong>한 명을 넘지 않게</strong> 배정해요. 7명을 3팀으로 나누면 3·2·2명이 돼요.</p></div>
+      <div class="f"><h3>어떤 값의 몇 %</h3><code>전체 × 퍼센트 ÷ 100</code><p>50,000원의 20%는 10,000원</p></div>
+      <div class="f"><h3>A는 B의 몇 %</h3><code>A ÷ B × 100</code><p>60문제 중 45문제를 맞히면 75%</p></div>
+      <div class="f"><h3>증가율·감소율</h3><code>(바뀐 값 − 처음 값) ÷ 처음 값 × 100</code><p>월급 200만 원 → 250만 원이면 25% 인상</p></div>
+      <div class="f"><h3>할인가·인상가</h3><code>원래 값 × (1 ∓ 퍼센트 ÷ 100)</code><p>35,000원을 15% 할인하면 29,750원</p></div>
+      <div class="f"><h3>원래 가격 거꾸로 찾기</h3><code>할인가 ÷ (1 − 할인율 ÷ 100)</code><p>30% 할인해서 14,000원이면 원래 20,000원</p></div>
     </div>
+
     <div class="faq">
       <h2>자주 묻는 질문</h2>
-      <details><summary>입력한 이름은 저장되나요?</summary><p>다음에 다시 쓰기 편하도록 이 기기의 브라우저에만 저장돼요. 서버로는 보내지 않아요.</p></details>
-      <details><summary>결과를 단톡방에 올리고 싶어요</summary><p>결과 복사를 누르면 팀별 명단이 글로 복사돼요. 카톡에 그대로 붙여넣으면 돼요.</p></details>
+      <details><summary>20% 할인 후 다시 20% 올리면 원래 가격이 되나요?</summary><p>아닙니다. 10,000원을 20% 내리면 8,000원이고, 여기서 20% 올리면 9,600원입니다. 두 번째 계산의 기준이 8,000원으로 바뀌기 때문입니다.</p></details>
+      <details><summary>퍼센트와 퍼센트포인트는 뭐가 다른가요?</summary><p>금리가 2%에서 3%가 되면 1%포인트 오른 것이고, 비율로 따지면 50% 오른 것입니다. 뉴스의 %p는 퍼센트 값끼리의 단순한 차이를 뜻합니다.</p></details>
+      <details><summary>소수점은 어떻게 표시되나요?</summary><p>결과는 소수점 둘째 자리까지 반올림해서 보여줍니다.</p></details>
     </div>
-  <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/team-picking/">팀 정하기, 왜 늘 누군가 서운할까 →</a><a href="/blog/random-decision/">"아무거나"가 제일 어려운 이유 →</a></div>
-  <div data-comments data-kind="review" data-page="/party/team/"></div>
   </section>
-<div class="toast" id="toast"></div>
-<script>
-const $=id=>document.getElementById(id);
-const rnd=n=>{ if(n<=1) return 0; const lim=Math.floor(4294967296/n)*n, a=new Uint32Array(1); let x; do{crypto.getRandomValues(a); x=a[0];}while(x>=lim); return x%n; };
-const shuffle=arr=>{const a=arr.slice(); for(let i=a.length-1;i>0;i--){const j=rnd(i+1); [a[i],a[j]]=[a[j],a[i]];} return a;};
-const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1600);}
-const store={get:(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d;}catch(e){return d;}},set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
-
-function burst(host,cx,cy,count,col){ if(reduce) return; const cols=[col,'#FFE07A','#FFFFFF','#FF8A3D','#7CE3A8'];
-  for(let k=0;k<count;k++){const s=document.createElement('span'); s.className='burst'; s.style.left=cx+'px'; s.style.top=cy+'px'; s.style.background=cols[k%cols.length];
-    const a=Math.random()*Math.PI*2, r=40+Math.random()*80; s.style.setProperty('--dx',Math.cos(a)*r+'px'); s.style.setProperty('--dy',(Math.sin(a)*r-30)+'px'); s.style.setProperty('--r',(Math.random()*540)+'deg');
-    host.append(s); setTimeout(()=>s.remove(),1050);} }
-
-const COL=["#FF5A1F", "#3D7BFF", "#1FA968", "#A855F7", "#E8A100", "#E0457B", "#0EA5B7", "#6B7280", "#8B5CF6", "#16A34A"];
-const TEAMS=[['🦊','여우팀'],['🐻','곰팀'],['🐰','토끼팀'],['🐯','호랑이팀'],['🐼','판다팀'],['🐧','펭귄팀'],['🐱','고양이팀'],['🐶','강아지팀'],['🐹','햄스터팀'],['🦁','사자팀']];
-const S=Object.assign({names:'',mode:'teams',n:2},store.get('sonandogu-team-v1',{}));
-let last=null, busy=false;
-const parse=t=>{const out=[],seen=new Set(); t.split(/[\n,，]/).map(s=>s.trim()).filter(Boolean).forEach(s=>{if(!seen.has(s)){seen.add(s);out.push(s.slice(0,20));}}); return out.slice(0,200);};
-function paint(){
-  $('names').value=S.names;
-  document.querySelectorAll('#mode button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.m===S.mode));
-  $('numLbl').textContent=S.mode==='teams'?'팀 개수':'팀당 인원';
-  $('num').textContent=S.n+(S.mode==='teams'?'팀':'명');
-  $('cnt').textContent=parse(S.names).length+'명';
-  store.set('sonandogu-team-v1',S);
-}
-$('names').addEventListener('input',e=>{S.names=e.target.value; paint();});
-document.querySelectorAll('#mode button').forEach(b=>b.onclick=()=>{S.mode=b.dataset.m; S.n=2; paint();});
-$('minus').onclick=()=>{S.n=Math.max(S.mode==='teams'?2:1,S.n-1); paint();};
-$('plus').onclick=()=>{S.n=Math.min(S.mode==='teams'?10:50,S.n+1); paint();};
-function split(names,mode,n){ const k= mode==='teams'? n : Math.ceil(names.length/n); const sh=shuffle(names), teams=Array.from({length:k},()=>[]); sh.forEach((nm,i)=>teams[i%k].push(nm)); return teams; }
-window.__split=split;
-const hex2=(h,a)=>{const n=parseInt(h.slice(1),16); return `rgba(${n>>16},${(n>>8)&255},${n&255},${a})`;};
-function run(){
-  if(busy) return;
-  const names=parse(S.names);
-  if(names.length<2){endo('surprised','앗, 참가자를 두 명 이상 적어주세요!'); say('참가자를 두 명 이상 적어주세요');return;}
-  const k= S.mode==='teams'? S.n : Math.ceil(names.length/S.n);
-  if(k>names.length){say('팀 수가 참가자보다 많아요');return;}
-  if(k<2){say('두 팀 이상이 되도록 인원을 줄여주세요');return;}
-  busy=true; $('go').disabled=true; $('again').disabled=true; $('copy').disabled=true; endo('walk','이름표 섞는 중이에요…');
-  last=split(names,S.mode,S.n);
-  const order=[]; const maxLen=Math.max(...last.map(t=>t.length)); for(let r=0;r<maxLen;r++) last.forEach((t,ti)=>{ if(t[r]!==undefined) order.push([ti,t[r]]); });
-  $('cap').innerHTML=`${names.length}명 → ${last.length}팀 · <span class="drum">섞는 중</span>`;
-  const pool=$('pool'); pool.classList.remove('empty'); pool.innerHTML='';
-  const chipOf={}; shuffle(names).forEach(nm=>{const s=document.createElement('span'); s.textContent=nm; pool.append(s); chipOf[nm]=s;});
-  const box=$('teams'); box.innerHTML='';
-  const mems=last.map((t,i)=>{const d=document.createElement('div'); d.className='tm on'; const c=COL[i%COL.length]; d.style.setProperty('--tc',c); d.style.setProperty('--tcs',hex2(c,.32));
-    d.innerHTML=`<h3><span class="em">${TEAMS[i%TEAMS.length][0]}</span>${TEAMS[i%TEAMS.length][1]}<small>${t.length}명</small></h3><div class="mem"></div>`; box.append(d); return d.querySelector('.mem');});
-  const finish=()=>{ endo('thumbs','팀 완성! 공평하게 나눴어요'); pool.classList.add('empty'); $('cap').textContent=`${names.length}명 → ${last.length}팀 완성!`; busy=false; $('go').disabled=false; $('again').disabled=false; $('copy').disabled=false;
-    const d=$('.disp')||document.querySelector('.disp'); burst(d, d.clientWidth/2, 40, 22, '#FF5A1F'); };
-  if(reduce){ order.forEach(([ti,nm])=>{const s=document.createElement('span'); s.textContent=nm; mems[ti].append(s);}); finish(); return; }
-  pool.classList.add('shake');
-  setTimeout(()=>{ pool.classList.remove('shake'); const gap=Math.max(60,Math.min(180,2600/order.length));
-    order.forEach(([ti,nm],idx)=>setTimeout(()=>{
-      const from=chipOf[nm].getBoundingClientRect(); chipOf[nm].classList.add('gone');
-      const s=document.createElement('span'); s.textContent=nm; mems[ti].append(s); const to=s.getBoundingClientRect();
-      s.animate([{transform:`translate(${from.left-to.left}px,${from.top-to.top}px) scale(1.05)`,opacity:.9},{transform:'none',opacity:1}],{duration:480,easing:'cubic-bezier(.2,.8,.2,1)'});
-      if(idx===order.length-1) setTimeout(finish,520);
-    }, idx*gap));
-  }, 900);
-}
-$('go').onclick=run; $('again').onclick=run;
-$('copy').onclick=async()=>{ if(!last) return; const t='[팀 나누기 결과]\n'+last.map((m,i)=>`${window.__useCustom?window.__teamLabel(i):TEAMS[i%TEAMS.length][0]+' '+TEAMS[i%TEAMS.length][1]}: ${m.join(', ')}`).join('\n')+'\n\n손안의도구 팀 나누기\nhttps://sonandogu.com/party/team/';
-  try{const _r=await shareOut(t); if(_r==='copied') say('복사했어요');}catch(e){say('공유하지 못했어요');} };
-paint();
-</script>
-  <section class="cmts" data-page="/party/team/" data-kind="tool"></section>
 </div>
-<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span>입력한 숫자는 기기 밖으로 나가지 않습니다.</span></footer>
+<div class="toast" id="toast">복사했어요</div>
+
 <script>
-(function(){
- const $$=id=>document.getElementById(id);
- const josa=(w,a,b)=>{ const c=(w||'').trim().slice(-1).charCodeAt(0); if(c>=0xAC00&&c<=0xD7A3) return w+(((c-0xAC00)%28)?a:b); return w+a+'('+b+')'; };
- let view='instant', busy=false, rem=[], teamsR=[], rot=0;
- const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
- let custom=store.get('sonandogu-team-names-v1',[]); if(!Array.isArray(custom)) custom=[];
- const tnEmoji=i=>TEAMS[i%TEAMS.length][0];
- const tnName=i=>{ const c=String(custom[i]||'').trim(); return c||TEAMS[i%TEAMS.length][1]; };
- window.__teamLabel=i=>tnEmoji(i)+' '+tnName(i); window.__useCustom=false;
- const teamCount=()=>{ const n=parse(S.names).length; if(n<2) return 0; const k=S.mode==='teams'?S.n:Math.ceil(n/S.n); return (k<2||k>n)?0:k; };
- let shownK=-1;
- function renderNames(force){
-   const wrap=$$('tnWrap'), k=teamCount();
-   wrap.hidden=!(view==='wheel'&&k>0);
-   if(wrap.hidden) return;
-   const kk=Math.min(k,20);
-   if(!force&&shownK===kk) return; shownK=kk;
-   const box=$$('tnames'); box.innerHTML='';
-   for(let i=0;i<kk;i++){ const l=document.createElement('label'), e=document.createElement('span'), inp=document.createElement('input');
-     e.className='e'; e.textContent=tnEmoji(i); inp.type='text'; inp.maxLength=10; inp.value=custom[i]||''; inp.placeholder=TEAMS[i%TEAMS.length][1]; inp.setAttribute('aria-label',(i+1)+'번째 팀 이름');
-     inp.addEventListener('input',()=>{ custom[i]=inp.value; store.set('sonandogu-team-names-v1',custom); if(teamsR.length&&!$$('rmWrap').hidden) teamsView(); });
-     l.append(e,inp); box.append(l); }
- }
- ['input'].forEach(ev=>$$('names').addEventListener(ev,()=>renderNames()));
- document.querySelectorAll('#mode button').forEach(b=>b.addEventListener('click',()=>renderNames()));
- $$('minus').addEventListener('click',()=>renderNames()); $$('plus').addEventListener('click',()=>renderNames());
- const COLS=['#FF5A1F','#2E3038','#FF8A3D','#3D7BFF','#1FA968','#A855F7','#E8A100','#E0457B'];
- const colOf=(i,n)=>COLS[(n>1&&i===n-1&&i%COLS.length===0)?1:i%COLS.length];
- function setView(v){ view=v; document.querySelectorAll('#view button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===v)); $$('go').textContent= v==='wheel'?'🎡 룰렛 준비하기':'팀 나누기'; if(v==='instant'){ $$('rmWrap').hidden=true; } renderNames(true); }
- document.querySelectorAll('#view button').forEach(b=>b.onclick=()=>setView(b.dataset.v));
- function draw(){
-   const n=rem.length, svg=$$('rmWheel'); let h='';
-   $$('rmBox').hidden=!n; if(!n){ svg.innerHTML=''; return; }
-   rem.forEach((t,i)=>{ const a0=(i/n)*2*Math.PI-Math.PI/2, a1=((i+1)/n)*2*Math.PI-Math.PI/2;
-     const x0=150+150*Math.cos(a0), y0=150+150*Math.sin(a0), x1=150+150*Math.cos(a1), y1=150+150*Math.sin(a1);
-     h+= n===1? `<circle cx="150" cy="150" r="150" fill="${colOf(0,1)}"/>` : `<path d="M150 150 L${x0.toFixed(2)} ${y0.toFixed(2)} A150 150 0 0 1 ${x1.toFixed(2)} ${y1.toFixed(2)} Z" fill="${colOf(i,n)}" stroke="rgba(255,255,255,.9)" stroke-width="2"/>`;
-     const am=(a0+a1)/2, tx=150+98*Math.cos(am), ty=150+98*Math.sin(am), deg=am*180/Math.PI, lab=t.length>5?t.slice(0,5)+'…':t;
-     h+=`<text x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" transform="rotate(${deg.toFixed(1)} ${tx.toFixed(1)} ${ty.toFixed(1)})" style="font-size:${n>12?11:14}px;paint-order:stroke;stroke:rgba(0,0,0,.25);stroke-width:3px">${lab.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}</text>`; });
-   svg.innerHTML=h; svg.style.transform=`rotate(${rot}deg)`;
- }
- const hex2=(h,a)=>{const n=parseInt(h.slice(1),16); return `rgba(${n>>16},${(n>>8)&255},${n&255},${a})`;};
- function teamsView(){
-   const box=$$('teams'); box.innerHTML='';
-   const total=teamsR.reduce((a,t)=>a+t.cap,0);
-   teamsR.forEach((t,i)=>{ const d=document.createElement('div'); d.className='tm on'; const c=COL[i%COL.length]; d.style.setProperty('--tc',c); d.style.setProperty('--tcs',hex2(c,.32));
-     d.innerHTML=`<h3><span class="em">${tnEmoji(i)}</span>${esc(tnName(i))}<small>${t.m.length}/${t.cap}명</small></h3><div class="mem"></div>`;
-     const m=d.querySelector('.mem'); t.m.forEach((nm,j)=>{const s=document.createElement('span'); s.textContent=nm; if(t.fresh===j) s.className='new'; m.append(s);});
-     for(let k=t.m.length;k<t.cap;k++){ const s=document.createElement('span'); s.className='slot'; s.textContent='?'; m.append(s); }
-     box.append(d); });
- }
- function nextTeam(){ let best=0; teamsR.forEach((t,i)=>{ if(t.m.length<teamsR[best].m.length) best=i; }); return best; }   // 인원이 가장 적은 팀부터 차례로
- function prepare(){
-   const names=parse(S.names);
-   if(names.length<2){ endo('surprised','앗, 참가자를 두 명 이상 적어주세요!'); say('참가자를 두 명 이상 적어주세요'); return; }
-   const k= S.mode==='teams'? S.n : Math.ceil(names.length/S.n);
-   if(k>names.length){ say('팀 수가 참가자보다 많아요'); return; } if(k<2){ say('두 팀 이상이 되도록 인원을 줄여주세요'); return; }
-   rem=names.slice(); rot=0;
-   teamsR=Array.from({length:k},(_,i)=>({m:[],cap:Math.floor(names.length/k)+(i<names.length%k?1:0)}));
-   $$('rmWrap').hidden=false; $$('pool').classList.add('empty'); last=null; window.__useCustom=false; $$('copy').disabled=true; $$('again').disabled=false;
-   $$('cap').textContent=`${names.length}명 → ${k}팀 · 룰렛으로 한 명씩`;
-   const p=$$('rmPick'); p.className='rmPick'; p.textContent='룰렛을 돌려 첫 번째 사람을 뽑아요';
-   $$('rmSpin').disabled=false; $$('rmAll').disabled=false; draw(); teamsView(); endo('point','가운데를 눌러 첫 번째 사람을 뽑아보세요!');
- }
- function assign(name){ const ti=nextTeam(); const t=teamsR[ti]; t.m.push(name); teamsR.forEach(x=>x.fresh=-1); t.fresh=t.m.length-1; rem.splice(rem.indexOf(name),1); return ti; }
- function done(){ window.__useCustom=true; last=teamsR.map(t=>t.m.slice()); $$('copy').disabled=false; $$('rmSpin').disabled=true; $$('rmAll').disabled=true; $$('cap').textContent=`${last.flat().length}명 → ${last.length}팀 완성!`; endo('thumbs','룰렛이 팀을 모두 정했어요!'); const d=document.querySelector('.disp'); if(typeof burst==='function') burst(d,d.clientWidth/2,40,24,'#FF5A1F'); }
- function spin(){
-   if(busy||!rem.length) return; busy=true; $$('rmSpin').disabled=true; $$('rmAll').disabled=true;
-   const n=rem.length, k=rnd(n), name=rem[k], seg=360/n, inside=seg*(0.2+0.6*(rnd(1000)/1000));
-   const from=rot, to=Math.ceil(rot/360)*360+(reduce?0:360*5)+(360-(k*seg+inside)); const dur=reduce?1:3600, t0=performance.now(); let lastSeg=-1; const pin=document.querySelector('#rmWrap .pin'), wh=$$('rmWheel');
-   const p=$$('rmPick'); p.className='rmPick'; p.innerHTML='<span class="drum">두구두구</span>…'; endo('run','누가 뽑힐까요?');
-   const ease=t=>1-Math.pow(1-t,4);
-   const step=now=>{ const t=Math.min(1,(now-t0)/dur), cur=from+(to-from)*ease(t); wh.style.transform=`rotate(${cur}deg)`;
-     const at=Math.floor((((360-cur%360)%360)+360)%360/seg); if(at!==lastSeg){ if(lastSeg!==-1&&!reduce){pin.classList.remove('tick'); void pin.offsetWidth; pin.classList.add('tick');} lastSeg=at; }
-     if(t<1) requestAnimationFrame(step); else {
-       rot=0; const ti=assign(name); const tnm=tnName(ti);
-       p.className='rmPick hot'; p.innerHTML=`<b></b> → ${tnEmoji(ti)} <span class="tnm"></span>!`; p.querySelector('b').textContent=name; p.querySelector('.tnm').textContent=tnm;
-       endo('saving',`${josa(name,'은','는')} ${tnm}!`); teamsView();
-       setTimeout(()=>{ draw(); busy=false; if(rem.length===1){ const last1=rem[0]; const tj=assign(last1); teamsView(); draw(); p.innerHTML=`마지막 <b></b> → ${tnEmoji(tj)} <span class="tnm"></span>`; p.querySelector('b').textContent=last1; p.querySelector('.tnm').textContent=tnName(tj); done(); }
-         else if(!rem.length) done(); else { $$('rmSpin').disabled=false; $$('rmAll').disabled=false; } }, reduce?0:700);
-     } };
-   requestAnimationFrame(step);
- }
- function all(){ if(busy) return; shuffle(rem).forEach(nm=>assign(nm)); teamsR.forEach(x=>x.fresh=-1); draw(); teamsView(); const p=$$('rmPick'); p.className='rmPick hot'; p.textContent='남은 사람을 한 번에 배정했어요'; done(); }
- window.__teamWheel={assign,nextTeam,prepareFor:(names,k)=>{rem=names.slice(); teamsR=Array.from({length:k},(_,i)=>({m:[],cap:Math.floor(names.length/k)+(i<names.length%k?1:0)}));}, state:()=>({rem,teamsR})};
- $$('rmSpin').onclick=spin; $$('rmHub').onclick=spin; $$('rmAll').onclick=all;
- renderNames(true);
- const origGo=$$('go').onclick, origAgain=$$('again').onclick;
- $$('go').onclick=()=>{ if(view==='wheel') prepare(); else { window.__useCustom=false; $$('rmWrap').hidden=true; origGo&&origGo(); } };
- $$('again').onclick=()=>{ if(view==='wheel') prepare(); else { window.__useCustom=false; origAgain&&origAgain(); } };
-})();
+const toNum=v=>{const n=parseFloat(String(v).replace(/,/g,''));return isFinite(n)?n:null;};
+const fmt=n=>(Math.round(n*100)/100).toLocaleString('ko-KR',{maximumFractionDigits:2});
+function formatInput(el){
+  const pos=el.selectionStart??el.value.length;
+  const keep=el.value.slice(0,pos).replace(/[^0-9.]/g,'').length;
+  let raw=el.value.replace(/[^0-9.]/g,'');
+  const i=raw.indexOf('.'); if(i>-1) raw=raw.slice(0,i+1)+raw.slice(i+1).replace(/\./g,'');
+  let [int,dec]=raw.split('.'); int=(int||'').replace(/^0+(?=\d)/,'');
+  const out=int.replace(/\B(?=(\d{3})+(?!\d))/g,',')+(dec!==undefined?'.'+dec:'');
+  el.value=out; let c=0,p=0; while(p<out.length&&c<keep){if(/[0-9.]/.test(out[p]))c++;p++;}
+  try{el.setSelectionRange(p,p);}catch(e){}
+}
+const PCT=[5,10,15,20,30,50];
+const MODES={
+  of:{la:'전체 값',lb:'퍼센트',ub:'%',pa:'50,000',pb:'20',pre:'b',
+    run:(a,b)=>({cap:`${fmt(a)}의 ${fmt(b)}%는`,n:a*b/100,u:'',fx:`${fmt(a)} × ${fmt(b)} ÷ 100`})},
+  ratio:{la:'부분 값',lb:'전체 값',ub:'',pa:'45',pb:'60',
+    run:(a,b)=>b===0?null:({cap:`${fmt(a)}은(는) ${fmt(b)}의`,n:a/b*100,u:'%',fx:`${fmt(a)} ÷ ${fmt(b)} × 100`})},
+  change:{la:'처음 값',lb:'바뀐 값',ub:'',pa:'200',pb:'250',
+    run:(a,b)=>{if(a===0)return null;const r=(b-a)/a*100;return{cap:`${fmt(a)} → ${fmt(b)}`,n:Math.abs(r),u:r>0?'% 증가':r<0?'% 감소':'% 변화 없음',fx:`(${fmt(b)} − ${fmt(a)}) ÷ ${fmt(a)} × 100`};}},
+  apply:{la:'원래 값',lb:'퍼센트',ub:'%',pa:'35,000',pb:'15',toggle:true,pre:'b',
+    run:(a,b,d)=>{const up=d==='up';const r=a*(1+(up?b:-b)/100);return{cap:`${fmt(a)}에서 ${fmt(b)}% ${up?'인상':'할인'}하면`,n:r,u:'',fx:`차액 ${fmt(Math.abs(r-a))}`};}},
+  original:{la:'할인된 가격',lb:'할인율',ub:'%',pa:'14,000',pb:'30',pre:'b',
+    run:(a,b)=>b>=100?null:({cap:`${fmt(b)}% 할인 전 원래 가격`,n:a/(1-b/100),u:'',fx:`${fmt(a)} ÷ (1 − ${fmt(b)} ÷ 100)`})}
+};
+const $=id=>document.getElementById(id);
+const A=$('a'),B=$('b'),res=$('res'),cap=$('cap'),fx=$('fx'),copy=$('copy'),toast=$('toast');
+const toggle=document.querySelector('.toggle'),presets=document.querySelector('.presets'),seg=document.querySelector('.seg'),pill=seg.querySelector('.pill');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let mode='of',dir='down',shown=null,anim=0;const saved={};
+
+function movePill(){const b=seg.querySelector('[aria-pressed="true"]');pill.style.width=b.offsetWidth+'px';pill.style.transform=`translateX(${b.offsetLeft}px)`;}
+function setMode(m){
+  saved[mode]=[A.value,B.value]; mode=m; const c=MODES[m];
+  seg.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===m));
+  movePill();
+  document.querySelector('label[for=a]').textContent=c.la; document.querySelector('label[for=b]').textContent=c.lb;
+  $('ua').textContent=''; $('ub').textContent=c.ub; A.placeholder=c.pa; B.placeholder=c.pb;
+  [A.value,B.value]=saved[m]||['',''];
+  toggle.hidden=!c.toggle;
+  presets.innerHTML=''; presets.hidden=!c.pre;
+  if(c.pre) PCT.forEach(p=>{const b=document.createElement('button');b.textContent=p+'%';b.onclick=()=>{B.value=String(p);run();};presets.append(b);});
+  shown=null; run();
+}
+function paint(n,u){res.textContent=fmt(n);if(u){const s=document.createElement('span');s.className='u';s.textContent=u;res.append(s);}}
+function run(){
+  const a=toNum(A.value),b=toNum(B.value);
+  const r=(a===null||b===null)?null:MODES[mode].run(a,b,dir);
+  cancelAnimationFrame(anim);
+  if(!r){res.className='result empty';res.textContent=(a!==null&&b!==null)?'계산할 수 없는 값이에요':'숫자를 넣으면 바로 나와요';
+    cap.textContent='';fx.textContent='공식이 여기에 표시됩니다';copy.disabled=true;shown=null;return;}
+  res.className='result'; cap.textContent=r.cap; fx.textContent=r.fx; copy.disabled=false;
+  copy.dataset.v=fmt(r.n)+(r.u.startsWith('%')?'%':'');
+  const from=shown===null?r.n*0.9:shown, to=r.n; shown=to;
+  if(reduce||from===to){paint(to,r.u);return;}
+  const t0=performance.now(),D=260;
+  const step=t=>{const k=Math.min(1,(t-t0)/D),e=1-Math.pow(1-k,3);paint(k<1?from+(to-from)*e:to,r.u);if(k<1)anim=requestAnimationFrame(step);};
+  anim=requestAnimationFrame(step);
+}
+seg.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+toggle.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{dir=b.dataset.dir;toggle.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));run();}));
+document.querySelectorAll('.box').forEach(x=>x.addEventListener('click',()=>$(x.dataset.for).focus()));
+[A,B].forEach(el=>el.addEventListener('input',()=>{formatInput(el);run();}));
+copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(copy.dataset.v);toast.textContent='복사했어요';}catch(e){toast.textContent='복사하지 못했어요';}
+  toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1400);});
+addEventListener('resize',movePill);
+setMode('of');
 </script>
-<button class="jumpres" id="jumpres" hidden aria-label="결과로 이동"><img src="/assets/endo/lookback.webp" width="30" height="30" alt=""><span id="jrText"></span><b>↓</b></button>
-<script>
-(function(){const T=document.querySelector('aside.res'), B=document.getElementById('jumpres'), X=document.getElementById('jrText'); if(!T||!B) return;
- const sum=()=>{try{return ('팀 나누기 결과 보러 가기');}catch(e){return '결과 보기';}};
- let below=false, vis=false;
- const upd=()=>{ const r=T.getBoundingClientRect(); below=r.top>innerHeight-40; vis=below&&innerWidth<920; B.hidden=!vis; if(vis) X.textContent=sum(); };
- addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); document.addEventListener('input',()=>setTimeout(upd,60)); document.addEventListener('click',()=>setTimeout(upd,120));
- B.onclick=()=>T.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
- setTimeout(upd,300);
-})();
-</script>
-<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
-<script src="/assets/firebase-config.js?v=4"></script>
-<script type="module" src="/assets/comments.js?v=4"></script>
-<script src="/assets/analytics.js?v=2" defer></script>
 </body>
 </html>
