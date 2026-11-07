@@ -277,10 +277,9 @@ footer .fl a:hover{color:var(--ink)}
    cats.forEach(sec=>{ let vis=0; const inTab=tab==='all'||sec.id===tab;
      sec.querySelectorAll('a.t').forEach(c=>{ const txt=norm(c.textContent+' '+(c.dataset.kw||''));
        let ok=inTab && (!term||txt.includes(term));
-       if(ok&&tab==='all'&&!term&&F.has(c.getAttribute('href'))) ok=false;
        c.hidden=!ok; if(ok) vis++; });
      sec.hidden=!vis; shown+=vis; });
-   document.getElementById('noRes').hidden=shown>0||(tab==='all'&&!term&&F.size>0);
+   document.getElementById('noRes').hidden=shown>0;
  }
  function setTab(t,scroll){ tab=t; tabs.forEach(b=>b.setAttribute('aria-selected',b.dataset.t===t)); apply();
    if(scroll&&t!=='all'){ const s=document.getElementById(t); if(s) s.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}); } }
