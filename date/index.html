@@ -323,6 +323,7 @@ footer .fl a:hover{color:var(--ink)}
 .rel a:hover{color:var(--orange)}
 </style>
 <link rel="stylesheet" href="/assets/comments.css?v=3">
+<link rel="stylesheet" href="/assets/favorites.css?v=2">
 <meta name="google-adsense-account" content="ca-pub-1007904420767851">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
 </head>
@@ -330,9 +331,6 @@ footer .fl a:hover{color:var(--ink)}
 <script>
 async function shareOut(t){ const touch=matchMedia('(pointer:coarse)').matches; if(navigator.share&&touch){ try{ await navigator.share({text:t}); return 'shared'; }catch(e){ if(e&&e.name==='AbortError') return 'abort'; } } await navigator.clipboard.writeText(t); return 'copied'; }
 document.addEventListener('DOMContentLoaded',()=>{ if(navigator.share&&matchMedia('(pointer:coarse)').matches){ document.querySelectorAll('[data-share]').forEach(b=>b.textContent=b.dataset.share); } });
-</script>
-<script>
-(function(){try{const k='sonandogu-recent',p=location.pathname,a=JSON.parse(localStorage.getItem(k)||'[]').filter(x=>x!==p);a.unshift(p);localStorage.setItem(k,JSON.stringify(a.slice(0,4)));}catch(e){}})();
 </script>
 <script>
 function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const img=e.querySelector('img'), src='/assets/endo/'+p+'.webp'; if(img.getAttribute('src')!==src) img.setAttribute('src',src); e.dataset.p=p; const s=e.querySelector('.say'); if(s.textContent!==m){ s.textContent=m; if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); } } }
@@ -505,7 +503,7 @@ $('share').onclick=async()=>{ if(!shareText) return; try{ const r=await shareOut
 /* ---- 저장한 날짜 ---- */
 const SKEY='sonandogu-date-saved';
 const loadSv=()=>{try{return JSON.parse(localStorage.getItem(SKEY))||[];}catch(e){return [];}};
-const saveSv=a=>{try{localStorage.setItem(SKEY,JSON.stringify(a));}catch(e){}};
+const saveSv=a=>{try{localStorage.setItem(SKEY,JSON.stringify(a));}catch(e){} try{ if(window.SonFav&&window.SonFav.syncDates) window.SonFav.syncDates(); }catch(e){} }; addEventListener('sonandogu-dates-updated',()=>{ try{ renderSv(); }catch(e){} });
 function badge(it){ const t=today(); if(it.t==='dday'){ const k=dn(it.d)-t; return k>0?['D-'+k.toLocaleString('ko-KR'),'']:k===0?['D-day','today']:['D+'+(-k).toLocaleString('ko-KR'),'past']; }
   const c=t-dn(it.d)+(it.one?1:0); return c>=1||(!it.one&&c>=0)? [c.toLocaleString('ko-KR')+'일째',''] : ['D-'+(dn(it.d)-t).toLocaleString('ko-KR'),'']; }
 function renderSv(){ const a=loadSv(), ul=$('sv'); ul.innerHTML=''; $('savedCard').hidden=!a.length;
@@ -540,6 +538,7 @@ paint();
 })();
 </script>
 <script src="/assets/firebase-config.js?v=4"></script>
+<script src="/assets/favorites.js?v=2"></script>
 <script type="module" src="/assets/comments.js?v=4"></script>
 <script src="/assets/analytics.js?v=2" defer></script>
 </body>

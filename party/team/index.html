@@ -25,7 +25,7 @@
 <meta property="og:title" content="팀 나누기 · 팀 정하기 룰렛 - 이름만 적으면 공평하게">
 <meta property="og:description" content="랜덤 조 편성, 결과 복사까지.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "팀은 어떻게 무작위로 나누나요?", "acceptedAnswer": {"@type": "Answer", "text": "브라우저의 보안 난수로 참가자 순서를 섞은 뒤 팀마다 차례로 한 명씩 배정해요. 그래서 팀 사이 인원 차이는 최대 한 명이에요."}}, {"@type": "Question", "name": "팀당 인원으로도 나눌 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 팀당 인원을 정하면 필요한 팀 수를 자동으로 계산해서 나눠요."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "팀은 어떻게 무작위로 나누나요?", "acceptedAnswer": {"@type": "Answer", "text": "브라우저의 보안 난수로 참가자 순서를 섞은 뒤 팀마다 차례로 한 명씩 배정해요. 그래서 팀 사이 인원 차이는 최대 한 명이에요."}}, {"@type": "Question", "name": "팀당 인원으로도 나눌 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 팀당 인원을 정하면 필요한 팀 수를 자동으로 계산해서 나눠요."}}, {"@type": "Question", "name": "같은 이름이 두 명이면 어떻게 하나요?", "acceptedAnswer": {"@type": "Answer", "text": "같은 이름은 한 번만 들어가요. 동명이인이라면 \"민수A\", \"민수B\"처럼 구분해서 적어 주세요."}}, {"@type": "Question", "name": "특정 사람끼리 같은 팀으로 묶을 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "지금은 순수 무작위로만 나눠요. 꼭 같이(또는 따로) 있어야 하는 사람이 있다면, 결과가 나온 뒤 직접 조정하거나 \"다시 섞기\"를 눌러 보세요."}}, {"@type": "Question", "name": "팀 이름은 바꿀 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 한 번에 보기든 룰렛 모드든 \"팀 이름\" 칸에 원하는 이름을 적으면 결과 카드와 복사한 글에 그대로 쓰여요. 비워 두면 여우팀, 곰팀 같은 기본 이름이 붙어요."}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "모임 놀이", "item": "https://sonandogu.com/party/"}, {"@type": "ListItem", "position": 3, "name": "팀 나누기", "item": "https://sonandogu.com/party/team/"}]}</script>
 <style>:root{
   --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
@@ -306,8 +306,10 @@ footer .fl a:hover{color:var(--ink)}
 .mem span.new{animation:rpop .45s cubic-bezier(.2,1.5,.4,1); box-shadow:0 0 0 2px #FFE07A}
 .slot{display:inline-block; border:1.5px dashed rgba(255,255,255,.18); border-radius:999px; padding:6px 14px; font-size:13px; color:rgba(244,244,241,.35)}
 @media (prefers-reduced-motion:reduce){.rmPick.hot,.mem span.new,#rmWrap .pin.tick{animation:none}}
+.fgrid+h2{margin-top:34px}
 </style>
 <link rel="stylesheet" href="/assets/comments.css?v=3">
+<link rel="stylesheet" href="/assets/favorites.css?v=2">
 <meta name="google-adsense-account" content="ca-pub-1007904420767851">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
 </head>
@@ -315,9 +317,6 @@ footer .fl a:hover{color:var(--ink)}
 <script>
 async function shareOut(t){ const touch=matchMedia('(pointer:coarse)').matches; if(navigator.share&&touch){ try{ await navigator.share({text:t}); return 'shared'; }catch(e){ if(e&&e.name==='AbortError') return 'abort'; } } await navigator.clipboard.writeText(t); return 'copied'; }
 document.addEventListener('DOMContentLoaded',()=>{ if(navigator.share&&matchMedia('(pointer:coarse)').matches){ document.querySelectorAll('[data-share]').forEach(b=>b.textContent=b.dataset.share); } });
-</script>
-<script>
-(function(){try{const k='sonandogu-recent',p=location.pathname,a=JSON.parse(localStorage.getItem(k)||'[]').filter(x=>x!==p);a.unshift(p);localStorage.setItem(k,JSON.stringify(a.slice(0,4)));}catch(e){}})();
 </script>
 <script>
 function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const img=e.querySelector('img'), src='/assets/endo/'+p+'.webp'; if(img.getAttribute('src')!==src) img.setAttribute('src',src); e.dataset.p=p; const s=e.querySelector('.say'); if(s.textContent!==m){ s.textContent=m; if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); } } }
@@ -370,10 +369,19 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
       <div class="f"><h3>진짜 무작위</h3><p>브라우저의 보안 난수로 순서를 섞어서, 누가 어느 팀이 될지 미리 알 수 없어요. 누를 때마다 새로 섞여요.</p></div>
       <div class="f"><h3>인원은 최대한 고르게</h3><p>나눠떨어지지 않으면 팀 사이 인원 차이가 <strong>한 명을 넘지 않게</strong> 배정해요. 7명을 3팀으로 나누면 3·2·2명이 돼요.</p></div>
     </div>
+    <h2>이렇게 활용해 보세요</h2>
+    <div class="fgrid">
+      <div class="f"><h3>이럴 때 써요</h3><p>체육대회 팀 가르기, 조별과제 조 편성, 워크숍 조 나누기, 보드게임 편 가르기처럼 모두를 빠짐없이 나눠야 할 때 좋아요. 사람이 나누면 "왜 나만 이 팀이야" 하는 말이 나오지만, 무작위로 정하면 이의가 줄어요.</p></div>
+      <div class="f"><h3>두 가지 나누는 방법</h3><p>"팀 개수로"는 2~10팀 중에서 고르고, "팀당 인원으로"는 한 팀에 몇 명씩 둘지 정해요. 팀당 인원으로 정하면 필요한 팀 수를 알아서 계산하고, 인원이 딱 떨어지지 않아도 팀 사이 차이는 한 명을 넘지 않아요.</p></div>
+      <div class="f"><h3>한 번에 보기와 룰렛</h3><p>한 번에 보기는 결과가 바로 펼쳐져요. 룰렛 모드는 한 명씩 뽑힐 때마다 인원이 적은 팀부터 채워져서, 여럿이 모인 자리에서는 룰렛 모드가 훨씬 재밌어요.</p></div>
+    </div>
     <div class="faq">
       <h2>자주 묻는 질문</h2>
       <details><summary>입력한 이름은 저장되나요?</summary><p>다음에 다시 쓰기 편하도록 이 기기의 브라우저에만 저장돼요. 서버로는 보내지 않아요.</p></details>
       <details><summary>결과를 단톡방에 올리고 싶어요</summary><p>결과 복사를 누르면 팀별 명단이 글로 복사돼요. 카톡에 그대로 붙여넣으면 돼요.</p></details>
+      <details><summary>같은 이름이 두 명이면 어떻게 하나요?</summary><p>같은 이름은 한 번만 들어가요. 동명이인이라면 "민수A", "민수B"처럼 구분해서 적어 주세요.</p></details>
+      <details><summary>특정 사람끼리 같은 팀으로 묶을 수 있나요?</summary><p>지금은 순수 무작위로만 나눠요. 꼭 같이(또는 따로) 있어야 하는 사람이 있다면, 결과가 나온 뒤 직접 조정하거나 "다시 섞기"를 눌러 보세요.</p></details>
+      <details><summary>팀 이름은 바꿀 수 있나요?</summary><p>네. 한 번에 보기든 룰렛 모드든 "팀 이름" 칸에 원하는 이름을 적으면 결과 카드와 복사한 글에 그대로 쓰여요. 비워 두면 여우팀, 곰팀 같은 기본 이름이 붙어요.</p></details>
     </div>
   <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/team-picking/">팀 정하기, 왜 늘 누군가 서운할까 →</a><a href="/blog/random-decision/">"아무거나"가 제일 어려운 이유 →</a></div>
   <div data-comments data-kind="review" data-page="/party/team/"></div>
@@ -554,6 +562,7 @@ paint();
 </script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
 <script src="/assets/firebase-config.js?v=4"></script>
+<script src="/assets/favorites.js?v=2"></script>
 <script type="module" src="/assets/comments.js?v=4"></script>
 <script src="/assets/analytics.js?v=2" defer></script>
 </body>

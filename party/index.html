@@ -85,6 +85,17 @@ footer .fl a:hover{color:var(--ink)}
 
 .t .ic{background:linear-gradient(145deg,#3DCB8C,#12985B)!important; box-shadow:0 10px 24px -10px #12985B, inset 0 1px 0 rgba(255,255,255,.35)!important}
 .t:hover .go{background:#12985B!important; border-color:#12985B!important; color:#fff!important}
+
+.guide{margin-top:44px}
+.guide h2{font-size:clamp(20px,3.4vw,24px); font-weight:800; letter-spacing:-.035em; margin:34px 0 14px}
+.guide h2:first-child{margin-top:0}
+.gl{display:grid; gap:10px; grid-template-columns:1fr}
+@media (min-width:720px){.gl{grid-template-columns:repeat(2,1fr)}}
+.gl a,.gl div{display:block; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:16px 18px}
+.gl a:hover{border-color:var(--ink)}
+.gl b{display:block; font-size:16.5px; font-weight:800; letter-spacing:-.03em; margin-bottom:4px}
+.gl span{display:block; font-size:14.5px; color:var(--muted); line-height:1.7}
+.guide p{font-size:15px; color:var(--muted); line-height:1.8; margin:0 0 12px}
 </style>
 <meta name="google-adsense-account" content="ca-pub-1007904420767851">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
@@ -119,6 +130,19 @@ footer .fl a:hover{color:var(--ink)}
       <span><strong>사다리타기</strong><span class="d">이름을 누르면 길이 그려져요</span></span>
     </a>
   </main>
+  <section class="guide">
+    <h2>어떤 도구를 고를까요</h2>
+    <div class="gl">
+      <a href="/party/team/"><b>팀 나누기</b><span>참가자가 많고 모두를 빠짐없이 팀으로 나눠야 할 때 써요. 팀 개수나 팀당 인원을 정하면 팀 사이 인원 차이가 한 명을 넘지 않게 나눠요. 룰렛으로 한 명씩 뽑는 모드도 있어요.</span></a>
+      <a href="/party/roulette/"><b>룰렛 돌리기</b><span>메뉴, 장소, 내기처럼 여러 선택지 중 하나를 골라야 할 때 써요. 칸은 최대 16개이고, 결과가 나온 뒤 "빼고 다시"로 순서도 정할 수 있어요.</span></a>
+      <a href="/party/lots/"><b>제비뽑기</b><span>여럿 중 일부만 뽑아야 할 때 써요. 폰을 돌려가며 카드를 한 장씩 뒤집고, 몇 번째로 뽑아도 당첨 확률은 같아요.</span></a>
+      <a href="/party/ladder/"><b>사다리타기</b><span>사람마다 결과를 하나씩 짝지어야 할 때 써요. 결과를 먼저 공평하게 섞은 뒤 사다리를 그려서, 어느 자리를 골라도 유불리가 없어요.</span></a>
+    </div>
+    <h2>모두 같은 원칙으로 만들었어요</h2>
+    <p>결과는 브라우저의 보안 난수로 정해서 미리 알 수도, 조작할 수도 없어요. 적어 넣은 이름과 항목은 이 기기의 브라우저 안에서만 쓰이고 서버로 보내지 않아요.</p>
+    <p>가입 없이 바로 쓸 수 있고, 자주 쓰는 도구는 별을 눌러 첫 화면의 내 툴박스에 고정해 둘 수 있어요. 결과는 복사해서 단톡방에 바로 붙여넣을 수 있고, 휴대폰 한 대만 있으면 모임 자리에서 충분히 돌아가요.</p>
+  </section>
+
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>

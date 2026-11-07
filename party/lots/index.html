@@ -25,7 +25,7 @@
 <meta property="og:title" content="제비뽑기 - 한 장씩 뒤집는 두근두근 추첨">
 <meta property="og:description" content="참가 인원과 당첨 수만 정하면 끝.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "제비뽑기 결과는 언제 정해지나요?", "acceptedAnswer": {"@type": "Answer", "text": "제비 섞기를 누르는 순간 브라우저의 보안 난수로 당첨 카드가 무작위로 정해지고, 뒤집기 전까지는 화면에 드러나지 않아요."}}, {"@type": "Question", "name": "몇 명까지 할 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "참가 인원은 2명부터 30명까지, 당첨은 1명부터 인원보다 한 명 적게까지 정할 수 있어요."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "제비뽑기 결과는 언제 정해지나요?", "acceptedAnswer": {"@type": "Answer", "text": "제비 섞기를 누르는 순간 브라우저의 보안 난수로 당첨 카드가 무작위로 정해지고, 뒤집기 전까지는 화면에 드러나지 않아요."}}, {"@type": "Question", "name": "몇 명까지 할 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "참가 인원은 2명부터 30명까지, 당첨은 1명부터 인원보다 한 명 적게까지 정할 수 있어요."}}, {"@type": "Question", "name": "먼저 뽑는 사람이 유리한가요?", "acceptedAnswer": {"@type": "Answer", "text": "아니요. 섞는 순간 당첨 카드의 위치가 정해지고 아무도 모르기 때문에, 몇 번째로 뽑아도 당첨 확률은 똑같아요."}}, {"@type": "Question", "name": "당첨자를 여러 명 뽑을 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 참가 인원은 2~30명이고, 당첨은 1명부터 인원보다 한 명 적게까지 정할 수 있어요. 예를 들어 10명이 모이면 최대 9명까지 당첨으로 정할 수 있어요."}}, {"@type": "Question", "name": "폰 하나로 여러 사람이 해도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "그게 가장 재밌는 방법이에요. 폰을 돌려가며 한 사람씩 카드를 하나 골라 뒤집으면 돼요. 뒤집기 전까지는 어느 카드가 당첨인지 아무도 알 수 없어요."}}, {"@type": "Question", "name": "카드는 어떻게 섞이나요?", "acceptedAnswer": {"@type": "Answer", "text": "\"제비 섞기\"를 누르는 순간 브라우저의 보안 난수로 당첨 카드의 위치가 정해져요. 같은 설정이라도 섞을 때마다 결과가 새로 정해져요."}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "모임 놀이", "item": "https://sonandogu.com/party/"}, {"@type": "ListItem", "position": 3, "name": "제비뽑기", "item": "https://sonandogu.com/party/lots/"}]}</script>
 <style>:root{
   --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
@@ -295,8 +295,10 @@ footer .fl a:hover{color:var(--ink)}
 @media (min-width:920px){.jumpres{display:none!important}}
 @media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
 @media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
+.fgrid+h2{margin-top:34px}
 </style>
 <link rel="stylesheet" href="/assets/comments.css?v=3">
+<link rel="stylesheet" href="/assets/favorites.css?v=2">
 <meta name="google-adsense-account" content="ca-pub-1007904420767851">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
 </head>
@@ -304,9 +306,6 @@ footer .fl a:hover{color:var(--ink)}
 <script>
 async function shareOut(t){ const touch=matchMedia('(pointer:coarse)').matches; if(navigator.share&&touch){ try{ await navigator.share({text:t}); return 'shared'; }catch(e){ if(e&&e.name==='AbortError') return 'abort'; } } await navigator.clipboard.writeText(t); return 'copied'; }
 document.addEventListener('DOMContentLoaded',()=>{ if(navigator.share&&matchMedia('(pointer:coarse)').matches){ document.querySelectorAll('[data-share]').forEach(b=>b.textContent=b.dataset.share); } });
-</script>
-<script>
-(function(){try{const k='sonandogu-recent',p=location.pathname,a=JSON.parse(localStorage.getItem(k)||'[]').filter(x=>x!==p);a.unshift(p);localStorage.setItem(k,JSON.stringify(a.slice(0,4)));}catch(e){}})();
 </script>
 <script>
 function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const img=e.querySelector('img'), src='/assets/endo/'+p+'.webp'; if(img.getAttribute('src')!==src) img.setAttribute('src',src); e.dataset.p=p; const s=e.querySelector('.say'); if(s.textContent!==m){ s.textContent=m; if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); } } }
@@ -350,7 +349,21 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
       <div class="f"><h3>폰 하나 돌려가며</h3><p>모인 사람이 차례로 폰을 받아 카드 한 장씩 고르면 돼요. 누가 무엇을 뽑을지는 섞는 순간 무작위로 정해지고, 뒤집기 전까진 아무도 몰라요.</p></div>
       <div class="f"><h3>당첨은 몇 명이든</h3><p>참가 인원은 2~30명, 당첨은 1명부터 인원보다 한 명 적게까지 정할 수 있어요. 당첨 문구도 "커피 쏘기", "설거지"처럼 바꿀 수 있어요.</p></div>
     </div>
-  <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/random-decision/">"아무거나"가 제일 어려운 이유 →</a></div>
+  <h2>알아두면 좋은 점</h2>
+    <div class="fgrid">
+      <div class="f"><h3>이럴 때 뽑아요</h3><p>커피 내기, 설거지 당번, 경품 추첨, 발표 순서처럼 누군가는 뽑혀야 하는 일에 잘 맞아요. 당첨 문구만 바꾸면 벌칙도 상품도 같은 방식으로 정할 수 있어요.</p></div>
+      <div class="f"><h3>먼저 뽑아도 손해 없어요</h3><p>제비뽑기는 몇 번째로 뽑든 당첨 확률이 모두 같아요. 6명 중 1명이 당첨이면 첫 번째 사람도 마지막 사람도 6분의 1이라서, 먼저 뽑으려고 서두를 필요가 없어요.</p></div>
+      <div class="f"><h3>다시 섞기와 전부 공개</h3><p>한 판이 끝나면 "다시 섞기"로 같은 설정에서 새로 섞어요. 아직 뒤집지 않은 카드가 궁금하면 "전부 공개"로 한꺼번에 볼 수 있어요.</p></div>
+      <div class="f"><h3>인원이 바뀌면 새로 섞여요</h3><p>참가 인원을 늘리거나 줄이면 카드가 새로 만들어져요. 당첨 수는 인원보다 한 명 적게까지만 정할 수 있어서 모두가 당첨되는 일은 없어요.</p></div>
+    </div>
+    <div class="faq">
+      <h2>자주 묻는 질문</h2>
+      <details><summary>먼저 뽑는 사람이 유리한가요?</summary><p>아니요. 섞는 순간 당첨 카드의 위치가 정해지고 아무도 모르기 때문에, 몇 번째로 뽑아도 당첨 확률은 똑같아요.</p></details>
+      <details><summary>당첨자를 여러 명 뽑을 수 있나요?</summary><p>네. 참가 인원은 2~30명이고, 당첨은 1명부터 인원보다 한 명 적게까지 정할 수 있어요. 예를 들어 10명이 모이면 최대 9명까지 당첨으로 정할 수 있어요.</p></details>
+      <details><summary>폰 하나로 여러 사람이 해도 되나요?</summary><p>그게 가장 재밌는 방법이에요. 폰을 돌려가며 한 사람씩 카드를 하나 골라 뒤집으면 돼요. 뒤집기 전까지는 어느 카드가 당첨인지 아무도 알 수 없어요.</p></details>
+      <details><summary>카드는 어떻게 섞이나요?</summary><p>"제비 섞기"를 누르는 순간 브라우저의 보안 난수로 당첨 카드의 위치가 정해져요. 같은 설정이라도 섞을 때마다 결과가 새로 정해져요.</p></details>
+    </div>
+    <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/random-decision/">"아무거나"가 제일 어려운 이유 →</a></div>
   <div data-comments data-kind="review" data-page="/party/lots/"></div>
   </section>
 <div class="toast" id="toast"></div>
@@ -415,6 +428,7 @@ paint(); make();
 </script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
 <script src="/assets/firebase-config.js?v=4"></script>
+<script src="/assets/favorites.js?v=2"></script>
 <script type="module" src="/assets/comments.js?v=4"></script>
 <script src="/assets/analytics.js?v=2" defer></script>
 </body>

@@ -25,7 +25,7 @@
 <meta property="og:title" content="사다리타기 - 이름을 누르면 길이 그려져요">
 <meta property="og:description" content="당첨자 뽑기, 커피 내기, 순서 정하기에.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "사다리타기 결과는 공정한가요?", "acceptedAnswer": {"@type": "Answer", "text": "보안 난수로 누가 어떤 결과를 받을지 먼저 완전히 공평하게 정한 뒤, 그 결과가 나오도록 사다리를 만들어요. 자리에 따라 유리하거나 불리한 경우가 없어요."}}, {"@type": "Question", "name": "몇 명까지 할 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "2명부터 10명까지 할 수 있어요."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "사다리타기 결과는 공정한가요?", "acceptedAnswer": {"@type": "Answer", "text": "보안 난수로 누가 어떤 결과를 받을지 먼저 완전히 공평하게 정한 뒤, 그 결과가 나오도록 사다리를 만들어요. 자리에 따라 유리하거나 불리한 경우가 없어요."}}, {"@type": "Question", "name": "몇 명까지 할 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "2명부터 10명까지 할 수 있어요."}}, {"@type": "Question", "name": "참가자 수와 결과 수가 왜 같아야 하나요?", "acceptedAnswer": {"@type": "Answer", "text": "사다리는 위의 한 칸이 아래의 한 칸으로 이어지는 일대일 연결이에요. 출발점과 도착점의 수가 같아야 한 사람이 정확히 한 결과를 받아요. 그래서 인원을 바꾸면 결과 칸도 같이 바뀌어요."}}, {"@type": "Question", "name": "\"금액 나누기\"는 어떻게 쓰나요?", "acceptedAnswer": {"@type": "Answer", "text": "결과 칸에 금액이나 \"반값\", \"면제\"처럼 나눌 몫을 적어 두면, 사다리가 사람마다 몫을 무작위로 짝지어 줘요. 먼저 결과를 섞은 뒤 사다리를 그리기 때문에 어느 자리를 골라도 유불리가 없어요."}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "모임 놀이", "item": "https://sonandogu.com/party/"}, {"@type": "ListItem", "position": 3, "name": "사다리타기", "item": "https://sonandogu.com/party/ladder/"}]}</script>
 <style>:root{
   --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
@@ -298,8 +298,10 @@ footer .fl a:hover{color:var(--ink)}
 @media (min-width:920px){.jumpres{display:none!important}}
 @media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
 @media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
+.fgrid+h2{margin-top:34px}
 </style>
 <link rel="stylesheet" href="/assets/comments.css?v=3">
+<link rel="stylesheet" href="/assets/favorites.css?v=2">
 <meta name="google-adsense-account" content="ca-pub-1007904420767851">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
 </head>
@@ -307,9 +309,6 @@ footer .fl a:hover{color:var(--ink)}
 <script>
 async function shareOut(t){ const touch=matchMedia('(pointer:coarse)').matches; if(navigator.share&&touch){ try{ await navigator.share({text:t}); return 'shared'; }catch(e){ if(e&&e.name==='AbortError') return 'abort'; } } await navigator.clipboard.writeText(t); return 'copied'; }
 document.addEventListener('DOMContentLoaded',()=>{ if(navigator.share&&matchMedia('(pointer:coarse)').matches){ document.querySelectorAll('[data-share]').forEach(b=>b.textContent=b.dataset.share); } });
-</script>
-<script>
-(function(){try{const k='sonandogu-recent',p=location.pathname,a=JSON.parse(localStorage.getItem(k)||'[]').filter(x=>x!==p);a.unshift(p);localStorage.setItem(k,JSON.stringify(a.slice(0,4)));}catch(e){}})();
 </script>
 <script>
 function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const img=e.querySelector('img'), src='/assets/endo/'+p+'.webp'; if(img.getAttribute('src')!==src) img.setAttribute('src',src); e.dataset.p=p; const s=e.querySelector('.say'); if(s.textContent!==m){ s.textContent=m; if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); } } }
@@ -359,10 +358,18 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
       <div class="f"><h3>결과를 먼저, 사다리는 나중에</h3><p>손안의도구의 사다리는 먼저 보안 난수로 <strong>누가 어떤 결과를 받을지 완전히 공평하게</strong> 정하고, 그 결과가 나오도록 가로줄을 그려요. 그래서 위치에 따라 유리하거나 불리한 자리가 없어요.</p></div>
       <div class="f"><h3>가로줄은 가려두기</h3><p>처음엔 가로줄이 가려져 있어서 길을 미리 따라가 볼 수 없어요. 이름을 누르면 그 사람의 길만 그려지고, 전체 결과 보기를 누르면 사다리 전체가 드러나요.</p></div>
     </div>
+    <h2>이렇게 활용해 보세요</h2>
+    <div class="fgrid">
+      <div class="f"><h3>이럴 때 타요</h3><p>커피 내기, 청소 당번, 발표 순서, 간식비 나누기처럼 사람과 결과를 짝지어야 할 때 좋아요. 결과 칸은 "당첨 1개", "커피 쏘기", "순서 정하기", "금액 나누기" 예시 버튼으로 바로 채울 수 있어요.</p></div>
+      <div class="f"><h3>인원은 2명부터 10명까지</h3><p>참가자와 결과의 수는 항상 같아요. 인원을 늘리면 칸도 같이 늘어나요. 결과 칸에는 "꽝", "반값", "면제"처럼 원하는 말을 직접 적을 수 있어요.</p></div>
+      <div class="f"><h3>한 명씩, 또는 한꺼번에</h3><p>이름을 누르면 그 사람의 길만 그려지고 끝에서 결과가 나와요. 모두 확인했다면 "전체 결과 보기"로 사다리 전체를 펼치고, "결과 복사"로 단톡방에 붙여넣을 수 있어요.</p></div>
+    </div>
     <div class="faq">
       <h2>자주 묻는 질문</h2>
       <details><summary>보통 사다리타기는 공평하지 않나요?</summary><p>가로줄을 아무렇게나 그리면 자리에 따라 특정 결과로 가기 쉬운 경우가 생겨요. 특히 가로줄이 적으면 바로 아래 결과로 갈 확률이 높아져요. 이 사다리는 결과를 먼저 고르게 섞은 뒤 사다리를 만들어서 그런 치우침이 없어요.</p></details>
       <details><summary>몇 명까지 할 수 있나요?</summary><p>2명부터 10명까지 할 수 있어요. 참가자와 결과의 수는 항상 같아요.</p></details>
+      <details><summary>참가자 수와 결과 수가 왜 같아야 하나요?</summary><p>사다리는 위의 한 칸이 아래의 한 칸으로 이어지는 일대일 연결이에요. 출발점과 도착점의 수가 같아야 한 사람이 정확히 한 결과를 받아요. 그래서 인원을 바꾸면 결과 칸도 같이 바뀌어요.</p></details>
+      <details><summary>"금액 나누기"는 어떻게 쓰나요?</summary><p>결과 칸에 금액이나 "반값", "면제"처럼 나눌 몫을 적어 두면, 사다리가 사람마다 몫을 무작위로 짝지어 줘요. 먼저 결과를 섞은 뒤 사다리를 그리기 때문에 어느 자리를 골라도 유불리가 없어요.</p></details>
     </div>
   <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/random-decision/">"아무거나"가 제일 어려운 이유 →</a></div>
   <div data-comments data-kind="review" data-page="/party/ladder/"></div>
@@ -505,6 +512,7 @@ inputs(); make();
 </script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
 <script src="/assets/firebase-config.js?v=4"></script>
+<script src="/assets/favorites.js?v=2"></script>
 <script type="module" src="/assets/comments.js?v=4"></script>
 <script src="/assets/analytics.js?v=2" defer></script>
 </body>

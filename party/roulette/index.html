@@ -25,7 +25,7 @@
 <meta property="og:title" content="룰렛 돌리기 - 점심 메뉴부터 커피 내기까지">
 <meta property="og:description" content="항목만 적으면 바로 돌리는 공정한 룰렛.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "룰렛 결과는 공정한가요?", "acceptedAnswer": {"@type": "Answer", "text": "버튼을 누르는 순간 브라우저의 보안 난수로 당첨 칸을 고르고, 바늘이 그 칸에 멈추도록 돌려요. 모든 칸의 확률이 같아요."}}, {"@type": "Question", "name": "항목은 몇 개까지 넣을 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "2개부터 16개까지 넣을 수 있어요."}}, {"@type": "Question", "name": "순서를 정할 때도 쓸 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "결과가 나온 뒤 빼고 다시를 누르면 그 항목을 빼고 바로 다시 돌려요. 한 명씩 빼가며 순서를 정할 수 있어요."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "룰렛 결과는 공정한가요?", "acceptedAnswer": {"@type": "Answer", "text": "버튼을 누르는 순간 브라우저의 보안 난수로 당첨 칸을 고르고, 바늘이 그 칸에 멈추도록 돌려요. 모든 칸의 확률이 같아요."}}, {"@type": "Question", "name": "항목은 몇 개까지 넣을 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "2개부터 16개까지 넣을 수 있어요."}}, {"@type": "Question", "name": "순서를 정할 때도 쓸 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "결과가 나온 뒤 빼고 다시를 누르면 그 항목을 빼고 바로 다시 돌려요. 한 명씩 빼가며 순서를 정할 수 있어요."}}, {"@type": "Question", "name": "결과가 마음에 안 들면 다시 돌려도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "몇 번이든 다시 돌릴 수 있고, 돌릴 때마다 새로 뽑아요. 다만 모임에서 쓸 때는 돌리기 전에 \"나온 결과는 따르기\"를 먼저 약속해 두면 한 번에 끝나요."}}, {"@type": "Question", "name": "같은 항목을 두 번 적으면 어떻게 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "칸이 그만큼 늘어나서 그 항목이 뽑힐 확률도 올라가요. 좋아하는 메뉴에 일부러 두 칸을 주는 식으로 확률에 차이를 두고 싶을 때 쓸 수 있어요."}}, {"@type": "Question", "name": "칸 이름이 길면 잘리나요?", "acceptedAnswer": {"@type": "Answer", "text": "룰렛 판에는 글자가 6자까지만 보이고 넘치면 줄임표로 표시돼요. 입력한 항목 자체는 그대로 저장되니 길게 적어도 괜찮아요."}}, {"@type": "Question", "name": "휴대폰에서도 똑같이 쓸 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 가운데의 \"돌려!\" 버튼이나 아래의 룰렛 돌리기 버튼을 누르면 돼요. 항목은 이 기기의 브라우저에 저장돼서 다음에 열어도 그대로 남아 있어요."}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "모임 놀이", "item": "https://sonandogu.com/party/"}, {"@type": "ListItem", "position": 3, "name": "룰렛 돌리기", "item": "https://sonandogu.com/party/roulette/"}]}</script>
 <style>:root{
   --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
@@ -306,8 +306,10 @@ footer .fl a:hover{color:var(--ink)}
 @media (min-width:920px){.jumpres{display:none!important}}
 @media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
 @media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
+.fgrid+h2{margin-top:34px}
 </style>
 <link rel="stylesheet" href="/assets/comments.css?v=3">
+<link rel="stylesheet" href="/assets/favorites.css?v=2">
 <meta name="google-adsense-account" content="ca-pub-1007904420767851">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
 </head>
@@ -315,9 +317,6 @@ footer .fl a:hover{color:var(--ink)}
 <script>
 async function shareOut(t){ const touch=matchMedia('(pointer:coarse)').matches; if(navigator.share&&touch){ try{ await navigator.share({text:t}); return 'shared'; }catch(e){ if(e&&e.name==='AbortError') return 'abort'; } } await navigator.clipboard.writeText(t); return 'copied'; }
 document.addEventListener('DOMContentLoaded',()=>{ if(navigator.share&&matchMedia('(pointer:coarse)').matches){ document.querySelectorAll('[data-share]').forEach(b=>b.textContent=b.dataset.share); } });
-</script>
-<script>
-(function(){try{const k='sonandogu-recent',p=location.pathname,a=JSON.parse(localStorage.getItem(k)||'[]').filter(x=>x!==p);a.unshift(p);localStorage.setItem(k,JSON.stringify(a.slice(0,4)));}catch(e){}})();
 </script>
 <script>
 function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const img=e.querySelector('img'), src='/assets/endo/'+p+'.webp'; if(img.getAttribute('src')!==src) img.setAttribute('src',src); e.dataset.p=p; const s=e.querySelector('.say'); if(s.textContent!==m){ s.textContent=m; if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); } } }
@@ -358,7 +357,21 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
       <div class="f"><h3>결과는 미리 정해지지 않아요</h3><p>버튼을 누르는 순간 브라우저의 보안 난수로 당첨 칸을 고르고, 바늘이 그 칸에 멈추도록 돌려요. 모든 칸의 확률은 똑같아요.</p></div>
       <div class="f"><h3>항목은 최대 16개</h3><p>칸이 너무 많으면 글자가 안 보여서 16개까지 넣을 수 있어요. 입력한 항목은 이 기기에만 저장돼요.</p></div>
     </div>
-  <div class="rel"><b>팀 정하기에 딱</b><a href="/party/team/">여러 명을 한 번에 팀으로 나누려면 팀 나누기 →</a></div>
+  <h2>이렇게 활용해 보세요</h2>
+    <div class="fgrid">
+      <div class="f"><h3>이럴 때 돌려요</h3><p>점심 메뉴, 커피 내기, 회식 장소, 청소 당번, 발표 순서처럼 누가 정해도 한쪽이 서운해지는 일에 잘 맞아요. 사람이 고르면 눈치와 양보가 끼어들지만, 룰렛은 모든 칸이 같은 확률이라 결과를 받아들이기 쉬워요.</p></div>
+      <div class="f"><h3>예시 목록으로 바로 시작</h3><p>점심 메뉴, 저녁 메뉴, 커피 내기, 숫자 1~6 예시가 준비돼 있어요. 눌러서 불러온 뒤 칸 이름을 고치거나 지우고 더하면 돼요. 숫자 1~6은 주사위 대신 쓰기에도 좋아요.</p></div>
+      <div class="f"><h3>"빼고 다시"로 순서 정하기</h3><p>결과가 나온 뒤 "빼고 다시"를 누르면 뽑힌 칸이 빠지고 바로 다시 돌아가요. 이걸 반복하면 1등부터 차례로 순서를 정할 수 있어요. 칸이 2개만 남으면 이 버튼은 멈춰요.</p></div>
+      <div class="f"><h3>최근 결과 8개까지 기록</h3><p>돌릴 때마다 결과가 아래에 쌓여서 방금 뭐가 나왔는지 바로 볼 수 있어요. 최근 8개까지 보이고 "기록 지우기"로 비울 수 있어요. 결과 복사를 누르면 어떤 항목 중에서 무엇이 나왔는지까지 글로 복사돼요.</p></div>
+    </div>
+    <div class="faq">
+      <h2>자주 묻는 질문</h2>
+      <details><summary>결과가 마음에 안 들면 다시 돌려도 되나요?</summary><p>몇 번이든 다시 돌릴 수 있고, 돌릴 때마다 새로 뽑아요. 다만 모임에서 쓸 때는 돌리기 전에 "나온 결과는 따르기"를 먼저 약속해 두면 한 번에 끝나요.</p></details>
+      <details><summary>같은 항목을 두 번 적으면 어떻게 되나요?</summary><p>칸이 그만큼 늘어나서 그 항목이 뽑힐 확률도 올라가요. 좋아하는 메뉴에 일부러 두 칸을 주는 식으로 확률에 차이를 두고 싶을 때 쓸 수 있어요.</p></details>
+      <details><summary>칸 이름이 길면 잘리나요?</summary><p>룰렛 판에는 글자가 6자까지만 보이고 넘치면 줄임표로 표시돼요. 입력한 항목 자체는 그대로 저장되니 길게 적어도 괜찮아요.</p></details>
+      <details><summary>휴대폰에서도 똑같이 쓸 수 있나요?</summary><p>네. 가운데의 "돌려!" 버튼이나 아래의 룰렛 돌리기 버튼을 누르면 돼요. 항목은 이 기기의 브라우저에 저장돼서 다음에 열어도 그대로 남아 있어요.</p></details>
+    </div>
+    <div class="rel"><b>팀 정하기에 딱</b><a href="/party/team/">여러 명을 한 번에 팀으로 나누려면 팀 나누기 →</a></div>
   <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/random-decision/">"아무거나"가 제일 어려운 이유 →</a></div>
   <div data-comments data-kind="review" data-page="/party/roulette/"></div>
   </section>
@@ -451,6 +464,7 @@ list(); draw();
 </script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
 <script src="/assets/firebase-config.js?v=4"></script>
+<script src="/assets/favorites.js?v=2"></script>
 <script type="module" src="/assets/comments.js?v=4"></script>
 <script src="/assets/analytics.js?v=2" defer></script>
 </body>

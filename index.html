@@ -262,7 +262,7 @@ footer .fl a:hover{color:var(--ink)}
 }
 </style>
 <link rel="stylesheet" href="/assets/comments.css?v=3">
-<link rel="stylesheet" href="/assets/favorites.css?v=1">
+<link rel="stylesheet" href="/assets/favorites.css?v=2">
 <meta name="google-adsense-account" content="ca-pub-1007904420767851">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
 </head>
@@ -320,7 +320,7 @@ footer .fl a:hover{color:var(--ink)}
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/blog/">블로그</a><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
 <script src="/assets/firebase-config.js?v=4"></script>
-<script src="/assets/favorites.js?v=1"></script>
+<script src="/assets/favorites.js?v=2"></script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
 <script>
 (function(){
@@ -345,17 +345,26 @@ footer .fl a:hover{color:var(--ink)}
  q.addEventListener('input',()=>{ if(q.value&&tab!=='all') setTab('all'); else apply(); });
  const fromHash=()=>{const t=location.hash.slice(1); if(['calc','tools','play'].includes(t)){ q.value=''; setTab(t,true);} else apply();};
  addEventListener('hashchange',fromHash); fromHash();
+ const pq=new URLSearchParams(location.search).get('q'); if(pq){ q.value=pq; setTab('all'); }
+ document.addEventListener('sonandogu-refresh',apply);
  addEventListener('keydown',e=>{ if(e.key==='/'&&!e.metaKey&&!e.ctrlKey&&!e.altKey&&!/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||'')){ e.preventDefault(); q.focus(); } });
  if(window.SonFav) window.SonFav.onChange(apply);
 })();
 let _dp=null; addEventListener('beforeinstallprompt',e=>{e.preventDefault(); _dp=e; const b=document.getElementById('inst'); if(b){b.hidden=false; b.onclick=async()=>{_dp.prompt(); await _dp.userChoice; _dp=null; b.hidden=true;};}});
 </script>
 <script>
-(function(){try{const a=JSON.parse(localStorage.getItem('sonandogu-date-saved')||'[]'); if(!a.length) return; const box=document.getElementById('mydays'), t0=new Date(), T=Math.round(Date.UTC(t0.getFullYear(),t0.getMonth(),t0.getDate())/86400000);
+(function(){
+ const box=document.getElementById('mydays');
  const dn=s=>{const [y,m,d]=s.split('-').map(Number); return Math.round(Date.UTC(y,m-1,d)/86400000);};
- a.slice(0,4).forEach(it=>{ let b; if(it.t==='dday'){const k=dn(it.d)-T; b=k>0?'D-'+k:k===0?'D-day':'D+'+(-k);} else {const c=T-dn(it.d)+(it.one?1:0); b=c>0?c.toLocaleString('ko-KR')+'일째':'D-'+(dn(it.d)-T);}
-  const l=document.createElement('a'); l.href='/date/'; l.innerHTML='<span></span><b></b>'; l.firstChild.textContent=it.n; l.lastChild.textContent=b; box.append(l); });
- const r=document.getElementById('recent'); if(r&&!document.getElementById('q').value&&(!location.hash||location.hash==='#')) r.hidden=false; }catch(e){}})();
+ function draw(){ try{
+  const a=JSON.parse(localStorage.getItem('sonandogu-date-saved')||'[]'); box.textContent='';
+  const t0=new Date(), T=Math.round(Date.UTC(t0.getFullYear(),t0.getMonth(),t0.getDate())/86400000);
+  a.slice(0,4).forEach(it=>{ if(!it||typeof it.d!=='string') return; let b; if(it.t==='dday'){const k=dn(it.d)-T; b=k>0?'D-'+k:k===0?'D-day':'D+'+(-k);} else {const c=T-dn(it.d)+(it.one?1:0); b=c>0?c.toLocaleString('ko-KR')+'일째':'D-'+(dn(it.d)-T);}
+   const l=document.createElement('a'); l.href='/date/'; l.innerHTML='<span></span><b></b>'; l.firstChild.textContent=it.n; l.lastChild.textContent=b; box.append(l); });
+  const r=document.getElementById('recent'); if(r&&a.length&&!document.getElementById('q').value&&(!location.hash||location.hash==='#')) r.hidden=false;
+ }catch(e){} }
+ draw(); addEventListener('sonandogu-dates-updated',()=>{ draw(); document.dispatchEvent(new Event('sonandogu-refresh')); });
+})();
 </script>
 <script type="module" src="/assets/comments.js?v=4"></script>
 <script type="module">

@@ -70,3 +70,35 @@
 .ftip .go2{color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F)}
 .ftip .x2{color:inherit; background:rgba(128,128,128,.25); padding:8px 11px}
 @media (prefers-reduced-motion:no-preference){ .ftip:not([hidden]){animation:ftin .3s cubic-bezier(.2,1,.3,1)} @keyframes ftin{from{opacity:0; transform:translate(-50%,10px)}to{opacity:1; transform:translate(-50%,0)}} }
+
+/* 도구 페이지 제목 옆 별 */
+.fav.pg{display:inline-grid; vertical-align:middle; width:36px; height:36px; margin:-4px 0 0 6px}
+.fav.pg svg{width:24px; height:24px}
+
+/* 도구 페이지 헤더 검색 (메인과 같은 모양) */
+.top .in{gap:12px}
+.hsrch{flex:1 1 0; min-width:0; max-width:420px; display:flex; align-items:center; gap:8px; margin-left:8px; background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:0 10px; color:var(--muted)}
+.hsrch:focus-within{border-color:var(--orange); box-shadow:0 0 0 4px rgba(255,90,31,.12)}
+.hsrch svg{flex:none}
+.hsrch input{flex:1; min-width:0; width:100%; font:inherit; font-size:14.5px; font-weight:600; color:var(--ink); background:none; border:0; outline:0; padding:8px 0}
+.hsrch input::placeholder{color:var(--faint); font-weight:500}
+.hsrch kbd{flex:none; font:inherit; font-size:12px; font-weight:700; color:var(--faint); border:1px solid var(--line); border-radius:6px; padding:0 6px; line-height:18px}
+.hsrch:focus-within kbd{display:none}
+.top nav{margin-left:auto; flex:none; white-space:nowrap}
+.brand{flex:none; white-space:nowrap}
+.acct{flex:none; white-space:nowrap}
+@media (max-width:639px){
+  .top .in{gap:8px}
+  .hsrch{margin-left:0}
+  .hsrch kbd{display:none}
+  .top nav a{display:none}
+  .top nav{gap:0!important}
+  .brand{font-size:15px}
+}
+
+/* 계정 삭제 */
+.fpanel .fdel{margin-top:8px; font-size:12.5px; font-weight:700; color:#C2410C; background:none; border-color:transparent}
+.fpanel .fdel:hover{border-color:#C2410C}
+.fpanel .fdel.arm{background:rgba(194,65,12,.1); border-color:#C2410C}
+.fpanel .fdmsg{margin:8px 0 0; font-size:12.5px; line-height:1.55; color:var(--muted)}
+.fpanel .fdmsg.err{color:#C2410C}
