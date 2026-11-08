@@ -231,7 +231,7 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
   </section>
   <section class="cmts" data-page="/percent/" data-kind="tool"></section>
 </div>
-<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a></span></footer>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
 <div class="toast" id="toast">복사했어요</div>
 
 <script>
@@ -265,6 +265,8 @@ const A=$('a'),B=$('b'),res=$('res'),cap=$('cap'),fx=$('fx'),copy=$('copy'),toas
 const toggle=document.querySelector('.toggle'),presets=document.querySelector('.presets'),seg=document.querySelector('.seg'),pill=seg.querySelector('.pill');
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let mode='of',dir='down',shown=null,anim=0;const saved={};
+const PKEY='sonandogu-percent-v1';
+const persist=()=>{try{const v=Object.assign({},saved);v[mode]=[A.value,B.value];localStorage.setItem(PKEY,JSON.stringify({mode,dir,vals:v}));}catch(e){}};
 
 function movePill(){const b=seg.querySelector('[aria-pressed="true"]');pill.style.width=b.offsetWidth+'px';pill.style.transform=`translateX(${b.offsetLeft}px)`;}
 function setMode(m){
@@ -281,6 +283,7 @@ function setMode(m){
 }
 function paint(n,u){res.textContent=fmt(n);if(u){const s=document.createElement('span');s.className='u';s.textContent=u;res.append(s);}}
 function run(){
+  persist();
   const a=toNum(A.value),b=toNum(B.value);
   const r=(a===null||b===null)?null:MODES[mode].run(a,b,dir);
   cancelAnimationFrame(anim);
@@ -303,7 +306,8 @@ document.querySelectorAll('.box').forEach(x=>x.addEventListener('click',()=>$(x.
 copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(copy.dataset.v);toast.textContent='복사했어요';}catch(e){toast.textContent='복사하지 못했어요';}
   toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1400);});
 addEventListener('resize',movePill);
-setMode('of');
+try{const s=JSON.parse(localStorage.getItem(PKEY)||'null'); if(s&&MODES[s.mode]){ const cl=v=>String(v==null?'':v).replace(/[^0-9.,]/g,'').slice(0,24); for(const k in (s.vals||{})) if(MODES[k]&&Array.isArray(s.vals[k])) saved[k]=[cl(s.vals[k][0]),cl(s.vals[k][1])]; mode=s.mode; if(s.dir==='up'){ dir='up'; toggle.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.dir==='up')); } const sv=saved[mode]||['','']; A.value=sv[0]; B.value=sv[1]; }}catch(e){}
+setMode(mode);
 </script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
 <script src="/assets/firebase-config.js?v=4"></script>
