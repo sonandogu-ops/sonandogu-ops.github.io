@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
+<link rel="canonical" href="https://sonandogu.com/salary/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon-192.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F4F1">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sonandogu.com/salary/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-salary.jpg?v=1">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<title>연봉 실수령액 계산기 2026 - 4대보험·소득세 공제 후 월급 | 손안의도구</title>
+<meta name="description" content="연봉이나 월급을 넣으면 2026년 기준 4대보험과 소득세(간이세액표)를 뺀 월 실수령액을 바로 계산해요. 식대 비과세, 부양가족, 8~20세 자녀, 원천징수 비율까지 반영하고 공제 내역을 항목별로 보여드려요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="연봉 실수령액 계산기 2026 - 4대보험·소득세 반영">
+<meta property="og:description" content="연봉·월급을 넣으면 월 실수령액과 공제 내역을 바로.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "연봉 실수령액은 어떻게 계산하나요?", "acceptedAnswer": {"@type": "Answer", "text": "연봉을 12로 나눈 월급에서 국민연금, 건강보험, 장기요양보험, 고용보험의 4대보험료와 근로소득세, 지방소득세를 뺀 금액이에요. 4대보험은 비과세를 뺀 월급에 요율을 곱하고, 소득세는 국세청 근로소득 간이세액표로 구해요. 이 계산기는 간이세액표의 산출 방식을 그대로 구현해서, 공식 표의 값과 같은 결과를 내요."}}, {"@type": "Question", "name": "2026년 4대보험 요율은 얼마인가요?", "acceptedAnswer": {"@type": "Answer", "text": "근로자 부담은 국민연금 4.75%(전체 9.5%의 절반), 건강보험 3.595%(전체 7.19%의 절반), 장기요양보험은 건강보험료의 13.14%, 고용보험 0.9%예요. 산재보험은 회사가 전액 부담해서 월급에서 빠지지 않아요. 국민연금은 기준소득월액 상·하한이 있어서, 2026년 7월부터는 월 41만원~659만원 범위로 계산해요."}}, {"@type": "Question", "name": "월 비과세 금액은 뭐고 얼마를 넣어야 하나요?", "acceptedAnswer": {"@type": "Answer", "text": "식대처럼 세금을 매기지 않는 수당이에요. 식대는 월 20만원까지 비과세여서 기본값을 20만원으로 두었어요. 월급 명세서에 비과세 항목이 따로 없다면 0원으로 바꿔 보세요. 비과세 금액은 4대보험과 소득세를 계산하는 기준에서 빠지기 때문에 많을수록 실수령액이 늘어나요."}}, {"@type": "Question", "name": "퇴직금이 포함된 연봉이라면 어떻게 하나요?", "acceptedAnswer": {"@type": "Answer", "text": "연봉에 퇴직금이 포함돼 있다면 \"연봉에 퇴직금이 포함돼 있어요\" 스위치를 켜 주세요. 연봉을 13으로 나눠 월급을 구해요. 12개월치 월급과 퇴직금 1개월분으로 나눠서 받는 구조를 반영한 거예요."}}, {"@type": "Question", "name": "부양가족 수에는 본인도 포함하나요?", "acceptedAnswer": {"@type": "Answer", "text": "네, 본인을 포함한 수예요. 배우자와 만 20세 이하 자녀, 소득이 없는 부모님처럼 기본공제 요건을 갖춘 가족만 더해 주세요. 가족이 많을수록 매달 떼는 소득세가 줄지만, 연말정산에서 최종 세금이 정해져서 실제로 돌려받거나 더 낼 수 있어요."}}, {"@type": "Question", "name": "8~20세 자녀 수는 왜 따로 입력하나요?", "acceptedAnswer": {"@type": "Answer", "text": "간이세액표에서는 8세 이상 20세 이하 자녀가 있으면 세액을 추가로 줄여 주기 때문이에요. 자녀가 1명이면 12,500원, 2명이면 29,160원을 빼고, 3명부터는 1명당 25,000원씩 더 빼요. 이 자녀도 부양가족 수에 포함해서 입력해 주세요."}}, {"@type": "Question", "name": "원천징수 비율 80%·100%·120%는 뭔가요?", "acceptedAnswer": {"@type": "Answer", "text": "매달 떼는 소득세를 간이세액표의 80%, 100%, 120% 중에서 고를 수 있는 제도예요. 80%를 고르면 매달 세금이 줄어 실수령액이 늘지만, 연말정산에서 더 낼 수 있어요. 120%는 반대로 매달 더 떼고 나중에 돌려받는 쪽이에요. 아무것도 신청하지 않으면 100%가 적용돼요."}}, {"@type": "Question", "name": "상여금이나 성과급은 반영되나요?", "acceptedAnswer": {"@type": "Answer", "text": "반영하지 않아요. 이 계산기는 매달 같은 금액을 받는 월 고정급을 기준으로 해요. 상여금과 성과급은 지급하는 달에 4대보험과 소득세가 따로 붙고, 연말정산에서 최종 정산돼요. 연봉에 상여금이 포함된 경우에는 월급으로 환산해서 입력하면 대략적인 흐름을 볼 수 있어요."}}, {"@type": "Question", "name": "회사에서 받는 급여명세서와 왜 다른가요?", "acceptedAnswer": {"@type": "Answer", "text": "회사마다 비과세 항목, 건강보험 정산 보험료, 국민연금 신고 소득, 원천징수 비율이 달라서 차이가 날 수 있어요. 이 계산기는 이런 사정을 단순하게 가정한 예상치예요. 신고나 협상 같은 중요한 판단에는 급여 담당자나 홈택스, 4대보험 공식 계산기로 한 번 더 확인하세요."}}, {"@type": "Question", "name": "국민연금에 가입하지 않는 경우도 계산할 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 만 60세 이상처럼 국민연금을 내지 않는 경우에는 \"국민연금 적용 안 함\" 스위치를 켜 주세요. 국민연금만 빼고 나머지 보험료와 세금을 계산해요. 소득세 계산에서도 연금보험료 공제가 빠지지는 않지만, 간이세액표 자체가 그 공제를 반영해 만든 표라서 같은 값을 써요."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "연봉 실수령액 계산기", "item": "https://sonandogu.com/salary/"}]}</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.hero{padding:36px 0 22px}
+@media (min-width:920px){.hero{padding:64px 0 28px}}
+.hero h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 12px}
+.hero p{font-size:17px; color:var(--muted); margin:0; max-width:34em}
+.tabs{display:inline-flex; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:4px; margin-bottom:16px}
+.tabs button{font:inherit; font-size:15px; font-weight:700; color:var(--muted); background:none; border:none; border-radius:12px; padding:10px 18px; cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink); color:var(--bg)}
+.work{display:grid; gap:18px}
+.work>*{min-width:0}
+@media (min-width:920px){.work{grid-template-columns:1fr 420px; gap:32px; align-items:start}.res{position:sticky; top:78px}}
+[hidden]{display:none!important}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:26px; box-shadow:var(--shadow); padding:20px 18px}
+.card+.card{margin-top:14px}
+.card h2{font-size:17px; font-weight:800; letter-spacing:-.03em; margin:0 0 12px; display:flex; align-items:center; gap:8px}
+.card h2 .n{width:22px; height:22px; border-radius:7px; background:var(--ink); color:var(--bg); font-size:12px; display:grid; place-items:center}
+.card h2 small{margin-left:auto; font-size:13px; color:var(--muted); font-weight:600}
+.box{background:var(--field); border-radius:16px; padding:10px 14px 8px; border:1.5px solid transparent; transition:border-color .2s, box-shadow .2s, background .2s}
+.box:focus-within{background:var(--surface); border-color:var(--orange); box-shadow:0 0 0 5px rgba(255,90,31,.13)}
+.box label{display:block; font-size:12px; font-weight:700; color:var(--muted)}
+.box input,.box select{width:100%; min-width:0; font:inherit; font-size:17px; font-weight:700; color:var(--ink); background:none; border:none; outline:none; padding:2px 0 0}
+.box input::placeholder{color:var(--faint); opacity:.7; font-weight:500}
+.box.big input{font-size:28px; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.num input{font-variant-numeric:tabular-nums}
+.g2{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.stepper{display:flex; align-items:center; justify-content:space-between; background:var(--field); border-radius:16px; padding:8px}
+.stepper button{width:46px; height:46px; border-radius:12px; border:1px solid var(--line); background:var(--surface); font:inherit; font-size:22px; font-weight:700; color:var(--ink); cursor:pointer}
+.stepper span{font-size:24px; font-weight:800; letter-spacing:-.03em}
+.lbl{font-size:12px; font-weight:700; color:var(--muted); margin:14px 0 6px 2px}
+.seg2{display:flex; gap:6px; flex-wrap:wrap}
+.seg2 button{flex:1; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:12px; padding:10px 6px; cursor:pointer; white-space:nowrap}
+.seg2 button[aria-pressed="true"]{color:var(--orange); border-color:var(--orange); background:rgba(255,90,31,.06)}
+.people{display:flex; flex-wrap:wrap; gap:8px}
+.pp{display:flex; align-items:center; gap:2px; background:var(--field); border:1.5px solid transparent; border-radius:999px; padding:4px 4px 4px 14px}
+.pp:focus-within{border-color:var(--orange); background:var(--surface)}
+.pp input{width:5.5em; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:none; outline:none}
+.pp button{width:28px; height:28px; border-radius:50%; border:none; background:none; color:var(--muted); font-size:16px; cursor:pointer}
+.pp button:hover{color:var(--orange)}
+.addp{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:999px; padding:8px 14px; cursor:pointer}
+.item{border:1px solid var(--line); border-radius:20px; padding:12px; margin-bottom:10px}
+.item .top2{display:grid; grid-template-columns:1.2fr 1fr 36px; gap:6px}
+.item .top2 .box{padding:8px 12px 6px}
+.item .top2 .box input{font-size:16px}
+.del{font:inherit; font-size:18px; color:var(--muted); background:none; border:1px solid var(--line); border-radius:12px; cursor:pointer}
+.del:hover{color:var(--orange); border-color:var(--orange)}
+.row2{display:flex; align-items:center; gap:8px; margin-top:10px; flex-wrap:wrap}
+.row2 .k{font-size:12.5px; font-weight:700; color:var(--muted); min-width:3.6em}
+.row2 select{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:10px; padding:7px 10px}
+.chips{display:flex; flex-wrap:wrap; gap:5px; flex:1}
+.chip{font:inherit; font-size:13.5px; font-weight:700; border-radius:999px; padding:6px 11px; cursor:pointer; border:1.5px solid var(--line); background:none; color:var(--faint)}
+.chip[aria-pressed="true"]{border-color:var(--ink); background:var(--ink); color:var(--bg)}
+.mini{font:inherit; font-size:12.5px; font-weight:700; color:var(--muted); background:none; border:none; text-decoration:underline; cursor:pointer; padding:0}
+.addi{width:100%; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:16px; padding:12px; cursor:pointer}
+.addi:hover,.addp:hover{border-color:var(--ink)}
+
+.disp{position:relative; overflow:hidden; border-radius:28px; padding:22px 20px 18px; color:#F4F4F1;
+  background:radial-gradient(120% 140% at 100% 0%, rgba(255,106,51,.28) 0%, rgba(255,106,51,0) 45%), linear-gradient(160deg,#202126 0%,#121316 100%);
+  box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.07)}
+.disp .cap{font-size:14px; color:rgba(244,244,241,.6)}
+.disp .big{font-size:clamp(40px,10vw,52px); font-weight:800; letter-spacing:-.05em; line-height:1.1; margin:4px 0; font-variant-numeric:tabular-nums}
+.disp .big .u{font-size:.45em; color:#FF8A3D; margin-left:4px; letter-spacing:-.02em}
+.disp .sub{font-size:14px; color:rgba(244,244,241,.6); line-height:1.6}
+.disp .sub b{color:#fff}
+.tr{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:8px}
+.tr li{display:flex; align-items:center; justify-content:space-between; gap:10px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:12px 14px}
+.tr .who{font-size:16px; font-weight:700}
+.tr .who i{font-style:normal; color:rgba(244,244,241,.45); margin:0 6px}
+.tr .amt{font-size:19px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.tr .none{justify-content:center; color:rgba(244,244,241,.55); font-size:15px}
+.tbl2{width:100%; border-collapse:collapse; margin-top:14px; font-size:13.5px; font-variant-numeric:tabular-nums}
+.tbl2 th,.tbl2 td{padding:8px 4px; border-bottom:1px solid rgba(255,255,255,.08); text-align:right}
+.tbl2 th:first-child,.tbl2 td:first-child{text-align:left}
+.tbl2 th{color:rgba(244,244,241,.5); font-weight:700; font-size:12px}
+.tbl2 .plus{color:#7CE3A8}.tbl2 .minus{color:#FF8A3D}
+.acts{display:grid; grid-template-columns:1fr auto; gap:8px; margin-top:16px}
+.acts button{font:inherit; font-size:15px; font-weight:800; border-radius:16px; padding:14px; cursor:pointer; border:none}
+.copy{color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); box-shadow:0 8px 20px -8px rgba(255,90,31,.8)}
+.copy:disabled{opacity:.35; box-shadow:none; cursor:default}
+.reset{color:#F4F4F1; background:rgba(255,255,255,.08)!important}
+.preview{margin-top:12px; white-space:pre-wrap; font-size:12.5px; line-height:1.6; color:rgba(244,244,241,.55); background:rgba(0,0,0,.25); border-radius:14px; padding:12px; max-height:160px; overflow:auto}
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+.guide{margin-top:88px}
+.guide h2{font-size:clamp(24px,4vw,32px); font-weight:800; letter-spacing:-.04em; margin:0 0 20px}
+.fgrid{display:grid; gap:12px}
+@media (min-width:720px){.fgrid{grid-template-columns:repeat(2,1fr)}}
+.f{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px}
+.f h3{font-size:16px; font-weight:800; margin:0 0 8px; letter-spacing:-.02em}
+.f p{margin:0; font-size:14.5px; color:var(--muted)}
+.f strong{color:var(--ink)}
+.faq{margin-top:56px}
+.faq details{border-top:1px solid var(--line); padding:18px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer; font-weight:700; font-size:16px; list-style:none; display:flex; justify-content:space-between; gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+"; color:var(--muted); font-weight:500; font-size:22px; line-height:1; transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:10px 0 0; color:var(--muted)}
+
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.days{display:grid; grid-template-columns:repeat(7,1fr); gap:6px}
+.day{background:var(--field); border-radius:14px; padding:8px 4px 6px; text-align:center; border:1.5px solid transparent}
+.day:focus-within{border-color:var(--orange); background:var(--surface)}
+.day label{display:block; font-size:12px; font-weight:800; color:var(--muted)}
+.day input{width:100%; font:inherit; font-size:18px; font-weight:800; text-align:center; color:var(--ink); background:none; border:none; outline:none; padding:2px 0; font-variant-numeric:tabular-nums}
+.day input::placeholder{color:var(--faint); opacity:.6}
+.day.we label{color:var(--orange)}
+.quick{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-top:10px; font-size:13px; color:var(--muted)}
+.quick select{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:10px; padding:6px 8px}
+.quick button{font:inherit; font-size:13px; font-weight:700; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:7px 12px; cursor:pointer}
+.optrow{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--line); font-size:14.5px; font-weight:700}
+.optrow:first-of-type{border-top:none}
+.optrow small{display:block; font-size:12.5px; color:var(--muted); font-weight:500; margin-top:2px}
+.sw{position:relative; flex:none; width:46px; height:28px; border-radius:999px; background:var(--field); border:1px solid var(--line); cursor:pointer; padding:0}
+.sw::after{content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .2s}
+.sw[aria-checked="true"]{background:var(--orange); border-color:var(--orange)}
+.sw[aria-checked="true"]::after{transform:translateX(18px)}
+.wrow{display:flex; gap:8px; align-items:stretch}
+.wrow .box{flex:1}
+.minbtn{font:inherit; font-size:13px; font-weight:700; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:0 12px; cursor:pointer; white-space:nowrap}
+.warn{margin-top:8px; font-size:13px; font-weight:700; color:#D9480F}
+.lines{margin-top:14px; display:flex; flex-direction:column; gap:2px}
+.ln{display:flex; justify-content:space-between; font-size:14px; padding:7px 0; border-bottom:1px solid rgba(255,255,255,.08); font-variant-numeric:tabular-nums}
+.ln span:first-child{color:rgba(244,244,241,.6)}
+.ln b{font-weight:800}
+.ln.sum{border-bottom:none; font-size:15px}
+.badge{display:inline-block; font-size:12.5px; font-weight:800; padding:4px 10px; border-radius:999px; margin-top:10px}
+.badge.ok{background:rgba(124,227,168,.15); color:#7CE3A8}
+.badge.no{background:rgba(255,138,61,.15); color:#FF8A3D}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.endo{display:flex; align-items:flex-end; gap:10px; margin-top:14px}
+.endo img{flex:none; width:64px; height:64px; object-fit:contain; filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
+.endo .say{position:relative; flex:1; background:#F4F4F1; color:#141518; font-size:14px; font-weight:700; line-height:1.45; border-radius:16px 16px 16px 4px; padding:10px 13px; margin-bottom:8px; letter-spacing:-.01em}
+.endo .say::before{content:""; position:absolute; left:-6px; bottom:8px; border:6px solid transparent; border-right-color:#F4F4F1; border-left:0}
+.endo.light .say{background:var(--field); color:var(--ink)}
+.endo.light .say::before{border-right-color:var(--field)}
+.endo.light img{filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
+.endo.pop img{animation:endoHop .5s cubic-bezier(.3,1.6,.5,1)}
+.endo.pop .say{animation:endoSay .35s ease-out}
+.endo[data-p="walk"] img,.endo[data-p="run"] img{animation:endoWalk .45s ease-in-out infinite}
+@keyframes endoHop{0%{transform:translateY(8px) scale(.9)}60%{transform:translateY(-6px)}100%{transform:none}}
+@keyframes endoSay{from{opacity:0; transform:translateX(-6px)}to{opacity:1; transform:none}}
+@keyframes endoWalk{50%{transform:translateY(-4px) rotate(-3deg)}}
+.tip{display:flex; gap:16px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:14px 18px; margin:0 0 22px; box-shadow:var(--shadow)}
+.tip img{width:80px; height:80px; object-fit:contain; flex:none}
+.tip b{display:block; font-size:13px; color:var(--orange); font-weight:800; margin-bottom:2px}
+.tip p{margin:0; font-size:15px; line-height:1.6}
+@media (prefers-reduced-motion:reduce){.endo.pop img,.endo.pop .say,.endo[data-p] img{animation:none!important}}
+
+.jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
+.jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
+.jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jumpres img{flex:none; width:30px; height:30px; object-fit:contain; margin:-6px -2px -6px -6px}
+.jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
+.res{scroll-margin-top:66px}
+@media (min-width:920px){.jumpres{display:none!important}}
+@media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
+@media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:12px}
+.crumb a{color:var(--muted); text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+.src{margin-top:12px; font-size:12px; line-height:1.6; color:rgba(244,244,241,.5)}
+.src a{color:rgba(244,244,241,.7)}
+
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:12px}
+.crumb a{color:var(--muted); text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+
+.hero{padding:36px 0 22px}
+@media (min-width:920px){.hero{padding:64px 0 28px}}
+.hero h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 12px}
+.hero p{font-size:17px; color:var(--muted); margin:0; max-width:34em}
+.box input[type=date]{font-size:20px; font-weight:800; letter-spacing:-.02em; padding:4px 0 2px; color-scheme:light dark}
+.g2{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.row3{display:grid; grid-template-columns:1fr 1.1fr; gap:8px; margin-top:8px}
+.quick2{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px}
+.quick2 button{font:inherit; font-size:13px; font-weight:700; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:6px 12px; cursor:pointer}
+.quick2 button:hover{color:var(--ink); border-color:var(--ink)}
+.optrow{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0 0; margin-top:12px; border-top:1px solid var(--line); font-size:14.5px; font-weight:700}
+.optrow small{display:block; font-size:12.5px; color:var(--muted); font-weight:500; margin-top:2px}
+.sw{position:relative; flex:none; width:46px; height:28px; border-radius:999px; background:var(--field); border:1px solid var(--line); cursor:pointer; padding:0}
+.sw::after{content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .2s}
+.sw[aria-checked="true"]{background:var(--orange); border-color:var(--orange)}
+.sw[aria-checked="true"]::after{transform:translateX(18px)}
+.pane[hidden]{display:none}
+.ms{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:6px}
+.ms li{display:grid; grid-template-columns:74px 1fr auto; gap:8px; align-items:center; background:rgba(255,255,255,.06); border-radius:14px; padding:10px 12px; font-size:14px; font-variant-numeric:tabular-nums}
+.ms li b{font-weight:800}
+.ms li span{color:rgba(244,244,241,.7)}
+.ms li em{font-style:normal; font-weight:800; font-size:13px; padding:3px 9px; border-radius:999px; background:rgba(255,255,255,.1)}
+.ms li.next{background:rgba(255,138,61,.16); border:1px solid rgba(255,138,61,.35)}
+.ms li.next em{background:#FF5A1F; color:#141518}
+.ms li.past{opacity:.5}
+.acts2{display:grid; grid-template-columns:1fr; gap:8px; margin-top:16px}
+.acts2 button{font:inherit; font-size:15px; font-weight:800; border-radius:14px; padding:13px; cursor:pointer; border:none; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F)}
+.acts2 button:disabled{opacity:.4; cursor:default}
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+
+.jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
+.jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
+.jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jumpres img{flex:none; width:30px; height:30px; object-fit:contain; margin:-6px -2px -6px -6px}
+.jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
+.res{scroll-margin-top:66px}
+@media (min-width:920px){.jumpres{display:none!important}}
+@media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
+@media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
+
+/* 날짜 계산기: 밝은 결과 판 */
+.disp.lite{color:var(--ink); background:radial-gradient(120% 120% at 100% 0%, rgba(47,102,240,.10) 0%, rgba(47,102,240,0) 55%), var(--surface); border:1px solid var(--line); box-shadow:var(--shadow)}
+.disp.lite::after{display:none}
+.disp.lite .cap,.disp.lite .sub{color:var(--muted)}
+.disp.lite .big{color:var(--ink)}
+.disp.lite .big .u{color:#2F66F0}
+.disp.lite .ms li{background:var(--field)}
+.disp.lite .ms li span{color:var(--muted)}
+.disp.lite .ms li em{background:var(--surface); color:var(--ink); border:1px solid var(--line)}
+.disp.lite .ms li.next{background:rgba(47,102,240,.08); border:1px solid rgba(47,102,240,.3)}
+.disp.lite .ms li.next em{background:#2F66F0; border-color:#2F66F0; color:#fff}
+.disp.lite .ms li.past{opacity:.45}
+.disp.lite .endo .say{background:var(--field); color:var(--ink)}
+.disp.lite .endo .say::before{border-right-color:var(--field)}
+.disp.lite .endo img{filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
+
+.saved{margin-bottom:14px}
+.saved h2 small{margin-left:auto; font-size:12.5px; color:var(--muted); font-weight:600}
+.sv{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px}
+.sv li{display:grid; grid-template-columns:1fr auto 30px; gap:10px; align-items:center; background:var(--field); border:1px solid transparent; border-radius:16px; padding:10px 10px 10px 14px; cursor:pointer}
+.sv li:hover{border-color:var(--line)}
+.sv li.on{border-color:#2F66F0; background:rgba(47,102,240,.07)}
+.sv .nm{font-size:15px; font-weight:800; letter-spacing:-.02em; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.sv .dt{display:block; font-size:12.5px; color:var(--muted); font-weight:600; margin-top:1px}
+.sv .bd{font-size:14px; font-weight:900; color:#fff; background:#2F66F0; border-radius:999px; padding:5px 11px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.sv .bd.today{background:#FF5A1F}
+.sv .bd.past{background:var(--faint)}
+.sv .x{width:30px; height:30px; border-radius:50%; border:none; background:none; color:var(--muted); font-size:17px; cursor:pointer}
+.sv .x:hover{color:var(--orange)}
+.svnote{font-size:12.5px; color:var(--muted); margin:10px 2px 0}
+.acts2{grid-template-columns:1fr 1fr!important}
+.acts2 .sb{color:#fff!important; background:#2F66F0!important}
+.namebox{display:flex; gap:8px; margin-top:12px}
+.namebox[hidden]{display:none}
+.namebox input{flex:1; min-width:0; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:var(--field); border:1.5px solid transparent; border-radius:12px; padding:10px 12px; outline:none}
+.namebox input:focus{border-color:#2F66F0; background:var(--surface)}
+.namebox button{font:inherit; font-size:14px; font-weight:800; color:#fff; background:#2F66F0; border:none; border-radius:12px; padding:0 16px; cursor:pointer}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.box .row{display:flex; align-items:baseline; gap:8px}
+.box .row input{flex:1 1 auto; min-width:0; width:100%}
+.box .unit{flex:none; font-size:17px; font-weight:700; color:var(--muted)}
+.step{display:flex; align-items:center; gap:10px}
+.step button{flex:none; width:44px; height:44px; border-radius:50%; font:inherit; font-size:22px; font-weight:700; color:var(--ink); background:var(--surface); border:1.5px solid var(--line); cursor:pointer; line-height:1; padding:0}
+.step button:hover:not(:disabled){border-color:var(--ink)}
+.step button:disabled{opacity:.35; cursor:default}
+.step output{min-width:64px; text-align:center; font-size:20px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.step output small{font-size:13px; font-weight:700; color:var(--muted); margin-left:2px}
+.sgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+@media (max-width:420px){.sgrid{grid-template-columns:1fr}}
+.srow{margin-top:14px}
+.srow>.lb{display:block; font-size:13px; font-weight:700; color:var(--muted); margin-bottom:8px}
+.qnet{margin-top:12px; padding:12px 14px; border-radius:14px; background:var(--field); font-size:14.5px; font-weight:700; color:var(--muted); line-height:1.6}
+.qnet b{color:var(--ink); font-size:17px; letter-spacing:-.02em}
+.ptable{overflow-x:auto; margin-top:14px; border:1px solid var(--line); border-radius:16px; background:var(--surface)}
+.ptable table{width:100%; border-collapse:collapse; font-size:14.5px; min-width:600px}
+.ptable th,.ptable td{padding:11px 12px; text-align:right; white-space:nowrap}
+.ptable th:first-child,.ptable td:first-child{text-align:left}
+.ptable thead th{font-size:12.5px; font-weight:700; color:var(--muted); background:var(--field)}
+.ptable tbody tr+tr td{border-top:1px solid var(--line)}
+.ptable td b{font-weight:800}
+.pnote{margin:10px 2px 0; font-size:13px; color:var(--muted); line-height:1.65}
+.disp.lite .ms li{grid-template-columns:76px 1fr auto}
+.disp .tot{margin-top:6px}
+</style>
+<link rel="stylesheet" href="/assets/comments.css?v=3">
+<link rel="stylesheet" href="/assets/favorites.css?v=2">
+<meta name="google-adsense-account" content="ca-pub-1007904420767851">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
+</head>
+<body>
+<script>
+async function shareOut(t){ const touch=matchMedia('(pointer:coarse)').matches; if(navigator.share&&touch){ try{ await navigator.share({text:t}); return 'shared'; }catch(e){ if(e&&e.name==='AbortError') return 'abort'; } } await navigator.clipboard.writeText(t); return 'copied'; }
+document.addEventListener('DOMContentLoaded',()=>{ if(navigator.share&&matchMedia('(pointer:coarse)').matches){ document.querySelectorAll('[data-share]').forEach(b=>b.textContent=b.dataset.share); } });
+</script>
+<script>
+function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const img=e.querySelector('img'), src='/assets/endo/'+p+'.webp'; if(img.getAttribute('src')!==src) img.setAttribute('src',src); e.dataset.p=p; const s=e.querySelector('.say'); if(s.textContent!==m){ s.textContent=m; if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); } } }
+</script>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<div class="container">
+
+  <section class="hero">
+    <div class="crumb"><a href="/">전체 도구</a> / <a href="/#calc">계산기</a> / 연봉 실수령액 계산기</div>
+    <h1>연봉 실수령액 계산기</h1>
+    <p>연봉이나 월급을 넣으면 4대보험과 소득세를 뺀 월 실수령액을 바로 알려드려요. 2026년 기준 요율과 국세청 간이세액표를 그대로 썼어요.</p>
+  </section>
+  <div class="work">
+    <main>
+      <div class="card">
+        <h2><span class="n">1</span>연봉 또는 월급<small>세전 금액</small></h2>
+        <div class="seg2" id="mode"><button data-m="annual" aria-pressed="true">연봉</button><button data-m="monthly" aria-pressed="false">월급</button></div>
+        <div class="box" style="margin-top:12px"><label for="amt" id="amtLb">세전 연봉</label><div class="row"><input id="amt" inputmode="numeric" placeholder="36,000,000" autocomplete="off"><span class="unit">원</span></div></div>
+        <div class="quick2" id="quick"></div>
+        <div class="optrow" id="sevRow"><span>연봉에 퇴직금이 포함돼 있어요<small>연봉을 13등분해서 월급을 구해요</small></span><button class="sw" id="sev" role="switch" aria-checked="false" aria-label="연봉에 퇴직금 포함"></button></div>
+        <div class="qnet" id="qnet" aria-live="polite">금액을 넣으면 월 실수령액이 바로 나와요</div>
+      </div>
+      <div class="card">
+        <h2><span class="n">2</span>공제 조건<small>모르면 기본값 그대로 써도 돼요</small></h2>
+        <div class="box"><label for="nt">월 비과세 금액 (식대 등)</label><div class="row"><input id="nt" inputmode="numeric" placeholder="200,000" autocomplete="off"><span class="unit">원</span></div></div>
+        <div class="quick2" id="ntq"><button data-n="0">없음</button><button data-n="100000">10만</button><button data-n="200000">20만</button><button data-n="300000">30만</button></div>
+        <div class="sgrid srow">
+          <div><span class="lb" style="display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:8px">부양가족 (본인 포함)</span><div class="step"><button id="fMinus" aria-label="부양가족 한 명 줄이기">−</button><output id="fOut" aria-live="polite">1<small>명</small></output><button id="fPlus" aria-label="부양가족 한 명 늘리기">+</button></div></div>
+          <div><span class="lb" style="display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:8px">그중 8~20세 자녀</span><div class="step"><button id="cMinus" aria-label="자녀 한 명 줄이기">−</button><output id="cOut" aria-live="polite">0<small>명</small></output><button id="cPlus" aria-label="자녀 한 명 늘리기">+</button></div></div>
+        </div>
+        <div class="srow"><span class="lb">소득세 원천징수 비율</span><div class="seg2" id="ratio"><button data-r="80" aria-pressed="false">80%</button><button data-r="100" aria-pressed="true">100%</button><button data-r="120" aria-pressed="false">120%</button></div></div>
+        <div class="optrow"><span>국민연금 적용 안 함<small>만 60세 이상처럼 연금을 내지 않을 때</small></span><button class="sw" id="nop" role="switch" aria-checked="false" aria-label="국민연금 적용 안 함"></button></div>
+      </div>
+    </main>
+    <aside class="res">
+      <div class="disp lite" aria-live="polite">
+        <div class="cap" id="cap">월 실수령액 (2026년 기준 예상)</div>
+        <div class="big" id="big">-</div>
+        <div class="sub" id="sub">연봉을 넣으면 공제 내역이 나와요</div>
+        <ul class="ms" id="ms" hidden></ul>
+        <div class="endo" id="endo" data-p="abacus"><img src="/assets/endo/abacus.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">연봉만 넣으면 바로 계산해 드릴게요!</div></div>
+        <div class="acts2"><button id="share" data-share="결과 공유" disabled>결과 복사</button><button class="sb" id="reset">초기화</button></div>
+      </div>
+    </aside>
+  </div>
+  <section class="guide">
+    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>같은 연봉이어도 식대 같은 비과세 수당과 부양가족, 자녀 수에 따라 실수령액이 달라져요. 급여 명세서의 비과세 항목을 확인해서 "월 비과세 금액"에 넣어 보세요.</p></div></div>
+    <h2>월급에서 빠지는 것들</h2>
+    <div class="fgrid">
+      <div class="f"><h3>4대보험</h3><p>국민연금 4.75%, 건강보험 3.595%, 장기요양보험은 건강보험료의 13.14%, 고용보험 0.9%예요. 모두 비과세를 뺀 월급에 곱해요. 산재보험은 회사가 전액 부담해서 월급에서 빠지지 않아요.</p></div>
+      <div class="f"><h3>근로소득세</h3><p>국세청 근로소득 간이세액표에 따라 월급과 부양가족 수로 정해져요. 이 계산기는 표의 산출 방식을 그대로 구현해서, 공식 표에 적힌 값과 같은 금액이 나와요. 2026년 3월 1일 이후 지급분 기준이에요.</p></div>
+      <div class="f"><h3>지방소득세</h3><p>근로소득세의 10%가 지방소득세로 따로 붙어요. 그래서 명세서에는 소득세와 지방소득세가 나란히 적혀 있어요. 이 계산기도 두 항목을 따로 보여드려요.</p></div>
+      <div class="f"><h3>비과세 수당</h3><p>식대는 월 20만원까지 세금을 매기지 않아요. 비과세 금액은 4대보험과 소득세의 계산 기준에서 빠져서 같은 연봉이어도 실수령액을 늘려 줘요. 기본값으로 식대 20만원을 넣어 두었어요.</p></div>
+    </div>
+    <h2>알아두면 좋은 점</h2>
+    <div class="fgrid">
+      <div class="f"><h3>부양가족이 많을수록</h3><p>본인을 포함한 부양가족이 한 명 늘 때마다 매달 떼는 소득세가 줄어요. 다만 연말정산에서 최종 세금이 정해지니, 실제로 돌려받거나 더 낼 수 있어요.</p></div>
+      <div class="f"><h3>8~20세 자녀 공제</h3><p>8세 이상 20세 이하 자녀가 있으면 간이세액표 세액에서 자녀 수만큼 더 빼요. 1명 12,500원, 2명 29,160원, 3명부터는 1명당 25,000원이 추가돼요.</p></div>
+      <div class="f"><h3>80%·100%·120% 선택</h3><p>원하면 매달 떼는 소득세를 표의 80%나 120%로 바꿀 수 있어요. 달마다 받는 돈과 연말정산 환급·추가 납부액이 서로 바뀌는 선택이에요.</p></div>
+      <div class="f"><h3>이 계산기가 반영하지 않는 것</h3><p>상여금과 성과급, 연말정산 결과, 건강보험 정산 보험료, 회사별 수당 구조는 반영하지 않아요. 월 고정급 기준의 예상치로 보고, 명세서와 비교하는 용도로 쓰세요.</p></div>
+    </div>
+    <h2>연봉별 월 실수령액 (예상)</h2>
+    <p class="pnote" style="margin-top:0">본인만 있는 1인 가구, 식대 월 20만원 비과세, 원천징수 100% 기준이에요. 이 계산기와 같은 방식으로 계산한 값이에요.</p>
+    <div class="ptable"><table>
+      <thead><tr><th>연봉</th><th>월 실수령액</th><th>실수령률</th><th>월 세전</th><th>4대보험</th><th>소득세·지방세</th></tr></thead>
+      <tbody><tr><td>2,400만원</td><td><b>1,808,470원</b></td><td>90.4%</td><td>2,000,000원</td><td>174,910원</td><td>16,620원</td></tr><tr><td>3,000만원</td><td><b>2,244,440원</b></td><td>89.8%</td><td>2,500,000원</td><td>223,490원</td><td>32,070원</td></tr><tr><td>3,600만원</td><td><b>2,665,440원</b></td><td>88.8%</td><td>3,000,000원</td><td>272,080원</td><td>62,480원</td></tr><tr><td>4,000만원</td><td><b>2,935,813원</b></td><td>88.1%</td><td>3,333,333원</td><td>304,440원</td><td>93,080원</td></tr><tr><td>5,000만원</td><td><b>3,571,586원</b></td><td>85.7%</td><td>4,166,666원</td><td>385,400원</td><td>209,680원</td></tr><tr><td>6,000만원</td><td><b>4,195,410원</b></td><td>83.9%</td><td>5,000,000원</td><td>466,430원</td><td>338,160원</td></tr><tr><td>7,000만원</td><td><b>4,821,313원</b></td><td>82.7%</td><td>5,833,333원</td><td>547,360원</td><td>464,660원</td></tr><tr><td>8,000만원</td><td><b>5,367,086원</b></td><td>80.5%</td><td>6,666,666원</td><td>628,330원</td><td>671,250원</td></tr><tr><td>10,000만원</td><td><b>6,530,923원</b></td><td>78.4%</td><td>8,333,333원</td><td>717,020원</td><td>1,085,390원</td></tr></tbody>
+    </table></div>
+    <p class="pnote">2026년 요율과 2026년 3월 1일 이후 간이세액표 기준의 예상 금액이에요. 실제 급여는 회사별 수당과 공제 방식에 따라 달라질 수 있어요.</p>
+    <div class="faq">
+      <h2>자주 묻는 질문</h2>
+      <details><summary>연봉 실수령액은 어떻게 계산하나요?</summary><p>연봉을 12로 나눈 월급에서 국민연금, 건강보험, 장기요양보험, 고용보험의 4대보험료와 근로소득세, 지방소득세를 뺀 금액이에요. 4대보험은 비과세를 뺀 월급에 요율을 곱하고, 소득세는 국세청 근로소득 간이세액표로 구해요. 이 계산기는 간이세액표의 산출 방식을 그대로 구현해서, 공식 표의 값과 같은 결과를 내요.</p></details>
+      <details><summary>2026년 4대보험 요율은 얼마인가요?</summary><p>근로자 부담은 국민연금 4.75%(전체 9.5%의 절반), 건강보험 3.595%(전체 7.19%의 절반), 장기요양보험은 건강보험료의 13.14%, 고용보험 0.9%예요. 산재보험은 회사가 전액 부담해서 월급에서 빠지지 않아요. 국민연금은 기준소득월액 상·하한이 있어서, 2026년 7월부터는 월 41만원~659만원 범위로 계산해요.</p></details>
+      <details><summary>월 비과세 금액은 뭐고 얼마를 넣어야 하나요?</summary><p>식대처럼 세금을 매기지 않는 수당이에요. 식대는 월 20만원까지 비과세여서 기본값을 20만원으로 두었어요. 월급 명세서에 비과세 항목이 따로 없다면 0원으로 바꿔 보세요. 비과세 금액은 4대보험과 소득세를 계산하는 기준에서 빠지기 때문에 많을수록 실수령액이 늘어나요.</p></details>
+      <details><summary>퇴직금이 포함된 연봉이라면 어떻게 하나요?</summary><p>연봉에 퇴직금이 포함돼 있다면 "연봉에 퇴직금이 포함돼 있어요" 스위치를 켜 주세요. 연봉을 13으로 나눠 월급을 구해요. 12개월치 월급과 퇴직금 1개월분으로 나눠서 받는 구조를 반영한 거예요.</p></details>
+      <details><summary>부양가족 수에는 본인도 포함하나요?</summary><p>네, 본인을 포함한 수예요. 배우자와 만 20세 이하 자녀, 소득이 없는 부모님처럼 기본공제 요건을 갖춘 가족만 더해 주세요. 가족이 많을수록 매달 떼는 소득세가 줄지만, 연말정산에서 최종 세금이 정해져서 실제로 돌려받거나 더 낼 수 있어요.</p></details>
+      <details><summary>8~20세 자녀 수는 왜 따로 입력하나요?</summary><p>간이세액표에서는 8세 이상 20세 이하 자녀가 있으면 세액을 추가로 줄여 주기 때문이에요. 자녀가 1명이면 12,500원, 2명이면 29,160원을 빼고, 3명부터는 1명당 25,000원씩 더 빼요. 이 자녀도 부양가족 수에 포함해서 입력해 주세요.</p></details>
+      <details><summary>원천징수 비율 80%·100%·120%는 뭔가요?</summary><p>매달 떼는 소득세를 간이세액표의 80%, 100%, 120% 중에서 고를 수 있는 제도예요. 80%를 고르면 매달 세금이 줄어 실수령액이 늘지만, 연말정산에서 더 낼 수 있어요. 120%는 반대로 매달 더 떼고 나중에 돌려받는 쪽이에요. 아무것도 신청하지 않으면 100%가 적용돼요.</p></details>
+      <details><summary>상여금이나 성과급은 반영되나요?</summary><p>반영하지 않아요. 이 계산기는 매달 같은 금액을 받는 월 고정급을 기준으로 해요. 상여금과 성과급은 지급하는 달에 4대보험과 소득세가 따로 붙고, 연말정산에서 최종 정산돼요. 연봉에 상여금이 포함된 경우에는 월급으로 환산해서 입력하면 대략적인 흐름을 볼 수 있어요.</p></details>
+      <details><summary>회사에서 받는 급여명세서와 왜 다른가요?</summary><p>회사마다 비과세 항목, 건강보험 정산 보험료, 국민연금 신고 소득, 원천징수 비율이 달라서 차이가 날 수 있어요. 이 계산기는 이런 사정을 단순하게 가정한 예상치예요. 신고나 협상 같은 중요한 판단에는 급여 담당자나 홈택스, 4대보험 공식 계산기로 한 번 더 확인하세요.</p></details>
+      <details><summary>국민연금에 가입하지 않는 경우도 계산할 수 있나요?</summary><p>네. 만 60세 이상처럼 국민연금을 내지 않는 경우에는 "국민연금 적용 안 함" 스위치를 켜 주세요. 국민연금만 빼고 나머지 보험료와 세금을 계산해요. 소득세 계산에서도 연금보험료 공제가 빠지지는 않지만, 간이세액표 자체가 그 공제를 반영해 만든 표라서 같은 값을 써요.</p></details>
+    </div>
+    <div class="rel"><b>함께 쓰면 좋은 도구</b><a href="/wage/">시급으로 받는다면 알바 급여 계산기 →</a></div>
+    <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/salary-take-home/">연봉 3,600만 원, 통장에는 얼마가 찍힐까 →</a></div>
+  </section>
+  <div class="toast" id="toast"></div>
+<script>
+/* 연봉 실수령액 계산 엔진 (2026년 기준)
+ * - 소득세: 소득세법 시행령 별표 2 '근로소득 간이세액표'의 산출 방식을 그대로 구현한 것이다.
+ * - 4대보험: 2026년 근로자 부담 요율 */
+const SAL_RATES={pension:0.0475,health:0.03595,ltc:0.1314,employ:0.009,penMin:410000,penMax:6590000};
+const SAL_PEN_CAP=4490000*12*0.045;
+const SAL_T10M=[1507400,1431570,1200840,1170840,1140840,1110840,1080840,1050840,1020840,990840,960840];
+const floorTo=(v,u)=>Math.floor(v/u+1e-9)*u;
+function salWorkDeduct(S){ if(S<=5e6) return S*0.7; if(S<=15e6) return 3.5e6+(S-5e6)*0.4; if(S<=45e6) return 7.5e6+(S-15e6)*0.15; if(S<=100e6) return 12e6+(S-45e6)*0.05; return 14.75e6+(S-100e6)*0.02; }
+function salBracketTax(TB){ const br=[[14e6,.06],[50e6,.15],[88e6,.24],[150e6,.35],[300e6,.38],[500e6,.40],[1000e6,.42],[1e18,.45]]; let t=0,prev=0; for(const [lim,r] of br){ if(TB>prev) t+=(Math.min(TB,lim)-prev)*r; prev=lim; } return t; }
+function salSpecial(S,n){ const k=Math.min(n,3); let d;
+  if(k===1){ const b=3.1e6; d= S<=30e6? b+0.04*S : S<=45e6? b+0.04*S-0.05*(S-30e6) : S<=70e6? b+0.015*S : b+0.005*S; }
+  else if(k===2){ const b=3.6e6; d= S<=30e6? b+0.04*S : S<=45e6? b+0.04*S-0.05*(S-30e6) : S<=70e6? b+0.02*S : b+0.01*S; }
+  else{ const b=5e6; d= S<=30e6? b+0.07*S : S<=45e6? b+0.07*S-0.05*(S-30e6) : S<=70e6? b+0.05*S : b+0.03*S; if(S>40e6) d+=0.04*(S-40e6); }
+  return d; }
+function salCreditLimit(S){ if(S<=33e6) return 740000; if(S<=55e6) return 660000; if(S<=70e6) return 630000; return Math.max(630000-(S-70e6)*0.5,500000); }
+function salRaw(midK,n){ const S=midK*12000, pen=Math.min(0.045*S,SAL_PEN_CAP);
+  const TB=Math.max(S-salWorkDeduct(S)-1.5e6*n-pen-salSpecial(S,n),0); const T=salBracketTax(TB);
+  const base=T<=500000?0.55*T:275000+0.3*(T-500000); const cr=Math.min(base,salCreditLimit(S)); return Math.max(T-cr,0)/12; }
+/* 간이세액표 한 칸의 세액 (월급여액 = 비과세 제외, n = 공제대상가족 수 1~11) */
+function salTableCell(m,n){
+  const k=m/1000; if(k<770) return 0;
+  if(k<10000){ const w=k<1500?5:k<3000?10:20; const lo=Math.floor(k/w)*w; const v=floorTo(salRaw(lo+w/2,n),10); return v<1000?0:v; }
+  const base=SAL_T10M[n-1], ex=m-10000000;
+  if(ex===0) return base;
+  if(m<=14000000) return Math.floor(base+ex*0.98*0.35+25000);
+  if(m<=28000000) return Math.floor(base+1397000+(m-14000000)*0.98*0.38);
+  if(m<=30000000) return Math.floor(base+6610600+(m-28000000)*0.98*0.40);
+  if(m<=45000000) return Math.floor(base+7394600+(m-30000000)*0.40);
+  if(m<=87000000) return Math.floor(base+13394600+(m-45000000)*0.42);
+  return Math.floor(base+31034600+(m-87000000)*0.45);
+}
+function salChildDeduct(c){ return c<=0?0: c===1?12500: c===2?29160: 29160+25000*(c-2); }
+/* 원천징수 소득세: family = 본인 포함 공제대상가족 수, child = 그중 8~20세 자녀 수, ratio = 80|100|120 */
+function salIncomeTax(taxable,family,child,ratio){
+  const n=Math.max(1,Math.min(11,family|0)); let t=salTableCell(taxable,n)-salChildDeduct(Math.min(child|0,Math.max(family-1,0)));
+  t=Math.max(t,0); t=floorTo(t*(ratio||100)/100,10); return t; }
+/* 전체 계산 */
+function salCalc(o){
+  const monthly=Math.max(0,Math.floor(o.monthly)); const nonTax=Math.min(Math.max(0,Math.floor(o.nonTax||0)),monthly); const taxable=monthly-nonTax;
+  const R=SAL_RATES;
+  const penBase=Math.min(Math.max(Math.floor(taxable/1000)*1000,R.penMin),R.penMax);
+  const pension=o.noPension||taxable<=0?0:floorTo(penBase*R.pension,10);
+  const health=floorTo(taxable*R.health,10), ltc=floorTo(health*R.ltc,10), employ=floorTo(taxable*R.employ,10);
+  const incomeTax=salIncomeTax(taxable,o.family||1,o.child||0,o.ratio||100), localTax=floorTo(incomeTax*0.1,10);
+  const ins=pension+health+ltc+employ, tax=incomeTax+localTax, total=ins+tax, net=monthly-total;
+  return {monthly,nonTax,taxable,pension,health,ltc,employ,ins,incomeTax,localTax,tax,total,net,rate:monthly?net/monthly:0};
+}
+
+const $=id=>document.getElementById(id);
+const KEY='sonandogu-salary-v1';
+const DEF={mode:'annual',amount:'36,000,000',nt:'200,000',family:1,child:0,ratio:100,sev:false,nop:false};
+let S=Object.assign({},DEF,(()=>{try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return {};}})());
+const num=v=>{const n=parseInt(String(v==null?'':v).replace(/[^0-9]/g,''),10);return isFinite(n)?n:0;};
+const fmt=n=>Math.round(n).toLocaleString('ko-KR');
+const comma=v=>{const n=String(v).replace(/[^0-9]/g,'').slice(0,12).replace(/^0+(?=\d)/,''); return n?Number(n).toLocaleString('ko-KR'):'';};
+S.mode=S.mode==='monthly'?'monthly':'annual'; S.amount=comma(S.amount); S.nt=comma(S.nt);
+S.family=Math.min(11,Math.max(1,parseInt(S.family,10)||1)); S.child=Math.min(S.family-1,Math.max(0,parseInt(S.child,10)||0));
+S.ratio=[80,100,120].includes(+S.ratio)?+S.ratio:100; S.sev=!!S.sev; S.nop=!!S.nop;
+const saveS=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}};
+const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1600);}
+const QA=[[24e6,'2,400만'],[30e6,'3,000만'],[36e6,'3,600만'],[40e6,'4,000만'],[50e6,'5,000만'],[60e6,'6,000만'],[80e6,'8,000만'],[100e6,'1억']];
+const QM=[[2e6,'200만'],[2.5e6,'250만'],[3e6,'300만'],[3.5e6,'350만'],[4e6,'400만'],[5e6,'500만']];
+let last=null;
+function monthlyOf(){ const a=num(S.amount); return S.mode==='annual'? Math.floor(a/(S.sev?13:12)) : a; }
+function drawQuick(){ const q=$('quick'); q.innerHTML=''; (S.mode==='annual'?QA:QM).forEach(([v,l])=>{ const b=document.createElement('button'); b.type='button'; b.textContent=l; b.onclick=()=>{ S.amount=comma(v); $('amt').value=S.amount; saveS(); run(); }; q.append(b); }); }
+function ui(){
+  document.querySelectorAll('#mode button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.m===S.mode));
+  document.querySelectorAll('#ratio button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.r===S.ratio));
+  $('amtLb').textContent=S.mode==='annual'?'세전 연봉':'세전 월급 (비과세 포함)'; $('amt').placeholder=S.mode==='annual'?'36,000,000':'3,000,000';
+  $('sevRow').hidden=S.mode!=='annual'; $('sev').setAttribute('aria-checked',S.sev); $('nop').setAttribute('aria-checked',S.nop);
+  $('amt').value=S.amount; $('nt').value=S.nt;
+  $('fOut').innerHTML=S.family+'<small>명</small>'; $('cOut').innerHTML=S.child+'<small>명</small>';
+  $('fMinus').disabled=S.family<=1; $('fPlus').disabled=S.family>=11; $('cMinus').disabled=S.child<=0; $('cPlus').disabled=S.child>=S.family-1;
+  drawQuick();
+}
+function row(b,s,e,cls){ const li=document.createElement('li'); if(cls) li.className=cls; li.innerHTML='<b></b><span></span><em></em>'; li.children[0].textContent=b; li.children[1].textContent=s; li.children[2].textContent=e; return li; }
+function run(){
+  const monthly=monthlyOf(), ms=$('ms');
+  if(!monthly){ $('big').textContent='-'; $('sub').textContent=S.mode==='annual'?'연봉을 넣으면 공제 내역이 나와요':'월급을 넣으면 공제 내역이 나와요'; ms.hidden=true; $('share').disabled=true; $('qnet').textContent='금액을 넣으면 월 실수령액이 바로 나와요'; last=null; endo('abacus','연봉만 넣으면 바로 계산해 드릴게요!'); return; }
+  const r=salCalc({monthly,nonTax:num(S.nt),family:S.family,child:S.child,ratio:S.ratio,noPension:S.nop});
+  last=r;
+  $('big').innerHTML=fmt(r.net)+'<span class="u">원</span>';
+  const yr=r.net*12;
+  $('sub').textContent=`연 실수령액 약 ${fmt(Math.round(yr/10000))}만원 · 4대보험 ${fmt(r.ins)}원 · 세금 ${fmt(r.tax)}원`;
+  $('qnet').innerHTML='월 실수령액 약 <b>'+fmt(r.net)+'원</b> · 세전 월급 '+fmt(r.monthly)+'원';
+  ms.innerHTML='';
+  ms.append(row('국민연금',`${(SAL_RATES.pension*100).toFixed(2)}%`,fmt(r.pension)+'원'));
+  ms.append(row('건강보험',`${(SAL_RATES.health*100).toFixed(3)}%`,fmt(r.health)+'원'));
+  ms.append(row('장기요양','건보료의 13.14%',fmt(r.ltc)+'원'));
+  ms.append(row('고용보험',`${(SAL_RATES.employ*100).toFixed(1)}%`,fmt(r.employ)+'원'));
+  ms.append(row('소득세','간이세액표 '+S.ratio+'%',fmt(r.incomeTax)+'원'));
+  ms.append(row('지방소득세','소득세의 10%',fmt(r.localTax)+'원'));
+  ms.append(row('공제 합계','4대보험+세금',fmt(r.total)+'원','next'));
+  ms.hidden=false; $('share').disabled=false;
+  if(r.nonTax>0){ const z=salCalc({monthly,nonTax:0,family:S.family,child:S.child,ratio:S.ratio,noPension:S.nop}); const g=z.total-r.total; if(g>0) endo('saving',`비과세 덕분에 매달 약 ${fmt(g)}원 아꼈어요`); else endo('thumbs','계산 끝! 월 실수령액은 이래요'); }
+  else endo('thumbs','계산 끝! 비과세 수당을 넣으면 더 늘어날 수 있어요');
+}
+const lbl=()=>S.mode==='annual'?`연봉 ${fmt(num(S.amount))}원`:`월급 ${fmt(num(S.amount))}원`;
+document.querySelectorAll('#mode button').forEach(b=>b.onclick=()=>{ if(S.mode===b.dataset.m) return; const cur=num(S.amount); if(cur){ S.amount=comma(b.dataset.m==='monthly'?Math.floor(cur/(S.sev?13:12)):cur*(S.sev?13:12)); } S.mode=b.dataset.m; saveS(); ui(); run(); });
+$('amt').addEventListener('input',()=>{ S.amount=comma($('amt').value); $('amt').value=S.amount; saveS(); run(); });
+$('nt').addEventListener('input',()=>{ S.nt=comma($('nt').value); $('nt').value=S.nt; saveS(); run(); });
+document.querySelectorAll('#ntq button').forEach(b=>b.onclick=()=>{ S.nt=comma(b.dataset.n==='0'?'':b.dataset.n); if(b.dataset.n==='0') S.nt='0'; $('nt').value=S.nt; saveS(); run(); });
+$('sev').onclick=()=>{ S.sev=!S.sev; saveS(); ui(); run(); };
+$('nop').onclick=()=>{ S.nop=!S.nop; saveS(); ui(); run(); };
+document.querySelectorAll('#ratio button').forEach(b=>b.onclick=()=>{ S.ratio=+b.dataset.r; saveS(); ui(); run(); });
+$('fMinus').onclick=()=>{ if(S.family>1){ S.family--; S.child=Math.min(S.child,S.family-1); saveS(); ui(); run(); } };
+$('fPlus').onclick=()=>{ if(S.family<11){ S.family++; saveS(); ui(); run(); } };
+$('cMinus').onclick=()=>{ if(S.child>0){ S.child--; saveS(); ui(); run(); } };
+$('cPlus').onclick=()=>{ if(S.child<S.family-1){ S.child++; saveS(); ui(); run(); } };
+$('reset').onclick=()=>{ S=Object.assign({},DEF); try{localStorage.removeItem(KEY);}catch(e){} ui(); run(); say('처음 값으로 되돌렸어요'); };
+$('share').onclick=async()=>{ if(!last) return; const r=last; const txt=`[연봉 실수령액] ${lbl()} → 월 실수령 약 ${fmt(r.net)}원\n4대보험 ${fmt(r.ins)}원 · 소득세+지방세 ${fmt(r.tax)}원 (2026년 기준 예상)\n\n손안의도구 연봉 실수령액 계산기\nhttps://sonandogu.com/salary/`; try{ const x=await shareOut(txt); if(x==='copied') say('복사했어요'); }catch(e){ say('공유하지 못했어요'); } };
+window.__sal={salCalc,salTableCell,salIncomeTax};
+ui(); run();
+</script>
+<section class="cmts" data-page="/salary/" data-kind="tool"></section>
+</div>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+<script src="/assets/firebase-config.js?v=4"></script>
+<script src="/assets/favorites.js?v=2"></script>
+<script type="module" src="/assets/comments.js?v=4"></script>
+<script src="/assets/analytics.js?v=2" defer></script>
+</body>
+</html>
