@@ -4,6 +4,13 @@
   var TOKEN='50724541c83044168f096f10e8e2c461';
   if(!TOKEN||TOKEN.indexOf('PASTE')===0) return;
   if(location.hostname!=='sonandogu.com') return;          // 내 컴퓨터에서 열어볼 땐 세지 않음
+  // 내 방문 제외: 주소 끝에 ?owner=1 을 붙여 한 번 열면 이 브라우저는 집계하지 않는다. ?owner=0 으로 열면 다시 집계한다.
+  try{
+    var u=new URL(location.href), o=u.searchParams.get('owner');
+    if(o==='1') localStorage.setItem('sonandogu-owner','1'); else if(o==='0') localStorage.removeItem('sonandogu-owner');
+    if(o!==null){ u.searchParams.delete('owner'); history.replaceState(null,'',u.pathname+(u.search||'')+u.hash); }
+    if(localStorage.getItem('sonandogu-owner')==='1') return;
+  }catch(e){}
   var s=document.createElement('script'); s.defer=true;
   s.src='https://static.cloudflareinsights.com/beacon.min.js';
   s.setAttribute('data-cf-beacon',JSON.stringify({token:TOKEN}));
