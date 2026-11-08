@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
+<link rel="canonical" href="https://sonandogu.com/severance/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon-192.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F4F1">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sonandogu.com/severance/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-severance.jpg?v=1">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<title>퇴직금 계산기 2026 - 평균임금·퇴직소득세까지 한 번에 | 손안의도구</title>
+<meta name="description" content="입사일과 마지막 근무일, 퇴직 전 3개월 임금을 넣으면 퇴직금과 퇴직소득세, 세후 예상액, 지급기한을 계산해요. 상여금·연차수당 3/12 가산과 통상임금 비교까지 반영하고, 1년 미만이면 대상이 아닌 점도 알려드려요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="퇴직금 계산기 - 평균임금·퇴직소득세까지">
+<meta property="og:description" content="입사일·퇴사일·월급으로 퇴직금과 세후 금액을 바로.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "퇴직금은 어떻게 계산하나요?", "acceptedAnswer": {"@type": "Answer", "text": "\"1일 평균임금 × 30일 × (재직일수 ÷ 365)\"로 계산해요. 1일 평균임금은 퇴직 전 3개월 동안 받은 임금 총액을 그 기간의 총 일수(89~92일)로 나눈 금액이에요. 근속 1년마다 약 30일분의 평균임금을 받는다고 보면 돼요."}}, {"@type": "Question", "name": "평균임금은 월급을 30으로 나눈 거 아닌가요?", "acceptedAnswer": {"@type": "Answer", "text": "아니에요. 퇴직 전 3개월 임금 총액을 그 3개월의 달력상 일수(89~92일)로 나눠요. 같은 월급이어도 3개월에 포함된 날수가 달라서 결과가 조금씩 달라져요. 예를 들어 월 300만원이면 3개월 총액 900만원을 92일로 나눠 1일 평균임금이 약 97,826원이에요."}}, {"@type": "Question", "name": "상여금과 연차수당은 어떻게 넣나요?", "acceptedAnswer": {"@type": "Answer", "text": "퇴직 전 12개월 동안 받은 상여금 총액과, 퇴직 전전년도 출근율로 퇴직 전년도에 발생한 연차를 쓰지 않아 받은 연차수당을 넣어 주세요. 두 금액은 각각 3/12만 평균임금에 더해져요. 퇴직 때문에 비로소 생기는 미사용 연차수당은 넣지 않아요."}}, {"@type": "Question", "name": "통상임금 비교는 왜 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "평균임금이 통상임금보다 적으면 통상임금을 평균임금으로 쓰도록 법에 정해져 있어요. 퇴직 전에 휴직이나 결근이 많아 평균임금이 줄어든 경우에 대비한 규정이에요. 월 통상임금을 입력하면 주 40시간 기준(209시간)으로 일급을 환산해서 평균임금과 비교해요. 모르면 비워 두세요."}}, {"@type": "Question", "name": "퇴직금은 누구나 받을 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "계속근로기간이 1년 이상이고, 4주를 평균해 1주 소정근로시간이 15시간 이상이면 정규직, 계약직, 아르바이트 모두 받을 수 있어요. 1년이 안 되면 법정 퇴직금은 없어요. 이 계산기는 1년 미만이면 대상이 아니라고 알려 주고 참고용 금액만 보여줘요."}}, {"@type": "Question", "name": "퇴직금은 언제까지 받나요?", "acceptedAnswer": {"@type": "Answer", "text": "퇴직한 날부터 14일 이내에 지급해야 해요. 당사자가 합의하면 기한을 늘릴 수 있어요. 기한이 지나도록 지급하지 않으면 지연이자가 붙을 수 있고, 고용노동부에 진정할 수도 있어요. 퇴직금을 청구할 수 있는 권리는 퇴직일로부터 3년이 지나면 사라져요."}}, {"@type": "Question", "name": "마지막 근무일과 퇴직일은 같은 날인가요?", "acceptedAnswer": {"@type": "Answer", "text": "다르게 봐요. 퇴직일은 마지막 근무일의 다음 날이에요. 예를 들어 12월 31일이 마지막 근무일이면 퇴직일은 1월 1일이에요. 이 계산기도 마지막 근무일을 입력받아서 다음 날을 퇴직일로 계산하고, 지급기한도 그날부터 14일로 안내해요."}}, {"@type": "Question", "name": "퇴직소득세는 어떻게 계산하나요?", "acceptedAnswer": {"@type": "Answer", "text": "퇴직금에서 근속연수공제를 뺀 뒤 12를 곱하고 근속연수로 나눠 1년치(환산급여)로 바꿔요. 여기서 환산급여공제를 빼고 기본세율(6~45%)을 곱한 다음, 다시 근속연수를 곱하고 12로 나눠요. 지방소득세는 퇴직소득세의 10%가 따로 붙어요. 근속이 길수록 공제가 커서 세금이 확 줄어요."}}, {"@type": "Question", "name": "퇴직연금(DB·DC)이나 IRP로 받으면 같은가요?", "acceptedAnswer": {"@type": "Answer", "text": "DB형은 퇴직 직전 평균임금 기준이라 이 계산기와 비슷하게 나와요. DC형은 회사가 적립해 준 돈과 운용 결과가 퇴직급여여서 이 계산기 결과와 다를 수 있어요. 퇴직급여를 IRP로 받으면 세금이 바로 빠지지 않고 나중으로 미뤄지는데, 받는 방법과 연금 수령 조건에 따라 세금이 달라지니 금융회사나 국세청 안내를 확인하세요."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "퇴직금 계산기", "item": "https://sonandogu.com/severance/"}]}</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.hero{padding:36px 0 22px}
+@media (min-width:920px){.hero{padding:64px 0 28px}}
+.hero h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 12px}
+.hero p{font-size:17px; color:var(--muted); margin:0; max-width:34em}
+.tabs{display:inline-flex; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:4px; margin-bottom:16px}
+.tabs button{font:inherit; font-size:15px; font-weight:700; color:var(--muted); background:none; border:none; border-radius:12px; padding:10px 18px; cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink); color:var(--bg)}
+.work{display:grid; gap:18px}
+.work>*{min-width:0}
+@media (min-width:920px){.work{grid-template-columns:1fr 420px; gap:32px; align-items:start}.res{position:sticky; top:78px}}
+[hidden]{display:none!important}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:26px; box-shadow:var(--shadow); padding:20px 18px}
+.card+.card{margin-top:14px}
+.card h2{font-size:17px; font-weight:800; letter-spacing:-.03em; margin:0 0 12px; display:flex; align-items:center; gap:8px}
+.card h2 .n{width:22px; height:22px; border-radius:7px; background:var(--ink); color:var(--bg); font-size:12px; display:grid; place-items:center}
+.card h2 small{margin-left:auto; font-size:13px; color:var(--muted); font-weight:600}
+.box{background:var(--field); border-radius:16px; padding:10px 14px 8px; border:1.5px solid transparent; transition:border-color .2s, box-shadow .2s, background .2s}
+.box:focus-within{background:var(--surface); border-color:var(--orange); box-shadow:0 0 0 5px rgba(255,90,31,.13)}
+.box label{display:block; font-size:12px; font-weight:700; color:var(--muted)}
+.box input,.box select{width:100%; min-width:0; font:inherit; font-size:17px; font-weight:700; color:var(--ink); background:none; border:none; outline:none; padding:2px 0 0}
+.box input::placeholder{color:var(--faint); opacity:.7; font-weight:500}
+.box.big input{font-size:28px; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.num input{font-variant-numeric:tabular-nums}
+.g2{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.stepper{display:flex; align-items:center; justify-content:space-between; background:var(--field); border-radius:16px; padding:8px}
+.stepper button{width:46px; height:46px; border-radius:12px; border:1px solid var(--line); background:var(--surface); font:inherit; font-size:22px; font-weight:700; color:var(--ink); cursor:pointer}
+.stepper span{font-size:24px; font-weight:800; letter-spacing:-.03em}
+.lbl{font-size:12px; font-weight:700; color:var(--muted); margin:14px 0 6px 2px}
+.seg2{display:flex; gap:6px; flex-wrap:wrap}
+.seg2 button{flex:1; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:12px; padding:10px 6px; cursor:pointer; white-space:nowrap}
+.seg2 button[aria-pressed="true"]{color:var(--orange); border-color:var(--orange); background:rgba(255,90,31,.06)}
+.people{display:flex; flex-wrap:wrap; gap:8px}
+.pp{display:flex; align-items:center; gap:2px; background:var(--field); border:1.5px solid transparent; border-radius:999px; padding:4px 4px 4px 14px}
+.pp:focus-within{border-color:var(--orange); background:var(--surface)}
+.pp input{width:5.5em; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:none; outline:none}
+.pp button{width:28px; height:28px; border-radius:50%; border:none; background:none; color:var(--muted); font-size:16px; cursor:pointer}
+.pp button:hover{color:var(--orange)}
+.addp{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:999px; padding:8px 14px; cursor:pointer}
+.item{border:1px solid var(--line); border-radius:20px; padding:12px; margin-bottom:10px}
+.item .top2{display:grid; grid-template-columns:1.2fr 1fr 36px; gap:6px}
+.item .top2 .box{padding:8px 12px 6px}
+.item .top2 .box input{font-size:16px}
+.del{font:inherit; font-size:18px; color:var(--muted); background:none; border:1px solid var(--line); border-radius:12px; cursor:pointer}
+.del:hover{color:var(--orange); border-color:var(--orange)}
+.row2{display:flex; align-items:center; gap:8px; margin-top:10px; flex-wrap:wrap}
+.row2 .k{font-size:12.5px; font-weight:700; color:var(--muted); min-width:3.6em}
+.row2 select{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:10px; padding:7px 10px}
+.chips{display:flex; flex-wrap:wrap; gap:5px; flex:1}
+.chip{font:inherit; font-size:13.5px; font-weight:700; border-radius:999px; padding:6px 11px; cursor:pointer; border:1.5px solid var(--line); background:none; color:var(--faint)}
+.chip[aria-pressed="true"]{border-color:var(--ink); background:var(--ink); color:var(--bg)}
+.mini{font:inherit; font-size:12.5px; font-weight:700; color:var(--muted); background:none; border:none; text-decoration:underline; cursor:pointer; padding:0}
+.addi{width:100%; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:16px; padding:12px; cursor:pointer}
+.addi:hover,.addp:hover{border-color:var(--ink)}
+
+.disp{position:relative; overflow:hidden; border-radius:28px; padding:22px 20px 18px; color:#F4F4F1;
+  background:radial-gradient(120% 140% at 100% 0%, rgba(255,106,51,.28) 0%, rgba(255,106,51,0) 45%), linear-gradient(160deg,#202126 0%,#121316 100%);
+  box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.07)}
+.disp .cap{font-size:14px; color:rgba(244,244,241,.6)}
+.disp .big{font-size:clamp(40px,10vw,52px); font-weight:800; letter-spacing:-.05em; line-height:1.1; margin:4px 0; font-variant-numeric:tabular-nums}
+.disp .big .u{font-size:.45em; color:#FF8A3D; margin-left:4px; letter-spacing:-.02em}
+.disp .sub{font-size:14px; color:rgba(244,244,241,.6); line-height:1.6}
+.disp .sub b{color:#fff}
+.tr{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:8px}
+.tr li{display:flex; align-items:center; justify-content:space-between; gap:10px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:12px 14px}
+.tr .who{font-size:16px; font-weight:700}
+.tr .who i{font-style:normal; color:rgba(244,244,241,.45); margin:0 6px}
+.tr .amt{font-size:19px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.tr .none{justify-content:center; color:rgba(244,244,241,.55); font-size:15px}
+.tbl2{width:100%; border-collapse:collapse; margin-top:14px; font-size:13.5px; font-variant-numeric:tabular-nums}
+.tbl2 th,.tbl2 td{padding:8px 4px; border-bottom:1px solid rgba(255,255,255,.08); text-align:right}
+.tbl2 th:first-child,.tbl2 td:first-child{text-align:left}
+.tbl2 th{color:rgba(244,244,241,.5); font-weight:700; font-size:12px}
+.tbl2 .plus{color:#7CE3A8}.tbl2 .minus{color:#FF8A3D}
+.acts{display:grid; grid-template-columns:1fr auto; gap:8px; margin-top:16px}
+.acts button{font:inherit; font-size:15px; font-weight:800; border-radius:16px; padding:14px; cursor:pointer; border:none}
+.copy{color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); box-shadow:0 8px 20px -8px rgba(255,90,31,.8)}
+.copy:disabled{opacity:.35; box-shadow:none; cursor:default}
+.reset{color:#F4F4F1; background:rgba(255,255,255,.08)!important}
+.preview{margin-top:12px; white-space:pre-wrap; font-size:12.5px; line-height:1.6; color:rgba(244,244,241,.55); background:rgba(0,0,0,.25); border-radius:14px; padding:12px; max-height:160px; overflow:auto}
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+.guide{margin-top:88px}
+.guide h2{font-size:clamp(24px,4vw,32px); font-weight:800; letter-spacing:-.04em; margin:0 0 20px}
+.fgrid{display:grid; gap:12px}
+@media (min-width:720px){.fgrid{grid-template-columns:repeat(2,1fr)}}
+.f{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px}
+.f h3{font-size:16px; font-weight:800; margin:0 0 8px; letter-spacing:-.02em}
+.f p{margin:0; font-size:14.5px; color:var(--muted)}
+.f strong{color:var(--ink)}
+.faq{margin-top:56px}
+.faq details{border-top:1px solid var(--line); padding:18px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer; font-weight:700; font-size:16px; list-style:none; display:flex; justify-content:space-between; gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+"; color:var(--muted); font-weight:500; font-size:22px; line-height:1; transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:10px 0 0; color:var(--muted)}
+
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.days{display:grid; grid-template-columns:repeat(7,1fr); gap:6px}
+.day{background:var(--field); border-radius:14px; padding:8px 4px 6px; text-align:center; border:1.5px solid transparent}
+.day:focus-within{border-color:var(--orange); background:var(--surface)}
+.day label{display:block; font-size:12px; font-weight:800; color:var(--muted)}
+.day input{width:100%; font:inherit; font-size:18px; font-weight:800; text-align:center; color:var(--ink); background:none; border:none; outline:none; padding:2px 0; font-variant-numeric:tabular-nums}
+.day input::placeholder{color:var(--faint); opacity:.6}
+.day.we label{color:var(--orange)}
+.quick{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-top:10px; font-size:13px; color:var(--muted)}
+.quick select{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:10px; padding:6px 8px}
+.quick button{font:inherit; font-size:13px; font-weight:700; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:7px 12px; cursor:pointer}
+.optrow{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--line); font-size:14.5px; font-weight:700}
+.optrow:first-of-type{border-top:none}
+.optrow small{display:block; font-size:12.5px; color:var(--muted); font-weight:500; margin-top:2px}
+.sw{position:relative; flex:none; width:46px; height:28px; border-radius:999px; background:var(--field); border:1px solid var(--line); cursor:pointer; padding:0}
+.sw::after{content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .2s}
+.sw[aria-checked="true"]{background:var(--orange); border-color:var(--orange)}
+.sw[aria-checked="true"]::after{transform:translateX(18px)}
+.wrow{display:flex; gap:8px; align-items:stretch}
+.wrow .box{flex:1}
+.minbtn{font:inherit; font-size:13px; font-weight:700; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:0 12px; cursor:pointer; white-space:nowrap}
+.warn{margin-top:8px; font-size:13px; font-weight:700; color:#D9480F}
+.lines{margin-top:14px; display:flex; flex-direction:column; gap:2px}
+.ln{display:flex; justify-content:space-between; font-size:14px; padding:7px 0; border-bottom:1px solid rgba(255,255,255,.08); font-variant-numeric:tabular-nums}
+.ln span:first-child{color:rgba(244,244,241,.6)}
+.ln b{font-weight:800}
+.ln.sum{border-bottom:none; font-size:15px}
+.badge{display:inline-block; font-size:12.5px; font-weight:800; padding:4px 10px; border-radius:999px; margin-top:10px}
+.badge.ok{background:rgba(124,227,168,.15); color:#7CE3A8}
+.badge.no{background:rgba(255,138,61,.15); color:#FF8A3D}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.endo{display:flex; align-items:flex-end; gap:10px; margin-top:14px}
+.endo img{flex:none; width:64px; height:64px; object-fit:contain; filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
+.endo .say{position:relative; flex:1; background:#F4F4F1; color:#141518; font-size:14px; font-weight:700; line-height:1.45; border-radius:16px 16px 16px 4px; padding:10px 13px; margin-bottom:8px; letter-spacing:-.01em}
+.endo .say::before{content:""; position:absolute; left:-6px; bottom:8px; border:6px solid transparent; border-right-color:#F4F4F1; border-left:0}
+.endo.light .say{background:var(--field); color:var(--ink)}
+.endo.light .say::before{border-right-color:var(--field)}
+.endo.light img{filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
+.endo.pop img{animation:endoHop .5s cubic-bezier(.3,1.6,.5,1)}
+.endo.pop .say{animation:endoSay .35s ease-out}
+.endo[data-p="walk"] img,.endo[data-p="run"] img{animation:endoWalk .45s ease-in-out infinite}
+@keyframes endoHop{0%{transform:translateY(8px) scale(.9)}60%{transform:translateY(-6px)}100%{transform:none}}
+@keyframes endoSay{from{opacity:0; transform:translateX(-6px)}to{opacity:1; transform:none}}
+@keyframes endoWalk{50%{transform:translateY(-4px) rotate(-3deg)}}
+.tip{display:flex; gap:16px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:14px 18px; margin:0 0 22px; box-shadow:var(--shadow)}
+.tip img{width:80px; height:80px; object-fit:contain; flex:none}
+.tip b{display:block; font-size:13px; color:var(--orange); font-weight:800; margin-bottom:2px}
+.tip p{margin:0; font-size:15px; line-height:1.6}
+@media (prefers-reduced-motion:reduce){.endo.pop img,.endo.pop .say,.endo[data-p] img{animation:none!important}}
+
+.jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
+.jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
+.jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jumpres img{flex:none; width:30px; height:30px; object-fit:contain; margin:-6px -2px -6px -6px}
+.jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
+.res{scroll-margin-top:66px}
+@media (min-width:920px){.jumpres{display:none!important}}
+@media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
+@media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:12px}
+.crumb a{color:var(--muted); text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+.src{margin-top:12px; font-size:12px; line-height:1.6; color:rgba(244,244,241,.5)}
+.src a{color:rgba(244,244,241,.7)}
+
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:12px}
+.crumb a{color:var(--muted); text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+
+.hero{padding:36px 0 22px}
+@media (min-width:920px){.hero{padding:64px 0 28px}}
+.hero h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 12px}
+.hero p{font-size:17px; color:var(--muted); margin:0; max-width:34em}
+.box input[type=date]{font-size:20px; font-weight:800; letter-spacing:-.02em; padding:4px 0 2px; color-scheme:light dark}
+.g2{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.row3{display:grid; grid-template-columns:1fr 1.1fr; gap:8px; margin-top:8px}
+.quick2{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px}
+.quick2 button{font:inherit; font-size:13px; font-weight:700; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:6px 12px; cursor:pointer}
+.quick2 button:hover{color:var(--ink); border-color:var(--ink)}
+.optrow{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0 0; margin-top:12px; border-top:1px solid var(--line); font-size:14.5px; font-weight:700}
+.optrow small{display:block; font-size:12.5px; color:var(--muted); font-weight:500; margin-top:2px}
+.sw{position:relative; flex:none; width:46px; height:28px; border-radius:999px; background:var(--field); border:1px solid var(--line); cursor:pointer; padding:0}
+.sw::after{content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .2s}
+.sw[aria-checked="true"]{background:var(--orange); border-color:var(--orange)}
+.sw[aria-checked="true"]::after{transform:translateX(18px)}
+.pane[hidden]{display:none}
+.ms{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:6px}
+.ms li{display:grid; grid-template-columns:74px 1fr auto; gap:8px; align-items:center; background:rgba(255,255,255,.06); border-radius:14px; padding:10px 12px; font-size:14px; font-variant-numeric:tabular-nums}
+.ms li b{font-weight:800}
+.ms li span{color:rgba(244,244,241,.7)}
+.ms li em{font-style:normal; font-weight:800; font-size:13px; padding:3px 9px; border-radius:999px; background:rgba(255,255,255,.1)}
+.ms li.next{background:rgba(255,138,61,.16); border:1px solid rgba(255,138,61,.35)}
+.ms li.next em{background:#FF5A1F; color:#141518}
+.ms li.past{opacity:.5}
+.acts2{display:grid; grid-template-columns:1fr; gap:8px; margin-top:16px}
+.acts2 button{font:inherit; font-size:15px; font-weight:800; border-radius:14px; padding:13px; cursor:pointer; border:none; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F)}
+.acts2 button:disabled{opacity:.4; cursor:default}
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+
+.jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
+.jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
+.jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jumpres img{flex:none; width:30px; height:30px; object-fit:contain; margin:-6px -2px -6px -6px}
+.jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
+.res{scroll-margin-top:66px}
+@media (min-width:920px){.jumpres{display:none!important}}
+@media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
+@media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
+
+/* 날짜 계산기: 밝은 결과 판 */
+.disp.lite{color:var(--ink); background:radial-gradient(120% 120% at 100% 0%, rgba(47,102,240,.10) 0%, rgba(47,102,240,0) 55%), var(--surface); border:1px solid var(--line); box-shadow:var(--shadow)}
+.disp.lite::after{display:none}
+.disp.lite .cap,.disp.lite .sub{color:var(--muted)}
+.disp.lite .big{color:var(--ink)}
+.disp.lite .big .u{color:#2F66F0}
+.disp.lite .ms li{background:var(--field)}
+.disp.lite .ms li span{color:var(--muted)}
+.disp.lite .ms li em{background:var(--surface); color:var(--ink); border:1px solid var(--line)}
+.disp.lite .ms li.next{background:rgba(47,102,240,.08); border:1px solid rgba(47,102,240,.3)}
+.disp.lite .ms li.next em{background:#2F66F0; border-color:#2F66F0; color:#fff}
+.disp.lite .ms li.past{opacity:.45}
+.disp.lite .endo .say{background:var(--field); color:var(--ink)}
+.disp.lite .endo .say::before{border-right-color:var(--field)}
+.disp.lite .endo img{filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
+
+.saved{margin-bottom:14px}
+.saved h2 small{margin-left:auto; font-size:12.5px; color:var(--muted); font-weight:600}
+.sv{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px}
+.sv li{display:grid; grid-template-columns:1fr auto 30px; gap:10px; align-items:center; background:var(--field); border:1px solid transparent; border-radius:16px; padding:10px 10px 10px 14px; cursor:pointer}
+.sv li:hover{border-color:var(--line)}
+.sv li.on{border-color:#2F66F0; background:rgba(47,102,240,.07)}
+.sv .nm{font-size:15px; font-weight:800; letter-spacing:-.02em; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.sv .dt{display:block; font-size:12.5px; color:var(--muted); font-weight:600; margin-top:1px}
+.sv .bd{font-size:14px; font-weight:900; color:#fff; background:#2F66F0; border-radius:999px; padding:5px 11px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.sv .bd.today{background:#FF5A1F}
+.sv .bd.past{background:var(--faint)}
+.sv .x{width:30px; height:30px; border-radius:50%; border:none; background:none; color:var(--muted); font-size:17px; cursor:pointer}
+.sv .x:hover{color:var(--orange)}
+.svnote{font-size:12.5px; color:var(--muted); margin:10px 2px 0}
+.acts2{grid-template-columns:1fr 1fr!important}
+.acts2 .sb{color:#fff!important; background:#2F66F0!important}
+.namebox{display:flex; gap:8px; margin-top:12px}
+.namebox[hidden]{display:none}
+.namebox input{flex:1; min-width:0; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:var(--field); border:1.5px solid transparent; border-radius:12px; padding:10px 12px; outline:none}
+.namebox input:focus{border-color:#2F66F0; background:var(--surface)}
+.namebox button{font:inherit; font-size:14px; font-weight:800; color:#fff; background:#2F66F0; border:none; border-radius:12px; padding:0 16px; cursor:pointer}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.box .row{display:flex; align-items:baseline; gap:8px}
+.box .row input{flex:1 1 auto; min-width:0; width:100%}
+.box .unit{flex:none; font-size:17px; font-weight:700; color:var(--muted)}
+.sgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+@media (max-width:420px){.sgrid{grid-template-columns:1fr}}
+.srow{margin-top:14px}
+.srow>.lb{display:block; font-size:13px; font-weight:700; color:var(--muted); margin-bottom:8px}
+.dbox input[type=date]{width:100%; font:inherit; font-size:18px; font-weight:800; color:var(--ink); background:transparent; border:0; outline:0; padding:2px 0; letter-spacing:-.02em}
+.qnet{margin-top:12px; padding:12px 14px; border-radius:14px; background:var(--field); font-size:14.5px; font-weight:700; color:var(--muted); line-height:1.6}
+.qnet b{color:var(--ink); font-size:17px; letter-spacing:-.02em}
+.qnet.warn{background:rgba(255,90,31,.10); color:#C2410C}
+.ptable{overflow-x:auto; margin-top:14px; border:1px solid var(--line); border-radius:16px; background:var(--surface)}
+.ptable table{width:100%; border-collapse:collapse; font-size:14.5px; min-width:560px}
+.ptable th,.ptable td{padding:11px 12px; text-align:right; white-space:nowrap}
+.ptable th:first-child,.ptable td:first-child,.ptable th:nth-child(2),.ptable td:nth-child(2){text-align:left}
+.ptable thead th{font-size:12.5px; font-weight:700; color:var(--muted); background:var(--field)}
+.ptable tbody tr+tr td{border-top:1px solid var(--line)}
+.ptable td b{font-weight:800}
+.pnote{margin:10px 2px 0; font-size:13px; color:var(--muted); line-height:1.65}
+.disp.lite .ms li{grid-template-columns:76px 1fr auto}
+.disp .fn{margin:10px 0 0; font-size:12.5px; line-height:1.65; color:var(--muted)}
+</style>
+<link rel="stylesheet" href="/assets/comments.css?v=3">
+<link rel="stylesheet" href="/assets/favorites.css?v=2">
+<meta name="google-adsense-account" content="ca-pub-1007904420767851">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
+</head>
+<body>
+<script>
+async function shareOut(t){ const touch=matchMedia('(pointer:coarse)').matches; if(navigator.share&&touch){ try{ await navigator.share({text:t}); return 'shared'; }catch(e){ if(e&&e.name==='AbortError') return 'abort'; } } await navigator.clipboard.writeText(t); return 'copied'; }
+document.addEventListener('DOMContentLoaded',()=>{ if(navigator.share&&matchMedia('(pointer:coarse)').matches){ document.querySelectorAll('[data-share]').forEach(b=>b.textContent=b.dataset.share); } });
+</script>
+<script>
+function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const img=e.querySelector('img'), src='/assets/endo/'+p+'.webp'; if(img.getAttribute('src')!==src) img.setAttribute('src',src); e.dataset.p=p; const s=e.querySelector('.say'); if(s.textContent!==m){ s.textContent=m; if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); } } }
+</script>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<div class="container">
+
+  <section class="hero">
+    <div class="crumb"><a href="/">전체 도구</a> / <a href="/#calc">계산기</a> / 퇴직금 계산기</div>
+    <h1>퇴직금 계산기</h1>
+    <p>입사일과 마지막 근무일, 퇴직 전 3개월 임금을 넣으면 퇴직금과 세후 예상액, 지급기한까지 알려드려요.</p>
+  </section>
+  <div class="work">
+    <main>
+      <div class="card">
+        <h2><span class="n">1</span>근무 기간</h2>
+        <div class="sgrid">
+          <div class="box dbox"><label for="jd">입사일</label><input type="date" id="jd" min="1970-01-01"></div>
+          <div class="box dbox"><label for="ld">마지막 근무일</label><input type="date" id="ld" min="1970-01-01"></div>
+        </div>
+        <div class="quick2" id="dq"><button data-q="today">마지막 근무일을 오늘로</button></div>
+        <p class="pnote" style="margin:10px 2px 0">마지막 근무일의 다음 날을 퇴직일로 계산해요.</p>
+        <div class="qnet" id="qnet" aria-live="polite">입사일과 마지막 근무일을 골라 주세요</div>
+      </div>
+      <div class="card">
+        <h2><span class="n">2</span>퇴직 전 3개월 임금<small>세전 금액이에요</small></h2>
+        <div class="seg2" id="wmode"><button data-m="even" aria-pressed="true">매달 같아요</button><button data-m="sum" aria-pressed="false">3개월 합계 입력</button></div>
+        <div class="box" style="margin-top:12px"><label for="wg" id="wgLb">세전 월급 (기본급 + 수당)</label><div class="row"><input id="wg" inputmode="numeric" placeholder="3,000,000" autocomplete="off"><span class="unit">원</span></div></div>
+        <div class="quick2" id="wq"></div>
+        <div class="sgrid srow">
+          <div class="box"><label for="bn">연간 상여금 (선택)</label><div class="row"><input id="bn" inputmode="numeric" placeholder="0" autocomplete="off"><span class="unit">원</span></div></div>
+          <div class="box"><label for="an">연차수당 (선택)</label><div class="row"><input id="an" inputmode="numeric" placeholder="0" autocomplete="off"><span class="unit">원</span></div></div>
+        </div>
+        <div class="box srow"><label for="od">월 통상임금 (선택, 주 40시간 기준)</label><div class="row"><input id="od" inputmode="numeric" placeholder="모르면 비워 두세요" autocomplete="off"><span class="unit">원</span></div></div>
+      </div>
+    </main>
+    <aside class="res">
+      <div class="disp lite" aria-live="polite">
+        <div class="cap" id="cap">예상 퇴직금 (세전)</div>
+        <div class="big" id="big">-</div>
+        <div class="sub" id="sub">날짜와 임금을 넣으면 계산해요</div>
+        <ul class="ms" id="ms" hidden></ul>
+        <p class="fn" id="fn" hidden>법정 퇴직금 기준의 예상치예요. 회사 규정, 중간정산, DC형 퇴직연금, 2012년 이전 입사자의 세금 계산 방식은 반영하지 않았어요.</p>
+        <div class="endo" id="endo" data-p="abacus"><img src="/assets/endo/abacus.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">날짜와 월급을 넣으면 바로 계산해 드릴게요!</div></div>
+        <div class="acts2"><button id="share" data-share="결과 공유" disabled>결과 복사</button><button class="sb" id="reset">초기화</button></div>
+      </div>
+    </aside>
+  </div>
+  <section class="guide">
+    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>퇴직금은 "월급 × 근속연수"가 아니라 "퇴직 전 3개월 평균임금"으로 계산해요. 상여금이 있다면 연간 상여금을 꼭 넣어 보세요. 3/12만큼 평균임금에 더해져서 퇴직금이 늘어날 수 있어요.</p></div></div>
+    <h2>퇴직금은 이렇게 계산해요</h2>
+    <div class="fgrid">
+      <div class="f"><h3>재직일수</h3><p>입사일부터 마지막 근무일까지 날수를 세요. 마지막 근무일 다음 날을 퇴직일로 보고, 퇴직일에서 입사일을 뺀 날수가 재직일수예요. 계속근로기간이 365일 이상이어야 법정 퇴직금이 생겨요.</p></div>
+      <div class="f"><h3>1일 평균임금</h3><p>퇴직 전 3개월 임금 총액을 그 3개월의 총 일수(89~92일)로 나눠요. 월급을 30으로 나누는 게 아니라 달력상 일수로 나눠서, 같은 월급도 퇴직 시기에 따라 조금씩 달라져요.</p></div>
+      <div class="f"><h3>상여금·연차수당 3/12</h3><p>퇴직 전 12개월 상여금 총액과 퇴직 전년도 발생분 연차수당은 각각 3/12만 평균임금에 더해요. 한 해 금액의 3개월분을 퇴직 전 3개월에 나눠 넣는다고 보면 쉬워요.</p></div>
+      <div class="f"><h3>통상임금과 비교</h3><p>계산한 평균임금이 통상임금보다 적으면 통상임금을 써요. 월 통상임금을 입력하면 209시간 기준으로 일급을 구해서 둘 중 큰 쪽으로 계산해요.</p></div>
+    </div>
+    <h2>알아두면 좋은 점</h2>
+    <div class="fgrid">
+      <div class="f"><h3>1년 미만이면</h3><p>계속근로기간이 1년이 안 되면 법정 퇴직금 대상이 아니에요. 회사가 규정으로 따로 주는 경우는 있어요. 이 계산기는 이때 참고용 금액만 보여드려요.</p></div>
+      <div class="f"><h3>퇴직소득세</h3><p>퇴직금에는 근로소득세와 다른 방식으로 세금을 매겨요. 근속연수가 길수록 공제가 커서 실제 세금은 퇴직금의 몇 퍼센트 안팎으로 낮아요. 지방소득세 10%가 따로 붙어요.</p></div>
+      <div class="f"><h3>근속연수는 올림</h3><p>세금 계산에서는 근속연수의 1년 미만 단수를 1년으로 올려요. 3년 하루를 일해도 4년으로 계산돼요. 그래서 퇴직일을 며칠 미루면 세금이 달라질 수 있어요.</p></div>
+      <div class="f"><h3>이 계산기가 반영하지 않는 것</h3><p>회사 규정으로 더 주는 퇴직금, 중간정산, DC형 퇴직연금, 2012년 12월 31일 이전 입사자의 구분 계산은 반영하지 않아요. 해당된다면 회사 담당자에게 확인하세요.</p></div>
+    </div>
+    <h2>월급·근속별 예상 퇴직금</h2>
+    <p class="pnote" style="margin-top:0">상여금과 연차수당이 없고 3개월이 92일, 재직일수가 365일 × 근속연수인 경우예요. 이 계산기와 같은 방식으로 계산한 값이에요.</p>
+    <div class="ptable"><table>
+      <thead><tr><th>월급(세전)</th><th>근속</th><th>퇴직금(세전)</th><th>퇴직소득세·지방세</th><th>세후 예상</th></tr></thead>
+      <tbody><tr><td>250만원</td><td>3년</td><td><b>7,336,956원</b></td><td>61,680원</td><td>7,275,276원</td></tr><tr><td>300만원</td><td>3년</td><td><b>8,804,347원</b></td><td>100,430원</td><td>8,703,917원</td></tr><tr><td>300만원</td><td>5년</td><td><b>14,673,913원</b></td><td>167,380원</td><td>14,506,533원</td></tr><tr><td>400만원</td><td>5년</td><td><b>19,565,217원</b></td><td>296,510원</td><td>19,268,707원</td></tr><tr><td>400만원</td><td>10년</td><td><b>39,130,434원</b></td><td>461,040원</td><td>38,669,394원</td></tr><tr><td>500만원</td><td>10년</td><td><b>48,913,043원</b></td><td>719,300원</td><td>48,193,743원</td></tr><tr><td>500만원</td><td>20년</td><td><b>97,826,086원</b></td><td>1,174,600원</td><td>96,651,486원</td></tr><tr><td>700만원</td><td>20년</td><td><b>136,956,521원</b></td><td>3,209,120원</td><td>133,747,401원</td></tr></tbody>
+    </table></div>
+    <p class="pnote">실제 퇴직금은 퇴직 시기의 3개월 일수, 상여금, 연차수당, 통상임금에 따라 달라질 수 있어요.</p>
+    <div class="faq">
+      <h2>자주 묻는 질문</h2>
+      <details><summary>퇴직금은 어떻게 계산하나요?</summary><p>"1일 평균임금 × 30일 × (재직일수 ÷ 365)"로 계산해요. 1일 평균임금은 퇴직 전 3개월 동안 받은 임금 총액을 그 기간의 총 일수(89~92일)로 나눈 금액이에요. 근속 1년마다 약 30일분의 평균임금을 받는다고 보면 돼요.</p></details>
+      <details><summary>평균임금은 월급을 30으로 나눈 거 아닌가요?</summary><p>아니에요. 퇴직 전 3개월 임금 총액을 그 3개월의 달력상 일수(89~92일)로 나눠요. 같은 월급이어도 3개월에 포함된 날수가 달라서 결과가 조금씩 달라져요. 예를 들어 월 300만원이면 3개월 총액 900만원을 92일로 나눠 1일 평균임금이 약 97,826원이에요.</p></details>
+      <details><summary>상여금과 연차수당은 어떻게 넣나요?</summary><p>퇴직 전 12개월 동안 받은 상여금 총액과, 퇴직 전전년도 출근율로 퇴직 전년도에 발생한 연차를 쓰지 않아 받은 연차수당을 넣어 주세요. 두 금액은 각각 3/12만 평균임금에 더해져요. 퇴직 때문에 비로소 생기는 미사용 연차수당은 넣지 않아요.</p></details>
+      <details><summary>통상임금 비교는 왜 있나요?</summary><p>평균임금이 통상임금보다 적으면 통상임금을 평균임금으로 쓰도록 법에 정해져 있어요. 퇴직 전에 휴직이나 결근이 많아 평균임금이 줄어든 경우에 대비한 규정이에요. 월 통상임금을 입력하면 주 40시간 기준(209시간)으로 일급을 환산해서 평균임금과 비교해요. 모르면 비워 두세요.</p></details>
+      <details><summary>퇴직금은 누구나 받을 수 있나요?</summary><p>계속근로기간이 1년 이상이고, 4주를 평균해 1주 소정근로시간이 15시간 이상이면 정규직, 계약직, 아르바이트 모두 받을 수 있어요. 1년이 안 되면 법정 퇴직금은 없어요. 이 계산기는 1년 미만이면 대상이 아니라고 알려 주고 참고용 금액만 보여줘요.</p></details>
+      <details><summary>퇴직금은 언제까지 받나요?</summary><p>퇴직한 날부터 14일 이내에 지급해야 해요. 당사자가 합의하면 기한을 늘릴 수 있어요. 기한이 지나도록 지급하지 않으면 지연이자가 붙을 수 있고, 고용노동부에 진정할 수도 있어요. 퇴직금을 청구할 수 있는 권리는 퇴직일로부터 3년이 지나면 사라져요.</p></details>
+      <details><summary>마지막 근무일과 퇴직일은 같은 날인가요?</summary><p>다르게 봐요. 퇴직일은 마지막 근무일의 다음 날이에요. 예를 들어 12월 31일이 마지막 근무일이면 퇴직일은 1월 1일이에요. 이 계산기도 마지막 근무일을 입력받아서 다음 날을 퇴직일로 계산하고, 지급기한도 그날부터 14일로 안내해요.</p></details>
+      <details><summary>퇴직소득세는 어떻게 계산하나요?</summary><p>퇴직금에서 근속연수공제를 뺀 뒤 12를 곱하고 근속연수로 나눠 1년치(환산급여)로 바꿔요. 여기서 환산급여공제를 빼고 기본세율(6~45%)을 곱한 다음, 다시 근속연수를 곱하고 12로 나눠요. 지방소득세는 퇴직소득세의 10%가 따로 붙어요. 근속이 길수록 공제가 커서 세금이 확 줄어요.</p></details>
+      <details><summary>퇴직연금(DB·DC)이나 IRP로 받으면 같은가요?</summary><p>DB형은 퇴직 직전 평균임금 기준이라 이 계산기와 비슷하게 나와요. DC형은 회사가 적립해 준 돈과 운용 결과가 퇴직급여여서 이 계산기 결과와 다를 수 있어요. 퇴직급여를 IRP로 받으면 세금이 바로 빠지지 않고 나중으로 미뤄지는데, 받는 방법과 연금 수령 조건에 따라 세금이 달라지니 금융회사나 국세청 안내를 확인하세요.</p></details>
+    </div>
+    <div class="rel"><b>함께 쓰면 좋은 도구</b><a href="/salary/">월급 실수령액이 궁금하다면 연봉 실수령액 계산기 →</a></div>
+    <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/severance-pay/">월급 300만 원으로 3년 일하면 퇴직금은 얼마일까 →</a></div>
+  </section>
+  <div class="toast" id="toast"></div>
+<script>
+/* 퇴직금 계산 엔진 (근로자퇴직급여 보장법 + 소득세법 퇴직소득세) */
+const SEV_floorTo=(v,u)=>Math.floor(v/u+1e-9)*u;
+const SEV_dn=(y,m,d)=>Math.round(Date.UTC(y,m-1,d)/86400000);
+function sevParse(s){ const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||''); if(!m) return null; const y=+m[1],mo=+m[2],d=+m[3]; const t=new Date(Date.UTC(y,mo-1,d)); if(t.getUTCFullYear()!==y||t.getUTCMonth()!==mo-1||t.getUTCDate()!==d) return null; return SEV_dn(y,mo,d); }
+function sevYmd(n){ const t=new Date(n*86400000); return {y:t.getUTCFullYear(),m:t.getUTCMonth()+1,d:t.getUTCDate()}; }
+function sevAddMonths(n,k){ const a=sevYmd(n); let y=a.y,m=a.m-1+k; y+=Math.floor(m/12); m=((m%12)+12)%12; const last=new Date(Date.UTC(y,m+1,0)).getUTCDate(); return SEV_dn(y,m+1,Math.min(a.d,last)); }
+/* 입사일 기준 k개월 뒤의 '끝(배타)' 날짜: 해당일이 없는 달이면 그 달 말일에 기간이 만료되므로 다음 날을 돌려준다 */
+function sevForward(n,k){ const a=sevYmd(n); let y=a.y,m=a.m-1+k; y+=Math.floor(m/12); m=((m%12)+12)%12; const last=new Date(Date.UTC(y,m+1,0)).getUTCDate(); return a.d>last? SEV_dn(y,m+1,last)+1 : SEV_dn(y,m+1,a.d); }
+/* 근속연수(소득세법): 1년 미만의 단수는 1년으로 올림 */
+function sevTaxYears(joinDN,endExDN){ let y=0; while(sevForward(joinDN,12*(y+1))<=endExDN) y++; return sevForward(joinDN,12*y)===endExDN? Math.max(y,1) : y+1; }
+function sevServiceDeduct(y){ if(y<=5) return 1e6*y; if(y<=10) return 5e6+2e6*(y-5); if(y<=20) return 15e6+2.5e6*(y-10); return 40e6+3e6*(y-20); }
+function sevConvDeduct(c){ if(c<=8e6) return c; if(c<=70e6) return 8e6+(c-8e6)*0.6; if(c<=100e6) return 45.2e6+(c-70e6)*0.55; if(c<=300e6) return 61.7e6+(c-100e6)*0.45; return 151.7e6+(c-300e6)*0.35; }
+function sevBracket(TB){ const br=[[14e6,.06],[50e6,.15],[88e6,.24],[150e6,.35],[300e6,.38],[500e6,.40],[1000e6,.42],[1e18,.45]]; let t=0,prev=0; for(const [lim,r] of br){ if(TB>prev) t+=(Math.min(TB,lim)-prev)*r; prev=lim; } return t; }
+/* 퇴직소득세 산출세액 = ((환산급여 - 환산급여공제) × 기본세율) ÷ 12 × 근속연수 */
+function sevRetireTax(amount,years){ if(!(amount>0)||years<1) return 0; const conv=Math.max(amount-sevServiceDeduct(years),0)*12/years; const tb=Math.max(conv-sevConvDeduct(conv),0); return SEV_floorTo(sevBracket(tb)*years/12,10); }
+function sevCalc(o){
+  const j=sevParse(o.join), l=sevParse(o.last);
+  if(j===null||l===null) return {err:'date'};
+  if(l<j) return {err:'order'};
+  const retire=l+1, serviceDays=retire-j;
+  const start3=sevAddMonths(retire,-3); let days3=retire-start3; if(serviceDays<days3) days3=serviceDays;
+  const wages=Math.max(0,Math.floor(o.wages3m||0)), bonus=Math.max(0,Math.floor(o.bonus||0)), annual=Math.max(0,Math.floor(o.annual||0));
+  const avgDaily=(wages+bonus*3/12+annual*3/12)/days3;
+  const ordDaily=o.ordinary>0? o.ordinary/209*8 : 0;
+  const useOrd=ordDaily>avgDaily, daily=useOrd?ordDaily:avgDaily;
+  const sev=Math.floor(daily*30*serviceDays/365+1e-9);
+  const years=sevTaxYears(j,retire), tax=sevRetireTax(sev,years), local=SEV_floorTo(tax*0.1,10);
+  // 근속기간 표시용 (입사일 ~ 퇴직일 전날)
+  let ty=0; while(sevForward(j,12*(ty+1))<=retire) ty++;
+  let tm=0; while(sevForward(j,12*ty+tm+1)<=retire) tm++;
+  const td=retire-sevForward(j,12*ty+tm);
+  return {retire,serviceDays,days3,wages,avgDaily,ordDaily,useOrd,daily,sev,eligible:serviceDays>=365,years,tax,local,net:sev-tax-local,ty,tm,td,deadline:retire+14,start3};
+}
+
+const $=id=>document.getElementById(id);
+const KEY='sonandogu-severance-v1';
+const DEF={jd:'',ld:'',wmode:'even',wg:'3,000,000',bn:'',an:'',od:''};
+let S=Object.assign({},DEF,(()=>{try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return {};}})());
+const num=v=>{const n=parseInt(String(v==null?'':v).replace(/[^0-9]/g,''),10);return isFinite(n)?n:0;};
+const fmt=n=>Math.round(n).toLocaleString('ko-KR');
+const comma=v=>{const n=String(v==null?'':v).replace(/[^0-9]/g,'').slice(0,12).replace(/^0+(?=\d)/,''); return n?Number(n).toLocaleString('ko-KR'):'';};
+const isoOk=v=>sevParse(typeof v==='string'?v:'')!==null?v:'';
+S.jd=isoOk(S.jd); S.ld=isoOk(S.ld); S.wmode=S.wmode==='sum'?'sum':'even'; ['wg','bn','an','od'].forEach(k=>S[k]=comma(S[k]));
+const saveS=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}};
+const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1600);}
+const WD=['일','월','화','수','목','금','토'];
+const pad=n=>String(n).padStart(2,'0');
+const fd=n=>{const a=sevYmd(n); return `${a.y}.${pad(a.m)}.${pad(a.d)}(${WD[new Date(n*86400000).getUTCDay()]})`;};
+const toIso=n=>{const a=sevYmd(n); return `${a.y}-${pad(a.m)}-${pad(a.d)}`;};
+let last=null;
+const QE=[[2e6,'200만'],[2.5e6,'250만'],[3e6,'300만'],[3.5e6,'350만'],[4e6,'400만'],[5e6,'500만']];
+const QS=[[6e6,'600만'],[7.5e6,'750만'],[9e6,'900만'],[10.5e6,'1,050만'],[12e6,'1,200만'],[15e6,'1,500만']];
+function drawQ(){ const q=$('wq'); q.innerHTML=''; (S.wmode==='even'?QE:QS).forEach(([v,l])=>{ const b=document.createElement('button'); b.type='button'; b.textContent=l; b.onclick=()=>{ S.wg=comma(v); $('wg').value=S.wg; saveS(); run(); }; q.append(b); }); }
+function ui(){
+  document.querySelectorAll('#wmode button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.m===S.wmode));
+  $('wgLb').textContent=S.wmode==='even'?'세전 월급 (기본급 + 수당)':'세전 임금 3개월 합계'; $('wg').placeholder=S.wmode==='even'?'3,000,000':'9,000,000';
+  $('jd').value=S.jd; $('ld').value=S.ld; ['wg','bn','an','od'].forEach(k=>$(k).value=S[k]); drawQ();
+}
+function row(b,s,e,cls){ const li=document.createElement('li'); if(cls) li.className=cls; li.innerHTML='<b></b><span></span><em></em>'; li.children[0].textContent=b; li.children[1].textContent=s; li.children[2].textContent=e; return li; }
+function reset0(msg,warn){ $('big').textContent='-'; $('sub').textContent=msg; $('ms').hidden=true; $('fn').hidden=true; $('share').disabled=true; last=null; const q=$('qnet'); q.className='qnet'+(warn?' warn':''); q.textContent=msg; }
+function run(){
+  $('jd').max=S.ld||''; 
+  if(!S.jd||!S.ld){ reset0('입사일과 마지막 근무일을 골라 주세요'); endo('abacus','날짜와 월급을 넣으면 바로 계산해 드릴게요!'); return; }
+  const wages=S.wmode==='even'?num(S.wg)*3:num(S.wg);
+  const r=sevCalc({join:S.jd,last:S.ld,wages3m:wages,bonus:num(S.bn),annual:num(S.an),ordinary:num(S.od)});
+  if(r.err==='order'){ reset0('마지막 근무일이 입사일보다 앞이에요',true); endo('surprised','날짜 순서가 바뀐 것 같아요!'); return; }
+  if(r.err){ reset0('날짜를 다시 골라 주세요',true); return; }
+  if(!wages){ reset0('퇴직 전 3개월 임금을 넣어 주세요'); endo('abacus','월급을 넣으면 바로 계산해 드릴게요!'); $('qnet').textContent=`재직 ${r.ty}년 ${r.tm}개월 ${r.td}일 (${fmt(r.serviceDays)}일)`; return; }
+  last=r;
+  const q=$('qnet'); q.className='qnet'+(r.eligible?'':' warn');
+  q.innerHTML='재직 <b>'+r.ty+'년 '+r.tm+'개월 '+r.td+'일</b> ('+fmt(r.serviceDays)+'일) · 퇴직일 '+fd(r.retire)+(r.eligible?'':' · 1년 미만');
+  $('cap').textContent=r.eligible?'예상 퇴직금 (세전)':'참고 금액 (1년 미만이라 법정 퇴직금은 없어요)';
+  $('big').innerHTML=fmt(r.sev)+'<span class="u">원</span>';
+  $('sub').textContent=r.eligible?`세후 약 ${fmt(r.net)}원 · 1일 평균임금 ${fmt(Math.round(r.daily))}원`:`1년 이상 일해야 법정 퇴직금이 생겨요 · 1일 평균임금 ${fmt(Math.round(r.daily))}원`;
+  const ms=$('ms'); ms.innerHTML='';
+  ms.append(row('재직 기간',`${r.ty}년 ${r.tm}개월 ${r.td}일`,fmt(r.serviceDays)+'일'));
+  ms.append(row('평균임금',`${r.days3}일 기준${r.useOrd?' · 통상임금':''}`,fmt(Math.round(r.daily))+'원'));
+  ms.append(row('퇴직금','세전',fmt(r.sev)+'원','next'));
+  ms.append(row('퇴직소득세',`근속 ${r.years}년`,fmt(r.tax)+'원'));
+  ms.append(row('지방소득세','소득세의 10%',fmt(r.local)+'원'));
+  ms.append(row('세후 예상','퇴직금−세금',fmt(r.net)+'원'));
+  ms.append(row('지급기한','14일 이내',fd(r.deadline)));
+  ms.hidden=false; $('fn').hidden=false; $('share').disabled=false;
+  if(!r.eligible) endo('surprised','아직 1년이 안 돼서 법정 퇴직금은 없어요');
+  else if(r.useOrd) endo('detective','통상임금이 더 커서 그 기준으로 계산했어요');
+  else endo('thumbs','계산 끝! 상여금이 있다면 꼭 넣어 보세요');
+}
+const hook=(id,key,fn)=>$(id).addEventListener('input',()=>{ S[key]=fn?fn($(id).value):$(id).value; if(fn) $(id).value=S[key]; saveS(); run(); });
+hook('jd','jd'); hook('ld','ld'); ['wg','bn','an','od'].forEach(k=>hook(k,k,comma));
+$('jd').addEventListener('change',()=>{ S.jd=$('jd').value; saveS(); run(); }); $('ld').addEventListener('change',()=>{ S.ld=$('ld').value; saveS(); run(); });
+document.querySelectorAll('#wmode button').forEach(b=>b.onclick=()=>{ if(S.wmode===b.dataset.m) return; const cur=num(S.wg); if(cur){ S.wg=comma(b.dataset.m==='sum'?cur*3:Math.round(cur/3)); } S.wmode=b.dataset.m; saveS(); ui(); run(); });
+document.querySelectorAll('#dq button').forEach(b=>b.onclick=()=>{ const t=new Date(); S.ld=toIso(SEV_dn(t.getFullYear(),t.getMonth()+1,t.getDate())); saveS(); ui(); run(); });
+$('reset').onclick=()=>{ S=Object.assign({},DEF); try{localStorage.removeItem(KEY);}catch(e){} ui(); run(); say('처음 값으로 되돌렸어요'); };
+$('share').onclick=async()=>{ if(!last) return; const r=last; const txt=`[퇴직금 계산] 재직 ${r.ty}년 ${r.tm}개월 ${r.td}일 → 예상 퇴직금 ${fmt(r.sev)}원 (세후 약 ${fmt(r.net)}원)\n1일 평균임금 ${fmt(Math.round(r.daily))}원 · 지급기한 ${fd(r.deadline)}\n\n손안의도구 퇴직금 계산기\nhttps://sonandogu.com/severance/`; try{ const x=await shareOut(txt); if(x==='copied') say('복사했어요'); }catch(e){ say('공유하지 못했어요'); } };
+window.__sev={sevCalc,sevRetireTax};
+ui(); run();
+</script>
+<section class="cmts" data-page="/severance/" data-kind="tool"></section>
+</div>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+<script src="/assets/firebase-config.js?v=4"></script>
+<script src="/assets/favorites.js?v=2"></script>
+<script type="module" src="/assets/comments.js?v=4"></script>
+<script src="/assets/analytics.js?v=2" defer></script>
+</body>
+</html>

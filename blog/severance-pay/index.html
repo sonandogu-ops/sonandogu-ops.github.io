@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon-192.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F4F1">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sonandogu.com/blog/severance-pay/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-severance-pay-post.jpg?v=1">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<title>퇴직금 계산법: 월급 300만 원으로 3년 일하면 얼마? 평균임금·퇴직소득세 | 손안의도구</title>
+<meta name="description" content="월급 300만 원으로 3년을 일하면 퇴직금은 900만 원이 아니라 약 8,804,347원이에요. 평균임금 계산법, 상여금·연차수당 3/12 가산, 받을 수 있는 조건과 14일 기한, 퇴직소득세까지 정리했어요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="월급 300만 원으로 3년 일하면 퇴직금은 얼마일까">
+<meta property="og:description" content="평균임금 계산법과 퇴직소득세, 14일 지급기한.">
+<link rel="canonical" href="https://sonandogu.com/blog/severance-pay/">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "월급 300만 원으로 3년 일하면 퇴직금은 얼마일까", "datePublished": "2026-11-08", "dateModified": "2026-11-08", "author": {"@type": "Organization", "name": "손안의도구"}, "publisher": {"@type": "Organization", "name": "손안의도구"}, "mainEntityOfPage": "https://sonandogu.com/blog/severance-pay/", "image": "https://sonandogu.com/assets/og-severance-pay-post.jpg?v=1"}</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.post{max-width:700px; padding:36px 0 0}
+@media (min-width:920px){.post{padding-top:60px}}
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:14px}
+.crumb a{color:var(--muted); text-decoration:none}
+.post h1{font-size:clamp(30px,6vw,46px); font-weight:800; letter-spacing:-.05em; line-height:1.15; margin:0 0 14px}
+.meta{font-size:14px; color:var(--muted); margin:0 0 30px}
+.post h2{font-size:clamp(21px,3.6vw,26px); font-weight:800; letter-spacing:-.04em; line-height:1.3; margin:52px 0 14px}
+.post p{font-size:16.5px; line-height:1.85; margin:0 0 16px}
+.post strong{font-weight:750}
+.formula{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:14px; padding:16px 18px; font-size:17px; font-weight:750; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex{background:rgba(255,90,31,.07); border-radius:14px; padding:14px 18px; font-size:15.5px; line-height:1.8; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex b{color:var(--orange)}
+.tbl{overflow-x:auto; margin:0 0 16px}
+table{width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums}
+th,td{padding:11px 10px; border-bottom:1px solid var(--line); text-align:left}
+th{color:var(--muted); font-weight:700; font-size:13.5px}
+td:last-child,th:last-child{text-align:right}
+.mini{position:relative; overflow:hidden; border-radius:26px; padding:20px; color:#F4F4F1; margin:6px 0 34px;
+  background:radial-gradient(110% 140% at 100% 0%, rgba(255,106,51,.26) 0%, rgba(255,106,51,0) 50%), linear-gradient(160deg,#202126 0%,#121316 100%); box-shadow:var(--shadow)}
+.mini h3{margin:0 0 12px; font-size:15px; font-weight:800}
+.mini .row{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.mini label{display:block; font-size:12px; font-weight:700; color:rgba(244,244,241,.55); margin:0 0 5px 2px}
+.mini input{width:100%; font:inherit; font-size:22px; font-weight:750; color:#F4F4F1; background:rgba(255,255,255,.07); border:1.5px solid rgba(255,255,255,.1); border-radius:14px; padding:10px 12px; outline:none; font-variant-numeric:tabular-nums}
+.mini input:focus{border-color:#FF6A33}
+.mini input::placeholder{color:rgba(244,244,241,.3)}
+.mini .out{margin-top:14px; font-size:15px; color:rgba(244,244,241,.6); min-height:1.5em}
+.mini .out b{font-size:30px; color:#fff; letter-spacing:-.04em; margin:0 4px}
+.mini .out em{font-style:normal; color:#FF8A3D; font-weight:700}
+.mini a{display:inline-block; margin-top:12px; color:#FF8A3D; font-weight:700; font-size:14px; text-decoration:none}
+.next{margin-top:56px; display:grid; gap:10px}
+.next a{display:flex; justify-content:space-between; align-items:center; gap:12px; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:18px 20px; box-shadow:var(--shadow)}
+.next a:hover{border-color:var(--ink)}
+.next strong{display:block; font-size:17px; font-weight:800; letter-spacing:-.03em}
+.next span{font-size:14px; color:var(--muted)}
+.next i{font-style:normal; font-size:20px; color:var(--muted)}
+
+.ill{margin:6px 0 26px; background:var(--surface); border:1px solid var(--line); border-radius:24px; padding:16px 12px 12px; box-shadow:var(--shadow)}
+.ill svg{display:block; width:100%; height:auto}
+.ill figcaption{text-align:center; font-size:13.5px; color:var(--muted); margin-top:6px}
+.ill .tag{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .hole{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .tp{font-size:20px; font-weight:700; fill:var(--muted)}
+.ill .tbig{font-size:46px; font-weight:800; fill:var(--ink); letter-spacing:-2px}
+.ill .strike{stroke:#FF5A1F; stroke-width:5; stroke-linecap:round}
+.ill .st{font-size:30px; font-weight:800; fill:#fff}
+.ill .st2{font-size:26px; font-weight:800; fill:#FF8A3D}
+.ill .q{font-size:80px; font-weight:800; fill:var(--faint)}
+.ill .lbl text{font-size:17px; font-weight:700; fill:var(--muted)}
+.ill .val text{font-size:20px; font-weight:800; fill:var(--ink)}
+.ill .bar0{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .bar1{fill:#FFB48A}
+.ill .bar2{fill:#FF5A1F}
+.ill .ghost{stroke:var(--ink); stroke-width:2; stroke-dasharray:6 6; opacity:.5}
+.ill .arr{fill:none; stroke:var(--faint); stroke-width:3; stroke-linecap:round}
+.ill .arr2{fill:none; stroke:var(--ink); stroke-width:2; opacity:.5}
+.ill .note{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .btl{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .cap{fill:var(--line)}
+.ill .btlf{fill:#FF5A1F}
+.ill .capf{fill:#FF8A3D}
+.ill .bp{font-size:30px; font-weight:800; fill:var(--muted)}
+.ill .free{font-size:22px; font-weight:800; fill:#fff}
+.ill .cap2{font-size:18px; font-weight:800; fill:var(--ink)}
+.quiz{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px 22px; margin:26px 0 8px; box-shadow:var(--shadow)}
+.quiz .qh{font-size:13px; font-weight:800; color:var(--orange); margin:0 0 6px}
+.quiz .qq{font-size:17px; font-weight:750; margin:0 0 12px; line-height:1.6}
+.quiz summary{display:inline-block; cursor:pointer; list-style:none; font-size:14.5px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); padding:9px 16px; border-radius:12px}
+.quiz summary::-webkit-details-marker{display:none}
+.quiz details[open] summary{display:none}
+.quiz details p{margin:0; font-size:16px; line-height:1.75}
+.quiz details b{color:var(--orange)}
+.keys{display:grid; gap:10px; margin:0 0 18px}
+@media (min-width:640px){.keys{grid-template-columns:repeat(3,1fr)}}
+.keys div{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:16px}
+.keys b{display:block; font-size:16px; font-weight:800; color:var(--orange); margin-bottom:4px}
+.keys span{font-size:14.5px; color:var(--muted); line-height:1.6}
+
+.ill .ok{fill:#1FA968}.ill .okt{fill:#1FA968; font-size:16px; font-weight:800}
+.ill .warn{fill:#FF5A1F}.ill .warnt{fill:#FF5A1F; font-size:16px; font-weight:800}
+.ill .axis{stroke:var(--line); stroke-width:3}
+.ill .tick{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .paper{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .ln2{stroke:var(--line); stroke-width:3; stroke-linecap:round}
+.ill .red{fill:#B4232F; font-weight:800}
+.ill .node{fill:var(--field); stroke:var(--faint); stroke-width:2}
+.ill .nodeb{fill:var(--surface); stroke:var(--ink); stroke-width:3}
+.ill .path{stroke:var(--line); stroke-width:4; fill:none}
+.ill .hot{stroke:#FF5A1F; stroke-width:6; fill:none; stroke-linecap:round; stroke-dasharray:2 12}
+.ill .dot{fill:#FF5A1F}
+.ill .p3{stroke:var(--faint); stroke-width:4; fill:none; stroke-linecap:round}
+.ill .p5{stroke:#FF5A1F; stroke-width:5; fill:none; stroke-linecap:round}
+.ill .grid{stroke:var(--line); stroke-width:1.5}
+.tbl th,.tbl td{text-align:left!important}
+.tbl td:nth-child(n+2),.tbl th:nth-child(n+2){white-space:nowrap}
+</style>
+<link rel="stylesheet" href="/assets/comments.css?v=3">
+<meta name="google-adsense-account" content="ca-pub-1007904420767851">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<div class="container"><article class="post">
+  <div class="crumb"><a href="/blog/">블로그</a> / 생활 계산</div>
+  <h1>월급 300만 원으로<br>3년 일하면<br>퇴직금은 얼마일까</h1>
+  <p class="meta pub"><time datetime="2026-11-08">2026년 11월 8일</time></p>
+
+  <figure class="ill" aria-label="3개월 임금 900만원을 92일로 나눈 1일 평균임금 97,826원에 30일과 3년을 곱하면 퇴직금은 8,804,347원이다">
+    <svg viewBox="0 0 640 250">
+      <g>
+        <rect x="10" y="18" width="190" height="72" rx="18" class="tag"/><text x="105.0" y="46" text-anchor="middle" class="note" style="font-size:18px">퇴직 전 3개월 임금</text><text x="105.0" y="76" text-anchor="middle" class="tbig" style="font-size:25px">9,000,000원</text><text x="216" y="64" text-anchor="middle" class="tbig" style="font-size:28px;fill:#7C8087">÷</text><rect x="232" y="18" width="140" height="72" rx="18" class="tag"/><text x="302.0" y="46" text-anchor="middle" class="note" style="font-size:18px">3개월 총일수</text><text x="302.0" y="76" text-anchor="middle" class="tbig" style="font-size:25px">92일</text><text x="388" y="64" text-anchor="middle" class="tbig" style="font-size:28px;fill:#7C8087">=</text><rect x="404" y="18" width="226" height="72" rx="18" class="tag"/><text x="517.0" y="46" text-anchor="middle" class="note" style="font-size:18px">1일 평균임금</text><text x="517.0" y="76" text-anchor="middle" class="tbig" style="font-size:25px">97,826원</text>
+        <rect x="10" y="128" width="190" height="72" rx="18" class="tag"/><text x="105.0" y="156" text-anchor="middle" class="note" style="font-size:18px">1일 평균임금</text><text x="105.0" y="186" text-anchor="middle" class="tbig" style="font-size:25px">97,826원</text><text x="214" y="174" text-anchor="middle" class="tbig" style="font-size:28px;fill:#7C8087">×</text><rect x="228" y="128" width="86" height="72" rx="18" class="tag"/><text x="271.0" y="156" text-anchor="middle" class="note" style="font-size:18px">일수</text><text x="271.0" y="186" text-anchor="middle" class="tbig" style="font-size:25px">30일</text><text x="330" y="174" text-anchor="middle" class="tbig" style="font-size:28px;fill:#7C8087">×</text><rect x="344" y="128" width="100" height="72" rx="18" class="tag"/><text x="394.0" y="156" text-anchor="middle" class="note" style="font-size:18px">근속</text><text x="394.0" y="186" text-anchor="middle" class="tbig" style="font-size:25px">3년</text><text x="460" y="174" text-anchor="middle" class="tbig" style="font-size:28px;fill:#7C8087">=</text><rect x="474" y="128" width="156" height="72" rx="18" class="tag" style="stroke:#FF5A1F;stroke-width:3"/><text x="552.0" y="156" text-anchor="middle" class="note" style="font-size:18px">퇴직금</text><text x="552.0" y="186" text-anchor="middle" class="tbig" style="fill:#FF5A1F;font-size:25px">8,804,347원</text>
+        <text x="320" y="238" text-anchor="middle" class="note" style="font-size:19px">월급 300만원 · 상여금·연차수당 없음 · 재직 3년(1,095일)</text>
+      </g>
+    </svg>
+    <figcaption>퇴직금은 평균임금으로 계산해요</figcaption>
+  </figure>
+
+  <p>퇴사를 앞두고 퇴직금을 계산해 보려는 사람은 대개 같은 식을 떠올려요. 월급 300만 원에 3년을 곱해서 900만 원. 그런데 막상 회사에서 안내받는 금액은 그보다 조금 적거나 조금 많아요. 어디서 차이가 나는 걸까요?</p>
+  <p>이유는 퇴직금이 월급이 아니라 <strong>평균임금</strong>으로 계산되기 때문이에요. 위 그림처럼 같은 조건이라면 퇴직금은 <strong>8,804,347원</strong>쯤이에요. 이 숫자가 어떻게 나오는지 순서대로 볼게요.</p>
+
+  <div class="quiz">
+    <p class="qh">잠깐, 먼저 맞혀볼까요?</p>
+    <p class="qq">월급 300만 원을 받으며 정확히 3년을 일하고 퇴사했어요. 상여금과 연차수당은 없어요. 퇴직금은 얼마쯤일까요? ① 약 900만 원 ② 약 880만 원 ③ 약 850만 원</p>
+    <details><summary>정답 보기</summary><p><b>② 약 880만 원</b>이에요. 정확히는 8,804,347원이에요. 퇴직 전 3개월 임금 900만 원을 그 3개월의 총일수 92일로 나눈 1일 평균임금 97,826원에, 30일과 3년을 곱한 값이에요. 900만 원보다 조금 적은 건 3개월이 90일이 아니라 92일이라서 하루치 임금이 조금 작게 잡히기 때문이에요.</p></details>
+  </div>
+
+  <h2>평균임금은 3개월 임금을 총일수로 나눠요</h2>
+  <p>평균임금은 퇴직하기 직전 3개월 동안 받은 임금 총액을 그 기간의 달력상 날수로 나눈 금액이에요. 3개월에는 며칠이 들어갈까요? 퇴직 시기에 따라 89일부터 92일까지 달라요. 그래서 같은 월급을 받아도 퇴직 시기에 따라 퇴직금이 조금씩 달라져요.</p>
+  <p>퇴직금은 이 1일 평균임금에 30일을 곱하고, 다시 재직일수를 365로 나눈 값을 곱해요. 근속 1년마다 30일분의 평균임금을 받는 구조예요. 마지막 근무일 다음 날을 퇴직일로 보고, 퇴직일에서 입사일을 뺀 날수가 재직일수가 돼요.</p>
+
+  <h2>상여금과 연차수당은 3/12만 들어가요</h2>
+  <p>정기 상여금을 받는다면 계산이 달라져요. 퇴직 전 12개월 동안 받은 상여금 총액의 3/12, 그러니까 3개월분만 평균임금에 더해요. 연차를 쓰지 않아 받은 연차수당도 퇴직 전년도 발생분의 3/12만 넣어요.</p>
+  <p>예를 들어 월급 300만 원에 연간 상여금 600만 원이 있다면 3개월 임금 900만 원에 150만 원이 더해져서, 같은 3년 근무의 퇴직금이 <strong>10,271,739원</strong>으로 늘어나요. 상여금을 빼먹고 계산하면 이 예시에서는 퇴직금이 약 1,467,392원 적게 나와요. 상여금과 연차수당은 꼭 확인해서 넣어야 해요.</p>
+
+  <h2>받을 수 있는 조건과 시기</h2>
+  <div class="keys">
+    <div><b>1년 이상</b><span>계속근로기간이 1년 이상이어야 법정 퇴직금이 생겨요</span></div>
+    <div><b>주 15시간 이상</b><span>4주 평균 주 15시간 이상이면 아르바이트와 계약직도 받아요</span></div>
+    <div><b>14일 이내</b><span>퇴직일부터 14일 안에 지급하는 게 원칙이고, 청구권은 3년 뒤 사라져요</span></div>
+  </div>
+  <p>14일이 지났는데도 받지 못했다면 합의로 기한을 늘린 게 아닌 이상 지연이자가 붙을 수 있고, 고용노동부에 진정할 수 있어요. 퇴직일을 정확히 알아두려면 마지막 근무일의 다음 날이 퇴직일이라는 점도 기억해 두세요.</p>
+
+  <h2>세금은 얼마나 떼일까</h2>
+  <p>퇴직금에는 월급과 다른 방식으로 퇴직소득세가 붙어요. 퇴직금에서 근속연수공제를 빼고, 1년치로 환산해 한 번 더 공제한 뒤 세율을 곱해요. 근속이 길수록 공제가 커져서 세금이 퇴직금의 아주 작은 부분만 차지해요.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>퇴직금</th><th>근속</th><th>퇴직소득세</th><th>세율</th></tr></thead>
+    <tbody><tr><td>8,804,347원</td><td>3년</td><td>91,300원</td><td>1.0%</td></tr><tr><td>50,000,000원</td><td>10년</td><td>680,000원</td><td>1.4%</td></tr><tr><td>100,000,000원</td><td>20년</td><td>1,120,000원</td><td>1.1%</td></tr></tbody>
+  </table></div>
+  <p>퇴직금 1억 원을 근속 20년 만에 받아도 소득세는 112만 원 정도예요. 여기에 소득세의 10%인 지방소득세가 따로 붙어요. 근속 3년의 8,804,347원 정도라면 세금은 9만 원 안팎이에요. 퇴직급여를 IRP 계좌로 받으면 세금이 바로 빠지지 않고 나중으로 미뤄지는데, 받는 방법에 따라 달라지니 금융회사 안내를 확인하세요.</p>
+
+  <h2>내 퇴직금, 직접 계산해 보세요</h2>
+  <p>손안의도구의 퇴직금 계산기에 입사일과 마지막 근무일, 퇴직 전 3개월 월급을 넣으면 이 과정을 한 번에 계산해요. 상여금과 연차수당, 통상임금을 넣으면 더 정확해지고, 퇴직소득세를 뺀 세후 금액과 지급기한도 같이 보여줘요. 1년이 안 된 경우에는 법정 퇴직금 대상이 아니라는 점도 알려줘요.</p>
+  <p class="meta" style="margin:8px 0 0">법정 퇴직금 기준의 예상치예요. 회사 규정, 중간정산, DC형 퇴직연금에 따라 실제 금액은 달라질 수 있으니 회사 안내를 꼭 확인하세요.</p>
+
+  <nav class="next" aria-label="관련 글과 도구"><a href="/severance/"><span><strong>퇴직금 계산기</strong><span>평균임금과 퇴직소득세까지 한 번에</span></span><i>→</i></a><a href="/blog/salary-take-home/"><span><strong>연봉 3,600만 원, 통장에는 얼마가 찍힐까</strong><span>2026 월 실수령액 계산법</span></span><i>→</i></a></nav>
+  <div data-comments data-kind="comment" data-page="/blog/severance-pay/"></div>
+</article>
+<section class="cmts" data-page="/blog/severance-pay/" data-kind="post"></section></div>
+
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
+
+<script src="/assets/firebase-config.js?v=4"></script>
+<script type="module" src="/assets/comments.js?v=4"></script>
+<script src="/assets/analytics.js?v=2" defer></script>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+</body>
+</html>
