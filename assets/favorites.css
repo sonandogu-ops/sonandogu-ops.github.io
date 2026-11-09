@@ -120,3 +120,7 @@
 .nt-t span{display:block; font-size:13px; color:var(--muted); line-height:1.5; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .nt-a{flex:none; color:var(--faint); font-size:22px; line-height:1}
 .nt:hover .nt-a{color:var(--ink)}
+
+/* 점검일 표시 */
+.chk{margin:10px 0 0; font-size:13px; font-weight:700; color:var(--muted); line-height:1.5}
+.chk::before{content:"\2713\00a0"; color:#1FA968; font-weight:800}

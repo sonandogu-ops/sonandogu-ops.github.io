@@ -96,9 +96,18 @@ footer .fl a:hover{color:var(--ink)}
 .gl b{display:block; font-size:16.5px; font-weight:800; letter-spacing:-.03em; margin-bottom:4px}
 .gl span{display:block; font-size:14.5px; color:var(--muted); line-height:1.7}
 .guide p{font-size:15px; color:var(--muted); line-height:1.8; margin:0 0 12px}
+.faq{margin-top:56px}
+.faq details{border-top:1px solid var(--line); padding:18px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer; font-weight:700; font-size:16px; list-style:none; display:flex; justify-content:space-between; gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+"; color:var(--muted); font-weight:500; font-size:22px; line-height:1; transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:10px 0 0; color:var(--muted)}
 </style>
 <meta name="google-adsense-account" content="ca-pub-1007904420767851">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "윷놀이는 몇 팀까지 할 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "2팀에서 4팀까지 겨룰 수 있어요. 윷판 위에서 십이지 동물 말을 골라 팀을 구분해요."}}, {"@type": "Question", "name": "도, 개, 걸, 윷, 모는 각각 몇 칸인가요?", "acceptedAnswer": {"@type": "Answer", "text": "도 1칸, 개 2칸, 걸 3칸, 윷 4칸, 모 5칸이에요. 윷가락 네 개를 던져 평평한 면이 위로 나온 개수로 정하고, 모두 둥근 면이 나오면 모예요."}}, {"@type": "Question", "name": "윷이나 모가 나오면 어떻게 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "윷이나 모가 나오거나 상대의 말을 잡으면 한 번 더 던질 수 있어요."}}, {"@type": "Question", "name": "누가 이기나요?", "acceptedAnswer": {"@type": "Answer", "text": "말을 먼저 한 바퀴 돌려 모두 도착시킨 팀이 이겨요. 지름길로 갈 수 있는 모서리 칸을 어떻게 쓰느냐가 승부를 가르는 재미예요."}}, {"@type": "Question", "name": "윷놀이를 하려면 가입이나 설치가 필요한가요?", "acceptedAnswer": {"@type": "Answer", "text": "가입도 설치도 필요 없어요. 휴대폰 하나면 명절 거실에서 바로 시작할 수 있어요. 자세한 규칙은 윷놀이 규칙 정리에서 볼 수 있어요."}}]}</script>
 </head>
 <body>
 <header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
@@ -121,6 +130,14 @@ footer .fl a:hover{color:var(--ink)}
     <p>말을 먼저 한 바퀴 돌려 모두 도착시킨 팀이 이겨요. 지름길로 갈 수 있는 모서리 칸을 어떻게 쓰느냐, 말을 업고 갈지 따로 갈지가 승부를 가르는 재미예요. 자세한 규칙은 블로그의 <a href="/blog/yut-rules/" style="color:var(--orange);font-weight:700">윷놀이 규칙 정리</a>에서 볼 수 있어요.</p>
     <h2>손안의도구 윷놀이는 이래요</h2>
     <p>윷판 위에서 십이지 동물 말을 골라 2팀에서 4팀까지 겨룰 수 있어요. 진행 중인 게임은 이 기기에 저장돼서, 창을 닫았다가 다시 열어도 이어서 할 수 있어요. 가입도, 설치도 필요 없고 휴대폰 하나면 명절 거실에서 바로 시작해요.</p>
+  <div class="faq">
+      <h2>자주 묻는 질문</h2>
+      <details><summary>윷놀이는 몇 팀까지 할 수 있나요?</summary><p>2팀에서 4팀까지 겨룰 수 있어요. 윷판 위에서 십이지 동물 말을 골라 팀을 구분해요.</p></details>
+      <details><summary>도, 개, 걸, 윷, 모는 각각 몇 칸인가요?</summary><p>도 1칸, 개 2칸, 걸 3칸, 윷 4칸, 모 5칸이에요. 윷가락 네 개를 던져 평평한 면이 위로 나온 개수로 정하고, 모두 둥근 면이 나오면 모예요.</p></details>
+      <details><summary>윷이나 모가 나오면 어떻게 되나요?</summary><p>윷이나 모가 나오거나 상대의 말을 잡으면 한 번 더 던질 수 있어요.</p></details>
+      <details><summary>누가 이기나요?</summary><p>말을 먼저 한 바퀴 돌려 모두 도착시킨 팀이 이겨요. 지름길로 갈 수 있는 모서리 칸을 어떻게 쓰느냐가 승부를 가르는 재미예요.</p></details>
+      <details><summary>윷놀이를 하려면 가입이나 설치가 필요한가요?</summary><p>가입도 설치도 필요 없어요. 휴대폰 하나면 명절 거실에서 바로 시작할 수 있어요. 자세한 규칙은 <a href="/blog/yut-rules/">윷놀이 규칙 정리</a>에서 볼 수 있어요.</p></details>
+    </div>
   </section>
 
   <p style="margin-top:22px"><a href="/party/" style="color:var(--orange);font-weight:700;text-decoration:none">모임 놀이도 있어요: 팀 나누기, 룰렛, 제비뽑기 →</a></p>
