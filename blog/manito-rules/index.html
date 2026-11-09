@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon-192.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F4F1">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sonandogu.com/blog/manito-rules/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-manito-rules-post.jpg?v=1">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<title>마니또 뽑는 법: 종이 제비로 뽑으면 왜 자꾸 다시 뽑게 될까 | 손안의도구</title>
+<meta name="description" content="종이에 이름을 써서 뽑으면 6명만 돼도 누군가 자기 이름을 뽑을 확률이 약 63%예요. 마니또가 자주 다시 뽑히는 이유와 자기 이름이 걸리지 않게 짝을 정하는 원형 방식, 일주일 마니또 활동 아이디어를 정리했어요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="마니또, 종이 제비로 뽑으면 왜 자꾸 다시 뽑을까">
+<meta property="og:description" content="자기 이름이 걸릴 확률과 원형 배정 방법을 정리.">
+<link rel="canonical" href="https://sonandogu.com/blog/manito-rules/">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "마니또, 종이 제비로 뽑으면 왜 자꾸 다시 뽑을까", "datePublished": "2026-11-09", "dateModified": "2026-11-09", "author": {"@type": "Organization", "name": "손안의도구"}, "publisher": {"@type": "Organization", "name": "손안의도구"}, "mainEntityOfPage": "https://sonandogu.com/blog/manito-rules/", "image": "https://sonandogu.com/assets/og-manito-rules-post.jpg?v=1"}</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.post{max-width:700px; padding:36px 0 0}
+@media (min-width:920px){.post{padding-top:60px}}
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:14px}
+.crumb a{color:var(--muted); text-decoration:none}
+.post h1{font-size:clamp(30px,6vw,46px); font-weight:800; letter-spacing:-.05em; line-height:1.15; margin:0 0 14px}
+.meta{font-size:14px; color:var(--muted); margin:0 0 30px}
+.post h2{font-size:clamp(21px,3.6vw,26px); font-weight:800; letter-spacing:-.04em; line-height:1.3; margin:52px 0 14px}
+.post p{font-size:16.5px; line-height:1.85; margin:0 0 16px}
+.post strong{font-weight:750}
+.formula{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:14px; padding:16px 18px; font-size:17px; font-weight:750; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex{background:rgba(255,90,31,.07); border-radius:14px; padding:14px 18px; font-size:15.5px; line-height:1.8; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex b{color:var(--orange)}
+.tbl{overflow-x:auto; margin:0 0 16px}
+table{width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums}
+th,td{padding:11px 10px; border-bottom:1px solid var(--line); text-align:left}
+th{color:var(--muted); font-weight:700; font-size:13.5px}
+td:last-child,th:last-child{text-align:right}
+.mini{position:relative; overflow:hidden; border-radius:26px; padding:20px; color:#F4F4F1; margin:6px 0 34px;
+  background:radial-gradient(110% 140% at 100% 0%, rgba(255,106,51,.26) 0%, rgba(255,106,51,0) 50%), linear-gradient(160deg,#202126 0%,#121316 100%); box-shadow:var(--shadow)}
+.mini h3{margin:0 0 12px; font-size:15px; font-weight:800}
+.mini .row{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.mini label{display:block; font-size:12px; font-weight:700; color:rgba(244,244,241,.55); margin:0 0 5px 2px}
+.mini input{width:100%; font:inherit; font-size:22px; font-weight:750; color:#F4F4F1; background:rgba(255,255,255,.07); border:1.5px solid rgba(255,255,255,.1); border-radius:14px; padding:10px 12px; outline:none; font-variant-numeric:tabular-nums}
+.mini input:focus{border-color:#FF6A33}
+.mini input::placeholder{color:rgba(244,244,241,.3)}
+.mini .out{margin-top:14px; font-size:15px; color:rgba(244,244,241,.6); min-height:1.5em}
+.mini .out b{font-size:30px; color:#fff; letter-spacing:-.04em; margin:0 4px}
+.mini .out em{font-style:normal; color:#FF8A3D; font-weight:700}
+.mini a{display:inline-block; margin-top:12px; color:#FF8A3D; font-weight:700; font-size:14px; text-decoration:none}
+.next{margin-top:56px; display:grid; gap:10px}
+.next a{display:flex; justify-content:space-between; align-items:center; gap:12px; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:18px 20px; box-shadow:var(--shadow)}
+.next a:hover{border-color:var(--ink)}
+.next strong{display:block; font-size:17px; font-weight:800; letter-spacing:-.03em}
+.next span{font-size:14px; color:var(--muted)}
+.next i{font-style:normal; font-size:20px; color:var(--muted)}
+
+.ill{margin:6px 0 26px; background:var(--surface); border:1px solid var(--line); border-radius:24px; padding:16px 12px 12px; box-shadow:var(--shadow)}
+.ill svg{display:block; width:100%; height:auto}
+.ill figcaption{text-align:center; font-size:13.5px; color:var(--muted); margin-top:6px}
+.ill .tag{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .hole{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .tp{font-size:20px; font-weight:700; fill:var(--muted)}
+.ill .tbig{font-size:46px; font-weight:800; fill:var(--ink); letter-spacing:-2px}
+.ill .strike{stroke:#FF5A1F; stroke-width:5; stroke-linecap:round}
+.ill .st{font-size:30px; font-weight:800; fill:#fff}
+.ill .st2{font-size:26px; font-weight:800; fill:#FF8A3D}
+.ill .q{font-size:80px; font-weight:800; fill:var(--faint)}
+.ill .lbl text{font-size:17px; font-weight:700; fill:var(--muted)}
+.ill .val text{font-size:20px; font-weight:800; fill:var(--ink)}
+.ill .bar0{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .bar1{fill:#FFB48A}
+.ill .bar2{fill:#FF5A1F}
+.ill .ghost{stroke:var(--ink); stroke-width:2; stroke-dasharray:6 6; opacity:.5}
+.ill .arr{fill:none; stroke:var(--faint); stroke-width:3; stroke-linecap:round}
+.ill .arr2{fill:none; stroke:var(--ink); stroke-width:2; opacity:.5}
+.ill .note{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .btl{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .cap{fill:var(--line)}
+.ill .btlf{fill:#FF5A1F}
+.ill .capf{fill:#FF8A3D}
+.ill .bp{font-size:30px; font-weight:800; fill:var(--muted)}
+.ill .free{font-size:22px; font-weight:800; fill:#fff}
+.ill .cap2{font-size:18px; font-weight:800; fill:var(--ink)}
+.quiz{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px 22px; margin:26px 0 8px; box-shadow:var(--shadow)}
+.quiz .qh{font-size:13px; font-weight:800; color:var(--orange); margin:0 0 6px}
+.quiz .qq{font-size:17px; font-weight:750; margin:0 0 12px; line-height:1.6}
+.quiz summary{display:inline-block; cursor:pointer; list-style:none; font-size:14.5px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); padding:9px 16px; border-radius:12px}
+.quiz summary::-webkit-details-marker{display:none}
+.quiz details[open] summary{display:none}
+.quiz details p{margin:0; font-size:16px; line-height:1.75}
+.quiz details b{color:var(--orange)}
+.keys{display:grid; gap:10px; margin:0 0 18px}
+@media (min-width:640px){.keys{grid-template-columns:repeat(3,1fr)}}
+.keys div{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:16px}
+.keys b{display:block; font-size:16px; font-weight:800; color:var(--orange); margin-bottom:4px}
+.keys span{font-size:14.5px; color:var(--muted); line-height:1.6}
+
+.ill .ok{fill:#1FA968}.ill .okt{fill:#1FA968; font-size:16px; font-weight:800}
+.ill .warn{fill:#FF5A1F}.ill .warnt{fill:#FF5A1F; font-size:16px; font-weight:800}
+.ill .axis{stroke:var(--line); stroke-width:3}
+.ill .tick{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .paper{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .ln2{stroke:var(--line); stroke-width:3; stroke-linecap:round}
+.ill .red{fill:#B4232F; font-weight:800}
+.ill .node{fill:var(--field); stroke:var(--faint); stroke-width:2}
+.ill .nodeb{fill:var(--surface); stroke:var(--ink); stroke-width:3}
+.ill .path{stroke:var(--line); stroke-width:4; fill:none}
+.ill .hot{stroke:#FF5A1F; stroke-width:6; fill:none; stroke-linecap:round; stroke-dasharray:2 12}
+.ill .dot{fill:#FF5A1F}
+.ill .p3{stroke:var(--faint); stroke-width:4; fill:none; stroke-linecap:round}
+.ill .p5{stroke:#FF5A1F; stroke-width:5; fill:none; stroke-linecap:round}
+.ill .grid{stroke:var(--line); stroke-width:1.5}
+.tbl th,.tbl td{text-align:left!important}
+.tbl td:nth-child(n+2),.tbl th:nth-child(n+2){white-space:nowrap}
+</style>
+<link rel="stylesheet" href="/assets/comments.css?v=3">
+<meta name="google-adsense-account" content="ca-pub-1007904420767851">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<div class="container"><article class="post">
+  <div class="crumb"><a href="/blog/">블로그</a> / 모임 놀이</div>
+  <h1>마니또, 종이 제비로 뽑으면<br>왜 자꾸 다시 뽑을까</h1>
+  <p class="meta pub"><time datetime="2026-11-09">2026년 11월 9일</time></p>
+
+  <figure class="ill" aria-label="여섯 사람이 원 모양으로 이어져 각자 정확히 한 명에게 선물하고 한 명에게 받는다">
+    <svg viewBox="0 0 640 282">
+      <g>
+        <line x1="347.7" y1="46.0" x2="368.5" y2="58.0" stroke="#FF5A1F" stroke-width="3.5" stroke-linecap="round"/><polygon points="373.7,61.0 362.0,61.2 368.0,50.8" fill="#FF5A1F"/><line x1="404.9" y1="111.0" x2="404.9" y2="135.0" stroke="#FF5A1F" stroke-width="3.5" stroke-linecap="round"/><polygon points="404.9,141.0 398.9,131.0 410.9,131.0" fill="#FF5A1F"/><line x1="377.2" y1="193.0" x2="356.4" y2="205.0" stroke="#FF5A1F" stroke-width="3.5" stroke-linecap="round"/><polygon points="351.2,208.0 356.8,197.8 362.8,208.2" fill="#FF5A1F"/><line x1="292.3" y1="210.0" x2="271.5" y2="198.0" stroke="#FF5A1F" stroke-width="3.5" stroke-linecap="round"/><polygon points="266.3,195.0 278.0,194.8 272.0,205.2" fill="#FF5A1F"/><line x1="235.1" y1="145.0" x2="235.1" y2="121.0" stroke="#FF5A1F" stroke-width="3.5" stroke-linecap="round"/><polygon points="235.1,115.0 241.1,125.0 229.1,125.0" fill="#FF5A1F"/><line x1="262.8" y1="63.0" x2="283.6" y2="51.0" stroke="#FF5A1F" stroke-width="3.5" stroke-linecap="round"/><polygon points="288.8,48.0 283.2,58.2 277.2,47.8" fill="#FF5A1F"/><circle cx="320.0" cy="30.0" r="29" class="tag" style="stroke:#7C8087;stroke-width:2"/><text x="320.0" y="39.0" text-anchor="middle" class="tbig" style="font-size:26px">A</text><circle cx="404.9" cy="79.0" r="29" class="tag" style="stroke:#7C8087;stroke-width:2"/><text x="404.9" y="88.0" text-anchor="middle" class="tbig" style="font-size:26px">B</text><circle cx="404.9" cy="177.0" r="29" class="tag" style="stroke:#7C8087;stroke-width:2"/><text x="404.9" y="186.0" text-anchor="middle" class="tbig" style="font-size:26px">C</text><circle cx="320.0" cy="226.0" r="29" class="tag" style="stroke:#7C8087;stroke-width:2"/><text x="320.0" y="235.0" text-anchor="middle" class="tbig" style="font-size:26px">D</text><circle cx="235.1" cy="177.0" r="29" class="tag" style="stroke:#7C8087;stroke-width:2"/><text x="235.1" y="186.0" text-anchor="middle" class="tbig" style="font-size:26px">E</text><circle cx="235.1" cy="79.0" r="29" class="tag" style="stroke:#7C8087;stroke-width:2"/><text x="235.1" y="88.0" text-anchor="middle" class="tbig" style="font-size:26px">F</text>
+        <text x="320" y="272" text-anchor="middle" class="note" style="font-size:20px">화살표는 "선물하는 사람 → 받는 사람"이에요</text>
+      </g>
+    </svg>
+    <figcaption>모두가 한 줄로 이어지면 자기 이름도 맞교환도 생기지 않아요</figcaption>
+  </figure>
+
+  <p>연말 모임에서 마니또를 뽑는 장면은 늘 비슷해요. 종이에 이름을 써서 접어 넣고, 한 장씩 뽑아요. 그런데 꼭 한 명이 "어, 내 이름이 나왔는데요"라며 손을 들죠. 다시 뽑아야 하고, 분위기는 살짝 식어요. 이게 운이 나빠서일까요? 사실은 거의 <strong>일어나게 되어 있는 일</strong>이에요.</p>
+
+  <div class="quiz">
+    <p class="qh">잠깐, 먼저 맞혀볼까요?</p>
+    <p class="qq">6명이 종이에 이름을 써서 하나씩 뽑을 때, 누군가 자기 이름을 뽑을 확률은 대략 얼마일까요? ① 약 17% ② 약 50% ③ 약 63%</p>
+    <details><summary>정답 보기</summary><p><b>③ 약 63%</b>이에요. 6명이 이름을 나누는 방법은 모두 720가지인데, 아무도 자기 이름을 뽑지 않는 경우는 265가지뿐이에요. 265 ÷ 720은 약 36.8%라서 나머지 약 63.2%는 누군가 자기 이름을 뽑아요. 열 번 중 여섯 번은 다시 뽑아야 하는 셈이에요.</p></details>
+  </div>
+
+  <h2>사람이 늘어도 확률은 그대로예요</h2>
+  <p>더 신기한 건, 사람이 많아져도 이 확률이 거의 변하지 않는다는 거예요. 3명이면 약 67%이고, 4명 이후로는 62~63% 안팎에서 거의 움직이지 않아요. 인원이 많아질수록 "설마 내가 걸리겠어?"라고 생각하기 쉽지만, 사람이 늘어도 누군가는 걸릴 확률이 비슷하게 높아요.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>참가자</th><th>이름을 나누는 방법</th><th>자기 이름이 안 걸리는 경우</th><th>누군가 걸릴 확률</th></tr></thead>
+    <tbody><tr><td>3명</td><td>6가지</td><td>2가지</td><td><b>66.7%</b></td></tr><tr><td>4명</td><td>24가지</td><td>9가지</td><td><b>62.5%</b></td></tr><tr><td>5명</td><td>120가지</td><td>44가지</td><td><b>63.3%</b></td></tr><tr><td>6명</td><td>720가지</td><td>265가지</td><td><b>63.2%</b></td></tr><tr><td>8명</td><td>40,320가지</td><td>14,833가지</td><td><b>63.2%</b></td></tr><tr><td>10명</td><td>3,628,800가지</td><td>1,334,961가지</td><td><b>63.2%</b></td></tr></tbody>
+  </table></div>
+
+  <h2>다시 뽑으면 해결될까요</h2>
+  <p>걸린 사람만 다시 뽑게 하면 되지 않을까 싶지만, 문제가 생겨요. 자기 이름을 뽑은 사람이 이미 이름을 공개해 버려서 다른 사람이 어떤 이름이 남았는지 추측할 수 있게 되고, 남은 사람들 사이의 확률도 처음과 달라져요. 마지막 한 장이 자기 이름이면 처음부터 전부 다시 해야 해요. 정체를 숨기는 게 핵심인 마니또에서는 매끄럽지 않은 방법이에요.</p>
+
+  <h2>원형으로 이으면 처음부터 안 걸려요</h2>
+  <p>종이 없이도 쓸 수 있는 방법이 있어요. 참가자를 무작위로 한 줄로 세운 뒤, <strong>각자 바로 다음 사람에게 선물</strong>하고 마지막 사람은 첫 사람에게 선물하게 하는 거예요. 위 그림처럼 모두가 하나의 원으로 이어져요.</p>
+  <div class="keys">
+    <div><b>자기 이름이 없어요</b><span>다음 사람에게만 주니까 자기 자신이 걸릴 수 없어요</span></div>
+    <div><b>맞교환이 없어요</b><span>A가 B에게 주면 B는 C에게 줘서 서로 마니또가 되지 않아요</span></div>
+    <div><b>다시 뽑을 일이 없어요</b><span>모두가 한 명에게 주고 한 명에게 받아서 빠지는 사람이 없어요</span></div>
+  </div>
+  <p>손으로 하려면 줄을 세우는 사람이 모든 짝을 알게 된다는 단점이 있어요. 손안의도구의 마니또 뽑기는 이 원형 구조로 짝을 만들되, 각자 자기 이름을 눌러야만 자기 마니또를 볼 수 있어요. 커플이나 같은 팀처럼 서로 걸리지 않았으면 하는 두 사람을 지정해도 원을 다시 짜서 그 조건을 지켜요.</p>
+
+  <h2>온라인 모임이라면</h2>
+  <p>멀리 떨어진 친구나 가족과 하는 마니또에서는 짝을 어떻게 알려 주느냐가 고민이에요. 단체 대화방에 결과를 올리면 비밀이 사라지니까요. 진행자 한 명이 짝을 정한 뒤 <strong>각자에게 개인 메시지로 자기 마니또만 알려 주는</strong> 방법을 쓰면 돼요. 손안의도구의 마니또 뽑기에는 진행자용 화면에서 사람별 메시지를 복사하는 기능이 있어서, 한 명씩 붙여 넣어 보내기만 하면 돼요. 진행자는 짝을 알게 되니, 진행자도 참가자라면 자기 것만 확인하고 나머지는 보지 않기로 약속하는 게 좋아요.</p>
+
+  <h2>정체는 어떻게 공개할까요</h2>
+  <p>공개 방식에 따라 마지막 날 분위기가 달라져요. 가장 흔한 방법은 선물을 건네는 순간 정체를 밝히는 거예요. 조금 더 재미있게 하려면 모임 날 각자 "내 마니또는 이런 사람이에요"라고 힌트를 주고 나머지가 맞혀 보게 하거나, 마지막까지 정체를 맞히지 못한 사람에게 작은 상을 주는 방식도 있어요. 어떤 방식이든 시작할 때 미리 정해 두면 서로 기대를 맞출 수 있어요.</p>
+
+  <h2>일주일 마니또 활동 아이디어</h2>
+  <p>뽑기만 하고 끝내면 허전해요. 선물 한 번보다 며칠에 걸쳐 작은 마음을 전하는 쪽이 정체를 숨기는 재미도 오래가요. 예를 들면 이런 식이에요.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>날</th><th>미션</th></tr></thead>
+    <tbody>
+      <tr><td>첫째 날</td><td>익명으로 응원 한마디 쪽지 남기기</td></tr>
+      <tr><td>둘째 날</td><td>자리에 작은 간식 올려 두기</td></tr>
+      <tr><td>셋째 날</td><td>좋아할 만한 노래나 영상 추천하기</td></tr>
+      <tr><td>넷째 날</td><td>손으로 쓴 안부 카드 건네기</td></tr>
+      <tr><td>마지막 날</td><td>선물을 건네며 정체 공개하기</td></tr>
+    </tbody>
+  </table></div>
+  <p>예산은 모두 부담 없이 낼 수 있는 선으로 정하고, 마지막 날 공개 방식(한꺼번에 공개할지, 한 명씩 맞혀 보게 할지)도 미리 정해 두세요. 회사 모임이라면 선물 기준은 회사마다 다르니 팀 규정을 먼저 확인하는 게 좋아요.</p>
+  <p>마니또와 비슷한 시크릿 산타는 선물을 한 번 주고받는 데 무게를 두는 방식이에요. 둘 중 어느 쪽이든 짝을 정하는 방법은 같아서, 위의 원형 배정을 그대로 쓸 수 있어요.</p>
+  <p class="meta" style="margin:8px 0 0">확률은 순열의 기본 계산(자기 이름이 걸리지 않는 경우의 수)으로 구한 값이에요. 모임 규칙과 선물 기준은 모임이나 회사의 사정에 맞게 정하세요.</p>
+
+  <nav class="next" aria-label="관련 글과 도구"><a href="/party/manito/"><span><strong>마니또 뽑기</strong><span>자기 이름 안 걸리게, 폰 하나로 몰래 확인</span></span><i>→</i></a><a href="/party/lots/"><span><strong>제비뽑기</strong><span>한 장씩 뒤집는 두근두근 추첨</span></span><i>→</i></a></nav>
+  <div data-comments data-kind="comment" data-page="/blog/manito-rules/"></div>
+</article>
+<section class="cmts" data-page="/blog/manito-rules/" data-kind="post"></section></div>
+
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
+
+<script src="/assets/firebase-config.js?v=4"></script>
+<script type="module" src="/assets/comments.js?v=4"></script>
+<script src="/assets/analytics.js?v=2" defer></script>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+</body>
+</html>

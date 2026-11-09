@@ -103,6 +103,10 @@
 .fpanel .fdmsg{margin:8px 0 0; font-size:12.5px; line-height:1.55; color:var(--muted)}
 .fpanel .fdmsg.err{color:#C2410C}
 
+/* 점검일 표시 */
+.chk{margin:10px 0 0; font-size:13px; font-weight:700; color:var(--muted); line-height:1.5}
+.chk::before{content:"\2713\00a0"; color:#1FA968; font-weight:800}
+
 /* 이어서 쓰면 좋은 도구 */
 .nexttools{margin:26px 0 0}
 .nexttools h2{font-size:18px; font-weight:800; letter-spacing:-.03em; margin:0 0 12px; color:var(--ink)}
@@ -120,7 +124,3 @@
 .nt-t span{display:block; font-size:13px; color:var(--muted); line-height:1.5; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .nt-a{flex:none; color:var(--faint); font-size:22px; line-height:1}
 .nt:hover .nt-a{color:var(--ink)}
-
-/* 점검일 표시 */
-.chk{margin:10px 0 0; font-size:13px; font-weight:700; color:var(--muted); line-height:1.5}
-.chk::before{content:"\2713\00a0"; color:#1FA968; font-weight:800}

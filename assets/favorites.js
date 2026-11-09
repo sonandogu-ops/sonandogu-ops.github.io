@@ -10,7 +10,7 @@
 var KEY='sonandogu-favs-v1', DKEY='sonandogu-date-saved', HINT='sonandogu-authed', TIPKEY='sonandogu-fav-tip', V='10.12.2';
 var BASE='https://www.gstatic.com/firebasejs/'+V+'/';
 var MAX=30, DMAX=12;
-var TOOLS=['/percent/','/dutch/','/wage/','/salary/','/severance/','/leave/','/date/','/age/','/charcount/','/receipt/','/traditional/yut/','/party/team/','/party/roulette/','/party/ladder/','/party/lots/'];
+var TOOLS=['/percent/','/dutch/','/wage/','/salary/','/severance/','/leave/','/date/','/age/','/charcount/','/receipt/','/traditional/yut/','/party/team/','/party/roulette/','/party/ladder/','/party/lots/','/party/manito/'];
 var $=function(id){return document.getElementById(id);};
 function el(tag,cls,text){var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e;}
 function ls(k,v){try{ if(v===undefined) return localStorage.getItem(k); if(v===null) localStorage.removeItem(k); else localStorage.setItem(k,v);}catch(e){} return null;}
