@@ -102,3 +102,21 @@
 .fpanel .fdel.arm{background:rgba(194,65,12,.1); border-color:#C2410C}
 .fpanel .fdmsg{margin:8px 0 0; font-size:12.5px; line-height:1.55; color:var(--muted)}
 .fpanel .fdmsg.err{color:#C2410C}
+
+/* 이어서 쓰면 좋은 도구 */
+.nexttools{margin:26px 0 0}
+.nexttools h2{font-size:18px; font-weight:800; letter-spacing:-.03em; margin:0 0 12px; color:var(--ink)}
+.ntg{display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.nt{display:flex; align-items:center; gap:12px; padding:12px 14px; background:var(--surface); border:1px solid var(--line); border-radius:16px; text-decoration:none; color:var(--ink); transition:border-color .2s, transform .2s}
+.nt:hover{border-color:var(--ink)}
+.nt:active{transform:scale(.99)}
+.nt[data-c=calc]{--c1:#FF8A3D; --c2:#FF4A12}
+.nt[data-c=tools]{--c1:#5E9BFF; --c2:#2F66F0}
+.nt[data-c=play]{--c1:#3DCB8C; --c2:#12985B}
+.nt-i{flex:none; width:40px; height:40px; border-radius:12px; display:grid; place-items:center; color:#fff; font-weight:800; font-size:18px; background:linear-gradient(145deg,var(--c1),var(--c2)); box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.nt-i svg{width:21px; height:21px}
+.nt-t{flex:1; min-width:0; display:block}
+.nt-t strong{display:block; font-size:15px; font-weight:800; letter-spacing:-.02em; line-height:1.35}
+.nt-t span{display:block; font-size:13px; color:var(--muted); line-height:1.5; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.nt-a{flex:none; color:var(--faint); font-size:22px; line-height:1}
+.nt:hover .nt-a{color:var(--ink)}
