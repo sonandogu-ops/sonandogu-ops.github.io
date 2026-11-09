@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
+<link rel="canonical" href="https://sonandogu.com/leave/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon-192.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F4F1">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sonandogu.com/leave/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-leave.jpg?v=1">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<title>연차 계산기 2026 - 입사일로 연차 일수·미사용 연차수당 계산 | 손안의도구</title>
+<meta name="description" content="입사일과 기준일을 넣으면 연차가 며칠 생기는지, 남은 연차와 미사용 연차수당이 얼마인지 바로 계산해요. 1년 미만 월차 11일, 1년 뒤 15일, 3년 뒤 2년마다 1일 가산(최대 25일)과 5인 미만·단시간 근로자 기준까지 반영했어요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="연차 계산기 - 입사일로 연차 일수와 수당">
+<meta property="og:description" content="입사일만 넣으면 연차 일수와 미사용 연차수당을 바로.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "연차는 입사하고 언제부터 생기나요?", "acceptedAnswer": {"@type": "Answer", "text": "입사 후 한 달을 개근할 때마다 1일씩 생겨요. 한 달이 끝난 다음 날 발생하고, 첫 1년 동안 최대 11일까지 쌓여요. 이 연차는 입사 후 1년이 되기 전까지 쓰는 게 원칙이에요. 1년 미만이어도 한 달씩 개근하면 연차를 쓸 수 있다는 점이 핵심이에요."}}, {"@type": "Question", "name": "월차 11일과 1년 뒤 15일을 합쳐서 26일인가요?", "acceptedAnswer": {"@type": "Answer", "text": "네, 첫 2년 동안은 합쳐서 최대 26일을 쓸 수 있어요. 예전에는 1년 미만에 쓴 연차를 15일에서 빼는 규정이 있었지만, 지금은 이 규정이 없어졌어요. 요즘 입사자라면 월차를 썼다고 15일이 줄어들지 않아요."}}, {"@type": "Question", "name": "15일은 정확히 언제 생기나요?", "acceptedAnswer": {"@type": "Answer", "text": "입사 후 만 1년이 지난 다음 날 생겨요. 입사일이 2025년 3월 2일이라면 2026년 3월 2일이에요. 그 전날인 3월 1일까지만 일하고 퇴사하면 15일은 생기지 않아요. 이 계산기도 같은 기준으로 발생일을 계산해요."}}, {"@type": "Question", "name": "출근율 80%는 어떻게 계산하나요?", "acceptedAnswer": {"@type": "Answer", "text": "1년 동안 소정근로일 중 출근한 비율이에요. 업무상 부상·질병으로 쉰 기간, 출산전후휴가, 육아휴직, 법정 휴가로 쉰 날은 출근한 것으로 봐요. 이 계산기는 매달 개근하고 출근율이 80% 이상이라고 가정해서 계산해요."}}, {"@type": "Question", "name": "근속 3년이 넘으면 연차가 늘어나나요?", "acceptedAnswer": {"@type": "Answer", "text": "네, 만 3년이 되는 날 16일이 되고, 그 뒤로 2년마다 1일씩 늘어요. 만 5년에 17일, 만 7년에 18일 식으로 늘다가 만 21년이 되면 25일이 한도예요. 위 표에서 근속연수별 일수를 확인할 수 있어요."}}, {"@type": "Question", "name": "회사가 회계연도(1월 1일) 기준이면 이 계산기와 다른가요?", "acceptedAnswer": {"@type": "Answer", "text": "달라질 수 있어요. 회계연도 기준은 모든 직원에게 1월 1일에 연차를 일괄 부여하는 방식이에요. 법에서 정한 입사일 기준보다 근로자에게 불리하지 않게 운영해야 하고, 퇴사할 때는 입사일 기준으로 다시 계산해 정산해야 해요. 이 계산기는 입사일 기준이니, 회계연도 기준 회사는 참고용으로 보세요."}}, {"@type": "Question", "name": "5인 미만 사업장은 연차가 없나요?", "acceptedAnswer": {"@type": "Answer", "text": "상시 근로자 5명 미만인 사업장에는 법정 연차 규정이 적용되지 않아요. 그래서 법으로 연차를 요구할 수는 없지만, 근로계약이나 취업규칙으로 따로 정해 두었다면 그에 따라요. 사업장 규모는 계산기의 \"상시 근로자 5인 이상\" 스위치로 바꿔 볼 수 있어요."}}, {"@type": "Question", "name": "쓰지 못한 연차는 돈으로 받을 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "네, 쓰지 못한 연차는 수당으로 받을 수 있어요. 통상임금 일급에 남은 일수를 곱해요. 통상 일급은 월 통상임금을 209시간으로 나눈 시급에 하루 8시간을 곱한 값이에요. 다만 회사가 법에서 정한 연차 사용 촉진 절차를 제대로 거쳤다면 수당을 주지 않을 수 있어요."}}, {"@type": "Question", "name": "주 15시간 미만이나 단시간 근로자는요?", "acceptedAnswer": {"@type": "Answer", "text": "주 15시간 미만이면 법정 연차가 없어요. 주 15시간 이상이지만 40시간 미만이면 연차를 시간으로 계산해요. 이 계산기에서 주 소정근로시간과 근무일수를 넣으면 시간 단위로 환산해서 보여줘요."}}, {"@type": "Question", "name": "퇴사하면 연차는 어떻게 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "퇴사일까지 이미 발생한 연차만 대상이고, 그중 쓰지 못한 연차는 수당으로 정산해요. 퇴사 후에 생길 연차를 미리 주는 건 아니에요. 그래서 마지막 근무일을 정할 때 다음 연차 발생일 전날인지 확인하는 게 좋아요. 기준일에 퇴사일을 넣으면 이 계산기로 확인할 수 있어요."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "연차 계산기", "item": "https://sonandogu.com/leave/"}]}</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.hero{padding:36px 0 22px}
+@media (min-width:920px){.hero{padding:64px 0 28px}}
+.hero h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 12px}
+.hero p{font-size:17px; color:var(--muted); margin:0; max-width:34em}
+.tabs{display:inline-flex; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:4px; margin-bottom:16px}
+.tabs button{font:inherit; font-size:15px; font-weight:700; color:var(--muted); background:none; border:none; border-radius:12px; padding:10px 18px; cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink); color:var(--bg)}
+.work{display:grid; gap:18px}
+.work>*{min-width:0}
+@media (min-width:920px){.work{grid-template-columns:1fr 420px; gap:32px; align-items:start}.res{position:sticky; top:78px}}
+[hidden]{display:none!important}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:26px; box-shadow:var(--shadow); padding:20px 18px}
+.card+.card{margin-top:14px}
+.card h2{font-size:17px; font-weight:800; letter-spacing:-.03em; margin:0 0 12px; display:flex; align-items:center; gap:8px}
+.card h2 .n{width:22px; height:22px; border-radius:7px; background:var(--ink); color:var(--bg); font-size:12px; display:grid; place-items:center}
+.card h2 small{margin-left:auto; font-size:13px; color:var(--muted); font-weight:600}
+.box{background:var(--field); border-radius:16px; padding:10px 14px 8px; border:1.5px solid transparent; transition:border-color .2s, box-shadow .2s, background .2s}
+.box:focus-within{background:var(--surface); border-color:var(--orange); box-shadow:0 0 0 5px rgba(255,90,31,.13)}
+.box label{display:block; font-size:12px; font-weight:700; color:var(--muted)}
+.box input,.box select{width:100%; min-width:0; font:inherit; font-size:17px; font-weight:700; color:var(--ink); background:none; border:none; outline:none; padding:2px 0 0}
+.box input::placeholder{color:var(--faint); opacity:.7; font-weight:500}
+.box.big input{font-size:28px; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.num input{font-variant-numeric:tabular-nums}
+.g2{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.stepper{display:flex; align-items:center; justify-content:space-between; background:var(--field); border-radius:16px; padding:8px}
+.stepper button{width:46px; height:46px; border-radius:12px; border:1px solid var(--line); background:var(--surface); font:inherit; font-size:22px; font-weight:700; color:var(--ink); cursor:pointer}
+.stepper span{font-size:24px; font-weight:800; letter-spacing:-.03em}
+.lbl{font-size:12px; font-weight:700; color:var(--muted); margin:14px 0 6px 2px}
+.seg2{display:flex; gap:6px; flex-wrap:wrap}
+.seg2 button{flex:1; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:12px; padding:10px 6px; cursor:pointer; white-space:nowrap}
+.seg2 button[aria-pressed="true"]{color:var(--orange); border-color:var(--orange); background:rgba(255,90,31,.06)}
+.people{display:flex; flex-wrap:wrap; gap:8px}
+.pp{display:flex; align-items:center; gap:2px; background:var(--field); border:1.5px solid transparent; border-radius:999px; padding:4px 4px 4px 14px}
+.pp:focus-within{border-color:var(--orange); background:var(--surface)}
+.pp input{width:5.5em; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:none; outline:none}
+.pp button{width:28px; height:28px; border-radius:50%; border:none; background:none; color:var(--muted); font-size:16px; cursor:pointer}
+.pp button:hover{color:var(--orange)}
+.addp{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:999px; padding:8px 14px; cursor:pointer}
+.item{border:1px solid var(--line); border-radius:20px; padding:12px; margin-bottom:10px}
+.item .top2{display:grid; grid-template-columns:1.2fr 1fr 36px; gap:6px}
+.item .top2 .box{padding:8px 12px 6px}
+.item .top2 .box input{font-size:16px}
+.del{font:inherit; font-size:18px; color:var(--muted); background:none; border:1px solid var(--line); border-radius:12px; cursor:pointer}
+.del:hover{color:var(--orange); border-color:var(--orange)}
+.row2{display:flex; align-items:center; gap:8px; margin-top:10px; flex-wrap:wrap}
+.row2 .k{font-size:12.5px; font-weight:700; color:var(--muted); min-width:3.6em}
+.row2 select{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:10px; padding:7px 10px}
+.chips{display:flex; flex-wrap:wrap; gap:5px; flex:1}
+.chip{font:inherit; font-size:13.5px; font-weight:700; border-radius:999px; padding:6px 11px; cursor:pointer; border:1.5px solid var(--line); background:none; color:var(--faint)}
+.chip[aria-pressed="true"]{border-color:var(--ink); background:var(--ink); color:var(--bg)}
+.mini{font:inherit; font-size:12.5px; font-weight:700; color:var(--muted); background:none; border:none; text-decoration:underline; cursor:pointer; padding:0}
+.addi{width:100%; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:16px; padding:12px; cursor:pointer}
+.addi:hover,.addp:hover{border-color:var(--ink)}
+
+.disp{position:relative; overflow:hidden; border-radius:28px; padding:22px 20px 18px; color:#F4F4F1;
+  background:radial-gradient(120% 140% at 100% 0%, rgba(255,106,51,.28) 0%, rgba(255,106,51,0) 45%), linear-gradient(160deg,#202126 0%,#121316 100%);
+  box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.07)}
+.disp .cap{font-size:14px; color:rgba(244,244,241,.6)}
+.disp .big{font-size:clamp(40px,10vw,52px); font-weight:800; letter-spacing:-.05em; line-height:1.1; margin:4px 0; font-variant-numeric:tabular-nums}
+.disp .big .u{font-size:.45em; color:#FF8A3D; margin-left:4px; letter-spacing:-.02em}
+.disp .sub{font-size:14px; color:rgba(244,244,241,.6); line-height:1.6}
+.disp .sub b{color:#fff}
+.tr{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:8px}
+.tr li{display:flex; align-items:center; justify-content:space-between; gap:10px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:12px 14px}
+.tr .who{font-size:16px; font-weight:700}
+.tr .who i{font-style:normal; color:rgba(244,244,241,.45); margin:0 6px}
+.tr .amt{font-size:19px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.tr .none{justify-content:center; color:rgba(244,244,241,.55); font-size:15px}
+.tbl2{width:100%; border-collapse:collapse; margin-top:14px; font-size:13.5px; font-variant-numeric:tabular-nums}
+.tbl2 th,.tbl2 td{padding:8px 4px; border-bottom:1px solid rgba(255,255,255,.08); text-align:right}
+.tbl2 th:first-child,.tbl2 td:first-child{text-align:left}
+.tbl2 th{color:rgba(244,244,241,.5); font-weight:700; font-size:12px}
+.tbl2 .plus{color:#7CE3A8}.tbl2 .minus{color:#FF8A3D}
+.acts{display:grid; grid-template-columns:1fr auto; gap:8px; margin-top:16px}
+.acts button{font:inherit; font-size:15px; font-weight:800; border-radius:16px; padding:14px; cursor:pointer; border:none}
+.copy{color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); box-shadow:0 8px 20px -8px rgba(255,90,31,.8)}
+.copy:disabled{opacity:.35; box-shadow:none; cursor:default}
+.reset{color:#F4F4F1; background:rgba(255,255,255,.08)!important}
+.preview{margin-top:12px; white-space:pre-wrap; font-size:12.5px; line-height:1.6; color:rgba(244,244,241,.55); background:rgba(0,0,0,.25); border-radius:14px; padding:12px; max-height:160px; overflow:auto}
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+.guide{margin-top:88px}
+.guide h2{font-size:clamp(24px,4vw,32px); font-weight:800; letter-spacing:-.04em; margin:0 0 20px}
+.fgrid{display:grid; gap:12px}
+@media (min-width:720px){.fgrid{grid-template-columns:repeat(2,1fr)}}
+.f{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px}
+.f h3{font-size:16px; font-weight:800; margin:0 0 8px; letter-spacing:-.02em}
+.f p{margin:0; font-size:14.5px; color:var(--muted)}
+.f strong{color:var(--ink)}
+.faq{margin-top:56px}
+.faq details{border-top:1px solid var(--line); padding:18px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer; font-weight:700; font-size:16px; list-style:none; display:flex; justify-content:space-between; gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+"; color:var(--muted); font-weight:500; font-size:22px; line-height:1; transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:10px 0 0; color:var(--muted)}
+
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.days{display:grid; grid-template-columns:repeat(7,1fr); gap:6px}
+.day{background:var(--field); border-radius:14px; padding:8px 4px 6px; text-align:center; border:1.5px solid transparent}
+.day:focus-within{border-color:var(--orange); background:var(--surface)}
+.day label{display:block; font-size:12px; font-weight:800; color:var(--muted)}
+.day input{width:100%; font:inherit; font-size:18px; font-weight:800; text-align:center; color:var(--ink); background:none; border:none; outline:none; padding:2px 0; font-variant-numeric:tabular-nums}
+.day input::placeholder{color:var(--faint); opacity:.6}
+.day.we label{color:var(--orange)}
+.quick{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-top:10px; font-size:13px; color:var(--muted)}
+.quick select{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:10px; padding:6px 8px}
+.quick button{font:inherit; font-size:13px; font-weight:700; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:7px 12px; cursor:pointer}
+.optrow{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--line); font-size:14.5px; font-weight:700}
+.optrow:first-of-type{border-top:none}
+.optrow small{display:block; font-size:12.5px; color:var(--muted); font-weight:500; margin-top:2px}
+.sw{position:relative; flex:none; width:46px; height:28px; border-radius:999px; background:var(--field); border:1px solid var(--line); cursor:pointer; padding:0}
+.sw::after{content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .2s}
+.sw[aria-checked="true"]{background:var(--orange); border-color:var(--orange)}
+.sw[aria-checked="true"]::after{transform:translateX(18px)}
+.wrow{display:flex; gap:8px; align-items:stretch}
+.wrow .box{flex:1}
+.minbtn{font:inherit; font-size:13px; font-weight:700; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:0 12px; cursor:pointer; white-space:nowrap}
+.warn{margin-top:8px; font-size:13px; font-weight:700; color:#D9480F}
+.lines{margin-top:14px; display:flex; flex-direction:column; gap:2px}
+.ln{display:flex; justify-content:space-between; font-size:14px; padding:7px 0; border-bottom:1px solid rgba(255,255,255,.08); font-variant-numeric:tabular-nums}
+.ln span:first-child{color:rgba(244,244,241,.6)}
+.ln b{font-weight:800}
+.ln.sum{border-bottom:none; font-size:15px}
+.badge{display:inline-block; font-size:12.5px; font-weight:800; padding:4px 10px; border-radius:999px; margin-top:10px}
+.badge.ok{background:rgba(124,227,168,.15); color:#7CE3A8}
+.badge.no{background:rgba(255,138,61,.15); color:#FF8A3D}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.endo{display:flex; align-items:flex-end; gap:10px; margin-top:14px}
+.endo img{flex:none; width:64px; height:64px; object-fit:contain; filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
+.endo .say{position:relative; flex:1; background:#F4F4F1; color:#141518; font-size:14px; font-weight:700; line-height:1.45; border-radius:16px 16px 16px 4px; padding:10px 13px; margin-bottom:8px; letter-spacing:-.01em}
+.endo .say::before{content:""; position:absolute; left:-6px; bottom:8px; border:6px solid transparent; border-right-color:#F4F4F1; border-left:0}
+.endo.light .say{background:var(--field); color:var(--ink)}
+.endo.light .say::before{border-right-color:var(--field)}
+.endo.light img{filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
+.endo.pop img{animation:endoHop .5s cubic-bezier(.3,1.6,.5,1)}
+.endo.pop .say{animation:endoSay .35s ease-out}
+.endo[data-p="walk"] img,.endo[data-p="run"] img{animation:endoWalk .45s ease-in-out infinite}
+@keyframes endoHop{0%{transform:translateY(8px) scale(.9)}60%{transform:translateY(-6px)}100%{transform:none}}
+@keyframes endoSay{from{opacity:0; transform:translateX(-6px)}to{opacity:1; transform:none}}
+@keyframes endoWalk{50%{transform:translateY(-4px) rotate(-3deg)}}
+.tip{display:flex; gap:16px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:14px 18px; margin:0 0 22px; box-shadow:var(--shadow)}
+.tip img{width:80px; height:80px; object-fit:contain; flex:none}
+.tip b{display:block; font-size:13px; color:var(--orange); font-weight:800; margin-bottom:2px}
+.tip p{margin:0; font-size:15px; line-height:1.6}
+@media (prefers-reduced-motion:reduce){.endo.pop img,.endo.pop .say,.endo[data-p] img{animation:none!important}}
+
+.jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
+.jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
+.jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jumpres img{flex:none; width:30px; height:30px; object-fit:contain; margin:-6px -2px -6px -6px}
+.jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
+.res{scroll-margin-top:66px}
+@media (min-width:920px){.jumpres{display:none!important}}
+@media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
+@media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:12px}
+.crumb a{color:var(--muted); text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+.src{margin-top:12px; font-size:12px; line-height:1.6; color:rgba(244,244,241,.5)}
+.src a{color:rgba(244,244,241,.7)}
+
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:12px}
+.crumb a{color:var(--muted); text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+
+.hero{padding:36px 0 22px}
+@media (min-width:920px){.hero{padding:64px 0 28px}}
+.hero h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 12px}
+.hero p{font-size:17px; color:var(--muted); margin:0; max-width:34em}
+.box input[type=date]{font-size:20px; font-weight:800; letter-spacing:-.02em; padding:4px 0 2px; color-scheme:light dark}
+.g2{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.row3{display:grid; grid-template-columns:1fr 1.1fr; gap:8px; margin-top:8px}
+.quick2{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px}
+.quick2 button{font:inherit; font-size:13px; font-weight:700; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:6px 12px; cursor:pointer}
+.quick2 button:hover{color:var(--ink); border-color:var(--ink)}
+.optrow{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0 0; margin-top:12px; border-top:1px solid var(--line); font-size:14.5px; font-weight:700}
+.optrow small{display:block; font-size:12.5px; color:var(--muted); font-weight:500; margin-top:2px}
+.sw{position:relative; flex:none; width:46px; height:28px; border-radius:999px; background:var(--field); border:1px solid var(--line); cursor:pointer; padding:0}
+.sw::after{content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .2s}
+.sw[aria-checked="true"]{background:var(--orange); border-color:var(--orange)}
+.sw[aria-checked="true"]::after{transform:translateX(18px)}
+.pane[hidden]{display:none}
+.ms{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:6px}
+.ms li{display:grid; grid-template-columns:74px 1fr auto; gap:8px; align-items:center; background:rgba(255,255,255,.06); border-radius:14px; padding:10px 12px; font-size:14px; font-variant-numeric:tabular-nums}
+.ms li b{font-weight:800}
+.ms li span{color:rgba(244,244,241,.7)}
+.ms li em{font-style:normal; font-weight:800; font-size:13px; padding:3px 9px; border-radius:999px; background:rgba(255,255,255,.1)}
+.ms li.next{background:rgba(255,138,61,.16); border:1px solid rgba(255,138,61,.35)}
+.ms li.next em{background:#FF5A1F; color:#141518}
+.ms li.past{opacity:.5}
+.acts2{display:grid; grid-template-columns:1fr; gap:8px; margin-top:16px}
+.acts2 button{font:inherit; font-size:15px; font-weight:800; border-radius:14px; padding:13px; cursor:pointer; border:none; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F)}
+.acts2 button:disabled{opacity:.4; cursor:default}
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+
+.jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
+.jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
+.jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jumpres img{flex:none; width:30px; height:30px; object-fit:contain; margin:-6px -2px -6px -6px}
+.jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
+.res{scroll-margin-top:66px}
+@media (min-width:920px){.jumpres{display:none!important}}
+@media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
+@media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
+
+/* 날짜 계산기: 밝은 결과 판 */
+.disp.lite{color:var(--ink); background:radial-gradient(120% 120% at 100% 0%, rgba(47,102,240,.10) 0%, rgba(47,102,240,0) 55%), var(--surface); border:1px solid var(--line); box-shadow:var(--shadow)}
+.disp.lite::after{display:none}
+.disp.lite .cap,.disp.lite .sub{color:var(--muted)}
+.disp.lite .big{color:var(--ink)}
+.disp.lite .big .u{color:#2F66F0}
+.disp.lite .ms li{background:var(--field)}
+.disp.lite .ms li span{color:var(--muted)}
+.disp.lite .ms li em{background:var(--surface); color:var(--ink); border:1px solid var(--line)}
+.disp.lite .ms li.next{background:rgba(47,102,240,.08); border:1px solid rgba(47,102,240,.3)}
+.disp.lite .ms li.next em{background:#2F66F0; border-color:#2F66F0; color:#fff}
+.disp.lite .ms li.past{opacity:.45}
+.disp.lite .endo .say{background:var(--field); color:var(--ink)}
+.disp.lite .endo .say::before{border-right-color:var(--field)}
+.disp.lite .endo img{filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
+
+.saved{margin-bottom:14px}
+.saved h2 small{margin-left:auto; font-size:12.5px; color:var(--muted); font-weight:600}
+.sv{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px}
+.sv li{display:grid; grid-template-columns:1fr auto 30px; gap:10px; align-items:center; background:var(--field); border:1px solid transparent; border-radius:16px; padding:10px 10px 10px 14px; cursor:pointer}
+.sv li:hover{border-color:var(--line)}
+.sv li.on{border-color:#2F66F0; background:rgba(47,102,240,.07)}
+.sv .nm{font-size:15px; font-weight:800; letter-spacing:-.02em; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.sv .dt{display:block; font-size:12.5px; color:var(--muted); font-weight:600; margin-top:1px}
+.sv .bd{font-size:14px; font-weight:900; color:#fff; background:#2F66F0; border-radius:999px; padding:5px 11px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.sv .bd.today{background:#FF5A1F}
+.sv .bd.past{background:var(--faint)}
+.sv .x{width:30px; height:30px; border-radius:50%; border:none; background:none; color:var(--muted); font-size:17px; cursor:pointer}
+.sv .x:hover{color:var(--orange)}
+.svnote{font-size:12.5px; color:var(--muted); margin:10px 2px 0}
+.acts2{grid-template-columns:1fr 1fr!important}
+.acts2 .sb{color:#fff!important; background:#2F66F0!important}
+.namebox{display:flex; gap:8px; margin-top:12px}
+.namebox[hidden]{display:none}
+.namebox input{flex:1; min-width:0; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:var(--field); border:1.5px solid transparent; border-radius:12px; padding:10px 12px; outline:none}
+.namebox input:focus{border-color:#2F66F0; background:var(--surface)}
+.namebox button{font:inherit; font-size:14px; font-weight:800; color:#fff; background:#2F66F0; border:none; border-radius:12px; padding:0 16px; cursor:pointer}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.box .row{display:flex; align-items:baseline; gap:8px}
+.box .row input{flex:1 1 auto; min-width:0; width:100%}
+.box .unit{flex:none; font-size:17px; font-weight:700; color:var(--muted)}
+.sgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+@media (max-width:420px){.sgrid{grid-template-columns:1fr}}
+.srow{margin-top:14px}
+.srow>.lb{display:block; font-size:13px; font-weight:700; color:var(--muted); margin-bottom:8px}
+.dbox input[type=date]{width:100%; font:inherit; font-size:18px; font-weight:800; color:var(--ink); background:transparent; border:0; outline:0; padding:2px 0; letter-spacing:-.02em}
+.qnet{margin-top:12px; padding:12px 14px; border-radius:14px; background:var(--field); font-size:14.5px; font-weight:700; color:var(--muted); line-height:1.6}
+.qnet b{color:var(--ink); font-size:17px; letter-spacing:-.02em}
+.qnet.warn{background:rgba(255,90,31,.10); color:#C2410C}
+.ptable{overflow-x:auto; margin-top:14px; border:1px solid var(--line); border-radius:16px; background:var(--surface)}
+.ptable table{width:100%; border-collapse:collapse; font-size:14.5px; min-width:320px}
+.ptable th,.ptable td{padding:11px 12px; text-align:right; white-space:nowrap}
+.ptable th:first-child,.ptable td:first-child{text-align:left}
+.ptable.w2 th:nth-child(2),.ptable.w2 td:nth-child(2){text-align:left}
+.ptable.w5 table{min-width:560px}
+.ptable thead th{font-size:12.5px; font-weight:700; color:var(--muted); background:var(--field)}
+.ptable tbody tr+tr td{border-top:1px solid var(--line)}
+.ptable td b{font-weight:800}
+.pnote{margin:10px 2px 0; font-size:13px; color:var(--muted); line-height:1.65}
+.disp.lite .ms li{grid-template-columns:78px 1fr auto}
+.disp .fn{margin:10px 0 0; font-size:12.5px; line-height:1.65; color:var(--muted)}
+.disp .ms li.hot{background:rgba(255,90,31,.10)}
+.disp .ms li.hot b{color:#C2410C}
+</style>
+<link rel="stylesheet" href="/assets/comments.css?v=3">
+<link rel="stylesheet" href="/assets/favorites.css?v=2">
+<meta name="google-adsense-account" content="ca-pub-1007904420767851">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
+</head>
+<body>
+<script>
+async function shareOut(t){ const touch=matchMedia('(pointer:coarse)').matches; if(navigator.share&&touch){ try{ await navigator.share({text:t}); return 'shared'; }catch(e){ if(e&&e.name==='AbortError') return 'abort'; } } await navigator.clipboard.writeText(t); return 'copied'; }
+document.addEventListener('DOMContentLoaded',()=>{ if(navigator.share&&matchMedia('(pointer:coarse)').matches){ document.querySelectorAll('[data-share]').forEach(b=>b.textContent=b.dataset.share); } });
+</script>
+<script>
+function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const img=e.querySelector('img'), src='/assets/endo/'+p+'.webp'; if(img.getAttribute('src')!==src) img.setAttribute('src',src); e.dataset.p=p; const s=e.querySelector('.say'); if(s.textContent!==m){ s.textContent=m; if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); } } }
+</script>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<div class="container">
+
+  <section class="hero">
+    <div class="crumb"><a href="/">전체 도구</a> / <a href="/#calc">계산기</a> / 연차 계산기</div>
+    <h1>연차 계산기</h1>
+    <p>입사일과 기준일을 넣으면 연차가 며칠 생기는지, 남은 연차와 미사용 연차수당이 얼마인지 알려드려요.</p>
+  </section>
+  <div class="work">
+    <main>
+      <div class="card">
+        <h2><span class="n">1</span>근무 기간</h2>
+        <div class="sgrid">
+          <div class="box dbox"><label for="jd">입사일</label><input type="date" id="jd" min="1970-01-01"></div>
+          <div class="box dbox"><label for="ad">기준일 (오늘 또는 퇴사일)</label><input type="date" id="ad" min="1970-01-01"></div>
+        </div>
+        <div class="quick2" id="dq"><button data-q="today">기준일을 오늘로</button></div>
+        <div class="qnet" id="qnet" aria-live="polite">입사일과 기준일을 골라 주세요</div>
+      </div>
+      <div class="card">
+        <h2><span class="n">2</span>내 근무 조건<small>모르면 기본값 그대로 써도 돼요</small></h2>
+        <div class="optrow"><span>상시 근로자 5인 이상 사업장<small>5인 미만이면 법정 연차가 적용되지 않아요</small></span><button class="sw" id="five" role="switch" aria-checked="true" aria-label="상시 근로자 5인 이상"></button></div>
+        <div class="box srow"><label for="wh">주 소정근로시간</label><div class="row"><input id="wh" inputmode="numeric" placeholder="40" autocomplete="off"><span class="unit">시간</span></div></div>
+        <div class="quick2" id="whq"><button data-v="40">40</button><button data-v="35">35</button><button data-v="30">30</button><button data-v="20">20</button><button data-v="15">15</button></div>
+        <div class="srow" id="wdRow" hidden><span class="lb">일주일에 일하는 날</span><div class="seg2" id="wd"><button data-v="5" aria-pressed="true">5일</button><button data-v="4" aria-pressed="false">4일</button><button data-v="3" aria-pressed="false">3일</button><button data-v="2" aria-pressed="false">2일</button></div></div>
+        <div class="box srow"><label for="used">이번 연차 기간에 사용한 연차</label><div class="row"><input id="used" inputmode="decimal" placeholder="0" autocomplete="off"><span class="unit">일</span></div></div>
+        <div class="srow"><span class="lb">통상임금 (선택 · 미사용 수당 계산용)</span><div class="seg2" id="pm"><button data-m="month" aria-pressed="true">월급</button><button data-m="hour" aria-pressed="false">시급</button></div></div>
+        <div class="box" style="margin-top:10px"><label for="pay" id="payLb">월 통상임금 (기본급 + 고정수당)</label><div class="row"><input id="pay" inputmode="numeric" placeholder="3,000,000" autocomplete="off"><span class="unit">원</span></div></div>
+        <div class="quick2" id="payq"></div>
+      </div>
+    </main>
+    <aside class="res">
+      <div class="disp lite" aria-live="polite">
+        <div class="cap" id="cap">현재 연차</div>
+        <div class="big" id="big">-</div>
+        <div class="sub" id="sub">입사일과 기준일을 넣으면 계산해요</div>
+        <ul class="ms" id="ms" hidden></ul>
+        <p class="fn" id="fn" hidden>입사일 기준이에요. 매달 개근하고 1년 출근율이 80% 이상이라고 가정했어요. 회계연도 기준으로 연차를 주는 회사나 취업규칙에서 더 많이 주는 경우는 반영하지 않았어요.</p>
+        <div class="endo" id="endo" data-p="abacus"><img src="/assets/endo/abacus.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">입사일을 넣으면 연차를 바로 계산해요!</div></div>
+        <div class="acts2"><button id="share" data-share="결과 공유" disabled>결과 복사</button><button class="sb" id="reset">초기화</button></div>
+      </div>
+    </aside>
+  </div>
+    <section class="nexttools" aria-label="이어서 쓰면 좋은 도구">
+    <h2>이어서 쓰면 좋은 도구</h2>
+    <div class="ntg"><a class="nt" href="/severance/" data-c="calc"><span class="nt-i" aria-hidden="true">퇴</span><span class="nt-t"><strong>퇴직금 계산기</strong><span>평균임금·퇴직소득세까지 한 번에</span></span><span class="nt-a" aria-hidden="true">›</span></a><a class="nt" href="/salary/" data-c="calc"><span class="nt-i" aria-hidden="true">연</span><span class="nt-t"><strong>연봉 실수령액 계산기</strong><span>4대보험·소득세 빼고 월 실수령액</span></span><span class="nt-a" aria-hidden="true">›</span></a><a class="nt" href="/wage/" data-c="calc"><span class="nt-i" aria-hidden="true">₩</span><span class="nt-t"><strong>알바 급여 계산기</strong><span>주휴수당 포함 주급·월급</span></span><span class="nt-a" aria-hidden="true">›</span></a></div>
+  </section>
+  <section class="guide">
+    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>연차는 "1년 뒤에 15일이 한꺼번에 생기는 것"이 아니에요. 입사 첫해에도 한 달 개근할 때마다 1일씩 생기고, 첫 2년 동안은 월차 11일에 15일을 더해 최대 26일까지 쓸 수 있어요.</p></div></div>
+    <h2>연차는 이렇게 생겨요</h2>
+    <div class="fgrid">
+      <div class="f"><h3>입사 1년 미만</h3><p>한 달을 개근할 때마다 1일씩 생겨요. 한 달이 끝난 다음 날 발생하고, 첫 1년 동안 최대 11일까지 쌓여요.</p></div>
+      <div class="f"><h3>입사 1년 이상</h3><p>만 1년이 지난 다음 날 15일이 생겨요. 1년 동안 80% 이상 출근했을 때 받아요. 이후 해마다 같은 날 새로 생겨요.</p></div>
+      <div class="f"><h3>3년 이상</h3><p>만 3년이 되는 날부터 2년마다 1일씩 늘어요. 3년에 16일, 5년에 17일이 되고, 21년 이상이면 25일이 한도예요.</p></div>
+      <div class="f"><h3>발생 시점이 중요해요</h3><p>1년 되는 날의 전날까지만 일하고 퇴사하면 15일은 생기지 않아요. 다음 발생일 전날이 마지막 근무일이 아닌지 꼭 확인하세요.</p></div>
+    </div>
+    <h2>근속연수별 연차 일수</h2>
+    <div class="ptable w2"><table>
+      <thead><tr><th>근속</th><th>연차</th></tr></thead>
+      <tbody><tr><td>1년 미만</td><td>한 달 개근마다 1일 (최대 11일)</td></tr><tr><td>1~2년</td><td><b>15일</b></td></tr><tr><td>3~4년</td><td><b>16일</b></td></tr><tr><td>5~6년</td><td><b>17일</b></td></tr><tr><td>7~8년</td><td><b>18일</b></td></tr><tr><td>9~10년</td><td><b>19일</b></td></tr><tr><td>11~12년</td><td><b>20일</b></td></tr><tr><td>13~14년</td><td><b>21일</b></td></tr><tr><td>15~16년</td><td><b>22일</b></td></tr><tr><td>17~18년</td><td><b>23일</b></td></tr><tr><td>19~20년</td><td><b>24일</b></td></tr><tr><td>21년 이상</td><td><b>25일</b></td></tr></tbody>
+    </table></div>
+    <p class="pnote">상시 5인 이상 사업장, 주 40시간 근무, 1년 출근율 80% 이상 기준이에요. 근속연수는 만 단위로 계속 근로한 햇수예요.</p>
+    <h2>쓰지 못한 연차수당은 얼마일까</h2>
+    <p class="pnote" style="margin-top:0">미사용 수당은 통상 일급(월 통상임금 ÷ 209시간 × 8시간)에 남은 일수를 곱해요. 주 40시간 근무 기준이에요.</p>
+    <div class="ptable w5"><table>
+      <thead><tr><th>월 통상임금</th><th>일급</th><th>5일</th><th>10일</th><th>15일</th></tr></thead>
+      <tbody><tr><td>250만원</td><td>95,693원</td><td>478,468원</td><td><b>956,937원</b></td><td>1,435,406원</td></tr><tr><td>300만원</td><td>114,832원</td><td>574,162원</td><td><b>1,148,325원</b></td><td>1,722,488원</td></tr><tr><td>350만원</td><td>133,971원</td><td>669,856원</td><td><b>1,339,712원</b></td><td>2,009,569원</td></tr><tr><td>400만원</td><td>153,110원</td><td>765,550원</td><td><b>1,531,100원</b></td><td>2,296,650원</td></tr></tbody>
+    </table></div>
+    <h2>알아두면 좋은 점</h2>
+    <div class="fgrid">
+      <div class="f"><h3>출근율 80%</h3><p>소정근로일 중 출근한 비율이에요. 업무상 부상·질병으로 쉰 기간, 출산전후휴가, 육아휴직은 출근한 것으로 보고 계산해요.</p></div>
+      <div class="f"><h3>회계연도 기준 회사</h3><p>1월 1일에 모두에게 연차를 주는 회사도 있어요. 입사일 기준보다 불리하면 안 되고, 퇴사할 때는 입사일 기준으로 다시 정산해요.</p></div>
+      <div class="f"><h3>사용 기한과 사용 촉진</h3><p>연차는 발생한 날부터 1년 동안 쓸 수 있어요. 회사가 정해진 절차로 사용을 권하면 못 쓴 연차의 수당을 주지 않을 수 있어요.</p></div>
+      <div class="f"><h3>5인 미만·15시간 미만</h3><p>상시 5인 미만 사업장이나 주 15시간 미만 근로자는 법정 연차가 없어요. 주 15시간 이상 40시간 미만이면 시간 단위로 환산해요.</p></div>
+    </div>
+    <div class="faq">
+      <h2>자주 묻는 질문</h2>
+      <details><summary>연차는 입사하고 언제부터 생기나요?</summary><p>입사 후 한 달을 개근할 때마다 1일씩 생겨요. 한 달이 끝난 다음 날 발생하고, 첫 1년 동안 최대 11일까지 쌓여요. 이 연차는 입사 후 1년이 되기 전까지 쓰는 게 원칙이에요. 1년 미만이어도 한 달씩 개근하면 연차를 쓸 수 있다는 점이 핵심이에요.</p></details>
+      <details><summary>월차 11일과 1년 뒤 15일을 합쳐서 26일인가요?</summary><p>네, 첫 2년 동안은 합쳐서 최대 26일을 쓸 수 있어요. 예전에는 1년 미만에 쓴 연차를 15일에서 빼는 규정이 있었지만, 지금은 이 규정이 없어졌어요. 요즘 입사자라면 월차를 썼다고 15일이 줄어들지 않아요.</p></details>
+      <details><summary>15일은 정확히 언제 생기나요?</summary><p>입사 후 만 1년이 지난 다음 날 생겨요. 입사일이 2025년 3월 2일이라면 2026년 3월 2일이에요. 그 전날인 3월 1일까지만 일하고 퇴사하면 15일은 생기지 않아요. 이 계산기도 같은 기준으로 발생일을 계산해요.</p></details>
+      <details><summary>출근율 80%는 어떻게 계산하나요?</summary><p>1년 동안 소정근로일 중 출근한 비율이에요. 업무상 부상·질병으로 쉰 기간, 출산전후휴가, 육아휴직, 법정 휴가로 쉰 날은 출근한 것으로 봐요. 이 계산기는 매달 개근하고 출근율이 80% 이상이라고 가정해서 계산해요.</p></details>
+      <details><summary>근속 3년이 넘으면 연차가 늘어나나요?</summary><p>네, 만 3년이 되는 날 16일이 되고, 그 뒤로 2년마다 1일씩 늘어요. 만 5년에 17일, 만 7년에 18일 식으로 늘다가 만 21년이 되면 25일이 한도예요. 위 표에서 근속연수별 일수를 확인할 수 있어요.</p></details>
+      <details><summary>회사가 회계연도(1월 1일) 기준이면 이 계산기와 다른가요?</summary><p>달라질 수 있어요. 회계연도 기준은 모든 직원에게 1월 1일에 연차를 일괄 부여하는 방식이에요. 법에서 정한 입사일 기준보다 근로자에게 불리하지 않게 운영해야 하고, 퇴사할 때는 입사일 기준으로 다시 계산해 정산해야 해요. 이 계산기는 입사일 기준이니, 회계연도 기준 회사는 참고용으로 보세요.</p></details>
+      <details><summary>5인 미만 사업장은 연차가 없나요?</summary><p>상시 근로자 5명 미만인 사업장에는 법정 연차 규정이 적용되지 않아요. 그래서 법으로 연차를 요구할 수는 없지만, 근로계약이나 취업규칙으로 따로 정해 두었다면 그에 따라요. 사업장 규모는 계산기의 "상시 근로자 5인 이상" 스위치로 바꿔 볼 수 있어요.</p></details>
+      <details><summary>쓰지 못한 연차는 돈으로 받을 수 있나요?</summary><p>네, 쓰지 못한 연차는 수당으로 받을 수 있어요. 통상임금 일급에 남은 일수를 곱해요. 통상 일급은 월 통상임금을 209시간으로 나눈 시급에 하루 8시간을 곱한 값이에요. 다만 회사가 법에서 정한 연차 사용 촉진 절차를 제대로 거쳤다면 수당을 주지 않을 수 있어요.</p></details>
+      <details><summary>주 15시간 미만이나 단시간 근로자는요?</summary><p>주 15시간 미만이면 법정 연차가 없어요. 주 15시간 이상이지만 40시간 미만이면 연차를 시간으로 계산해요. 이 계산기에서 주 소정근로시간과 근무일수를 넣으면 시간 단위로 환산해서 보여줘요.</p></details>
+      <details><summary>퇴사하면 연차는 어떻게 되나요?</summary><p>퇴사일까지 이미 발생한 연차만 대상이고, 그중 쓰지 못한 연차는 수당으로 정산해요. 퇴사 후에 생길 연차를 미리 주는 건 아니에요. 그래서 마지막 근무일을 정할 때 다음 연차 발생일 전날인지 확인하는 게 좋아요. 기준일에 퇴사일을 넣으면 이 계산기로 확인할 수 있어요.</p></details>
+    </div>
+    <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/annual-leave/">연차 15일은 언제 생길까: 월차 11일부터 25일 한도까지 →</a></div>
+    <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/under-15-hours/">주 15시간 미만이면 퇴직금·연차도 없을까? →</a></div>
+  </section>
+  <div class="toast" id="toast"></div>
+<script>
+/* 연차 계산 엔진 (근로기준법 제60조, 입사일 기준) */
+const LV_dn=(y,m,d)=>Math.round(Date.UTC(y,m-1,d)/86400000);
+function lvParse(s){ const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||''); if(!m) return null; const y=+m[1],mo=+m[2],d=+m[3]; const t=new Date(Date.UTC(y,mo-1,d)); if(t.getUTCFullYear()!==y||t.getUTCMonth()!==mo-1||t.getUTCDate()!==d) return null; return LV_dn(y,mo,d); }
+function lvYmd(n){ const t=new Date(n*86400000); return {y:t.getUTCFullYear(),m:t.getUTCMonth()+1,d:t.getUTCDate()}; }
+/* 입사일 기준 k개월 뒤: 해당일이 없는 달이면 그 달 말일에 기간이 만료되므로 다음 날이 발생일 */
+function lvForward(n,k){ const a=lvYmd(n); let y=a.y,m=a.m-1+k; y+=Math.floor(m/12); m=((m%12)+12)%12; const last=new Date(Date.UTC(y,m+1,0)).getUTCDate(); return a.d>last? LV_dn(y,m+1,last)+1 : LV_dn(y,m+1,a.d); }
+/* 계속근로 만 n년이 지난 뒤 발생하는 연차 일수: 15일 + 2년마다 1일, 최대 25일 */
+function lvDays(n){ return n<1?0:Math.min(25,15+Math.floor((n-1)/2)); }
+function lvCalc(o){
+  const j=lvParse(o.join), a=lvParse(o.asof);
+  if(j===null||a===null) return {err:'date'};
+  if(a<j) return {err:'order'};
+  let n=0; while(lvForward(j,12*(n+1))<=a) n++;
+  let m=0; if(n===0){ while(m<11&&lvForward(j,m+1)<=a) m++; }
+  const current=n===0? m : lvDays(n);
+  const next=n===0? (m<11? {date:lvForward(j,m+1),days:1,kind:'월차'} : {date:lvForward(j,12),days:lvDays(1),kind:'연차'}) : {date:lvForward(j,12*(n+1)),days:lvDays(n+1),kind:'연차'};
+  let total=0; if(n===0) total=m; else { total=11; for(let y=1;y<=n;y++) total+=lvDays(y); }
+  // 근속 기간 표시 (입사일 ~ 기준일 포함)
+  const end=a+1; let ty=0; while(lvForward(j,12*(ty+1))<=end) ty++;
+  let tm=0; while(lvForward(j,12*ty+tm+1)<=end) tm++;
+  const td=end-lvForward(j,12*ty+tm);
+  return {years:n,months:m,current,kind:n===0?'월차':'연차',next,total,ty,tm,td,days:end-j};
+}
+
+const $=id=>document.getElementById(id);
+const KEY='sonandogu-leave-v1';
+const DEF={jd:'',ad:'',five:true,wh:'40',wd:5,used:'',pm:'month',pay:''};
+let S=Object.assign({},DEF,(()=>{try{return JSON.parse(localStorage.getItem(KEY))||{};}catch(e){return {};}})());
+const fmt=n=>Math.round(n).toLocaleString('ko-KR');
+const numInt=v=>{const n=parseInt(String(v==null?'':v).replace(/[^0-9]/g,''),10);return isFinite(n)?n:0;};
+const comma=v=>{const n=String(v==null?'':v).replace(/[^0-9]/g,'').slice(0,12).replace(/^0+(?=\d)/,''); return n?Number(n).toLocaleString('ko-KR'):'';};
+const dec=v=>{ let s=String(v==null?'':v).replace(/[^0-9.]/g,''); const p=s.split('.'); s=p[0].slice(0,3)+(p.length>1?'.'+p[1].slice(0,1):''); return s.replace(/^0+(?=\d)/,''); };
+const isoOk=v=>lvParse(typeof v==='string'?v:'')!==null?v:'';
+S.jd=isoOk(S.jd); S.ad=isoOk(S.ad); S.five=S.five!==false; S.wh=String(Math.min(60,numInt(S.wh))||''); if(!S.wh) S.wh='40';
+S.wd=[5,4,3,2].includes(+S.wd)?+S.wd:5; S.used=dec(S.used); S.pm=S.pm==='hour'?'hour':'month'; S.pay=comma(S.pay);
+const saveS=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}};
+const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1600);}
+const WD=['일','월','화','수','목','금','토'], pad=n=>String(n).padStart(2,'0');
+const fd=n=>{const a=lvYmd(n); return `${a.y}.${pad(a.m)}.${pad(a.d)}(${WD[new Date(n*86400000).getUTCDay()]})`;};
+const toIso=n=>{const a=lvYmd(n); return `${a.y}-${pad(a.m)}-${pad(a.d)}`;};
+const trim=x=>String(Math.round(x*10)/10).replace(/\.0$/,'');
+let last=null;
+const QM=[[2500000,'250만'],[3000000,'300만'],[3500000,'350만'],[4000000,'400만']], QH=[[10320,'10,320 (최저임금)'],[12000,'12,000'],[15000,'15,000']];
+function drawQ(){ const q=$('payq'); q.innerHTML=''; (S.pm==='month'?QM:QH).forEach(([v,l])=>{ const b=document.createElement('button'); b.type='button'; b.textContent=l; b.onclick=()=>{ S.pay=comma(v); $('pay').value=S.pay; saveS(); run(); }; q.append(b); }); }
+function ui(){
+  $('jd').value=S.jd; $('ad').value=S.ad; $('five').setAttribute('aria-checked',S.five); $('wh').value=S.wh; $('used').value=S.used; $('pay').value=S.pay;
+  document.querySelectorAll('#wd button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.v===S.wd));
+  document.querySelectorAll('#pm button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.m===S.pm));
+  $('payLb').textContent=S.pm==='month'?'월 통상임금 (기본급 + 고정수당)':'통상시급'; $('pay').placeholder=S.pm==='month'?'3,000,000':'10,320';
+  $('wdRow').hidden=!(numInt(S.wh)>=15&&numInt(S.wh)<40); drawQ();
+}
+function row(b,s,e,cls){ const li=document.createElement('li'); if(cls) li.className=cls; li.innerHTML='<b></b><span></span><em></em>'; li.children[0].textContent=b; li.children[1].textContent=s; li.children[2].textContent=e; return li; }
+function reset0(msg,warn){ $('big').textContent='-'; $('cap').textContent='현재 연차'; $('sub').textContent=msg; $('ms').hidden=true; $('fn').hidden=true; $('share').disabled=true; last=null; const q=$('qnet'); q.className='qnet'+(warn?' warn':''); q.textContent=msg; }
+function run(){
+  $('jd').max=S.ad||''; S.wh=S.wh||'40';
+  if(!S.jd||!S.ad){ reset0('입사일과 기준일을 골라 주세요'); endo('abacus','입사일을 넣으면 연차를 바로 계산해요!'); return; }
+  const r=lvCalc({join:S.jd,asof:S.ad});
+  if(r.err==='order'){ reset0('기준일이 입사일보다 앞이에요',true); endo('surprised','날짜 순서가 바뀐 것 같아요!'); return; }
+  if(r.err){ reset0('날짜를 다시 골라 주세요',true); return; }
+  const q=$('qnet'); q.className='qnet'; q.innerHTML='근속 <b>'+r.ty+'년 '+r.tm+'개월 '+r.td+'일</b> ('+fmt(r.days)+'일째)';
+  const w=Math.min(60,numInt(S.wh))||40;
+  if(!S.five){ reset0('상시 5인 미만이면 법정 연차가 없어요'); $('qnet').innerHTML=q.innerHTML; $('cap').textContent='법정 연차 없음'; $('big').textContent='0일'; $('sub').textContent='5인 미만 사업장에는 근로기준법 연차 규정이 적용되지 않아요'; $('fn').hidden=false; endo('surprised','5인 미만은 법정 연차가 없어요. 근로계약서를 확인해 보세요'); return; }
+  if(w<15){ reset0('주 15시간 미만이면 법정 연차가 없어요'); $('qnet').innerHTML=q.innerHTML; $('cap').textContent='법정 연차 없음'; $('big').textContent='0일'; $('sub').textContent='4주 평균 주 15시간 미만(초단시간)은 연차가 발생하지 않아요'; $('fn').hidden=false; endo('surprised','주 15시간 미만은 연차 대상이 아니에요'); return; }
+  const wd=w<40?S.wd:5, h=w>=40?8:w/wd;
+  const hoursTotal=w>=40? r.current*8 : Math.ceil(r.current*(w/40)*8-1e-9);
+  const dayEq=hoursTotal/h;
+  const used=parseFloat(S.used)||0, usedH=used*h;
+  const remH=Math.max(0,hoursTotal-usedH), remDay=remH/h;
+  let hourly=0; const pay=numInt(S.pay);
+  if(pay>0) hourly=S.pm==='hour'? pay : pay/(209*(Math.min(w,40)/40));
+  const dailyPay=Math.floor(hourly*h), allowance=Math.floor(remH*hourly);
+  last={r,w,h,hoursTotal,dayEq,used,remDay,remH,allowance,hourly};
+  $('cap').textContent=r.kind==='월차'?'지금까지 생긴 월차 (1년 미만)':'이번 연차 (최근 발생분)';
+  $('big').innerHTML=trim(dayEq)+'<span class="u">일</span>';
+  $('sub').textContent=(w<40?`${fmt(hoursTotal)}시간 (하루 ${trim(h)}시간 기준) · `:'')+`남은 연차 ${trim(remDay)}일`+(allowance>0?` · 수당 약 ${fmt(allowance)}원`:'');
+  const ms=$('ms'); ms.innerHTML='';
+  ms.append(row('근속 기간',`${r.ty}년 ${r.tm}개월 ${r.td}일`,fmt(r.days)+'일'));
+  ms.append(row('적용 기준',r.years===0?'1년 미만: 한 달 개근 1일':`만 ${r.years}년 · 15일${r.current>15?'+'+(r.current-15)+'일':''}`,r.kind));
+  ms.append(row('발생 연차',w<40?`${fmt(hoursTotal)}시간`:'',trim(dayEq)+'일'));
+  ms.append(row('사용한 연차','',trim(used)+'일'));
+  ms.append(row('남은 연차','',trim(remDay)+'일','hot'));
+  ms.append(row('통상 일급',pay>0?`시급 ${fmt(Math.floor(hourly))}원 × ${trim(h)}시간`:'통상임금을 넣어 보세요',pay>0?fmt(dailyPay)+'원':'-'));
+  ms.append(row('미사용 수당','남은 연차 × 통상 일급',pay>0?fmt(allowance)+'원':'-','next'));
+  ms.append(row('다음 발생',`${r.next.kind} ${r.next.days}일`,fd(r.next.date)));
+  ms.append(row('누적 발생','월차+연차 합계',trim(w<40?Math.ceil(r.total*(w/40)*8-1e-9)/h:r.total)+'일'));
+  ms.hidden=false; $('fn').hidden=false; $('share').disabled=false;
+  if(remDay<=0&&used>0) endo('thumbs','발생한 연차를 모두 썼어요');
+  else if(r.years===0) endo('thumbs',`월차 ${r.current}일이 생겼어요. 1년이 되면 15일이 새로 생겨요`);
+  else endo('thumbs',`이번 연차는 ${trim(dayEq)}일이에요. 다음은 ${fd(r.next.date)}에 생겨요`);
+}
+const hookTxt=(id,key,fn)=>$(id).addEventListener('input',()=>{ S[key]=fn?fn($(id).value):$(id).value; if(fn) $(id).value=S[key]; saveS(); run(); });
+hookTxt('pay','pay',comma); hookTxt('used','used',dec);
+$('wh').addEventListener('input',()=>{ S.wh=String(numInt($('wh').value)||''); if(S.wh&&+S.wh>60) S.wh='60'; $('wh').value=S.wh; saveS(); ui(); $('wh').focus(); run(); });
+['jd','ad'].forEach(id=>{ $(id).addEventListener('input',()=>{ S[id]=$(id).value; saveS(); run(); }); $(id).addEventListener('change',()=>{ S[id]=$(id).value; saveS(); run(); }); });
+document.querySelectorAll('#dq button').forEach(b=>b.onclick=()=>{ const t=new Date(); S.ad=toIso(LV_dn(t.getFullYear(),t.getMonth()+1,t.getDate())); saveS(); ui(); run(); });
+document.querySelectorAll('#whq button').forEach(b=>b.onclick=()=>{ S.wh=b.dataset.v; saveS(); ui(); run(); });
+document.querySelectorAll('#wd button').forEach(b=>b.onclick=()=>{ S.wd=+b.dataset.v; saveS(); ui(); run(); });
+document.querySelectorAll('#pm button').forEach(b=>b.onclick=()=>{ if(S.pm===b.dataset.m) return; S.pm=b.dataset.m; S.pay=''; saveS(); ui(); run(); });
+$('five').onclick=()=>{ S.five=!S.five; saveS(); ui(); run(); };
+$('reset').onclick=()=>{ S=Object.assign({},DEF); try{localStorage.removeItem(KEY);}catch(e){} ui(); run(); say('처음 값으로 되돌렸어요'); };
+$('share').onclick=async()=>{ if(!last) return; const L=last, r=L.r; const txt=`[연차 계산] 입사 후 ${r.ty}년 ${r.tm}개월 → ${r.kind==='월차'?'월차':'연차'} ${trim(L.dayEq)}일, 남은 연차 ${trim(L.remDay)}일`+(L.allowance>0?`, 미사용 수당 약 ${fmt(L.allowance)}원`:'')+`\n다음 발생일 ${fd(r.next.date)}\n\n손안의도구 연차 계산기\nhttps://sonandogu.com/leave/`; try{ const x=await shareOut(txt); if(x==='copied') say('복사했어요'); }catch(e){ say('공유하지 못했어요'); } };
+window.__lv={lvCalc,lvDays};
+ui(); run();
+</script>
+<section class="cmts" data-page="/leave/" data-kind="tool"></section>
+</div>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+<script src="/assets/firebase-config.js?v=4"></script>
+<script src="/assets/favorites.js?v=2"></script>
+<script type="module" src="/assets/comments.js?v=4"></script>
+<script src="/assets/analytics.js?v=2" defer></script>
+</body>
+</html>
