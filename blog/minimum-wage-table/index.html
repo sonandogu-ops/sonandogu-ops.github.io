@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon-192.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F4F1">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sonandogu.com/blog/minimum-wage-table/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-minimum-wage-table-post.jpg?v=1">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<title>최저임금 일급·월급 환산표 2026·2027: 하루 몇 시간이면 얼마 | 손안의도구</title>
+<meta name="description" content="최저임금 하루치는 얼마일까? 2026년 10,320원과 2027년 10,700원으로 하루 4~8시간 일급, 근무 형태별 월급, 월 근로시간 계산법, 하루 7시간과 8시간의 차이, 내년 인상분을 환산표로 정리했어요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="최저임금 하루치와 한 달치, 환산표로 한 번에">
+<meta property="og:description" content="2026·2027 일급과 월급 환산표.">
+<link rel="canonical" href="https://sonandogu.com/blog/minimum-wage-table/">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "최저임금 하루치와 한 달치, 환산표로 한 번에", "datePublished": "2026-11-09", "dateModified": "2026-11-09", "author": {"@type": "Organization", "name": "손안의도구"}, "publisher": {"@type": "Organization", "name": "손안의도구"}, "mainEntityOfPage": "https://sonandogu.com/blog/minimum-wage-table/", "image": "https://sonandogu.com/assets/og-minimum-wage-table-post.jpg?v=1"}</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.post{max-width:700px; padding:36px 0 0}
+@media (min-width:920px){.post{padding-top:60px}}
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:14px}
+.crumb a{color:var(--muted); text-decoration:none}
+.post h1{font-size:clamp(30px,6vw,46px); font-weight:800; letter-spacing:-.05em; line-height:1.15; margin:0 0 14px}
+.meta{font-size:14px; color:var(--muted); margin:0 0 30px}
+.post h2{font-size:clamp(21px,3.6vw,26px); font-weight:800; letter-spacing:-.04em; line-height:1.3; margin:52px 0 14px}
+.post p{font-size:16.5px; line-height:1.85; margin:0 0 16px}
+.post strong{font-weight:750}
+.formula{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:14px; padding:16px 18px; font-size:17px; font-weight:750; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex{background:rgba(255,90,31,.07); border-radius:14px; padding:14px 18px; font-size:15.5px; line-height:1.8; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex b{color:var(--orange)}
+.tbl{overflow-x:auto; margin:0 0 16px}
+table{width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums}
+th,td{padding:11px 10px; border-bottom:1px solid var(--line); text-align:left}
+th{color:var(--muted); font-weight:700; font-size:13.5px}
+td:last-child,th:last-child{text-align:right}
+.mini{position:relative; overflow:hidden; border-radius:26px; padding:20px; color:#F4F4F1; margin:6px 0 34px;
+  background:radial-gradient(110% 140% at 100% 0%, rgba(255,106,51,.26) 0%, rgba(255,106,51,0) 50%), linear-gradient(160deg,#202126 0%,#121316 100%); box-shadow:var(--shadow)}
+.mini h3{margin:0 0 12px; font-size:15px; font-weight:800}
+.mini .row{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.mini label{display:block; font-size:12px; font-weight:700; color:rgba(244,244,241,.55); margin:0 0 5px 2px}
+.mini input{width:100%; font:inherit; font-size:22px; font-weight:750; color:#F4F4F1; background:rgba(255,255,255,.07); border:1.5px solid rgba(255,255,255,.1); border-radius:14px; padding:10px 12px; outline:none; font-variant-numeric:tabular-nums}
+.mini input:focus{border-color:#FF6A33}
+.mini input::placeholder{color:rgba(244,244,241,.3)}
+.mini .out{margin-top:14px; font-size:15px; color:rgba(244,244,241,.6); min-height:1.5em}
+.mini .out b{font-size:30px; color:#fff; letter-spacing:-.04em; margin:0 4px}
+.mini .out em{font-style:normal; color:#FF8A3D; font-weight:700}
+.mini a{display:inline-block; margin-top:12px; color:#FF8A3D; font-weight:700; font-size:14px; text-decoration:none}
+.next{margin-top:56px; display:grid; gap:10px}
+.next a{display:flex; justify-content:space-between; align-items:center; gap:12px; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:18px 20px; box-shadow:var(--shadow)}
+.next a:hover{border-color:var(--ink)}
+.next strong{display:block; font-size:17px; font-weight:800; letter-spacing:-.03em}
+.next span{font-size:14px; color:var(--muted)}
+.next i{font-style:normal; font-size:20px; color:var(--muted)}
+
+.ill{margin:6px 0 26px; background:var(--surface); border:1px solid var(--line); border-radius:24px; padding:16px 12px 12px; box-shadow:var(--shadow)}
+.ill svg{display:block; width:100%; height:auto}
+.ill figcaption{text-align:center; font-size:13.5px; color:var(--muted); margin-top:6px}
+.ill .tag{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .hole{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .tp{font-size:20px; font-weight:700; fill:var(--muted)}
+.ill .tbig{font-size:46px; font-weight:800; fill:var(--ink); letter-spacing:-2px}
+.ill .strike{stroke:#FF5A1F; stroke-width:5; stroke-linecap:round}
+.ill .st{font-size:30px; font-weight:800; fill:#fff}
+.ill .st2{font-size:26px; font-weight:800; fill:#FF8A3D}
+.ill .q{font-size:80px; font-weight:800; fill:var(--faint)}
+.ill .lbl text{font-size:17px; font-weight:700; fill:var(--muted)}
+.ill .val text{font-size:20px; font-weight:800; fill:var(--ink)}
+.ill .bar0{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .bar1{fill:#FFB48A}
+.ill .bar2{fill:#FF5A1F}
+.ill .ghost{stroke:var(--ink); stroke-width:2; stroke-dasharray:6 6; opacity:.5}
+.ill .arr{fill:none; stroke:var(--faint); stroke-width:3; stroke-linecap:round}
+.ill .arr2{fill:none; stroke:var(--ink); stroke-width:2; opacity:.5}
+.ill .note{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .btl{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .cap{fill:var(--line)}
+.ill .btlf{fill:#FF5A1F}
+.ill .capf{fill:#FF8A3D}
+.ill .bp{font-size:30px; font-weight:800; fill:var(--muted)}
+.ill .free{font-size:22px; font-weight:800; fill:#fff}
+.ill .cap2{font-size:18px; font-weight:800; fill:var(--ink)}
+.quiz{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px 22px; margin:26px 0 8px; box-shadow:var(--shadow)}
+.quiz .qh{font-size:13px; font-weight:800; color:var(--orange); margin:0 0 6px}
+.quiz .qq{font-size:17px; font-weight:750; margin:0 0 12px; line-height:1.6}
+.quiz summary{display:inline-block; cursor:pointer; list-style:none; font-size:14.5px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); padding:9px 16px; border-radius:12px}
+.quiz summary::-webkit-details-marker{display:none}
+.quiz details[open] summary{display:none}
+.quiz details p{margin:0; font-size:16px; line-height:1.75}
+.quiz details b{color:var(--orange)}
+.keys{display:grid; gap:10px; margin:0 0 18px}
+@media (min-width:640px){.keys{grid-template-columns:repeat(3,1fr)}}
+.keys div{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:16px}
+.keys b{display:block; font-size:16px; font-weight:800; color:var(--orange); margin-bottom:4px}
+.keys span{font-size:14.5px; color:var(--muted); line-height:1.6}
+
+.ill .ok{fill:#1FA968}.ill .okt{fill:#1FA968; font-size:16px; font-weight:800}
+.ill .warn{fill:#FF5A1F}.ill .warnt{fill:#FF5A1F; font-size:16px; font-weight:800}
+.ill .axis{stroke:var(--line); stroke-width:3}
+.ill .tick{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .paper{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .ln2{stroke:var(--line); stroke-width:3; stroke-linecap:round}
+.ill .red{fill:#B4232F; font-weight:800}
+.ill .node{fill:var(--field); stroke:var(--faint); stroke-width:2}
+.ill .nodeb{fill:var(--surface); stroke:var(--ink); stroke-width:3}
+.ill .path{stroke:var(--line); stroke-width:4; fill:none}
+.ill .hot{stroke:#FF5A1F; stroke-width:6; fill:none; stroke-linecap:round; stroke-dasharray:2 12}
+.ill .dot{fill:#FF5A1F}
+.ill .p3{stroke:var(--faint); stroke-width:4; fill:none; stroke-linecap:round}
+.ill .p5{stroke:#FF5A1F; stroke-width:5; fill:none; stroke-linecap:round}
+.ill .grid{stroke:var(--line); stroke-width:1.5}
+.tbl{overflow-x:auto}
+.tbl th,.tbl td{text-align:left!important; word-break:keep-all}
+.tbl td:nth-child(n+2),.tbl th:nth-child(n+2){white-space:nowrap}
+.tbl td:first-child{min-width:7.5em}
+</style>
+<link rel="stylesheet" href="/assets/comments.css?v=3">
+<meta name="google-adsense-account" content="ca-pub-1007904420767851">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<div class="container"><article class="post">
+  <div class="crumb"><a href="/blog/">블로그</a> / 생활 계산</div>
+  <h1>최저임금 하루치와 한 달치,<br>환산표로 한 번에 보기</h1>
+  <p class="meta pub"><time datetime="2026-11-09">2026년 11월 9일</time></p>
+
+  <figure class="ill" aria-label="시급 10,320원에 8시간을 곱하면 일급 82,560원이고, 월 209시간을 곱하면 월급 환산액 2,156,880원이다">
+    <svg viewBox="0 0 640 290">
+      <g>
+        <rect x="14" y="100" width="170" height="92" rx="20" class="tag"/><text x="99.0" y="132" text-anchor="middle" class="note" style="font-size:17px">2026년 시급</text><text x="99.0" y="166" text-anchor="middle" class="tbig" style="font-size:24px">10,320원</text>
+        <rect x="400" y="14" width="226" height="92" rx="20" class="tag"/><text x="513.0" y="46" text-anchor="middle" class="note" style="font-size:17px">하루 8시간 일급</text><text x="513.0" y="80" text-anchor="middle" class="tbig" style="font-size:24px">82,560원</text>
+        <rect x="400" y="186" width="226" height="92" rx="20" class="tag" style="stroke:#FF5A1F;stroke-width:3"/><text x="513.0" y="218" text-anchor="middle" class="note" style="font-size:17px">한 달 209시간 월급</text><text x="513.0" y="252" text-anchor="middle" class="tbig" style="fill:#FF5A1F;font-size:24px">2,156,880원</text>
+        <line x1="188" y1="126" x2="388.3" y2="72.1" stroke="#FF5A1F" stroke-width="3.5" stroke-linecap="round"/><polygon points="396.0,70.0 386.2,79.9 382.6,66.4" fill="#FF5A1F"/><text x="290" y="82" text-anchor="middle" class="note" style="font-size:18px;font-weight:700">× 8시간</text>
+        <line x1="188" y1="166" x2="388.3" y2="223.8" stroke="#FF5A1F" stroke-width="3.5" stroke-linecap="round"/><polygon points="396.0,226.0 382.5,229.4 386.4,215.9" fill="#FF5A1F"/><text x="290" y="226" text-anchor="middle" class="note" style="font-size:18px;font-weight:700">× 209시간</text>
+      </g>
+    </svg>
+    <figcaption>시급 하나로 일급과 월급을 모두 구할 수 있어요</figcaption>
+  </figure>
+
+  <p>알바 면접에서 "시급 10,320원이에요"라는 말을 들으면 머릿속이 바빠져요. 하루에는 얼마고, 한 달이면 얼마일까? 주 5일 8시간이니까 8시간 × 22일 × 10,320원을 해 보면, 막상 급여 명세서의 금액과 맞지 않아요. 한 달 치로 바꿀 때는 따로 정해진 기준이 있기 때문이에요.</p>
+
+  <div class="quiz">
+    <p class="qh">잠깐, 먼저 맞혀볼까요?</p>
+    <p class="qq">2026년 최저임금(시급 10,320원)으로 하루 8시간, 주 5일 일하면 한 달(월 환산)에 받는 돈은 얼마일까요? ① 약 182만 원 ② 약 216만 원 ③ 약 248만 원</p>
+    <details><summary>정답 보기</summary><p><b>② 약 216만 원</b>이에요. 정확히는 2,156,880원이에요. 일한 시간만 곱하면(8시간 × 22일 = 176시간) 약 182만 원인데, 월 환산에서는 주휴 8시간분을 합쳐 한 달을 209시간으로 보기 때문이에요.</p></details>
+  </div>
+
+  <h2>시급을 일급과 월급으로 바꾸는 식</h2>
+  <p>일급은 간단해요. <strong>시급 × 하루 근로시간</strong>이에요. 월급은 한 단계 더 가요. 한 달은 4주보다 길어서 평균 약 4.345주(365일 ÷ 7일 ÷ 12개월)로 보고, 한 주에 일한 시간에 주휴시간을 더한 값에 곱해요. 이렇게 나온 시간을 <strong>월 근로시간</strong>이라고 해요.</p>
+  <p>주 40시간으로 일하면 (40시간 + 주휴 8시간) × 4.345 = 약 209시간이에요. 이 209시간이 월 환산의 기준이에요. 주휴수당이 붙는 조건이나 주 14시간과 15시간의 차이는 <a href="/blog/weekly-holiday-pay/">주 14시간 알바, 1시간 차이로 사라지는 돈</a>에서 따로 다뤘어요.</p>
+
+  <h2>하루 근무시간별 일급</h2>
+  <div class="tbl"><table style="min-width:470px">
+    <thead><tr><th>하루 근로시간</th><th>2026년</th><th>2027년</th><th>오르는 금액</th></tr></thead>
+    <tbody><tr><td>4시간</td><td>41,280원</td><td>42,800원</td><td>+1,520원</td></tr><tr><td>5시간</td><td>51,600원</td><td>53,500원</td><td>+1,900원</td></tr><tr><td>6시간</td><td>61,920원</td><td>64,200원</td><td>+2,280원</td></tr><tr><td>7시간</td><td>72,240원</td><td>74,900원</td><td>+2,660원</td></tr><tr><td>8시간</td><td>82,560원</td><td>85,600원</td><td>+3,040원</td></tr></tbody>
+  </table></div>
+  <p>하루치는 휴게시간을 뺀 실제 근로시간으로 계산해요. 4시간 근로면 4시간치, 8시간 근로면 8시간치예요.</p>
+
+  <h2>한 달에 얼마? 월급 환산표</h2>
+  <p>근무 형태별로 월 근로시간과 월급을 정리했어요. 주 15시간 이상이면 주휴시간이 더해져요.</p>
+  <div class="tbl"><table style="min-width:470px">
+    <thead><tr><th>근무 형태</th><th>월 근로시간</th><th>2026년 월급</th><th>2027년 월급</th></tr></thead>
+    <tbody><tr><td>주 3일 × 하루 4시간 (주휴 없음)</td><td>52시간</td><td><b>536,640원</b></td><td>556,400원</td></tr><tr><td>주 3일 × 하루 5시간</td><td>78시간</td><td><b>804,960원</b></td><td>834,600원</td></tr><tr><td>주 5일 × 하루 4시간</td><td>104시간</td><td><b>1,073,280원</b></td><td>1,112,800원</td></tr><tr><td>주 4일 × 하루 6시간</td><td>125시간</td><td><b>1,290,000원</b></td><td>1,337,500원</td></tr><tr><td>주 6일 × 하루 4.5시간</td><td>141시간</td><td><b>1,455,120원</b></td><td>1,508,700원</td></tr><tr><td>주 5일 × 하루 6시간</td><td>156시간</td><td><b>1,609,920원</b></td><td>1,669,200원</td></tr><tr><td>주 5일 × 하루 8시간</td><td>209시간</td><td><b>2,156,880원</b></td><td>2,236,300원</td></tr></tbody>
+  </table></div>
+  <p>일하는 날짜 수는 같아도 하루 시간이 달라지면 월급이 크게 달라져요. 주휴수당은 한 주를 개근했을 때 받는 돈이라서, 결근이 있으면 그 주의 주휴 몫은 빠질 수 있어요.</p>
+
+  <h2>월 근로시간, 직접 구해 보기</h2>
+  <p>"월~토 4.5시간 일하는데 주휴시간 포함해서 월 근로시간이 얼마예요?"처럼 표에 없는 근무 형태는 같은 식으로 직접 구하면 돼요.</p>
+  <div class="keys">
+    <div><b>1단계: 주 근로시간</b><span>6일 × 4.5시간 = 27시간</span></div>
+    <div><b>2단계: 주휴시간</b><span>27시간 ÷ 40 × 8 = 5.4시간</span></div>
+    <div><b>3단계: 월 근로시간</b><span>(27 + 5.4) × 4.345 = 약 141시간</span></div>
+  </div>
+  <p>월 근로시간 141시간에 시급을 곱하면 2026년 1,455,120원, 2027년 1,508,700원이에요. 주 7시간처럼 15시간 미만이면 주휴시간을 더하지 않고 7 × 4.345 = 약 30시간이에요. 내 시간표를 직접 넣어 보고 싶다면 손안의도구의 알바 급여 계산기를 쓰면 같은 식으로 계산해 줘요.</p>
+
+  <h2>하루 7시간과 8시간은 얼마나 다를까</h2>
+  <p>하루에 1시간 차이인데, 한 달로 보면 생각보다 커요. 주 5일 기준으로 비교해 볼게요.</p>
+  <div class="tbl"><table style="min-width:470px">
+    <thead><tr><th>2026년 기준</th><th>하루 7시간</th><th>하루 8시간</th></tr></thead>
+    <tbody><tr><td>하루 일급</td><td>72,240원</td><td>82,560원</td></tr>
+<tr><td>주 근로시간</td><td>35시간</td><td>40시간</td></tr>
+<tr><td>월 근로시간(주휴 포함)</td><td>183시간</td><td>209시간</td></tr>
+<tr><td>월급 환산</td><td><b>1,888,560원</b></td><td><b>2,156,880원</b></td></tr>
+<tr><td>법정 최소 휴게시간</td><td>30분</td><td>1시간</td></tr>
+<tr><td>출근부터 퇴근까지</td><td>7시간 30분 이상</td><td>9시간 이상</td></tr></tbody>
+  </table></div>
+  <p>하루 1시간이 월급으로는 268,320원 차이예요. 한 가지 더 알아둘 점은 휴게시간이에요. 근로기준법 제54조에 따라 근로시간이 4시간이면 30분 이상, 8시간이면 1시간 이상을 근로시간 도중에 쉬게 해 줘야 해요. 휴게시간은 일한 시간에 넣지 않는 게 원칙이라서, 하루 8시간치를 받으려면 휴게 1시간을 합쳐 9시간 동안 자리를 지키게 돼요. 이 규정은 직원이 5명이 안 되는 사업장에도 적용돼요.</p>
+
+  <h2>2027년에는 얼마나 오를까</h2>
+  <p>2027년 최저임금은 시급 10,700원으로, 2026년보다 380원(3.7%) 올랐어요. 2027년 1월 1일부터 적용되고, 2026년 12월 31일까지는 지금의 10,320원이 그대로예요.</p>
+  <div class="tbl"><table style="min-width:470px">
+    <thead><tr><th>항목</th><th>2026년</th><th>2027년</th><th>오르는 금액</th></tr></thead>
+    <tbody><tr><td>시급</td><td>10,320원</td><td>10,700원</td><td>+380원</td></tr><tr><td>하루 8시간 일급</td><td>82,560원</td><td>85,600원</td><td>+3,040원</td></tr><tr><td>주 20시간 월급(월 104시간)</td><td>1,073,280원</td><td>1,112,800원</td><td>+39,520원</td></tr><tr><td>주 40시간 월급(월 209시간)</td><td>2,156,880원</td><td>2,236,300원</td><td>+79,420원</td></tr></tbody>
+  </table></div>
+  <p class="meta" style="margin:8px 0 0">월 환산은 주 40시간 월 209시간을 기준으로 고용노동부가 고시한 방식과 같아요. 실제 급여는 계약한 근무일, 개근 여부, 연장·야간근로에 따라 달라질 수 있어요.</p>
+
+  <nav class="next" aria-label="관련 글과 도구"><a href="/wage/"><span><strong>알바 급여 계산기</strong><span>주휴수당 포함 주급·월급</span></span><i>→</i></a><a href="/blog/weekly-holiday-pay/"><span><strong>주휴수당 조건과 계산법</strong><span>주 14시간과 15시간의 차이</span></span><i>→</i></a></nav>
+  <div data-comments data-kind="comment" data-page="/blog/minimum-wage-table/"></div>
+</article>
+<section class="cmts" data-page="/blog/minimum-wage-table/" data-kind="post"></section></div>
+
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
+
+<script src="/assets/firebase-config.js?v=4"></script>
+<script type="module" src="/assets/comments.js?v=4"></script>
+<script src="/assets/analytics.js?v=2" defer></script>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+</body>
+</html>
