@@ -338,14 +338,14 @@ const comma=n=>Math.round(n).toLocaleString('ko-KR');
 function fmtNum(el){
   const pos=el.selectionStart??el.value.length;
   const keep=el.value.slice(0,pos).replace(/[^0-9]/g,'').length;
-  const raw=el.value.replace(/[^0-9]/g,'').replace(/^0+(?=\d)/,'');
+  const raw=el.value.replace(/[^0-9]/g,'').replace(/^0+(?=\d)/,'').slice(0,el.classList.contains('iqty')?5:10);
   const out=raw.replace(/\B(?=(\d{3})+(?!\d))/g,',');
   el.value=out; let c=0,p=0; while(p<out.length&&c<keep){if(/\d/.test(out[p]))c++;p++;}
   try{el.setSelectionRange(p,p);}catch(e){}
 }
 function korean(n){
   n=Math.floor(n); if(n<=0) return '';
-  const d=['','일','이','삼','사','오','육','칠','팔','구'], u=['','십','백','천'], big=['','만','억','조'];
+  const d=['','일','이','삼','사','오','육','칠','팔','구'], u=['','십','백','천'], big=['','만','억','조','경'];
   let s='', g=0;
   while(n>0){
     const part=n%10000; n=Math.floor(n/10000);
