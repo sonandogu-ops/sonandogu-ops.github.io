@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
+<link rel="canonical" href="https://sonandogu.com/holiday/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon-192.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F4F1">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sonandogu.com/holiday/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-holiday.jpg?v=1">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<title>연휴 계산기 2027 - 공휴일 달력, 연차 붙여 쓰기, 근무일수 계산 | 손안의도구</title>
+<meta name="description" content="연차를 며칠 쓰면 얼마나 길게 쉴 수 있는지 알려드려요. 2026·2027년 공휴일과 대체공휴일 달력, 연차 붙여 쓰기 추천, 기간별 근무일수 계산을 한 번에 해요. 우주항공청 월력요항 기준으로 노동절·제헌절 공휴일까지 반영했어요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="연휴 계산기 - 연차 붙여 쓰기와 공휴일 달력">
+<meta property="og:description" content="연차 며칠로 며칠 쉬는지, 공휴일 달력과 근무일수까지.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "2027년에는 공휴일이 며칠인가요?", "acceptedAnswer": {"@type": "Answer", "text": "우주항공청이 발표한 2027년 월력요항에 따르면 관공서 공휴일은 일요일 52일을 포함해 76일이에요. 설날, 현충일, 광복절, 개천절이 일요일과 겹쳐서 실제로 쉬는 날은 72일이고, 토요일 52일을 더하되 토요일과 겹치는 공휴일 5일을 빼면 주 5일 근무자의 휴일은 119일이에요."}}, {"@type": "Question", "name": "대체공휴일은 어떤 날에 적용되나요?", "acceptedAnswer": {"@type": "Answer", "text": "설날과 추석 연휴가 일요일이나 다른 공휴일과 겹칠 때, 그리고 어린이날, 삼일절, 부처님오신날, 광복절, 개천절, 한글날, 성탄절, 노동절, 제헌절이 토요일·일요일이나 다른 공휴일과 겹칠 때 적용돼요. 현충일은 대체공휴일이 없어요. 2027년에는 2월 9일, 5월 3일, 7월 19일, 8월 16일, 10월 4일, 10월 11일, 12월 27일 7일이에요."}}, {"@type": "Question", "name": "노동절과 제헌절은 언제부터 공휴일인가요?", "acceptedAnswer": {"@type": "Answer", "text": "2026년부터 관공서 공휴일로 지정됐어요. 노동절(5월 1일)과 제헌절(7월 17일) 모두 2026년 4월에 관련 규정이 개정되면서 그해부터 적용됐고, 대체공휴일도 적용돼요. 민간 회사의 유급휴일 적용은 취업규칙에 따라 다를 수 있으니 회사 규정을 확인하세요."}}, {"@type": "Question", "name": "연차 붙여 쓰기 추천은 어떤 기준으로 찾나요?", "acceptedAnswer": {"@type": "Answer", "text": "주말과 공휴일로 이어진 쉬는 날 사이에 낀 평일에 연차를 쓰면 휴일이 길게 이어져요. 계산기는 연차 일수를 정하면 그 일수를 정확히 써서 가장 길게 이어지는 기간을 찾아 길이가 긴 순서로 보여 줘요. 공휴일과 주말에는 연차를 쓰지 않아요."}}, {"@type": "Question", "name": "연차는 공휴일이나 주말에도 쓸 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "일반적으로 근무일이 아닌 공휴일과 주말에는 연차를 쓰지 않아요. 그래서 이 계산기도 평일에만 연차를 쓰는 것으로 계산해요. 회사마다 휴일 근무와 연차 차감 방식이 다를 수 있으니 취업규칙을 확인하세요."}}, {"@type": "Question", "name": "근무일수에서 토요일은 어떻게 하나요?", "acceptedAnswer": {"@type": "Answer", "text": "기본은 토요일과 일요일을 쉬는 날로 보고 계산해요. 토요일에도 근무한다면 \"토요일도 근무일로 계산\"을 켜 보세요. 토요일이 공휴일이면 쉬는 날로 계산해요."}}, {"@type": "Question", "name": "임시공휴일이 지정되면 달력은 어떻게 바뀌나요?", "acceptedAnswer": {"@type": "Answer", "text": "정부가 임시공휴일을 지정하면 이 달력에 없는 쉬는 날이 생길 수 있어요. 지정되면 데이터를 고쳐서 반영하고, 현재는 월력요항에 정해진 공휴일만 들어 있어요."}}, {"@type": "Question", "name": "2028년 이후 공휴일은 왜 없나요?", "acceptedAnswer": {"@type": "Answer", "text": "다음 해 월력요항은 보통 그해 6월 말에 발표돼요. 2028년 자료가 발표되면 추가하고, 지금은 2026년과 2027년만 계산해요."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "연휴 계산기", "item": "https://sonandogu.com/holiday/"}]}</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.hero{padding:36px 0 22px}
+@media (min-width:920px){.hero{padding:64px 0 28px}}
+.hero h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 12px}
+.hero p{font-size:17px; color:var(--muted); margin:0; max-width:34em}
+.tabs{display:inline-flex; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:4px; margin-bottom:16px}
+.tabs button{font:inherit; font-size:15px; font-weight:700; color:var(--muted); background:none; border:none; border-radius:12px; padding:10px 18px; cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink); color:var(--bg)}
+.work{display:grid; gap:18px}
+.work>*{min-width:0}
+@media (min-width:920px){.work{grid-template-columns:1fr 420px; gap:32px; align-items:start}.res{position:sticky; top:78px}}
+[hidden]{display:none!important}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:26px; box-shadow:var(--shadow); padding:20px 18px}
+.card+.card{margin-top:14px}
+.card h2{font-size:17px; font-weight:800; letter-spacing:-.03em; margin:0 0 12px; display:flex; align-items:center; gap:8px}
+.card h2 .n{width:22px; height:22px; border-radius:7px; background:var(--ink); color:var(--bg); font-size:12px; display:grid; place-items:center}
+.card h2 small{margin-left:auto; font-size:13px; color:var(--muted); font-weight:600}
+.box{background:var(--field); border-radius:16px; padding:10px 14px 8px; border:1.5px solid transparent; transition:border-color .2s, box-shadow .2s, background .2s}
+.box:focus-within{background:var(--surface); border-color:var(--orange); box-shadow:0 0 0 5px rgba(255,90,31,.13)}
+.box label{display:block; font-size:12px; font-weight:700; color:var(--muted)}
+.box input,.box select{width:100%; min-width:0; font:inherit; font-size:17px; font-weight:700; color:var(--ink); background:none; border:none; outline:none; padding:2px 0 0}
+.box input::placeholder{color:var(--faint); opacity:.7; font-weight:500}
+.box.big input{font-size:28px; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.num input{font-variant-numeric:tabular-nums}
+.g2{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.stepper{display:flex; align-items:center; justify-content:space-between; background:var(--field); border-radius:16px; padding:8px}
+.stepper button{width:46px; height:46px; border-radius:12px; border:1px solid var(--line); background:var(--surface); font:inherit; font-size:22px; font-weight:700; color:var(--ink); cursor:pointer}
+.stepper span{font-size:24px; font-weight:800; letter-spacing:-.03em}
+.lbl{font-size:12px; font-weight:700; color:var(--muted); margin:14px 0 6px 2px}
+.seg2{display:flex; gap:6px; flex-wrap:wrap}
+.seg2 button{flex:1; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:12px; padding:10px 6px; cursor:pointer; white-space:nowrap}
+.seg2 button[aria-pressed="true"]{color:var(--orange); border-color:var(--orange); background:rgba(255,90,31,.06)}
+.people{display:flex; flex-wrap:wrap; gap:8px}
+.pp{display:flex; align-items:center; gap:2px; background:var(--field); border:1.5px solid transparent; border-radius:999px; padding:4px 4px 4px 14px}
+.pp:focus-within{border-color:var(--orange); background:var(--surface)}
+.pp input{width:5.5em; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:none; outline:none}
+.pp button{width:28px; height:28px; border-radius:50%; border:none; background:none; color:var(--muted); font-size:16px; cursor:pointer}
+.pp button:hover{color:var(--orange)}
+.addp{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:999px; padding:8px 14px; cursor:pointer}
+.item{border:1px solid var(--line); border-radius:20px; padding:12px; margin-bottom:10px}
+.item .top2{display:grid; grid-template-columns:1.2fr 1fr 36px; gap:6px}
+.item .top2 .box{padding:8px 12px 6px}
+.item .top2 .box input{font-size:16px}
+.del{font:inherit; font-size:18px; color:var(--muted); background:none; border:1px solid var(--line); border-radius:12px; cursor:pointer}
+.del:hover{color:var(--orange); border-color:var(--orange)}
+.row2{display:flex; align-items:center; gap:8px; margin-top:10px; flex-wrap:wrap}
+.row2 .k{font-size:12.5px; font-weight:700; color:var(--muted); min-width:3.6em}
+.row2 select{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:10px; padding:7px 10px}
+.chips{display:flex; flex-wrap:wrap; gap:5px; flex:1}
+.chip{font:inherit; font-size:13.5px; font-weight:700; border-radius:999px; padding:6px 11px; cursor:pointer; border:1.5px solid var(--line); background:none; color:var(--faint)}
+.chip[aria-pressed="true"]{border-color:var(--ink); background:var(--ink); color:var(--bg)}
+.mini{font:inherit; font-size:12.5px; font-weight:700; color:var(--muted); background:none; border:none; text-decoration:underline; cursor:pointer; padding:0}
+.addi{width:100%; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:none; border:1.5px dashed var(--line); border-radius:16px; padding:12px; cursor:pointer}
+.addi:hover,.addp:hover{border-color:var(--ink)}
+
+.disp{position:relative; overflow:hidden; border-radius:28px; padding:22px 20px 18px; color:#F4F4F1;
+  background:radial-gradient(120% 140% at 100% 0%, rgba(255,106,51,.28) 0%, rgba(255,106,51,0) 45%), linear-gradient(160deg,#202126 0%,#121316 100%);
+  box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.07)}
+.disp .cap{font-size:14px; color:rgba(244,244,241,.6)}
+.disp .big{font-size:clamp(40px,10vw,52px); font-weight:800; letter-spacing:-.05em; line-height:1.1; margin:4px 0; font-variant-numeric:tabular-nums}
+.disp .big .u{font-size:.45em; color:#FF8A3D; margin-left:4px; letter-spacing:-.02em}
+.disp .sub{font-size:14px; color:rgba(244,244,241,.6); line-height:1.6}
+.disp .sub b{color:#fff}
+.tr{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:8px}
+.tr li{display:flex; align-items:center; justify-content:space-between; gap:10px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:12px 14px}
+.tr .who{font-size:16px; font-weight:700}
+.tr .who i{font-style:normal; color:rgba(244,244,241,.45); margin:0 6px}
+.tr .amt{font-size:19px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.tr .none{justify-content:center; color:rgba(244,244,241,.55); font-size:15px}
+.tbl2{width:100%; border-collapse:collapse; margin-top:14px; font-size:13.5px; font-variant-numeric:tabular-nums}
+.tbl2 th,.tbl2 td{padding:8px 4px; border-bottom:1px solid rgba(255,255,255,.08); text-align:right}
+.tbl2 th:first-child,.tbl2 td:first-child{text-align:left}
+.tbl2 th{color:rgba(244,244,241,.5); font-weight:700; font-size:12px}
+.tbl2 .plus{color:#7CE3A8}.tbl2 .minus{color:#FF8A3D}
+.acts{display:grid; grid-template-columns:1fr auto; gap:8px; margin-top:16px}
+.acts button{font:inherit; font-size:15px; font-weight:800; border-radius:16px; padding:14px; cursor:pointer; border:none}
+.copy{color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); box-shadow:0 8px 20px -8px rgba(255,90,31,.8)}
+.copy:disabled{opacity:.35; box-shadow:none; cursor:default}
+.reset{color:#F4F4F1; background:rgba(255,255,255,.08)!important}
+.preview{margin-top:12px; white-space:pre-wrap; font-size:12.5px; line-height:1.6; color:rgba(244,244,241,.55); background:rgba(0,0,0,.25); border-radius:14px; padding:12px; max-height:160px; overflow:auto}
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+.guide{margin-top:88px}
+.guide h2{font-size:clamp(24px,4vw,32px); font-weight:800; letter-spacing:-.04em; margin:0 0 20px}
+.fgrid{display:grid; gap:12px}
+@media (min-width:720px){.fgrid{grid-template-columns:repeat(2,1fr)}}
+.f{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px}
+.f h3{font-size:16px; font-weight:800; margin:0 0 8px; letter-spacing:-.02em}
+.f p{margin:0; font-size:14.5px; color:var(--muted)}
+.f strong{color:var(--ink)}
+.faq{margin-top:56px}
+.faq details{border-top:1px solid var(--line); padding:18px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer; font-weight:700; font-size:16px; list-style:none; display:flex; justify-content:space-between; gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+"; color:var(--muted); font-weight:500; font-size:22px; line-height:1; transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:10px 0 0; color:var(--muted)}
+
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.days{display:grid; grid-template-columns:repeat(7,1fr); gap:6px}
+.day{background:var(--field); border-radius:14px; padding:8px 4px 6px; text-align:center; border:1.5px solid transparent}
+.day:focus-within{border-color:var(--orange); background:var(--surface)}
+.day label{display:block; font-size:12px; font-weight:800; color:var(--muted)}
+.day input{width:100%; font:inherit; font-size:18px; font-weight:800; text-align:center; color:var(--ink); background:none; border:none; outline:none; padding:2px 0; font-variant-numeric:tabular-nums}
+.day input::placeholder{color:var(--faint); opacity:.6}
+.day.we label{color:var(--orange)}
+.quick{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-top:10px; font-size:13px; color:var(--muted)}
+.quick select{font:inherit; font-size:14px; font-weight:700; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:10px; padding:6px 8px}
+.quick button{font:inherit; font-size:13px; font-weight:700; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:7px 12px; cursor:pointer}
+.optrow{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0; border-top:1px solid var(--line); font-size:14.5px; font-weight:700}
+.optrow:first-of-type{border-top:none}
+.optrow small{display:block; font-size:12.5px; color:var(--muted); font-weight:500; margin-top:2px}
+.sw{position:relative; flex:none; width:46px; height:28px; border-radius:999px; background:var(--field); border:1px solid var(--line); cursor:pointer; padding:0}
+.sw::after{content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .2s}
+.sw[aria-checked="true"]{background:var(--orange); border-color:var(--orange)}
+.sw[aria-checked="true"]::after{transform:translateX(18px)}
+.wrow{display:flex; gap:8px; align-items:stretch}
+.wrow .box{flex:1}
+.minbtn{font:inherit; font-size:13px; font-weight:700; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:0 12px; cursor:pointer; white-space:nowrap}
+.warn{margin-top:8px; font-size:13px; font-weight:700; color:#D9480F}
+.lines{margin-top:14px; display:flex; flex-direction:column; gap:2px}
+.ln{display:flex; justify-content:space-between; font-size:14px; padding:7px 0; border-bottom:1px solid rgba(255,255,255,.08); font-variant-numeric:tabular-nums}
+.ln span:first-child{color:rgba(244,244,241,.6)}
+.ln b{font-weight:800}
+.ln.sum{border-bottom:none; font-size:15px}
+.badge{display:inline-block; font-size:12.5px; font-weight:800; padding:4px 10px; border-radius:999px; margin-top:10px}
+.badge.ok{background:rgba(124,227,168,.15); color:#7CE3A8}
+.badge.no{background:rgba(255,138,61,.15); color:#FF8A3D}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.endo{display:flex; align-items:flex-end; gap:10px; margin-top:14px}
+.endo img{flex:none; width:64px; height:64px; object-fit:contain; filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
+.endo .say{position:relative; flex:1; background:#F4F4F1; color:#141518; font-size:14px; font-weight:700; line-height:1.45; border-radius:16px 16px 16px 4px; padding:10px 13px; margin-bottom:8px; letter-spacing:-.01em}
+.endo .say::before{content:""; position:absolute; left:-6px; bottom:8px; border:6px solid transparent; border-right-color:#F4F4F1; border-left:0}
+.endo.light .say{background:var(--field); color:var(--ink)}
+.endo.light .say::before{border-right-color:var(--field)}
+.endo.light img{filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
+.endo.pop img{animation:endoHop .5s cubic-bezier(.3,1.6,.5,1)}
+.endo.pop .say{animation:endoSay .35s ease-out}
+.endo[data-p="walk"] img,.endo[data-p="run"] img{animation:endoWalk .45s ease-in-out infinite}
+@keyframes endoHop{0%{transform:translateY(8px) scale(.9)}60%{transform:translateY(-6px)}100%{transform:none}}
+@keyframes endoSay{from{opacity:0; transform:translateX(-6px)}to{opacity:1; transform:none}}
+@keyframes endoWalk{50%{transform:translateY(-4px) rotate(-3deg)}}
+.tip{display:flex; gap:16px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:14px 18px; margin:0 0 22px; box-shadow:var(--shadow)}
+.tip img{width:80px; height:80px; object-fit:contain; flex:none}
+.tip b{display:block; font-size:13px; color:var(--orange); font-weight:800; margin-bottom:2px}
+.tip p{margin:0; font-size:15px; line-height:1.6}
+@media (prefers-reduced-motion:reduce){.endo.pop img,.endo.pop .say,.endo[data-p] img{animation:none!important}}
+
+.jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
+.jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
+.jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jumpres img{flex:none; width:30px; height:30px; object-fit:contain; margin:-6px -2px -6px -6px}
+.jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
+.res{scroll-margin-top:66px}
+@media (min-width:920px){.jumpres{display:none!important}}
+@media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
+@media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:12px}
+.crumb a{color:var(--muted); text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+.src{margin-top:12px; font-size:12px; line-height:1.6; color:rgba(244,244,241,.5)}
+.src a{color:rgba(244,244,241,.7)}
+
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:12px}
+.crumb a{color:var(--muted); text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+
+.hero{padding:36px 0 22px}
+@media (min-width:920px){.hero{padding:64px 0 28px}}
+.hero h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 12px}
+.hero p{font-size:17px; color:var(--muted); margin:0; max-width:34em}
+.box input[type=date]{font-size:20px; font-weight:800; letter-spacing:-.02em; padding:4px 0 2px; color-scheme:light dark}
+.g2{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.row3{display:grid; grid-template-columns:1fr 1.1fr; gap:8px; margin-top:8px}
+.quick2{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px}
+.quick2 button{font:inherit; font-size:13px; font-weight:700; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:6px 12px; cursor:pointer}
+.quick2 button:hover{color:var(--ink); border-color:var(--ink)}
+.optrow{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0 0; margin-top:12px; border-top:1px solid var(--line); font-size:14.5px; font-weight:700}
+.optrow small{display:block; font-size:12.5px; color:var(--muted); font-weight:500; margin-top:2px}
+.sw{position:relative; flex:none; width:46px; height:28px; border-radius:999px; background:var(--field); border:1px solid var(--line); cursor:pointer; padding:0}
+.sw::after{content:""; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .2s}
+.sw[aria-checked="true"]{background:var(--orange); border-color:var(--orange)}
+.sw[aria-checked="true"]::after{transform:translateX(18px)}
+.pane[hidden]{display:none}
+.ms{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:6px}
+.ms li{display:grid; grid-template-columns:74px 1fr auto; gap:8px; align-items:center; background:rgba(255,255,255,.06); border-radius:14px; padding:10px 12px; font-size:14px; font-variant-numeric:tabular-nums}
+.ms li b{font-weight:800}
+.ms li span{color:rgba(244,244,241,.7)}
+.ms li em{font-style:normal; font-weight:800; font-size:13px; padding:3px 9px; border-radius:999px; background:rgba(255,255,255,.1)}
+.ms li.next{background:rgba(255,138,61,.16); border:1px solid rgba(255,138,61,.35)}
+.ms li.next em{background:#FF5A1F; color:#141518}
+.ms li.past{opacity:.5}
+.acts2{display:grid; grid-template-columns:1fr; gap:8px; margin-top:16px}
+.acts2 button{font:inherit; font-size:15px; font-weight:800; border-radius:14px; padding:13px; cursor:pointer; border:none; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F)}
+.acts2 button:disabled{opacity:.4; cursor:default}
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+
+.jumpres{position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,0); z-index:30; display:flex; align-items:center; gap:10px; max-width:calc(100% - 32px); font:inherit; font-size:14.5px; font-weight:800; color:var(--bg); background:var(--ink); border:none; border-radius:999px; padding:12px 18px; box-shadow:0 12px 30px -8px rgba(0,0,0,.45); cursor:pointer; transition:opacity .25s, transform .25s}
+.jumpres[hidden]{display:flex!important; opacity:0; transform:translate(-50%,20px); pointer-events:none}
+.jumpres span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.jumpres img{flex:none; width:30px; height:30px; object-fit:contain; margin:-6px -2px -6px -6px}
+.jumpres b{flex:none; width:24px; height:24px; border-radius:50%; background:#FF5A1F; color:#fff; display:grid; place-items:center; font-size:13px}
+.res{scroll-margin-top:66px}
+@media (min-width:920px){.jumpres{display:none!important}}
+@media (max-width:639px){.hero{padding:22px 0 14px}.hero h1{font-size:30px; margin-bottom:8px}.hero p{font-size:15px}}
+@media (prefers-reduced-motion:reduce){.jumpres{transition:none}}
+
+/* 날짜 계산기: 밝은 결과 판 */
+.disp.lite{color:var(--ink); background:radial-gradient(120% 120% at 100% 0%, rgba(47,102,240,.10) 0%, rgba(47,102,240,0) 55%), var(--surface); border:1px solid var(--line); box-shadow:var(--shadow)}
+.disp.lite::after{display:none}
+.disp.lite .cap,.disp.lite .sub{color:var(--muted)}
+.disp.lite .big{color:var(--ink)}
+.disp.lite .big .u{color:#2F66F0}
+.disp.lite .ms li{background:var(--field)}
+.disp.lite .ms li span{color:var(--muted)}
+.disp.lite .ms li em{background:var(--surface); color:var(--ink); border:1px solid var(--line)}
+.disp.lite .ms li.next{background:rgba(47,102,240,.08); border:1px solid rgba(47,102,240,.3)}
+.disp.lite .ms li.next em{background:#2F66F0; border-color:#2F66F0; color:#fff}
+.disp.lite .ms li.past{opacity:.45}
+.disp.lite .endo .say{background:var(--field); color:var(--ink)}
+.disp.lite .endo .say::before{border-right-color:var(--field)}
+.disp.lite .endo img{filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
+
+.saved{margin-bottom:14px}
+.saved h2 small{margin-left:auto; font-size:12.5px; color:var(--muted); font-weight:600}
+.sv{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px}
+.sv li{display:grid; grid-template-columns:1fr auto 30px; gap:10px; align-items:center; background:var(--field); border:1px solid transparent; border-radius:16px; padding:10px 10px 10px 14px; cursor:pointer}
+.sv li:hover{border-color:var(--line)}
+.sv li.on{border-color:#2F66F0; background:rgba(47,102,240,.07)}
+.sv .nm{font-size:15px; font-weight:800; letter-spacing:-.02em; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.sv .dt{display:block; font-size:12.5px; color:var(--muted); font-weight:600; margin-top:1px}
+.sv .bd{font-size:14px; font-weight:900; color:#fff; background:#2F66F0; border-radius:999px; padding:5px 11px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.sv .bd.today{background:#FF5A1F}
+.sv .bd.past{background:var(--faint)}
+.sv .x{width:30px; height:30px; border-radius:50%; border:none; background:none; color:var(--muted); font-size:17px; cursor:pointer}
+.sv .x:hover{color:var(--orange)}
+.svnote{font-size:12.5px; color:var(--muted); margin:10px 2px 0}
+.acts2{grid-template-columns:1fr 1fr!important}
+.acts2 .sb{color:#fff!important; background:#2F66F0!important}
+.namebox{display:flex; gap:8px; margin-top:12px}
+.namebox[hidden]{display:none}
+.namebox input{flex:1; min-width:0; font:inherit; font-size:15px; font-weight:700; color:var(--ink); background:var(--field); border:1.5px solid transparent; border-radius:12px; padding:10px 12px; outline:none}
+.namebox input:focus{border-color:#2F66F0; background:var(--surface)}
+.namebox button{font:inherit; font-size:14px; font-weight:800; color:#fff; background:#2F66F0; border:none; border-radius:12px; padding:0 16px; cursor:pointer}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.box input.plain{width:100%; font:inherit; font-size:18px; font-weight:800; color:var(--ink); background:transparent; border:0; outline:0; padding:2px 0}
+.sgrid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+@media (max-width:480px){.sgrid.tm{grid-template-columns:1fr}}
+.srow{margin-top:12px}
+.lbl{display:block; font-size:13px; font-weight:700; color:var(--muted); margin:14px 0 8px}
+.tabs{display:grid; grid-template-columns:repeat(3,1fr); gap:6px}
+.tabs button{font:inherit; font-size:14.5px; font-weight:800; padding:12px 4px; border-radius:12px; border:1.5px solid var(--line); background:var(--surface); color:var(--muted); cursor:pointer}
+.tabs button[aria-selected=true]{border-color:#FF5A1F; background:#FFF1EA; color:#C2410C}
+@media (prefers-color-scheme:dark){.tabs button[aria-selected=true]{background:rgba(255,90,31,.16); color:#FF8A3D}}
+.pane[hidden]{display:none}
+.pnote{margin:10px 2px 0; font-size:13.5px; color:var(--muted); line-height:1.65}
+.chipsr{display:flex; flex-wrap:wrap; gap:8px}
+.chipsr button{font:inherit; font-size:15px; font-weight:800; min-width:48px; padding:10px 14px; border-radius:999px; border:1.5px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer}
+.chipsr button[aria-pressed=true]{border-color:#FF5A1F; background:#FFF1EA; color:#C2410C}
+@media (prefers-color-scheme:dark){.chipsr button[aria-pressed=true]{background:rgba(255,90,31,.16); color:#FF8A3D}}
+.cals{display:grid; grid-template-columns:1fr; gap:12px; margin-top:12px}
+@media (min-width:760px){.cals{grid-template-columns:1fr 1fr}}
+.mc{border:1px solid var(--line); border-radius:16px; padding:10px 10px 12px; background:var(--surface)}
+.mc h3{margin:0 0 6px; font-size:15px; font-weight:800}
+.mg{display:grid; grid-template-columns:repeat(7,1fr); gap:2px; text-align:center}
+.mg .wh{font-size:11px; color:var(--muted); font-weight:700; padding:3px 0}
+.mg .wh.s0{color:#E5484D}
+.cd{aspect-ratio:1; display:grid; place-items:center; font:inherit; font-size:13px; font-weight:700; border:0; border-radius:10px; background:transparent; color:var(--ink); padding:0}
+.cd.blank{visibility:hidden}
+.cd.we{color:#7C8087}
+.cd.sun,.cd.hol{color:#E5484D}
+.cd.hol{background:rgba(229,72,77,.14); font-weight:900}
+.cd.work{cursor:pointer}
+.cd.work:hover{background:var(--field)}
+.cd.sel{background:#FF5A1F; color:#fff}
+.legend{display:flex; flex-wrap:wrap; gap:12px; margin:12px 2px 0; font-size:12.5px; font-weight:700; color:var(--muted)}
+.legend i{display:inline-block; width:12px; height:12px; border-radius:4px; vertical-align:-1px; margin-right:5px}
+.ptable{overflow-x:auto; margin-top:14px; border:1px solid var(--line); border-radius:16px; background:var(--surface)}
+.ptable table{width:100%; border-collapse:collapse; font-size:14.5px; min-width:300px}
+.ptable th,.ptable td{padding:10px 14px; text-align:left}
+.ptable thead th{font-size:12.5px; font-weight:700; color:var(--muted); background:var(--field)}
+.ptable tbody tr+tr td{border-top:1px solid var(--line)}
+.guide h3{margin:22px 0 0; font-size:17px; font-weight:800}
+.warns{margin-top:10px}
+.warns div{margin-top:6px; padding:10px 12px; border-radius:14px; background:rgba(255,90,31,.10); color:#C2410C; font-size:13.5px; font-weight:700; line-height:1.6}
+.disp.lite .ms li{display:grid; grid-template-columns:1fr auto; grid-template-areas:"a c" "b b"; gap:3px 10px; align-items:center}
+.disp.lite .ms li b{grid-area:a; min-width:0}
+.disp.lite .ms li em{grid-area:c; white-space:nowrap}
+.disp.lite .ms li span{grid-area:b; font-size:13px; line-height:1.5; color:var(--muted); font-weight:600}
+.disp.lite .ms li span:empty{display:none}
+</style>
+<link rel="stylesheet" href="/assets/comments.css?v=3">
+<link rel="stylesheet" href="/assets/favorites.css?v=2">
+<meta name="google-adsense-account" content="ca-pub-1007904420767851">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
+</head>
+<body>
+<script>
+async function shareOut(t){ const touch=matchMedia('(pointer:coarse)').matches; if(navigator.share&&touch){ try{ await navigator.share({text:t}); return 'shared'; }catch(e){ if(e&&e.name==='AbortError') return 'abort'; } } await navigator.clipboard.writeText(t); return 'copied'; }
+document.addEventListener('DOMContentLoaded',()=>{ if(navigator.share&&matchMedia('(pointer:coarse)').matches){ document.querySelectorAll('[data-share]').forEach(b=>b.textContent=b.dataset.share); } });
+</script>
+<script>
+function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const img=e.querySelector('img'), src='/assets/endo/'+p+'.webp'; if(img.getAttribute('src')!==src) img.setAttribute('src',src); e.dataset.p=p; const s=e.querySelector('.say'); if(s.textContent!==m){ s.textContent=m; if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); } } }
+</script>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<div class="container">
+
+  <section class="hero">
+    <div class="crumb"><a href="/">전체 도구</a> / <a href="/#calc">계산기</a> / 연휴 계산기</div>
+    <h1>연휴 계산기</h1>
+    <p>연차를 며칠 쓰면 얼마나 길게 쉴 수 있는지 찾아 드려요. 공휴일과 대체공휴일 달력, 기간별 근무일수도 계산해요.</p>
+    <p class="chk">2026년 11월 점검 · 우주항공청 2027년 월력요항 기준 (2026·2027년)</p>
+  </section>
+  <div class="work">
+    <main>
+      <div class="card">
+        <h2><span class="n">1</span>무엇을 볼까요</h2>
+        <div class="tabs" id="tabs" role="tablist"><button data-t="find" aria-selected="true">연차 붙여 쓰기</button><button data-t="cal" aria-selected="false">달력</button><button data-t="biz" aria-selected="false">근무일수</button></div>
+      </div>
+      <div class="card">
+        <h2><span class="n">2</span><span id="h2b">조건 고르기</span></h2>
+        <div class="pane" id="p-find">
+          <span class="lbl" style="margin-top:0">연도</span><div class="seg2" id="fy"><button data-y="2027" aria-pressed="true">2027년</button><button data-y="2026" aria-pressed="false">2026년</button></div>
+          <span class="lbl">쓸 수 있는 연차 일수</span><div class="chipsr" id="fk"></div>
+          <p class="pnote">토·일과 공휴일에는 연차를 쓰지 않아요. 연차를 쓸 평일만 골라서 가장 길게 이어지는 기간을 찾아 줘요.</p>
+        </div>
+        <div class="pane" id="p-cal" hidden>
+          <span class="lbl" style="margin-top:0">연도</span><div class="seg2" id="cy"><button data-y="2027" aria-pressed="true">2027년</button><button data-y="2026" aria-pressed="false">2026년</button></div>
+          <div class="legend"><span><i style="background:rgba(229,72,77,.3)"></i>공휴일</span><span><i style="background:#E5484D"></i>일요일</span><span><i style="background:#7C8087"></i>토요일</span><span><i style="background:#FF5A1F"></i>내가 고른 연차</span></div>
+          <p class="pnote">평일을 눌러 연차로 표시해 보세요. 다시 누르면 지워져요.</p>
+          <div class="cals" id="cal"></div>
+        </div>
+        <div class="pane" id="p-biz" hidden>
+          <div class="sgrid tm">
+            <div class="box"><label for="b-s">시작일</label><input id="b-s" class="plain" type="date" min="2026-01-01" max="2027-12-31"></div>
+            <div class="box"><label for="b-e">종료일</label><input id="b-e" class="plain" type="date" min="2026-01-01" max="2027-12-31"></div>
+          </div>
+          <div class="chipsr srow" id="bq"><button data-q="this">이번 달</button><button data-q="next">다음 달</button></div>
+          <div class="optrow" style="margin-top:14px"><span>토요일도 근무일로 계산<small>토요일에도 일하는 경우 켜 주세요</small></span><button class="sw" id="sat" role="switch" aria-checked="false" aria-label="토요일도 근무일로 계산"></button></div>
+          <p class="pnote">시작일과 종료일을 모두 포함해서 세요. 2026년 1월 1일부터 2027년 12월 31일까지 계산해요.</p>
+        </div>
+      </div>
+    </main>
+    <aside class="res">
+      <div class="disp lite" aria-live="polite">
+        <div class="cap" id="cap">결과</div>
+        <div class="big" id="big">-</div>
+        <div class="sub" id="sub">연차 일수를 고르면 찾아 드려요</div>
+        <ul class="ms" id="ms" hidden></ul>
+        <div class="warns" id="warns"></div>
+        <div class="endo" id="endo" data-p="abacus"><img src="/assets/endo/abacus.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">연차 며칠로 며칠 쉴까요?</div></div>
+        <div class="acts2"><button id="copy" disabled>결과 복사</button><button class="sb" id="clear">지우기</button></div>
+      </div>
+    </aside>
+  </div>
+    <section class="nexttools" aria-label="이어서 쓰면 좋은 도구">
+    <h2>이어서 쓰면 좋은 도구</h2>
+    <div class="ntg"><a class="nt" href="/leave/" data-c="calc"><span class="nt-i" aria-hidden="true">휴</span><span class="nt-t"><strong>연차 계산기</strong><span>입사일로 연차 일수·미사용 수당</span></span><span class="nt-a" aria-hidden="true">›</span></a><a class="nt" href="/worktime/" data-c="calc"><span class="nt-i" aria-hidden="true">시</span><span class="nt-t"><strong>근무시간 계산기</strong><span>출퇴근 시각으로 근로시간·월 환산</span></span><span class="nt-a" aria-hidden="true">›</span></a><a class="nt" href="/date/" data-c="calc"><span class="nt-i" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5.5" width="18" height="16" rx="3"/><path d="M4 10.5h18M9 3.5v4M17 3.5v4"/><path d="M9.5 15.5l2.2 2.2 4.3-4.4"/></svg></span><span class="nt-t"><strong>날짜 계산기</strong><span>D-day, 100일 기념일, 며칠 뒤 요일</span></span><span class="nt-a" aria-hidden="true">›</span></a></div>
+  </section>
+  <section class="guide">
+    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>연휴가 길어지는 건 공휴일 자체가 아니라 <strong>공휴일과 주말 사이에 낀 평일</strong> 덕분이에요. 2027년 설날은 연차 없이 4일 쉬고, 연차 3일을 보태면 9일을 쉴 수 있어요. 연차 일수를 정하고 가장 효율 좋은 기간을 찾아보세요.</p></div></div>
+    <h2>2027년 공휴일과 대체공휴일</h2>
+    <p class="pnote" style="margin-top:0">우주항공청이 2026년 6월 29일 발표한 2027년 월력요항 기준이에요. 노동절(5월 1일)과 제헌절(7월 17일)이 2026년부터 공휴일이 되면서 대체공휴일도 적용돼요. 2027년 주 5일 근무자의 휴일은 119일이에요.</p>
+    <div class="ptable"><table><thead><tr><th>날짜</th><th>공휴일</th></tr></thead><tbody><tr><td>1/1(금)</td><td>신정</td></tr><tr><td>2/6(토)</td><td>설날 연휴</td></tr><tr><td>2/7(일)</td><td>설날</td></tr><tr><td>2/8(월)</td><td>설날 연휴</td></tr><tr><td>2/9(화)</td><td>대체공휴일(설날)</td></tr><tr><td>3/1(월)</td><td>삼일절</td></tr><tr><td>5/1(토)</td><td>노동절</td></tr><tr><td>5/3(월)</td><td>대체공휴일(노동절)</td></tr><tr><td>5/5(수)</td><td>어린이날</td></tr><tr><td>5/13(목)</td><td>부처님오신날</td></tr><tr><td>6/6(일)</td><td>현충일</td></tr><tr><td>7/17(토)</td><td>제헌절</td></tr><tr><td>7/19(월)</td><td>대체공휴일(제헌절)</td></tr><tr><td>8/15(일)</td><td>광복절</td></tr><tr><td>8/16(월)</td><td>대체공휴일(광복절)</td></tr><tr><td>9/14(화)</td><td>추석 연휴</td></tr><tr><td>9/15(수)</td><td>추석</td></tr><tr><td>9/16(목)</td><td>추석 연휴</td></tr><tr><td>10/3(일)</td><td>개천절</td></tr><tr><td>10/4(월)</td><td>대체공휴일(개천절)</td></tr><tr><td>10/9(토)</td><td>한글날</td></tr><tr><td>10/11(월)</td><td>대체공휴일(한글날)</td></tr><tr><td>12/25(토)</td><td>성탄절</td></tr><tr><td>12/27(월)</td><td>대체공휴일(성탄절)</td></tr></tbody></table></div>
+    <h2>2027년 3일 이상 이어지는 연휴</h2>
+    <p class="pnote" style="margin-top:0">연차를 쓰지 않아도 주말과 공휴일로 3일 이상 이어지는 연휴는 모두 10번이에요.</p>
+    <div class="ptable"><table><thead><tr><th>기간</th><th>일수</th></tr></thead><tbody><tr><td>1/1(금) ~ 1/3(일)</td><td><b>3일</b></td></tr><tr><td>2/6(토) ~ 2/9(화)</td><td><b>4일</b></td></tr><tr><td>2/27(토) ~ 3/1(월)</td><td><b>3일</b></td></tr><tr><td>5/1(토) ~ 5/3(월)</td><td><b>3일</b></td></tr><tr><td>7/17(토) ~ 7/19(월)</td><td><b>3일</b></td></tr><tr><td>8/14(토) ~ 8/16(월)</td><td><b>3일</b></td></tr><tr><td>9/14(화) ~ 9/16(목)</td><td><b>3일</b></td></tr><tr><td>10/2(토) ~ 10/4(월)</td><td><b>3일</b></td></tr><tr><td>10/9(토) ~ 10/11(월)</td><td><b>3일</b></td></tr><tr><td>12/25(토) ~ 12/27(월)</td><td><b>3일</b></td></tr></tbody></table></div>
+    <h2>2027년 연차 붙여 쓰기 추천</h2>
+    <p class="pnote" style="margin-top:0">연차를 며칠 쓰느냐에 따라 가장 길게 쉴 수 있는 기간을 계산기가 찾아 낸 결과예요. 위 도구에서 일수를 바꿔 가며 확인해 보세요.</p>
+<h3>연차 1일을 쓴다면</h3><div class="ptable"><table><thead><tr><th>쉬는 기간</th><th>연휴</th><th>연차 쓸 날</th></tr></thead><tbody><tr><td>9/11(토) ~ 9/16(목)</td><td><b>6일</b></td><td>9/13</td></tr><tr><td>2/5(금) ~ 2/9(화)</td><td><b>5일</b></td><td>2/5</td></tr><tr><td>5/1(토) ~ 5/5(수)</td><td><b>5일</b></td><td>5/4</td></tr></tbody></table></div>
+<h3>연차 2일을 쓴다면</h3><div class="ptable"><table><thead><tr><th>쉬는 기간</th><th>연휴</th><th>연차 쓸 날</th></tr></thead><tbody><tr><td>9/11(토) ~ 9/19(일)</td><td><b>9일</b></td><td>9/13·9/17</td></tr><tr><td>2/4(목) ~ 2/9(화)</td><td><b>6일</b></td><td>2/4·2/5</td></tr><tr><td>4/30(금) ~ 5/5(수)</td><td><b>6일</b></td><td>4/30·5/4</td></tr></tbody></table></div>
+<h3>연차 3일을 쓴다면</h3><div class="ptable"><table><thead><tr><th>쉬는 기간</th><th>연휴</th><th>연차 쓸 날</th></tr></thead><tbody><tr><td>9/10(금) ~ 9/19(일)</td><td><b>10일</b></td><td>9/10·9/13·9/17</td></tr><tr><td>2/6(토) ~ 2/14(일)</td><td><b>9일</b></td><td>2/10·2/11·2/12</td></tr><tr><td>5/1(토) ~ 5/9(일)</td><td><b>9일</b></td><td>5/4·5/6·5/7</td></tr></tbody></table></div>
+<h3>연차 5일을 쓴다면</h3><div class="ptable"><table><thead><tr><th>쉬는 기간</th><th>연휴</th><th>연차 쓸 날</th></tr></thead><tbody><tr><td>9/8(수) ~ 9/19(일)</td><td><b>12일</b></td><td>9/8·9/9·9/10·9/13·9/17</td></tr><tr><td>1/30(토) ~ 2/9(화)</td><td><b>11일</b></td><td>2/1·2/2·2/3·2/4·2/5</td></tr><tr><td>4/29(목) ~ 5/9(일)</td><td><b>11일</b></td><td>4/29·4/30·5/4·5/6·5/7</td></tr></tbody></table></div>
+    <h2>2026년 공휴일</h2>
+    <details class="faqlike"><summary style="cursor:pointer; font-weight:800; margin-top:14px">2026년 공휴일 목록 보기 (주 5일 근무자 휴일 120일)</summary><div class="ptable"><table><thead><tr><th>날짜</th><th>공휴일</th></tr></thead><tbody><tr><td>1/1(목)</td><td>신정</td></tr><tr><td>2/16(월)</td><td>설날 연휴</td></tr><tr><td>2/17(화)</td><td>설날</td></tr><tr><td>2/18(수)</td><td>설날 연휴</td></tr><tr><td>3/1(일)</td><td>삼일절</td></tr><tr><td>3/2(월)</td><td>대체공휴일(삼일절)</td></tr><tr><td>5/1(금)</td><td>노동절</td></tr><tr><td>5/5(화)</td><td>어린이날</td></tr><tr><td>5/24(일)</td><td>부처님오신날</td></tr><tr><td>5/25(월)</td><td>대체공휴일(부처님오신날)</td></tr><tr><td>6/3(수)</td><td>전국동시지방선거</td></tr><tr><td>6/6(토)</td><td>현충일</td></tr><tr><td>7/17(금)</td><td>제헌절</td></tr><tr><td>8/15(토)</td><td>광복절</td></tr><tr><td>8/17(월)</td><td>대체공휴일(광복절)</td></tr><tr><td>9/24(목)</td><td>추석 연휴</td></tr><tr><td>9/25(금)</td><td>추석</td></tr><tr><td>9/26(토)</td><td>추석 연휴</td></tr><tr><td>10/3(토)</td><td>개천절</td></tr><tr><td>10/5(월)</td><td>대체공휴일(개천절)</td></tr><tr><td>10/9(금)</td><td>한글날</td></tr><tr><td>12/25(금)</td><td>성탄절</td></tr></tbody></table></div></details>
+    <h2>연휴 계획을 세울 때</h2>
+    <div class="fgrid">
+      <div class="f"><h3>일찍 정하기</h3><p>추석처럼 긴 연휴는 항공권과 숙소가 일찍 차요. 연차 일수를 정한 뒤 후보 기간을 두세 개 골라 두면 편해요.</p></div>
+      <div class="f"><h3>팀과 겹치지 않게</h3><p>같은 팀에서 같은 날 연차를 쓰면 업무가 막힐 수 있어요. 팀 일정과 맞춰 기간을 조율하세요.</p></div>
+      <div class="f"><h3>남은 연차 확인</h3><p>연차는 입사일 기준으로 쌓여요. 내 연차가 며칠인지는 연차 계산기에서 먼저 확인해 보세요.</p></div>
+      <div class="f"><h3>임시공휴일은 변수</h3><p>정부가 임시공휴일을 지정하면 쉬는 날이 늘 수 있어요. 지정되면 이 달력도 새로 반영해요.</p></div>
+    </div>
+    <div class="faq">
+      <h2>자주 묻는 질문</h2>
+      <details><summary>2027년에는 공휴일이 며칠인가요?</summary><p>우주항공청이 발표한 2027년 월력요항에 따르면 관공서 공휴일은 일요일 52일을 포함해 76일이에요. 설날, 현충일, 광복절, 개천절이 일요일과 겹쳐서 실제로 쉬는 날은 72일이고, 토요일 52일을 더하되 토요일과 겹치는 공휴일 5일을 빼면 주 5일 근무자의 휴일은 119일이에요.</p></details>
+      <details><summary>대체공휴일은 어떤 날에 적용되나요?</summary><p>설날과 추석 연휴가 일요일이나 다른 공휴일과 겹칠 때, 그리고 어린이날, 삼일절, 부처님오신날, 광복절, 개천절, 한글날, 성탄절, 노동절, 제헌절이 토요일·일요일이나 다른 공휴일과 겹칠 때 적용돼요. 현충일은 대체공휴일이 없어요. 2027년에는 2월 9일, 5월 3일, 7월 19일, 8월 16일, 10월 4일, 10월 11일, 12월 27일 7일이에요.</p></details>
+      <details><summary>노동절과 제헌절은 언제부터 공휴일인가요?</summary><p>2026년부터 관공서 공휴일로 지정됐어요. 노동절(5월 1일)과 제헌절(7월 17일) 모두 2026년 4월에 관련 규정이 개정되면서 그해부터 적용됐고, 대체공휴일도 적용돼요. 민간 회사의 유급휴일 적용은 취업규칙에 따라 다를 수 있으니 회사 규정을 확인하세요.</p></details>
+      <details><summary>연차 붙여 쓰기 추천은 어떤 기준으로 찾나요?</summary><p>주말과 공휴일로 이어진 쉬는 날 사이에 낀 평일에 연차를 쓰면 휴일이 길게 이어져요. 계산기는 연차 일수를 정하면 그 일수를 정확히 써서 가장 길게 이어지는 기간을 찾아 길이가 긴 순서로 보여 줘요. 공휴일과 주말에는 연차를 쓰지 않아요.</p></details>
+      <details><summary>연차는 공휴일이나 주말에도 쓸 수 있나요?</summary><p>일반적으로 근무일이 아닌 공휴일과 주말에는 연차를 쓰지 않아요. 그래서 이 계산기도 평일에만 연차를 쓰는 것으로 계산해요. 회사마다 휴일 근무와 연차 차감 방식이 다를 수 있으니 취업규칙을 확인하세요.</p></details>
+      <details><summary>근무일수에서 토요일은 어떻게 하나요?</summary><p>기본은 토요일과 일요일을 쉬는 날로 보고 계산해요. 토요일에도 근무한다면 "토요일도 근무일로 계산"을 켜 보세요. 토요일이 공휴일이면 쉬는 날로 계산해요.</p></details>
+      <details><summary>임시공휴일이 지정되면 달력은 어떻게 바뀌나요?</summary><p>정부가 임시공휴일을 지정하면 이 달력에 없는 쉬는 날이 생길 수 있어요. 지정되면 데이터를 고쳐서 반영하고, 현재는 월력요항에 정해진 공휴일만 들어 있어요.</p></details>
+      <details><summary>2028년 이후 공휴일은 왜 없나요?</summary><p>다음 해 월력요항은 보통 그해 6월 말에 발표돼요. 2028년 자료가 발표되면 추가하고, 지금은 2026년과 2027년만 계산해요.</p></details>
+    </div>
+    <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/holiday-2027/">2027년 공휴일과 연차 붙여 쓰기 총정리 →</a></div>
+  </section>
+  <div class="toast" id="toast"></div>
+<script>
+/* 공휴일·연차 붙여 쓰기 엔진. 2026~2027 데이터: 우주항공청 월력요항(2027, 2026.6.29 발표)과 관공서의 공휴일에 관한 규정 개정(2026.4.28)을 기준으로 함 */
+const HD_DATA={
+ 2026:[['01-01','신정'],['02-16','설날 연휴'],['02-17','설날'],['02-18','설날 연휴'],['03-01','삼일절'],['03-02','대체공휴일(삼일절)'],['05-01','노동절'],['05-05','어린이날'],['05-24','부처님오신날'],['05-25','대체공휴일(부처님오신날)'],['06-03','전국동시지방선거'],['06-06','현충일'],['07-17','제헌절'],['08-15','광복절'],['08-17','대체공휴일(광복절)'],['09-24','추석 연휴'],['09-25','추석'],['09-26','추석 연휴'],['10-03','개천절'],['10-05','대체공휴일(개천절)'],['10-09','한글날'],['12-25','성탄절']],
+ 2027:[['01-01','신정'],['02-06','설날 연휴'],['02-07','설날'],['02-08','설날 연휴'],['02-09','대체공휴일(설날)'],['03-01','삼일절'],['05-01','노동절'],['05-03','대체공휴일(노동절)'],['05-05','어린이날'],['05-13','부처님오신날'],['06-06','현충일'],['07-17','제헌절'],['07-19','대체공휴일(제헌절)'],['08-15','광복절'],['08-16','대체공휴일(광복절)'],['09-14','추석 연휴'],['09-15','추석'],['09-16','추석 연휴'],['10-03','개천절'],['10-04','대체공휴일(개천절)'],['10-09','한글날'],['10-11','대체공휴일(한글날)'],['12-25','성탄절'],['12-27','대체공휴일(성탄절)']]
+};
+const HD_LO='2026-01-01', HD_HI='2027-12-31', HD_WD=['일','월','화','수','목','금','토'];
+function hdParse(s){ const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s||'')); if(!m) return null; const y=+m[1],mo=+m[2],d=+m[3]; const t=new Date(Date.UTC(y,mo-1,d)); if(t.getUTCFullYear()!==y||t.getUTCMonth()!==mo-1||t.getUTCDate()!==d) return null; return Math.round(t.getTime()/86400000); }
+function hdYmd(dn){ const t=new Date(dn*86400000); return {y:t.getUTCFullYear(),m:t.getUTCMonth()+1,d:t.getUTCDate()}; }
+function hdIso(dn){ const a=hdYmd(dn); return a.y+'-'+String(a.m).padStart(2,'0')+'-'+String(a.d).padStart(2,'0'); }
+function hdDow(dn){ return new Date(dn*86400000).getUTCDay(); }
+function hdLabel(dn){ const a=hdYmd(dn); return a.m+'/'+a.d+'('+HD_WD[hdDow(dn)]+')'; }
+const HD_MAP={}; Object.keys(HD_DATA).forEach(y=>HD_DATA[y].forEach(([md,name])=>{ HD_MAP[hdParse(y+'-'+md)]=name; }));
+const hdLo=hdParse(HD_LO), hdHi=hdParse(HD_HI);
+const hdIn=dn=>dn>=hdLo&&dn<=hdHi;
+const hdHol=dn=>HD_MAP[dn]||null;
+const hdOff=dn=>{ const w=hdDow(dn); return w===0||w===6||HD_MAP[dn]!==undefined; };
+/* 연차 k일을 써서 이어 쉴 수 있는 최대 구간: 앞뒤가 근무일로 막힌 구간 중 근무일이 정확히 k일인 것 */
+function hdWindows(k,fromDn,toDn){
+  const res=[]; const n=hdHi-hdLo+1;
+  for(let i=1;i<n-1;i++){
+    const s=hdLo+i; if(s<fromDn||s>toDn) continue;
+    if(hdOff(s-1)) continue;                       // 왼쪽으로 더 늘릴 수 있으면 최대 구간이 아님
+    let cnt=0, leave=[];
+    for(let j=i;j<n-1;j++){ const d=hdLo+j; if(!hdOff(d)){ cnt++; leave.push(d); } if(cnt>k) break;
+      if(cnt===k&&!hdOff(d+1)){ const names=[]; for(let x=s;x<=d;x++){ const h=hdHol(x); if(h&&!names.includes(h)) names.push(h); } res.push({s,e:d,len:d-s+1,leave:leave.slice(),names}); } }
+  }
+  return res;
+}
+/* 추천: 길이 내림차순, 겹치지 않게 상위 n개 */
+function hdBest(k,fromDn,toDn,n,minEnd){
+  let w=hdWindows(k,fromDn,toDn); if(minEnd!=null) w=w.filter(x=>x.e>=minEnd);
+  w.sort((a,b)=>b.len-a.len||a.s-b.s); const out=[];
+  for(const x of w){ if(out.every(o=>x.e<o.s||x.s>o.e)) out.push(x); if(out.length>=n) break; }
+  return out;
+}
+/* 공휴일·주말로 이어진 연속 휴일(연차 없이) 구간 목록 */
+function hdBreaks(y,minLen){ const a=hdParse(y+'-01-01'), b=hdParse(y+'-12-31'); const out=[]; let s=null;
+  for(let d=a;d<=b+1;d++){ const off=d<=hdHi&&hdOff(d); if(off&&s===null) s=d; if(!off&&s!==null){ if(d-s>=minLen) out.push({s,e:d-1,len:d-s}); s=null; } } return out; }
+/* 휴일 수(토·일·공휴일) */
+function hdRestDays(y){ const a=hdParse(y+'-01-01'), b=hdParse(y+'-12-31'); let c=0; for(let d=a;d<=b;d++) if(hdOff(d)) c++; return c; }
+/* 근무일수: satWork이면 토요일도 근무일 */
+function hdBiz(startIso,endIso,satWork){
+  const s=hdParse(startIso), e=hdParse(endIso); if(s===null||e===null) return {err:'date'}; if(e<s) return {err:'order'};
+  if(!hdIn(s)||!hdIn(e)) return {err:'range'};
+  let biz=0, weekend=0, hol=0; const names=[];
+  for(let d=s;d<=e;d++){ const w=hdDow(d), h=hdHol(d); if(h) names.push({d,name:h});
+    if(w===0||(w===6&&!satWork)){ weekend++; continue; } if(h){ hol++; continue; } biz++; }
+  return {total:e-s+1,biz,weekend,hol,names};
+}
+/* 달력에서 고른 연차: 연차가 포함된 연속 휴일 구간 */
+function hdBlocks(leaves){
+  const set=new Set(leaves), res=[], seen=new Set();
+  [...set].sort((a,b)=>a-b).forEach(l=>{ if(seen.has(l)) return; let s=l, e=l; while(hdIn(s-1)&&(hdOff(s-1)||set.has(s-1))) s--; while(hdIn(e+1)&&(hdOff(e+1)||set.has(e+1))) e++;
+    let c=0; for(let d=s;d<=e;d++) if(set.has(d)){ c++; seen.add(d); } res.push({s,e,len:e-s+1,leave:c}); });
+  return res;
+}
+
+const $=id=>document.getElementById(id);
+const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1600);}
+let T='find', FY=2027, CY=2027, K=3, SAT=false, last=null; const LV=new Set();
+function today(){ if(window.__today) return hdParse(window.__today); const t=new Date(); return Math.round(Date.UTC(t.getFullYear(),t.getMonth(),t.getDate())/86400000); }
+const sd=dn=>{ const a=hdYmd(dn); return a.m+'/'+a.d; };
+function row(b,s,e,cls){ const li=document.createElement('li'); if(cls) li.className=cls; li.innerHTML='<b></b><span></span><em></em>'; li.children[0].textContent=b; li.children[1].textContent=s; li.children[2].textContent=e; return li; }
+function show(r){
+  $('cap').textContent=r.cap||'결과'; $('big').textContent=r.big==null?'-':r.big; $('sub').textContent=r.sub||'';
+  const ms=$('ms'); ms.innerHTML=''; (r.rows||[]).forEach(x=>ms.append(row(x[0],x[1],x[2],x[3]))); ms.hidden=!(r.rows&&r.rows.length);
+  const w=$('warns'); w.innerHTML=''; (r.warns||[]).forEach(s=>{ const d=document.createElement('div'); d.textContent=s; w.append(d); });
+  last=r.copy?r:null; $('copy').disabled=!last; if(r.endo) endo(r.endo[0],r.endo[1]);
+}
+const NOTE='임시공휴일이 지정되면 이 결과와 달라질 수 있어요.';
+/* ---- 연차 붙여 쓰기 ---- */
+function drawK(){ const box=$('fk'); box.innerHTML=''; [1,2,3,4,5,7,10].forEach(n=>{ const b=document.createElement('button'); b.type='button'; b.textContent=n+'일'; b.setAttribute('aria-pressed',n===K); b.onclick=()=>{ K=n; drawK(); run(); }; box.append(b); }); }
+function calcFind(){
+  const to=hdParse(FY+'-12-31'), td=today(), from=Math.max(hdParse(FY+'-01-01'),td);
+  const list=hdBest(K,from,to,6,null);
+  if(!list.length) return show({cap:'연차 붙여 쓰기',sub:`${FY}년에는 이 조건으로 찾을 연휴가 없어요`,warns:['이미 지난 기간은 보여 주지 않아요. 다른 연도나 연차 일수를 골라 보세요.'],endo:['surprised','다른 조건을 골라 보세요']});
+  const top=list[0], rows=list.map((x,i)=>[`${hdLabel(x.s)}~${hdLabel(x.e)}`,'연차 '+x.leave.map(sd).join('·'),x.len+'일',i===0?'hot':'']);
+  const copy=`[연차 붙여 쓰기] ${FY}년 연차 ${K}일 추천\n`+list.slice(0,3).map(x=>`· ${hdLabel(x.s)}~${hdLabel(x.e)} ${x.len}일 (연차 ${x.leave.map(sd).join('·')})`).join('\n');
+  const eff=(top.len/K).toFixed(1).replace(/\.0$/,'');
+  show({cap:`연차 ${K}일로 쉬는 최대 연휴`,big:top.len+'일',sub:`${hdLabel(top.s)} ~ ${hdLabel(top.e)} · 연차 1일당 ${eff}일`,rows,warns:[NOTE],copy,endo:['thumbs',`연차 ${K}일로 ${top.len}일을 쉴 수 있어요`]});
+}
+/* ---- 달력 ---- */
+function drawCal(){
+  const box=$('cal'); box.innerHTML=''; const WH=['일','월','화','수','목','금','토'];
+  for(let m=1;m<=12;m++){
+    const mc=document.createElement('div'); mc.className='mc'; const h=document.createElement('h3'); h.textContent=m+'월'; mc.append(h);
+    const g=document.createElement('div'); g.className='mg'; WH.forEach((w,i)=>{ const s=document.createElement('div'); s.className='wh'+(i===0?' s0':''); s.textContent=w; g.append(s); });
+    const first=hdParse(CY+'-'+String(m).padStart(2,'0')+'-01'), n=new Date(Date.UTC(CY,m,0)).getUTCDate();
+    for(let i=0;i<hdDow(first);i++){ const b=document.createElement('div'); b.className='cd blank'; g.append(b); }
+    for(let d=0;d<n;d++){ const dn=first+d, w=hdDow(dn), hol=hdHol(dn); const el=document.createElement(hol||w===0||w===6?'div':'button');
+      el.textContent=d+1; el.className='cd'+(w===0?' sun':'')+(w===6?' we':'')+(hol?' hol':'')+(!hol&&w!==0&&w!==6?' work':'')+(LV.has(dn)?' sel':'');
+      if(hol) el.title=hol+' ('+hdLabel(dn)+')';
+      if(el.tagName==='BUTTON'){ el.type='button'; el.setAttribute('aria-label',hdLabel(dn)+' 연차'); el.setAttribute('aria-pressed',LV.has(dn)); el.onclick=()=>{ if(LV.has(dn)) LV.delete(dn); else LV.add(dn); el.classList.toggle('sel'); el.setAttribute('aria-pressed',LV.has(dn)); calcCal(); }; }
+      g.append(el); }
+    mc.append(g); box.append(mc);
+  }
+}
+function calcCal(){
+  if(!LV.size) return show({cap:'달력',sub:'평일을 눌러 연차로 표시해 보세요',endo:['abacus','쉬고 싶은 평일을 눌러 보세요!']});
+  const bl=hdBlocks([...LV]); const best=bl.reduce((a,b)=>b.len>a.len?b:a,bl[0]);
+  const rows=bl.map(b=>[`${hdLabel(b.s)}~${hdLabel(b.e)}`,`연차 ${b.leave}일`,b.len+'일',b===best?'hot':'']);
+  show({cap:'내가 고른 연차',big:best.len+'일',sub:`연차 ${LV.size}일 사용 · 가장 긴 연속 휴일`,rows,warns:[NOTE],copy:`[연휴 계산] 연차 ${LV.size}일 → `+bl.map(b=>`${hdLabel(b.s)}~${hdLabel(b.e)} ${b.len}일`).join(', '),endo:['thumbs',`연차 ${LV.size}일로 최대 ${best.len}일 쉬어요`]});
+}
+/* ---- 근무일수 ---- */
+function calcBiz(){
+  const s=$('b-s').value, e=$('b-e').value;
+  if(!s||!e) return show({cap:'근무일수',sub:'시작일과 종료일을 골라 주세요',endo:['abacus','기간을 골라 보세요!']});
+  const r=hdBiz(s,e,SAT);
+  if(r.err==='order') return show({cap:'근무일수',sub:'종료일이 시작일보다 빨라요',warns:['종료일이 시작일보다 빠르지 않게 골라 주세요.'],endo:['surprised','날짜 순서를 확인해 주세요']});
+  if(r.err) return show({cap:'근무일수',sub:'계산할 수 있는 기간을 벗어났어요',warns:['2026년 1월 1일부터 2027년 12월 31일까지만 계산해요.'],endo:['surprised','기간을 확인해 주세요']});
+  const rows=[['총 기간','시작일·종료일 포함',r.total+'일'],['쉬는 날(주말)',SAT?'일요일만':'토·일',r.weekend+'일'],['공휴일','평일인 공휴일',r.hol+'일'],['근무일수','총 기간 − 쉬는 날',r.biz+'일','hot']];
+  r.names.slice(0,8).forEach(x=>rows.push([hdLabel(x.d),'',x.name]));
+  const warns=[NOTE]; if(r.names.length>8) warns.unshift(`기간 안의 공휴일이 ${r.names.length}일 더 있어요. 위에는 앞쪽 8일만 보여 드려요.`);
+  show({cap:'근무일수',big:r.biz+'일',sub:`${r.total}일 중 쉬는 날 ${r.weekend+r.hol}일`,rows,warns,copy:`[근무일수] ${s} ~ ${e}: 근무일 ${r.biz}일 (총 ${r.total}일, 주말 ${r.weekend}일, 공휴일 ${r.hol}일)`+(SAT?' · 토요일 근무 포함':''),endo:['thumbs',`근무일수는 ${r.biz}일이에요`]});
+}
+function run(){ ({find:calcFind,cal:calcCal,biz:calcBiz}[T])(); }
+function setTab(t){ T=t; document.querySelectorAll('#tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.t===t)); ['find','cal','biz'].forEach(k=>$('p-'+k).hidden=(k!==t)); $('h2b').textContent={find:'조건 고르기',cal:'연차 표시하기',biz:'기간 고르기'}[t]; if(t==='cal') drawCal(); run(); }
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>setTab(b.dataset.t));
+document.querySelectorAll('#fy button').forEach(b=>b.onclick=()=>{ FY=+b.dataset.y; document.querySelectorAll('#fy button').forEach(x=>x.setAttribute('aria-pressed',x===b)); run(); });
+document.querySelectorAll('#cy button').forEach(b=>b.onclick=()=>{ CY=+b.dataset.y; document.querySelectorAll('#cy button').forEach(x=>x.setAttribute('aria-pressed',x===b)); drawCal(); });
+['b-s','b-e'].forEach(id=>{ $(id).addEventListener('input',run); $(id).addEventListener('change',run); });
+$('sat').onclick=()=>{ SAT=!SAT; $('sat').setAttribute('aria-checked',SAT); run(); };
+document.querySelectorAll('#bq button').forEach(b=>b.onclick=()=>{ const t=hdYmd(today()); const base=b.dataset.q==='this'?[t.y,t.m]:[t.m===12?t.y+1:t.y,t.m===12?1:t.m+1]; const a=hdParse(base[0]+'-'+String(base[1]).padStart(2,'0')+'-01'), z=hdParse(base[0]+'-'+String(base[1]).padStart(2,'0')+'-'+String(new Date(Date.UTC(base[0],base[1],0)).getUTCDate()).padStart(2,'0'));
+  if(!hdIn(a)||!hdIn(z)){ say('2026~2027년 안의 달만 계산해요'); return; } $('b-s').value=hdIso(a); $('b-e').value=hdIso(z); run(); });
+$('copy').onclick=async()=>{ if(!last) return; try{ const x=await shareOut(last.copy+'\n\n손안의도구 연휴 계산기\nhttps://sonandogu.com/holiday/'); if(x==='copied') say('복사했어요'); }catch(e){ say('복사하지 못했어요'); } };
+$('clear').onclick=()=>{ if(T==='cal'){ LV.clear(); drawCal(); } else if(T==='biz'){ $('b-s').value=''; $('b-e').value=''; } run(); say('지웠어요'); };
+window.__hd={hdBest,hdBiz,hdBlocks,hdBreaks};
+drawK(); calcFind();
+</script>
+<section class="cmts" data-page="/holiday/" data-kind="tool"></section>
+</div>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+<script src="/assets/firebase-config.js?v=4"></script>
+<script src="/assets/favorites.js?v=2"></script>
+<script type="module" src="/assets/comments.js?v=4"></script>
+<script src="/assets/analytics.js?v=2" defer></script>
+</body>
+</html>
