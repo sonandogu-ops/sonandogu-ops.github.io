@@ -347,6 +347,9 @@ footer .fl a:hover{color:var(--ink)}
 .disp .fn{margin:10px 0 0; font-size:12.5px; line-height:1.65; color:var(--muted)}
 .disp .ms li.hot{background:rgba(255,90,31,.10)}
 .disp .ms li.hot b{color:#C2410C}
+.hl{display:block; margin:12px 0 0; padding:13px 14px; border-radius:14px; background:#FFF1EA; color:#C2410C; font-weight:800; font-size:14.5px; text-align:center; text-decoration:none}
+.hl[hidden]{display:none}
+@media (prefers-color-scheme:dark){.hl{background:rgba(255,90,31,.16); color:#FF8A3D}}
 </style>
 <link rel="stylesheet" href="/assets/comments.css?v=3">
 <link rel="stylesheet" href="/assets/favorites.css?v=2">
@@ -401,6 +404,7 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
         <ul class="ms" id="ms" hidden></ul>
         <p class="fn" id="fn" hidden>입사일 기준이에요. 매달 개근하고 1년 출근율이 80% 이상이라고 가정했어요. 회계연도 기준으로 연차를 주는 회사나 취업규칙에서 더 많이 주는 경우는 반영하지 않았어요.</p>
         <div class="endo" id="endo" data-p="abacus"><img src="/assets/endo/abacus.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">입사일을 넣으면 연차를 바로 계산해요!</div></div>
+        <a class="hl" id="toHol" href="/holiday/" hidden>남은 연차로 길게 쉬는 기간 찾기 →</a>
         <div class="acts2"><button id="share" data-share="결과 공유" disabled>결과 복사</button><button class="sb" id="reset">초기화</button></div>
       </div>
     </aside>
@@ -508,7 +512,7 @@ function ui(){
   $('wdRow').hidden=!(numInt(S.wh)>=15&&numInt(S.wh)<40); drawQ();
 }
 function row(b,s,e,cls){ const li=document.createElement('li'); if(cls) li.className=cls; li.innerHTML='<b></b><span></span><em></em>'; li.children[0].textContent=b; li.children[1].textContent=s; li.children[2].textContent=e; return li; }
-function reset0(msg,warn){ $('big').textContent='-'; $('cap').textContent='현재 연차'; $('sub').textContent=msg; $('ms').hidden=true; $('fn').hidden=true; $('share').disabled=true; last=null; const q=$('qnet'); q.className='qnet'+(warn?' warn':''); q.textContent=msg; }
+function reset0(msg,warn){ $('big').textContent='-'; $('cap').textContent='현재 연차'; $('sub').textContent=msg; $('ms').hidden=true; $('fn').hidden=true; $('share').disabled=true; $('toHol').hidden=true; last=null; const q=$('qnet'); q.className='qnet'+(warn?' warn':''); q.textContent=msg; }
 function run(){
   $('jd').max=S.ad||''; S.wh=S.wh||'40';
   if(!S.jd||!S.ad){ reset0('입사일과 기준일을 골라 주세요'); endo('abacus','입사일을 넣으면 연차를 바로 계산해요!'); return; }
@@ -541,7 +545,7 @@ function run(){
   ms.append(row('미사용 수당','남은 연차 × 통상 일급',pay>0?fmt(allowance)+'원':'-','next'));
   ms.append(row('다음 발생',`${r.next.kind} ${r.next.days}일`,fd(r.next.date)));
   ms.append(row('누적 발생','월차+연차 합계',trim(w<40?Math.ceil(r.total*(w/40)*8-1e-9)/h:r.total)+'일'));
-  ms.hidden=false; $('fn').hidden=false; $('share').disabled=false;
+  ms.hidden=false; $('fn').hidden=false; $('share').disabled=false; { const hk=Math.min(10,Math.floor(remDay+1e-9)), ah=$('toHol'); if(hk>=1){ ah.href='/holiday/?k='+hk; ah.textContent=(remDay>10?'연차 ':'남은 연차 ')+hk+'일로 길게 쉬는 기간 찾기 →'; ah.hidden=false; } else ah.hidden=true; }
   if(remDay<=0&&used>0) endo('thumbs','발생한 연차를 모두 썼어요');
   else if(r.years===0) endo('thumbs',`월차 ${r.current}일이 생겼어요. 1년이 되면 15일이 새로 생겨요`);
   else endo('thumbs',`이번 연차는 ${trim(dayEq)}일이에요. 다음은 ${fd(r.next.date)}에 생겨요`);

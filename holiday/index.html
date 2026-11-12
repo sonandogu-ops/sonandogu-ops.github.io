@@ -337,21 +337,31 @@ footer .fl a:hover{color:var(--ink)}
 .chipsr button{font:inherit; font-size:15px; font-weight:800; min-width:48px; padding:10px 14px; border-radius:999px; border:1.5px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer}
 .chipsr button[aria-pressed=true]{border-color:#FF5A1F; background:#FFF1EA; color:#C2410C}
 @media (prefers-color-scheme:dark){.chipsr button[aria-pressed=true]{background:rgba(255,90,31,.16); color:#FF8A3D}}
-.cals{display:grid; grid-template-columns:1fr; gap:12px; margin-top:12px}
-@media (min-width:760px){.cals{grid-template-columns:1fr 1fr}}
-.mc{border:1px solid var(--line); border-radius:16px; padding:10px 10px 12px; background:var(--surface)}
-.mc h3{margin:0 0 6px; font-size:15px; font-weight:800}
-.mg{display:grid; grid-template-columns:repeat(7,1fr); gap:2px; text-align:center}
-.mg .wh{font-size:11px; color:var(--muted); font-weight:700; padding:3px 0}
-.mg .wh.s0{color:#E5484D}
-.cd{aspect-ratio:1; display:grid; place-items:center; font:inherit; font-size:13px; font-weight:700; border:0; border-radius:10px; background:transparent; color:var(--ink); padding:0}
+.mnav{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:14px}
+.mnav button{width:46px; height:46px; border-radius:14px; border:1.5px solid var(--line); background:var(--surface); font:inherit; font-size:24px; font-weight:800; color:var(--ink); cursor:pointer; line-height:1; padding:0}
+.mnav button:disabled{opacity:.3; cursor:default}
+.mnav .ml{font-size:20px; font-weight:900; letter-spacing:-.02em}
+.mch{display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:6px; margin-top:12px}
+.mch button{position:relative; font:inherit; font-size:15px; font-weight:800; padding:10px 0; border-radius:12px; border:1.5px solid var(--line); background:var(--surface); color:var(--muted); cursor:pointer}
+.mch button[aria-pressed=true]{border-color:#FF5A1F; background:#FFF1EA; color:#C2410C}
+@media (prefers-color-scheme:dark){.mch button[aria-pressed=true]{background:rgba(255,90,31,.16); color:#FF8A3D}}
+.mch button.has::after{content:""; position:absolute; right:7px; top:7px; width:7px; height:7px; border-radius:50%; background:#FF5A1F}
+.mg2{display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:5px; margin-top:14px}
+.mg2 .wh{font-size:14px; font-weight:800; color:var(--muted); text-align:center; padding:4px 0}
+.mg2 .wh.s0{color:#E5484D}
+.cd{height:48px; display:grid; place-items:center; font:inherit; font-size:18px; font-weight:800; border:0; border-radius:12px; background:transparent; color:var(--ink); padding:0}
 .cd.blank{visibility:hidden}
 .cd.we{color:#7C8087}
 .cd.sun,.cd.hol{color:#E5484D}
 .cd.hol{background:rgba(229,72,77,.14); font-weight:900}
-.cd.work{cursor:pointer}
-.cd.work:hover{background:var(--field)}
+.cd.work{cursor:pointer; background:var(--field)}
+.cd.work:hover{outline:2px solid rgba(255,90,31,.45)}
 .cd.sel{background:#FF5A1F; color:#fff}
+.cd.today{box-shadow:inset 0 0 0 2px var(--ink)}
+.hlist{margin:16px 0 0; padding:0; list-style:none}
+.hlist li{display:flex; justify-content:space-between; gap:10px; padding:11px 14px; border-radius:14px; background:var(--field); font-size:15.5px; font-weight:700; margin-top:6px}
+.hlist li span{color:var(--muted); font-weight:700}
+.hlist li.none{color:var(--muted); justify-content:center}
 .legend{display:flex; flex-wrap:wrap; gap:12px; margin:12px 2px 0; font-size:12.5px; font-weight:700; color:var(--muted)}
 .legend i{display:inline-block; width:12px; height:12px; border-radius:4px; vertical-align:-1px; margin-right:5px}
 .ptable{overflow-x:auto; margin-top:14px; border:1px solid var(--line); border-radius:16px; background:var(--surface)}
@@ -407,7 +417,7 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
           <span class="lbl" style="margin-top:0">연도</span><div class="seg2" id="cy"><button data-y="2027" aria-pressed="true">2027년</button><button data-y="2026" aria-pressed="false">2026년</button></div>
           <div class="legend"><span><i style="background:rgba(229,72,77,.3)"></i>공휴일</span><span><i style="background:#E5484D"></i>일요일</span><span><i style="background:#7C8087"></i>토요일</span><span><i style="background:#FF5A1F"></i>내가 고른 연차</span></div>
           <p class="pnote">평일을 눌러 연차로 표시해 보세요. 다시 누르면 지워져요.</p>
-          <div class="cals" id="cal"></div>
+          <div id="cal"></div>
         </div>
         <div class="pane" id="p-biz" hidden>
           <div class="sgrid tm">
@@ -533,7 +543,7 @@ function hdBlocks(leaves){
 
 const $=id=>document.getElementById(id);
 const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1600);}
-let T='find', FY=2027, CY=2027, K=3, SAT=false, last=null; const LV=new Set();
+let T='find', FY=2027, CY=2027, CI=12, K=3, SAT=false, last=null; const LV=new Set();
 function today(){ if(window.__today) return hdParse(window.__today); const t=new Date(); return Math.round(Date.UTC(t.getFullYear(),t.getMonth(),t.getDate())/86400000); }
 const sd=dn=>{ const a=hdYmd(dn); return a.m+'/'+a.d; };
 function row(b,s,e,cls){ const li=document.createElement('li'); if(cls) li.className=cls; li.innerHTML='<b></b><span></span><em></em>'; li.children[0].textContent=b; li.children[1].textContent=s; li.children[2].textContent=e; return li; }
@@ -545,7 +555,7 @@ function show(r){
 }
 const NOTE='임시공휴일이 지정되면 이 결과와 달라질 수 있어요.';
 /* ---- 연차 붙여 쓰기 ---- */
-function drawK(){ const box=$('fk'); box.innerHTML=''; [1,2,3,4,5,7,10].forEach(n=>{ const b=document.createElement('button'); b.type='button'; b.textContent=n+'일'; b.setAttribute('aria-pressed',n===K); b.onclick=()=>{ K=n; drawK(); run(); }; box.append(b); }); }
+function drawK(){ const box=$('fk'); box.innerHTML=''; [1,2,3,4,5,6,7,8,9,10].forEach(n=>{ const b=document.createElement('button'); b.type='button'; b.textContent=n+'일'; b.setAttribute('aria-pressed',n===K); b.onclick=()=>{ K=n; drawK(); run(); }; box.append(b); }); }
 function calcFind(){
   const to=hdParse(FY+'-12-31'), td=today(), from=Math.max(hdParse(FY+'-01-01'),td);
   const list=hdBest(K,from,to,6,null);
@@ -555,22 +565,35 @@ function calcFind(){
   const eff=(top.len/K).toFixed(1).replace(/\.0$/,'');
   show({cap:`연차 ${K}일로 쉬는 최대 연휴`,big:top.len+'일',sub:`${hdLabel(top.s)} ~ ${hdLabel(top.e)} · 연차 1일당 ${eff}일`,rows,warns:[NOTE],copy,endo:['thumbs',`연차 ${K}일로 ${top.len}일을 쉴 수 있어요`]});
 }
-/* ---- 달력 ---- */
+/* ---- 달력 (한 달씩 크게) ---- */
+function monthsWithLeave(){ const set=new Set(); LV.forEach(dn=>{ const a=hdYmd(dn); set.add((a.y-2026)*12+(a.m-1)); }); return set; }
 function drawCal(){
-  const box=$('cal'); box.innerHTML=''; const WH=['일','월','화','수','목','금','토'];
-  for(let m=1;m<=12;m++){
-    const mc=document.createElement('div'); mc.className='mc'; const h=document.createElement('h3'); h.textContent=m+'월'; mc.append(h);
-    const g=document.createElement('div'); g.className='mg'; WH.forEach((w,i)=>{ const s=document.createElement('div'); s.className='wh'+(i===0?' s0':''); s.textContent=w; g.append(s); });
-    const first=hdParse(CY+'-'+String(m).padStart(2,'0')+'-01'), n=new Date(Date.UTC(CY,m,0)).getUTCDate();
-    for(let i=0;i<hdDow(first);i++){ const b=document.createElement('div'); b.className='cd blank'; g.append(b); }
-    for(let d=0;d<n;d++){ const dn=first+d, w=hdDow(dn), hol=hdHol(dn); const el=document.createElement(hol||w===0||w===6?'div':'button');
-      el.textContent=d+1; el.className='cd'+(w===0?' sun':'')+(w===6?' we':'')+(hol?' hol':'')+(!hol&&w!==0&&w!==6?' work':'')+(LV.has(dn)?' sel':'');
-      if(hol) el.title=hol+' ('+hdLabel(dn)+')';
-      if(el.tagName==='BUTTON'){ el.type='button'; el.setAttribute('aria-label',hdLabel(dn)+' 연차'); el.setAttribute('aria-pressed',LV.has(dn)); el.onclick=()=>{ if(LV.has(dn)) LV.delete(dn); else LV.add(dn); el.classList.toggle('sel'); el.setAttribute('aria-pressed',LV.has(dn)); calcCal(); }; }
-      g.append(el); }
-    mc.append(g); box.append(mc);
-  }
+  const box=$('cal'); box.innerHTML=''; CY=2026+Math.floor(CI/12); const CM=CI%12+1;
+  document.querySelectorAll('#cy button').forEach(x=>x.setAttribute('aria-pressed',+x.dataset.y===CY));
+  const nav=document.createElement('div'); nav.className='mnav';
+  const pv=document.createElement('button'); pv.type='button'; pv.textContent='‹'; pv.setAttribute('aria-label','이전 달'); pv.disabled=CI<=0; pv.onclick=()=>{ CI--; drawCal(); };
+  const lb=document.createElement('div'); lb.className='ml'; lb.textContent=CY+'년 '+CM+'월';
+  const nx=document.createElement('button'); nx.type='button'; nx.textContent='›'; nx.setAttribute('aria-label','다음 달'); nx.disabled=CI>=23; nx.onclick=()=>{ CI++; drawCal(); };
+  nav.append(pv,lb,nx); box.append(nav);
+  const ch=document.createElement('div'); ch.className='mch'; const has=monthsWithLeave();
+  for(let m=1;m<=12;m++){ const idx=(CY-2026)*12+(m-1); const b=document.createElement('button'); b.type='button'; b.textContent=m+'월'; b.setAttribute('aria-pressed',m===CM); if(has.has(idx)) b.className='has'; b.onclick=()=>{ CI=idx; drawCal(); }; ch.append(b); }
+  box.append(ch);
+  const g=document.createElement('div'); g.className='mg2'; ['일','월','화','수','목','금','토'].forEach((w,i)=>{ const x=document.createElement('div'); x.className='wh'+(i===0?' s0':''); x.textContent=w; g.append(x); });
+  const first=hdParse(CY+'-'+String(CM).padStart(2,'0')+'-01'), n=new Date(Date.UTC(CY,CM,0)).getUTCDate(), td=today();
+  for(let i=0;i<hdDow(first);i++){ const e=document.createElement('div'); e.className='cd blank'; g.append(e); }
+  const names=[];
+  for(let d=0;d<n;d++){ const dn=first+d, w=hdDow(dn), hol=hdHol(dn); const el=document.createElement(hol||w===0||w===6?'div':'button');
+    el.textContent=d+1; el.className='cd'+(w===0?' sun':'')+(w===6?' we':'')+(hol?' hol':'')+(!hol&&w!==0&&w!==6?' work':'')+(LV.has(dn)?' sel':'')+(dn===td?' today':'');
+    if(hol) names.push([dn,hol]);
+    if(el.tagName==='BUTTON'){ el.type='button'; el.setAttribute('aria-label',hdLabel(dn)+' 연차'); el.setAttribute('aria-pressed',LV.has(dn)); el.onclick=()=>{ if(LV.has(dn)) LV.delete(dn); else LV.add(dn); el.classList.toggle('sel'); el.setAttribute('aria-pressed',LV.has(dn)); calcCal(); drawChips(); }; }
+    g.append(el); }
+  box.append(g);
+  const ul=document.createElement('ul'); ul.className='hlist';
+  if(!names.length){ const li=document.createElement('li'); li.className='none'; li.textContent='이 달에는 평일 공휴일이 없어요'; ul.append(li); }
+  names.forEach(([dn,nm])=>{ const li=document.createElement('li'); const a=document.createElement('b'); a.textContent=hdLabel(dn); const c=document.createElement('span'); c.textContent=nm; li.append(a,c); ul.append(li); });
+  box.append(ul);
 }
+function drawChips(){ const has=monthsWithLeave(); document.querySelectorAll('#cal .mch button').forEach((b,i)=>{ const idx=(CY-2026)*12+i; b.classList.toggle('has',has.has(idx)); }); }
 function calcCal(){
   if(!LV.size) return show({cap:'달력',sub:'평일을 눌러 연차로 표시해 보세요',endo:['abacus','쉬고 싶은 평일을 눌러 보세요!']});
   const bl=hdBlocks([...LV]); const best=bl.reduce((a,b)=>b.len>a.len?b:a,bl[0]);
@@ -593,7 +616,7 @@ function run(){ ({find:calcFind,cal:calcCal,biz:calcBiz}[T])(); }
 function setTab(t){ T=t; document.querySelectorAll('#tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.t===t)); ['find','cal','biz'].forEach(k=>$('p-'+k).hidden=(k!==t)); $('h2b').textContent={find:'조건 고르기',cal:'연차 표시하기',biz:'기간 고르기'}[t]; if(t==='cal') drawCal(); run(); }
 document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>setTab(b.dataset.t));
 document.querySelectorAll('#fy button').forEach(b=>b.onclick=()=>{ FY=+b.dataset.y; document.querySelectorAll('#fy button').forEach(x=>x.setAttribute('aria-pressed',x===b)); run(); });
-document.querySelectorAll('#cy button').forEach(b=>b.onclick=()=>{ CY=+b.dataset.y; document.querySelectorAll('#cy button').forEach(x=>x.setAttribute('aria-pressed',x===b)); drawCal(); });
+document.querySelectorAll('#cy button').forEach(b=>b.onclick=()=>{ CI=(+b.dataset.y-2026)*12+(CI%12); drawCal(); });
 ['b-s','b-e'].forEach(id=>{ $(id).addEventListener('input',run); $(id).addEventListener('change',run); });
 $('sat').onclick=()=>{ SAT=!SAT; $('sat').setAttribute('aria-checked',SAT); run(); };
 document.querySelectorAll('#bq button').forEach(b=>b.onclick=()=>{ const t=hdYmd(today()); const base=b.dataset.q==='this'?[t.y,t.m]:[t.m===12?t.y+1:t.y,t.m===12?1:t.m+1]; const a=hdParse(base[0]+'-'+String(base[1]).padStart(2,'0')+'-01'), z=hdParse(base[0]+'-'+String(base[1]).padStart(2,'0')+'-'+String(new Date(Date.UTC(base[0],base[1],0)).getUTCDate()).padStart(2,'0'));
@@ -601,6 +624,7 @@ document.querySelectorAll('#bq button').forEach(b=>b.onclick=()=>{ const t=hdYmd
 $('copy').onclick=async()=>{ if(!last) return; try{ const x=await shareOut(last.copy+'\n\n손안의도구 연휴 계산기\nhttps://sonandogu.com/holiday/'); if(x==='copied') say('복사했어요'); }catch(e){ say('복사하지 못했어요'); } };
 $('clear').onclick=()=>{ if(T==='cal'){ LV.clear(); drawCal(); } else if(T==='biz'){ $('b-s').value=''; $('b-e').value=''; } run(); say('지웠어요'); };
 window.__hd={hdBest,hdBiz,hdBlocks,hdBreaks};
+{ const kp=parseInt(new URLSearchParams(location.search).get('k'),10); if(kp>=1&&kp<=10) K=kp; }
 drawK(); calcFind();
 </script>
 <section class="cmts" data-page="/holiday/" data-kind="tool"></section>
