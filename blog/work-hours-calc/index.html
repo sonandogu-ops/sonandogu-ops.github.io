@@ -26,7 +26,7 @@
 <meta property="og:description" content="출퇴근 시각에서 근로시간 구하는 과정을 정리.">
 <link rel="canonical" href="https://sonandogu.com/blog/work-hours-calc/">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "근무시간 계산, 휴게시간과 자정 넘김에서 틀려요", "datePublished": "2026-11-12", "dateModified": "2026-11-12", "author": {"@type": "Organization", "name": "손안의도구"}, "publisher": {"@type": "Organization", "name": "손안의도구"}, "mainEntityOfPage": "https://sonandogu.com/blog/work-hours-calc/", "image": "https://sonandogu.com/assets/og-work-hours-calc-post.jpg?v=20261116"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "근무시간 계산, 휴게시간과 자정 넘김에서 틀려요", "datePublished": "2026-11-12", "dateModified": "2026-11-16", "author": {"@type": "Organization", "name": "손안의도구"}, "publisher": {"@type": "Organization", "name": "손안의도구"}, "mainEntityOfPage": "https://sonandogu.com/blog/work-hours-calc/", "image": "https://sonandogu.com/assets/og-work-hours-calc-post.jpg?v=20261116"}</script>
 <style>:root{
   --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
   --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
@@ -218,6 +218,10 @@ td:last-child,th:last-child{text-align:right}
   <h2>15분 단위로 끊어 계산하는 관행</h2>
   <p>일부 사업장에서는 근무시간을 15분이나 30분 단위로 끊어서 넘는 시간을 인정하지 않기도 해요. 하루에 10분씩 더 일했는데 15분 단위로 계산하면서 그 10분이 사라지는 식이에요. 하루 10분이면 별것 아닌 것 같지만 20일이면 200분, 3시간 20분이에요. 시급 10,320원이면 약 34,400원이 사라지는 셈이에요.</p>
   <p>일한 시간은 분 단위까지 계산하는 게 원칙이고, 이런 관행(흔히 "임금 꺾기"라고 불러요)은 대규모 임금 체불로 문제가 된 적이 있어요. 급여가 이상하다면 계약서와 급여 명세서에서 근무시간을 어떻게 계산하는지 먼저 확인해 보세요. 직접 기록한 출퇴근 시각이 있다면 근무시간 계산기로 계산해서 비교해 볼 수 있어요.</p>
+
+  <h2>8시간을 넘기면 연장근로예요</h2>
+  <p>하루 8시간, 일주일 40시간을 넘겨 일한 시간은 연장근로예요. 상시 5명 이상이 일하는 사업장이라면 연장근로에는 통상임금의 50%를 더 줘야 해요. 예를 들어 휴게를 빼고 하루 10시간을 일했다면 2시간이 연장이고, 시급 10,320원이면 그 2시간은 10,320원 × 1.5 × 2 = 30,960원이에요.</p>
+  <p>연장근로는 당사자가 합의해도 일주일에 12시간까지만 할 수 있어요. 주 40시간에 연장 12시간을 더한 52시간이 한 주에 일할 수 있는 최대치라서, 흔히 "주 52시간제"라고 불러요. 하루 근무시간을 계산했을 때 8시간이 넘는 날이 자주 있다면, 급여 명세서에 연장근로수당이 따로 적혀 있는지 확인해 보세요.</p>
 
   <h2>한 주 시간표로 월 환산까지</h2>
   <p>예를 들어 월~금 오후 2시부터 7시 30분까지 일하고 휴게가 30분이라면 하루 근로시간은 5시간이에요. 일주일이면 25시간이고, 주 15시간이 넘으니 주휴시간 5시간(25 ÷ 40 × 8)이 더해져요. (25 + 5)시간에 4.345주를 곱해 반올림하면 월 근로시간은 130시간이고, 시급 10,320원이면 월 환산액은 1,341,600원이에요. 일주일 탭에 요일별 시각을 넣으면 이 과정을 한 번에 계산해 줘요.</p>
