@@ -261,6 +261,21 @@ footer .fl a:hover{color:var(--ink)}
   .cat .t .d{font-size:12.5px; margin-top:1px}
   .posts{margin-top:28px}
 }
+
+.pgs{display:grid; gap:18px}
+@media (min-width:960px){.pgs{grid-template-columns:repeat(3,1fr); gap:14px}}
+.pg h3{font-size:14px; font-weight:800; color:var(--muted); letter-spacing:-.02em; margin:0 0 8px}
+.pg .pi{height:auto}
+.intro{margin-top:48px; padding:22px 20px; background:var(--surface); border:1px solid var(--line); border-radius:18px}
+.intro h2{font-size:clamp(18px,3vw,21px); font-weight:800; letter-spacing:-.035em; margin:0 0 8px}
+.intro p{font-size:14.5px; line-height:1.8; color:var(--muted); margin:0 0 14px}
+.intro .ig{display:grid; gap:10px; margin:0 0 14px}
+@media (min-width:640px){.intro .ig{grid-template-columns:1fr 1fr}}
+.intro .ig div{background:var(--field); border-radius:14px; padding:13px 15px}
+.intro .ig b{display:block; font-size:14.5px; font-weight:800; color:var(--ink); margin-bottom:3px}
+.intro .ig span{font-size:13.5px; line-height:1.65; color:var(--muted)}
+.intro .im{font-size:13px; margin:0}
+.intro a{color:var(--orange); font-weight:700; text-decoration:none}
 </style>
 <link rel="stylesheet" href="/assets/comments.css?v=3">
 <link rel="stylesheet" href="/assets/favorites.css?v=2">
@@ -322,10 +337,35 @@ footer .fl a:hover{color:var(--ink)}
   </main>
   <section class="posts">
     <div class="ph"><h2>읽어볼 만한 글</h2><a href="/blog/">전체 보기</a></div>
-    <a class="pi" href="/blog/holiday-2027/"><span class="pt">생활 계산</span><strong>2027년 연휴 총정리, 연차 3일로 9일 쉬는 법</strong><span class="pd">대체공휴일 7일과 연차 붙여 쓰기</span></a>
-    <a class="pi" href="/blog/work-hours-calc/"><span class="pt">생활 계산</span><strong>근무시간 계산, 휴게시간과 자정 넘김에서 틀려요</strong><span class="pd">출퇴근 시각에서 근로시간 구하기</span></a>
-    <a class="pi" href="/blog/minimum-wage-table/"><span class="pt">생활 계산</span><strong>최저임금 하루치와 한 달치, 환산표로 한 번에 보기</strong><span class="pd">2026·2027 일급과 월급 환산표</span></a>
-    </section>
+    <div class="pgs">
+      <div class="pg"><h3>월급과 근로</h3>
+        <a class="pi" href="/blog/salary-take-home/"><span class="pt">생활 계산</span><strong>연봉 3,600만 원, 통장에는 얼마가 찍힐까</strong><span class="pd">4대보험과 소득세, 연봉별 실수령액</span></a>
+        <a class="pi" href="/blog/weekly-holiday-pay/"><span class="pt">알바 상식</span><strong>주 14시간 알바, 1시간 차이로 사라지는 돈</strong><span class="pd">주휴수당 조건과 계산법</span></a>
+        <a class="pi" href="/blog/severance-pay/"><span class="pt">생활 계산</span><strong>월급 300만 원으로 3년 일하면 퇴직금은 얼마일까</strong><span class="pd">평균임금과 퇴직소득세</span></a>
+      </div>
+      <div class="pg"><h3>생활 속 계산</h3>
+        <a class="pi" href="/blog/holiday-2027/"><span class="pt">생활 계산</span><strong>2027년 연휴 총정리, 연차 3일로 9일 쉬는 법</strong><span class="pd">대체공휴일과 연차 붙여 쓰기</span></a>
+        <a class="pi" href="/blog/discount-rate/"><span class="pt">생활 계산</span><strong>20% 할인에 10% 더, 왜 30%가 아닐까?</strong><span class="pd">중복 할인과 원래 가격 찾기</span></a>
+        <a class="pi" href="/blog/anniversary-count/"><span class="pt">생활 계산</span><strong>100일 이벤트, 하루 늦은 이유</strong><span class="pd">기념일과 D-day 세는 법</span></a>
+      </div>
+      <div class="pg"><h3>모임과 놀이</h3>
+        <a class="pi" href="/blog/team-picking/"><span class="pt">모임 놀이</span><strong>팀 정하기, 왜 늘 누군가 서운할까</strong><span class="pd">공평하게 팀 나누는 법</span></a>
+        <a class="pi" href="/blog/manito-rules/"><span class="pt">모임 놀이</span><strong>마니또, 종이 제비로 뽑으면 왜 자꾸 다시 뽑을까</strong><span class="pd">자기 이름이 걸릴 확률과 원형 배정</span></a>
+        <a class="pi" href="/blog/yut-rules/"><span class="pt">전통 놀이</span><strong>윷놀이 하다 싸우는 이유, 집집마다 규칙이 달라서예요</strong><span class="pd">지름길, 업기, 빽도와 확률</span></a>
+      </div>
+    </div>
+  </section>
+  <section class="intro" aria-labelledby="introH">
+    <h2 id="introH">손안의도구는 이런 곳이에요</h2>
+    <p>간단한 계산 하나, 양식 하나가 필요해서 검색했다가 팝업과 회원가입 창 사이를 헤맨 적이 있을 거예요. 손안의도구는 그런 순간을 위해 만든 무료 사이트예요. 필요할 때 바로 열어서 원하는 걸 얻고, 미련 없이 닫으면 돼요.</p>
+    <div class="ig">
+      <div><b>가입 없이 바로</b><span>모든 도구가 브라우저에서 바로 열려요. 자주 쓴다면 홈 화면에 앱처럼 추가할 수도 있어요.</span></div>
+      <div><b>공식 기준으로 계산</b><span>연봉, 퇴직금, 연차, 알바 급여는 고시된 요율과 근로기준법, 세법을 따르고, 요율이 바뀌는 시기마다 다시 점검해요.</span></div>
+      <div><b>입력은 기기 안에서</b><span>도구에 넣은 숫자와 이름은 가능한 한 이 기기 안에서만 계산해요. 서버를 거치는 기능은 미리 알려드려요.</span></div>
+      <div><b>원리까지 함께</b><span>계산 공식은 페이지에 공개하고, 블로그에서는 헷갈리기 쉬운 생활 속 계산을 예시와 함께 풀어 써요.</span></div>
+    </div>
+    <p class="im">결과는 참고용 예상치예요. 숫자가 이상하면 <a href="/contact/">문의하기</a>로 알려 주세요. 계산 기준과 출처는 <a href="/about/">사이트 소개</a>에 자세히 적어 두었어요.</p>
+  </section>
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
 <script src="/assets/firebase-config.js?v=4"></script>
