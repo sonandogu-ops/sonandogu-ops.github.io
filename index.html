@@ -264,7 +264,14 @@ footer .fl a:hover{color:var(--ink)}
 }
 
 .pgs{display:grid; gap:18px}
-@media (min-width:960px){.pgs{grid-template-columns:repeat(3,1fr); gap:14px}}
+@media (min-width:960px){
+  .pgs{grid-template-columns:repeat(3,1fr); grid-template-rows:auto repeat(3,1fr); column-gap:14px; row-gap:8px}
+  .pg{display:grid; grid-row:span 4; grid-template-rows:subgrid; row-gap:8px}
+  .pg h3{margin:0}
+  .pg .pi{margin:0; display:flex; flex-direction:column; justify-content:flex-start}
+  .pg .pi .pt{align-self:flex-start}
+}
+.pi strong,.pi .pd,.intro p,.intro .ig span{word-break:keep-all; overflow-wrap:break-word}
 .pg h3{font-size:14px; font-weight:800; color:var(--muted); letter-spacing:-.02em; margin:0 0 8px}
 .pg .pi{height:auto}
 .intro{margin-top:48px; padding:22px 20px; background:var(--surface); border:1px solid var(--line); border-radius:18px}
