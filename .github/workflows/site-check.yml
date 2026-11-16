@@ -1,0 +1,72 @@
+name: 사이트 점검
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 22 * * 0"   # 매주 월요일 오전 7시 17분 (한국 시간)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: site-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 점검 실행
+        id: run
+        run: |
+          LIVE=""
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then LIVE="--live"; fi
+          set +e
+          python3 -I .github/scripts/site_check.py . $LIVE --out report.md
+          echo "code=$?" >> "$GITHUB_OUTPUT"
+          cat report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: 문제가 있으면 이슈 열기
+        if: steps.run.outputs.code != '0' && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TITLE="사이트 점검에서 문제를 찾았어요"
+          {
+            cat report.md
+            echo
+            echo "---"
+            echo "점검 기록: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo "문제를 고쳐서 다음 점검을 통과하면 이 이슈는 자동으로 닫혀요."
+          } > body.md
+          NUM=$(gh issue list --state open --label site-check --json number --jq '.[0].number')
+          if [ -n "$NUM" ]; then
+            gh issue comment "$NUM" --body-file body.md
+          else
+            gh label create site-check --color FF5A1F --description "사이트 자동 점검" 2>/dev/null || true
+            gh issue create --title "$TITLE" --label site-check --body-file body.md
+          fi
+
+      - name: 문제가 해결되면 이슈 닫기
+        if: steps.run.outputs.code == '0' && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for NUM in $(gh issue list --state open --label site-check --json number --jq '.[].number'); do
+            gh issue close "$NUM" --comment "다시 점검했더니 문제가 없어요. 자동으로 닫을게요."
+          done
+
+      - name: 결과 판정
+        if: steps.run.outputs.code != '0'
+        run: exit 1
