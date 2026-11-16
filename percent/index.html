@@ -117,6 +117,8 @@ footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
 .f code{display:inline-block; font-family:inherit; font-size:14px; font-weight:700; background:var(--field); border-radius:10px; padding:6px 10px; font-variant-numeric:tabular-nums}
 .f p{margin:10px 0 0; font-size:14px; color:var(--muted)}
 .faq{margin-top:56px}
+.guide .fgrid+h2,.guide p+h2{margin-top:56px}
+.guide>p{font-size:16px; line-height:1.85; margin:0 0 14px}
 .faq details{border-top:1px solid var(--line); padding:18px 0}
 .faq details:last-child{border-bottom:1px solid var(--line)}
 .faq summary{cursor:pointer; font-weight:700; font-size:16px; list-style:none; display:flex; justify-content:space-between; gap:16px}
@@ -159,7 +161,10 @@ footer .fl a:hover{color:var(--ink)}
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"퍼센트는 어떻게 계산하나요?","acceptedAnswer":{"@type":"Answer","text":"전체 값에 퍼센트를 곱하고 100으로 나누면 됩니다. 50,000의 20%는 50,000 × 20 ÷ 100 = 10,000입니다."}},
 {"@type":"Question","name":"증가율은 어떻게 구하나요?","acceptedAnswer":{"@type":"Answer","text":"(바뀐 값 - 처음 값) ÷ 처음 값 × 100입니다. 200에서 250이 되면 25% 증가입니다."}},
-{"@type":"Question","name":"할인된 가격으로 원래 가격을 알 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"할인가 ÷ (1 - 할인율 ÷ 100)으로 구합니다. 30% 할인해서 14,000원이면 원래 가격은 20,000원입니다."}}
+{"@type":"Question","name":"할인된 가격으로 원래 가격을 알 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"할인가 ÷ (1 - 할인율 ÷ 100)으로 구합니다. 30% 할인해서 14,000원이면 원래 가격은 20,000원입니다."}},
+{"@type": "Question", "name": "감소율도 계산되나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 바뀐 값이 처음 값보다 작으면 감소로 표시해요. 100에서 80이 되면 20% 감소예요."}},
+{"@type": "Question", "name": "부가세 포함 가격에서 부가세만 빼려면 어떻게 하나요?", "acceptedAnswer": {"@type": "Answer", "text": "부가세 포함 금액을 1.1로 나누면 공급가액이 나와요. 33,000원이면 30,000원이 공급가액, 나머지 3,000원이 부가세예요. 0.9를 곱하면 틀린 값이 나와요."}},
+{"@type": "Question", "name": "퍼센트를 소수로 바꾸려면 어떻게 하나요?", "acceptedAnswer": {"@type": "Answer", "text": "100으로 나누면 돼요. 15%는 0.15, 7.5%는 0.075예요. 엑셀이나 계산기에서 곱할 때는 이 소수를 쓰면 편해요."}}
 ]}
 </script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "퍼센트 계산기", "url": "https://sonandogu.com/percent/", "description": "문장에 숫자만 넣으면 바로 계산되는 퍼센트 계산기. 몇 %인지, 몇 % 올랐는지, 할인가와 원래 가격까지 한 페이지에서 계산하세요. 무료로, 가입 없이 바로 쓸 수 있어요.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "browserRequirements": "JavaScript", "inLanguage": "ko", "isAccessibleForFree": true, "image": "https://sonandogu.com/assets/og-percent.jpg?v=20261116", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "KRW"}, "publisher": {"@type": "Organization", "name": "손안의도구", "url": "https://sonandogu.com/"}}</script>
@@ -226,11 +231,25 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
       <div class="f"><h3>원래 가격 거꾸로 찾기</h3><code>할인가 ÷ (1 − 할인율 ÷ 100)</code><p>30% 할인해서 14,000원이면 원래 20,000원</p></div>
     </div>
 
+    <h2>이럴 때 써요</h2>
+    <div class="fgrid">
+      <div class="f"><h3>시험 점수와 달성률</h3><p>80문제 중 68문제를 맞혔다면 "A는 B의 몇 %"에 68과 80을 넣으면 돼요. 정답률은 <strong>85%</strong>예요. 목표 대비 실적, 출석률, 진도율도 같은 방식이에요.</p></div>
+      <div class="f"><h3>월급과 물가가 오른 정도</h3><p>월급이 280만 원에서 301만 원이 됐다면 증감률로 <strong>7.5% 인상</strong>이에요. 장바구니 물가나 관리비가 얼마나 올랐는지 볼 때도 처음 값과 바뀐 값만 넣으면 돼요.</p></div>
+      <div class="f"><h3>투자 수익률</h3><p>12,000원에 산 주식이 15,600원이 되면 수익률 30%예요. 반대로 30% 떨어진 주식이 본전을 찾으려면 30%가 아니라 <strong>약 42.9%</strong>가 올라야 해요. 기준이 바뀌기 때문이에요.</p></div>
+      <div class="f"><h3>쇼핑과 영수증</h3><p>할인가, 원래 가격 찾기는 물론이고 2+1이 몇 % 할인인지(약 33.3%), 부가세 포함 33,000원의 공급가(30,000원)를 구할 때도 써요.</p></div>
+    </div>
+    <h2>헷갈리기 쉬운 세 가지</h2>
+    <p>퍼센트 계산에서 틀리는 건 대부분 <strong>기준</strong>을 잘못 잡아서예요. "무엇에 비해서"가 바뀌면 같은 숫자도 뜻이 달라져요. 할인을 두 번 받으면 두 번째 할인은 이미 깎인 가격에서 들어가고, 오른 뒤 다시 내리면 내리는 기준은 오른 가격이에요. 그래서 10% 올랐다 10% 내리면 원래보다 1% 작아져요.</p>
+    <p>두 번째는 <strong>퍼센트와 퍼센트포인트</strong>예요. 금리, 지지율, 합격률처럼 원래 퍼센트로 표시되는 값이 2%에서 3%가 되면 1%p 올랐다고 하고, 비율로는 50% 오른 거예요. 뉴스에서 %p가 나오면 단순한 차이로 읽으면 돼요.</p>
+    <p>세 번째는 <strong>거꾸로 계산</strong>이에요. 할인가나 부가세 포함 가격에서 원래 값을 찾을 땐 퍼센트를 더하는 게 아니라 나눠야 해요. 25% 할인해서 18,000원이라면 18,000 ÷ 0.75 = 24,000원이 정가예요.</p>
     <div class="faq">
       <h2>자주 묻는 질문</h2>
       <details><summary>20% 할인 후 다시 20% 올리면 원래 가격이 되나요?</summary><p>아닙니다. 10,000원을 20% 내리면 8,000원이고, 여기서 20% 올리면 9,600원입니다. 두 번째 계산의 기준이 8,000원으로 바뀌기 때문입니다.</p></details>
       <details><summary>퍼센트와 퍼센트포인트는 뭐가 다른가요?</summary><p>금리가 2%에서 3%가 되면 1%포인트 오른 것이고, 비율로 따지면 50% 오른 것입니다. 뉴스의 %p는 퍼센트 값끼리의 단순한 차이를 뜻합니다.</p></details>
       <details><summary>소수점은 어떻게 표시되나요?</summary><p>결과는 소수점 둘째 자리까지 반올림해서 보여줍니다.</p></details>
+      <details><summary>감소율도 계산되나요?</summary><p>네. 바뀐 값이 처음 값보다 작으면 감소로 표시해요. 100에서 80이 되면 20% 감소예요.</p></details>
+      <details><summary>부가세 포함 가격에서 부가세만 빼려면 어떻게 하나요?</summary><p>부가세 포함 금액을 1.1로 나누면 공급가액이 나와요. 33,000원이면 30,000원이 공급가액, 나머지 3,000원이 부가세예요. 0.9를 곱하면 틀린 값이 나와요.</p></details>
+      <details><summary>퍼센트를 소수로 바꾸려면 어떻게 하나요?</summary><p>100으로 나누면 돼요. 15%는 0.15, 7.5%는 0.075예요. 엑셀이나 계산기에서 곱할 때는 이 소수를 쓰면 편해요.</p></details>
     </div>
   <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/discount-rate/">20% 할인에 10% 더, 왜 30%가 아닐까? →</a><a href="/blog/percent-point/">금리 2%에서 3%, 1% 올랐다는 말이 틀린 이유 →</a></div>
   <div data-comments data-kind="review" data-page="/percent/"></div>

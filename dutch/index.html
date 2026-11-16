@@ -30,7 +30,10 @@
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"더치페이 정산은 어떻게 계산하나요?","acceptedAnswer":{"@type":"Answer","text":"항목마다 참여한 사람끼리 금액을 똑같이 나눠 각자 쓴 돈을 구하고, 각자 실제로 낸 돈과 비교합니다. 더 낸 사람은 받고 덜 낸 사람은 보내면 되며, 송금 횟수가 가장 적어지도록 짝을 지어줍니다."}},
 {"@type":"Question","name":"2차에 일부만 참여했으면 어떻게 하나요?","acceptedAnswer":{"@type":"Answer","text":"항목마다 참여한 사람을 따로 고를 수 있어요. 2차에 간 사람만 선택하면 그 사람들끼리만 나눠서 계산합니다."}},
-{"@type":"Question","name":"1인당 금액이 딱 떨어지지 않으면요?","acceptedAnswer":{"@type":"Answer","text":"10원, 100원, 1,000원 단위로 올려서 보내도록 설정할 수 있어요. 올려서 생긴 잔돈이 얼마인지도 함께 보여드립니다."}}
+{"@type":"Question","name":"1인당 금액이 딱 떨어지지 않으면요?","acceptedAnswer":{"@type":"Answer","text":"10원, 100원, 1,000원 단위로 올려서 보내도록 설정할 수 있어요. 올려서 생긴 잔돈이 얼마인지도 함께 보여드립니다."}},
+{"@type": "Question", "name": "술값만 따로 나눌 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 상세 정산에서 술값을 별도 항목으로 넣고, 그 항목의 \"함께\"에서 마신 사람만 고르면 돼요."}},
+{"@type": "Question", "name": "송금 메시지는 어떻게 보내나요?", "acceptedAnswer": {"@type": "Answer", "text": "결과 화면의 \"카톡에 붙여넣을 메시지 복사\" 버튼을 누르면 \"누가 누구에게 얼마\"가 정리된 문구가 복사돼요. 카카오톡 같은 메신저에 그대로 붙여넣으면 돼요."}},
+{"@type": "Question", "name": "1인당 금액이 딱 떨어지지 않으면 어떻게 하나요?", "acceptedAnswer": {"@type": "Answer", "text": "간단 N빵에서는 원하는 단위로 올려서 보여드리고 남는 잔돈도 함께 알려드려요. 보통 결제한 사람이 잔돈을 갖는 게 자연스러워요."}}
 ]}
 </script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "더치페이 계산기", "item": "https://sonandogu.com/dutch/"}]}</script>
@@ -160,6 +163,8 @@ footer .fl a:hover{color:var(--ink)}
 .f p{margin:0; font-size:14.5px; color:var(--muted)}
 .f strong{color:var(--ink)}
 .faq{margin-top:56px}
+.guide .fgrid+h2,.guide p+h2{margin-top:56px}
+.guide>p{font-size:16px; line-height:1.85; margin:0 0 14px}
 .faq details{border-top:1px solid var(--line); padding:18px 0}
 .faq details:last-child{border-bottom:1px solid var(--line)}
 .faq summary{cursor:pointer; font-weight:700; font-size:16px; list-style:none; display:flex; justify-content:space-between; gap:16px}
@@ -294,11 +299,24 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
       <div class="f"><h3>송금은 가장 적은 횟수로</h3><p>누가 누구에게 보낼지 짝을 지을 때, <strong>송금 횟수가 최대한 적게</strong> 되도록 큰 금액끼리 먼저 맞춰요. 다섯 명이 정산해도 송금은 보통 네 번 이하예요.</p></div>
       <div class="f"><h3>끝자리 정리</h3><p>간단 N빵에서는 1인당 금액을 원하는 단위로 올려서, 남는 잔돈이 얼마인지 함께 보여줘요. 상세 정산은 송금액을 10원이나 100원 단위로 반올림할 수 있고, 반올림 때문에 생기는 차이가 몇 원인지 함께 보여줘요. 모든 계산은 소수점 없이 원 단위 정수로 하고, 나눠떨어지지 않는 1원은 앞 순서 사람에게 1원씩 배정해요.</p></div>
     </div>
+    <h2>상황별 정산 요령</h2>
+    <div class="fgrid">
+      <div class="f"><h3>술 안 마신 친구가 있을 때</h3><p>음식과 술을 한 영수증에 결제했더라도 상세 정산에서 항목을 둘로 나눠 넣으세요. 술 항목의 "함께"에서 안 마신 사람만 빼면, 그 친구는 음식값만 내게 돼요.</p></div>
+      <div class="f"><h3>늦게 오거나 먼저 간 친구</h3><p>1차에만 있었던 사람, 2차부터 합류한 사람이 섞여 있다면 차수별로 항목을 만들어요. 각 항목에 실제로 있었던 사람만 고르면 돼요.</p></div>
+      <div class="f"><h3>생일자 몫 빼기</h3><p>생일 모임이라면 해당 항목의 "함께"에서 생일자만 빼세요. 나머지 사람끼리 생일자 몫까지 나눠 내도록 자동으로 계산돼요.</p></div>
+      <div class="f"><h3>여행 경비 한 번에</h3><p>숙소는 A가, 렌터카는 B가, 장보기는 C가 냈다면 여행이 끝난 뒤 한꺼번에 넣으세요. 결제한 사람이 여럿이어도 서로 주고받을 돈을 합쳐서 송금 횟수를 줄여줘요.</p></div>
+    </div>
+    <h2>정산이 깔끔해지는 순서</h2>
+    <p>먼저 영수증을 모아요. 결제한 사람이 단톡방에 영수증 사진을 올려두면 금액을 옮겨 적기 쉬워요. 그다음 항목마다 결제한 사람과 함께한 사람을 골라요. 다 넣으면 각자 낸 돈과 자기 몫의 차이가 계산되고, 받을 사람과 보낼 사람이 짝지어져요.</p>
+    <p>마지막으로 결과 화면에서 카톡에 붙여넣을 메시지를 복사해 단톡방에 올리면 끝이에요. "누가 누구에게 얼마"가 한눈에 정리돼 있어서 따로 설명할 필요가 없어요. 정산은 모임이 끝난 그날 바로 하는 게 좋아요. 하루만 지나도 누가 뭘 먹었는지 기억이 흐려지고, 미루다 보면 서로 말 꺼내기가 어색해져요.</p>
     <div class="faq">
       <h2>자주 묻는 질문</h2>
       <details><summary>한 사람이 전부 결제했어요</summary><p>간단 N빵에 총 금액과 인원만 넣으면 1인당 보낼 돈이 바로 나와요. 항목이 여러 개거나 일부만 참여했다면 상세 정산을 써주세요.</p></details>
       <details><summary>여러 명이 나눠서 결제했어요</summary><p>상세 정산에서 항목마다 결제한 사람을 고르면, 서로 주고받을 금액을 정리해서 최소한의 송금으로 알려드려요.</p></details>
       <details><summary>입력한 내용은 저장되나요?</summary><p>이 기기의 브라우저에만 임시로 저장돼서, 창을 닫았다 다시 열어도 이어서 할 수 있어요. 서버로는 전송되지 않고, 초기화를 누르면 바로 지워져요.</p></details>
+      <details><summary>술값만 따로 나눌 수 있나요?</summary><p>네. 상세 정산에서 술값을 별도 항목으로 넣고, 그 항목의 "함께"에서 마신 사람만 고르면 돼요.</p></details>
+      <details><summary>송금 메시지는 어떻게 보내나요?</summary><p>결과 화면의 \"카톡에 붙여넣을 메시지 복사\" 버튼을 누르면 "누가 누구에게 얼마"가 정리된 문구가 복사돼요. 카카오톡 같은 메신저에 그대로 붙여넣으면 돼요.</p></details>
+      <details><summary>1인당 금액이 딱 떨어지지 않으면 어떻게 하나요?</summary><p>간단 N빵에서는 원하는 단위로 올려서 보여드리고 남는 잔돈도 함께 알려드려요. 보통 결제한 사람이 잔돈을 갖는 게 자연스러워요.</p></details>
     </div>
   <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/dutch-pay/">N빵하면 왜 꼭 누군가 서운할까? →</a></div>
   <div data-comments data-kind="review" data-page="/dutch/"></div>
