@@ -26,7 +26,7 @@
 <meta property="og:description" content="공백·줄바꿈·바이트, 글자수 세는 기준 총정리.">
 <link rel="canonical" href="https://sonandogu.com/blog/resume-char-count/">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "자소서 글자수, 입력창에서만 넘친 이유", "datePublished": "2026-11-08", "dateModified": "2026-11-08", "author": {"@type": "Organization", "name": "손안의도구"}, "publisher": {"@type": "Organization", "name": "손안의도구"}, "mainEntityOfPage": "https://sonandogu.com/blog/resume-char-count/", "image": "https://sonandogu.com/assets/og-resume-char-count-post.jpg?v=20261116"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "자소서 글자수, 입력창에서만 넘친 이유", "datePublished": "2026-11-08", "dateModified": "2026-11-16", "author": {"@type": "Organization", "name": "손안의도구"}, "publisher": {"@type": "Organization", "name": "손안의도구"}, "mainEntityOfPage": "https://sonandogu.com/blog/resume-char-count/", "image": "https://sonandogu.com/assets/og-resume-char-count-post.jpg?v=20261116"}</script>
 <style>:root{
   --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
   --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
@@ -231,6 +231,22 @@ td:last-child,th:last-child{text-align:right}
   <h2>바이트는 왜 필요할까</h2>
   <p>일부 지원서나 게시판은 글자 수가 아니라 <strong>바이트</strong>로 제한을 둬요. 영문과 숫자는 1바이트인데 한글은 더 커서, 같은 글자 수라도 한글이 많을수록 바이트가 크게 나와요.</p>
   <p>세는 방식은 두 가지예요. 한글을 2바이트로 세는 방식은 예전 시스템에서 많이 쓰였고, 한글을 3바이트로 세는 UTF-8 방식은 요즘 웹에서 많이 써요. 같은 "안녕하세요 반갑습니다"가 21바이트와 31바이트로 갈리는 이유예요. "500바이트"라고 적힌 제한이라면 어느 방식인지부터 확인해야 해요.</p>
+
+  <h2>특수문자와 이모지는 몇 글자일까</h2>
+  <p>문서 프로그램에서 쓴 글을 붙여넣으면 눈에 잘 안 띄는 문자가 섞여 들어와요. 워드나 한글에서 자동으로 바뀐 둥근 따옴표(“ ”), 가운뎃점(·), 말줄임표(…) 같은 것들이에요. 글자 수로는 모두 1글자지만, 바이트로 세는 입력창에서는 한글처럼 2~3바이트를 차지해요.</p>
+  <p>이모지는 더 헷갈려요. 눈에는 한 글자인데 많은 웹 입력창이 2글자로 세고, UTF-8 바이트로는 4바이트예요. 자소서에 이모지를 쓸 일은 드물지만, 메모장에 정리해 둔 글을 그대로 옮기다 섞이는 경우가 있어요. 숫자가 이상하게 안 맞으면 이런 문자부터 찾아보세요.</p>
+
+  <h2>제한 글자 수별 쓰기 요령</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>제한</th><th>문단 구성</th><th>쓰는 요령</th></tr></thead>
+    <tbody>
+      <tr><td>500자</td><td>1~2문단</td><td>핵심 하나와 그걸 보여주는 사례 하나</td></tr>
+      <tr><td>1,000자</td><td>3~4문단</td><td>경험, 배운 점, 지원 직무와의 연결</td></tr>
+      <tr><td>1,500자 이상</td><td>4~6문단</td><td>문단마다 소제목을 달아 읽기 쉽게</td></tr>
+    </tbody>
+  </table></div>
+  <p>소제목을 다는 경우가 많은데, 소제목도 글자 수에 들어간다는 걸 잊기 쉬워요. "[3개월 만에 고객 40명을 모은 방법]" 같은 소제목은 공백 포함 20자 가까이 돼요. 문단이 다섯 개면 소제목만으로 100자 가까이 쓰는 셈이니, 분량을 계획할 때 미리 빼고 시작하세요.</p>
+  <p>제한의 90% 이상은 채우는 걸 권하는 사람이 많아요. 1,000자 제한에 600자만 쓰면 할 말이 없어 보일 수 있거든요. 반대로 꽉 채우려고 같은 말을 늘리는 것보다는 900자대에서 깔끔하게 끝내는 편이 나아요.</p>
 
   <h2>넘쳤을 때는 이렇게 줄여요</h2>
   <p>기준을 맞춰 봤는데도 넘친다면 이제 정말 줄일 차례예요. 이때는 문장을 통째로 지우기 전에, 의미는 같은데 글자만 차지하는 표현부터 찾아보세요. "~라고 생각합니다", "매우", "정말", "~하는 것이 중요하다고 느꼈습니다" 같은 말이 대표적이에요. 한 문단에 대여섯 군데만 걷어내도 30~50자는 금방 줄어요.</p>
