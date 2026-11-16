@@ -30,7 +30,8 @@
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"윷놀이 지름길은 어떻게 가나요?","acceptedAnswer":{"@type":"Answer","text":"말이 윷판의 모서리에 정확히 멈추면 다음 차례에 대각선 지름길로 들어갑니다. 한가운데 방에 멈추면 출발점 쪽으로 가장 짧은 길을 탑니다."}},
 {"@type":"Question","name":"업기와 잡기는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"우리 말이 있는 칸에 도착하면 말을 업어 함께 움직이고, 상대 말이 있는 칸에 도착하면 그 말을 잡아 처음으로 돌려보낸 뒤 한 번 더 던집니다."}},
-{"@type":"Question","name":"빽도는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"표시된 윷가락 하나만 평평한 면이 나오면 빽도로, 판 위의 말 하나가 한 칸 뒤로 갑니다. 판에 말이 없으면 그냥 넘어갑니다."}}
+{"@type":"Question","name":"빽도는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"표시된 윷가락 하나만 평평한 면이 나오면 빽도로, 판 위의 말 하나가 한 칸 뒤로 갑니다. 판에 말이 없으면 그냥 넘어갑니다."}},
+{"@type": "Question", "name": "몇 팀까지 할 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "2팀부터 4팀까지 겨룰 수 있어요. 팀마다 십이지 띠 동물 중 하나를 말로 고를 수 있어요."}}
 ]}
 </script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "전통 놀이", "item": "https://sonandogu.com/traditional/"}, {"@type": "ListItem", "position": 3, "name": "온라인 윷놀이", "item": "https://sonandogu.com/traditional/yut/"}]}</script>
@@ -343,11 +344,19 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
       <p style="margin-top:12px">윷가락 하나가 앞뒤로 나올 확률을 반반으로 두고, 브라우저의 보안 난수로 매번 독립적으로 정합니다.</p>
     </div>
 
+    <h2 style="margin-top:56px">이기는 집이 쓰는 요령</h2>
+    <div class="fgrid">
+      <div class="f"><h3>상대 말 앞 두 칸은 위험</h3><p>가장 자주 나오는 결과가 개(37.5%)라서, 상대 말 바로 두 칸 앞은 다음 차례에 잡힐 가능성이 가장 높은 자리예요. 1~3칸 앞은 되도록 피하고, 네다섯 칸 떨어져 있으면 비교적 안전해요.</p></div>
+      <div class="f"><h3>모서리를 노리세요</h3><p>첫 모서리는 출발점에서 다섯 칸이에요. 결과가 여러 개 쌓였을 때 어떤 말에 어떤 결과를 줘야 모서리에 딱 멈추는지 먼저 따져보면 지름길을 탈 기회가 늘어요.</p></div>
+      <div class="f"><h3>업기는 안전할 때만</h3><p>업은 말은 빠르지만 잡히면 한꺼번에 처음으로 돌아가요. 근처에 상대 말이 없거나 지름길에 들어가서 금방 들어올 수 있을 때 업는 게 덜 위험해요.</p></div>
+      <div class="f"><h3>잡을 수 있으면 잡기</h3><p>상대 말을 잡으면 한 번 더 던지는 기회까지 생겨요. 한 칸 더 가는 것보다 판을 뒤집는 효과가 큰 경우가 많아요.</p></div>
+    </div>
     <div class="faq">
       <h2>자주 묻는 질문</h2>
       <details><summary>실수로 말을 잘못 움직였어요</summary><p>되돌리기를 누르면 마지막으로 움직인 말이 제자리로 돌아오고, 쓴 결과도 다시 살아납니다. 윷을 던지고 나면 그 전으로는 되돌릴 수 없어요.</p></details>
       <details><summary>창을 닫으면 게임이 사라지나요?</summary><p>진행 상황은 이 기기에 저장돼서, 다시 들어오면 하던 게임 이어하기를 누를 수 있어요. 새 게임을 시작하면 이전 게임은 지워집니다.</p></details>
       <details><summary>지역마다 규칙이 다르던데요?</summary><p>윷놀이는 집집마다 규칙이 조금씩 다릅니다. 이 판은 가장 널리 쓰이는 규칙을 따르고, 빽도는 설정에서 켜고 끌 수 있어요.</p></details>
+      <details><summary>몇 팀까지 할 수 있나요?</summary><p>2팀부터 4팀까지 겨룰 수 있어요. 팀마다 십이지 띠 동물 중 하나를 말로 고를 수 있어요.</p></details>
     </div>
   <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/yut-rules/">윷놀이 하다 싸우는 이유, 집집마다 규칙이 달라서예요 →</a></div>
   <div data-comments data-kind="review" data-page="/traditional/yut/"></div>
