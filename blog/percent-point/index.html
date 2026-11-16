@@ -26,7 +26,7 @@
 <meta property="og:description" content="퍼센트와 퍼센트포인트 차이, 그림으로 쉽게.">
 <link rel="canonical" href="https://sonandogu.com/blog/percent-point/">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "금리 2%에서 3%, 1% 올랐다는 말이 틀린 이유", "datePublished": "2026-11-02", "author": {"@type": "Organization", "name": "손안의도구"}, "publisher": {"@type": "Organization", "name": "손안의도구"}, "mainEntityOfPage": "https://sonandogu.com/blog/percent-point/", "image": "https://sonandogu.com/assets/og-percentpoint.jpg?v=20261113", "dateModified": "2026-11-02"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "금리 2%에서 3%, 1% 올랐다는 말이 틀린 이유", "datePublished": "2026-11-02", "author": {"@type": "Organization", "name": "손안의도구"}, "publisher": {"@type": "Organization", "name": "손안의도구"}, "mainEntityOfPage": "https://sonandogu.com/blog/percent-point/", "image": "https://sonandogu.com/assets/og-percentpoint.jpg?v=20261113", "dateModified": "2026-11-16"}</script>
 <style>:root{
   --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
   --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
@@ -218,6 +218,24 @@ td:last-child,th:last-child{text-align:right}
     </tbody>
   </table></div>
   <p>투자에서 "잃지 않는 게 먼저"라는 말이 나오는 이유가 이 표에 다 들어 있어요.</p>
+
+  <h2>"300% 급증", 처음 값부터 확인하세요</h2>
+  <p>증가율에는 약점이 하나 있어요. 처음 값이 작으면 조금만 늘어도 숫자가 확 부풀어요. 하루 매출 10만 원이던 동네 가게가 30만 원을 벌면 200% 증가예요. 매출 1조 원 회사가 1,100억 원 더 벌면 고작 11% 증가고요. 실제로 늘어난 돈은 회사 쪽이 백만 배 넘게 큰데, 기사 제목만 보면 동네 가게가 훨씬 대단해 보이죠.</p>
+  <p>이렇게 비교 기준이 유난히 낮거나 높아서 증가율이 과장되는 걸 <strong>기저효과</strong>라고 해요. 작년에 유독 장사가 안됐던 업종은 올해 평범하게만 해도 "전년 대비 급증"이라는 말이 붙어요. 그래서 큰 퍼센트가 보이면 "처음이 얼마였는데?"부터 찾아보는 습관이 도움이 돼요.</p>
+
+  <h2>10% 올랐다 10% 내리면 원래대로일까</h2>
+  <p>앞에서 본 50% 함정은 작은 숫자에서도 똑같이 일어나요. 100이 10% 오르면 110, 여기서 10% 내리면 99예요. 순서를 바꿔서 먼저 내리고 나중에 올려도 99고요. 오르고 내린 폭이 같으면 결과는 늘 처음보다 조금 작아요.</p>
+  <p>같은 이유로 연평균 증가율도 그냥 더해서 나누면 안 돼요. 첫해 20%, 둘째 해 5% 올랐다면 평균 12.5%라고 하고 싶지만, 2년 동안 실제로 1.2 × 1.05 = 1.26배가 됐어요. 매년 같은 비율로 올라서 1.26배가 되려면 해마다 <strong>약 12.25%</strong>씩 올라야 해요. 차이가 작아 보여도 기간이 길어지고 금액이 커지면 무시할 수 없는 숫자가 돼요.</p>
+  <div class="formula">연평균 증가율 = (마지막 값 ÷ 처음 값)^(1 ÷ 햇수) − 1</div>
+
+  <h2>부가세 빼기, 10% 할인처럼 하면 틀려요</h2>
+  <p>영수증 정리하다가 자주 하는 실수도 퍼센트 기준 문제예요. 부가세 포함 11,000원에서 부가세를 빼려고 11,000 × 0.9 = 9,900원이라고 적으면 틀린 거예요. 부가세 10%는 <strong>공급가액</strong>에 붙은 거라서, 거꾸로 갈 땐 1.1로 나눠야 해요. 11,000 ÷ 1.1 = 10,000원이 공급가액이고, 부가세는 1,000원이에요.</p>
+  <div class="ex">공급가액 = 합계 ÷ 1.1 · 부가세 = 합계 − 공급가액<br>합계 <b>11,000원</b> → 공급가액 <b>10,000원</b> + 부가세 <b>1,000원</b></div>
+  <p>할인도 비슷해요. 30% 할인에 20% 쿠폰을 겹쳐 쓰면 50%가 아니라 44% 할인이에요. 두 번째 할인이 이미 깎인 가격을 기준으로 들어가니까요. 이건 <a href="/blog/discount-rate/">중복 할인 글</a>에서 더 자세히 다뤘어요.</p>
+
+  <h2>자주 묻는 질문</h2>
+  <p><strong>Q. 실업률이 3.5%에서 3.2%가 됐다면 어떻게 말해야 하나요?</strong><br>"0.3%p 하락"이 정확해요. 비율로 따지면 3.5에서 0.3이 줄었으니 약 8.6% 감소지만, 실업률처럼 원래 퍼센트인 지표는 보통 %p로 말해요.</p>
+  <p><strong>Q. 일상 대화에서 %p 대신 %라고 하면 틀린 건가요?</strong><br>말하는 사람과 듣는 사람이 같은 뜻으로 알아들으면 큰 문제는 없어요. 다만 금리, 수익률, 지지율처럼 돈이나 판단이 걸린 숫자에서는 둘이 완전히 다른 결론으로 이어질 수 있어서, 헷갈릴 만한 자리에서는 %p를 쓰는 편이 안전해요.</p>
 
   <h2>뉴스 숫자, 이렇게 읽어보세요</h2>
   <div class="keys">
