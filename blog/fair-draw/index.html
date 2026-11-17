@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon-192.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F4F1">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sonandogu.com/blog/fair-draw/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-fair-draw-post.jpg?v=20261117">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="당첨자 추첨, 뒷말 없이 하는 법">
+<meta name="twitter:card" content="summary_large_image">
+<title>당첨자 추첨 공정하게 하는 법, 로또 확률과 당첨금 세금까지 | 손안의도구</title>
+<meta name="description" content="경품 추첨에서 ‘조작 아니야?’ 소리 안 듣는 순서, 여러 등수와 중복 응모 처리법, 중복 허용으로 뽑으면 겹칠 확률 29%, 로또 1등 확률 814만 분의 1, 로또 당첨금 세금(200만 원 이하 비과세, 22%, 33%)까지 정리했어요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="당첨자 추첨, 뒷말 없이 하는 법">
+<meta property="og:description" content="공정한 추첨 순서, 로또 확률과 세금까지.">
+<link rel="canonical" href="https://sonandogu.com/blog/fair-draw/">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "당첨자 추첨, 뒷말 없이 하는 법", "datePublished": "2026-11-17", "dateModified": "2026-11-17", "author": {"@type": "Organization", "name": "손안의도구"}, "publisher": {"@type": "Organization", "name": "손안의도구"}, "mainEntityOfPage": "https://sonandogu.com/blog/fair-draw/", "image": "https://sonandogu.com/assets/og-fair-draw-post.jpg?v=20261117"}</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.post{max-width:700px; padding:36px 0 0}
+@media (min-width:920px){.post{padding-top:60px}}
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:14px}
+.crumb a{color:var(--muted); text-decoration:none}
+.post h1{font-size:clamp(30px,6vw,46px); font-weight:800; letter-spacing:-.05em; line-height:1.15; margin:0 0 14px}
+.meta{font-size:14px; color:var(--muted); margin:0 0 30px}
+.post h2{font-size:clamp(21px,3.6vw,26px); font-weight:800; letter-spacing:-.04em; line-height:1.3; margin:52px 0 14px}
+.post p{font-size:16.5px; line-height:1.85; margin:0 0 16px}
+.post strong{font-weight:750}
+.formula{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:14px; padding:16px 18px; font-size:17px; font-weight:750; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex{background:rgba(255,90,31,.07); border-radius:14px; padding:14px 18px; font-size:15.5px; line-height:1.8; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex b{color:var(--orange)}
+.tbl{overflow-x:auto; margin:0 0 16px}
+table{width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums}
+th,td{padding:11px 10px; border-bottom:1px solid var(--line); text-align:left}
+th{color:var(--muted); font-weight:700; font-size:13.5px}
+td:last-child,th:last-child{text-align:right}
+.mini{position:relative; overflow:hidden; border-radius:26px; padding:20px; color:#F4F4F1; margin:6px 0 34px;
+  background:radial-gradient(110% 140% at 100% 0%, rgba(255,106,51,.26) 0%, rgba(255,106,51,0) 50%), linear-gradient(160deg,#202126 0%,#121316 100%); box-shadow:var(--shadow)}
+.mini h3{margin:0 0 12px; font-size:15px; font-weight:800}
+.mini .row{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.mini label{display:block; font-size:12px; font-weight:700; color:rgba(244,244,241,.55); margin:0 0 5px 2px}
+.mini input{width:100%; font:inherit; font-size:22px; font-weight:750; color:#F4F4F1; background:rgba(255,255,255,.07); border:1.5px solid rgba(255,255,255,.1); border-radius:14px; padding:10px 12px; outline:none; font-variant-numeric:tabular-nums}
+.mini input:focus{border-color:#FF6A33}
+.mini input::placeholder{color:rgba(244,244,241,.3)}
+.mini .out{margin-top:14px; font-size:15px; color:rgba(244,244,241,.6); min-height:1.5em}
+.mini .out b{font-size:30px; color:#fff; letter-spacing:-.04em; margin:0 4px}
+.mini .out em{font-style:normal; color:#FF8A3D; font-weight:700}
+.mini a{display:inline-block; margin-top:12px; color:#FF8A3D; font-weight:700; font-size:14px; text-decoration:none}
+.next{margin-top:56px; display:grid; gap:10px}
+.next a{display:flex; justify-content:space-between; align-items:center; gap:12px; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:18px 20px; box-shadow:var(--shadow)}
+.next a:hover{border-color:var(--ink)}
+.next strong{display:block; font-size:17px; font-weight:800; letter-spacing:-.03em}
+.next span{font-size:14px; color:var(--muted)}
+.next i{font-style:normal; font-size:20px; color:var(--muted)}
+
+.ill{margin:6px 0 26px; background:var(--surface); border:1px solid var(--line); border-radius:24px; padding:16px 12px 12px; box-shadow:var(--shadow)}
+.ill svg{display:block; width:100%; height:auto}
+.ill figcaption{text-align:center; font-size:13.5px; color:var(--muted); margin-top:6px}
+.ill .tag{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .hole{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .tp{font-size:20px; font-weight:700; fill:var(--muted)}
+.ill .tbig{font-size:46px; font-weight:800; fill:var(--ink); letter-spacing:-2px}
+.ill .strike{stroke:#FF5A1F; stroke-width:5; stroke-linecap:round}
+.ill .st{font-size:30px; font-weight:800; fill:#fff}
+.ill .st2{font-size:26px; font-weight:800; fill:#FF8A3D}
+.ill .q{font-size:80px; font-weight:800; fill:var(--faint)}
+.ill .lbl text{font-size:17px; font-weight:700; fill:var(--muted)}
+.ill .val text{font-size:20px; font-weight:800; fill:var(--ink)}
+.ill .bar0{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .bar1{fill:#FFB48A}
+.ill .bar2{fill:#FF5A1F}
+.ill .ghost{stroke:var(--ink); stroke-width:2; stroke-dasharray:6 6; opacity:.5}
+.ill .arr{fill:none; stroke:var(--faint); stroke-width:3; stroke-linecap:round}
+.ill .arr2{fill:none; stroke:var(--ink); stroke-width:2; opacity:.5}
+.ill .note{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .btl{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .cap{fill:var(--line)}
+.ill .btlf{fill:#FF5A1F}
+.ill .capf{fill:#FF8A3D}
+.ill .bp{font-size:30px; font-weight:800; fill:var(--muted)}
+.ill .free{font-size:22px; font-weight:800; fill:#fff}
+.ill .cap2{font-size:18px; font-weight:800; fill:var(--ink)}
+.quiz{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px 22px; margin:26px 0 8px; box-shadow:var(--shadow)}
+.quiz .qh{font-size:13px; font-weight:800; color:var(--orange); margin:0 0 6px}
+.quiz .qq{font-size:17px; font-weight:750; margin:0 0 12px; line-height:1.6}
+.quiz summary{display:inline-block; cursor:pointer; list-style:none; font-size:14.5px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); padding:9px 16px; border-radius:12px}
+.quiz summary::-webkit-details-marker{display:none}
+.quiz details[open] summary{display:none}
+.quiz details p{margin:0; font-size:16px; line-height:1.75}
+.quiz details b{color:var(--orange)}
+.keys{display:grid; gap:10px; margin:0 0 18px}
+@media (min-width:640px){.keys{grid-template-columns:repeat(3,1fr)}}
+.keys div{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:16px}
+.keys b{display:block; font-size:16px; font-weight:800; color:var(--orange); margin-bottom:4px}
+.keys span{font-size:14.5px; color:var(--muted); line-height:1.6}
+
+.ill .ok{fill:#1FA968}.ill .okt{fill:#1FA968; font-size:16px; font-weight:800}
+.ill .warn{fill:#FF5A1F}.ill .warnt{fill:#FF5A1F; font-size:16px; font-weight:800}
+.ill .axis{stroke:var(--line); stroke-width:3}
+.ill .tick{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .paper{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .ln2{stroke:var(--line); stroke-width:3; stroke-linecap:round}
+.ill .red{fill:#B4232F; font-weight:800}
+.ill .node{fill:var(--field); stroke:var(--faint); stroke-width:2}
+.ill .nodeb{fill:var(--surface); stroke:var(--ink); stroke-width:3}
+.ill .path{stroke:var(--line); stroke-width:4; fill:none}
+.ill .hot{stroke:#FF5A1F; stroke-width:6; fill:none; stroke-linecap:round; stroke-dasharray:2 12}
+.ill .dot{fill:#FF5A1F}
+.ill .p3{stroke:var(--faint); stroke-width:4; fill:none; stroke-linecap:round}
+.ill .p5{stroke:#FF5A1F; stroke-width:5; fill:none; stroke-linecap:round}
+.ill .grid{stroke:var(--line); stroke-width:1.5}
+.tbl th,.tbl td{text-align:left!important}
+.tbl td:nth-child(n+2),.tbl th:nth-child(n+2){white-space:nowrap}
+</style>
+<link rel="stylesheet" href="/assets/comments.css?v=3">
+<meta name="google-adsense-account" content="ca-pub-1007904420767851">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/assets/favorites.css?v=2">
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<div class="container"><article class="post">
+  <div class="crumb"><a href="/blog/">블로그</a> / 모임 놀이</div>
+  <h1>당첨자 추첨,<br>뒷말 없이 하는 법</h1>
+  <p class="meta pub"><time datetime="2026-11-17">2026년 11월 17일</time></p>
+
+  <figure class="ill" aria-label="100명 중 3명을 뽑으면 누구든 당첨 확률은 3%">
+    <svg viewBox="0 0 640 240">
+      <g><circle cx="60" cy="60" r="9" class="node"/><circle cx="86" cy="60" r="9" class="node"/><circle cx="112" cy="60" r="9" class="node"/><circle cx="138" cy="60" r="9" class="node"/><circle cx="164" cy="60" r="9" class="node"/><circle cx="190" cy="60" r="9" class="node"/><circle cx="216" cy="60" r="9" class="node"/><circle cx="242" cy="60" r="9" class="node"/><circle cx="268" cy="60" r="9" class="node"/><circle cx="294" cy="60" r="9" class="node"/><circle cx="320" cy="60" r="9" class="node"/><circle cx="346" cy="60" r="9" class="node"/><circle cx="372" cy="60" r="9" class="node"/><circle cx="398" cy="60" r="9" class="node"/><circle cx="424" cy="60" r="9" class="node"/><circle cx="450" cy="60" r="9" class="node"/><circle cx="476" cy="60" r="9" class="node"/><circle cx="502" cy="60" r="9" class="node"/><circle cx="528" cy="60" r="9" class="node"/><circle cx="554" cy="60" r="9" class="node"/><circle cx="60" cy="88" r="9" class="node"/><circle cx="86" cy="88" r="9" class="node"/><circle cx="112" cy="88" r="9" class="node"/><circle cx="138" cy="88" r="9" class="dot"/><circle cx="164" cy="88" r="9" class="node"/><circle cx="190" cy="88" r="9" class="node"/><circle cx="216" cy="88" r="9" class="node"/><circle cx="242" cy="88" r="9" class="node"/><circle cx="268" cy="88" r="9" class="node"/><circle cx="294" cy="88" r="9" class="node"/><circle cx="320" cy="88" r="9" class="node"/><circle cx="346" cy="88" r="9" class="node"/><circle cx="372" cy="88" r="9" class="node"/><circle cx="398" cy="88" r="9" class="node"/><circle cx="424" cy="88" r="9" class="node"/><circle cx="450" cy="88" r="9" class="node"/><circle cx="476" cy="88" r="9" class="node"/><circle cx="502" cy="88" r="9" class="node"/><circle cx="528" cy="88" r="9" class="node"/><circle cx="554" cy="88" r="9" class="node"/><circle cx="60" cy="116" r="9" class="node"/><circle cx="86" cy="116" r="9" class="node"/><circle cx="112" cy="116" r="9" class="node"/><circle cx="138" cy="116" r="9" class="node"/><circle cx="164" cy="116" r="9" class="node"/><circle cx="190" cy="116" r="9" class="node"/><circle cx="216" cy="116" r="9" class="node"/><circle cx="242" cy="116" r="9" class="node"/><circle cx="268" cy="116" r="9" class="node"/><circle cx="294" cy="116" r="9" class="node"/><circle cx="320" cy="116" r="9" class="node"/><circle cx="346" cy="116" r="9" class="node"/><circle cx="372" cy="116" r="9" class="node"/><circle cx="398" cy="116" r="9" class="node"/><circle cx="424" cy="116" r="9" class="node"/><circle cx="450" cy="116" r="9" class="node"/><circle cx="476" cy="116" r="9" class="node"/><circle cx="502" cy="116" r="9" class="dot"/><circle cx="528" cy="116" r="9" class="node"/><circle cx="554" cy="116" r="9" class="node"/><circle cx="60" cy="144" r="9" class="node"/><circle cx="86" cy="144" r="9" class="node"/><circle cx="112" cy="144" r="9" class="node"/><circle cx="138" cy="144" r="9" class="node"/><circle cx="164" cy="144" r="9" class="node"/><circle cx="190" cy="144" r="9" class="node"/><circle cx="216" cy="144" r="9" class="node"/><circle cx="242" cy="144" r="9" class="node"/><circle cx="268" cy="144" r="9" class="node"/><circle cx="294" cy="144" r="9" class="node"/><circle cx="320" cy="144" r="9" class="node"/><circle cx="346" cy="144" r="9" class="node"/><circle cx="372" cy="144" r="9" class="node"/><circle cx="398" cy="144" r="9" class="node"/><circle cx="424" cy="144" r="9" class="node"/><circle cx="450" cy="144" r="9" class="node"/><circle cx="476" cy="144" r="9" class="node"/><circle cx="502" cy="144" r="9" class="node"/><circle cx="528" cy="144" r="9" class="node"/><circle cx="554" cy="144" r="9" class="node"/><circle cx="60" cy="172" r="9" class="node"/><circle cx="86" cy="172" r="9" class="node"/><circle cx="112" cy="172" r="9" class="node"/><circle cx="138" cy="172" r="9" class="node"/><circle cx="164" cy="172" r="9" class="node"/><circle cx="190" cy="172" r="9" class="node"/><circle cx="216" cy="172" r="9" class="node"/><circle cx="242" cy="172" r="9" class="node"/><circle cx="268" cy="172" r="9" class="dot"/><circle cx="294" cy="172" r="9" class="node"/><circle cx="320" cy="172" r="9" class="node"/><circle cx="346" cy="172" r="9" class="node"/><circle cx="372" cy="172" r="9" class="node"/><circle cx="398" cy="172" r="9" class="node"/><circle cx="424" cy="172" r="9" class="node"/><circle cx="450" cy="172" r="9" class="node"/><circle cx="476" cy="172" r="9" class="node"/><circle cx="502" cy="172" r="9" class="node"/><circle cx="528" cy="172" r="9" class="node"/><circle cx="554" cy="172" r="9" class="node"/></g>
+      <text x="320" y="222" text-anchor="middle" class="note" style="font-size:20px">100명 중 3명 당첨 → 누구든 3%</text>
+    </svg>
+    <figcaption>명단의 몇 번째에 있든 당첨 확률은 같아요</figcaption>
+  </figure>
+
+  <div class="quiz">
+    <p class="qh">잠깐, 먼저 맞혀볼까요?</p>
+    <p class="qq">1부터 45까지 숫자 중에서 <b>중복을 허용해</b> 6개를 뽑으면, 같은 숫자가 한 번이라도 겹칠 확률은 얼마쯤일까요? ① 약 3% ② 약 13% ③ 약 29%</p>
+    <details><summary>정답 보기</summary><p><b>③ 약 29%</b>예요. 숫자가 45개나 되니 겹칠 일이 거의 없을 것 같지만, 6개를 뽑는 동안 앞에 나온 숫자와 한 번이라도 같을 확률을 모두 더하면 열 번 중 세 번꼴이에요. 경품 추첨처럼 같은 사람이 두 번 뽑히면 안 될 땐 꼭 "중복 없이"로 뽑아야 하는 이유예요.</p></details>
+  </div>
+
+  <p>연말 송년회, 경품 추첨 순서가 돌아왔어요. 사회자가 이름을 부르자마자 뒤에서 "또 그 팀이야? 짠 거 아니야?" 하는 소리가 나와요. 분명 공평하게 뽑았는데도 이런 말이 나오면 분위기가 애매해져요.</p>
+  <p>추첨에서 뒷말이 나오는 건 대부분 결과보다 <strong>과정이 안 보여서</strong>예요. 누가 뽑혀도 납득할 수 있도록 순서만 잘 정하면 훨씬 깔끔해져요.</p>
+
+  <h2>공정하다는 건, 모두가 같은 확률이라는 것</h2>
+  <p>100명 중 3명을 뽑는다면 누구든 당첨될 확률은 3%여야 해요. 명단 맨 앞에 있든 맨 뒤에 있든, 먼저 응모했든 나중에 했든 똑같아야 하죠. 종이 제비라면 섞는 사람의 손이, 엑셀 함수라면 쓰는 방법이 이 확률을 조금씩 흔들 수 있어요.</p>
+  <p>온라인 추첨기는 결국 컴퓨터의 난수를 쓰는데, 그중에서도 예측하기 어려운 보안 난수를 쓰고 특정 숫자로 쏠리지 않게 걸러내야 해요. 손안의도구의 <a href="/random/">랜덤 숫자 뽑기</a>도 이 방식이라, 범위 안의 모든 숫자와 명단의 모든 사람이 같은 확률로 뽑혀요.</p>
+
+  <h2>뒷말 없는 추첨 순서</h2>
+  <div class="keys">
+    <div><b>1. 명단을 먼저 확정</b><span>누가 참가하는지 정해서 추첨 전에 공유해요. 추첨 중에 사람을 넣고 빼면 의심을 사요</span></div>
+    <div><b>2. 규칙을 미리 알리기</b><span>당첨 인원, 한 사람이 여러 번 당첨될 수 있는지, 다시 뽑는 일은 없다는 걸 먼저 말해요</span></div>
+    <div><b>3. 보이게 뽑고 남기기</b><span>화면을 띄워 놓고 뽑고, 결과를 바로 복사해 공지하거나 캡처해 둬요</span></div>
+  </div>
+  <p>특히 2번이 중요해요. 결과를 본 뒤에 "한 번 더 뽑자"는 말이 나오면 처음 결과가 마음에 안 든 사람 쪽으로 기울었다는 오해를 사요. 다시 뽑는 일은 없다고 미리 못 박아 두는 게 좋아요.</p>
+
+  <h2>등수가 여러 개이거나 응모를 여러 번 했다면</h2>
+  <p>경품이 1등, 2등, 3등으로 나뉘면 큰 경품을 마지막에 뽑는 게 분위기에 좋아요. 한 사람이 두 개를 가져가지 않게 하려면, 당첨된 사람은 명단에서 빼고 다음 등수를 뽑으면 돼요.</p>
+  <p>댓글 이벤트처럼 한 사람이 여러 번 응모할 수 있다면, 응모 횟수만큼 명단에 이름을 적어서 확률을 높여 주는 방식이 있어요. 한 사람당 한 번만 기회를 주려면 이름을 한 번씩만 적어야 하고요. 어느 쪽인지 규칙에 적어 두면 나중에 따질 일이 없어요.</p>
+
+  <h2>로또 번호, 어떤 조합이든 확률은 같아요</h2>
+  <p>로또 6/45의 1등 확률은 <strong>8,145,060분의 1</strong>이에요. 1부터 45까지 중 6개를 고르는 모든 조합의 수죠. 그래서 1, 2, 3, 4, 5, 6처럼 이상해 보이는 번호도, 생일로 고른 번호도, 추첨기로 뽑은 번호도 당첨 확률은 정확히 같아요. 지난주에 나온 번호가 이번 주에 다시 나올 확률도 다른 번호와 같아요.</p>
+  <p>랜덤 숫자 뽑기의 "로또 번호" 버튼은 번호를 재미로 골라 주는 기능일 뿐, 당첨 확률을 높여 주지는 않아요. 복권 판매처와도 관계가 없어요.</p>
+
+  <h2>로또에 당첨되면 세금은 얼마나 뗄까</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>당첨금</th><th>세금</th></tr></thead>
+    <tbody>
+      <tr><td>200만 원 이하</td><td>세금 없음</td></tr>
+      <tr><td>200만 원 초과 ~ 3억 원 이하</td><td>22% (소득세 20% + 지방소득세 2%)</td></tr>
+      <tr><td>3억 원 초과분</td><td>33% (소득세 30% + 지방소득세 3%)</td></tr>
+    </tbody>
+  </table></div>
+  <p>3억 원을 넘는 부분에만 33%가 붙고, 3억 원까지는 22%예요. 그래서 1억 원에 당첨되면 세금은 약 2,200만 원, 10억 원이면 3억 원까지 6,600만 원에 나머지 7억 원의 33%인 2억 3,100만 원을 더해 약 2억 9,700만 원이에요. 당첨된 복권 한 장 값은 경비로 빼 줘서 실제로는 몇백 원 차이가 나요.</p>
+
+  <h2>자주 묻는 질문</h2>
+  <p><strong>Q. 엑셀 RAND 함수로 뽑아도 공정한가요?</strong><br>여러 사람이 같은 확률로 뽑히게 쓰면 큰 문제는 없어요. 다만 시트를 열 때마다 값이 바뀌어서 결과를 다시 확인하기 어렵고, 정렬을 잘못하면 결과가 바뀌기도 해요. 결과를 바로 기록해 두는 게 중요해요.</p>
+  <p><strong>Q. 추첨 결과를 증거로 남기려면 어떻게 하나요?</strong><br>화면을 녹화하거나, 뽑자마자 결과를 복사해 단톡방이나 공지에 올려 두세요. 손안의도구 랜덤 뽑기는 최근 결과 5개도 화면에 남아 있어요.</p>
+  <p><strong>Q. 로또 3등에 당첨되면 세금을 내나요?</strong><br>3등 당첨금은 회차마다 달라서 200만 원을 넘으면 22%를 떼요. 200만 원 이하면 세금이 없어요.</p>
+  <p class="meta" style="margin-top:20px">이 글은 2026년 11월 기준이에요. 로또 확률은 6/45 방식 기준이고, 당첨금 세금은 지급할 때 떼는 금액이 최종 기준이니 정확한 금액은 지급 기관에서 확인하세요.</p>
+
+  <nav class="next" aria-label="관련 글과 도구"><a href="/random/"><span><strong>랜덤 숫자 뽑기 · 당첨자 추첨</strong><span>번호 뽑기와 이름 추첨</span></span><i>→</i></a><a href="/blog/lots-ideas/"><span><strong>제비뽑기, 밋밋하다면 문구와 연출부터 바꿔 보세요</strong><span>미션 카드와 공개 연출</span></span><i>→</i></a></nav>
+  <div data-comments data-kind="comment" data-page="/blog/fair-draw/"></div>
+</article>
+<section class="cmts" data-page="/blog/fair-draw/" data-kind="post"></section></div>
+
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
+
+<script src="/assets/firebase-config.js?v=4"></script>
+<script src="/assets/favorites.js?v=2"></script>
+<script type="module" src="/assets/comments.js?v=4"></script>
+<script src="/assets/analytics.js?v=2" defer></script>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+</body>
+</html>
