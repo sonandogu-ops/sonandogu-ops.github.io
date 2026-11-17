@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
+<link rel="canonical" href="https://sonandogu.com/random/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon-192.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F4F1">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sonandogu.com/random/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-random.jpg?v=20261117">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="랜덤 숫자 뽑기 · 당첨자 추첨">
+<meta name="twitter:card" content="summary_large_image">
+<title>랜덤 숫자 뽑기 · 당첨자 추첨 - 번호 뽑기, 중복 없이 공정하게 | 손안의도구</title>
+<meta property="og:site_name" content="손안의도구">
+<meta name="description" content="랜덤 숫자 뽑기: 최솟값과 최댓값, 개수만 정하면 중복 없이 숫자를 뽑아드려요. 이름을 적으면 당첨자 추첨도 바로 돼요. 보안 난수로 모든 숫자와 사람이 같은 확률이에요. 무료로, 가입 없이 바로 쓸 수 있어요.">
+<meta property="og:title" content="랜덤 숫자 뽑기 · 당첨자 추첨">
+<meta property="og:description" content="번호 뽑기와 이름 추첨을 공정하게, 중복 없이.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "랜덤 숫자 뽑기", "item": "https://sonandogu.com/random/"}]}</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+
+.hero{display:grid; gap:28px; padding:36px 0 0}
+.hero>*{min-width:0}
+@media (min-width:920px){.hero{grid-template-columns:1fr 460px; gap:64px; padding-top:72px; align-items:start}}
+.intro h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.05em; line-height:1.08; margin:0 0 16px}
+.intro p{font-size:17px; color:var(--muted); margin:0 0 24px; max-width:30em}
+.checks{display:flex; flex-wrap:wrap; gap:8px 18px; margin:0; padding:0; list-style:none; font-size:14px; font-weight:600}
+.checks li{display:flex; align-items:center; gap:7px}
+.checks li::before{content:""; width:16px; height:16px; border-radius:50%; background:var(--orange) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.3 2.2 4.7-4.8' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+@media (max-width:919px){.intro p,.checks{display:none}.intro h1{margin:0}}
+
+.card{background:var(--surface); border:1px solid var(--line); border-radius:28px; box-shadow:var(--shadow); padding:8px}
+.seg{position:relative; display:flex; gap:2px; background:var(--field); border-radius:20px; padding:4px; overflow-x:auto; scrollbar-width:none}
+.seg::-webkit-scrollbar{display:none}
+.seg .pill{position:absolute; top:4px; bottom:4px; left:0; width:0; background:var(--surface); border-radius:16px; box-shadow:0 1px 2px rgba(20,21,24,.08), 0 4px 12px -4px rgba(20,21,24,.12); transition:transform .32s cubic-bezier(.2,.8,.2,1), width .32s cubic-bezier(.2,.8,.2,1)}
+.seg button{position:relative; z-index:1; flex:1 0 auto; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:none; border:none; padding:10px 12px; border-radius:16px; cursor:pointer; white-space:nowrap; transition:color .2s}
+.seg button[aria-pressed="true"]{color:var(--ink)}
+
+.inputs{display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:14px 8px 6px}
+.toggle{grid-column:1/-1; display:flex; gap:6px}
+.toggle[hidden]{display:none}
+.toggle button{flex:1; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:14px; padding:9px; cursor:pointer}
+.toggle button[aria-pressed="true"]{color:var(--orange); border-color:var(--orange); background:rgba(255,90,31,.06)}
+.box{position:relative; background:var(--field); border-radius:18px; padding:12px 14px 10px; border:1.5px solid transparent; transition:border-color .2s, box-shadow .2s, background .2s; cursor:text}
+.box:focus-within{background:var(--surface); border-color:var(--orange); box-shadow:0 0 0 5px rgba(255,90,31,.13)}
+.box label{display:block; font-size:12px; font-weight:700; color:var(--muted)}
+.box .row{display:flex; align-items:baseline; gap:4px}
+.box input{width:100%; min-width:0; font:inherit; font-size:28px; font-weight:750; letter-spacing:-.04em; color:var(--ink); background:none; border:none; outline:none; padding:2px 0 0; font-variant-numeric:tabular-nums}
+.box input::placeholder{color:var(--faint); opacity:.6}
+.box .unit{font-size:18px; font-weight:700; color:var(--muted)}
+.presets{grid-column:1/-1; display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; padding:2px 0}
+.presets[hidden]{display:none}
+.presets button{flex:none; font:inherit; font-size:13px; font-weight:700; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:6px 12px; cursor:pointer; font-variant-numeric:tabular-nums}
+.presets button:hover{color:var(--ink); border-color:var(--ink)}
+
+.display{position:relative; overflow:hidden; margin-top:8px; border-radius:22px; padding:22px 20px 18px; color:#F4F4F1;
+  background:radial-gradient(120% 140% at 100% 0%, rgba(255,106,51,.28) 0%, rgba(255,106,51,0) 45%), linear-gradient(160deg,#202126 0%,#121316 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.display::after{content:""; position:absolute; inset:0; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E"); pointer-events:none}
+.caption{font-size:14px; color:rgba(244,244,241,.6); min-height:1.6em; font-variant-numeric:tabular-nums}
+.result{font-size:clamp(40px,10vw,54px); font-weight:800; letter-spacing:-.05em; line-height:1.1; margin:4px 0 2px; font-variant-numeric:tabular-nums; word-break:break-all}
+.result .u{font-size:.5em; font-weight:700; letter-spacing:-.02em; color:var(--orange2); margin-left:6px}
+.result.empty{font-size:20px; font-weight:600; letter-spacing:-.02em; color:rgba(244,244,241,.45)}
+.dfoot{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,.08)}
+.formula{font-size:12.5px; color:rgba(244,244,241,.5); font-variant-numeric:tabular-nums}
+.copy{flex:none; display:inline-flex; align-items:center; gap:6px; font:inherit; font-size:13px; font-weight:700; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); border:none; border-radius:12px; padding:9px 14px; cursor:pointer; box-shadow:0 6px 16px -6px rgba(255,90,31,.7)}
+.copy[disabled]{opacity:.35; box-shadow:none; cursor:default}
+.toast{position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); opacity:0; background:var(--ink); color:var(--bg); font-size:14px; font-weight:700; padding:10px 18px; border-radius:999px; transition:all .25s; pointer-events:none; z-index:20}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+
+.guide{margin-top:88px}
+.guide h2{font-size:clamp(24px,4vw,32px); font-weight:800; letter-spacing:-.04em; margin:0 0 20px}
+.fgrid{display:grid; gap:12px}
+@media (min-width:720px){.fgrid{grid-template-columns:repeat(2,1fr)}}
+.f{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px}
+.f h3{font-size:16px; font-weight:800; margin:0 0 10px; letter-spacing:-.02em}
+.f code{display:inline-block; font-family:inherit; font-size:14px; font-weight:700; background:var(--field); border-radius:10px; padding:6px 10px; font-variant-numeric:tabular-nums}
+.f p{margin:10px 0 0; font-size:14px; color:var(--muted)}
+.faq{margin-top:56px}
+.guide .fgrid+h2,.guide p+h2{margin-top:56px}
+.guide>p{font-size:16px; line-height:1.85; margin:0 0 14px}
+.faq details{border-top:1px solid var(--line); padding:18px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer; font-weight:700; font-size:16px; list-style:none; display:flex; justify-content:space-between; gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+"; color:var(--muted); font-weight:500; font-size:22px; line-height:1; transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:10px 0 0; color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+.rel{margin-top:40px; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.rel b{font-size:13px; color:var(--orange); font-weight:800}
+.rel a{color:var(--ink); font-weight:700; text-decoration:none; font-size:16px}
+.rel a:hover{color:var(--orange)}
+
+.endo{display:flex; align-items:flex-end; gap:10px; margin-top:14px}
+.endo img{flex:none; width:64px; height:64px; object-fit:contain; filter:drop-shadow(0 6px 10px rgba(0,0,0,.35))}
+.endo .say{position:relative; flex:1; background:#F4F4F1; color:#141518; font-size:14px; font-weight:700; line-height:1.45; border-radius:16px 16px 16px 4px; padding:10px 13px; margin-bottom:8px; letter-spacing:-.01em}
+.endo .say::before{content:""; position:absolute; left:-6px; bottom:8px; border:6px solid transparent; border-right-color:#F4F4F1; border-left:0}
+.endo.light .say{background:var(--field); color:var(--ink)}
+.endo.light .say::before{border-right-color:var(--field)}
+.endo.light img{filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
+.endo.pop img{animation:endoHop .5s cubic-bezier(.3,1.6,.5,1)}
+.endo.pop .say{animation:endoSay .35s ease-out}
+.endo[data-p="walk"] img,.endo[data-p="run"] img{animation:endoWalk .45s ease-in-out infinite}
+@keyframes endoHop{0%{transform:translateY(8px) scale(.9)}60%{transform:translateY(-6px)}100%{transform:none}}
+@keyframes endoSay{from{opacity:0; transform:translateX(-6px)}to{opacity:1; transform:none}}
+@keyframes endoWalk{50%{transform:translateY(-4px) rotate(-3deg)}}
+.tip{display:flex; gap:16px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:14px 18px; margin:0 0 22px; box-shadow:var(--shadow)}
+.tip img{width:80px; height:80px; object-fit:contain; flex:none}
+.tip b{display:block; font-size:13px; color:var(--orange); font-weight:800; margin-bottom:2px}
+.tip p{margin:0; font-size:15px; line-height:1.6}
+@media (prefers-reduced-motion:reduce){.endo.pop img,.endo.pop .say,.endo[data-p] img{animation:none!important}}
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:12px}
+.crumb a{color:var(--muted); text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+
+.inputs .full{grid-column:1/-1}
+.inputs[hidden]{display:none}
+.brk{list-style:none; margin:12px 0 0; padding:0; display:grid; gap:6px; font-variant-numeric:tabular-nums}
+.brk li{display:flex; justify-content:space-between; gap:12px; font-size:14.5px; color:rgba(244,244,241,.7)}
+.brk li b{color:#F4F4F1; font-weight:750}
+.brk li.tot{padding-top:8px; border-top:1px solid rgba(255,255,255,.08); color:#F4F4F1; font-weight:700}
+.brk li.tot b{color:var(--orange2)}
+.draw{grid-column:1/-1; font:inherit; font-size:17px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); border:none; border-radius:16px; padding:14px; cursor:pointer; box-shadow:0 10px 22px -12px rgba(255,90,31,.9)}
+.draw:active{transform:translateY(1px)}
+.box textarea{width:100%; min-height:120px; resize:vertical; font:inherit; font-size:16px; font-weight:600; color:var(--ink); background:none; border:none; outline:none; padding:4px 0 0; line-height:1.6}
+.box textarea::placeholder{color:var(--faint); opacity:.7}
+.box small{display:block; font-size:12px; color:var(--muted); margin-top:4px}
+.balls{display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 4px}
+.balls span{min-width:42px; height:42px; padding:0 10px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FFB48A,#FF8A3D); font-variant-numeric:tabular-nums}
+.balls.names span{font-size:16px; height:40px; border-radius:14px}
+.balls span.pop{animation:ballin .35s cubic-bezier(.2,.8,.2,1.2) both}
+@keyframes ballin{from{transform:scale(.4); opacity:0} to{transform:none; opacity:1}}
+@media (prefers-reduced-motion:reduce){.balls span.pop{animation:none}}
+.hist{list-style:none; margin:10px 0 0; padding:0; display:grid; gap:4px; font-size:12.5px; color:rgba(244,244,241,.55); font-variant-numeric:tabular-nums}
+.hist li{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.guide>p{font-size:16px; line-height:1.85; margin:0 0 14px}
+.guide>p+h2,.guide .fgrid+h2{margin-top:56px}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "뽑힌 숫자는 정말 무작위인가요?", "acceptedAnswer": {"@type": "Answer", "text": "네. 브라우저의 보안 난수 기능으로 뽑고, 특정 숫자로 쏠리지 않도록 걸러내는 방식을 써서 범위 안의 모든 숫자가 같은 확률이에요. 누를 때마다 처음부터 새로 뽑아요."}}, {"@type": "Question", "name": "같은 숫자가 두 번 나올 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "\"중복 없이\"를 고르면 나오지 않아요. \"중복 허용\"을 고르면 주사위를 여러 번 던질 때처럼 같은 숫자가 다시 나올 수 있어요."}}, {"@type": "Question", "name": "몇 개까지 뽑을 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "한 번에 1개부터 100개까지 뽑을 수 있고, 범위는 -10억부터 10억까지예요. 중복 없이 뽑을 땐 범위 안의 숫자 개수보다 많이 뽑을 수 없어요."}}, {"@type": "Question", "name": "이름 추첨에서 같은 이름을 두 번 적으면요?", "acceptedAnswer": {"@type": "Answer", "text": "두 번 적은 만큼 따로 하나씩 세서 당첨 확률이 두 배가 돼요. 응모 횟수만큼 확률을 주고 싶을 때 쓰면 되고, 아니라면 이름을 한 번씩만 적으세요."}}, {"@type": "Question", "name": "로또 번호를 뽑으면 당첨 확률이 올라가나요?", "acceptedAnswer": {"@type": "Answer", "text": "아니에요. 어떤 번호 조합이든 당첨 확률은 같아요. 이 도구는 번호를 재미로 골라 주는 것뿐이고, 복권 판매처와는 관계가 없어요."}}, {"@type": "Question", "name": "입력한 이름은 저장되나요?", "acceptedAnswer": {"@type": "Answer", "text": "다음에 다시 쓰기 편하도록 이 기기의 브라우저에만 저장돼요. 서버로는 보내지 않아요."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "랜덤 숫자 뽑기", "url": "https://sonandogu.com/random/", "description": "랜덤 숫자 뽑기: 최솟값과 최댓값, 개수만 정하면 중복 없이 숫자를 뽑아드려요. 이름을 적으면 당첨자 추첨도 바로 돼요. 보안 난수로 모든 숫자와 사람이 같은 확률이에요. 무료로, 가입 없이 바로 쓸 수 있어요.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "browserRequirements": "JavaScript", "inLanguage": "ko", "isAccessibleForFree": true, "image": "https://sonandogu.com/assets/og-random.jpg?v=20261117", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "KRW"}}</script>
+<link rel="stylesheet" href="/assets/comments.css?v=3">
+<link rel="stylesheet" href="/assets/favorites.css?v=2">
+<meta name="google-adsense-account" content="ca-pub-1007904420767851">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
+</head>
+<body>
+<script>
+async function shareOut(t){ const touch=matchMedia('(pointer:coarse)').matches; if(navigator.share&&touch){ try{ await navigator.share({text:t}); return 'shared'; }catch(e){ if(e&&e.name==='AbortError') return 'abort'; } } await navigator.clipboard.writeText(t); return 'copied'; }
+document.addEventListener('DOMContentLoaded',()=>{ if(navigator.share&&matchMedia('(pointer:coarse)').matches){ document.querySelectorAll('[data-share]').forEach(b=>b.textContent=b.dataset.share); } });
+</script>
+<script>
+function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const img=e.querySelector('img'), src='/assets/endo/'+p+'.webp'; if(img.getAttribute('src')!==src) img.setAttribute('src',src); e.dataset.p=p; const s=e.querySelector('.say'); if(s.textContent!==m){ s.textContent=m; if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ e.classList.remove('pop'); void e.offsetWidth; e.classList.add('pop'); } } }
+</script>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<div class="container">
+  <section class="hero">
+    <div class="intro">
+      <div class="crumb"><a href="/">전체 도구</a> / <a href="/#play">놀이</a> / 랜덤 숫자 뽑기</div>
+      <h1>랜덤 숫자 뽑기</h1>
+      <p>1부터 45까지 6개, 1부터 100까지 하나. 범위만 정하면 공평하게 뽑고, 이름을 적으면 당첨자도 추첨해요.</p>
+      <ul class="checks"><li>가입 없이 바로</li><li>보안 난수 사용</li><li>기기 밖으로 전송 안 함</li></ul>
+    </div>
+
+    <main class="card">
+      <nav class="seg" aria-label="뽑기 종류"><span class="pill" aria-hidden="true"></span>
+        <button data-mode="num" aria-pressed="true">숫자 뽑기</button>
+        <button data-mode="name" aria-pressed="false">이름 추첨</button>
+      </nav>
+      <div class="inputs" id="pNum">
+        <div class="box" data-for="mn"><label for="mn">최솟값</label><div class="row"><input id="mn" inputmode="numeric" autocomplete="off" placeholder="1"></div></div>
+        <div class="box" data-for="mx"><label for="mx">최댓값</label><div class="row"><input id="mx" inputmode="numeric" autocomplete="off" placeholder="45"></div></div>
+        <div class="box full" data-for="cnt"><label for="cnt">몇 개 뽑을까요</label><div class="row"><input id="cnt" inputmode="numeric" autocomplete="off" placeholder="6"><span class="unit">개</span></div></div>
+        <div class="toggle" id="tDup"><button data-v="0" aria-pressed="true">중복 없이</button><button data-v="1" aria-pressed="false">중복 허용</button></div>
+        <div class="toggle" id="tSort"><button data-v="1" aria-pressed="true">작은 수부터</button><button data-v="0" aria-pressed="false">뽑은 순서대로</button></div>
+        <div class="presets" aria-label="자주 쓰는 범위" id="pre"></div>
+      </div>
+      <div class="inputs" id="pName" hidden>
+        <div class="box full" data-for="names"><label for="names">참가자 (한 줄에 한 명, 쉼표로 나눠도 돼요)</label><textarea id="names" placeholder="민수&#10;지우&#10;서연&#10;도윤"></textarea><small id="nCount">0명</small></div>
+        <div class="box full" data-for="win"><label for="win">당첨 인원</label><div class="row"><input id="win" inputmode="numeric" autocomplete="off" placeholder="1"><span class="unit">명</span></div></div>
+      </div>
+      <div class="inputs"><button class="draw" id="draw" type="button">뽑기</button></div>
+      <div class="display" aria-live="polite">
+        <div class="caption" id="cap"></div>
+        <div class="result empty" id="res">조건을 정하고 뽑기를 눌러요</div>
+        <div class="balls" id="balls" hidden></div><ul class="hist" id="hist" hidden></ul>
+        <div class="dfoot"><span class="formula" id="fx">공식이 여기에 표시됩니다</span>
+          <button class="copy" id="copy" disabled><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="8" height="8" rx="2"/><path d="M2.5 9.5v-6a1.5 1.5 0 0 1 1.5-1.5h6"/></svg>복사</button>
+        </div>
+        <div class="endo" id="endo" data-p="wave"><img src="/assets/endo/wave.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">범위만 정하면 공평하게 뽑아드릴게요!</div></div>
+      </div>
+    </main>
+  </section>
+
+    <section class="nexttools" aria-label="이어서 쓰면 좋은 도구">
+    <h2>이어서 쓰면 좋은 도구</h2>
+    <div class="ntg"><a class="nt" href="/party/lots/" data-c="play"><span class="nt-i" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"><rect x="3" y="6" width="10" height="14" rx="2" transform="rotate(-10 8 13)"/><rect x="12" y="5" width="10" height="14" rx="2" transform="rotate(8 17 12)"/></svg></span><span class="nt-t"><strong>제비뽑기</strong><span>한 장씩 뒤집는 두근두근 추첨</span></span><span class="nt-a" aria-hidden="true">›</span></a><a class="nt" href="/party/roulette/" data-c="play"><span class="nt-i" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2"><circle cx="13" cy="14" r="9"/><path d="M13 5v18M4 14h18" stroke-width="1.4"/></svg></span><span class="nt-t"><strong>룰렛 돌리기</strong><span>점심 메뉴부터 커피 내기까지</span></span><span class="nt-a" aria-hidden="true">›</span></a><a class="nt" href="/party/ladder/" data-c="play"><span class="nt-i" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M6 3v20M13 3v20M20 3v20M6 8h7M13 13h7M6 18h7"/></svg></span><span class="nt-t"><strong>사다리타기</strong><span>이름을 누르면 길이 그려져요</span></span><span class="nt-a" aria-hidden="true">›</span></a></div>
+  </section>
+  <section class="guide">
+    <div class="tip"><img src="/assets/endo/idea.webp" width="80" height="80" alt="" loading="lazy"><div><b>엔도의 팁</b><p>경품 추첨처럼 여러 번 뽑을 땐 결과를 복사해서 단톡방에 바로 올려두세요. 화면 아래에 최근 결과 5개도 남아 있어서, 방금 뭐가 나왔는지 다시 확인할 수 있어요.</p></div></div>
+    <h2>공정하게 뽑아요</h2>
+    <div class="fgrid">
+      <div class="f"><h3>보안 난수</h3><p>브라우저가 암호화에 쓰는 난수 기능으로 숫자를 뽑아요. 흔한 난수보다 예측하기 어렵고, 특정 숫자가 더 잘 나오도록 기울어지지 않게 한 번 더 걸러서 모든 숫자가 같은 확률이에요.</p></div>
+      <div class="f"><h3>중복 없이, 또는 중복 허용</h3><p>"중복 없이"는 한 번 나온 숫자를 다시 뽑지 않아요. 주사위를 여러 번 던지는 것처럼 같은 숫자가 또 나와도 되면 "중복 허용"을 고르면 돼요.</p></div>
+      <div class="f"><h3>이름 추첨</h3><p>참가자 명단을 무작위로 섞은 뒤 앞에서부터 당첨 인원만큼 뽑아요. 명단의 몇 번째에 이름을 적었든 당첨 확률은 모두 같아요.</p></div>
+    </div>
+    <h2>이럴 때 써요</h2>
+    <div class="fgrid">
+      <div class="f"><h3>경품과 이벤트 당첨자</h3><p>댓글 이벤트나 사내 행사 경품 추첨에서 참가자 이름을 붙여넣고 당첨 인원만 정하면 돼요. 결과를 복사해 공지에 그대로 올릴 수 있어요.</p></div>
+      <div class="f"><h3>번호와 순서 정하기</h3><p>발표 순서, 자리 번호, 출석 번호 중 한 명 고르기처럼 숫자로 정할 일에 써요. 1부터 인원수까지 넣고 인원수만큼 뽑으면 순서가 한 번에 정해져요.</p></div>
+      <div class="f"><h3>재미로 뽑는 번호</h3><p>"로또 번호" 버튼을 누르면 1부터 45까지 중복 없이 6개를 뽑아요. 재미로 고르는 번호일 뿐, 당첨 확률을 높여 주지는 않아요.</p></div>
+    </div>
+    <h2>추첨을 깔끔하게 하려면</h2>
+    <p>여러 사람이 지켜보는 추첨이라면 시작하기 전에 규칙을 먼저 정해 두는 게 좋아요. 참가자 명단을 확정하고, 당첨 인원과 "한 번 뽑으면 다시 뽑지 않는다"는 원칙을 미리 알려 두면 결과가 나온 뒤에 말이 나오지 않아요.</p>
+    <p>화면을 공유하면서 뽑거나, 결과를 바로 복사해 단톡방에 올리면 더 투명해요. 같은 사람이 응모를 여러 번 했다면 명단에 그 횟수만큼 이름을 적으면 응모 수만큼 확률이 올라가요. 한 사람이 한 번만 당첨되게 하려면 이름을 한 번씩만 적으세요.</p>
+    <div class="faq">
+      <h2>자주 묻는 질문</h2>
+      <details><summary>뽑힌 숫자는 정말 무작위인가요?</summary><p>네. 브라우저의 보안 난수 기능으로 뽑고, 특정 숫자로 쏠리지 않도록 걸러내는 방식을 써서 범위 안의 모든 숫자가 같은 확률이에요. 누를 때마다 처음부터 새로 뽑아요.</p></details>
+      <details><summary>같은 숫자가 두 번 나올 수 있나요?</summary><p>"중복 없이"를 고르면 나오지 않아요. "중복 허용"을 고르면 주사위를 여러 번 던질 때처럼 같은 숫자가 다시 나올 수 있어요.</p></details>
+      <details><summary>몇 개까지 뽑을 수 있나요?</summary><p>한 번에 1개부터 100개까지 뽑을 수 있고, 범위는 -10억부터 10억까지예요. 중복 없이 뽑을 땐 범위 안의 숫자 개수보다 많이 뽑을 수 없어요.</p></details>
+      <details><summary>이름 추첨에서 같은 이름을 두 번 적으면요?</summary><p>두 번 적은 만큼 따로 하나씩 세서 당첨 확률이 두 배가 돼요. 응모 횟수만큼 확률을 주고 싶을 때 쓰면 되고, 아니라면 이름을 한 번씩만 적으세요.</p></details>
+      <details><summary>로또 번호를 뽑으면 당첨 확률이 올라가나요?</summary><p>아니에요. 어떤 번호 조합이든 당첨 확률은 같아요. 이 도구는 번호를 재미로 골라 주는 것뿐이고, 복권 판매처와는 관계가 없어요.</p></details>
+      <details><summary>입력한 이름은 저장되나요?</summary><p>다음에 다시 쓰기 편하도록 이 기기의 브라우저에만 저장돼요. 서버로는 보내지 않아요.</p></details>
+    </div>
+  <div class="rel"><b>함께 읽으면 좋은 글</b><a href="/blog/random-decision/">"아무거나"가 제일 어려운 이유 →</a><a href="/blog/lots-ideas/">제비뽑기, 밋밋하다면 문구와 연출부터 바꿔 보세요 →</a></div>
+  <div data-comments data-kind="review" data-page="/random/"></div>
+  </section>
+  <section class="cmts" data-page="/random/" data-kind="tool"></section>
+</div>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
+<div class="toast" id="toast">복사했어요</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const toNum=v=>{const n=parseFloat(String(v).replace(/,/g,''));return isFinite(n)?n:null;};
+const won=n=>Math.round(n).toLocaleString('ko-KR');
+function formatInput(el,allowDot){
+  const pos=el.selectionStart??el.value.length;
+  const keep=el.value.slice(0,pos).replace(allowDot?/[^0-9.]/g:/[^0-9]/g,'').length;
+  let raw=el.value.replace(allowDot?/[^0-9.]/g:/[^0-9]/g,'').slice(0,13);
+  raw=raw.replace(/^0+(?=\d)/,'');
+  const out=raw.replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  el.value=out; let c=0,p=0; while(p<out.length&&c<keep){if(/[0-9]/.test(out[p]))c++;p++;}
+  try{el.setSelectionRange(p,p);}catch(e){}
+}
+const toast=$('toast'); function say(m){toast.textContent=m;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1500);}
+const seg=document.querySelector('.seg'), pill=seg.querySelector('.pill');
+function movePill(){const b=seg.querySelector('[aria-pressed="true"]');if(!b)return;pill.style.width=b.offsetWidth+'px';pill.style.transform=`translateX(${b.offsetLeft}px)`;}
+addEventListener('resize',movePill);
+const store={get(k){try{return JSON.parse(localStorage.getItem(k)||'null');}catch(e){return null;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+
+const res=$('res'), cap=$('cap'), fx=$('fx'), copy=$('copy'), balls=$('balls'), hist=$('hist');
+const KEY='sonandogu-random-v1';
+let st=Object.assign({mode:'num',mn:'1',mx:'45',cnt:'6',dup:false,sort:true,names:'',win:'1',hist:[]},store.get(KEY)||{});
+if(!['num','name'].includes(st.mode)) st.mode='num'; if(!Array.isArray(st.hist)) st.hist=[];
+const cl=(v,n)=>String(v==null?'':v).replace(/[^0-9,\-]/g,'').slice(0,n||15);
+['mn','mx','cnt','win'].forEach(k=>st[k]=cl(st[k])); st.names=String(st.names||'').slice(0,5000);
+/* 치우침 없는 정수 난수: [0,n) */
+function rint(n){ if(n<=1) return 0; const lim=Math.floor(4294967296/n)*n, a=new Uint32Array(1); let x; do{ crypto.getRandomValues(a); x=a[0]; }while(x>=lim); return x%n; }
+function pickNums(mn,mx,cnt,dup){ const span=mx-mn+1, out=[];
+  if(dup){ for(let i=0;i<cnt;i++) out.push(mn+rint(span)); return out; }
+  const seen=new Set(); while(out.length<cnt){ const v=mn+rint(span); if(!seen.has(v)){ seen.add(v); out.push(v); } } return out; }
+function pickNames(list,k){ const a=list.slice(); for(let i=a.length-1;i>0;i--){ const j=rint(i+1); [a[i],a[j]]=[a[j],a[i]]; } return a.slice(0,k); }
+const parseNames=t=>String(t).split(/[\n,]/).map(s=>s.trim()).filter(Boolean).slice(0,500);
+window.__rd={rint,pickNums,pickNames,parseNames};
+const ints=v=>{const n=parseInt(String(v).replace(/,/g,''),10);return isFinite(n)?n:null;};
+function setMode(m){ st.mode=m; seg.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===m)); movePill();
+  $('pNum').hidden=m!=='num'; $('pName').hidden=m!=='name'; save(); idle(); }
+function save(){ st.mn=$('mn').value; st.mx=$('mx').value; st.cnt=$('cnt').value; st.names=$('names').value; st.win=$('win').value; store.set(KEY,st); $('nCount').textContent=parseNames(st.names).length+'명'; }
+function idle(){ res.className='result empty'; res.textContent='조건을 정하고 뽑기를 눌러요'; cap.textContent=''; balls.hidden=true; fx.textContent='보안 난수로 매번 새로 뽑아요'; copy.disabled=true; drawHist();
+  endo('wave', st.mode==='num'?'범위만 정하면 공평하게 뽑아드릴게요!':'이름을 적으면 공평하게 추첨해드릴게요!'); }
+function fail(msg){ res.className='result empty'; res.textContent=msg; balls.hidden=true; copy.disabled=true; endo('oops',msg); }
+function drawHist(){ hist.innerHTML=''; st.hist.slice(0,5).forEach(h=>{const li=document.createElement('li'); li.textContent=h; hist.append(li);}); hist.hidden=!st.hist.length; }
+function show(items,isName,capText,copyText){
+  res.className='result'; res.innerHTML=''; res.hidden=true; cap.textContent=capText;
+  balls.className='balls'+(isName?' names':''); balls.innerHTML=''; const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  items.forEach((v,i)=>{ const s=document.createElement('span'); s.textContent=isName?v:v.toLocaleString('ko-KR'); if(!reduce){ s.className='pop'; s.style.animationDelay=(i*60)+'ms'; } balls.append(s); });
+  balls.hidden=false; copy.disabled=false; copy.dataset.v=copyText;
+  st.hist.unshift(copyText.replace(/^\[[^\]]+\] /,'')); st.hist=st.hist.slice(0,5); save(); drawHist();
+}
+function draw(){
+  save(); res.hidden=false;
+  if(st.mode==='num'){
+    const mn=ints(st.mn), mx=ints(st.mx), cnt=ints(st.cnt);
+    if(mn===null||mx===null||cnt===null) return fail('최솟값, 최댓값, 개수를 모두 넣어주세요');
+    if(mx<mn) return fail('최댓값이 최솟값보다 작아요');
+    if(Math.abs(mn)>1e9||Math.abs(mx)>1e9) return fail('범위는 ±10억까지 넣을 수 있어요');
+    if(cnt<1||cnt>100) return fail('한 번에 1~100개까지 뽑을 수 있어요');
+    if(!st.dup&&cnt>mx-mn+1) return fail(`중복 없이는 최대 ${(mx-mn+1).toLocaleString('ko-KR')}개까지 뽑을 수 있어요`);
+    let out=pickNums(mn,mx,cnt,st.dup); if(st.sort) out=out.slice().sort((a,b)=>a-b);
+    const c=`${mn.toLocaleString('ko-KR')}~${mx.toLocaleString('ko-KR')}에서 ${cnt}개${st.dup?' (중복 허용)':''}`;
+    show(out,false,c,`[랜덤 숫자] ${c}: ${out.map(v=>v.toLocaleString('ko-KR')).join(', ')}`);
+    fx.textContent='보안 난수로 모든 숫자가 같은 확률이에요'; endo('thumbs', cnt===1?`${out[0].toLocaleString('ko-KR')}번이 나왔어요!`:'공평하게 뽑았어요!');
+  } else {
+    const list=parseNames(st.names), k=ints(st.win);
+    if(list.length<2) return fail('참가자를 두 명 이상 적어주세요');
+    if(k===null||k<1) return fail('당첨 인원을 넣어주세요');
+    if(k>=list.length) return fail(`당첨 인원은 참가자(${list.length}명)보다 적어야 해요`);
+    const out=pickNames(list,k); const c=`${list.length}명 중 ${k}명 당첨`;
+    show(out,true,c,`[당첨자 추첨] ${c}: ${out.join(', ')}`);
+    fx.textContent='모든 참가자가 같은 확률로 뽑혀요'; endo('saving', k===1?`축하해요, ${out[0]}!`:'당첨자가 정해졌어요!');
+  }
+}
+const PRE=[['로또 번호','1','45','6',false],['1~10','1','10','1',false],['1~100','1','100','1',false],['주사위','1','6','1',true]];
+PRE.forEach(([t,a,b,c,d])=>{const x=document.createElement('button'); x.textContent=t; x.onclick=()=>{$('mn').value=a;$('mx').value=b;$('cnt').value=c; st.dup=d; paintT(); save(); draw();}; $('pre').append(x);});
+function paintT(){ $('tDup').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',(b.dataset.v==='1')===st.dup)); $('tSort').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',(b.dataset.v==='1')===st.sort)); }
+$('tDup').querySelectorAll('button').forEach(b=>b.onclick=()=>{st.dup=b.dataset.v==='1'; paintT(); save();});
+$('tSort').querySelectorAll('button').forEach(b=>b.onclick=()=>{st.sort=b.dataset.v==='1'; paintT(); save();});
+['mn','mx','cnt','win'].forEach(id=>$(id).addEventListener('input',e=>{ const el=e.target; el.value=el.value.replace(/[^0-9\-]/g,'').replace(/(?!^)-/g,'').slice(0,11); save(); }));
+$('names').addEventListener('input',save);
+$('draw').addEventListener('click',draw);
+seg.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+document.querySelectorAll('.box').forEach(x=>x.addEventListener('click',e=>{ if(e.target.tagName!=='TEXTAREA') $(x.dataset.for).focus(); }));
+copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(copy.dataset.v);say('복사했어요');}catch(e){say('복사하지 못했어요');}});
+$('mn').value=st.mn; $('mx').value=st.mx; $('cnt').value=st.cnt; $('names').value=st.names; $('win').value=st.win; paintT(); setMode(st.mode);
+requestAnimationFrame(movePill);
+</script>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+<script src="/assets/firebase-config.js?v=4"></script>
+<script src="/assets/favorites.js?v=2"></script>
+<script type="module" src="/assets/comments.js?v=4"></script>
+<script src="/assets/analytics.js?v=2" defer></script>
+</body>
+</html>
