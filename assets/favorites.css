@@ -54,7 +54,7 @@
 .fclose:hover{background:var(--field); color:var(--ink)}
 
 /* 마이페이지 패널 */
-.fpanel{position:fixed; z-index:40; top:56px; right:max(12px, calc((100vw - 1040px)/2 + 12px)); width:min(300px, calc(100vw - 24px)); background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:20px; padding:16px; box-shadow:var(--shadow)}
+.fpanel{position:fixed; z-index:40; top:56px; max-height:calc(100vh - 72px); max-height:calc(100dvh - 72px); overflow:auto; overscroll-behavior:contain; right:max(12px, calc((100vw - 1040px)/2 + 12px)); width:min(300px, calc(100vw - 24px)); background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:20px; padding:16px; box-shadow:var(--shadow)}
 .fpanel[hidden]{display:none}
 .fpanel b{display:block; font-size:16px; font-weight:800; letter-spacing:-.03em; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .fpanel .em{display:block; font-size:13px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
@@ -127,3 +127,28 @@
 
 /* 하단 메뉴: 링크가 많아도 좁은 화면에서 줄바꿈 */
 footer .fl{flex-wrap:wrap; row-gap:8px}
+
+/* 마이 패널: 찜한 도구 · 좋아요한 글 */
+.fpanel .fsec{margin:14px 0 0; padding:12px 0 0; border-top:1px solid var(--line)}
+.fpanel .fsh{display:flex; align-items:baseline; justify-content:space-between; margin:0 0 6px}
+.fpanel .fsh strong{font-size:14px; font-weight:800}
+.fpanel .fsh span{font-size:12.5px; color:var(--faint); font-weight:700}
+.fpanel .fe{margin:4px 0 0; font-size:13px}
+.fpanel .flist{list-style:none; margin:0; padding:0; max-height:220px; overflow:auto}
+.fpanel .flist a{display:block; padding:7px 8px; margin:0 -8px; border-radius:10px; font-size:14px; font-weight:650; color:var(--ink); text-decoration:none; line-height:1.45}
+.fpanel .flist a:hover{background:var(--field)}
+
+/* 블로그 글 하트 */
+.like{display:inline-flex; align-items:center; gap:7px; font:inherit; font-size:15px; font-weight:800; color:var(--muted); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:9px 18px 9px 14px; cursor:pointer; -webkit-tap-highlight-color:transparent; transition:color .2s, border-color .2s, transform .15s}
+.like svg{display:block; width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:2; stroke-linejoin:round}
+.like:hover{color:#E8455B; border-color:rgba(232,69,91,.45)}
+.like[aria-pressed="true"]{color:#E8455B; border-color:rgba(232,69,91,.45); background:rgba(232,69,91,.07)}
+.like[aria-pressed="true"] svg{fill:currentColor}
+.like:active{transform:scale(.94)}
+.like.sm{padding:4px; margin:-4px 0 -4px 10px; border:0; background:none; vertical-align:middle; border-radius:50%}
+.like.sm svg{width:19px; height:19px}
+.like.sm[aria-pressed="true"]{background:none}
+.likebox{display:flex; align-items:center; justify-content:space-between; gap:14px; margin:28px 0 8px; padding:16px 18px; border:1px solid var(--line); border-radius:18px; background:var(--surface)}
+.likebox p{margin:0!important; font-size:14px!important; color:var(--muted); line-height:1.6; word-break:keep-all}
+.likebox .like{flex:none}
+@media (max-width:460px){ .likebox{flex-direction:column; align-items:stretch; text-align:center} .likebox .like{justify-content:center} }

@@ -3,14 +3,16 @@
  * - 로그인하면 Firebase Auth(구글) + Firestore users/{uid} 문서에 같은 목록을 저장해 기기 간에 맞춘다.
  * - 메인 화면에서는 카드의 별과 '내 툴박스'를, 각 도구 페이지에서는 제목 옆 별과 헤더 검색·로그인을 붙인다.
  * - Firebase SDK는 로그인 창을 열거나, 이전에 로그인한 적이 있을 때만 불러온다.
- * - 새 도구를 만들면 아래 TOOLS 목록에 주소를 추가해야 별이 동작한다.
+ * - 새 도구를 만들면 아래 TOOLS 목록과 NAMES에 주소를 추가해야 별이 동작한다.
+ * - 블로그 글에는 하트(좋아요)를 단다. 좋아요는 로그인한 사람만 누를 수 있고, users/{uid}.likes에 저장돼 '마이'에서 모아 본다.
  */
 (function(){
 'use strict';
 var KEY='sonandogu-favs-v1', DKEY='sonandogu-date-saved', HINT='sonandogu-authed', TIPKEY='sonandogu-fav-tip', V='10.12.2';
 var BASE='https://www.gstatic.com/firebasejs/'+V+'/';
-var MAX=30, DMAX=12;
+var MAX=30, DMAX=12, LKEY='sonandogu-likes-v1', LMAX=100;
 var TOOLS=['/percent/','/dutch/','/wage/','/salary/','/severance/','/leave/','/worktime/','/holiday/','/date/','/age/','/charcount/','/receipt/','/traditional/yut/','/party/team/','/party/roulette/','/party/ladder/','/party/lots/','/party/manito/','/vat/','/freelance-tax/','/random/'];
+var NAMES={'/percent/':'퍼센트 계산기','/dutch/':'더치페이 계산기','/wage/':'알바 급여 계산기','/salary/':'연봉 실수령액 계산기','/severance/':'퇴직금 계산기','/leave/':'연차 계산기','/worktime/':'근무시간 계산기','/holiday/':'연휴 계산기','/date/':'날짜 계산기','/age/':'만 나이 계산기','/charcount/':'글자수 세기','/receipt/':'간이영수증 작성기','/traditional/yut/':'온라인 윷놀이','/party/team/':'팀 나누기','/party/roulette/':'룰렛 돌리기','/party/ladder/':'사다리타기','/party/lots/':'제비뽑기','/party/manito/':'마니또 뽑기','/vat/':'부가세 계산기','/freelance-tax/':'3.3% 계산기','/random/':'랜덤 숫자 뽑기'};
 var $=function(id){return document.getElementById(id);};
 function el(tag,cls,text){var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e;}
 function ls(k,v){try{ if(v===undefined) return localStorage.getItem(k); if(v===null) localStorage.removeItem(k); else localStorage.setItem(k,v);}catch(e){} return null;}
@@ -40,6 +42,17 @@ function loadDates(){try{return cleanDates(JSON.parse(ls(DKEY)||'[]'));}catch(e)
 function unionDates(a,b){return cleanDates((a||[]).concat(b||[]));}
 function sameDates(a,b){return JSON.stringify(a)===JSON.stringify(b);}
 
+/* 좋아요한 글: [{p:'/blog/slug/', t:'글 제목'}], 최근 누른 것이 앞 */
+function cleanLikes(a){
+  var o=[],seen={}; (Array.isArray(a)?a:[]).forEach(function(x){
+    if(!x||typeof x.p!=='string'||!/^\/blog\/[a-z0-9-]+\/$/.test(x.p)||seen[x.p]) return;
+    seen[x.p]=1; o.push({p:x.p,t:String(x.t==null?'':x.t).replace(/\s+/g,' ').trim().slice(0,80)||x.p});
+  });
+  return o.slice(0,LMAX);
+}
+function loadLikes(){try{return cleanLikes(JSON.parse(ls(LKEY)||'[]'));}catch(e){return [];}}
+var likes=loadLikes(), likesOK=true;
+
 ls('sonandogu-recent',null); /* 예전 '최근 쓴 도구' 기록은 더 쓰지 않으므로 지운다 */
 
 var favs=loadLocal();
@@ -60,18 +73,23 @@ function pushCloud(){
   wt=setTimeout(function(){
     if(!user||!pulled||!fb) return;
     var ref=fb.fs.doc(fb.db,'users',user.uid);
-    fb.fs.setDoc(ref,{favs:favs.slice(),dates:JSON.stringify(loadDates()),updated:fb.fs.serverTimestamp()},{merge:true}).catch(function(){
+    var data={favs:favs.slice(),dates:JSON.stringify(loadDates()),updated:fb.fs.serverTimestamp()};
+    if(likesOK) data.likes=JSON.stringify(likes);
+    fb.fs.setDoc(ref,data,{merge:true}).catch(function(e){
+      /* 보안 규칙이 likes 필드를 아직 모르면 즐겨찾기만이라도 저장한다 */
+      if(likesOK&&e&&e.code==='permission-denied'){ likesOK=false; delete data.likes; fb.fs.setDoc(ref,data,{merge:true}).catch(function(){}); note('좋아요를 계정에 저장하지 못했어요. 즐겨찾기는 저장됐어요.'); return; }
       note('클라우드 저장이 늦어지고 있어요. 이 기기에는 저장됐어요.');
     });
   },500);
 }
 async function pull(u){
-  var ref=fb.fs.doc(fb.db,'users',u.uid), cloud=[], cloudD=[], exists=false;
+  var ref=fb.fs.doc(fb.db,'users',u.uid), cloud=[], cloudD=[], cloudL=[], exists=false;
   try{
     var snap=await fb.fs.getDoc(ref); exists=snap.exists();
     if(exists){
       var d=snap.data()||{}; cloud=clean(Array.isArray(d.favs)?d.favs:[]);
       try{cloudD=cleanDates(JSON.parse(d.dates||'[]'));}catch(e){}
+      try{cloudL=cleanLikes(JSON.parse(d.likes||'[]'));}catch(e){}
     }
   }catch(e){ note('즐겨찾기를 불러오지 못했어요. 잠시 뒤 다시 시도해 주세요.'); return; }
   if(user!==u) return;
@@ -79,6 +97,7 @@ async function pull(u){
   var next=merge?union(cloud,favs):cloud;
   var localD=loadDates(), nextD=merge?unionDates(cloudD,localD):cloudD;
   pulled=true; loginFlag=false;
+  setLikes(cloudL);
   setFavs(next);
   if(!sameDates(nextD,localD)){ ls(DKEY,JSON.stringify(nextD)); datesChanged(); }
   if(merge&&(!same(next,cloud)||!sameDates(nextD,cloudD))) pushCloud();
@@ -101,7 +120,7 @@ function onAuth(u){
   if(user){ wasUser=true; ls(HINT,'1'); drawAcct(); closeModal(); pull(user); }
   else{
     ls(HINT,null); drawAcct(); closePanel();
-    if(wasUser){ wasUser=false; touched=false; favs=[]; persistLocal(); ls(DKEY,null); emit(); datesChanged(); }
+    if(wasUser){ wasUser=false; touched=false; favs=[]; persistLocal(); ls(DKEY,null); setLikes([]); emit(); datesChanged(); }
   }
 }
 
@@ -194,6 +213,49 @@ function paintStars(){
   }
 }
 
+/* ---------- 좋아요 (블로그 글) ---------- */
+var HEART='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.3s-7.6-4.6-9.2-9.4C1.7 7.4 3.9 4.3 7.2 4.3c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.3 0 5.5 3.1 4.4 6.6-1.6 4.8-9.2 9.4-9.2 9.4z"/></svg>';
+var hearts=[];
+var postTitle=(function(){
+  var h=document.querySelector('article.post h1'); if(!h) return '';
+  var c=h.cloneNode(true); [].slice.call(c.querySelectorAll('br')).forEach(function(b){b.replaceWith(' ');});
+  [].slice.call(c.querySelectorAll('.fav')).forEach(function(x){x.remove();});
+  return c.textContent.replace(/\s+/g,' ').trim();
+})();
+var isPost=/^\/blog\/[a-z0-9-]+\/$/.test(here)&&!!postTitle;
+function liked(){return likes.some(function(x){return x.p===here;});}
+function setLikes(next){
+  likes=cleanLikes(next);
+  if(user) ls(LKEY,JSON.stringify(likes)); else ls(LKEY,null);
+  paintHearts(); if(!panel.hidden) drawPanel();
+}
+function toggleLike(){
+  if(!user){ openModal('로그인하면 좋아요한 글을 마이에서 언제든 다시 볼 수 있어요!'); return; }
+  if(!pulled){ note('계정 정보를 불러오는 중이에요. 잠시 뒤 다시 눌러 주세요.'); return; }
+  var on=liked();
+  setLikes(on?likes.filter(function(x){return x.p!==here;}):[{p:here,t:postTitle}].concat(likes));
+  pushCloud();
+  if(!on) note('좋아요했어요. 오른쪽 위 마이에서 모아 볼 수 있어요.');
+}
+function paintHearts(){
+  var on=liked();
+  hearts.forEach(function(b){
+    b.setAttribute('aria-pressed',on?'true':'false');
+    var t=b.querySelector('.lt'); if(t) t.textContent=on?'좋아요함':'좋아요';
+  });
+}
+if(isPost){
+  var pub=document.querySelector('article.post .meta.pub');
+  if(pub){ var hs=el('button','like sm'); hs.type='button'; hs.innerHTML=HEART; hs.setAttribute('aria-label','이 글 좋아요'); hs.title='좋아요'; pub.appendChild(hs); hearts.push(hs); }
+  var art=document.querySelector('article.post'), at=art.querySelector('nav.next')||art.querySelector('[data-comments]');
+  var lb=el('div','likebox'), lt=el('p',null,'이 글이 도움이 됐다면 하트를 눌러 주세요. 좋아요한 글은 마이에서 다시 찾아볼 수 있어요.');
+  var hb=el('button','like'); hb.type='button'; hb.innerHTML=HEART; hb.appendChild(el('span','lt','좋아요'));
+  lb.appendChild(lt); lb.appendChild(hb);
+  if(at) art.insertBefore(lb,at); else art.appendChild(lb);
+  hearts.push(hb);
+  hearts.forEach(function(b){ b.addEventListener('click',toggleLike); });
+}
+
 /* ---------- 내 툴박스 (메인) ---------- */
 var box=$('rgrid'), sub=$('fsub'), editBtn=$('fedit');
 function move(i,d){var j=i+d; if(j<0||j>=favs.length) return; var a=favs.slice(), t=a[i]; a[i]=a[j]; a[j]=t; if(!pulled) touched=true; favs=a; persistLocal(); emit(); if(user) pushCloud();}
@@ -263,7 +325,14 @@ function drawPanel(){
   panel.textContent='';
   panel.appendChild(el('b',null,user.displayName||'내 계정'));
   if(user.email) panel.appendChild(el('span','em',user.email));
-  panel.appendChild(el('p',null,'즐겨찾기 '+favs.length+'개와 저장한 날짜가 이 계정에 저장돼 있어요. 다른 기기에서 같은 계정으로 로그인하면 그대로 이어져요.'));
+  var sec=function(title,items,empty){
+    var w=el('div','fsec'), hd=el('div','fsh'); hd.appendChild(el('strong',null,title)); hd.appendChild(el('span',null,items.length+'개')); w.appendChild(hd);
+    if(!items.length){ w.appendChild(el('p','fe',empty)); return w; }
+    var ul=el('ul','flist'); items.forEach(function(it){ var li=el('li'), a=el('a',null,it.t); a.href=it.h; li.appendChild(a); ul.appendChild(li); }); w.appendChild(ul); return w;
+  };
+  panel.appendChild(sec('찜한 도구',favs.map(function(h){return {h:h,t:NAMES[h]||labelOf(h)};}),'도구 이름 옆 별을 누르면 여기 모여요.'));
+  panel.appendChild(sec('좋아요한 글',likes.map(function(x){return {h:x.p,t:x.t};}),'블로그 글의 하트를 누르면 여기 모여요.'));
+  panel.appendChild(el('p',null,'다른 기기에서 같은 계정으로 로그인하면 그대로 이어져요.'));
   var o=el('button',null,'로그아웃'); o.type='button'; o.onclick=function(){closePanel(); logout();}; panel.appendChild(o);
   var dm=el('p','fdmsg'); dm.setAttribute('aria-live','polite');
   var d=el('button','fdel','계정과 저장된 데이터 삭제'); d.type='button';
@@ -290,7 +359,7 @@ var mg=el('button','fgoogle'); mg.type='button';
 mg.innerHTML='<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17.5z"/><path fill="#FBBC05" d="M10.5 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.8-4.7l-7.9-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.9 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>';
 var mgt=el('span',null,'구글로 1초 로그인'); mg.appendChild(mgt);
 var mm=el('p','fmsg'); mm.setAttribute('aria-live','polite');
-var ms=el('p','fsmall'); ms.appendChild(document.createTextNode('로그인하지 않아도 즐겨찾기는 이 브라우저에 저장돼요. 로그인 정보는 즐겨찾기와 저장한 날짜를 저장하는 데만 써요. '));
+var ms=el('p','fsmall'); ms.appendChild(document.createTextNode('로그인하지 않아도 즐겨찾기는 이 브라우저에 저장돼요. 로그인 정보는 즐겨찾기, 저장한 날짜, 좋아요한 글을 저장하는 데만 써요. '));
 var pa=el('a',null,'개인정보처리방침'); pa.href='/privacy/'; ms.appendChild(pa);
 var mc=el('button','fclose','×'); mc.type='button'; mc.setAttribute('aria-label','닫기');
 mb.appendChild(mc); mb.appendChild(mt); mb.appendChild(ml); mb.appendChild(mg); mb.appendChild(mm); mb.appendChild(ms); modal.appendChild(mb); document.body.appendChild(modal);
