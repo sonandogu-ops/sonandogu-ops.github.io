@@ -149,6 +149,7 @@ footer .fl a:hover{color:var(--ink)}
 
 .recent{margin-top:22px}
 .recent .ch h2::before{background:var(--ink); box-shadow:0 0 0 4px rgba(0,0,0,.06)}
+.pres .ch h2::before{background:var(--faint); box-shadow:0 0 0 4px var(--line)}
 .rgrid{display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; padding:2px 2px 6px; margin:0 -2px}
 .rgrid::-webkit-scrollbar{display:none}
 .rgrid a{flex:none; display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:10px 16px 10px 10px; box-shadow:var(--shadow); font-weight:800; font-size:14.5px}
@@ -240,6 +241,8 @@ footer .fl a:hover{color:var(--ink)}
 .cat .t:hover .go{color:var(--ink)!important}
 .recent{margin-top:14px}
 .posts{margin-top:36px}
+.pres{margin-top:20px}
+.pres .pi .pd{display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
 .pi{margin-bottom:8px; padding:13px 16px; border-radius:14px; box-shadow:none}
 .pi strong{font-size:16px; margin-bottom:2px}
 .pt{margin-bottom:6px}
@@ -247,7 +250,8 @@ footer .fl a:hover{color:var(--ink)}
   .top .in{padding:9px 14px; gap:8px}
   .hsrch{margin-left:0}
   .hsrch kbd{display:none}
-  .top nav a{display:none}
+  .top nav a{font-size:13.5px}
+  .top nav{gap:12px!important}
   .brand{flex:none; white-space:nowrap; font-size:15px}
   .acct{flex:none; white-space:nowrap}
   .ch .cs{display:none}
@@ -286,12 +290,12 @@ footer .fl a:hover{color:var(--ink)}
 .intro a{color:var(--orange); font-weight:700; text-decoration:none}
 </style>
 <link rel="stylesheet" href="/assets/comments.css?v=3">
-<link rel="stylesheet" href="/assets/favorites.css?v=3">
+<link rel="stylesheet" href="/assets/favorites.css?v=4">
 <meta name="google-adsense-account" content="ca-pub-1007904420767851">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
 </head>
 <body>
-<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><label class="hsrch"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="도구 검색" aria-label="도구 검색 (예: 할인, 정산, 사다리)" autocomplete="off"><kbd aria-hidden="true">/</kbd></label><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/">전체 도구</a></nav></div></header>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><label class="hsrch"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="도구·글 검색" data-short="검색" aria-label="도구 검색 (예: 할인, 정산, 사다리)" autocomplete="off"><kbd aria-hidden="true">/</kbd></label><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/"><span class="nw">전체 </span>도구</a></nav></div></header>
 <div class="container">
   <section class="hero">
     <h1>꺼내서 쓰고, <span>바로 닫으세요.</span></h1>
@@ -345,6 +349,7 @@ footer .fl a:hover{color:var(--ink)}
       <a class="t" href="/random/" data-kw="랜덤 숫자 뽑기 랜덤뽑기 번호 뽑기 숫자 뽑기 당첨자 추첨 추첨기 로또 번호 주사위 랜덤 이름 뽑기 경품 추첨"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"><rect x="4" y="4" width="18" height="18" rx="4"/><circle cx="9.5" cy="9.5" r="1.4" fill="#fff" stroke="none"/><circle cx="16.5" cy="16.5" r="1.4" fill="#fff" stroke="none"/><circle cx="13" cy="13" r="1.4" fill="#fff" stroke="none"/></svg></span><span class="tx"><strong>랜덤 숫자 뽑기</strong><span class="d">번호 뽑기와 당첨자 추첨</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
   </section>
+  <section class="pres" id="pRes" hidden aria-live="polite"><div class="ch"><h2>읽을거리</h2><span class="cs" id="pCnt"></span></div><div class="plist" id="pList"></div></section>
   </main>
   <section class="posts">
     <div class="ph"><h2>읽어볼 만한 글</h2><a href="/blog/">전체 보기</a></div>
@@ -378,9 +383,9 @@ footer .fl a:hover{color:var(--ink)}
     <p class="im">결과는 참고용 예상치예요. 숫자가 이상하면 <a href="/contact/">문의하기</a>로 알려 주세요. 계산 기준과 출처는 <a href="/about/">사이트 소개</a>에 자세히 적어 두었어요.</p>
   </section>
 </div>
-<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/">전체 도구</a><a href="/blog/">블로그</a><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
 <script src="/assets/firebase-config.js?v=4"></script>
-<script src="/assets/favorites.js?v=3"></script>
+<script src="/assets/favorites.js?v=4"></script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
 <script>
 (function(){
@@ -397,7 +402,29 @@ footer .fl a:hover{color:var(--ink)}
        let ok=inTab && (!term||txt.includes(term));
        c.hidden=!ok; if(ok) vis++; });
      sec.hidden=!vis; shown+=vis; });
-   document.getElementById('noRes').hidden=shown>0;
+   const pn=findPosts(term);
+   document.querySelector('.posts').hidden=!!term;
+   document.getElementById('noRes').hidden=shown>0||pn>0||(term&&!posts);
+ }
+ /* 글 검색: 블로그 목록 페이지를 한 번 읽어 와서 제목·요약·분류로 찾는다 */
+ let posts=null, loading=false;
+ function loadPosts(){ if(posts||loading) return; loading=true;
+   fetch('/blog/').then(r=>r.text()).then(t=>{ const d=new DOMParser().parseFromString(t,'text/html');
+     posts=[...d.querySelectorAll('main .item')].map(a=>({h:a.getAttribute('href'),tag:(a.querySelector('.tag')||{}).textContent||'',t:(a.querySelector('h2')||{}).textContent||'',p:(a.querySelector('p')||{}).textContent||''}));
+     apply(); }).catch(()=>{posts=[]; apply();}); }
+ function findPosts(term){
+   const box=document.getElementById('pRes'), list=document.getElementById('pList');
+   if(!term){ box.hidden=true; return 0; }
+   if(!posts){ loadPosts(); box.hidden=true; return 0; }
+   const hit=posts.filter(x=>norm(x.t+' '+x.p+' '+x.tag).includes(term)).slice(0,8);
+   list.textContent='';
+   hit.forEach(x=>{ const a=document.createElement('a'); a.className='pi'; a.href=x.h;
+     const t=document.createElement('span'); t.className='pt'; t.textContent=x.tag;
+     const s=document.createElement('strong'); s.textContent=x.t;
+     const d=document.createElement('span'); d.className='pd'; d.textContent=x.p;
+     a.append(t,s,d); list.appendChild(a); });
+   document.getElementById('pCnt').textContent=hit.length?hit.length+'편':'';
+   box.hidden=!hit.length; return hit.length;
  }
  function setTab(t,scroll){ tab=t; tabs.forEach(b=>b.setAttribute('aria-selected',b.dataset.t===t)); apply();
    if(scroll&&t!=='all'){ const s=document.getElementById(t); if(s) s.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}); } }
@@ -405,6 +432,7 @@ footer .fl a:hover{color:var(--ink)}
  q.addEventListener('input',()=>{ if(q.value&&tab!=='all') setTab('all'); else apply(); });
  const fromHash=()=>{const t=location.hash.slice(1); if(['calc','tools','play'].includes(t)){ q.value=''; setTab(t,true);} else apply();};
  addEventListener('hashchange',fromHash); fromHash();
+ if(innerWidth<360) q.placeholder=q.dataset.short;
  const pq=new URLSearchParams(location.search).get('q'); if(pq){ q.value=pq; setTab('all'); }
  document.addEventListener('sonandogu-refresh',apply);
  addEventListener('keydown',e=>{ if(e.key==='/'&&!e.metaKey&&!e.ctrlKey&&!e.altKey&&!/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||'')){ e.preventDefault(); q.focus(); } });
