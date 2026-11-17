@@ -53,7 +53,7 @@
 .fclose:hover{background:var(--field); color:var(--ink)}
 
 /* 마이페이지 패널 */
-.fpanel{position:fixed; z-index:40; top:56px; max-height:calc(100vh - 72px); max-height:calc(100dvh - 72px); overflow:auto; overscroll-behavior:contain; right:max(12px, calc((100vw - 1040px)/2 + 12px)); width:min(300px, calc(100vw - 24px)); background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:20px; padding:16px; box-shadow:var(--shadow)}
+.fpanel{position:fixed; z-index:40; top:var(--hdr,96px); max-height:calc(100vh - var(--hdr,96px) - 16px); max-height:calc(100dvh - var(--hdr,96px) - 16px); overflow:auto; overscroll-behavior:contain; right:max(12px, calc((100vw - 1040px)/2 + 12px)); width:min(300px, calc(100vw - 24px)); background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:20px; padding:16px; box-shadow:var(--shadow)}
 .fpanel[hidden]{display:none}
 .fpanel b{display:block; font-size:16px; font-weight:800; letter-spacing:-.03em; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .fpanel .em{display:block; font-size:13px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
@@ -153,12 +153,12 @@ footer .fl{flex-wrap:wrap; row-gap:8px}
 .likebox .like{flex:none}
 @media (max-width:460px){ .likebox{flex-direction:column; align-items:stretch; text-align:center} .likebox .like{justify-content:center} }
 
-/* 모바일 상단: 검색창 옆에 블로그·도구 링크를 두려고, 아주 좁은 화면에선 로고만 남긴다 */
-@media (max-width:479px){
-  .top .brand{font-size:0!important; gap:0!important}
-  .top .in{gap:10px!important}
-  .top nav{gap:10px!important}
-}
+/* 상단: 첫 줄은 로고·블로그·도구·로그인, 검색창은 그 아래 줄에 얇게 전체 폭으로 */
+.top .in{flex-wrap:wrap; row-gap:8px!important; padding-bottom:10px!important}
+.top .in .hsrch{order:3; flex:1 0 100%; max-width:none; margin:0; border-radius:10px}
+.top .in .hsrch input{padding:5px 0; font-size:14px; line-height:20px}
+.top nav{margin-left:auto}
+@media (max-width:639px){ .top .in{row-gap:7px!important; padding-top:8px!important; padding-bottom:9px!important} }
 .top nav a[aria-current="page"]{color:var(--ink)!important; font-weight:800}
 
 /* 블로그 글: 읽는 시간과 차례 */
@@ -170,6 +170,6 @@ footer .fl{flex-wrap:wrap; row-gap:8px}
 .toc a{display:flex; gap:10px; padding:6px 0; font-size:15px!important; font-weight:650; line-height:1.5; color:var(--ink)!important; text-decoration:none!important; word-break:keep-all}
 .toc a::before{content:counter(t); flex:none; width:22px; height:22px; margin-top:1px; display:grid; place-items:center; font-size:12px; font-weight:800; color:var(--muted); background:var(--field); border-radius:7px}
 .toc a:hover{color:var(--orange)!important}
-article.post h2[id]{scroll-margin-top:76px}
+article.post h2[id]{scroll-margin-top:112px}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }

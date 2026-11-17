@@ -300,7 +300,7 @@ if(!isHome&&!$('q')){
   if(inn&&brand){
     var lab=el('label','hsrch');
     lab.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>';
-    var hq=el('input'); hq.type='search'; hq.id='hq'; hq.placeholder=innerWidth<360?'검색':'도구·글 검색'; hq.autocomplete='off'; hq.setAttribute('aria-label','도구와 글 검색 (예: 할인, 주휴수당, 사다리)');
+    var hq=el('input'); hq.type='search'; hq.id='hq'; hq.placeholder='도구·글 검색'; hq.autocomplete='off'; hq.setAttribute('aria-label','도구와 글 검색 (예: 할인, 주휴수당, 사다리)');
     var kb=el('kbd','','/'); kb.setAttribute('aria-hidden','true');
     lab.appendChild(hq); lab.appendChild(kb); brand.parentNode.insertBefore(lab,brand.nextSibling);
     hq.addEventListener('keydown',function(e){ if(e.key==='Enter'){ var v=hq.value.trim(); location.href='/'+(v?'?q='+encodeURIComponent(v):''); } });
@@ -345,7 +345,7 @@ function drawPanel(){
   };
   panel.appendChild(d); panel.appendChild(dm);
 }
-function openPanel(){drawPanel(); panel.hidden=false; acct.setAttribute('aria-expanded','true');}
+function openPanel(){ var tp=document.querySelector('.top'); if(tp) document.documentElement.style.setProperty('--hdr',(Math.round(tp.getBoundingClientRect().bottom)+8)+'px'); drawPanel(); panel.hidden=false; acct.setAttribute('aria-expanded','true');}
 function closePanel(){panel.hidden=true; if(delArmed){clearTimeout(delArmed); delArmed=null;} if(user) acct.setAttribute('aria-expanded','false');}
 acct.onclick=function(){ if(user){ panel.hidden?openPanel():closePanel(); } else openModal(); };
 document.addEventListener('click',function(e){ if(!panel.hidden&&!panel.contains(e.target)&&!acct.contains(e.target)) closePanel(); });
