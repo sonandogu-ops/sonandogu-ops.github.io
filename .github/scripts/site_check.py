@@ -94,6 +94,9 @@ def check_files(root):
                 problems.append(("구조화 데이터", rel, f"{i+1}번째 JSON-LD 오류: {e}"))
 
         if rel in NOINDEX_OK:
+            # 오류·관리 페이지에는 광고를 띄우면 안 됨(애드센스 정책)
+            if "adsbygoogle.js" in h:
+                problems.append(("광고 정책", rel, "광고가 나오면 안 되는 페이지에 광고 코드가 있어요"))
             continue
         if noindex:
             problems.append(("태그", rel, "noindex 가 붙어 있어서 검색에 안 나와요"))

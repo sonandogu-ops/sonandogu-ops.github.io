@@ -124,3 +124,6 @@
 .nt-t span{display:block; font-size:13px; color:var(--muted); line-height:1.5; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .nt-a{flex:none; color:var(--faint); font-size:22px; line-height:1}
 .nt:hover .nt-a{color:var(--ink)}
+
+/* 하단 메뉴: 링크가 많아도 좁은 화면에서 줄바꿈 */
+footer .fl{flex-wrap:wrap; row-gap:8px}
