@@ -300,7 +300,7 @@ if(!isHome&&!$('q')){
   if(inn&&brand){
     var lab=el('label','hsrch');
     lab.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>';
-    var hq=el('input'); hq.type='search'; hq.id='hq'; hq.placeholder='도구 검색'; hq.autocomplete='off'; hq.setAttribute('aria-label','도구 검색 (예: 할인, 정산, 사다리)');
+    var hq=el('input'); hq.type='search'; hq.id='hq'; hq.placeholder=innerWidth<360?'검색':'도구·글 검색'; hq.autocomplete='off'; hq.setAttribute('aria-label','도구와 글 검색 (예: 할인, 주휴수당, 사다리)');
     var kb=el('kbd','','/'); kb.setAttribute('aria-hidden','true');
     lab.appendChild(hq); lab.appendChild(kb); brand.parentNode.insertBefore(lab,brand.nextSibling);
     hq.addEventListener('keydown',function(e){ if(e.key==='Enter'){ var v=hq.value.trim(); location.href='/'+(v?'?q='+encodeURIComponent(v):''); } });
@@ -394,5 +394,9 @@ window.SonFav={
 };
 
 drawAcct(); render();
+/* 상단 메뉴에서 지금 있는 곳(블로그/도구) 표시 */
+[].slice.call(document.querySelectorAll('.top nav a')).forEach(function(a){
+  var h=a.getAttribute('href'); if((h==='/blog/'&&/^\/blog\//.test(here))||(h==='/'&&here==='/')) a.setAttribute('aria-current','page');
+});
 if(ls(HINT)==='1'){ setTimeout(function(){boot().catch(function(){});},700); }
 })();
