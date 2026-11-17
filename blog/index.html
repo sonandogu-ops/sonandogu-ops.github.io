@@ -76,11 +76,6 @@ footer .fl a:hover{color:var(--ink)}
 .item small{font-size:13px; color:var(--faint)}
 @media (prefers-reduced-motion:reduce){.item{transition:none}.item:hover{transform:none}}
 .bf{max-width:760px; margin:0 0 18px; display:grid; grid-template-columns:minmax(0,1fr); gap:12px}
-.bq{display:flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:0 14px; color:var(--muted)}
-.bq:focus-within{border-color:var(--orange); box-shadow:0 0 0 4px rgba(255,90,31,.12)}
-.bq svg{flex:none}
-.bq input{flex:1; min-width:0; font:inherit; font-size:16px; font-weight:600; color:var(--ink); background:none; border:0; outline:0; padding:12px 0}
-.bq input::placeholder{color:var(--faint); font-weight:500}
 .chips{display:flex; flex-wrap:wrap; gap:8px; min-width:0}
 .chips button{flex:none; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:7px 14px; cursor:pointer; white-space:nowrap}
 .chips button:hover{color:var(--ink); border-color:var(--ink)}
@@ -106,8 +101,7 @@ footer .fl a:hover{color:var(--ink)}
     <h1>블로그</h1>
     <p>계산이 헷갈리는 순간에 꺼내 보는 짧고 쓸모 있는 글.</p>
   </section>
-  <div class="bf" role="search">
-    <label class="bq"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input type="search" id="bq" placeholder="글 찾기 (예: 주휴수당, 연차)" autocomplete="off" aria-label="블로그 글 검색"></label>
+  <div class="bf">
     <div class="chips" role="group" aria-label="분류로 보기">
       <button type="button" data-g="" aria-pressed="true">전체</button>
       <button type="button" data-g="calc" aria-pressed="false">생활 계산</button>
@@ -115,7 +109,7 @@ footer .fl a:hover{color:var(--ink)}
       <button type="button" data-g="play" aria-pressed="false">모임·놀이</button>
     </div>
   </div>
-  <p class="bnone" id="bnone" hidden>찾는 글이 없어요. 다른 낱말로 찾아보거나 <a href="/">도구</a>에서 바로 계산해 보세요.</p>
+  <p class="bnone" id="bnone" hidden>이 분류에는 아직 글이 없어요.</p>
   <main class="list">
     <a class="item" href="/blog/fair-draw/">
       <span class="tag">모임 놀이</span>
@@ -277,16 +271,13 @@ footer .fl a:hover{color:var(--ink)}
   <script>
   (function(){
     var G={'생활 계산':'calc','생활 도구':'calc','세금 상식':'work','알바 상식':'work','모임 놀이':'play','전통 놀이':'play'};
-    var items=[].slice.call(document.querySelectorAll('main .item')), q=document.getElementById('bq'), chips=[].slice.call(document.querySelectorAll('.chips button')), none=document.getElementById('bnone'), g='';
-    var norm=function(s){return s.toLowerCase().replace(/\s+/g,'');};
-    items.forEach(function(a){ var t=a.querySelector('.tag'); a.dataset.g=G[t?t.textContent.trim():'']||''; a.dataset.s=norm(a.textContent); });
+    var items=[].slice.call(document.querySelectorAll('main .item')), chips=[].slice.call(document.querySelectorAll('.chips button')), none=document.getElementById('bnone'), g='';
+    items.forEach(function(a){ var t=a.querySelector('.tag'); a.dataset.g=G[t?t.textContent.trim():'']||''; });
     chips.forEach(function(b){ var n=b.dataset.g?items.filter(function(a){return a.dataset.g===b.dataset.g;}).length:items.length; var sp=document.createElement('span'); sp.className='n'; sp.textContent=n; b.appendChild(sp); });
-    function apply(){ var t=norm(q.value), shown=0;
-      items.forEach(function(a){ var ok=(!g||a.dataset.g===g)&&(!t||a.dataset.s.indexOf(t)>=0); a.hidden=!ok; if(ok) shown++; });
+    function apply(){ var shown=0;
+      items.forEach(function(a){ var ok=!g||a.dataset.g===g; a.hidden=!ok; if(ok) shown++; });
       none.hidden=shown>0; }
     chips.forEach(function(b){ b.onclick=function(){ g=b.dataset.g; chips.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');}); apply(); }; });
-    q.addEventListener('input',apply);
-    var pq=new URLSearchParams(location.search).get('q'); if(pq){ q.value=pq; apply(); }
   })();
   </script>
 </div>
