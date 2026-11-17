@@ -60,6 +60,13 @@ def check_files(root):
     for u in sorted(dup):
         problems.append(("사이트맵", u, "사이트맵에 두 번 이상 들어 있어요"))
 
+    # CNAME: GitHub Pages가 sonandogu.com 주소를 쓰게 하는 파일. 지워지면 사이트 주소가 끊김
+    cname_path=os.path.join(root, "CNAME")
+    if not os.path.isfile(cname_path):
+        problems.append(("기본 파일", "CNAME", "파일이 없어요. 지워지면 sonandogu.com 주소가 끊겨요"))
+    elif open(cname_path, encoding="utf-8").read().strip() != SITE.split("//")[1]:
+        problems.append(("기본 파일", "CNAME", "내용이 sonandogu.com이 아니에요"))
+
     # robots, ads.txt
     robots = open(os.path.join(root, "robots.txt"), encoding="utf-8").read() if os.path.isfile(os.path.join(root, "robots.txt")) else ""
     if SITE + "/sitemap.xml" not in robots:
