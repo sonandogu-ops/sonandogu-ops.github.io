@@ -94,7 +94,6 @@ footer .fl a:hover{color:var(--ink)}
 .btn.b{background:#2F66F0; color:#fff; border:none}
 .btn.r{color:#C2410C}
 .row{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
-.uid{font-family:ui-monospace,monospace; font-size:13px; background:var(--field); border-radius:10px; padding:8px 10px; word-break:break-all}
 .tabsA{display:flex; gap:6px; flex-wrap:wrap; margin:6px 0 12px}
 .tabsA button{font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:7px 13px; cursor:pointer}
 .tabsA button[aria-pressed="true"]{color:var(--bg); background:var(--ink); border-color:var(--ink)}
@@ -125,8 +124,7 @@ footer .fl a:hover{color:var(--ink)}
   </div>
   <div id="app" hidden>
     <div class="panel">
-      <div class="row" style="justify-content:space-between"><div><b id="who"></b><div class="note">처음 한 번은 아래 내 UID를 보안 규칙에 넣어야 관리할 수 있어요.</div></div><button class="btn" id="gout">로그아웃</button></div>
-      <div class="row" style="margin-top:10px"><div class="uid" id="uid" style="flex:1"></div><button class="btn b" id="copyUid">UID 복사</button></div>
+      <div class="row" style="justify-content:space-between"><div><b id="who"></b><div class="note">관리자로 정해 둔 구글 계정으로 로그인해야 댓글을 볼 수 있어요.</div></div><button class="btn" id="gout">로그아웃</button></div>
     </div>
     <div class="panel">
       <div class="row" style="justify-content:space-between"><div><b>올리기 전에 내가 먼저 확인하기</b><div class="note">켜면 새 댓글이 "검토 대기"로 들어와서, 공개를 눌러야 모두에게 보여요.</div></div><button class="sw" id="mod" role="switch" aria-checked="true" aria-label="검토 후 공개"></button></div>
@@ -152,8 +150,8 @@ const LBL={pending:'검토 대기',private:'비공개',public:'공개',hidden:'�
 let all=[], tab='pending';
 au.onAuthStateChanged(auth,async u=>{
   $('login').hidden=!!u; $('app').hidden=!u; if(!u) return;
-  $('who').textContent=u.email; $('uid').textContent='내 UID: '+u.uid; $('copyUid').onclick=async()=>{ try{ await navigator.clipboard.writeText(u.uid); $('copyUid').textContent='복사됨!'; }catch(e){ prompt('아래 UID를 복사하세요', u.uid); } };
-  try{ const s=await fs.getDoc(fs.doc(db,'settings','main')); if(!s.exists()) await fs.setDoc(fs.doc(db,'settings','main'),{moderation:true}); const m=(s.exists()?s.data().moderation:true); $('mod').setAttribute('aria-checked',m); }catch(e){ $('list').innerHTML='<p class="note">아직 관리 권한이 없어요. 위 UID를 보안 규칙에 넣고 게시한 뒤 새로고침하세요. (오류: '+esc(e.code||e.message)+')</p>'; return; }
+  $('who').textContent=u.email;
+  try{ const s=await fs.getDoc(fs.doc(db,'settings','main')); if(!s.exists()) await fs.setDoc(fs.doc(db,'settings','main'),{moderation:true}); const m=(s.exists()?s.data().moderation:true); $('mod').setAttribute('aria-checked',m); }catch(e){ $('list').innerHTML='<p class="note">이 계정에는 관리 권한이 없어요. 관리자 계정으로 다시 로그인해 주세요. 관리자 계정을 바꾸려면 Firebase 보안 규칙의 isAdmin()에 적힌 이메일을 바꾸고 게시하면 돼요. (오류: '+esc(e.code||e.message)+')</p>'; return; }
   load();
 });
 $('bulk').onclick=async()=>{ if(!curList.length) return; if(!confirm(`지금 보이는 ${curList.length}개를 모두 지울까요? 되돌릴 수 없어요.`)) return; for(const x of curList){ await fs.deleteDoc(fs.doc(db,'comments',x.id)); } const ids=new Set(curList.map(x=>x.id)); all=all.filter(x=>!ids.has(x.id)&&!ids.has(x.parent)); render(); };
@@ -163,7 +161,7 @@ async function load(){
   try{
     const snap=await fs.getDocs(fs.query(fs.collection(db,'comments'),fs.orderBy('createdAt','desc'),fs.limit(500)));
     all=snap.docs.map(d=>({id:d.id,...d.data()})); render();
-  }catch(e){ $('list').innerHTML='<p class="note">목록을 불러오지 못했어요. (오류: '+esc(e.code||e.message)+')<br>permission-denied라면 보안 규칙의 UID가 위의 내 UID와 정확히 같은지 확인하세요.</p>'; }
+  }catch(e){ $('list').innerHTML='<p class="note">목록을 불러오지 못했어요. (오류: '+esc(e.code||e.message)+')<br>permission-denied라면 관리자 계정으로 로그인했는지, 보안 규칙의 isAdmin()에 적힌 이메일이 위에 보이는 이메일과 같은지 확인하세요.</p>'; }
 }
 let curList=[];
 function render(){
