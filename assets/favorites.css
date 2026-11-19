@@ -196,3 +196,12 @@ html{scroll-behavior:smooth}
 .dbtns{display:flex; gap:6px; flex:none}
 .copy.rs svg{display:none}
 @media (max-width:639px){ .presets{gap:5px!important} .presets button{padding:5px 9px!important; font-size:12.5px!important; letter-spacing:-.02em} }
+
+/* 도구 공통 버튼 줄: 결과 복사 · 링크 복사 · 초기화 */
+.tbar{display:flex; gap:8px; margin-top:10px}
+.tbar .tb{flex:1 1 0; min-width:0; font:inherit; font-size:14px; font-weight:700; color:inherit; background:transparent; border:1px solid rgba(127,127,127,.38); border-radius:12px; padding:10px 8px; cursor:pointer; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.tbar .tb:hover:not(:disabled){border-color:currentColor}
+.tbar .tb:disabled{opacity:.4; cursor:default}
+.tbar .tb:focus-visible{outline:2px solid var(--orange,#FF5A1F); outline-offset:2px}
+.tbtoast{position:fixed; z-index:70; left:50%; top:calc(var(--hdr,96px) + 8px); transform:translateX(-50%); width:min(420px, calc(100vw - 24px)); background:#141518; color:#F4F4F1; border-radius:14px; padding:11px 14px; font-size:14px; font-weight:700; line-height:1.5; box-shadow:0 14px 30px -12px rgba(0,0,0,.5); transition:opacity .4s, transform .4s}
+.tbtoast.out{opacity:0; transform:translate(-50%,-6px)}

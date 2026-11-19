@@ -306,6 +306,7 @@ footer .fl a:hover{color:var(--ink)}
 <link rel="stylesheet" href="/assets/favorites.css?v=8">
 <meta name="google-adsense-account" content="ca-pub-1007904420767851">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
+<script src="/assets/toolbar.js?v=1" data-anchor="openAll" data-copyfn="__lotsText"></script>
 </head>
 <body>
 <script>
@@ -447,5 +448,10 @@ paint(); make();
 <script src="/assets/favorites.js?v=6"></script>
 <script type="module" src="/assets/comments.js?v=4"></script>
 <script src="/assets/analytics.js?v=2" defer></script>
+<script>
+/* 결과 복사: 지금까지 뒤집은 카드 */
+window.__lotsText=function(){ var L=[].slice.call(document.querySelectorAll('#grid .lot.open')).map(function(b){ var n=b.querySelector('.no'), t=b.querySelector('.t3'); return (n?n.textContent:'?')+'번 카드: '+(t?t.textContent:''); });
+  if(!L.length) return ''; return ['[제비뽑기 결과]'].concat(L).concat(['','손안의도구 제비뽑기']).join('\n'); };
+</script>
 </body>
 </html>
