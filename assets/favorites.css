@@ -181,3 +181,18 @@ html{scroll-behavior:smooth}
 .top .in .hsrch{flex:0 1 360px; max-width:70%; margin:8px 0 0 auto}
 @media (min-width:640px){ .top .in .hsrch{max-width:360px} }
 @media (max-width:639px){ .top .in .hsrch{margin-top:7px} }
+
+/* 도구 페이지(휴대폰): 머리 부분을 줄여 첫 화면에 입력칸과 결과가 보이게 */
+@media (max-width:639px){
+  .hero:has(.crumb){padding-top:14px!important; padding-bottom:10px!important; gap:12px!important}
+  .hero .crumb{margin-bottom:4px!important; font-size:13px!important}
+  .hero:has(.crumb) h1{font-size:27px!important; line-height:1.2!important; margin-bottom:0!important}
+  .hero:has(.crumb) > p:not(.chk){display:none}
+  .hero .chk{margin:6px 0 0!important; font-size:12.5px!important}
+}
+/* 빠른 선택 버튼: 넘치면 잘리지 않고 다음 줄로 */
+.presets{flex-wrap:wrap; overflow:visible!important}
+/* 결과 칸 아래 버튼 묶음 */
+.dbtns{display:flex; gap:6px; flex:none}
+.copy.rs svg{display:none}
+@media (max-width:639px){ .presets{gap:5px!important} .presets button{padding:5px 9px!important; font-size:12.5px!important; letter-spacing:-.02em} }
