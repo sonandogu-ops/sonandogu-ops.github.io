@@ -243,9 +243,12 @@ footer .fl a:hover{color:var(--ink)}
 .crumb a:hover{color:var(--ink)}
 .src{margin-top:12px; font-size:12px; line-height:1.6; color:rgba(244,244,241,.5)}
 .src a{color:rgba(244,244,241,.7)}
+.wacts{margin-top:14px}
+.wacts button{width:100%; font:inherit; font-size:15px; font-weight:800; border-radius:14px; padding:12px; cursor:pointer; border:none; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F)}
+.wacts button:disabled{opacity:.4; cursor:default}
 </style>
 <link rel="stylesheet" href="/assets/comments.css?v=3">
-<link rel="stylesheet" href="/assets/favorites.css?v=7">
+<link rel="stylesheet" href="/assets/favorites.css?v=8">
 <meta name="google-adsense-account" content="ca-pub-1007904420767851">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
 </head>
@@ -299,6 +302,7 @@ function endo(p,m){const e=document.getElementById('endo'); if(!e) return; const
         <span class="badge" id="badge" hidden></span>
         <div class="lines" id="lines"></div>
         <div class="sub" id="note" style="margin-top:12px;font-size:12.5px"></div>
+        <div class="wacts"><button id="wcopy" type="button" disabled>결과 복사</button></div>
         <div class="src">2026년 11월 기준 · 근거: <a href="https://www.minimumwage.go.kr" target="_blank" rel="noopener">최저임금위원회</a> 최저임금 고시, 근로기준법(주휴일·가산수당) · <a href="https://www.moel.go.kr" target="_blank" rel="noopener">고용노동부</a></div>
         <div class="endo" id="endo" data-p="wave"><img src="/assets/endo/wave.webp" width="64" height="64" alt="손안의도구 마스코트 엔도"><div class="say">시급과 일하는 시간을 넣으면 주휴수당까지 계산해드려요!</div></div>
       </div>
@@ -430,5 +434,19 @@ paint();
 <script src="/assets/favorites.js?v=6"></script>
 <script type="module" src="/assets/comments.js?v=4"></script>
 <script src="/assets/analytics.js?v=2" defer></script>
+
+<script>
+/* 결과 복사: 한 달 예상 급여와 내역을 글자로 */
+(function(){var b=document.getElementById('wcopy'), m=document.getElementById('month'); if(!b||!m) return;
+ function upd(){ var t=m.textContent.replace(/[^0-9]/g,''); b.disabled=!t||t==='0'; }
+ new MutationObserver(upd).observe(m,{childList:true,characterData:true,subtree:true}); upd();
+ b.addEventListener('click',async function(){
+   var lines=[].slice.call(document.querySelectorAll('#lines > *')).map(function(x){return x.innerText.replace(/\s*\n\s*/g,' ').trim();}).filter(Boolean);
+   var txt=['알바 급여 계산 (손안의도구)', document.getElementById('cap').innerText.trim(), '한 달 예상 급여 '+m.innerText.replace(/\s+/g,'')].concat(lines).concat([location.origin+'/wage/']).join('\n');
+   try{ await navigator.clipboard.writeText(txt); b.textContent='복사했어요'; }catch(e){ b.textContent='복사하지 못했어요'; }
+   setTimeout(function(){b.textContent='결과 복사';},1500);
+ });
+})();
+</script>
 </body>
 </html>
