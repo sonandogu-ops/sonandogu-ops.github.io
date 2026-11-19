@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon-192.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F4F4F1">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sonandogu.com/blog/pyeong-area/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-pyeong-area-post.jpg?v=20261119">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="84㎡는 왜 34평일까">
+<meta name="twitter:card" content="summary_large_image">
+<title>84㎡는 몇 평? 전용면적·공급면적 차이와 평수 계산법 | 손안의도구</title>
+<meta name="description" content="전용 84㎡는 25.4평인데 왜 34평형이라고 할까? ㎡를 평으로 바꾸는 계산법(×0.3025), 전용면적·공급면적·계약면적의 차이, 원룸부터 아파트까지 자주 찾는 면적표, 집 보러 갈 때 확인할 것까지 정리했어요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="84㎡는 왜 34평일까">
+<meta property="og:description" content="전용면적과 공급면적, 평수 계산법까지.">
+<link rel="canonical" href="https://sonandogu.com/blog/pyeong-area/">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "84㎡는 왜 34평일까", "datePublished": "2026-11-19", "dateModified": "2026-11-19", "author": {"@type": "Organization", "name": "손안의도구"}, "publisher": {"@type": "Organization", "name": "손안의도구"}, "mainEntityOfPage": "https://sonandogu.com/blog/pyeong-area/", "image": "https://sonandogu.com/assets/og-pyeong-area-post.jpg?v=20261119"}</script>
+<style>:root{
+  --bg:#F4F4F1; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#F4F4F1; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(244,244,241,.78); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.post{max-width:700px; padding:36px 0 0}
+@media (min-width:920px){.post{padding-top:60px}}
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:14px}
+.crumb a{color:var(--muted); text-decoration:none}
+.post h1{font-size:clamp(30px,6vw,46px); font-weight:800; letter-spacing:-.05em; line-height:1.15; margin:0 0 14px}
+.meta{font-size:14px; color:var(--muted); margin:0 0 30px}
+.post h2{font-size:clamp(21px,3.6vw,26px); font-weight:800; letter-spacing:-.04em; line-height:1.3; margin:52px 0 14px}
+.post p{font-size:16.5px; line-height:1.85; margin:0 0 16px}
+.post strong{font-weight:750}
+.formula{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:14px; padding:16px 18px; font-size:17px; font-weight:750; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex{background:rgba(255,90,31,.07); border-radius:14px; padding:14px 18px; font-size:15.5px; line-height:1.8; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex b{color:var(--orange)}
+.tbl{overflow-x:auto; margin:0 0 16px}
+table{width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums}
+th,td{padding:11px 10px; border-bottom:1px solid var(--line); text-align:left}
+th{color:var(--muted); font-weight:700; font-size:13.5px}
+td:last-child,th:last-child{text-align:right}
+.mini{position:relative; overflow:hidden; border-radius:26px; padding:20px; color:#F4F4F1; margin:6px 0 34px;
+  background:radial-gradient(110% 140% at 100% 0%, rgba(255,106,51,.26) 0%, rgba(255,106,51,0) 50%), linear-gradient(160deg,#202126 0%,#121316 100%); box-shadow:var(--shadow)}
+.mini h3{margin:0 0 12px; font-size:15px; font-weight:800}
+.mini .row{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.mini label{display:block; font-size:12px; font-weight:700; color:rgba(244,244,241,.55); margin:0 0 5px 2px}
+.mini input{width:100%; font:inherit; font-size:22px; font-weight:750; color:#F4F4F1; background:rgba(255,255,255,.07); border:1.5px solid rgba(255,255,255,.1); border-radius:14px; padding:10px 12px; outline:none; font-variant-numeric:tabular-nums}
+.mini input:focus{border-color:#FF6A33}
+.mini input::placeholder{color:rgba(244,244,241,.3)}
+.mini .out{margin-top:14px; font-size:15px; color:rgba(244,244,241,.6); min-height:1.5em}
+.mini .out b{font-size:30px; color:#fff; letter-spacing:-.04em; margin:0 4px}
+.mini .out em{font-style:normal; color:#FF8A3D; font-weight:700}
+.mini a{display:inline-block; margin-top:12px; color:#FF8A3D; font-weight:700; font-size:14px; text-decoration:none}
+.next{margin-top:56px; display:grid; gap:10px}
+.next a{display:flex; justify-content:space-between; align-items:center; gap:12px; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:18px 20px; box-shadow:var(--shadow)}
+.next a:hover{border-color:var(--ink)}
+.next strong{display:block; font-size:17px; font-weight:800; letter-spacing:-.03em}
+.next span{font-size:14px; color:var(--muted)}
+.next i{font-style:normal; font-size:20px; color:var(--muted)}
+
+.ill{margin:6px 0 26px; background:var(--surface); border:1px solid var(--line); border-radius:24px; padding:16px 12px 12px; box-shadow:var(--shadow)}
+.ill svg{display:block; width:100%; height:auto}
+.ill figcaption{text-align:center; font-size:13.5px; color:var(--muted); margin-top:6px}
+.ill .tag{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .hole{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .tp{font-size:20px; font-weight:700; fill:var(--muted)}
+.ill .tbig{font-size:46px; font-weight:800; fill:var(--ink); letter-spacing:-2px}
+.ill .strike{stroke:#FF5A1F; stroke-width:5; stroke-linecap:round}
+.ill .st{font-size:30px; font-weight:800; fill:#fff}
+.ill .st2{font-size:26px; font-weight:800; fill:#FF8A3D}
+.ill .q{font-size:80px; font-weight:800; fill:var(--faint)}
+.ill .lbl text{font-size:17px; font-weight:700; fill:var(--muted)}
+.ill .val text{font-size:20px; font-weight:800; fill:var(--ink)}
+.ill .bar0{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .bar1{fill:#FFB48A}
+.ill .bar2{fill:#FF5A1F}
+.ill .ghost{stroke:var(--ink); stroke-width:2; stroke-dasharray:6 6; opacity:.5}
+.ill .arr{fill:none; stroke:var(--faint); stroke-width:3; stroke-linecap:round}
+.ill .arr2{fill:none; stroke:var(--ink); stroke-width:2; opacity:.5}
+.ill .note{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .btl{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .cap{fill:var(--line)}
+.ill .btlf{fill:#FF5A1F}
+.ill .capf{fill:#FF8A3D}
+.ill .bp{font-size:30px; font-weight:800; fill:var(--muted)}
+.ill .free{font-size:22px; font-weight:800; fill:#fff}
+.ill .cap2{font-size:18px; font-weight:800; fill:var(--ink)}
+.quiz{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px 22px; margin:26px 0 8px; box-shadow:var(--shadow)}
+.quiz .qh{font-size:13px; font-weight:800; color:var(--orange); margin:0 0 6px}
+.quiz .qq{font-size:17px; font-weight:750; margin:0 0 12px; line-height:1.6}
+.quiz summary{display:inline-block; cursor:pointer; list-style:none; font-size:14.5px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); padding:9px 16px; border-radius:12px}
+.quiz summary::-webkit-details-marker{display:none}
+.quiz details[open] summary{display:none}
+.quiz details p{margin:0; font-size:16px; line-height:1.75}
+.quiz details b{color:var(--orange)}
+.keys{display:grid; gap:10px; margin:0 0 18px}
+@media (min-width:640px){.keys{grid-template-columns:repeat(3,1fr)}}
+.keys div{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:16px}
+.keys b{display:block; font-size:16px; font-weight:800; color:var(--orange); margin-bottom:4px}
+.keys span{font-size:14.5px; color:var(--muted); line-height:1.6}
+
+.ill .ok{fill:#1FA968}.ill .okt{fill:#1FA968; font-size:16px; font-weight:800}
+.ill .warn{fill:#FF5A1F}.ill .warnt{fill:#FF5A1F; font-size:16px; font-weight:800}
+.ill .axis{stroke:var(--line); stroke-width:3}
+.ill .tick{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .paper{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .ln2{stroke:var(--line); stroke-width:3; stroke-linecap:round}
+.ill .red{fill:#B4232F; font-weight:800}
+.ill .node{fill:var(--field); stroke:var(--faint); stroke-width:2}
+.ill .nodeb{fill:var(--surface); stroke:var(--ink); stroke-width:3}
+.ill .path{stroke:var(--line); stroke-width:4; fill:none}
+.ill .hot{stroke:#FF5A1F; stroke-width:6; fill:none; stroke-linecap:round; stroke-dasharray:2 12}
+.ill .dot{fill:#FF5A1F}
+.ill .p3{stroke:var(--faint); stroke-width:4; fill:none; stroke-linecap:round}
+.ill .p5{stroke:#FF5A1F; stroke-width:5; fill:none; stroke-linecap:round}
+.ill .grid{stroke:var(--line); stroke-width:1.5}
+.tbl th,.tbl td{text-align:left!important}
+.tbl td:nth-child(n+2),.tbl th:nth-child(n+2){white-space:nowrap}
+.tbl td:first-child,.tbl th:first-child{white-space:nowrap}
+.tbl.wrap td:nth-child(2){white-space:normal; word-break:keep-all}
+.tbl td small{display:block; margin-top:2px; font-size:13px; color:var(--muted)}
+</style>
+<link rel="stylesheet" href="/assets/comments.css?v=3">
+<meta name="google-adsense-account" content="ca-pub-1007904420767851">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/assets/favorites.css?v=7">
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/"><span class="nw">전체 </span>도구</a></nav></div></header>
+<div class="container"><article class="post">
+  <div class="crumb"><a href="/blog/">블로그</a> / 생활 계산</div>
+  <h1>84㎡는 왜 34평일까,<br>전용면적과 공급면적</h1>
+  <p class="meta pub"><time datetime="2026-11-19">2026년 11월 19일</time><span class="rt"> · 4분 읽기</span></p>
+
+  <figure class="ill" aria-label="전용면적 84제곱미터는 25.4평, 공용 면적을 더한 공급면적은 약 112제곱미터로 34평형, 주차장 등을 더하면 계약면적">
+    <svg viewBox="0 0 640 290">
+      <rect x="14" y="14" width="612" height="262" rx="20" class="bar0"/>
+      <g class="lbl"><text x="36" y="46">계약면적 · 주차장, 관리사무소, 경로당까지</text></g>
+      <rect x="40" y="64" width="440" height="190" rx="16" class="bar1"/>
+      <g class="val"><text x="62" y="96">공급면적 약 112㎡ = 34평형</text></g>
+      <rect x="62" y="116" width="250" height="118" rx="12" class="bar2"/>
+      <text x="187" y="168" text-anchor="middle" class="st">전용 84㎡</text>
+      <text x="187" y="206" text-anchor="middle" class="st" style="font-size:24px">= 25.4평</text>
+      <g class="lbl"><text x="330" y="160">+ 계단, 복도,</text><text x="330" y="184">엘리베이터</text></g>
+      <g class="lbl"><text x="500" y="150">+ 공용</text><text x="500" y="174">시설</text></g>
+    </svg>
+    <figcaption>"34평형"은 우리 집 안쪽(전용)에 공용 면적을 더한 공급면적 기준이에요</figcaption>
+  </figure>
+
+  <div class="quiz">
+    <p class="qh">잠깐, 먼저 맞혀볼까요?</p>
+    <p class="qq">분양 공고에 "84㎡"라고 적힌 아파트가 있어요. 현관문 안쪽, 실제로 우리 가족이 쓰는 공간은 몇 평쯤일까요? ① 약 34평 ② 약 30평 ③ 약 25평</p>
+    <details><summary>정답 보기</summary><p><b>③ 약 25평</b>이에요. 분양 공고의 84㎡는 전용면적이라 84 × 0.3025 = 25.41평이에요. 흔히 부르는 "34평"은 계단과 복도 같은 공용 면적까지 더한 공급면적 기준이라, 집 안 넓이와는 9평 가까이 차이가 나요.</p></details>
+  </div>
+
+  <p>부동산 앱에서 마음에 드는 집을 찾았는데 "전용 59㎡, 공급 79㎡"라고 적혀 있어요. 친구는 그 집을 "24평"이라고 부르고, 등기부등본에는 59㎡만 나와요. 같은 집인데 숫자가 세 개나 되니 헷갈릴 수밖에 없어요.</p>
+  <p>이 숫자들은 모두 맞는 말이에요. <strong>어디까지를 넓이에 넣느냐</strong>가 다를 뿐이에요. 무엇을 기준으로 한 숫자인지만 알면, 광고 속 평수에 속지 않고 집을 비교할 수 있어요.</p>
+  <nav class="toc" aria-label="이 글의 차례"><b>이 글의 차례</b><ol><li><a href="#s1">㎡를 평으로 바꾸는 법</a></li><li><a href="#s2">전용, 공급, 계약면적은 어디까지일까</a></li><li><a href="#s3">84㎡가 국민평형이 된 이유</a></li><li><a href="#s4">자주 찾는 면적, 평으로 보면</a></li><li><a href="#s5">오피스텔은 왜 더 좁게 느껴질까</a></li><li><a href="#s6">집 보러 가기 전에 확인할 것</a></li><li><a href="#s7">자주 묻는 질문</a></li></ol></nav>
+
+  <h2 id="s1">㎡를 평으로 바꾸는 법</h2>
+  <p>1평은 가로세로 6자인 정사각형의 넓이예요. 1자를 10/33m로 정해 두었기 때문에 1평은 (60/33)² = 400/121 ≈ <strong>3.3058㎡</strong>가 돼요. 그래서 계산은 이렇게 하면 돼요.</p>
+  <div class="keys">
+    <div><b>㎡ → 평</b><span>㎡ × 0.3025 (또는 ÷ 3.3058). 84㎡ × 0.3025 = 25.41평</span></div>
+    <div><b>평 → ㎡</b><span>평 × 3.3058. 25평 × 3.3058 = 82.64㎡</span></div>
+    <div><b>머릿속 어림</b><span>㎡에 0.3을 곱하면 거의 맞아요. 84㎡면 25평 남짓</span></div>
+  </div>
+  <p>숫자를 넣기만 하면 되는 <a href="/pyeong/">평수 계산기</a>도 만들어 두었어요. ㎡를 넣으면 평이, 평을 넣으면 ㎡가 바로 나오고, 아파트 전용면적이라면 대략 몇 평형인지도 함께 보여줘요.</p>
+
+  <h2 id="s2">전용, 공급, 계약면적은 어디까지일까</h2>
+  <p>아파트 면적은 양파처럼 안쪽부터 한 겹씩 넓어져요. 가장 안쪽이 전용면적이고, 여기에 공용 면적이 더해질수록 숫자가 커져요.</p>
+  <div class="tbl wrap"><table>
+    <thead><tr><th>구분</th><th>들어가는 공간</th></tr></thead>
+    <tbody>
+      <tr><td>전용면적</td><td>현관문 안쪽 방, 거실, 주방, 욕실<br><small>등기부등본, 분양 공고의 "84㎡"</small></td></tr>
+      <tr><td>공급면적</td><td>전용면적 + 계단, 복도, 엘리베이터, 현관 로비<br><small>흔히 부르는 "34평형"</small></td></tr>
+      <tr><td>계약면적</td><td>공급면적 + 주차장, 관리사무소, 경로당<br><small>분양 계약서, 오피스텔 광고</small></td></tr>
+      <tr><td>서비스면적</td><td>발코니<br><small>어느 면적에도 들어가지 않음</small></td></tr>
+    </tbody>
+  </table></div>
+  <p>발코니는 면적에 들어가지 않는 덤이에요. 그래서 발코니를 넓게 확장한 집은 같은 전용면적이어도 실제로 훨씬 넓게 느껴져요. 반대로 확장하지 않은 집은 도면의 숫자보다 좁아 보일 수 있어요.</p>
+
+  <h2 id="s3">84㎡가 국민평형이 된 이유</h2>
+  <p>주택법에서는 한 집의 전용면적이 85㎡ 이하인 주택을 <strong>국민주택규모</strong>라고 해요. 수도권이 아닌 읍·면 지역은 100㎡ 이하까지예요. 이 기준 안에 들어오면 청약이나 세금에서 받을 수 있는 혜택이 있어서, 건설사들이 기준선 바로 아래인 84㎡로 많이 지었어요. 그렇게 가장 흔한 크기가 되면서 "국민평형"이라는 별명이 붙었어요.</p>
+  <p>84㎡ 아파트의 공급면적은 단지마다 다르지만 보통 110~115㎡쯤이라 33~34평형으로 불러요. 59㎡는 공급면적 79~82㎡쯤이라 24~25평형이에요.</p>
+
+  <h2 id="s4">자주 찾는 면적, 평으로 보면</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>전용</th><th>평</th><th>흔히 부르는 평형</th></tr></thead>
+    <tbody>
+      <tr><td>33㎡</td><td>10평</td><td>원룸·오피스텔</td></tr>
+      <tr><td>49.5㎡</td><td>15평</td><td>20평형 안팎</td></tr>
+      <tr><td>59㎡</td><td>17.8평</td><td>24~25평형</td></tr>
+      <tr><td>74㎡</td><td>22.4평</td><td>29~30평형</td></tr>
+      <tr><td>84㎡</td><td>25.4평</td><td>33~34평형</td></tr>
+      <tr><td>114㎡</td><td>34.5평</td><td>44~46평형</td></tr>
+    </tbody>
+  </table></div>
+  <p>평형은 단지마다 공용 면적이 달라서 같은 전용면적이어도 1~2평 차이가 날 수 있어요. 집과 집을 비교할 때는 평형보다 <strong>전용면적끼리</strong> 비교하는 게 정확해요.</p>
+
+  <h2 id="s5">오피스텔은 왜 더 좁게 느껴질까</h2>
+  <p>전용면적이 공급면적에서 차지하는 비율을 전용률이라고 해요. 아파트는 보통 70~80%인데, 오피스텔은 복도와 공용 시설이 넓어서 50% 안팎인 경우가 많아요. 게다가 오피스텔은 계약면적으로 광고하는 일이 많아서, 같은 "30평"이라도 실제 집 안 넓이는 아파트보다 한참 작을 수 있어요.</p>
+  <p>오피스텔을 볼 때는 광고의 평수 말고 전용면적 ㎡를 꼭 따로 물어보세요. 전용면적에 0.3을 곱하면 실제로 쓰는 공간이 몇 평인지 바로 감이 와요.</p>
+
+  <h2 id="s6">집 보러 가기 전에 확인할 것</h2>
+  <div class="keys">
+    <div><b>1. 전용면적 ㎡</b><span>광고의 평형 말고 전용면적을 확인해요. 등기부등본이나 건축물대장에 적힌 숫자예요</span></div>
+    <div><b>2. 발코니 확장 여부</b><span>같은 전용면적이어도 확장한 집이 훨씬 넓어요. 사진만 보고는 알기 어려우니 물어보세요</span></div>
+    <div><b>3. 관리비 기준</b><span>관리비는 보통 공급면적을 기준으로 나눠요. 공급면적이 넓으면 관리비도 올라가요</span></div>
+  </div>
+
+  <h2 id="s7">자주 묻는 질문</h2>
+  <p><strong>Q. 1평은 정확히 몇 ㎡인가요?</strong><br>400/121㎡, 약 3.3058㎡예요. 가로세로 6자(약 1.82m)인 정사각형 넓이예요.</p>
+  <p><strong>Q. 등기부등본에 적힌 면적은 어느 면적인가요?</strong><br>아파트 같은 집합건물이라면 등기부등본의 전유 부분 면적이 전용면적이에요. 공용 면적은 대지권 비율 등으로 따로 적혀요.</p>
+  <p><strong>Q. 부동산 광고에서 평을 써도 되나요?</strong><br>법에서 정한 면적 단위는 ㎡라서 계약서나 공식 서류, 광고에는 ㎡로 적어야 해요. 평은 오래 써 온 단위라 대화에서 감을 잡는 용도로 많이 써요.</p>
+  <p><strong>Q. 전월세 계약서에는 어떤 면적을 적나요?</strong><br>보통 등기부등본이나 건축물대장에 나온 전용면적을 적어요. 계약 전에 서류의 면적과 실제 집이 같은지 확인해 두면 좋아요.</p>
+  <p class="meta" style="margin-top:20px">이 글은 2026년 11월 기준이에요. 공급면적과 평형은 단지마다 다르니 정확한 면적은 분양 공고, 건축물대장, 등기부등본에서 확인하세요.</p>
+
+  <nav class="next" aria-label="관련 글과 도구"><a href="/pyeong/"><span><strong>평수 계산기</strong><span>㎡ ↔ 평, 아파트 평형까지</span></span><i>→</i></a><a href="/blog/anniversary-count/"><span><strong>100일 이벤트, 하루 늦은 이유</strong><span>기념일과 D-day 세는 법</span></span><i>→</i></a></nav>
+  <div data-comments data-kind="comment" data-page="/blog/pyeong-area/"></div>
+</article>
+<section class="cmts" data-page="/blog/pyeong-area/" data-kind="post"></section></div>
+
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
+
+<script src="/assets/firebase-config.js?v=4"></script>
+<script src="/assets/favorites.js?v=6"></script>
+<script type="module" src="/assets/comments.js?v=4"></script>
+<script src="/assets/analytics.js?v=2" defer></script>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+</body>
+</html>
