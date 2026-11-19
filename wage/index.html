@@ -251,7 +251,7 @@ footer .fl a:hover{color:var(--ink)}
 <link rel="stylesheet" href="/assets/favorites.css?v=8">
 <meta name="google-adsense-account" content="ca-pub-1007904420767851">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
-<script src="/assets/toolbar.js?v=1" data-keys="sonandogu-wage-v1" data-anchor="wcopy" data-reset="sonandogu-wage-v1"></script>
+<script src="/assets/toolbar.js?v=2" data-keys="sonandogu-wage-v1" data-anchor="wcopy" data-reset="sonandogu-wage-v1"></script>
 </head>
 <body>
 <script>
@@ -443,7 +443,7 @@ paint();
  new MutationObserver(upd).observe(m,{childList:true,characterData:true,subtree:true}); upd();
  b.addEventListener('click',async function(){
    var lines=[].slice.call(document.querySelectorAll('#lines > *')).map(function(x){return x.innerText.replace(/\s*\n\s*/g,' ').trim();}).filter(Boolean);
-   var txt=['알바 급여 계산 (손안의도구)', document.getElementById('cap').innerText.trim(), '한 달 예상 급여 '+m.innerText.replace(/\s+/g,'')].concat(lines).concat([location.origin+'/wage/']).join('\n');
+   var txt=['알바 급여 계산 (손안의도구)', document.getElementById('cap').innerText.trim(), '한 달 예상 급여 '+m.innerText.replace(/\s+/g,'')].concat(lines).concat(['손안의도구 알바 급여 계산기']).join('\n');
    try{ await navigator.clipboard.writeText(txt); b.textContent='복사했어요'; }catch(e){ b.textContent='복사하지 못했어요'; }
    setTimeout(function(){b.textContent='결과 복사';},1500);
  });

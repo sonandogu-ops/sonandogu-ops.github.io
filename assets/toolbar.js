@@ -2,7 +2,8 @@
  * <head>에서 이렇게 불러요(defer 없이):
  *   <script src="/assets/toolbar.js?v=1" data-keys="저장키 ..." data-ids="입력칸id ..." data-anchor="복사버튼id"
  *           data-reset="지울 저장키 ..." data-copyfn="window의 함수 이름" data-place="버튼 줄을 넣을 자리(선택자)"></script>
- * - data-keys/data-ids가 있으면 '링크 복사'가 생겨요. 링크(#s=...)를 연 사람은 같은 입력값으로 도구가 열려요.
+ * - data-keys/data-ids가 있으면, 그 도구의 '결과 복사/결과 공유' 버튼(data-anchor)으로 복사·공유하는 글 끝에
+ *   같은 입력값으로 열리는 링크(#s=...)가 자동으로 붙어요. 링크를 연 사람은 같은 결과를 보게 돼요.
  *   주소의 # 뒤 내용은 서버로 가지 않아서, 입력값이 사이트 서버나 분석 도구에 남지 않아요.
  * - data-reset이 있으면 '초기화'가 생겨요. 그 저장값을 지우고 페이지를 다시 열어요.
  * - data-copyfn이 있으면 '결과 복사'가 생겨요. 함수가 돌려준 글을 복사해요.
@@ -48,6 +49,18 @@ function toast(msg){
   setTimeout(function(){t.classList.add('out');},2600); setTimeout(function(){t.remove();},3100);
 }
 
+/* 결과 복사·공유 버튼을 누른 직후의 복사/공유 글 끝에 링크를 붙인다 */
+function armLink(anchor){
+  var armed=0;
+  anchor.addEventListener('click',function(){ armed=Date.now(); },true);
+  var add=function(t){ if(typeof t!=='string'||Date.now()-armed>4000||t.indexOf('#s=')>=0) return t; armed=0; var L=makeLink();
+    /* 글 안에 이 페이지 주소가 이미 있으면 그 자리를 결과 링크로 바꾸고, 없으면 끝에 붙인다 */
+    var plain=[location.origin+location.pathname,'https://sonandogu.com'+location.pathname];
+    for(var i=0;i<plain.length;i++){ var re=new RegExp(plain[i].replace(/[.*+?^${}()|[\]\\\/]/g,'\\$&')+'(?![#\\w/-])'); if(re.test(t)) return t.replace(re,L); }
+    return t.replace(/\s+$/,'')+'\n\n이 결과 다시 보기: '+L; };
+  try{ var cb=navigator.clipboard; if(cb&&cb.writeText){ var w=cb.writeText.bind(cb); cb.writeText=function(t){ return w(add(t)); }; } }catch(e){}
+  try{ if(navigator.share){ var sh=navigator.share.bind(navigator); navigator.share=function(d){ if(d&&typeof d.text==='string'){ d=Object.assign({},d,{text:add(d.text)}); } return sh(d); }; } }catch(e){}
+}
 function init(){
   /* 공유 링크로 받은 입력칸 값 채우기 (저장값을 쓰지 않는 도구용) */
   if(pendingIds) IDS.forEach(function(id){ var el=document.getElementById(id), v=pendingIds[id];
@@ -64,12 +77,7 @@ function init(){
     c.addEventListener('click',async function(){ var f=window[D.copyfn], t=typeof f==='function'?f():''; if(!t){ flash(c,'복사할 결과가 아직 없어요'); return; } flash(c,(await copyText(t))?'복사했어요':'복사하지 못했어요'); });
     bar.appendChild(c);
   }
-  if(KEYS.length||IDS.length){
-    var l=btn('🔗 링크 복사','tlink'); l.title='같은 입력값으로 열리는 링크를 복사해요';
-    l.addEventListener('click',async function(){ flash(l,(await copyText(makeLink()))?'링크를 복사했어요':'복사하지 못했어요'); });
-    if(anchor){ var sync=function(){ l.disabled=!!anchor.disabled; }; sync(); new MutationObserver(sync).observe(anchor,{attributes:true,attributeFilter:['disabled']}); }
-    bar.appendChild(l);
-  }
+  if((KEYS.length||IDS.length)&&anchor) armLink(anchor);
   if(RESET.length){
     var r=btn('초기화','treset');
     r.addEventListener('click',function(){ RESET.forEach(lsDel); location.reload(); });
