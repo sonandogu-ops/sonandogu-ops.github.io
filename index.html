@@ -156,8 +156,6 @@ footer .fl a:hover{color:var(--ink)}
 .rgrid a{flex:none; display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:10px 16px 10px 10px; box-shadow:var(--shadow); font-weight:800; font-size:14.5px}
 .rgrid a .ic{width:36px; height:36px; border-radius:12px; font-size:17px; display:grid; place-items:center; color:#fff}
 .rgrid a .ic svg{width:20px; height:20px}
-.jump .inst{flex:none; display:inline-flex; align-items:center; gap:7px; font:inherit; font-size:14px; font-weight:800; color:#fff; background:var(--ink); border:none; border-radius:999px; padding:8px 14px; cursor:pointer}
-.jump .inst[hidden]{display:none}
 
 .finder{margin-top:18px; display:flex; flex-direction:column; gap:10px}
 .srch{display:flex; align-items:center; gap:10px; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:0 14px; color:var(--muted); box-shadow:var(--shadow)}
@@ -169,8 +167,6 @@ footer .fl a:hover{color:var(--ink)}
 .tabs2 button{flex:none; display:inline-flex; align-items:center; gap:7px; font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:999px; padding:8px 14px; cursor:pointer}
 .tabs2 button[aria-selected="true"]{color:var(--bg); background:var(--ink); border-color:var(--ink)}
 .tabs2 button i{width:8px; height:8px; border-radius:50%}
-.tabs2 .inst{color:#fff; background:var(--orange); border-color:var(--orange)}
-.tabs2 .inst[hidden]{display:none}
 .nores{text-align:center; padding:30px 0 10px; color:var(--muted)}
 .nores img{display:block; margin:0 auto 8px; width:72px; height:72px; object-fit:contain}
 .nores p{margin:0; font-size:15px; line-height:1.7}
@@ -302,7 +298,7 @@ footer .fl a:hover{color:var(--ink)}
     <h1>꺼내서 쓰고, <span>바로 닫으세요.</span></h1>
     <p>계산기부터 생활 도구, 함께 즐기는 놀이까지. 가입 없이 필요한 순간 바로 꺼내 쓰세요.</p>
     <div class="finder">
-      <div class="tabs2" role="tablist" aria-label="분류"><button role="tab" data-t="all" aria-selected="true">전체</button><button role="tab" data-t="calc" aria-selected="false"><i style="background:#FF5A1F"></i>계산기</button><button role="tab" data-t="tools" aria-selected="false"><i style="background:#2F66F0"></i>생활 도구</button><button role="tab" data-t="play" aria-selected="false"><i style="background:#12985B"></i>놀이</button><button class="inst" id="inst" hidden><i style="background:#FF5A1F"></i>앱으로 설치</button></div>
+      <div class="tabs2" role="tablist" aria-label="분류"><button role="tab" data-t="all" aria-selected="true">전체</button><button role="tab" data-t="calc" aria-selected="false"><i style="background:#FF5A1F"></i>계산기</button><button role="tab" data-t="tools" aria-selected="false"><i style="background:#2F66F0"></i>생활 도구</button><button role="tab" data-t="play" aria-selected="false"><i style="background:#12985B"></i>놀이</button></div>
     </div>
   </section>
   <main>
@@ -439,7 +435,6 @@ footer .fl a:hover{color:var(--ink)}
  addEventListener('keydown',e=>{ if(e.key==='/'&&!e.metaKey&&!e.ctrlKey&&!e.altKey&&!/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||'')){ e.preventDefault(); q.focus(); } });
  if(window.SonFav) window.SonFav.onChange(apply);
 })();
-(function(){ const b=document.getElementById('inst'); if(!b) return; const show=()=>{ b.hidden=false; b.onclick=()=>{ if(window.SonInstall) window.SonInstall.open(); b.hidden=true; }; }; if(window.__bip) show(); addEventListener('beforeinstallprompt',show); })();
 </script>
 <script>
 (function(){
