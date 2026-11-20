@@ -136,11 +136,11 @@
     <pubDate>Sun, 08 Nov 2026 09:00:00 +0900</pubDate>
   </item>
   <item>
-    <title>자소서 글자수, 입력창에서만 넘친 이유</title>
+    <title>자소서 줄바꿈과 글자수, 입력창에서만 넘친 이유</title>
     <link>https://sonandogu.com/blog/resume-char-count/</link>
     <guid isPermaLink="true">https://sonandogu.com/blog/resume-char-count/</guid>
     <category>생활 도구</category>
-    <description>문서 프로그램에서는 1,000자였는데 지원서 입력창에서는 넘쳤다면? 공백 포함·제외, 줄바꿈 1글자·2글자, 바이트 기준이 달라서예요.</description>
+    <description>자소서 줄바꿈(엔터)은 1글자일까 2글자일까? 문서 프로그램에선 1,000자였는데 입력창에선 넘쳤다면 공백·줄바꿈·바이트 기준이 달라서예요.</description>
     <pubDate>Sun, 08 Nov 2026 09:00:00 +0900</pubDate>
   </item>
   <item>
