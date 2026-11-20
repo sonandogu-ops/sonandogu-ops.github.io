@@ -14,7 +14,7 @@ var MAX=30, DMAX=12, LKEY='sonandogu-likes-v1', LMAX=100;
 var TOOLS=['/wage/','/salary/','/freelance-tax/','/severance/','/leave/','/worktime/','/vat/','/date/','/age/','/holiday/','/dutch/','/percent/','/pyeong/','/charcount/','/receipt/','/party/team/','/party/roulette/','/party/ladder/','/party/manito/','/party/lots/','/random/','/traditional/yut/'];
 var NAMES={'/wage/':'알바 급여 계산기','/salary/':'연봉 실수령액 계산기','/freelance-tax/':'3.3% 계산기','/severance/':'퇴직금 계산기','/leave/':'연차 계산기','/worktime/':'근무시간 계산기','/vat/':'부가세 계산기','/date/':'날짜 계산기','/age/':'만 나이 계산기','/holiday/':'연휴 계산기','/dutch/':'더치페이 계산기','/percent/':'퍼센트 계산기','/pyeong/':'평수 계산기','/charcount/':'글자수 세기','/receipt/':'간이영수증 작성기','/party/team/':'팀 나누기','/party/roulette/':'룰렛 돌리기','/party/ladder/':'사다리타기','/party/manito/':'마니또 뽑기','/party/lots/':'제비뽑기','/random/':'랜덤 숫자 뽑기','/traditional/yut/':'온라인 윷놀이'};
 var CATS=[{"id":"work","n":"급여·근로","c":"#FF4A12","t":["/wage/","/salary/","/freelance-tax/","/severance/","/leave/","/worktime/"]},{"id":"tax","n":"세금·금융","c":"#E08600","t":["/vat/"]},{"id":"date","n":"날짜·시간","c":"#2F66F0","t":["/date/","/age/","/holiday/"]},{"id":"life","n":"생활 계산","c":"#E5485E","t":["/dutch/","/percent/","/pyeong/"]},{"id":"doc","n":"글·문서","c":"#6A4FE8","t":["/charcount/","/receipt/"]},{"id":"party","n":"모임·뽑기","c":"#12985B","t":["/party/team/","/party/roulette/","/party/ladder/","/party/manito/","/party/lots/","/random/"]},{"id":"game","n":"게임·놀이","c":"#0E9494","t":["/traditional/yut/"]}];/*cats*/  /* 분류와 도구 목록 (build_tools.py가 채움) */
-var HOT=[["주휴수당","주휴수당"],["n빵","N빵 정산"],["몇 평","84㎡ 몇 평"],["연말정산","연말정산"],["자소서","자소서 글자수"],["팀","팀 나누기"]];/*hot*/  /* 검색창 아래 많이 찾는 검색어 (build_tools.py가 채움) */
+var HOT=[["자소서","자소서 줄바꿈"],["n빵","N빵 계산기"],["팀","팀정하기 룰렛"],["제비","제비뽑기"],["마니또","마니또 뽑기"],["만 나이","만 나이"],["윷놀이","윷놀이 게임"],["조 이름","조 이름 추천"]];/*hot*/  /* 검색창 아래 많이 찾는 검색어 (build_tools.py가 채움) */
 var $=function(id){return document.getElementById(id);};
 function el(tag,cls,text){var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e;}
 function ls(k,v){try{ if(v===undefined) return localStorage.getItem(k); if(v===null) localStorage.removeItem(k); else localStorage.setItem(k,v);}catch(e){} return null;}
@@ -453,7 +453,10 @@ tx.onclick=hideTip;
       else location.href='/?q='+encodeURIComponent(h[0]); });
     box.appendChild(b); });
   lab.appendChild(box);
-  var show=function(){ box.hidden=!!inp.value.trim(); };
+  var edge=function(){ box.classList.toggle('more', box.scrollLeft+box.clientWidth < box.scrollWidth-4); };
+  box.addEventListener('scroll',edge,{passive:true});
+  box.addEventListener('wheel',function(e){ if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){ box.scrollLeft+=e.deltaY; e.preventDefault(); } },{passive:false});
+  var show=function(){ box.hidden=!!inp.value.trim(); if(!box.hidden) edge(); };
   inp.addEventListener('focus',show); inp.addEventListener('input',show);
   inp.addEventListener('blur',function(){ setTimeout(function(){ box.hidden=true; },120); });
   inp.addEventListener('keydown',function(e){ if(e.key==='Escape') box.hidden=true; });
