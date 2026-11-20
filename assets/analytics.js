@@ -4,6 +4,7 @@
   var TOKEN='50724541c83044168f096f10e8e2c461';
   if(!TOKEN||TOKEN.indexOf('PASTE')===0) return;
   if(location.hostname!=='sonandogu.com') return;          // 내 컴퓨터에서 열어볼 땐 세지 않음
+  if(navigator.webdriver) return;                          // 자동 검사 브라우저(사이트 점검·테스트)는 세지 않음
   // 내 방문 제외: 주소 끝에 ?owner=1 을 붙여 한 번 열면 이 브라우저는 집계하지 않는다. ?owner=0 으로 열면 다시 집계한다.
   try{
     var u=new URL(location.href), o=u.searchParams.get('owner');
