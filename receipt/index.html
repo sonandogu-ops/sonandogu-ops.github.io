@@ -449,7 +449,7 @@ addRow();
 <script src="/assets/firebase-config.js?v=4"></script>
 <script src="/assets/favorites.js?v=7"></script>
 <script type="module" src="/assets/comments.js?v=4"></script>
-<script src="/assets/analytics.js?v=2" defer></script>
+<script src="/assets/analytics.js?v=3" defer></script>
 <script>
 /* 결과 복사: 영수증 내용을 글자로 */
 window.__rcText=function(){ var p=document.getElementById('paper'), tot=document.getElementById('pTotal'); if(!p||!tot||!/[0-9]/.test(tot.textContent)) return ''; var L=p.innerText.split('\n').map(function(x){return x.trim();}), out=[], buf=''; L.forEach(function(x){ if(x.length===1){ buf+=x; } else { if(buf){ out.push(buf); buf=''; } out.push(x); } }); if(buf) out.push(buf); var t=out.join('\n').replace(/\n{3,}/g,'\n\n').trim(); return t?t+'\n\n손안의도구 간이영수증 작성기':''; };
