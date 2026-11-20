@@ -146,6 +146,8 @@ def check_seo(root, indexable):
         d = re.search(r'<meta name="description" content="([^"]*)"', h)
         if d and not (50 <= len(d.group(1)) <= 130):
             out.append(("SEO", rel, f"설명이 {len(d.group(1))}자예요. 검색 결과에서 잘리지 않게 50~130자로 맞춰 주세요"))
+        if re.search(r"link\.coupang\.com|coupa\.ng|adpick", h) and not re.search(r"(쿠팡 파트너스|애드픽) 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다", h):
+            out.append(("제휴", rel, "제휴 링크가 있는데 대가성 문구가 없어요 (공정위 기준)"))
         if '"@type": "Article"' in h and '"@type": "BreadcrumbList"' not in h:
             out.append(("SEO", rel, "글에 경로(BreadcrumbList) 구조화 데이터가 없어요"))
         url = "/" + rel[: -len("index.html")] if rel.endswith("index.html") else "/" + rel

@@ -6,7 +6,15 @@
   <atom:link href="https://sonandogu.com/blog/rss.xml" rel="self" type="application/rss+xml"/>
   <description>계산이 헷갈리는 순간에 꺼내 보는 짧고 쓸모 있는 글</description>
   <language>ko</language>
-  <lastBuildDate>Thu, 19 Nov 2026 09:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Fri, 20 Nov 2026 09:00:00 +0900</lastBuildDate>
+  <item>
+    <title>연말정산, 12월에 챙기면 돌려받는 것</title>
+    <link>https://sonandogu.com/blog/year-end-tax-preview/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/year-end-tax-preview/</guid>
+    <category>세금 상식</category>
+    <description>연말정산 미리보기로 카드 공제 25% 문턱을 확인하고, 체크카드 30%, 자녀 수로 늘어난 카드 공제 한도, 연금저축·IRP 900만 원, 월세 공제까지 12월에 할 일을 정리했어요.</description>
+    <pubDate>Fri, 20 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
   <item>
     <title>84㎡는 왜 34평일까, 전용면적과 공급면적</title>
     <link>https://sonandogu.com/blog/pyeong-area/</link>

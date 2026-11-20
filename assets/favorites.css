@@ -213,3 +213,12 @@ html{scroll-behavior:smooth}
 .more a:first-of-type{border-top:0}
 .more a span{display:inline-block; margin-right:8px; font-size:12px; font-weight:800; color:var(--muted); vertical-align:1px}
 .more a:hover{color:var(--orange)!important}
+
+/* 제휴 상품 상자 (애드센스 승인 뒤 블로그 글에만 사용, .github/MONETIZE_PLAN.md 참고) */
+.aff{margin:30px 0 12px; padding:14px 18px 12px; background:var(--surface); border:1px dashed var(--line); border-radius:18px}
+.aff .aff-note{margin:0 0 10px!important; font-size:12.5px!important; line-height:1.6; color:var(--muted)}
+.aff b{display:block; font-size:13px; font-weight:800; color:var(--ink); margin:0 0 6px}
+.aff a{display:block; padding:9px 0; border-top:1px solid var(--line); text-decoration:none!important; color:var(--ink)!important}
+.aff a:first-of-type{border-top:0}
+.aff a strong{display:block; font-size:15px; font-weight:700}
+.aff a span{display:block; font-size:13px; color:var(--muted)}
