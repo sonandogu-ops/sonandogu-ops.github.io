@@ -236,3 +236,29 @@ html{scroll-behavior:smooth}
 .fsteps li{counter-increment:s; position:relative; padding:9px 0 9px 34px; font-size:14.5px; line-height:1.6; color:var(--ink); border-top:1px solid var(--line)}
 .fsteps li:first-child{border-top:0}
 .fsteps li::before{content:counter(s); position:absolute; left:0; top:10px; width:24px; height:24px; display:grid; place-items:center; font-size:12.5px; font-weight:800; color:#fff; background:var(--orange); border-radius:8px}
+
+/* 터치 화면: 손가락으로 누르기 편하게 누를 수 있는 곳을 넉넉히 (보이는 모양은 거의 그대로) */
+@media (pointer:coarse){
+  .presets button{min-height:40px}
+  .faq summary,details > summary{padding-top:10px!important; padding-bottom:10px!important; align-items:center}
+  .top nav a{padding:11px 4px; margin:-11px -4px}
+  .acct{min-height:38px}
+  .fav{width:42px; height:42px; margin:-6px -6px -6px -2px}
+  .ch .sl a{display:inline-block; padding:11px 6px; margin:-11px -2px}
+  .sw::before{content:""; position:absolute; inset:-9px -6px}
+  .like.sm{padding:10px; margin:-10px -4px -10px 4px}
+  input[type="checkbox"]{width:22px; height:22px}
+  select{min-height:40px}
+  .tbl input,.items input,input.iname,input.iqty,input.iprice{min-height:38px}
+  .tbar .tb{min-height:42px}
+  .chips button,.tabs2 button,.seg button{min-height:40px}
+  #quick button,.pb,.ph > a,.ch .sl a{min-height:40px}
+  .ph > a{display:inline-flex; align-items:center}
+  input.plain{min-height:40px}
+  .work button[aria-pressed]{min-height:40px}
+  .crumb a{display:inline-block; padding:12px 0; margin:-12px 0}
+}
+
+/* 키보드가 결과를 가릴 때 위쪽에 뜨는 결과 알림 */
+.tbpeek{position:fixed; z-index:65; left:50%; transform:translateX(-50%); max-width:calc(100vw - 24px); background:#141518; color:#F4F4F1; border-radius:999px; padding:8px 16px; font-size:14.5px; font-weight:800; font-variant-numeric:tabular-nums; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; box-shadow:0 10px 24px -10px rgba(0,0,0,.6); pointer-events:none}
+.tbpeek[hidden]{display:none}
