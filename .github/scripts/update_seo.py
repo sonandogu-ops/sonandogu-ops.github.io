@@ -5,6 +5,7 @@
   2. 이 주제의 다른 글   글마다 같은 분류의 최신 글 3편을 본문 끝에 이어 줘요(사이트 안 연결 링크).
   3. 경로(Breadcrumb)    글마다 '손안의도구 › 블로그 › 글 제목' 구조화 데이터를 넣어요.
   4. 사이트맵 lastmod    파일이 마지막으로 바뀐 날(git 기록)로 맞춰요.
+  5. 홈 새 글          홈 오른쪽 칸에 최신 글 다섯 편을 넣어요.
 
 쓰는 법
   python3 .github/scripts/update_seo.py          # 파일을 고쳐요 (새 글을 쓰거나 페이지를 고친 뒤)
@@ -176,6 +177,11 @@ def main():
         path, o, n = fix_post(p, ps)
         if o != n:
             writes[path] = n
+    hi = rd("index.html")
+    blk = "<!-- home-new:start -->\n" + "".join('      <a href="%s"><b>%s</b><span>%s · %d월 %d일</span></a>\n' % (p["href"], H.escape(p["title"]), H.escape(p["tag"]), p["date"].month, p["date"].day) for p in ps[:5]) + "<!-- home-new:end -->"
+    nh = re.sub(r"<!-- home-new:start -->.*?<!-- home-new:end -->", lambda m: blk, hi, flags=re.S)
+    if nh != hi:
+        writes["index.html"] = nh
     bi = rd("blog/index.html"); nb = fix_blog_index(bi)
     if nb != bi:
         writes["blog/index.html"] = nb
