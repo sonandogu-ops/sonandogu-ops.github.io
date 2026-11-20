@@ -74,7 +74,7 @@ def build_home(d, cats):
     quick = ('  <div class="qh">많이 쓰는 도구</div>\n  <nav class="quick" aria-label="많이 쓰는 도구">'
              + "".join(f'<a href="{t["path"]}" data-c="{t["cat"]}">{ic(t).replace(chr(34)+"ic"+chr(34), chr(34)+"ic qi"+chr(34), 1)}<span>{esc(t["quick"])}</span></a>' for t in qs)
              + "</nav>")
-    s = block("tools:quick", quick, s)
+    s = block("tools:quick", "", s)  # 홈 많이 쓰는 도구 줄은 쓰지 않음 (quick 값은 남겨 둠)
     # 분류별 카드
     secs = []
     for c in d["categories"]:
@@ -202,6 +202,7 @@ def build_fav(d):
     s = re.sub(r"var NAMES=\{[^}]*\};", "var NAMES={" + ",".join(f"'{t['path']}':'{t['name']}'" for t in d["tools"]) + "};", s, count=1)
     cats = [{"id": c["id"], "n": c["name"], "c": c["c2"], "t": [t["path"] for t in d["tools"] if t["cat"] == c["id"]]} for c in d["categories"]]
     cats = [c for c in cats if c["t"]]
+    s = re.sub(r"var HOT=\[.*?\];/\*hot\*/", lambda m: "var HOT=" + json.dumps(d.get("hot", []), ensure_ascii=False, separators=(",", ":")) + ";/*hot*/", s, count=1, flags=re.S)
     s = re.sub(r"var CATS=\[.*?\];/\*cats\*/", lambda m: "var CATS=" + json.dumps(cats, ensure_ascii=False, separators=(",", ":")) + ";/*cats*/", s, count=1, flags=re.S)
     return s
 
