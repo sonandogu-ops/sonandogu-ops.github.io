@@ -256,5 +256,55 @@
    "kw": "윷놀이 윷 전통 명절 설날 십이지",
    "icon": "<svg width=\"26\" height=\"26\" viewBox=\"0 0 28 28\" fill=\"#fff\"><rect x=\"3\" y=\"4\" width=\"4\" height=\"20\" rx=\"2\"/><rect x=\"9.3\" y=\"4\" width=\"4\" height=\"20\" rx=\"2\" opacity=\".75\"/><rect x=\"15.6\" y=\"4\" width=\"4\" height=\"20\" rx=\"2\"/><rect x=\"21.9\" y=\"4\" width=\"4\" height=\"20\" rx=\"2\" opacity=\".75\"/></svg>"
   }
- ]
+ ],
+ "notices": [
+  {
+   "date": "2026-11-20",
+   "text": "계산 결과를 링크로 보낼 수 있어요",
+   "link": "/salary/"
+  },
+  {
+   "date": "2026-11-20",
+   "text": "연말정산, 12월에 챙기면 돌려받는 것",
+   "link": "/blog/year-end-tax-preview/"
+  },
+  {
+   "date": "2026-11-19",
+   "text": "평수 계산기가 새로 나왔어요",
+   "link": "/pyeong/"
+  },
+  {
+   "date": "2026-11-18",
+   "text": "블로그 글에 하트 좋아요를 남길 수 있어요",
+   "link": "/blog/"
+  },
+  {
+   "date": "2026-11-17",
+   "text": "부가세·3.3%·랜덤 뽑기 도구 추가",
+   "link": "/vat/"
+  }
+ ],
+ "popular_fallback": {
+  "_설명": "별·하트 수가 같을 때(또는 아직 없을 때) 쓰는 순서. Cloudflare 방문 통계 기준으로 가끔 갱신",
+  "tools": [
+   "/party/team/",
+   "/wage/",
+   "/freelance-tax/",
+   "/dutch/",
+   "/party/manito/",
+   "/age/",
+   "/date/",
+   "/holiday/",
+   "/worktime/",
+   "/traditional/yut/"
+  ],
+  "posts": [
+   "/blog/dutch-pay/",
+   "/blog/work-hours-calc/",
+   "/blog/simple-receipt/",
+   "/blog/salary-raise/",
+   "/blog/resume-char-count/",
+   "/blog/salary-take-home/"
+  ]
+ }
 }

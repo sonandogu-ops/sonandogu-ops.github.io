@@ -153,6 +153,13 @@ def check_seo(root, indexable):
         url = "/" + rel[: -len("index.html")] if rel.endswith("index.html") else "/" + rel
         if rel not in LEGAL and inbound.get(url, 0) < 3:
             out.append(("SEO", rel, f"사이트 안에서 이 페이지로 오는 링크가 {inbound.get(url, 0)}개뿐이에요. 관련 글·도구에서 이어 주세요"))
+    bt = os.path.join(root, ".github", "scripts", "build_tools.py")
+    if os.path.exists(bt):
+        r = subprocess.run([sys.executable, "-I", bt, "--check"], capture_output=True, text=True)
+        if r.returncode != 0:
+            for line in (r.stdout + r.stderr).splitlines():
+                if line.strip():
+                    out.append(("도구 명부", "assets/tools.json", line.lstrip("- ")))
     script = os.path.join(root, ".github", "scripts", "update_seo.py")
     if os.path.exists(script):
         r = subprocess.run([sys.executable, "-I", script, "--check"], capture_output=True, text=True)

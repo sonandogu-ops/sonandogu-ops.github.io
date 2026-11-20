@@ -305,3 +305,28 @@ html{scroll-behavior:smooth}
   html.has-sb:not(.sb-off) .sbback{display:none}
   html.has-sb:not(.sb-off) .tbtoast,html.has-sb:not(.sb-off) .ftip{margin-left:124px}
 }
+
+/* 홈 소식판: 인기 도구·인기 글·새 도구·새 글·공지 */
+.board{display:grid; grid-template-columns:minmax(0,1fr); gap:12px; margin:22px 0 4px}
+.board[hidden]{display:none}
+@media (min-width:640px){ .board{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (min-width:1000px){ .board{grid-template-columns:repeat(3,minmax(0,1fr))} }
+.bx{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:14px 16px 8px}
+.bx .bh{display:flex; align-items:baseline; gap:8px; margin:0 0 4px}
+.bx h2{font-size:15px!important; font-weight:800; margin:0!important; letter-spacing:-.03em; display:block!important}
+.bx h2::before{display:none!important}
+.bx .bs{font-size:12px; font-weight:700; color:var(--faint)}
+.bx .bm{margin-left:auto; font-size:12.5px; font-weight:700; color:var(--muted); text-decoration:none}
+.bx .bm:hover{color:var(--ink)}
+.bx ol{list-style:none; margin:0; padding:0; counter-reset:b}
+.bx li{counter-increment:b}
+.bx li a{position:relative; display:block; padding:9px 0 9px 0; border-top:1px solid var(--line); text-decoration:none; color:var(--ink)}
+.bx li:first-child a{border-top:0}
+.bx li a b{display:block; font-size:14px; font-weight:750; line-height:1.45; letter-spacing:-.02em; padding-right:44px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.bx li a span{display:block; font-size:12.5px; color:var(--muted); margin-top:1px}
+.bx li a:hover b{color:var(--orange)}
+.bx li a .cnt{position:absolute; right:0; top:10px; font-style:normal; font-size:12px; font-weight:800; color:var(--muted)}
+#popT li a,#popP li a{padding-left:28px}
+#popT li a::before,#popP li a::before{content:counter(b); position:absolute; left:0; top:11px; width:20px; height:20px; display:grid; place-items:center; font-size:11.5px; font-weight:900; color:#fff; background:var(--ink); border-radius:6px}
+#popT li:nth-child(-n+3) a::before,#popP li:nth-child(-n+3) a::before{background:var(--orange)}
+.sbg summary .lh{font-style:normal; color:#E8455B}

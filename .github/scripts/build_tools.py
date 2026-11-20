@@ -86,8 +86,46 @@ def build_home(d, cats):
         secs.append(f'  <section class="cat" id="{c["id"]}">\n    <div class="ch"><h2>{esc(c["name"])}</h2><span class="cs">{esc(c["sub"])}</span>{hub}</div>\n'
                     f'    <div class="grid">\n' + "\n".join("      " + card(t) for t in ts) + f'\n    </div>{more}\n  </section>')
     s = block("tools:sections", "\n".join(secs), s)
+    s = block("tools:board", build_board(d, cats), s)
     s = re.sub(r'(<body[^>]*?)(?: data-per="\d+")?>', lambda m: m.group(1) + f' data-per="{per}">', s, count=1)
     return s
+
+
+def blog_posts():
+    out = []
+    for m in re.finditer(r'<a class="item" href="(/blog/[^"]+/)">\s*<span class="tag">([^<]+)</span>\s*<h2>(.*?)</h2>.*?<small>(\d{4})년 (\d{1,2})월 (\d{1,2})일</small>', rd("blog/index.html"), re.S):
+        out.append(dict(path=m.group(1), tag=m.group(2).strip(), title=re.sub(r"<[^>]+>", "", m.group(3)).strip(), m=int(m.group(5)), d=int(m.group(6))))
+    return out
+
+
+def md(iso):
+    y, mo, dd = iso.split("-")
+    return f"{int(mo)}월 {int(dd)}일"
+
+
+def build_board(d, cats):
+    by = {t["path"]: t for t in d["tools"]}
+    fb = d.get("popular_fallback", {})
+    ps = blog_posts(); pby = {p["path"]: p for p in ps}
+    def li(href, title, sub, extra=""):
+        return f'<li><a href="{href}"{extra}><b>{esc(title)}</b><span>{esc(sub)}</span></a></li>'
+    pop_t = [by[p] for p in fb.get("tools", []) if p in by][:5]
+    pop_p = [pby[p] for p in fb.get("posts", []) if p in pby][:5]
+    new_t = sorted([t for t in d["tools"] if t.get("added")], key=lambda t: t["added"], reverse=True)[:5]
+    boxes = [
+        ("popT", "인기 도구", "즐겨찾기 많은 순", "".join(li(t["path"], t["name"], cats[t["cat"]]["name"], f' data-k="f{t["path"].replace("/", "_")}"') for t in pop_t), "/tools/", "모든 도구"),
+        ("popP", "인기 글", "좋아요 많은 순", "".join(li(p["path"], p["title"], p["tag"], f' data-k="l{p["path"].replace("/", "_")}"') for p in pop_p), "/blog/", "전체 보기"),
+        ("newT", "새 도구", "", "".join(li(t["path"], t["name"], f'{cats[t["cat"]]["name"]} · {md(t["added"])}') for t in new_t), "/tools/", "모든 도구"),
+        ("newP", "새 글", "", "".join(li(p["path"], p["title"], f'{p["tag"]} · {p["m"]}월 {p["d"]}일') for p in ps[:5]), "/blog/", "전체 보기"),
+        ("news", "공지", "업데이트와 바뀐 점", "".join(li(n.get("link", "/"), n["text"], md(n["date"])) for n in d.get("notices", [])[:5]), None, None),
+    ]
+    out = ['  <section class="board" aria-label="인기와 새 소식">']
+    for bid, title, sub, items, more, moretxt in boxes:
+        m = f'<a class="bm" href="{more}">{moretxt}</a>' if more else ""
+        sb = f'<span class="bs">{sub}</span>' if sub else ""
+        out.append(f'    <div class="bx" id="{bid}"><div class="bh"><h2>{title}</h2>{sb}{m}</div><ol>{items}</ol></div>')
+    out.append("  </section>")
+    return "\n".join(out)
 
 
 def build_all(d, cats):

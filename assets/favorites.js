@@ -173,12 +173,16 @@ async function deleteAccount(msg){
   return true;
 }
 
+/* ---------- 공개 숫자판: 도구 별 수·글 하트 수 (counts/{f_경로|l_경로}.n) ---------- */
+function ckey(kind,path){ return kind+path.replace(/\//g,'_'); }
+function bump(kind,path,d){ if(!user||!fb||!fb.fs.increment) return; try{ fb.fs.setDoc(fb.fs.doc(fb.db,'counts',ckey(kind,path)),{n:fb.fs.increment(d)},{merge:true}).catch(function(){}); }catch(e){} }
+
 /* ---------- 즐겨찾기 토글 ---------- */
 function toggle(h){
   var i=favs.indexOf(h), adding=i<0;
   if(adding){ if(favs.length>=MAX) return; favs=favs.concat([h]); } else favs=favs.filter(function(x){return x!==h;});
   if(!pulled) touched=true;
-  persistLocal(); emit(); if(user) pushCloud();
+  persistLocal(); emit(); if(user){ pushCloud(); bump('f',h,adding?1:-1); }
   if(adding&&!user&&!ls(TIPKEY)){ ls(TIPKEY,'1'); showTip(); }
 }
 
@@ -228,14 +232,14 @@ function liked(){return likes.some(function(x){return x.p===here;});}
 function setLikes(next){
   likes=cleanLikes(next);
   if(user) ls(LKEY,JSON.stringify(likes)); else ls(LKEY,null);
-  paintHearts(); if(!panel.hidden) drawPanel();
+  paintHearts(); if(!panel.hidden) drawPanel(); if(typeof drawSidebar==='function'&&sb.isConnected) drawSidebar();
 }
 function toggleLike(){
   if(!user){ openModal('로그인하면 좋아요한 글을 마이에서 언제든 다시 볼 수 있어요!'); return; }
   if(!pulled){ note('계정 정보를 불러오는 중이에요. 잠시 뒤 다시 눌러 주세요.'); return; }
   var on=liked();
   setLikes(on?likes.filter(function(x){return x.p!==here;}):[{p:here,t:postTitle}].concat(likes));
-  pushCloud();
+  pushCloud(); bump('l',here,on?-1:1);
   if(!on) note('좋아요했어요. 오른쪽 위 마이에서 모아 볼 수 있어요.');
 }
 function paintHearts(){
@@ -456,6 +460,10 @@ function drawSidebar(){
   if(favs.length) favs.forEach(function(h){ var li=el('li'), a=el('a',null,NAMES[h]||h); a.href=h; if(h===here) a.setAttribute('aria-current','page'); li.appendChild(a); fv[1].appendChild(li); });
   else fv[1].appendChild(el('li','sbempty','도구 이름 옆 별을 누르면 여기 모여요'));
   sb.appendChild(fv[0]);
+  var lv=mk('좋아요한 글 <i class="lh">♥</i>',likes.length>0,'sblike');
+  if(likes.length) likes.slice(0,20).forEach(function(x){ var li=el('li'), a=el('a',null,x.t); a.href=x.p; if(x.p===here) a.setAttribute('aria-current','page'); li.appendChild(a); lv[1].appendChild(li); });
+  else lv[1].appendChild(el('li','sbempty',user?'블로그 글의 하트를 누르면 여기 모여요':'로그인하고 글의 하트를 누르면 여기 모여요'));
+  sb.appendChild(lv[0]);
   var all=el('div','sball'); all.appendChild(el('div','sbt','전체 도구'));
   CATS.forEach(function(c){
     var mine=c.t.indexOf(here)>=0;
@@ -474,6 +482,37 @@ if(CATS.length&&!document.querySelector('.admin-page')){
   var tin=document.querySelector('.top .in'), tb=tin&&tin.querySelector('.brand');
   if(tin&&tb){ tin.insertBefore(sbBtn,tb); document.body.appendChild(sbBack); document.body.appendChild(sb); document.documentElement.classList.add('has-sb'); if(ls(SBKEY)==='1') document.documentElement.classList.add('sb-off'); drawSidebar(); subs.push(drawSidebar); }
 }
+
+/* ---------- 홈 인기 도구·인기 글: 별·하트 수로 다시 줄 세우기 ---------- */
+function loadCounts(){
+  var boxes=['popT','popP'].map(function(id){return document.getElementById(id);}).filter(Boolean); if(!boxes.length) return;
+  var cfg=window.SONANDOGU_FIREBASE||{}; if(!cfg.apiKey||/^PASTE/.test(cfg.apiKey)) return;
+  Promise.all([import(BASE+'firebase-app.js'),import(BASE+'firebase-firestore-lite.js')]).then(function(m){
+    var app=m[0].getApps().filter(function(a){return a.name==='counts';})[0]||m[0].initializeApp(cfg,'counts');
+    var db=m[1].getFirestore(app);
+    return m[1].getDocs(m[1].collection(db,'counts')).then(function(snap){
+      var C={}; snap.forEach(function(d){ var n=(d.data()||{}).n; if(typeof n==='number'&&n>0) C[d.id]=n; });
+      boxes.forEach(function(box){ rerank(box,C); });
+    });
+  }).catch(function(){});
+}
+function rerank(box,C){
+  var kind=box.id==='popT'?'f':'l', ol=box.querySelector('ol'); if(!ol) return;
+  /* 후보: 상자에 있던 기본 순서 + 숫자판에 있는 다른 항목 */
+  var items=[].slice.call(ol.children).map(function(li,i){ var a=li.querySelector('a'); return {li:li,k:a.dataset.k,i:i}; });
+  var have={}; items.forEach(function(x){have[x.k]=1;});
+  Object.keys(C).forEach(function(k){
+    if(k.charAt(0)!==kind||have[k]) return; var path=k.slice(1).replace(/_/g,'/');
+    var name=kind==='f'?NAMES[path]:null; if(kind==='f'&&!name) return;
+    var li=el('li'), a=el('a'); a.href=path; a.dataset.k=k; a.appendChild(el('b',null,name||path)); var cn=''; if(kind==='f') CATS.forEach(function(c){ if(c.t.indexOf(path)>=0) cn=c.n; }); a.appendChild(el('span',null,kind==='f'?(cn||'도구'):'블로그 글')); li.appendChild(a);
+    if(kind==='l'){ fetch(path).then(function(r){return r.text();}).then(function(t){ var m=t.match(/<h1>([\s\S]*?)<\/h1>/); if(m) a.querySelector('b').textContent=m[1].replace(/<br\s*\/?>/g,' ').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim(); }).catch(function(){}); }
+    items.push({li:li,k:k,i:99});
+  });
+  items.forEach(function(x){ x.n=C[x.k]||0; var em=x.li.querySelector('.cnt'); if(x.n){ if(!em){ em=el('em','cnt'); x.li.querySelector('a').appendChild(em); } em.textContent=(kind==='f'?'★ ':'♥ ')+x.n; } });
+  items.sort(function(a,b){ return (b.n-a.n)||(a.i-b.i); });
+  ol.textContent=''; items.slice(0,5).forEach(function(x){ ol.appendChild(x.li); });
+}
+if(document.getElementById('popT')){ (window.requestIdleCallback||function(f){setTimeout(f,1200);})(loadCounts); }
 
 /* ---------- 바깥에서 쓰는 창구 ---------- */
 window.SonInstall={open:doInstall, available:function(){return !!deferredInstall;}};
