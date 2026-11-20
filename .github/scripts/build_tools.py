@@ -152,6 +152,9 @@ def build_fav(d):
     paths = [t["path"] for t in d["tools"]]
     s = re.sub(r"var TOOLS=\[[^\]]*\];", "var TOOLS=[" + ",".join(f"'{p}'" for p in paths) + "];", s, count=1)
     s = re.sub(r"var NAMES=\{[^}]*\};", "var NAMES={" + ",".join(f"'{t['path']}':'{t['name']}'" for t in d["tools"]) + "};", s, count=1)
+    cats = [{"id": c["id"], "n": c["name"], "c": c["c2"], "t": [t["path"] for t in d["tools"] if t["cat"] == c["id"]]} for c in d["categories"]]
+    cats = [c for c in cats if c["t"]]
+    s = re.sub(r"var CATS=\[.*?\];/\*cats\*/", lambda m: "var CATS=" + json.dumps(cats, ensure_ascii=False, separators=(",", ":")) + ";/*cats*/", s, count=1, flags=re.S)
     return s
 
 

@@ -13,6 +13,7 @@ var BASE='https://www.gstatic.com/firebasejs/'+V+'/';
 var MAX=30, DMAX=12, LKEY='sonandogu-likes-v1', LMAX=100;
 var TOOLS=['/wage/','/salary/','/freelance-tax/','/severance/','/leave/','/worktime/','/vat/','/date/','/age/','/holiday/','/dutch/','/percent/','/pyeong/','/charcount/','/receipt/','/party/team/','/party/roulette/','/party/ladder/','/party/manito/','/party/lots/','/random/','/traditional/yut/'];
 var NAMES={'/wage/':'알바 급여 계산기','/salary/':'연봉 실수령액 계산기','/freelance-tax/':'3.3% 계산기','/severance/':'퇴직금 계산기','/leave/':'연차 계산기','/worktime/':'근무시간 계산기','/vat/':'부가세 계산기','/date/':'날짜 계산기','/age/':'만 나이 계산기','/holiday/':'연휴 계산기','/dutch/':'더치페이 계산기','/percent/':'퍼센트 계산기','/pyeong/':'평수 계산기','/charcount/':'글자수 세기','/receipt/':'간이영수증 작성기','/party/team/':'팀 나누기','/party/roulette/':'룰렛 돌리기','/party/ladder/':'사다리타기','/party/manito/':'마니또 뽑기','/party/lots/':'제비뽑기','/random/':'랜덤 숫자 뽑기','/traditional/yut/':'온라인 윷놀이'};
+var CATS=[{"id":"work","n":"급여·근로","c":"#FF4A12","t":["/wage/","/salary/","/freelance-tax/","/severance/","/leave/","/worktime/"]},{"id":"tax","n":"세금·금융","c":"#E08600","t":["/vat/"]},{"id":"date","n":"날짜·시간","c":"#2F66F0","t":["/date/","/age/","/holiday/"]},{"id":"life","n":"생활 계산","c":"#E5485E","t":["/dutch/","/percent/","/pyeong/"]},{"id":"doc","n":"글·문서","c":"#6A4FE8","t":["/charcount/","/receipt/"]},{"id":"party","n":"모임·뽑기","c":"#12985B","t":["/party/team/","/party/roulette/","/party/ladder/","/party/manito/","/party/lots/","/random/"]},{"id":"game","n":"게임·놀이","c":"#0E9494","t":["/traditional/yut/"]}];/*cats*/  /* 분류와 도구 목록 (build_tools.py가 채움) */
 var $=function(id){return document.getElementById(id);};
 function el(tag,cls,text){var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e;}
 function ls(k,v){try{ if(v===undefined) return localStorage.getItem(k); if(v===null) localStorage.removeItem(k); else localStorage.setItem(k,v);}catch(e){} return null;}
@@ -433,6 +434,46 @@ function showTip(){ tt.textContent=isHome?'로그인하고 이 도구를 첫 화
 function note(msg){ tt.textContent=msg; tg.hidden=true; tip.hidden=false; clearTimeout(tipT); tipT=setTimeout(hideTip,5000); }
 tg.onclick=function(){openModal(isHome?'로그인하고 이 도구를 첫 화면에 고정해 보세요!':'로그인하면 고정한 도구가 어느 기기에서든 첫 화면에 나와요!');};
 tx.onclick=hideTip;
+
+/* ---------- 왼쪽 도구 메뉴 (넓은 화면은 늘 보이고, 좁은 화면은 ☰ 버튼으로 서랍처럼) ---------- */
+var SBKEY='sonandogu-sidebar-off';
+var sb=el('aside','sbar'); sb.id='sbar'; sb.setAttribute('aria-label','도구 메뉴');
+var sbBack=el('div','sbback'); sbBack.hidden=true;
+var sbBtn=el('button','sbtn'); sbBtn.type='button'; sbBtn.setAttribute('aria-label','도구 메뉴 열기'); sbBtn.setAttribute('aria-controls','sbar');
+sbBtn.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
+function wide(){ return matchMedia('(min-width:1200px)').matches; }
+function drawSidebar(){
+  sb.textContent='';
+  var hd=el('div','sbhd'); var close=el('button','sbx'); close.type='button'; close.setAttribute('aria-label','메뉴 접기'); close.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="3"/><path d="M9.5 4.5v15"/></svg>';
+  close.onclick=function(){ if(wide()){ ls(SBKEY,'1'); document.documentElement.classList.add('sb-off'); } else closeDrawer(); };
+  hd.appendChild(el('b',null,'도구 메뉴')); hd.appendChild(close); sb.appendChild(hd);
+  var lk=el('div','sblinks');
+  [['/blog/','읽을거리 · 블로그','<path d="M5 4.5h10a3 3 0 0 1 3 3v12H8a3 3 0 0 1-3-3z"/><path d="M8.5 9h6M8.5 12.5h6"/>'],['/tools/','모든 도구 한눈에','<rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/>']].forEach(function(x){
+    var a=el('a'); a.href=x[0]; a.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+x[2]+'</svg>'; a.appendChild(el('span',null,x[1])); if(here===x[0]) a.setAttribute('aria-current','page'); lk.appendChild(a); });
+  sb.appendChild(lk);
+  var mk=function(title,open,cls){ var d=el('details','sbg'+(cls?' '+cls:'')); if(open) d.open=true; var sm=el('summary'); sm.innerHTML=title; d.appendChild(sm); var ul=el('ul'); d.appendChild(ul); return [d,ul]; };
+  var fv=mk('즐겨찾기 <i class="st">★</i>',true,'sbfav');
+  if(favs.length) favs.forEach(function(h){ var li=el('li'), a=el('a',null,NAMES[h]||h); a.href=h; if(h===here) a.setAttribute('aria-current','page'); li.appendChild(a); fv[1].appendChild(li); });
+  else fv[1].appendChild(el('li','sbempty','도구 이름 옆 별을 누르면 여기 모여요'));
+  sb.appendChild(fv[0]);
+  var all=el('div','sball'); all.appendChild(el('div','sbt','전체 도구'));
+  CATS.forEach(function(c){
+    var mine=c.t.indexOf(here)>=0;
+    var g=mk('<i class="dot" style="background:'+c.c+'"></i>'+c.n+' <small>'+c.t.length+'</small>',mine,'');
+    c.t.forEach(function(h){ var li=el('li'), a=el('a',null,NAMES[h]||h); a.href=h; if(h===here) a.setAttribute('aria-current','page'); li.appendChild(a); g[1].appendChild(li); });
+    all.appendChild(g[0]);
+  });
+  sb.appendChild(all);
+}
+function openDrawer(){ if(wide()){ ls(SBKEY,null); document.documentElement.classList.remove('sb-off'); return; } sb.classList.add('open'); sbBack.hidden=false; sbBtn.setAttribute('aria-expanded','true'); var f=sb.querySelector('a'); if(f) f.focus(); }
+function closeDrawer(){ sb.classList.remove('open'); sbBack.hidden=true; sbBtn.setAttribute('aria-expanded','false'); }
+sbBtn.onclick=function(){ sb.classList.contains('open')?closeDrawer():openDrawer(); };
+sbBack.onclick=closeDrawer;
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&sb.classList.contains('open')) closeDrawer(); });
+if(CATS.length&&!document.querySelector('.admin-page')){
+  var tin=document.querySelector('.top .in'), tb=tin&&tin.querySelector('.brand');
+  if(tin&&tb){ tin.insertBefore(sbBtn,tb); document.body.appendChild(sbBack); document.body.appendChild(sb); document.documentElement.classList.add('has-sb'); if(ls(SBKEY)==='1') document.documentElement.classList.add('sb-off'); drawSidebar(); subs.push(drawSidebar); }
+}
 
 /* ---------- 바깥에서 쓰는 창구 ---------- */
 window.SonInstall={open:doInstall, available:function(){return !!deferredInstall;}};
