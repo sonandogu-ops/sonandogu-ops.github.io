@@ -14,6 +14,7 @@ var MAX=30, DMAX=12, LKEY='sonandogu-likes-v1', LMAX=100;
 var TOOLS=['/wage/','/salary/','/freelance-tax/','/severance/','/leave/','/worktime/','/vat/','/date/','/age/','/holiday/','/dutch/','/percent/','/pyeong/','/charcount/','/receipt/','/party/team/','/party/roulette/','/party/ladder/','/party/manito/','/party/lots/','/random/','/traditional/yut/'];
 var NAMES={'/wage/':'알바 급여 계산기','/salary/':'연봉 실수령액 계산기','/freelance-tax/':'3.3% 계산기','/severance/':'퇴직금 계산기','/leave/':'연차 계산기','/worktime/':'근무시간 계산기','/vat/':'부가세 계산기','/date/':'날짜 계산기','/age/':'만 나이 계산기','/holiday/':'연휴 계산기','/dutch/':'더치페이 계산기','/percent/':'퍼센트 계산기','/pyeong/':'평수 계산기','/charcount/':'글자수 세기','/receipt/':'간이영수증 작성기','/party/team/':'팀 나누기','/party/roulette/':'룰렛 돌리기','/party/ladder/':'사다리타기','/party/manito/':'마니또 뽑기','/party/lots/':'제비뽑기','/random/':'랜덤 숫자 뽑기','/traditional/yut/':'온라인 윷놀이'};
 var CATS=[{"id":"work","n":"급여·근로","c":"#FF4A12","c1":"#FF8A3D","g":"급","t":["/wage/","/salary/","/freelance-tax/","/severance/","/leave/","/worktime/"]},{"id":"tax","n":"세금·금융","c":"#E08600","c1":"#F7B32B","g":"세","t":["/vat/"]},{"id":"date","n":"날짜·시간","c":"#2F66F0","c1":"#5E9BFF","g":"날","t":["/date/","/age/","/holiday/"]},{"id":"life","n":"생활 계산","c":"#E5485E","c1":"#FF7A8A","g":"생","t":["/dutch/","/percent/","/pyeong/"]},{"id":"doc","n":"글·문서","c":"#6A4FE8","c1":"#9B8AFB","g":"글","t":["/charcount/","/receipt/"]},{"id":"party","n":"모임·뽑기","c":"#12985B","c1":"#3DCB8C","g":"뽑","t":["/party/team/","/party/roulette/","/party/ladder/","/party/manito/","/party/lots/","/random/"]},{"id":"game","n":"게임·놀이","c":"#0E9494","c1":"#2CC5C5","g":"놀","t":["/traditional/yut/"]}];/*cats*/  /* 분류와 도구 목록 (build_tools.py가 채움) */
+var HOLI={"2026-01-01":"신정","2026-02-16":"설날 연휴","2026-02-17":"설날","2026-02-18":"설날 연휴","2026-03-01":"삼일절","2026-03-02":"대체공휴일(삼일절)","2026-05-01":"노동절","2026-05-05":"어린이날","2026-05-24":"부처님오신날","2026-05-25":"대체공휴일(부처님오신날)","2026-06-03":"전국동시지방선거","2026-06-06":"현충일","2026-07-17":"제헌절","2026-08-15":"광복절","2026-08-17":"대체공휴일(광복절)","2026-09-24":"추석 연휴","2026-09-25":"추석","2026-09-26":"추석 연휴","2026-10-03":"개천절","2026-10-05":"대체공휴일(개천절)","2026-10-09":"한글날","2026-12-25":"성탄절","2027-01-01":"신정","2027-02-06":"설날 연휴","2027-02-07":"설날","2027-02-08":"설날 연휴","2027-02-09":"대체공휴일(설날)","2027-03-01":"삼일절","2027-05-01":"노동절","2027-05-03":"대체공휴일(노동절)","2027-05-05":"어린이날","2027-05-13":"부처님오신날","2027-06-06":"현충일","2027-07-17":"제헌절","2027-07-19":"대체공휴일(제헌절)","2027-08-15":"광복절","2027-08-16":"대체공휴일(광복절)","2027-09-14":"추석 연휴","2027-09-15":"추석","2027-09-16":"추석 연휴","2027-10-03":"개천절","2027-10-04":"대체공휴일(개천절)","2027-10-09":"한글날","2027-10-11":"대체공휴일(한글날)","2027-12-25":"성탄절","2027-12-27":"대체공휴일(성탄절)"};/*holi*/  /* 공휴일 (연휴 계산기 데이터, build_tools.py가 채움) */
 var ICONS={"/wage/":"₩","/salary/":"연","/freelance-tax/":"3.3","/severance/":"퇴","/leave/":"휴","/worktime/":"시","/vat/":"부","/date/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"5.5\" width=\"18\" height=\"16\" rx=\"3\"/><path d=\"M4 10.5h18M9 3.5v4M17 3.5v4\"/><path d=\"M9.5 15.5l2.2 2.2 4.3-4.4\"/></svg>","/age/":"만","/holiday/":"공","/dutch/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\"><circle cx=\"8\" cy=\"8\" r=\"3.2\"/><circle cx=\"18\" cy=\"8\" r=\"3.2\"/><path d=\"M3 21c0-3 2.2-5 5-5s5 2 5 5M13 21c0-3 2.2-5 5-5s5 2 5 5\"/></svg>","/percent/":"%","/pyeong/":"평","/charcount/":"가","/receipt/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h14v20l-3.5-2-3.5 2-3.5-2L6 23z\"/><path d=\"M10 9h6M10 13h6\"/></svg>","/party/team/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\"><circle cx=\"7\" cy=\"8\" r=\"2.6\"/><circle cx=\"19\" cy=\"8\" r=\"2.6\"/><path d=\"M2.5 19c0-2.6 2-4.4 4.5-4.4s4.5 1.8 4.5 4.4M14.5 19c0-2.6 2-4.4 4.5-4.4s4.5 1.8 4.5 4.4\"/><path d=\"M13 4v18\" stroke-dasharray=\"2 3\"/></svg>","/party/roulette/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\"><circle cx=\"13\" cy=\"14\" r=\"9\"/><path d=\"M13 5v18M4 14h18M6.6 7.6l12.8 12.8M19.4 7.6L6.6 20.4\" stroke-width=\"1.4\"/><path d=\"M10.5 1.8h5L13 5z\" fill=\"#fff\" stroke=\"none\"/></svg>","/party/ladder/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\"><path d=\"M6 3v20M13 3v20M20 3v20M6 8h7M13 13h7M6 18h7\"/></svg>","/party/manito/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3.5\" y=\"10\" width=\"19\" height=\"5\" rx=\"1.5\"/><path d=\"M5 15v7.5h16V15M13 10v12.5M13 10c-1.6-4.4-6.6-4.2-6.6-1.6 0 1.8 3 1.7 6.6 1.6zM13 10c1.6-4.4 6.6-4.2 6.6-1.6 0 1.8-3 1.7-6.6 1.6z\"/></svg>","/party/lots/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"6\" width=\"10\" height=\"14\" rx=\"2\" transform=\"rotate(-10 8 13)\"/><rect x=\"12\" y=\"5\" width=\"10\" height=\"14\" rx=\"2\" transform=\"rotate(8 17 12)\"/></svg>","/random/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"4\" width=\"18\" height=\"18\" rx=\"4\"/><circle cx=\"9.5\" cy=\"9.5\" r=\"1.4\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"16.5\" cy=\"16.5\" r=\"1.4\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"13\" cy=\"13\" r=\"1.4\" fill=\"#fff\" stroke=\"none\"/></svg>","/traditional/yut/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 28 28\" fill=\"#fff\"><rect x=\"3\" y=\"4\" width=\"4\" height=\"20\" rx=\"2\"/><rect x=\"9.3\" y=\"4\" width=\"4\" height=\"20\" rx=\"2\" opacity=\".75\"/><rect x=\"15.6\" y=\"4\" width=\"4\" height=\"20\" rx=\"2\"/><rect x=\"21.9\" y=\"4\" width=\"4\" height=\"20\" rx=\"2\" opacity=\".75\"/></svg>"};/*icons*/  /* 도구 아이콘 (build_tools.py가 채움) */
 var HOT=[["자소서","자소서 줄바꿈"],["n빵","N빵 계산기"],["팀","팀정하기 룰렛"],["제비","제비뽑기"],["마니또","마니또 뽑기"],["만 나이","만 나이"],["윷놀이","윷놀이 게임"],["조 이름","조 이름 추천"]];/*hot*/  /* 검색창 아래 많이 찾는 검색어 (build_tools.py가 채움) */
 var $=function(id){return document.getElementById(id);};
@@ -55,6 +56,12 @@ function cleanLikes(a){
 }
 function loadLikes(){try{return cleanLikes(JSON.parse(ls(LKEY)||'[]'));}catch(e){return [];}}
 var likes=loadLikes(), likesOK=true;
+/* 달력 메모: {'2026-11-25':'메모'} */
+var MKEY='sonandogu-memos-v1', memosOK=true;
+function cleanMemos(o){ var r={}, n=0; if(o&&typeof o==='object') Object.keys(o).sort().forEach(function(k){ if(n>=80||!/^\d{4}-\d{2}-\d{2}$/.test(k)) return; var v=String(o[k]==null?'':o[k]).replace(/\s+/g,' ').trim().slice(0,80); if(v){ r[k]=v; n++; } }); return r; }
+function loadMemos(){ try{ return cleanMemos(JSON.parse(ls(MKEY)||'{}')); }catch(e){ return {}; } }
+var memos=loadMemos();
+function setMemos(m){ memos=cleanMemos(m); ls(MKEY,JSON.stringify(memos)); if(typeof drawSidebar==='function'&&sb.isConnected) drawSidebar(); if(user&&pulled) pushCloud(); }
 
 ls('sonandogu-recent',null); /* 예전 '최근 쓴 도구' 기록은 더 쓰지 않으므로 지운다 */
 
@@ -78,21 +85,23 @@ function pushCloud(){
     var ref=fb.fs.doc(fb.db,'users',user.uid);
     var data={favs:favs.slice(),dates:JSON.stringify(loadDates()),updated:fb.fs.serverTimestamp()};
     if(likesOK) data.likes=JSON.stringify(likes);
+    if(memosOK) data.memos=JSON.stringify(memos);
     fb.fs.setDoc(ref,data,{merge:true}).catch(function(e){
       /* 보안 규칙이 likes 필드를 아직 모르면 즐겨찾기만이라도 저장한다 */
-      if(likesOK&&e&&e.code==='permission-denied'){ likesOK=false; delete data.likes; fb.fs.setDoc(ref,data,{merge:true}).catch(function(){}); note('좋아요를 계정에 저장하지 못했어요. 즐겨찾기는 저장됐어요.'); return; }
+      if((likesOK||memosOK)&&e&&e.code==='permission-denied'){ var had=('memos' in data)?'달력 메모':'좋아요'; likesOK=false; memosOK=false; delete data.likes; delete data.memos; fb.fs.setDoc(ref,data,{merge:true}).catch(function(){}); note(had+'를 계정에 저장하지 못했어요. 즐겨찾기는 저장됐어요.'); return; }
       note('클라우드 저장이 늦어지고 있어요. 이 기기에는 저장됐어요.');
     });
   },500);
 }
 async function pull(u){
-  var ref=fb.fs.doc(fb.db,'users',u.uid), cloud=[], cloudD=[], cloudL=[], exists=false;
+  var ref=fb.fs.doc(fb.db,'users',u.uid), cloud=[], cloudD=[], cloudL=[], cloudM={}, exists=false;
   try{
     var snap=await fb.fs.getDoc(ref); exists=snap.exists();
     if(exists){
       var d=snap.data()||{}; cloud=clean(Array.isArray(d.favs)?d.favs:[]);
       try{cloudD=cleanDates(JSON.parse(d.dates||'[]'));}catch(e){}
       try{cloudL=cleanLikes(JSON.parse(d.likes||'[]'));}catch(e){}
+      try{cloudM=cleanMemos(JSON.parse(d.memos||'{}'));}catch(e){}
     }
   }catch(e){ note('즐겨찾기를 불러오지 못했어요. 잠시 뒤 다시 시도해 주세요.'); return; }
   if(user!==u) return;
@@ -101,6 +110,7 @@ async function pull(u){
   var localD=loadDates(), nextD=merge?unionDates(cloudD,localD):cloudD;
   pulled=true; loginFlag=false;
   setLikes(cloudL);
+  var nm=merge?Object.assign({},cloudM,memos):cloudM; memos=cleanMemos(nm); ls(MKEY,JSON.stringify(memos));
   setFavs(next);
   if(!sameDates(nextD,localD)){ ls(DKEY,JSON.stringify(nextD)); datesChanged(); }
   if(merge&&(!same(next,cloud)||!sameDates(nextD,cloudD))) pushCloud();
@@ -123,7 +133,7 @@ function onAuth(u){
   if(user){ wasUser=true; ls(HINT,'1'); drawAcct(); closeModal(); pull(user); }
   else{
     ls(HINT,null); drawAcct(); closePanel();
-    if(wasUser){ wasUser=false; touched=false; favs=[]; persistLocal(); ls(DKEY,null); setLikes([]); emit(); datesChanged(); }
+    if(wasUser){ wasUser=false; touched=false; favs=[]; persistLocal(); ls(DKEY,null); setLikes([]); memos={}; ls(MKEY,null); emit(); datesChanged(); }
   }
 }
 
@@ -471,6 +481,65 @@ var sbBtn=el('button','sbtn'); sbBtn.type='button'; sbBtn.setAttribute('aria-lab
 sbBtn.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
 function wide(){ return matchMedia('(min-width:1200px)').matches; }
 var sbTab=ls('sonandogu-sb-tab')==='like'?'like':'fav', sbEdit=false;
+/* ---------- 서랍 달력: 저장한 D-day(파란 점), 메모(주황 점), 공휴일(빨간 글씨) ---------- */
+var calY, calM, calSel=null;
+(function(){ var t=new Date(); calY=t.getFullYear(); calM=t.getMonth(); })();
+function iso(y,m,d){ return y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0'); }
+function dnum(s){ var a=s.split('-').map(Number); return Math.round(Date.UTC(a[0],a[1]-1,a[2])/864e5); }
+function todayIso(){ var t=new Date(); return iso(t.getFullYear(),t.getMonth(),t.getDate()); }
+function drawCal(){
+  var wrap=el('div','sbcal'), saved=loadDates(), T=todayIso();
+  var dset={}; saved.forEach(function(x){ if(x.t==='dday') dset[x.d]=x.n||'D-day'; });
+  var hd=el('div','calhd'), pv=el('button','calnav','‹'), nx=el('button','calnav','›'); pv.type=nx.type='button';
+  pv.setAttribute('aria-label','이전 달'); nx.setAttribute('aria-label','다음 달');
+  pv.onclick=function(){ calM--; if(calM<0){calM=11; calY--;} calSel=null; drawSidebar(); };
+  nx.onclick=function(){ calM++; if(calM>11){calM=0; calY++;} calSel=null; drawSidebar(); };
+  hd.appendChild(pv); hd.appendChild(el('b',null,calY+'년 '+(calM+1)+'월')); hd.appendChild(nx); wrap.appendChild(hd);
+  var g=el('div','calg'); ['일','월','화','수','목','금','토'].forEach(function(w,i){ g.appendChild(el('span','calw'+(i===0?' sun':i===6?' sat':''),w)); });
+  var first=new Date(calY,calM,1).getDay(), days=new Date(calY,calM+1,0).getDate();
+  for(var i=0;i<first;i++) g.appendChild(el('span','calx'));
+  for(var d=1;d<=days;d++){ (function(d){
+    var k=iso(calY,calM,d), wd=(first+d-1)%7, b=el('button','cald',String(d)); b.type='button';
+    if(wd===0||HOLI[k]) b.classList.add('hol'); else if(wd===6) b.classList.add('sat');
+    if(k===T) b.classList.add('today'); if(k===calSel) b.classList.add('sel');
+    var tip=[]; if(HOLI[k]) tip.push(HOLI[k]); if(dset[k]){ b.classList.add('hasd'); tip.push('D-day: '+dset[k]); } if(memos[k]){ b.classList.add('hasm'); tip.push('메모: '+memos[k]); }
+    b.setAttribute('aria-label',(calM+1)+'월 '+d+'일'+(tip.length?' · '+tip.join(' · '):'')); if(tip.length) b.title=tip.join('\n');
+    b.onclick=function(){ calSel=(calSel===k)?null:k; drawSidebar(); var ta=sb.querySelector('.caled textarea'); if(ta) ta.focus(); };
+    g.appendChild(b); })(d); }
+  wrap.appendChild(g);
+  /* 고른 날 메모 */
+  if(calSel){
+    var ed=el('div','caled'), a=calSel.split('-').map(Number), wdn=['일','월','화','수','목','금','토'][new Date(a[0],a[1]-1,a[2]).getDay()];
+    var top=el('div','caledh'); top.appendChild(el('b',null,a[1]+'월 '+a[2]+'일 ('+wdn+')'));
+    var extra=[]; if(HOLI[calSel]) extra.push(HOLI[calSel]); if(dset[calSel]) extra.push('D-day '+dset[calSel]); if(extra.length) top.appendChild(el('span',null,extra.join(' · ')));
+    ed.appendChild(top);
+    var ta=el('textarea'); ta.maxLength=80; ta.rows=2; ta.placeholder='이 날 메모 (예: 엄마 생신, 월세 내는 날)'; ta.value=memos[calSel]||''; ed.appendChild(ta);
+    var bt=el('div','caledb'), sv=el('button','sv','저장'), dl=el('button','dl','지우기'), cl=el('button','cl','닫기'); sv.type=dl.type=cl.type='button';
+    sv.onclick=function(){ var m=Object.assign({},memos); var v=ta.value.trim(); if(v) m[calSel]=v; else delete m[calSel]; setMemos(m); note(v?'메모를 남겼어요':'메모를 지웠어요'); };
+    dl.onclick=function(){ var m=Object.assign({},memos); delete m[calSel]; setMemos(m); };
+    cl.onclick=function(){ calSel=null; drawSidebar(); };
+    ta.addEventListener('keydown',function(e){ if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){ e.preventDefault(); sv.click(); } });
+    bt.appendChild(sv); if(memos[calSel]) bt.appendChild(dl); bt.appendChild(cl); ed.appendChild(bt);
+    if(!user) ed.appendChild(el('p','calnote','메모는 이 기기에 저장돼요. 로그인하면 다른 기기에서도 이어져요.'));
+    wrap.appendChild(ed);
+  }
+  /* 다가오는 날 */
+  var T0=dnum(T), up=[];
+  saved.forEach(function(x){ if(x.t==='dday'){ var k=dnum(x.d)-T0; if(k>=0) up.push({k:k,n:x.n||'D-day',d:x.d,type:'d'}); } else if(x.t==='anniv'){ var c=T0-dnum(x.d)+(x.one?1:0); if(c>0) up.push({k:-1,n:x.n||'기념일',c:c,type:'a'}); } });
+  Object.keys(memos).forEach(function(k){ var n=dnum(k)-T0; if(n>=0) up.push({k:n,n:memos[k],d:k,type:'m'}); });
+  up.sort(function(a,b){ return (a.k<0?1e9:a.k)-(b.k<0?1e9:b.k); });
+  var ul=el('ul','calup');
+  up.slice(0,5).forEach(function(x){ var li=el('li'); var badge=el('b',x.type==='m'?'m':x.type==='a'?'a':'d', x.type==='a'?(x.c+'일째'):(x.k===0?'오늘':'D-'+x.k));
+    li.appendChild(badge); var s2=el('span',null,x.n); li.appendChild(s2);
+    if(x.d){ li.onclick=function(){ var a=x.d.split('-').map(Number); calY=a[0]; calM=a[1]-1; calSel=x.d; drawSidebar(); }; li.tabIndex=0; li.setAttribute('role','button'); }
+    ul.appendChild(li); });
+  if(up.length) wrap.appendChild(ul);
+  else wrap.appendChild(el('p','calnote','날짜를 눌러 메모를 남기거나, 날짜 계산기에서 D-day를 저장해 보세요.'));
+  var lk=el('a','callink','날짜 계산기에서 D-day 저장 →'); lk.href='/date/'; wrap.appendChild(lk);
+  return wrap;
+}
+window.addEventListener('sonandogu-dates-updated',function(){ if(sb.isConnected) drawSidebar(); });
+
 function catOf(h){ for(var i=0;i<CATS.length;i++) if(CATS[i].t.indexOf(h)>=0) return CATS[i]; return null; }
 function toolLink(h){
   var c=catOf(h), a=el('a','sbi'); a.href=h; if(h===here) a.setAttribute('aria-current','page');
@@ -485,6 +554,7 @@ function drawSidebar(){
   var close=el('button','sbx'); close.type='button'; close.setAttribute('aria-label','서랍 닫기'); close.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>';
   close.onclick=function(){ if(wide()){ ls(SBKEY,'1'); document.documentElement.classList.add('sb-off'); } else closeDrawer(); };
   hd.appendChild(who); hd.appendChild(close); sb.appendChild(hd);
+  sb.appendChild(drawCal());
   /* 내 것: 즐겨찾기 | 좋아요 탭 */
   var mine=el('div','sbmine'), tabs=el('div','sbtabs'), pane=el('div','sbpane');
   [['fav','★ 즐겨찾기',favs.length],['like','♥ 좋아요',likes.length]].forEach(function(x){
