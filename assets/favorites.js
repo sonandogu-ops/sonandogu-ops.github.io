@@ -474,8 +474,7 @@ var sbTab=ls('sonandogu-sb-tab')==='like'?'like':'fav';
 function catOf(h){ for(var i=0;i<CATS.length;i++) if(CATS[i].t.indexOf(h)>=0) return CATS[i]; return null; }
 function toolLink(h){
   var c=catOf(h), a=el('a','sbi'); a.href=h; if(h===here) a.setAttribute('aria-current','page');
-  var ic=el('span','sbic'); ic.innerHTML=ICONS[h]||''; if(c) ic.style.background='linear-gradient(145deg,'+c.c1+','+c.c+')';
-  a.appendChild(ic); a.appendChild(el('span','sbn',NAMES[h]||h)); return a;
+  a.appendChild(el('span','sbn',NAMES[h]||h)); return a;   /* 도구 이름만 깔끔하게 (아이콘 없이) */
 }
 function drawSidebar(){
   sb.textContent='';
@@ -495,7 +494,7 @@ function drawSidebar(){
     if(favs.length) favs.forEach(function(h){ pane.appendChild(toolLink(h)); });
     else pane.appendChild(el('p','sbempty','도구 이름 옆 ☆을 누르면 여기 모여요'));
   }else{
-    if(likes.length) likes.slice(0,20).forEach(function(x){ var a=el('a','sbi sbpost'); a.href=x.p; if(x.p===here) a.setAttribute('aria-current','page'); a.appendChild(el('span','sbic sbh','♥')); a.appendChild(el('span','sbn',x.t)); pane.appendChild(a); });
+    if(likes.length) likes.slice(0,20).forEach(function(x){ var a=el('a','sbi sbpost'); a.href=x.p; if(x.p===here) a.setAttribute('aria-current','page'); a.appendChild(el('span','sbn',x.t)); pane.appendChild(a); });
     else pane.appendChild(el('p','sbempty',user?'블로그 글의 ♡를 누르면 여기 모여요':'로그인하고 글의 ♡를 누르면 여기 모여요'));
   }
   mine.appendChild(tabs); mine.appendChild(pane); sb.appendChild(mine);

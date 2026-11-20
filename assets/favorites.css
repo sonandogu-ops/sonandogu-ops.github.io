@@ -297,8 +297,8 @@ html{scroll-behavior:smooth}
 .sbcat summary small{font-size:12px; font-weight:800; color:var(--faint)}
 .sbcat summary::after{content:""; width:7px; height:7px; flex:none; margin:0 4px 0 2px; border-right:2px solid var(--faint); border-bottom:2px solid var(--faint); transform:rotate(45deg) translateY(-2px); transition:transform .2s}
 .sbcat[open] > summary::after{transform:rotate(-135deg) translateY(-2px)}
-.sbtools{padding:4px 0 6px 10px}
-.sbi{display:flex; align-items:center; gap:9px; padding:6px 8px; border-radius:11px; text-decoration:none; color:var(--muted)}
+.sbtools{padding:2px 0 6px 48px}
+.sbi{display:flex; align-items:center; gap:9px; padding:7px 10px; border-radius:11px; text-decoration:none; color:var(--muted)}
 .sbi:hover{background:var(--surface); color:var(--ink)}
 .sbi[aria-current="page"]{color:var(--orange); background:rgba(255,90,31,.08)}
 .sbi[aria-current="page"] .sbn{font-weight:800}
