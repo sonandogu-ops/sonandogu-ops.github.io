@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>손안의도구 블로그</title>
+  <link>https://sonandogu.com/blog/</link>
+  <atom:link href="https://sonandogu.com/blog/rss.xml" rel="self" type="application/rss+xml"/>
+  <description>계산이 헷갈리는 순간에 꺼내 보는 짧고 쓸모 있는 글</description>
+  <language>ko</language>
+  <lastBuildDate>Thu, 19 Nov 2026 09:00:00 +0900</lastBuildDate>
+  <item>
+    <title>84㎡는 왜 34평일까, 전용면적과 공급면적</title>
+    <link>https://sonandogu.com/blog/pyeong-area/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/pyeong-area/</guid>
+    <category>생활 계산</category>
+    <description>㎡를 평으로 바꾸는 평수 계산법, 전용·공급·계약면적의 차이, 국민평형 84㎡의 이유, 오피스텔이 좁게 느껴지는 까닭과 자주 찾는 면적표까지 정리했어요.</description>
+    <pubDate>Thu, 19 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>당첨자 추첨, 뒷말 없이 하는 법</title>
+    <link>https://sonandogu.com/blog/fair-draw/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/fair-draw/</guid>
+    <category>모임 놀이</category>
+    <description>경품 추첨에서 &quot;조작 아니야?&quot; 소리 안 듣는 순서, 여러 등수와 중복 응모 처리, 로또 1등 확률 814만 분의 1과 당첨금 세금까지 정리했어요.</description>
+    <pubDate>Tue, 17 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>3.3% 떼고 받았다면, 5월에 꼭 챙길 것</title>
+    <link>https://sonandogu.com/blog/freelance-tax-may/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/freelance-tax-may/</guid>
+    <category>세금 상식</category>
+    <description>금액별 실수령액, 5월 종합소득세로 돌려받거나 더 내는 구조, 2026년 세율표와 누진공제, 11월 중간예납까지 정리했어요.</description>
+    <pubDate>Tue, 17 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>부가세, 언제 내고 얼마나 낼까</title>
+    <link>https://sonandogu.com/blog/vat-filing/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/vat-filing/</guid>
+    <category>세금 상식</category>
+    <description>매출세액에서 매입세액을 빼는 계산법, 1월·7월 신고와 예정고지, 간이과세자 기준 1억 400만 원, 면세와 영세율까지 정리했어요.</description>
+    <pubDate>Tue, 17 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>2027년 달라지는 것, 월급과 달력부터 바뀌어요</title>
+    <link>https://sonandogu.com/blog/changes-2027/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/changes-2027/</guid>
+    <category>생활 계산</category>
+    <description>최저임금 10,700원, 국민연금 10%, 장기요양보험료 인상, 노동절·제헌절 대체공휴일까지. 확정된 것과 절차가 남은 것을 나눠 월급 300만 원 기준으로 정리했어요.</description>
+    <pubDate>Mon, 16 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>2027년 연휴 총정리, 연차 3일로 9일 쉬는 법</title>
+    <link>https://sonandogu.com/blog/holiday-2027/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/holiday-2027/</guid>
+    <category>생활 계산</category>
+    <description>노동절·제헌절이 더해진 2027년 공휴일, 대체공휴일 7일, 주 5일 근무자 휴일 119일, 월별 쉬는 날과 연차 붙여 쓰기 좋은 시기 다섯 곳을 월력요항 기준으로 정리했어요.</description>
+    <pubDate>Thu, 12 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>근무시간 계산, 휴게시간과 자정 넘김에서 틀려요</title>
+    <link>https://sonandogu.com/blog/work-hours-calc/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/work-hours-calc/</guid>
+    <category>생활 계산</category>
+    <description>출퇴근 시각에서 근로시간을 구하는 3단계, 22시~6시 근무 계산, 7시간 30분을 시급에 곱하는 법, 15분 단위로 끊어 계산하는 관행, 한 주 시간표로 월 환산까지 정리했어요.</description>
+    <pubDate>Thu, 12 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>최저임금 하루치와 한 달치, 환산표로 한 번에 보기</title>
+    <link>https://sonandogu.com/blog/minimum-wage-table/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/minimum-wage-table/</guid>
+    <category>생활 계산</category>
+    <description>2026년 10,320원과 2027년 10,700원으로 하루 4~8시간 일급, 근무 형태별 월급, 월 근로시간 계산법, 하루 7시간과 8시간의 차이와 내년 인상분을 정리했어요.</description>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>조 이름, 뭐로 할지 모르겠다면 공식부터 써 보세요</title>
+    <link>https://sonandogu.com/blog/team-name-ideas/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/team-name-ideas/</guid>
+    <category>모임 놀이</category>
+    <description>조원 이름 합치기, 과제 주제 말장난, 숫자 활용 등 센스 있는 팀 이름 공식 5가지와 예시, 후보를 룰렛으로 정하는 요령을 정리했어요.</description>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>제비뽑기, 밋밋하다면 문구와 연출부터 바꿔 보세요</title>
+    <link>https://sonandogu.com/blog/lots-ideas/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/lots-ideas/</guid>
+    <category>모임 놀이</category>
+    <description>꽝 대신 미션 카드, 공개 연출 3가지, 부담 없는 벌칙 원칙, 인원별 운영 팁까지. 제비뽑기를 모임의 하이라이트로 만드는 방법이에요.</description>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>마니또, 종이 제비로 뽑으면 왜 자꾸 다시 뽑을까</title>
+    <link>https://sonandogu.com/blog/manito-rules/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/manito-rules/</guid>
+    <category>모임 놀이</category>
+    <description>6명만 돼도 누군가 자기 이름을 뽑을 확률이 약 63%예요. 마니또가 자주 다시 뽑히는 이유와 원형 배정 방법, 일주일 마니또 활동 아이디어를 정리했어요.</description>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>연차 15일은 언제 생길까, 월차 11일부터 25일까지</title>
+    <link>https://sonandogu.com/blog/annual-leave/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/annual-leave/</guid>
+    <category>생활 계산</category>
+    <description>입사 첫 달부터 쌓이는 월차 11일, 1년 뒤 15일, 3년 뒤 2년마다 1일 가산(최대 25일), 입사일·회계연도 기준 차이와 미사용 연차수당 계산법을 정리했어요.</description>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>알바 퇴직금과 연차, 주 15시간이 가르는 것</title>
+    <link>https://sonandogu.com/blog/under-15-hours/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/under-15-hours/</guid>
+    <category>알바 상식</category>
+    <description>4주 평균 주 15시간이 기준이에요. 4주 평균 계산법, 시간이 들쭉날쭉할 때, 근무 시간별 퇴직금, 일한 시간에 비례하는 연차 계산까지 정리했어요.</description>
+    <pubDate>Mon, 09 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>월급 300만 원으로 3년 일하면 퇴직금은 얼마일까</title>
+    <link>https://sonandogu.com/blog/severance-pay/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/severance-pay/</guid>
+    <category>생활 계산</category>
+    <description>퇴직금은 월급 곱하기 근속연수가 아니에요. 평균임금 계산법, 상여금·연차수당 3/12 가산, 받을 수 있는 조건과 14일 기한, 퇴직소득세까지 정리했어요.</description>
+    <pubDate>Sun, 08 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>연봉 3,600만 원, 통장에는 얼마가 찍힐까</title>
+    <link>https://sonandogu.com/blog/salary-take-home/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/salary-take-home/</guid>
+    <category>생활 계산</category>
+    <description>월급 300만 원에서 4대보험과 세금이 빠지면 실수령액은 얼마? 2026년 요율로 계산 과정과 연봉별 실수령액, 비과세·부양가족 효과를 정리했어요.</description>
+    <pubDate>Sun, 08 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>자소서 글자수, 입력창에서만 넘친 이유</title>
+    <link>https://sonandogu.com/blog/resume-char-count/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/resume-char-count/</guid>
+    <category>생활 도구</category>
+    <description>문서 프로그램에서는 1,000자였는데 지원서 입력창에서는 넘쳤다면? 공백 포함·제외, 줄바꿈 1글자·2글자, 바이트 기준이 달라서예요.</description>
+    <pubDate>Sun, 08 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>만 나이로 통일됐는데, 왜 내 나이는 아직 세 개일까</title>
+    <link>https://sonandogu.com/blog/korean-age/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/korean-age/</guid>
+    <category>생활 계산</category>
+    <description>같은 사람인데 만 나이, 연 나이, 세는 나이가 다 다른 이유. 술·담배와 초등 입학은 왜 아직 연 나이인지, 2월 29일생과 아기 나이 규칙까지.</description>
+    <pubDate>Sun, 08 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>팀 정하기, 왜 늘 누군가 서운할까</title>
+    <link>https://sonandogu.com/blog/team-picking/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/team-picking/</guid>
+    <category>모임 놀이</category>
+    <description>친한 사람끼리, 주장이 뽑기, 손바닥 뒤집기의 장단점과 무작위가 가장 공평한 이유, 룰렛으로 한 명씩 팀 정하는 법까지.</description>
+    <pubDate>Fri, 06 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>100일 이벤트, 하루 늦은 이유</title>
+    <link>https://sonandogu.com/blog/anniversary-count/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/anniversary-count/</guid>
+    <category>생활 계산</category>
+    <description>&quot;100일은 어제였는데…&quot; 만난 날을 1일로 세는 기념일 계산법, 1주년과 365일이 다른 이유, 윤년 함정, D-day의 뜻까지.</description>
+    <pubDate>Tue, 03 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>&quot;아무거나&quot;가 제일 어려운 이유</title>
+    <link>https://sonandogu.com/blog/random-decision/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/random-decision/</guid>
+    <category>모임 놀이</category>
+    <description>점심 메뉴 하나 정하는 데 20분. 선택 과부하와 잼 실험, 무작위가 모임을 편하게 만드는 이유, 룰렛 결과가 아쉬울 때 보이는 진짜 마음까지.</description>
+    <pubDate>Mon, 02 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>주 14시간 알바, 1시간 차이로 사라지는 돈</title>
+    <link>https://sonandogu.com/blog/weekly-holiday-pay/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/weekly-holiday-pay/</guid>
+    <category>알바 상식</category>
+    <description>겨우 1시간 차이인데 한 달 급여는 17만 원 넘게 벌어져요. 주휴수당 조건과 계산법, 쪼개기 계약, 못 받았을 때 대처법까지.</description>
+    <pubDate>Mon, 02 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>N빵하면 왜 꼭 누군가 서운할까?</title>
+    <link>https://sonandogu.com/blog/dutch-pay/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/dutch-pay/</guid>
+    <category>생활 계산</category>
+    <description>술 한 잔 마셨는데 똑같이 내고, 송금은 실타래처럼 꼬이고. 항목별로 나누기부터 최소 송금, 끝자리 잔돈 처리까지 깔끔한 정산법.</description>
+    <pubDate>Mon, 02 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>연봉 5% 인상, 진짜 얼마나 오른 걸까?</title>
+    <link>https://sonandogu.com/blog/salary-raise/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/salary-raise/</guid>
+    <category>생활 계산</category>
+    <description>A는 150만 원, B는 140만 원 올랐는데 누가 더 많이 오른 걸까. 인상률 계산법과 물가를 뺀 실질 인상률, 2%p 차이가 10년 뒤 850만 원이 되는 이유까지.</description>
+    <pubDate>Mon, 02 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>금리 2%에서 3%, 1% 올랐다는 말이 틀린 이유</title>
+    <link>https://sonandogu.com/blog/percent-point/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/percent-point/</guid>
+    <category>생활 계산</category>
+    <description>이자가 절반이나 늘었는데 1%밖에 안 올랐다고? 퍼센트와 퍼센트포인트의 차이, 50% 떨어지고 50% 오르면 본전이 안 되는 이유까지.</description>
+    <pubDate>Mon, 02 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>윷놀이 하다 싸우는 이유, 집집마다 규칙이 달라서예요</title>
+    <link>https://sonandogu.com/blog/yut-rules/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/yut-rules/</guid>
+    <category>전통 놀이</category>
+    <description>도개걸윷모에 숨은 동물, 개가 제일 자주 나오는 이유, 빽도와 낙처럼 집마다 갈리는 규칙까지. 판 벌이기 전 3분이면 충분해요.</description>
+    <pubDate>Mon, 02 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>3만 원 넘으면 간이영수증은 쓸모없을까?</title>
+    <link>https://sonandogu.com/blog/simple-receipt/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/simple-receipt/</guid>
+    <category>세금 상식</category>
+    <description>45,000원 공구를 사고 간이영수증을 받았는데 가산세가 붙는다고? 3만 원 기준과 2% 가산세, 쪼개기가 안 되는 이유까지.</description>
+    <pubDate>Mon, 02 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+  <item>
+    <title>20% 할인에 10% 더, 왜 30%가 아닐까?</title>
+    <link>https://sonandogu.com/blog/discount-rate/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/discount-rate/</guid>
+    <category>생활 계산</category>
+    <description>10만 원 패딩이 왜 7만 원이 아니라 72,000원이었을까. 중복 할인의 비밀부터 2+1이 몇 % 할인인지, 원래 가격 거꾸로 찾는 법까지.</description>
+    <pubDate>Sun, 01 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
+</channel>
+</rss>
