@@ -298,6 +298,29 @@ footer .fl a:hover{color:var(--ink)}
 .quick[hidden],.qh[hidden]{display:none!important}
 @media (min-width:640px){ .quick{grid-template-columns:repeat(8,1fr)} }
 .posts{margin-top:48px!important; padding:32px 0 28px; background:rgba(127,120,110,.09); box-shadow:0 0 0 100vmax rgba(127,120,110,.09); clip-path:inset(0 -100vmax)}
+
+/* 많이 찾는 검색어 */
+.hot{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:12px 0 0}
+.hot span{font-size:12.5px; font-weight:800; color:var(--faint); margin-right:2px}
+.hot button{font:inherit; font-size:13px; font-weight:700; color:var(--muted); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:5px 11px; cursor:pointer}
+.hot button:hover{color:var(--orange); border-color:var(--orange)}
+@media (pointer:coarse){ .hot button{min-height:36px} }
+@media (max-width:639px){ .hot{flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; margin-right:-20px; padding-right:20px; -webkit-overflow-scrolling:touch} .hot::-webkit-scrollbar{display:none} .hot button,.hot span{flex:none} }
+/* 분류 이름 옆 도구 개수, 새 도구 표시 */
+.ch .n{font-size:13px; font-weight:800; color:var(--faint); margin-left:2px}
+.newb{display:inline-block; margin-left:6px; padding:1px 6px 2px; font-size:10.5px; font-weight:900; font-style:normal; letter-spacing:.02em; color:#fff; background:var(--orange); border-radius:999px; vertical-align:2px}
+/* 컴퓨터·태블릿: 도구를 카드 바둑판으로 */
+@media (min-width:760px){
+  html .cat .grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; background:none; border:0; border-radius:0; overflow:visible; box-shadow:none}
+  html .cat .t{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:14px 14px; align-items:flex-start; transition:border-color .2s, transform .2s}
+  html .cat a.t:not([hidden]):last-of-type{border-bottom:1px solid var(--line)}
+  html .cat .t:hover{border-color:var(--ink); background:var(--surface); transform:translateY(-2px)}
+  html .cat .tx{display:block}
+  html .cat .t strong{display:block; margin:1px 0 3px}
+  html .cat .t .d{white-space:normal; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; line-height:1.5}
+  html .cat .t .go{align-self:center}
+}
+@media (min-width:1000px){ html .cat .grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
 </style>
 <link rel="stylesheet" href="/assets/comments.css?v=4">
 <link rel="stylesheet" href="/assets/favorites.css?v=13">
@@ -312,6 +335,7 @@ footer .fl a:hover{color:var(--ink)}
     <p>계산기부터 생활 도구, 함께 즐기는 놀이까지. 가입 없이 필요한 순간 바로 꺼내 쓰세요.</p>
     <div class="finder">
       <div class="tabs2" role="tablist" aria-label="분류"><button role="tab" data-t="all" aria-selected="true">전체</button><button role="tab" data-t="calc" aria-selected="false"><i style="background:#FF5A1F"></i>계산기</button><button role="tab" data-t="tools" aria-selected="false"><i style="background:#2F66F0"></i>생활 도구</button><button role="tab" data-t="play" aria-selected="false"><i style="background:#12985B"></i>놀이</button></div>
+      <div class="hot" aria-label="많이 찾는 검색어"><span>많이 찾는</span><button type="button" data-q="주휴수당">주휴수당</button><button type="button" data-q="n빵">N빵 정산</button><button type="button" data-q="몇 평">84㎡ 몇 평</button><button type="button" data-q="연말정산">연말정산</button><button type="button" data-q="자소서">자소서 글자수</button><button type="button" data-q="팀">팀 나누기</button></div>
     </div>
   </section>
   <div class="qh">많이 쓰는 도구</div>
@@ -338,9 +362,9 @@ footer .fl a:hover{color:var(--ink)}
       <a class="t" href="/holiday/" data-kw="연휴 연휴계산기 공휴일 2027 공휴일 대체공휴일 연차 붙여쓰기 황금연휴 근무일수 영업일 달력 설날 추석 노동절 제헌절 징검다리"><span class="ic" aria-hidden="true">공</span><span class="tx"><strong>연휴 계산기</strong><span class="d">연차 붙여 쓰기·공휴일 달력</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     <a class="t" href="/age/" data-kw="만 나이 만나이 연 나이 세는 나이 한국 나이 생년월일 생일 나이 계산 몇 살 출생 다음 생일"><span class="ic" aria-hidden="true">만</span><span class="tx"><strong>만 나이 계산기</strong><span class="d">생년월일로 만·연·세는 나이</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     <a class="t" href="/date/" data-kw="날짜 디데이 d-day dday 기념일 100일 1000일 며칠 요일 기간 사이"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5.5" width="18" height="16" rx="3"/><path d="M4 10.5h18M9 3.5v4M17 3.5v4"/><path d="M9.5 15.5l2.2 2.2 4.3-4.4"/></svg></span><span class="tx"><strong>날짜 계산기</strong><span class="d">D-day, 100일 기념일, 며칠 뒤 요일</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-    <a class="t" href="/vat/" data-kw="부가세 부가세계산기 부가가치세 공급가액 공급가 세금계산서 vat 10% 합계 금액 부가세 포함 부가세 별도"><span class="ic" aria-hidden="true">부</span><span class="tx"><strong>부가세 계산기</strong><span class="d">공급가액·부가세 10%·합계 한 번에</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-    <a class="t" href="/freelance-tax/" data-kw="3.3% 3.3 계산기 프리랜서 세금 사업소득 원천징수 강사료 외주비 실수령 세후 세전 지방소득세"><span class="ic" aria-hidden="true" style="font-size:13px;letter-spacing:-.04em">3.3</span><span class="tx"><strong>3.3% 계산기</strong><span class="d">프리랜서 세금 떼고 실수령액</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-    <a class="t" href="/pyeong/" data-kw="평수 평수계산기 평 계산 제곱미터 ㎡ m2 평형 전용면적 공급면적 아파트 평수 면적 변환 84㎡ 몇 평 원룸 평수"><span class="ic" aria-hidden="true">평</span><span class="tx"><strong>평수 계산기</strong><span class="d">㎡ ↔ 평, 아파트 평형까지</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    <a class="t" href="/vat/" data-new="2026-11-17" data-kw="부가세 부가세계산기 부가가치세 공급가액 공급가 세금계산서 vat 10% 합계 금액 부가세 포함 부가세 별도"><span class="ic" aria-hidden="true">부</span><span class="tx"><strong>부가세 계산기</strong><span class="d">공급가액·부가세 10%·합계 한 번에</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    <a class="t" href="/freelance-tax/" data-new="2026-11-17" data-kw="3.3% 3.3 계산기 프리랜서 세금 사업소득 원천징수 강사료 외주비 실수령 세후 세전 지방소득세"><span class="ic" aria-hidden="true" style="font-size:13px;letter-spacing:-.04em">3.3</span><span class="tx"><strong>3.3% 계산기</strong><span class="d">프리랜서 세금 떼고 실수령액</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    <a class="t" href="/pyeong/" data-new="2026-11-19" data-kw="평수 평수계산기 평 계산 제곱미터 ㎡ m2 평형 전용면적 공급면적 아파트 평수 면적 변환 84㎡ 몇 평 원룸 평수"><span class="ic" aria-hidden="true">평</span><span class="tx"><strong>평수 계산기</strong><span class="d">㎡ ↔ 평, 아파트 평형까지</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
   </section>
   <section class="cat" id="tools">
@@ -359,7 +383,7 @@ footer .fl a:hover{color:var(--ink)}
       <a class="t" href="/party/ladder/" data-kw="사다리 사다리타기 게임 당첨 순서"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M6 3v20M13 3v20M20 3v20M6 8h7M13 13h7M6 18h7"/></svg></span><span class="tx"><strong>사다리타기</strong><span class="d">이름을 누르면 길이 그려져요</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
       <a class="t" href="/party/lots/" data-kw="제비뽑기 추첨 당첨 벌칙 뽑기"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"><rect x="3" y="6" width="10" height="14" rx="2" transform="rotate(-10 8 13)"/><rect x="12" y="5" width="10" height="14" rx="2" transform="rotate(8 17 12)"/></svg></span><span class="tx"><strong>제비뽑기</strong><span class="d">한 장씩 뒤집는 두근두근 추첨</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
       <a class="t" href="/party/manito/" data-kw="마니또 마니또뽑기 시크릿산타 비밀산타 선물 교환 선물 뽑기 마니또 정하기 송년회 연말 모임 크리스마스 선물 짝 정하기"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="10" width="19" height="5" rx="1.5"/><path d="M5 15v7.5h16V15M13 10v12.5M13 10c-1.6-4.4-6.6-4.2-6.6-1.6 0 1.8 3 1.7 6.6 1.6zM13 10c1.6-4.4 6.6-4.2 6.6-1.6 0 1.8-3 1.7-6.6 1.6z"/></svg></span><span class="tx"><strong>마니또 뽑기</strong><span class="d">자기 이름 안 걸리게 몰래 확인</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-      <a class="t" href="/random/" data-kw="랜덤 숫자 뽑기 랜덤뽑기 번호 뽑기 숫자 뽑기 당첨자 추첨 추첨기 로또 번호 주사위 랜덤 이름 뽑기 경품 추첨"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"><rect x="4" y="4" width="18" height="18" rx="4"/><circle cx="9.5" cy="9.5" r="1.4" fill="#fff" stroke="none"/><circle cx="16.5" cy="16.5" r="1.4" fill="#fff" stroke="none"/><circle cx="13" cy="13" r="1.4" fill="#fff" stroke="none"/></svg></span><span class="tx"><strong>랜덤 숫자 뽑기</strong><span class="d">번호 뽑기와 당첨자 추첨</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="t" href="/random/" data-new="2026-11-17" data-kw="랜덤 숫자 뽑기 랜덤뽑기 번호 뽑기 숫자 뽑기 당첨자 추첨 추첨기 로또 번호 주사위 랜덤 이름 뽑기 경품 추첨"><span class="ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"><rect x="4" y="4" width="18" height="18" rx="4"/><circle cx="9.5" cy="9.5" r="1.4" fill="#fff" stroke="none"/><circle cx="16.5" cy="16.5" r="1.4" fill="#fff" stroke="none"/><circle cx="13" cy="13" r="1.4" fill="#fff" stroke="none"/></svg></span><span class="tx"><strong>랜덤 숫자 뽑기</strong><span class="d">번호 뽑기와 당첨자 추첨</span></span><span class="go" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M4 10L10 4M5 4h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
   </section>
   <section class="pres" id="pRes" hidden aria-live="polite"><div class="ch"><h2>읽을거리</h2><span class="cs" id="pCnt"></span></div><div class="plist" id="pList"></div></section>
@@ -473,5 +497,15 @@ const f=document.getElementById('reqf'); if(f) f.addEventListener('submit',async
   m.hidden=false; m.className='reqm '+(r.ok?'ok':'no'); m.textContent=r.ok?'요청을 전달했어요. 고마워요!':r.msg; if(r.ok) t.value=''; });
 </script>
 <script src="/assets/analytics.js?v=3" defer></script>
+<script>
+/* 많이 찾는 검색어 칩, 분류별 개수, 새 도구 표시 */
+(function(){
+  var q=document.getElementById('q');
+  [].slice.call(document.querySelectorAll('.hot button')).forEach(function(b){ b.addEventListener('click',function(){ if(!q) return; q.value=b.dataset.q; q.dispatchEvent(new Event('input',{bubbles:true})); q.focus(); }); });
+  [].slice.call(document.querySelectorAll('.cat')).forEach(function(sec){ var h=sec.querySelector('.ch h2'); if(!h) return; var n=document.createElement('span'); n.className='n'; n.textContent=sec.querySelectorAll('a.t').length; h.appendChild(n); });
+  var now=Date.now();
+  [].slice.call(document.querySelectorAll('a.t[data-new]')).forEach(function(a){ var d=Date.parse(a.dataset.new); if(isFinite(d)&&now-d<30*864e5){ var st=a.querySelector('strong'); if(st){ var i=document.createElement('i'); i.className='newb'; i.textContent='NEW'; st.appendChild(i); } } });
+})();
+</script>
 </body>
 </html>
