@@ -263,40 +263,53 @@ html{scroll-behavior:smooth}
 .tbpeek{position:fixed; z-index:65; left:50%; transform:translateX(-50%); max-width:calc(100vw - 24px); background:#141518; color:#F4F4F1; border-radius:999px; padding:8px 16px; font-size:14.5px; font-weight:800; font-variant-numeric:tabular-nums; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; box-shadow:0 10px 24px -10px rgba(0,0,0,.6); pointer-events:none}
 .tbpeek[hidden]{display:none}
 
-/* ===== 왼쪽 도구 메뉴 ===== */
+/* ===== 왼쪽 '손안의 서랍' ===== */
 .sbtn{flex:none; width:38px; height:38px; margin:0 2px 0 -8px; display:grid; place-items:center; color:var(--ink); background:none; border:0; border-radius:10px; cursor:pointer}
 .sbtn:hover{background:var(--field)}
 .sbtn svg{width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round}
-.sbar{position:fixed; z-index:58; top:0; left:0; bottom:0; width:min(280px, 86vw); overflow-y:auto; overscroll-behavior:contain; background:var(--surface); border-right:1px solid var(--line); padding:12px 12px 28px; transform:translateX(-102%); transition:transform .25s cubic-bezier(.2,.8,.2,1); -webkit-overflow-scrolling:touch}
+.sbar{position:fixed; z-index:58; top:0; left:0; bottom:0; width:min(280px, 86vw); overflow-y:auto; overscroll-behavior:contain; background:var(--bg); border-right:1px solid var(--line); padding:14px 12px 24px; transform:translateX(-102%); transition:transform .25s cubic-bezier(.2,.8,.2,1); -webkit-overflow-scrolling:touch}
 .sbar.open{transform:none; box-shadow:12px 0 40px -12px rgba(0,0,0,.35)}
 .sbback{position:fixed; inset:0; z-index:57; background:rgba(14,15,17,.45)}
 .sbback[hidden]{display:none}
-.sbhd{display:flex; align-items:center; justify-content:space-between; padding:4px 4px 10px; margin-bottom:8px; border-bottom:1px solid var(--line)}
-.sbhd b{font-size:15px; font-weight:800; letter-spacing:-.03em}
-.sbx{width:36px; height:36px; display:grid; place-items:center; color:var(--muted); background:none; border:0; border-radius:10px; cursor:pointer}
-.sbx:hover{background:var(--field); color:var(--ink)}
-.sbx svg{width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.8}
-.sblinks{display:grid; gap:6px; margin:0 0 12px}
-.sblinks a{display:flex; align-items:center; gap:10px; padding:11px 12px; font-size:14px; font-weight:800; color:var(--ink); text-decoration:none; background:var(--field); border-radius:12px}
-.sblinks a:hover,.sblinks a[aria-current="page"]{color:var(--orange)}
-.sblinks svg{width:19px; height:19px; flex:none; fill:none; stroke:var(--orange); stroke-width:1.8; stroke-linejoin:round; stroke-linecap:round}
-.sbg{margin:2px 0}
-.sbg summary{display:flex; align-items:center; gap:8px; padding:9px 8px; font-size:14px; font-weight:800; color:var(--ink); cursor:pointer; list-style:none; border-radius:10px}
-.sbg summary::-webkit-details-marker{display:none}
-.sbg summary::before{content:""; width:7px; height:7px; flex:none; border-right:2px solid var(--faint); border-bottom:2px solid var(--faint); transform:rotate(-45deg); transition:transform .2s; margin-right:2px}
-.sbg[open] > summary::before{transform:rotate(45deg)}
-.sbg summary:hover{background:var(--field)}
-.sbg summary .dot{width:8px; height:8px; border-radius:50%; flex:none}
-.sbg summary small{font-size:12px; font-weight:800; color:var(--faint)}
-.sbg summary .st{font-style:normal; color:#F5A100}
-.sbg ul{list-style:none; margin:0 0 6px; padding:0 0 0 26px}
-.sbg li a{display:block; padding:7px 8px; font-size:14px; font-weight:600; color:var(--muted); text-decoration:none; border-radius:9px}
-.sbg li a:hover{color:var(--ink); background:var(--field)}
-.sbg li a[aria-current="page"]{color:var(--orange); font-weight:800; background:rgba(255,90,31,.08)}
-.sbempty{padding:6px 8px; font-size:12.5px; color:var(--faint)}
-.sball{margin-top:6px; padding-top:8px; border-top:1px solid var(--line)}
-.sbt{padding:6px 8px 4px; font-size:12.5px; font-weight:800; color:var(--faint)}
-@media (pointer:coarse){ .sbg li a{padding:10px 8px} .sbg summary{padding:11px 8px} }
+.sbhd{display:flex; align-items:center; justify-content:space-between; margin:0 2px 14px}
+.sbwho{display:flex; align-items:center; gap:10px}
+.sbwho img{width:34px; height:34px; object-fit:contain}
+.sbwho b{display:block; font-size:15.5px; font-weight:850; letter-spacing:-.04em; line-height:1.2}
+.sbwho span{display:block; font-size:12px; font-weight:700; color:var(--faint)}
+.sbx{width:34px; height:34px; display:grid; place-items:center; color:var(--muted); background:var(--surface); border:1px solid var(--line); border-radius:50%; cursor:pointer}
+.sbx:hover{color:var(--ink); border-color:var(--ink)}
+.sbx svg{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round}
+.sbmine{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:6px; margin:0 0 16px}
+.sbtabs{display:grid; grid-template-columns:1fr 1fr; gap:4px; background:var(--field); border-radius:13px; padding:3px}
+.sbtabs button{font:inherit; font-size:13px; font-weight:800; color:var(--muted); background:none; border:0; border-radius:10px; padding:7px 4px; cursor:pointer}
+.sbtabs button small{font-size:11.5px; font-weight:800; opacity:.7}
+.sbtabs button[aria-pressed="true"]{color:var(--ink); background:var(--surface); box-shadow:0 2px 8px -4px rgba(0,0,0,.25)}
+.sbpane{padding:6px 2px 2px; max-height:240px; overflow:auto}
+.sbempty{margin:6px 8px 8px; font-size:12.5px; color:var(--faint); line-height:1.5}
+.sbt{margin:0 6px 6px; font-size:12px; font-weight:800; color:var(--faint); letter-spacing:.02em}
+.sbcat{margin:0 0 4px}
+.sbcat summary{display:flex; align-items:center; gap:10px; padding:7px 8px; border-radius:14px; cursor:pointer; list-style:none}
+.sbcat summary::-webkit-details-marker{display:none}
+.sbcat summary:hover{background:var(--surface)}
+.sbcat[open] > summary{background:var(--surface); box-shadow:0 0 0 1px var(--line) inset}
+.sbtile{width:30px; height:30px; flex:none; display:grid; place-items:center; color:#fff; font-size:13.5px; font-weight:900; border-radius:10px}
+.sbcn{flex:1; font-size:14px; font-weight:800; letter-spacing:-.03em; color:var(--ink)}
+.sbcat summary small{font-size:12px; font-weight:800; color:var(--faint)}
+.sbcat summary::after{content:""; width:7px; height:7px; flex:none; margin:0 4px 0 2px; border-right:2px solid var(--faint); border-bottom:2px solid var(--faint); transform:rotate(45deg) translateY(-2px); transition:transform .2s}
+.sbcat[open] > summary::after{transform:rotate(-135deg) translateY(-2px)}
+.sbtools{padding:4px 0 6px 10px}
+.sbi{display:flex; align-items:center; gap:9px; padding:6px 8px; border-radius:11px; text-decoration:none; color:var(--muted)}
+.sbi:hover{background:var(--surface); color:var(--ink)}
+.sbi[aria-current="page"]{color:var(--orange); background:rgba(255,90,31,.08)}
+.sbi[aria-current="page"] .sbn{font-weight:800}
+.sbic{width:24px; height:24px; flex:none; display:grid; place-items:center; color:#fff; font-size:11.5px; font-weight:900; border-radius:8px; background:var(--faint); overflow:hidden}
+.sbic svg{width:15px; height:15px}
+.sbic.sbh{background:#E8455B; font-size:12px}
+.sbn{font-size:13.5px; font-weight:650; line-height:1.4; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.sbfoot{display:flex; gap:14px; margin:14px 8px 0; padding-top:12px; border-top:1px solid var(--line)}
+.sbfoot a{font-size:13px; font-weight:800; color:var(--muted); text-decoration:none}
+.sbfoot a:hover{color:var(--orange)}
+@media (pointer:coarse){ .sbi{padding:9px 8px} .sbcat summary{padding:9px 8px} .sbtabs button{padding:10px 4px} }
 /* 넓은 화면: 메뉴를 늘 왼쪽에 두고 본문을 옆으로 */
 @media (min-width:1200px){
   html.has-sb:not(.sb-off) .sbar{transform:none; box-shadow:none; width:248px}
