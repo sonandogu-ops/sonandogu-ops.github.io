@@ -94,7 +94,7 @@ def build_home(d, cats):
 def blog_posts():
     out = []
     for m in re.finditer(r'<a class="item" href="(/blog/[^"]+/)">\s*<span class="tag">([^<]+)</span>\s*<h2>(.*?)</h2>.*?<small>(\d{4})년 (\d{1,2})월 (\d{1,2})일</small>', rd("blog/index.html"), re.S):
-        out.append(dict(path=m.group(1), tag=m.group(2).strip(), title=re.sub(r"<[^>]+>", "", m.group(3)).strip(), m=int(m.group(5)), d=int(m.group(6))))
+        out.append(dict(path=m.group(1), tag=m.group(2).strip(), title=re.sub(r"<[^>]+>", "", m.group(3)).strip(), y=int(m.group(4)), m=int(m.group(5)), d=int(m.group(6))))
     return out
 
 
@@ -107,24 +107,34 @@ def build_board(d, cats):
     by = {t["path"]: t for t in d["tools"]}
     fb = d.get("popular_fallback", {})
     ps = blog_posts(); pby = {p["path"]: p for p in ps}
-    def li(href, title, sub, extra=""):
-        return f'<li><a href="{href}"{extra}><b>{esc(title)}</b><span>{esc(sub)}</span></a></li>'
+    def li(href, title, sub, extra="", tag=""):
+        tg = f'<i class="tg {tag[0]}">{tag[1]}</i>' if tag else ""
+        return f'<li><a href="{href}"{extra}><b>{tg}{esc(title)}</b><span>{esc(sub)}</span></a></li>'
     pop_t = [by[p] for p in fb.get("tools", []) if p in by][:5]
     pop_p = [pby[p] for p in fb.get("posts", []) if p in pby][:5]
-    new_t = sorted([t for t in d["tools"] if t.get("added")], key=lambda t: t["added"], reverse=True)[:5]
+    # 공지: 새 도구 + 새 글 + 업데이트를 날짜순으로
+    ev = []
+    for t in d["tools"]:
+        if t.get("added"):
+            ev.append((t["added"], 1, li(t["path"], t["name"], f'{cats[t["cat"]]["name"]} · {md(t["added"])}', tag=("tgT", "새 도구"))))
+    for p in ps:
+        iso = f'{p["y"]}-{p["m"]:02d}-{p["d"]:02d}'
+        ev.append((iso, 2, li(p["path"], p["title"], f'{p["tag"]} · {p["m"]}월 {p["d"]}일', tag=("tgP", "새 글"))))
+    for n in d.get("notices", []):
+        ev.append((n["date"], 0, li(n.get("link", "/"), n["text"], md(n["date"]), tag=("tgU", "업데이트"))))
+    ev.sort(key=lambda x: (x[0], -x[1]), reverse=True)
+    news = "".join(x[2] for x in ev[:7])
     boxes = [
+        ("news", "공지", "새 도구 · 새 글 · 업데이트", news, None, None),
         ("popT", "인기 도구", "즐겨찾기 많은 순", "".join(li(t["path"], t["name"], cats[t["cat"]]["name"], f' data-k="f{t["path"].replace("/", "_")}"') for t in pop_t), "/tools/", "모든 도구"),
         ("popP", "인기 글", "좋아요 많은 순", "".join(li(p["path"], p["title"], p["tag"], f' data-k="l{p["path"].replace("/", "_")}"') for p in pop_p), "/blog/", "전체 보기"),
-        ("newT", "새 도구", "", "".join(li(t["path"], t["name"], f'{cats[t["cat"]]["name"]} · {md(t["added"])}') for t in new_t), "/tools/", "모든 도구"),
-        ("newP", "새 글", "", "".join(li(p["path"], p["title"], f'{p["tag"]} · {p["m"]}월 {p["d"]}일') for p in ps[:5]), "/blog/", "전체 보기"),
-        ("news", "공지", "업데이트와 바뀐 점", "".join(li(n.get("link", "/"), n["text"], md(n["date"])) for n in d.get("notices", [])[:5]), None, None),
     ]
-    out = ['  <section class="board" aria-label="인기와 새 소식">']
+    out = ['  <aside class="board" aria-label="공지와 인기">']
     for bid, title, sub, items, more, moretxt in boxes:
         m = f'<a class="bm" href="{more}">{moretxt}</a>' if more else ""
         sb = f'<span class="bs">{sub}</span>' if sub else ""
         out.append(f'    <div class="bx" id="{bid}"><div class="bh"><h2>{title}</h2>{sb}{m}</div><ol>{items}</ol></div>')
-    out.append("  </section>")
+    out.append("  </aside>")
     return "\n".join(out)
 
 

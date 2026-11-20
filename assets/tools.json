@@ -260,28 +260,18 @@
  "notices": [
   {
    "date": "2026-11-20",
-   "text": "계산 결과를 링크로 보낼 수 있어요",
-   "link": "/salary/"
+   "text": "도구를 7개 분류로 정리하고 왼쪽 메뉴를 만들었어요",
+   "link": "/tools/"
   },
   {
    "date": "2026-11-20",
-   "text": "연말정산, 12월에 챙기면 돌려받는 것",
-   "link": "/blog/year-end-tax-preview/"
-  },
-  {
-   "date": "2026-11-19",
-   "text": "평수 계산기가 새로 나왔어요",
-   "link": "/pyeong/"
+   "text": "계산 결과를 링크로 보낼 수 있어요",
+   "link": "/salary/"
   },
   {
    "date": "2026-11-18",
    "text": "블로그 글에 하트 좋아요를 남길 수 있어요",
    "link": "/blog/"
-  },
-  {
-   "date": "2026-11-17",
-   "text": "부가세·3.3%·랜덤 뽑기 도구 추가",
-   "link": "/vat/"
   }
  ],
  "popular_fallback": {
@@ -306,5 +296,6 @@
    "/blog/resume-char-count/",
    "/blog/salary-take-home/"
   ]
- }
+ },
+ "_공지설명": "notices에는 기능 업데이트·바뀐 점만 적어요. 새 도구(tools의 added)와 새 글(블로그 목록)은 공지에 자동으로 합쳐져요."
 }

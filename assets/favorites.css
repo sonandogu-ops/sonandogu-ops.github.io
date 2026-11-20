@@ -309,8 +309,18 @@ html{scroll-behavior:smooth}
 /* 홈 소식판: 인기 도구·인기 글·새 도구·새 글·공지 */
 .board{display:grid; grid-template-columns:minmax(0,1fr); gap:12px; margin:22px 0 4px}
 .board[hidden]{display:none}
-@media (min-width:640px){ .board{grid-template-columns:repeat(2,minmax(0,1fr))} }
-@media (min-width:1000px){ .board{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (min-width:760px){ .board{grid-template-columns:repeat(3,minmax(0,1fr))} }
+/* 넓은 화면: 도구 목록 오른쪽에 공지·인기 도구·인기 글을 세로로 */
+@media (min-width:1100px){
+  main:has(> .board){display:grid; grid-template-columns:minmax(0,1fr) 288px; column-gap:24px; align-items:start}
+  main:has(> .board) > *{grid-column:1}
+  main:has(> .board) > .board{grid-column:2; grid-row:1 / span 30; grid-template-columns:minmax(0,1fr); margin:20px 0 0}
+  main:has(> .board) .cat .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+.bx .tg{display:inline-block; margin-right:6px; padding:1px 6px 2px; font-size:10.5px; font-weight:900; font-style:normal; border-radius:6px; vertical-align:1px}
+.bx .tg.tgT{color:#fff; background:var(--orange)}
+.bx .tg.tgP{color:#fff; background:#2F66F0}
+.bx .tg.tgU{color:var(--ink); background:var(--field); border:1px solid var(--line)}
 .bx{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:14px 16px 8px}
 .bx .bh{display:flex; align-items:baseline; gap:8px; margin:0 0 4px}
 .bx h2{font-size:15px!important; font-weight:800; margin:0!important; letter-spacing:-.03em; display:block!important}
