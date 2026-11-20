@@ -1,0 +1,260 @@
+{
+ "_설명": "손안의도구 도구 명부. 새 도구는 tools에 한 줄 추가하고 python3 .github/scripts/build_tools.py 를 실행하세요. quick이 있으면 홈 '많이 쓰는 도구' 줄에 그 이름으로 나와요(quickOrder 순서).",
+ "home_per_cat": 6,
+ "categories": [
+  {
+   "id": "work",
+   "name": "급여·근로",
+   "sub": "월급, 알바, 퇴직금",
+   "c1": "#FF8A3D",
+   "c2": "#FF4A12"
+  },
+  {
+   "id": "tax",
+   "name": "세금·금융",
+   "sub": "부가세와 세금 계산",
+   "c1": "#F7B32B",
+   "c2": "#E08600"
+  },
+  {
+   "id": "date",
+   "name": "날짜·시간",
+   "sub": "디데이, 나이, 연휴",
+   "c1": "#5E9BFF",
+   "c2": "#2F66F0"
+  },
+  {
+   "id": "life",
+   "name": "생활 계산",
+   "sub": "할인, 정산, 면적",
+   "c1": "#FF7A8A",
+   "c2": "#E5485E"
+  },
+  {
+   "id": "doc",
+   "name": "글·문서",
+   "sub": "글자수와 서류 양식",
+   "c1": "#9B8AFB",
+   "c2": "#6A4FE8"
+  },
+  {
+   "id": "party",
+   "name": "모임·뽑기",
+   "sub": "팀, 룰렛, 추첨",
+   "c1": "#3DCB8C",
+   "c2": "#12985B",
+   "hub": "/party/",
+   "hubName": "모임 놀이 모음"
+  },
+  {
+   "id": "game",
+   "name": "게임·놀이",
+   "sub": "폰 하나로 한 판",
+   "c1": "#2CC5C5",
+   "c2": "#0E9494",
+   "hub": "/traditional/",
+   "hubName": "전통 놀이 모음"
+  }
+ ],
+ "quickOrder": [
+  "/party/team/",
+  "/wage/",
+  "/dutch/",
+  "/salary/",
+  "/freelance-tax/",
+  "/date/",
+  "/party/roulette/",
+  "/pyeong/"
+ ],
+ "tools": [
+  {
+   "path": "/wage/",
+   "name": "알바 급여 계산기",
+   "desc": "주휴수당 포함 주급·월급",
+   "cat": "work",
+   "kw": "알바 급여 주휴수당 월급 시급 시급계산기 시급 계산기 알바비 최저임금 야간수당",
+   "icon": "₩",
+   "quick": "알바 급여"
+  },
+  {
+   "path": "/salary/",
+   "name": "연봉 실수령액 계산기",
+   "desc": "4대보험·소득세 빼고 월 실수령액",
+   "cat": "work",
+   "kw": "연봉 실수령액 월급 세후 세전 4대보험 소득세 연봉계산기 월급계산 실수령 공제 국민연금 건강보험 고용보험 간이세액표 연봉 계산",
+   "icon": "연",
+   "quick": "연봉 실수령액"
+  },
+  {
+   "path": "/freelance-tax/",
+   "name": "3.3% 계산기",
+   "desc": "프리랜서 세금 떼고 실수령액",
+   "cat": "work",
+   "kw": "3.3% 3.3 계산기 프리랜서 세금 사업소득 원천징수 강사료 외주비 실수령 세후 세전 지방소득세",
+   "icon": "3.3",
+   "iconStyle": "font-size:13px;letter-spacing:-.04em",
+   "added": "2026-11-17",
+   "quick": "3.3% 계산"
+  },
+  {
+   "path": "/severance/",
+   "name": "퇴직금 계산기",
+   "desc": "평균임금·퇴직소득세까지 한 번에",
+   "cat": "work",
+   "kw": "퇴직금 퇴직 퇴사 평균임금 근속 퇴직소득세 퇴직금계산기 퇴직금 계산 IRP 퇴사 정산 3개월 평균임금 상여금 연차수당",
+   "icon": "퇴"
+  },
+  {
+   "path": "/leave/",
+   "name": "연차 계산기",
+   "desc": "입사일로 연차 일수·미사용 수당",
+   "cat": "work",
+   "kw": "연차 연차계산기 연차수당 월차 휴가 연차휴가 입사 연차일수 미사용 연차 연차 발생 연차 며칠 연차 계산",
+   "icon": "휴"
+  },
+  {
+   "path": "/worktime/",
+   "name": "근무시간 계산기",
+   "desc": "출퇴근 시각으로 근로시간·월 환산",
+   "cat": "work",
+   "kw": "근무시간 근무시간계산기 근로시간 출퇴근 시간 계산 휴게시간 월 근로시간 알바 시간 계산 시간 합산 시간 더하기 주휴시간 근무시간 합계",
+   "icon": "시"
+  },
+  {
+   "path": "/vat/",
+   "name": "부가세 계산기",
+   "desc": "공급가액·부가세 10%·합계 한 번에",
+   "cat": "tax",
+   "kw": "부가세 부가세계산기 부가가치세 공급가액 공급가 세금계산서 vat 10% 합계 금액 부가세 포함 부가세 별도",
+   "icon": "부",
+   "added": "2026-11-17"
+  },
+  {
+   "path": "/date/",
+   "name": "날짜 계산기",
+   "desc": "D-day, 100일 기념일, 며칠 뒤 요일",
+   "cat": "date",
+   "kw": "날짜 디데이 d-day dday 기념일 100일 1000일 며칠 요일 기간 사이",
+   "icon": "<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"5.5\" width=\"18\" height=\"16\" rx=\"3\"/><path d=\"M4 10.5h18M9 3.5v4M17 3.5v4\"/><path d=\"M9.5 15.5l2.2 2.2 4.3-4.4\"/></svg>",
+   "quick": "날짜·D-day"
+  },
+  {
+   "path": "/age/",
+   "name": "만 나이 계산기",
+   "desc": "생년월일로 만·연·세는 나이",
+   "cat": "date",
+   "kw": "만 나이 만나이 연 나이 세는 나이 한국 나이 생년월일 생일 나이 계산 몇 살 출생 다음 생일",
+   "icon": "만"
+  },
+  {
+   "path": "/holiday/",
+   "name": "연휴 계산기",
+   "desc": "연차 붙여 쓰기·공휴일 달력",
+   "cat": "date",
+   "kw": "연휴 연휴계산기 공휴일 2027 공휴일 대체공휴일 연차 붙여쓰기 황금연휴 근무일수 영업일 달력 설날 추석 노동절 제헌절 징검다리",
+   "icon": "공"
+  },
+  {
+   "path": "/dutch/",
+   "name": "더치페이 계산기",
+   "desc": "N빵 정산, 송금 메시지까지",
+   "cat": "life",
+   "kw": "더치페이 n빵 엔빵 정산 나누기 송금 모임",
+   "icon": "<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\"><circle cx=\"8\" cy=\"8\" r=\"3.2\"/><circle cx=\"18\" cy=\"8\" r=\"3.2\"/><path d=\"M3 21c0-3 2.2-5 5-5s5 2 5 5M13 21c0-3 2.2-5 5-5s5 2 5 5\"/></svg>",
+   "quick": "더치페이"
+  },
+  {
+   "path": "/percent/",
+   "name": "퍼센트 계산기",
+   "desc": "할인가, 증감률, 비율, 원래 가격",
+   "cat": "life",
+   "kw": "퍼센트 할인 할인율 증감률 비율 원래가격 % 세일",
+   "icon": "%"
+  },
+  {
+   "path": "/pyeong/",
+   "name": "평수 계산기",
+   "desc": "㎡ ↔ 평, 아파트 평형까지",
+   "cat": "life",
+   "kw": "평수 평수계산기 평 계산 제곱미터 ㎡ m2 평형 전용면적 공급면적 아파트 평수 면적 변환 84㎡ 몇 평 원룸 평수",
+   "icon": "평",
+   "added": "2026-11-19",
+   "quick": "평수"
+  },
+  {
+   "path": "/charcount/",
+   "name": "글자수 세기",
+   "desc": "공백 포함·제외, 바이트, 남은 글자",
+   "cat": "doc",
+   "kw": "글자수 글자 수 세기 글자수세기 자소서 자기소개서 바이트 byte 공백 포함 공백 제외 카운터 글자 카운트 단어 수",
+   "icon": "가"
+  },
+  {
+   "path": "/receipt/",
+   "name": "간이영수증 작성기",
+   "desc": "한글 금액 자동, 이미지·PDF 저장",
+   "cat": "doc",
+   "kw": "영수증 간이영수증 양식 증빙 사업자",
+   "icon": "<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h14v20l-3.5-2-3.5 2-3.5-2L6 23z\"/><path d=\"M10 9h6M10 13h6\"/></svg>"
+  },
+  {
+   "path": "/party/team/",
+   "name": "팀 나누기",
+   "desc": "이름만 적으면 공평하게 랜덤",
+   "cat": "party",
+   "kw": "팀 나누기 팀 정하기 팀정하기 팀 정하기 룰렛 팀가르기 편나누기 조 편성 조 짜기 랜덤 편가르기 룰렛",
+   "icon": "<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\"><circle cx=\"7\" cy=\"8\" r=\"2.6\"/><circle cx=\"19\" cy=\"8\" r=\"2.6\"/><path d=\"M2.5 19c0-2.6 2-4.4 4.5-4.4s4.5 1.8 4.5 4.4M14.5 19c0-2.6 2-4.4 4.5-4.4s4.5 1.8 4.5 4.4\"/><path d=\"M13 4v18\" stroke-dasharray=\"2 3\"/></svg>",
+   "quick": "팀 나누기"
+  },
+  {
+   "path": "/party/roulette/",
+   "name": "룰렛 돌리기",
+   "desc": "점심 메뉴부터 커피 내기까지",
+   "cat": "party",
+   "kw": "룰렛 룰렛돌리기 점심 메뉴 고르기 메뉴 정하기 먹을거 아무거나 랜덤 뽑기 커피 내기 팀 정하기",
+   "icon": "<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\"><circle cx=\"13\" cy=\"14\" r=\"9\"/><path d=\"M13 5v18M4 14h18M6.6 7.6l12.8 12.8M19.4 7.6L6.6 20.4\" stroke-width=\"1.4\"/><path d=\"M10.5 1.8h5L13 5z\" fill=\"#fff\" stroke=\"none\"/></svg>",
+   "quick": "룰렛"
+  },
+  {
+   "path": "/party/ladder/",
+   "name": "사다리타기",
+   "desc": "이름을 누르면 길이 그려져요",
+   "cat": "party",
+   "kw": "사다리 사다리타기 게임 당첨 순서",
+   "icon": "<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\"><path d=\"M6 3v20M13 3v20M20 3v20M6 8h7M13 13h7M6 18h7\"/></svg>"
+  },
+  {
+   "path": "/party/manito/",
+   "name": "마니또 뽑기",
+   "desc": "자기 이름 안 걸리게 몰래 확인",
+   "cat": "party",
+   "kw": "마니또 마니또뽑기 시크릿산타 비밀산타 선물 교환 선물 뽑기 마니또 정하기 송년회 연말 모임 크리스마스 선물 짝 정하기",
+   "icon": "<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3.5\" y=\"10\" width=\"19\" height=\"5\" rx=\"1.5\"/><path d=\"M5 15v7.5h16V15M13 10v12.5M13 10c-1.6-4.4-6.6-4.2-6.6-1.6 0 1.8 3 1.7 6.6 1.6zM13 10c1.6-4.4 6.6-4.2 6.6-1.6 0 1.8-3 1.7-6.6 1.6z\"/></svg>"
+  },
+  {
+   "path": "/party/lots/",
+   "name": "제비뽑기",
+   "desc": "한 장씩 뒤집는 두근두근 추첨",
+   "cat": "party",
+   "kw": "제비뽑기 추첨 당첨 벌칙 뽑기",
+   "icon": "<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"6\" width=\"10\" height=\"14\" rx=\"2\" transform=\"rotate(-10 8 13)\"/><rect x=\"12\" y=\"5\" width=\"10\" height=\"14\" rx=\"2\" transform=\"rotate(8 17 12)\"/></svg>"
+  },
+  {
+   "path": "/random/",
+   "name": "랜덤 숫자 뽑기",
+   "desc": "번호 뽑기와 당첨자 추첨",
+   "cat": "party",
+   "kw": "랜덤 숫자 뽑기 랜덤뽑기 번호 뽑기 숫자 뽑기 당첨자 추첨 추첨기 로또 번호 주사위 랜덤 이름 뽑기 경품 추첨",
+   "icon": "<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"4\" width=\"18\" height=\"18\" rx=\"4\"/><circle cx=\"9.5\" cy=\"9.5\" r=\"1.4\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"16.5\" cy=\"16.5\" r=\"1.4\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"13\" cy=\"13\" r=\"1.4\" fill=\"#fff\" stroke=\"none\"/></svg>",
+   "added": "2026-11-17"
+  },
+  {
+   "path": "/traditional/yut/",
+   "name": "온라인 윷놀이",
+   "desc": "윷판, 십이지 말, 2~4팀 대결",
+   "cat": "game",
+   "kw": "윷놀이 윷 전통 명절 설날 십이지",
+   "icon": "<svg width=\"26\" height=\"26\" viewBox=\"0 0 28 28\" fill=\"#fff\"><rect x=\"3\" y=\"4\" width=\"4\" height=\"20\" rx=\"2\"/><rect x=\"9.3\" y=\"4\" width=\"4\" height=\"20\" rx=\"2\" opacity=\".75\"/><rect x=\"15.6\" y=\"4\" width=\"4\" height=\"20\" rx=\"2\"/><rect x=\"21.9\" y=\"4\" width=\"4\" height=\"20\" rx=\"2\" opacity=\".75\"/></svg>"
+  }
+ ]
+}
