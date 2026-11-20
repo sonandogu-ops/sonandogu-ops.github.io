@@ -127,6 +127,27 @@ function init(){
   }
   if(bar.children.length) host.parentNode.insertBefore(bar,host.nextSibling);
 }
-if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+/* 휴대폰 키보드가 결과를 가릴 때: 입력하는 동안 화면 위쪽에 결과를 작게 띄워요 */
+function peek(){
+  var src=document.getElementById('res')||document.getElementById('jrText')||document.getElementById('big')||document.getElementById('month'); if(!src) return;
+  var cap=document.getElementById('cap');
+  var pill=document.createElement('div'); pill.className='tbpeek'; pill.setAttribute('aria-hidden','true'); pill.hidden=true; document.body.appendChild(pill);
+  var on=false;
+  function text(){ var t=src.innerText.replace(/\s+/g,' ').replace(/\s*보기$/,'').trim(); if(/^[-0\s원]*$/.test(t)) return ''; var c=(cap&&src.id==='res')?cap.innerText.replace(/\s+/g,' ').trim():''; return (c?c+' ':'')+t; }
+  function upd(){
+    if(!on){ pill.hidden=true; return; }
+    var vv=window.visualViewport, vh=vv?vv.height:innerHeight, vt=vv?vv.offsetTop:0;
+    var r=src.getBoundingClientRect(), hidden=r.top>vt+vh-24||r.bottom<vt+60;
+    var t=text(); if(!hidden||!t){ pill.hidden=true; return; }
+    pill.textContent=t; pill.style.top=(vt+8)+'px'; pill.hidden=false;
+  }
+  document.addEventListener('focusin',function(e){ if(e.target.matches('input:not([type=checkbox]):not([type=radio]),textarea')&&matchMedia('(pointer:coarse)').matches){ on=true; setTimeout(upd,350); } });
+  document.addEventListener('focusout',function(){ on=false; setTimeout(upd,50); });
+  document.addEventListener('input',function(){ setTimeout(upd,30); });
+  if(window.visualViewport){ visualViewport.addEventListener('resize',upd); visualViewport.addEventListener('scroll',upd); }
+  window.addEventListener('scroll',upd,{passive:true});
+}
+function start(){ init(); peek(); }
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start); else start();
 window.SonShare={link:makeLink};
 })();
