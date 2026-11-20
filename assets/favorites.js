@@ -333,6 +333,7 @@ function drawPanel(){
   panel.appendChild(sec('찜한 도구',favs.map(function(h){return {h:h,t:NAMES[h]||labelOf(h)};}),'도구 이름 옆 별을 누르면 여기 모여요.'));
   panel.appendChild(sec('좋아요한 글',likes.map(function(x){return {h:x.p,t:x.t};}),'블로그 글의 하트를 누르면 여기 모여요.'));
   panel.appendChild(el('p',null,'다른 기기에서 같은 계정으로 로그인하면 그대로 이어져요.'));
+  instBtns=instBtns.filter(function(b){ return b.isConnected; }); var ib=installBtn(); panel.appendChild(ib); paintInstall();
   var o=el('button',null,'로그아웃'); o.type='button'; o.onclick=function(){closePanel(); logout();}; panel.appendChild(o);
   var dm=el('p','fdmsg'); dm.setAttribute('aria-live','polite');
   var d=el('button','fdel','계정과 저장된 데이터 삭제'); d.type='button';
@@ -350,6 +351,45 @@ function closePanel(){panel.hidden=true; if(delArmed){clearTimeout(delArmed); de
 acct.onclick=function(){ if(user){ panel.hidden?openPanel():closePanel(); } else openModal(); };
 document.addEventListener('click',function(e){ if(!panel.hidden&&!panel.contains(e.target)&&!acct.contains(e.target)) closePanel(); });
 
+/* ---------- 앱으로 설치 (홈 화면에 추가) ---------- */
+var deferredInstall=null, instBtns=[];
+var UA=navigator.userAgent||'';
+var isIOS=/iPhone|iPad|iPod/.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+var isAndroid=/Android/i.test(UA);
+function isStandalone(){ try{ return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true; }catch(e){ return false; } }
+window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); deferredInstall=e; paintInstall(); });
+window.addEventListener('appinstalled',function(){ deferredInstall=null; paintInstall(); closeGuide(); note('홈 화면에 손안의도구를 추가했어요!'); });
+function paintInstall(){ var hide=isStandalone(); instBtns.forEach(function(b){ b.hidden=hide; }); }
+function installBtn(){
+  var b=el('button','finst'); b.type='button';
+  b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M12 8v7M9 12l3 3 3-3"/></svg>';
+  b.appendChild(el('span',null,'홈 화면에 앱으로 설치'));
+  b.onclick=doInstall; instBtns.push(b); return b;
+}
+function doInstall(){
+  if(deferredInstall){ var d=deferredInstall; deferredInstall=null; d.prompt(); if(d.userChoice) d.userChoice.then(function(c){ if(c&&c.outcome==='accepted') note('홈 화면에 손안의도구를 추가했어요!'); paintInstall(); }).catch(function(){}); return; }
+  openGuide();
+}
+var guide=el('div','fmodal'); guide.hidden=true;
+var gb=el('div','fbox'); gb.setAttribute('role','dialog'); gb.setAttribute('aria-modal','true'); gb.setAttribute('aria-labelledby','fgt');
+var gt=el('h2',null,'홈 화면에 손안의도구 추가하기'); gt.id='fgt';
+var gl=el('ol','fsteps'), gn=el('p','fsmall','앱처럼 아이콘으로 바로 열리고, 주소창 없이 넓게 보여요. 따로 내려받는 파일은 없어요.');
+var gc=el('button','fclose','×'); gc.type='button'; gc.setAttribute('aria-label','닫기'); gc.onclick=function(){closeGuide();};
+var gok=el('button','fgoogle','알겠어요'); gok.type='button'; gok.style.marginTop='16px'; gok.onclick=function(){closeGuide();};
+gb.appendChild(gc); gb.appendChild(gt); gb.appendChild(gl); gb.appendChild(gn); gb.appendChild(gok); guide.appendChild(gb); document.body.appendChild(guide);
+guide.addEventListener('click',function(e){ if(e.target===guide) closeGuide(); });
+function steps(a){ gl.textContent=''; a.forEach(function(t){ var li=el('li'); li.innerHTML=t; gl.appendChild(li); }); }
+function openGuide(){
+  closePanel(); if(!modal.hidden) closeModal();
+  if(inApp) steps(['카카오톡·네이버 앱 안의 브라우저에서는 설치가 안 돼요.','화면 오른쪽 아래(또는 위) <b>⋮</b>나 <b>공유</b> 버튼을 누르고 <b>다른 브라우저로 열기</b>를 골라요.','Safari나 Chrome에서 열린 뒤 이 버튼을 다시 눌러 주세요.']);
+  else if(isIOS) steps(['화면 아래(또는 주소창 옆) <b>공유 버튼</b>을 눌러요. 네모에서 화살표가 위로 나온 모양이에요.','목록을 아래로 내려 <b>홈 화면에 추가</b>를 눌러요.','오른쪽 위 <b>추가</b>를 누르면 홈 화면에 손안의도구 아이콘이 생겨요.']);
+  else if(isAndroid) steps(['Chrome 오른쪽 위 <b>⋮</b> 메뉴를 눌러요.','<b>앱 설치</b> 또는 <b>홈 화면에 추가</b>를 눌러요.','<b>설치</b>를 누르면 홈 화면에 아이콘이 생겨요.']);
+  else steps(['Chrome·Edge라면 주소창 오른쪽의 <b>설치 아이콘</b>(모니터에 화살표 모양)을 눌러요.','아이콘이 없으면 오른쪽 위 <b>⋮</b> 메뉴에서 <b>손안의도구 설치</b> 또는 <b>앱으로 설치</b>를 골라요.','Mac Safari라면 메뉴의 <b>파일 → Dock에 추가</b>를 눌러요.']);
+  guide.hidden=false; gok.focus();
+}
+function closeGuide(){ guide.hidden=true; }
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!guide.hidden) closeGuide(); });
+
 /* ---------- 로그인 모달 ---------- */
 var modal=el('div','fmodal'); modal.hidden=true;
 var mb=el('div','fbox'); mb.setAttribute('role','dialog'); mb.setAttribute('aria-modal','true'); mb.setAttribute('aria-labelledby','fmt');
@@ -362,7 +402,9 @@ var mm=el('p','fmsg'); mm.setAttribute('aria-live','polite');
 var ms=el('p','fsmall'); ms.appendChild(document.createTextNode('로그인하지 않아도 즐겨찾기는 이 브라우저에 저장돼요. 로그인 정보는 즐겨찾기, 저장한 날짜, 좋아요한 글을 저장하는 데만 써요. '));
 var pa=el('a',null,'개인정보처리방침'); pa.href='/privacy/'; ms.appendChild(pa);
 var mc=el('button','fclose','×'); mc.type='button'; mc.setAttribute('aria-label','닫기');
-mb.appendChild(mc); mb.appendChild(mt); mb.appendChild(ml); mb.appendChild(mg); mb.appendChild(mm); mb.appendChild(ms); modal.appendChild(mb); document.body.appendChild(modal);
+var mdiv=el('div','fdiv'); mdiv.appendChild(el('span',null,'또는'));
+var mib=installBtn(); var mis=el('p','fsmall','로그인하지 않아도 앱처럼 설치해서 쓸 수 있어요.');
+mb.appendChild(mc); mb.appendChild(mt); mb.appendChild(ml); mb.appendChild(mg); mb.appendChild(mm); mb.appendChild(ms); mb.appendChild(mdiv); mb.appendChild(mib); mb.appendChild(mis); modal.appendChild(mb); document.body.appendChild(modal);
 var lastFocus=null;
 function openModal(text){
   closePanel(); hideTip(); mm.textContent=''; mm.className='fmsg';
@@ -388,12 +430,13 @@ tg.onclick=function(){openModal(isHome?'로그인하고 이 도구를 첫 화면
 tx.onclick=hideTip;
 
 /* ---------- 바깥에서 쓰는 창구 ---------- */
+window.SonInstall={open:doInstall, available:function(){return !!deferredInstall;}};
 window.SonFav={
   list:function(){return favs.slice();}, has:function(h){return favs.indexOf(h)>=0;}, onChange:function(f){subs.push(f);}, toggle:toggle,
   syncDates:function(){ if(!pulled) touched=true; if(user) pushCloud(); }
 };
 
-drawAcct(); render();
+drawAcct(); render(); paintInstall();
 /* 상단 메뉴에서 지금 있는 곳(블로그/도구) 표시 */
 [].slice.call(document.querySelectorAll('.top nav a')).forEach(function(a){
   var h=a.getAttribute('href'); if((h==='/blog/'&&/^\/blog\//.test(here))||(h==='/'&&here==='/')) a.setAttribute('aria-current','page');
