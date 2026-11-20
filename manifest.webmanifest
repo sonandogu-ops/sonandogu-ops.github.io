@@ -43,5 +43,11 @@
    "name": "룰렛 돌리기",
    "url": "/party/roulette/"
   }
+ ],
+ "related_applications": [
+  {
+   "platform": "webapp",
+   "url": "https://sonandogu.com/manifest.webmanifest"
+  }
  ]
 }

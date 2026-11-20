@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="manifest" href="/manifest.webmanifest">
+<script>addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__bip=e;});</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="손안의도구">
 
@@ -482,7 +483,7 @@ list(); draw();
 </script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
 <script src="/assets/firebase-config.js?v=4"></script>
-<script src="/assets/favorites.js?v=7"></script>
+<script src="/assets/favorites.js?v=8"></script>
 <script type="module" src="/assets/comments.js?v=4"></script>
 <script src="/assets/analytics.js?v=3" defer></script>
 </body>
