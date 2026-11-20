@@ -5,7 +5,7 @@
 문제가 있으면 마크다운 보고서를 출력하고 종료 코드 1로 끝난다.
 표준 라이브러리만 쓴다.
 """
-import argparse, json, os, re, sys, urllib.request, urllib.error
+import subprocess, argparse, json, os, re, sys, urllib.request, urllib.error
 from concurrent.futures import ThreadPoolExecutor
 
 SITE = "https://sonandogu.com"
@@ -122,7 +122,43 @@ def check_files(root):
         t = re.search(r"<title>([^<]*)</title>", h)
         if t and len(t.group(1)) > 70:
             problems.append(("참고", rel, f"제목이 {len(t.group(1))}자라 검색 결과에서 잘릴 수 있어요"))
+    problems += check_seo(root, indexable)
     return problems, indexable
+
+
+LEGAL = {"about/index.html", "terms/index.html", "privacy/index.html", "contact/index.html", "index.html"}
+
+
+def check_seo(root, indexable):
+    """검색 노출에 영향을 주는 것들: 설명 길이, 글의 경로 정보, 사이트 안 연결 링크, RSS·사이트맵 날짜"""
+    out = []
+    inbound = {}
+    pages = {}
+    for rel in html_files(root):
+        h = open(os.path.join(root, rel), encoding="utf-8").read()
+        pages[rel] = h
+        me = "/" + rel[: -len("index.html")] if rel.endswith("index.html") else "/" + rel
+        for a in set(re.findall(r'href="(/[^"#?]*)"', h)):
+            if a != me:
+                inbound[a] = inbound.get(a, 0) + 1
+    for rel in indexable:
+        h = pages.get(rel, "")
+        d = re.search(r'<meta name="description" content="([^"]*)"', h)
+        if d and not (50 <= len(d.group(1)) <= 130):
+            out.append(("SEO", rel, f"설명이 {len(d.group(1))}자예요. 검색 결과에서 잘리지 않게 50~130자로 맞춰 주세요"))
+        if '"@type": "Article"' in h and '"@type": "BreadcrumbList"' not in h:
+            out.append(("SEO", rel, "글에 경로(BreadcrumbList) 구조화 데이터가 없어요"))
+        url = "/" + rel[: -len("index.html")] if rel.endswith("index.html") else "/" + rel
+        if rel not in LEGAL and inbound.get(url, 0) < 3:
+            out.append(("SEO", rel, f"사이트 안에서 이 페이지로 오는 링크가 {inbound.get(url, 0)}개뿐이에요. 관련 글·도구에서 이어 주세요"))
+    script = os.path.join(root, ".github", "scripts", "update_seo.py")
+    if os.path.exists(script):
+        r = subprocess.run([sys.executable, "-I", script, "--check"], capture_output=True, text=True)
+        if r.returncode != 0:
+            for line in r.stdout.splitlines():
+                if line.startswith("- "):
+                    out.append(("SEO", "정리", line[2:]))
+    return out
 
 
 def check_live(urls):
