@@ -19,7 +19,7 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -37,8 +37,44 @@ jobs:
           echo "code=$?" >> "$GITHUB_OUTPUT"
           cat report.md >> "$GITHUB_STEP_SUMMARY"
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: 브라우저 준비
+        run: |
+          mkdir -p "$RUNNER_TEMP/pw" && cd "$RUNNER_TEMP/pw"
+          npm init -y >/dev/null
+          npm i --no-audit --no-fund playwright@1.63.0
+          npx playwright install --with-deps chromium
+
+      - name: 브라우저 검사 (계산 검산, 화면, 버튼, 결과 링크)
+        id: ui
+        env:
+          NODE_PATH: ${{ runner.temp }}/pw/node_modules
+        run: |
+          python3 .github/tests/serve.py . &
+          sleep 2
+          set +e
+          CODE=0
+          {
+            echo "## 브라우저 검사"
+            for T in calc tools ui; do
+              echo
+              echo "### $T"
+              echo '```'
+              node .github/tests/$T.test.js 2>&1 | tail -60
+              R=${PIPESTATUS[0]}
+              echo '```'
+              [ "$R" != "0" ] && CODE=1
+            done
+          } > browser.md
+          cat browser.md >> "$GITHUB_STEP_SUMMARY"
+          if [ "$CODE" != "0" ]; then { echo; cat browser.md; } >> report.md; fi
+          echo "code=$CODE" >> "$GITHUB_OUTPUT"
+
       - name: 문제가 있으면 이슈 열기
-        if: steps.run.outputs.code != '0' && github.event_name != 'pull_request'
+        if: (steps.run.outputs.code != '0' || steps.ui.outputs.code != '0') && github.event_name != 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -59,7 +95,7 @@ jobs:
           fi
 
       - name: 문제가 해결되면 이슈 닫기
-        if: steps.run.outputs.code == '0' && github.event_name != 'pull_request'
+        if: steps.run.outputs.code == '0' && steps.ui.outputs.code == '0' && github.event_name != 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -68,5 +104,5 @@ jobs:
           done
 
       - name: 결과 판정
-        if: steps.run.outputs.code != '0'
+        if: steps.run.outputs.code != '0' || steps.ui.outputs.code != '0'
         run: exit 1

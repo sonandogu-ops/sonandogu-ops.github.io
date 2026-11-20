@@ -15,14 +15,51 @@ var D=me.dataset, split=function(s){return (s||'').split(/\s+/).filter(Boolean);
 var KEYS=split(D.keys), IDS=split(D.ids), RESET=split(D.reset);
 function b64e(s){return btoa(unescape(encodeURIComponent(s))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
 function b64d(s){s=s.replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4) s+='='; return decodeURIComponent(escape(atob(s)));}
+/* 짧은 링크용 표기: 따옴표·괄호가 적은 JSON 비슷한 글 (예: (amount:'3,600',mode:annual))을 만든 뒤
+   영문·숫자만 쓰는 base64로 감싸요. 메신저가 링크 끝 괄호를 잘라먹지 않게요. */
+var SAFE=/^[A-Za-z_][A-Za-z0-9_.-]*$/;
+function renc(v){
+  if(v===null||v===undefined) return '!n';
+  if(v===true) return '!t'; if(v===false) return '!f';
+  if(typeof v==='number') return isFinite(v)?String(v):'!n';
+  if(typeof v==='string'){ if(SAFE.test(v)&&!/^(-?\d|\.)/.test(v)) return v;
+    return "'"+v.replace(/!/g,'!!').replace(/'/g,"!'")+"'"; }
+  if(Array.isArray(v)) return '!('+v.map(renc).join(',')+')';
+  if(typeof v==='object') return '('+Object.keys(v).map(function(k){return renc(k)+':'+renc(v[k]);}).join(',')+')';
+  return '!n';
+}
+function rdec(str){
+  var i=0;
+  function val(){
+    var c=str[i];
+    if(c==='!'){ var n=str[i+1]; i+=2; if(n==='n') return null; if(n==='t') return true; if(n==='f') return false;
+      if(n==='('){ var a=[]; if(str[i]===')'){i++; return a;} for(;;){ a.push(val()); if(str[i]===','){i++; continue;} if(str[i]===')'){i++; return a;} throw 0; } }
+      throw 0; }
+    if(c==='('){ i++; var o={}; if(str[i]===')'){i++; return o;} for(;;){ var k=val(); if(str[i]!==':') throw 0; i++; o[k]=val(); if(str[i]===','){i++; continue;} if(str[i]===')'){i++; return o;} throw 0; } }
+    if(c==="'"){ i++; var out=''; for(;;){ if(i>=str.length) throw 0; var ch=str[i];
+        if(ch==='!'){ out+=str[i+1]; i+=2; continue; } if(ch==="'"){ i++; break; } out+=ch; i++; }
+      return out; }
+    var j=i; while(i<str.length&&!/[,:)(]/.test(str[i])) i++; var t=str.slice(j,i); if(!t) throw 0;
+    return /^-?(\d+\.?\d*|\.\d+)(e[+-]?\d+)?$/i.test(t)?Number(t):t;
+  }
+  var r=val(); if(i!==str.length) throw 0; return r;
+}
 function lsGet(k){try{return localStorage.getItem(k);}catch(e){return null;}}
 function lsSet(k,v){try{localStorage.setItem(k,v); return true;}catch(e){return false;}}
 function lsDel(k){try{localStorage.removeItem(k);}catch(e){}}
 
 /* 1) 공유 링크로 들어왔다면, 도구 스크립트가 읽기 전에 저장값을 넣어 둔다 */
 var pendingIds=null, opened=false;
-var m=location.hash.match(/^#s=([A-Za-z0-9_-]{1,12000})$/);
-if(m){
+var raw=(location.href.split('#')[1]||'');
+var m=raw.match(/^s=([A-Za-z0-9_-]{1,12000})$/), mr=raw.match(/^z=([A-Za-z0-9_-]{1,12000})$/);
+if(mr){
+  /* 짧은 링크: k는 저장키 순서대로, i는 입력칸 값 */
+  try{ var R=rdec(b64d(mr[1])), K={};
+    (Array.isArray(R.k)?R.k:[]).forEach(function(v,n){ if(KEYS[n]&&v!==null) K[KEYS[n]]=typeof v==='string'?v:JSON.stringify(v); });
+    m=['', b64e(JSON.stringify({k:K,i:R.i||{}}))];
+  }catch(e){ m=null; }
+}
+if(m||mr){
   try{
     var d=JSON.parse(b64d(m[1]));
     if(d&&d.k&&typeof d.k==='object') Object.keys(d.k).forEach(function(k){ if(KEYS.indexOf(k)>=0&&typeof d.k[k]==='string'&&d.k[k].length<8000) lsSet(k,d.k[k]); });
@@ -33,10 +70,15 @@ if(m){
 }
 
 function makeLink(){
-  var d={k:{},i:{}};
-  KEYS.forEach(function(k){var v=lsGet(k); if(v!=null) d.k[k]=v;});
-  IDS.forEach(function(id){var el=document.getElementById(id); if(el&&el.value) d.i[id]=String(el.value).slice(0,200);});
-  return location.origin+location.pathname+'#s='+b64e(JSON.stringify(d));
+  var d={k:{},i:{}}, kk=[], ii={}, hasI=false;
+  KEYS.forEach(function(k){ var v=lsGet(k); if(v!=null) d.k[k]=v;
+    var pv=null; if(v!=null){ try{ pv=JSON.parse(v); if(pv===null||typeof pv!=='object') pv=v; }catch(e){ pv=v; } } kk.push(pv); });
+  IDS.forEach(function(id){var el=document.getElementById(id); if(el&&el.value){ d.i[id]=String(el.value).slice(0,200); ii[id]=d.i[id]; hasI=true; }});
+  var base=location.origin+location.pathname;
+  var a='#s='+b64e(JSON.stringify(d)), o={}; if(kk.length) o.k=kk; if(hasI) o.i=ii;
+  var b='#z='+b64e(renc(o));
+  /* 두 방식 중 더 짧은 쪽 (한글이 많으면 #s=가 짧을 때가 있어요) */
+  return base+(b.length<=a.length?b:a);
 }
 async function copyText(t){
   try{ await navigator.clipboard.writeText(t); return true; }
@@ -53,7 +95,7 @@ function toast(msg){
 function armLink(anchor){
   var armed=0;
   anchor.addEventListener('click',function(){ armed=Date.now(); },true);
-  var add=function(t){ if(typeof t!=='string'||Date.now()-armed>4000||t.indexOf('#s=')>=0) return t; armed=0; var L=makeLink();
+  var add=function(t){ if(typeof t!=='string'||Date.now()-armed>4000||t.indexOf('#s=')>=0||t.indexOf('#z=')>=0) return t; armed=0; var L=makeLink();
     /* 글 안에 이 페이지 주소가 이미 있으면 그 자리를 결과 링크로 바꾸고, 없으면 끝에 붙인다 */
     var plain=[location.origin+location.pathname,'https://sonandogu.com'+location.pathname];
     for(var i=0;i<plain.length;i++){ var re=new RegExp(plain[i].replace(/[.*+?^${}()|[\]\\\/]/g,'\\$&')+'(?![#\\w/-])'); if(re.test(t)) return t.replace(re,L); }

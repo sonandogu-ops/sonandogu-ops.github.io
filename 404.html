@@ -94,6 +94,15 @@ footer .fl a:hover{color:var(--ink)}
 
 .t[href="/receipt/"] .ic,.t[href="/date/"] .ic{background:linear-gradient(145deg,#5E9BFF,#2F66F0)}
 .t[href="/traditional/yut/"] .ic,.t[href="/party/"] .ic{background:linear-gradient(145deg,#3DCB8C,#12985B)}
+.guess{margin:0 0 18px; padding:16px 18px; background:var(--surface); border:1.5px solid var(--orange); border-radius:20px; box-shadow:var(--shadow)}
+.guess b{display:block; font-size:13px; font-weight:800; color:var(--orange); margin-bottom:6px}
+.guess a{display:block; font-size:18px; font-weight:800; color:var(--ink); text-decoration:none; letter-spacing:-.03em}
+.guess a span{display:block; font-size:13px; font-weight:600; color:var(--muted); margin-top:2px}
+.grid .t{min-height:0!important; flex-direction:row!important; align-items:center; justify-content:flex-start!important; gap:14px; padding:14px 16px!important; border-radius:18px!important}
+.grid .t .ic{flex:none; width:40px!important; height:40px!important; border-radius:12px!important; font-size:18px!important}
+.grid .t strong{display:block; font-size:16px!important; margin:0!important}
+.grid .t .d{display:block; font-size:13.5px!important; margin:0!important}
+.grid{gap:10px!important}
 </style>
 <meta name="google-adsense-account" content="ca-pub-1007904420767851">
 <link rel="stylesheet" href="/assets/favorites.css?v=8">
@@ -104,16 +113,19 @@ footer .fl a:hover{color:var(--ink)}
   <section class="hero">
     <img class="mascot" src="/assets/endo/door.webp" width="128" height="128" alt="문 뒤에 숨은 손안의도구 마스코트 엔도">
     <h1>404<br><span>여긴 비어 있어요.</span></h1>
-    <p>주소가 바뀌었거나 없는 페이지예요. 찾던 도구는 아래에 있을지도 몰라요.</p>
+    <p>주소가 바뀌었거나 없는 페이지예요. 위 검색창에서 찾거나, 아래에서 골라 보세요.</p>
   </section>
+  <div class="guess" id="guess" hidden></div>
   <main class="grid">
-    <a class="t" href="/percent/"><span class="ic" aria-hidden="true">%</span><span><strong>퍼센트 계산기</strong><span class="d">할인가, 증감률, 비율, 원래 가격</span></span></a>
-    <a class="t" href="/receipt/"><span class="ic" aria-hidden="true">₩</span><span><strong>간이영수증 작성기</strong><span class="d">한글 금액 자동, 이미지·PDF 저장</span></span></a>
-    <a class="t" href="/traditional/yut/"><span class="ic" aria-hidden="true">윷</span><span><strong>온라인 윷놀이</strong><span class="d">윷판, 십이지 말, 2~4팀 대결</span></span></a>
-    <a class="t" href="/dutch/"><span class="ic" aria-hidden="true">÷</span><span><strong>더치페이 계산기</strong><span class="d">N빵 정산, 송금 메시지까지</span></span></a>
+    <a class="t" href="/salary/"><span class="ic" aria-hidden="true">연</span><span><strong>연봉 실수령액 계산기</strong><span class="d">4대보험·소득세 빼고 월 실수령액</span></span></a>
     <a class="t" href="/wage/"><span class="ic" aria-hidden="true">₩</span><span><strong>알바 급여 계산기</strong><span class="d">주휴수당 포함 주급·월급</span></span></a>
-    <a class="t" href="/party/"><span class="ic" aria-hidden="true">◎</span><span><strong>모임 놀이</strong><span class="d">팀 나누기, 룰렛, 사다리타기, 제비뽑기</span></span></a>
+    <a class="t" href="/percent/"><span class="ic" aria-hidden="true">%</span><span><strong>퍼센트 계산기</strong><span class="d">할인가, 증감률, 비율, 원래 가격</span></span></a>
+    <a class="t" href="/dutch/"><span class="ic" aria-hidden="true">÷</span><span><strong>더치페이 계산기</strong><span class="d">N빵 정산, 송금 메시지까지</span></span></a>
     <a class="t" href="/date/"><span class="ic" aria-hidden="true">D</span><span><strong>날짜 계산기</strong><span class="d">D-day, 100일 기념일</span></span></a>
+    <a class="t" href="/pyeong/"><span class="ic" aria-hidden="true">평</span><span><strong>평수 계산기</strong><span class="d">㎡ ↔ 평, 아파트 평형까지</span></span></a>
+    <a class="t" href="/vat/"><span class="ic" aria-hidden="true">부</span><span><strong>부가세 계산기</strong><span class="d">공급가액·부가세 10%·합계</span></span></a>
+    <a class="t" href="/party/"><span class="ic" aria-hidden="true">◎</span><span><strong>모임 놀이</strong><span class="d">팀 나누기, 룰렛, 사다리타기, 제비뽑기</span></span></a>
+    <a class="t" href="/blog/"><span class="ic" aria-hidden="true">글</span><span><strong>블로그</strong><span class="d">헷갈리는 생활 계산을 풀어 쓴 글</span></span></a>
   </main>
   <p style="margin-top:28px"><a href="/" style="color:var(--orange);font-weight:700;text-decoration:none">← 첫 화면으로</a></p>
 </div>
@@ -122,5 +134,32 @@ footer .fl a:hover{color:var(--ink)}
 <script src="/assets/analytics.js?v=2" defer></script>
 <script src="/assets/firebase-config.js?v=4"></script>
 <script src="/assets/favorites.js?v=6"></script>
+<script>
+/* 잘못 친 주소와 가장 비슷한 페이지를 사이트맵에서 찾아 '혹시 이 페이지?'로 보여준다 */
+(function(){
+  var path=decodeURIComponent(location.pathname).toLowerCase().replace(/index\.html$/,'');
+  if(path==='/404.html'||path==='/') return;
+  function lev(a,b){ var m=a.length,n=b.length,d=[],i,j; for(i=0;i<=m;i++){d[i]=[i];} for(j=1;j<=n;j++) d[0][j]=j;
+    for(i=1;i<=m;i++) for(j=1;j<=n;j++) d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1)); return d[m][n]; }
+  var norm=function(p){return p.replace(/\/+$/,'').replace(/^\/+/,'');};
+  fetch('/sitemap.xml').then(function(r){return r.text();}).then(function(x){
+    var urls=(x.match(/<loc>[^<]+<\/loc>/g)||[]).map(function(l){return l.replace(/<\/?loc>/g,'').replace(/^https?:\/\/[^/]+/,'');});
+    var me=norm(path), best=null, bd=1e9;
+    urls.forEach(function(u){ var c=norm(u); if(!c) return;
+      var dist=Math.min(lev(me,c), lev(me.split('/').pop(), c.split('/').pop())+(me.split('/').length===c.split('/').length?0:1));
+      if(me.length>=3&&c.indexOf(me)===0) dist=Math.min(dist,1);
+      if(dist<bd){bd=dist; best=u;} });
+    var limit=Math.max(2,Math.floor(me.length*0.35));
+    if(!best||bd>limit){ if(/^\/blog\//.test(path)) best='/blog/'; else return; }
+    return fetch(best).then(function(r){return r.text();}).then(function(h){
+      var t=(h.match(/<title>([^<]*)<\/title>/)||[])[1]||best; t=t.split(' | ')[0];
+      var parts=t.split(' - '), box=document.getElementById('guess'); box.textContent='';
+      var b=document.createElement('b'); b.textContent='혹시 이 페이지를 찾으셨나요?';
+      var a=document.createElement('a'); a.href=best; a.textContent=parts[0];
+      if(parts[1]){ var sp=document.createElement('span'); sp.textContent=parts.slice(1).join(' - '); a.appendChild(sp); }
+      box.append(b,a); box.hidden=false; });
+  }).catch(function(){});
+})();
+</script>
 </body>
 </html>
