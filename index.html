@@ -285,6 +285,19 @@ footer .fl a:hover{color:var(--ink)}
 .intro .ig span{font-size:13.5px; line-height:1.65; color:var(--muted)}
 .intro .im{font-size:13px; margin:0}
 .intro a{color:var(--orange); font-weight:700; text-decoration:none}
+
+/* 많이 쓰는 도구 한 줄 + 글 구역을 도구와 구분 */
+.qh{margin:18px 0 8px; font-size:13px; font-weight:800; color:var(--muted); letter-spacing:-.01em}
+.quick{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:0 0 6px}
+.quick a{display:flex; flex-direction:column; align-items:center; gap:6px; padding:10px 4px 9px; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:16px; font-size:12.5px; font-weight:700; letter-spacing:-.02em; text-align:center; transition:transform .2s, border-color .2s}
+.quick a:hover{border-color:var(--ink); transform:translateY(-2px)}
+.quick .qi{width:38px; height:38px; border-radius:12px; font-size:17px; box-shadow:none}
+.quick .qi svg{width:21px; height:21px}
+.quick a[data-c="calc"] .qi{background:linear-gradient(145deg,#FF8A3D,#FF4A12)}
+.quick a[data-c="play"] .qi{background:linear-gradient(145deg,#3DCB8C,#12985B)}
+.quick[hidden],.qh[hidden]{display:none!important}
+@media (min-width:640px){ .quick{grid-template-columns:repeat(8,1fr)} }
+.posts{margin-top:48px!important; padding:32px 0 28px; background:rgba(127,120,110,.09); box-shadow:0 0 0 100vmax rgba(127,120,110,.09); clip-path:inset(0 -100vmax)}
 </style>
 <link rel="stylesheet" href="/assets/comments.css?v=4">
 <link rel="stylesheet" href="/assets/favorites.css?v=13">
@@ -301,6 +314,8 @@ footer .fl a:hover{color:var(--ink)}
       <div class="tabs2" role="tablist" aria-label="분류"><button role="tab" data-t="all" aria-selected="true">전체</button><button role="tab" data-t="calc" aria-selected="false"><i style="background:#FF5A1F"></i>계산기</button><button role="tab" data-t="tools" aria-selected="false"><i style="background:#2F66F0"></i>생활 도구</button><button role="tab" data-t="play" aria-selected="false"><i style="background:#12985B"></i>놀이</button></div>
     </div>
   </section>
+  <div class="qh">많이 쓰는 도구</div>
+  <nav class="quick" aria-label="많이 쓰는 도구"><a href="/party/team/" data-c="play"><span class="ic qi" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="7" cy="8" r="2.6"/><circle cx="19" cy="8" r="2.6"/><path d="M2.5 19c0-2.6 2-4.4 4.5-4.4s4.5 1.8 4.5 4.4M14.5 19c0-2.6 2-4.4 4.5-4.4s4.5 1.8 4.5 4.4"/><path d="M13 4v18" stroke-dasharray="2 3"/></svg></span><span>팀 나누기</span></a><a href="/wage/" data-c="calc"><span class="ic qi" aria-hidden="true">₩</span><span>알바 급여</span></a><a href="/dutch/" data-c="calc"><span class="ic qi" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="8" cy="8" r="3.2"/><circle cx="18" cy="8" r="3.2"/><path d="M3 21c0-3 2.2-5 5-5s5 2 5 5M13 21c0-3 2.2-5 5-5s5 2 5 5"/></svg></span><span>더치페이</span></a><a href="/salary/" data-c="calc"><span class="ic qi" aria-hidden="true">연</span><span>연봉 실수령액</span></a><a href="/freelance-tax/" data-c="calc"><span class="ic qi" aria-hidden="true" style="font-size:13px;letter-spacing:-.04em">3.3</span><span>3.3% 계산</span></a><a href="/date/" data-c="calc"><span class="ic qi" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5.5" width="18" height="16" rx="3"/><path d="M4 10.5h18M9 3.5v4M17 3.5v4"/><path d="M9.5 15.5l2.2 2.2 4.3-4.4"/></svg></span><span>날짜·D-day</span></a><a href="/party/roulette/" data-c="play"><span class="ic qi" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="2.2"><circle cx="13" cy="14" r="9"/><path d="M13 5v18M4 14h18M6.6 7.6l12.8 12.8M19.4 7.6L6.6 20.4" stroke-width="1.4"/><path d="M10.5 1.8h5L13 5z" fill="#fff" stroke="none"/></svg></span><span>룰렛</span></a><a href="/pyeong/" data-c="calc"><span class="ic qi" aria-hidden="true">평</span><span>평수</span></a></nav>
   <main>
   <section class="recent" id="recent" hidden>
     <div class="ch"><h2>내 툴박스</h2><span class="cs" id="fsub">로그인하면 기기가 바뀌어도 내 즐겨찾기가 유지돼요!</span><button type="button" class="fedit" id="fedit" hidden>순서 편집</button></div>
@@ -401,7 +416,7 @@ footer .fl a:hover{color:var(--ink)}
        c.hidden=!ok; if(ok) vis++; });
      sec.hidden=!vis; shown+=vis; });
    const pn=findPosts(term);
-   document.querySelector('.posts').hidden=!!term;
+   document.querySelector('.posts').hidden=!!term; document.querySelector('.quick').hidden=!!term; document.querySelector('.qh').hidden=!!term;
    document.getElementById('noRes').hidden=shown>0||pn>0||(term&&!posts);
  }
  /* 글 검색: 블로그 목록 페이지를 한 번 읽어 와서 제목·요약·분류로 찾는다 */
