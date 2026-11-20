@@ -222,3 +222,17 @@ html{scroll-behavior:smooth}
 .aff a:first-of-type{border-top:0}
 .aff a strong{display:block; font-size:15px; font-weight:700}
 .aff a span{display:block; font-size:13px; color:var(--muted)}
+
+/* 앱으로 설치 버튼과 안내 */
+.finst{width:100%; display:flex; align-items:center; justify-content:center; gap:8px; font:inherit; font-size:14.5px; font-weight:800; color:var(--ink); background:var(--surface); border:1.5px solid var(--line); border-radius:14px; padding:11px 14px; cursor:pointer; margin:0 0 10px}
+.finst:hover{border-color:var(--ink)}
+.finst[hidden]{display:none}
+.finst svg{width:19px; height:19px; flex:none; fill:none; stroke:var(--orange); stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
+.fpanel .finst{margin:14px 0 8px; background:var(--surface)}
+.fbox .finst{margin:0}
+.fdiv{display:flex; align-items:center; gap:10px; margin:16px 0 12px; color:var(--faint); font-size:12.5px; font-weight:700}
+.fdiv::before,.fdiv::after{content:""; flex:1; height:1px; background:var(--line)}
+.fsteps{margin:4px 0 6px; padding:0 0 0 0; list-style:none; counter-reset:s; text-align:left}
+.fsteps li{counter-increment:s; position:relative; padding:9px 0 9px 34px; font-size:14.5px; line-height:1.6; color:var(--ink); border-top:1px solid var(--line)}
+.fsteps li:first-child{border-top:0}
+.fsteps li::before{content:counter(s); position:absolute; left:0; top:10px; width:24px; height:24px; display:grid; place-items:center; font-size:12.5px; font-weight:800; color:#fff; background:var(--orange); border-radius:8px}
