@@ -342,7 +342,7 @@ footer .fl a:hover{color:var(--ink)}
 #game{--c1:#2CC5C5; --c2:#0E9494; --tint:#2CC5C51a} .quick a[data-c="game"] .qi{background:linear-gradient(145deg,#2CC5C5,#0E9494)}
 </style>
 <!-- tools:css:end -->
-<link rel="stylesheet" href="/assets/favorites.css?v=21">
+<link rel="stylesheet" href="/assets/favorites.css?v=22">
 <meta name="google-adsense-account" content="ca-pub-1007904420767851">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
 </head>
@@ -362,11 +362,6 @@ footer .fl a:hover{color:var(--ink)}
 
 <!-- tools:quick:end -->
   <main>
-  <section class="recent" id="recent" hidden>
-    <div class="ch"><h2>내 툴박스</h2><span class="cs" id="fsub">로그인하면 기기가 바뀌어도 내 즐겨찾기가 유지돼요!</span><button type="button" class="fedit" id="fedit" hidden>순서 편집</button></div>
-    <div class="rgrid" id="rgrid"></div>
-    <div class="mydays" id="mydays"></div>
-  </section>
   <div class="nores" id="noRes" hidden><img src="/assets/endo/detective.webp" width="72" height="72" alt=""><p>찾는 도구가 아직 없어요.<br>어떤 도구가 필요한지 알려주시면 엔도가 개발자에게 전할게요.</p>
     <form class="reqf" id="reqf" novalidate><textarea id="reqT" maxlength="300" placeholder="예) 만 나이 계산기가 있으면 좋겠어요"></textarea><button type="submit">요청 보내기</button></form>
     <p class="reqm" id="reqM" hidden></p></div><div class="cmsg rmsg" hidden></div>
@@ -473,7 +468,7 @@ footer .fl a:hover{color:var(--ink)}
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
 <script src="/assets/firebase-config.js?v=4"></script>
-<script src="/assets/favorites.js?v=14"></script>
+<script src="/assets/favorites.js?v=15"></script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
 <script>
 (function(){
@@ -483,7 +478,6 @@ footer .fl a:hover{color:var(--ink)}
  const norm=s=>s.toLowerCase().replace(/\s+/g,'');
  function apply(){
    const term=norm(q.value);
-   const F=favSet(); document.getElementById('recent').hidden=!((F.size||document.getElementById('mydays').children.length)&&tab==='all'&&!term);
    let shown=0;
    const N=+(document.body.dataset.per||6);
    cats.forEach(sec=>{ let vis=0, all=0; const inTab=tab==='all'||sec.id===tab;
@@ -529,20 +523,6 @@ footer .fl a:hover{color:var(--ink)}
  document.addEventListener('sonandogu-refresh',apply);
  addEventListener('keydown',e=>{ if(e.key==='/'&&!e.metaKey&&!e.ctrlKey&&!e.altKey&&!/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||'')){ e.preventDefault(); q.focus(); } });
  if(window.SonFav) window.SonFav.onChange(apply);
-})();
-</script>
-<script>
-(function(){
- const box=document.getElementById('mydays');
- const dn=s=>{const [y,m,d]=s.split('-').map(Number); return Math.round(Date.UTC(y,m-1,d)/86400000);};
- function draw(){ try{
-  const a=JSON.parse(localStorage.getItem('sonandogu-date-saved')||'[]'); box.textContent='';
-  const t0=new Date(), T=Math.round(Date.UTC(t0.getFullYear(),t0.getMonth(),t0.getDate())/86400000);
-  a.slice(0,4).forEach(it=>{ if(!it||typeof it.d!=='string') return; let b; if(it.t==='dday'){const k=dn(it.d)-T; b=k>0?'D-'+k:k===0?'D-day':'D+'+(-k);} else {const c=T-dn(it.d)+(it.one?1:0); b=c>0?c.toLocaleString('ko-KR')+'일째':'D-'+(dn(it.d)-T);}
-   const l=document.createElement('a'); l.href='/date/'; l.innerHTML='<span></span><b></b>'; l.firstChild.textContent=it.n; l.lastChild.textContent=b; box.append(l); });
-  const r=document.getElementById('recent'); if(r&&a.length&&!document.getElementById('q').value&&(!location.hash||location.hash==='#')) r.hidden=false;
- }catch(e){} }
- draw(); addEventListener('sonandogu-dates-updated',()=>{ draw(); document.dispatchEvent(new Event('sonandogu-refresh')); });
 })();
 </script>
 <script type="module" src="/assets/comments.js?v=4"></script>

@@ -470,7 +470,7 @@ var sbBack=el('div','sbback'); sbBack.hidden=true;
 var sbBtn=el('button','sbtn'); sbBtn.type='button'; sbBtn.setAttribute('aria-label','도구 메뉴 열기'); sbBtn.setAttribute('aria-controls','sbar');
 sbBtn.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
 function wide(){ return matchMedia('(min-width:1200px)').matches; }
-var sbTab=ls('sonandogu-sb-tab')==='like'?'like':'fav';
+var sbTab=ls('sonandogu-sb-tab')==='like'?'like':'fav', sbEdit=false;
 function catOf(h){ for(var i=0;i<CATS.length;i++) if(CATS[i].t.indexOf(h)>=0) return CATS[i]; return null; }
 function toolLink(h){
   var c=catOf(h), a=el('a','sbi'); a.href=h; if(h===here) a.setAttribute('aria-current','page');
@@ -489,15 +489,27 @@ function drawSidebar(){
   var mine=el('div','sbmine'), tabs=el('div','sbtabs'), pane=el('div','sbpane');
   [['fav','★ 즐겨찾기',favs.length],['like','♥ 좋아요',likes.length]].forEach(function(x){
     var b=el('button',null,x[1]+' '); b.type='button'; b.appendChild(el('small',null,String(x[2]))); b.setAttribute('aria-pressed',sbTab===x[0]?'true':'false');
-    b.onclick=function(){ sbTab=x[0]; ls('sonandogu-sb-tab',x[0]==='like'?'like':null); drawSidebar(); }; tabs.appendChild(b); });
+    b.onclick=function(){ sbTab=x[0]; sbEdit=false; ls('sonandogu-sb-tab',x[0]==='like'?'like':null); drawSidebar(); }; tabs.appendChild(b); });
+  var list=sbTab==='fav'?favs:likes;
+  /* 순서 편집: 항목마다 ↑ ↓ 버튼 */
+  var row=function(a,i,n,mv){
+    if(!sbEdit) return a;
+    var w=el('div','sbrow'); a.classList.add('editing'); w.appendChild(a);
+    [['↑',-1,'위로'],['↓',1,'아래로']].forEach(function(x){ var b=el('button','sbmv',x[0]); b.type='button'; b.setAttribute('aria-label',(a.textContent||'')+' '+x[2]); b.disabled=(x[1]<0&&i===0)||(x[1]>0&&i===n-1); b.onclick=function(){ mv(i,x[1]); }; w.appendChild(b); });
+    return w;
+  };
   if(sbTab==='fav'){
-    if(favs.length) favs.forEach(function(h){ pane.appendChild(toolLink(h)); });
+    if(favs.length) favs.forEach(function(h,i){ pane.appendChild(row(toolLink(h),i,favs.length,function(k,d){ move(k,d); })); });
     else pane.appendChild(el('p','sbempty','도구 이름 옆 ☆을 누르면 여기 모여요'));
   }else{
-    if(likes.length) likes.slice(0,20).forEach(function(x){ var a=el('a','sbi sbpost'); a.href=x.p; if(x.p===here) a.setAttribute('aria-current','page'); a.appendChild(el('span','sbn',x.t)); pane.appendChild(a); });
+    var L=likes.slice(0,20);
+    if(L.length) L.forEach(function(x,i){ var a=el('a','sbi sbpost'); a.href=x.p; if(x.p===here) a.setAttribute('aria-current','page'); a.appendChild(el('span','sbn',x.t));
+      pane.appendChild(row(a,i,L.length,function(k,d){ var j=k+d; if(j<0||j>=likes.length) return; var c=likes.slice(), t=c[k]; c[k]=c[j]; c[j]=t; setLikes(c); if(user&&pulled) pushCloud(); })); });
     else pane.appendChild(el('p','sbempty',user?'블로그 글의 ♡를 누르면 여기 모여요':'로그인하고 글의 ♡를 누르면 여기 모여요'));
   }
-  mine.appendChild(tabs); mine.appendChild(pane); sb.appendChild(mine);
+  mine.appendChild(tabs); mine.appendChild(pane);
+  if(list.length>1){ var eb=el('button','sbedit',sbEdit?'완료':'순서 편집'); eb.type='button'; eb.setAttribute('aria-pressed',sbEdit?'true':'false'); eb.onclick=function(){ sbEdit=!sbEdit; drawSidebar(); }; mine.appendChild(eb); }
+  sb.appendChild(mine);
   /* 분류 */
   sb.appendChild(el('div','sbt','분류'));
   CATS.forEach(function(c){

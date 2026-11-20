@@ -364,3 +364,14 @@ html{scroll-behavior:smooth}
 .hotdrop button{flex:none; white-space:nowrap; font:inherit; font-size:12.5px; font-weight:700; line-height:1.3; color:var(--ink); background:var(--field); border:1px solid var(--line); border-radius:999px; padding:3px 10px; cursor:pointer}
 .hotdrop button:hover{color:var(--orange); border-color:var(--orange)}
 @media (pointer:coarse){ .hotdrop button{min-height:32px} }
+
+/* 서랍: 즐겨찾기·좋아요 순서 편집 */
+.sbedit{display:block; margin:4px 6px 4px auto; font:inherit; font-size:12px; font-weight:800; color:var(--muted); background:none; border:0; padding:4px 6px; cursor:pointer}
+.sbedit:hover,.sbedit[aria-pressed="true"]{color:var(--orange)}
+.sbrow{display:flex; align-items:center; gap:2px}
+.sbrow .sbi{flex:1; min-width:0}
+.sbrow .sbi.editing{border:1px dashed var(--line)}
+.sbmv{flex:none; width:28px; height:28px; display:grid; place-items:center; font:inherit; font-size:13px; font-weight:900; color:var(--muted); background:var(--field); border:0; border-radius:8px; cursor:pointer}
+.sbmv:hover:not(:disabled){color:var(--ink)}
+.sbmv:disabled{opacity:.3; cursor:default}
+@media (pointer:coarse){ .sbmv{width:36px; height:36px} }
