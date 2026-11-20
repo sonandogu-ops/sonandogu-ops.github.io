@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="manifest" href="/manifest.webmanifest">
+<script>addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__bip=e;});</script>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="손안의도구">
 
@@ -386,7 +387,7 @@ footer .fl a:hover{color:var(--ink)}
 </div>
 <footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
 <script src="/assets/firebase-config.js?v=4"></script>
-<script src="/assets/favorites.js?v=7"></script>
+<script src="/assets/favorites.js?v=8"></script>
 <script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
 <script>
 (function(){
@@ -438,7 +439,7 @@ footer .fl a:hover{color:var(--ink)}
  addEventListener('keydown',e=>{ if(e.key==='/'&&!e.metaKey&&!e.ctrlKey&&!e.altKey&&!/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||'')){ e.preventDefault(); q.focus(); } });
  if(window.SonFav) window.SonFav.onChange(apply);
 })();
-let _dp=null; addEventListener('beforeinstallprompt',e=>{e.preventDefault(); _dp=e; const b=document.getElementById('inst'); if(b){b.hidden=false; b.onclick=async()=>{_dp.prompt(); await _dp.userChoice; _dp=null; b.hidden=true;};}});
+(function(){ const b=document.getElementById('inst'); if(!b) return; const show=()=>{ b.hidden=false; b.onclick=()=>{ if(window.SonInstall) window.SonInstall.open(); b.hidden=true; }; }; if(window.__bip) show(); addEventListener('beforeinstallprompt',show); })();
 </script>
 <script>
 (function(){
