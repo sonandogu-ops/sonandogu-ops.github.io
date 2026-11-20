@@ -187,7 +187,7 @@ html{scroll-behavior:smooth}
   .hero:has(.crumb){padding-top:14px!important; padding-bottom:10px!important; gap:12px!important}
   .hero .crumb{margin-bottom:4px!important; font-size:13px!important}
   .hero:has(.crumb) h1{font-size:27px!important; line-height:1.2!important; margin-bottom:0!important}
-  .hero:has(.crumb) > p:not(.chk){display:none}
+  .hero:has(.crumb) > p:not(.chk):not(.cta){display:none}
   .hero .chk{margin:6px 0 0!important; font-size:12.5px!important}
 }
 /* 빠른 선택 버튼: 넘치면 잘리지 않고 다음 줄로 */
