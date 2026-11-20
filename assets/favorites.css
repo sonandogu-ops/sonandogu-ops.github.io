@@ -375,3 +375,9 @@ html{scroll-behavior:smooth}
 .sbmv:hover:not(:disabled){color:var(--ink)}
 .sbmv:disabled{opacity:.3; cursor:default}
 @media (pointer:coarse){ .sbmv{width:36px; height:36px} }
+
+/* 색은 분류에만: 도구 아이콘은 무채색 (홈 카드, 이어서 쓰면 좋은 도구) */
+html .cat .ic,html .nt .nt-i{background:var(--field)!important; color:var(--ink)!important; box-shadow:none!important; border:1px solid var(--line)}
+html .cat .ic svg,html .cat .ic svg *,html .nt .nt-i svg,html .nt .nt-i svg *{stroke:currentColor}
+html .cat .ic svg [fill="#fff"],html .nt .nt-i svg [fill="#fff"]{fill:currentColor}
+html .cat .ic svg[fill="#fff"],html .nt .nt-i svg[fill="#fff"]{fill:currentColor}
