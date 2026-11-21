@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<script>addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__bip=e;});</script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon-192.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F6F7F9">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sonandogu.com/blog/loan-repayment/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-loan-repayment-post.jpg?v=20261121">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="원리금균등과 원금균등, 30년 이자는 얼마나 다를까">
+<meta name="twitter:card" content="summary_large_image">
+<title>원리금균등 원금균등 차이: 1억 원 30년 대출 이자 비교와 고르는 법 | 손안의도구</title>
+<meta name="description" content="1억 원을 연 4.5%로 30년 빌리면 총 이자는 원금균등 6,769만 원, 원리금균등 8,241만 원, 만기일시 1억 3,500만 원이에요. 상환 방식별 첫 달 부담과 원금이 줄어드는 속도, 기간·거치 기간의 효과를 정리했어요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="원리금균등과 원금균등, 30년 이자는 얼마나 다를까">
+<meta property="og:description" content="1억 원 30년 대출, 상환 방식별 총 이자와 고르는 법.">
+<link rel="canonical" href="https://sonandogu.com/blog/loan-repayment/">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "원리금균등과 원금균등, 30년 이자는 얼마나 다를까", "datePublished": "2026-11-21", "dateModified": "2026-11-21", "author": {"@type": "Organization", "name": "손안의도구"}, "publisher": {"@type": "Organization", "name": "손안의도구"}, "mainEntityOfPage": "https://sonandogu.com/blog/loan-repayment/", "image": "https://sonandogu.com/assets/og-loan-repayment-post.jpg?v=20261121"}</script>
+<style>:root{
+  --bg:#F6F7F9; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#EFF1F4; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(246,247,249,.8); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.post{max-width:700px; padding:36px 0 0}
+@media (min-width:920px){.post{padding-top:60px}}
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:14px}
+.crumb a{color:var(--muted); text-decoration:none}
+.post h1{font-size:clamp(30px,6vw,46px); font-weight:800; letter-spacing:-.05em; line-height:1.15; margin:0 0 14px}
+.meta{font-size:14px; color:var(--muted); margin:0 0 30px}
+.post h2{font-size:clamp(21px,3.6vw,26px); font-weight:800; letter-spacing:-.04em; line-height:1.3; margin:52px 0 14px}
+.post p{font-size:16.5px; line-height:1.85; margin:0 0 16px}
+.post strong{font-weight:750}
+.formula{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:14px; padding:16px 18px; font-size:17px; font-weight:750; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex{background:rgba(255,90,31,.07); border-radius:14px; padding:14px 18px; font-size:15.5px; line-height:1.8; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex b{color:var(--orange)}
+.tbl{overflow-x:auto; margin:0 0 16px}
+table{width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums}
+th,td{padding:11px 10px; border-bottom:1px solid var(--line); text-align:left}
+th{color:var(--muted); font-weight:700; font-size:13.5px}
+td:last-child,th:last-child{text-align:right}
+.mini{position:relative; overflow:hidden; border-radius:26px; padding:20px; color:#F4F4F1; margin:6px 0 34px;
+  background:radial-gradient(110% 140% at 100% 0%, rgba(255,106,51,.26) 0%, rgba(255,106,51,0) 50%), linear-gradient(160deg,#202126 0%,#121316 100%); box-shadow:var(--shadow)}
+.mini h3{margin:0 0 12px; font-size:15px; font-weight:800}
+.mini .row{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.mini label{display:block; font-size:12px; font-weight:700; color:rgba(244,244,241,.55); margin:0 0 5px 2px}
+.mini input{width:100%; font:inherit; font-size:22px; font-weight:750; color:#F4F4F1; background:rgba(255,255,255,.07); border:1.5px solid rgba(255,255,255,.1); border-radius:14px; padding:10px 12px; outline:none; font-variant-numeric:tabular-nums}
+.mini input:focus{border-color:#FF6A33}
+.mini input::placeholder{color:rgba(244,244,241,.3)}
+.mini .out{margin-top:14px; font-size:15px; color:rgba(244,244,241,.6); min-height:1.5em}
+.mini .out b{font-size:30px; color:#fff; letter-spacing:-.04em; margin:0 4px}
+.mini .out em{font-style:normal; color:#FF8A3D; font-weight:700}
+.mini a{display:inline-block; margin-top:12px; color:#FF8A3D; font-weight:700; font-size:14px; text-decoration:none}
+.next{margin-top:56px; display:grid; gap:10px}
+.next a{display:flex; justify-content:space-between; align-items:center; gap:12px; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:18px 20px; box-shadow:var(--shadow)}
+.next a:hover{border-color:var(--ink)}
+.next strong{display:block; font-size:17px; font-weight:800; letter-spacing:-.03em}
+.next span{font-size:14px; color:var(--muted)}
+.next i{font-style:normal; font-size:20px; color:var(--muted)}
+
+.ill{margin:6px 0 26px; background:var(--surface); border:1px solid var(--line); border-radius:24px; padding:16px 12px 12px; box-shadow:var(--shadow)}
+.ill svg{display:block; width:100%; height:auto}
+.ill figcaption{text-align:center; font-size:13.5px; color:var(--muted); margin-top:6px}
+.ill .tag{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .hole{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .tp{font-size:20px; font-weight:700; fill:var(--muted)}
+.ill .tbig{font-size:46px; font-weight:800; fill:var(--ink); letter-spacing:-2px}
+.ill .strike{stroke:#FF5A1F; stroke-width:5; stroke-linecap:round}
+.ill .st{font-size:30px; font-weight:800; fill:#fff}
+.ill .st2{font-size:26px; font-weight:800; fill:#FF8A3D}
+.ill .q{font-size:80px; font-weight:800; fill:var(--faint)}
+.ill .lbl text{font-size:17px; font-weight:700; fill:var(--muted)}
+.ill .val text{font-size:20px; font-weight:800; fill:var(--ink)}
+.ill .bar0{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .bar1{fill:#FFB48A}
+.ill .bar2{fill:#FF5A1F}
+.ill .ghost{stroke:var(--ink); stroke-width:2; stroke-dasharray:6 6; opacity:.5}
+.ill .arr{fill:none; stroke:var(--faint); stroke-width:3; stroke-linecap:round}
+.ill .arr2{fill:none; stroke:var(--ink); stroke-width:2; opacity:.5}
+.ill .note{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .btl{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .cap{fill:var(--line)}
+.ill .btlf{fill:#FF5A1F}
+.ill .capf{fill:#FF8A3D}
+.ill .bp{font-size:30px; font-weight:800; fill:var(--muted)}
+.ill .free{font-size:22px; font-weight:800; fill:#fff}
+.ill .cap2{font-size:18px; font-weight:800; fill:var(--ink)}
+.quiz{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px 22px; margin:26px 0 8px; box-shadow:var(--shadow)}
+.quiz .qh{font-size:13px; font-weight:800; color:var(--orange); margin:0 0 6px}
+.quiz .qq{font-size:17px; font-weight:750; margin:0 0 12px; line-height:1.6}
+.quiz summary{display:inline-block; cursor:pointer; list-style:none; font-size:14.5px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); padding:9px 16px; border-radius:12px}
+.quiz summary::-webkit-details-marker{display:none}
+.quiz details[open] summary{display:none}
+.quiz details p{margin:0; font-size:16px; line-height:1.75}
+.quiz details b{color:var(--orange)}
+.keys{display:grid; gap:10px; margin:0 0 18px}
+@media (min-width:640px){.keys{grid-template-columns:repeat(3,1fr)}}
+.keys div{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:16px}
+.keys b{display:block; font-size:16px; font-weight:800; color:var(--orange); margin-bottom:4px}
+.keys span{font-size:14.5px; color:var(--muted); line-height:1.6}
+
+.ill .ok{fill:#1FA968}.ill .okt{fill:#1FA968; font-size:16px; font-weight:800}
+.ill .warn{fill:#FF5A1F}.ill .warnt{fill:#FF5A1F; font-size:16px; font-weight:800}
+.ill .axis{stroke:var(--line); stroke-width:3}
+.ill .tick{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .paper{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .ln2{stroke:var(--line); stroke-width:3; stroke-linecap:round}
+.ill .red{fill:#B4232F; font-weight:800}
+.ill .node{fill:var(--field); stroke:var(--faint); stroke-width:2}
+.ill .nodeb{fill:var(--surface); stroke:var(--ink); stroke-width:3}
+.ill .path{stroke:var(--line); stroke-width:4; fill:none}
+.ill .hot{stroke:#FF5A1F; stroke-width:6; fill:none; stroke-linecap:round; stroke-dasharray:2 12}
+.ill .dot{fill:#FF5A1F}
+.ill .p3{stroke:var(--faint); stroke-width:4; fill:none; stroke-linecap:round}
+.ill .p5{stroke:#FF5A1F; stroke-width:5; fill:none; stroke-linecap:round}
+.ill .grid{stroke:var(--line); stroke-width:1.5}
+.tbl th,.tbl td{text-align:left!important}
+.tbl td:nth-child(n+2),.tbl th:nth-child(n+2){white-space:nowrap}
+</style>
+<link rel="stylesheet" href="/assets/comments.css?v=5">
+<meta name="google-adsense-account" content="ca-pub-1007904420767851">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/assets/favorites.css?v=24">
+<link rel="alternate" type="application/rss+xml" title="손안의도구 블로그" href="/blog/rss.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "블로그", "item": "https://sonandogu.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "원리금균등과 원금균등, 30년 이자는 얼마나 다를까", "item": "https://sonandogu.com/blog/loan-repayment/"}]}</script>
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/"><span class="nw">전체 </span>도구</a></nav></div></header>
+<div class="container"><article class="post">
+  <div class="crumb"><a href="/blog/">블로그</a> / 생활 계산</div>
+  <h1>원리금균등과 원금균등,<br>30년 이자는 얼마나 다를까</h1>
+  <p class="meta pub"><time datetime="2026-11-21">2026년 11월 21일</time><span class="rt"> · 5분 읽기</span></p>
+
+  <figure class="ill" aria-label="1억 원을 연 4.5퍼센트로 30년 빌리면 총 이자는 원금균등 6,769만 원, 원리금균등 8,241만 원, 만기일시 1억 3,500만 원이다">
+    <svg viewBox="0 0 640 250">
+      <g class="lbl"><text x="30" y="58">원금균등</text><text x="30" y="118">원리금균등</text><text x="30" y="178">만기일시</text></g>
+      <rect x="140" y="36" width="236" height="34" rx="10" class="bar0"/>
+      <rect x="140" y="96" width="287" height="34" rx="10" class="bar1"/>
+      <rect x="140" y="156" width="470" height="34" rx="10" class="bar2"/>
+      <g class="val"><text x="388" y="60" style="font-size:16px">6,769만 원</text><text x="439" y="120" style="font-size:16px">8,241만 원</text></g>
+      <text x="598" y="180" text-anchor="end" class="st" style="font-size:16px">1억 3,500만 원</text>
+      <text x="320" y="232" text-anchor="middle" class="note">1억 원 · 연 4.5% · 30년 대출의 총 이자</text>
+    </svg>
+    <figcaption>같은 대출이어도 갚는 방식에 따라 총 이자가 두 배 가까이 차이 나요</figcaption>
+  </figure>
+
+  <div class="quiz">
+    <p class="qh">잠깐, 먼저 맞혀볼까요?</p>
+    <p class="qq">1억 원을 연 4.5%, 30년 원리금균등으로 빌렸어요. 매달 똑같이 506,685원씩 갚는데, 남은 원금이 절반인 5천만 원 아래로 내려가는 건 언제일까요? ① 15년째 ② 약 20년째 ③ 25년째</p>
+    <details><summary>정답 보기</summary><p><b>② 약 20년째</b>예요. 237회차, 그러니까 19년 9개월이 지나야 원금이 절반으로 줄어요. 초반에는 매달 갚는 돈의 대부분이 이자라서 원금이 아주 천천히 줄거든요.</p></details>
+  </div>
+
+  <p>대출을 받을 때 은행 창구나 앱에서 꼭 묻는 게 있어요. "상환 방식은 원리금균등으로 하실래요, 원금균등으로 하실래요?" 이름은 비슷한데 고르는 순간 30년 동안 내는 이자가 수천만 원씩 달라져요. 1억 원을 연 4.5%로 30년 빌리는 경우를 예로 들어 세 가지 방식을 나란히 놓고 볼게요.</p>
+  <nav class="toc" aria-label="이 글의 차례"><b>이 글의 차례</b><ol><li><a href="#s1">세 가지 방식, 한 줄씩</a></li><li><a href="#s2">첫 달 부담과 총 이자</a></li><li><a href="#s3">원리금균등은 왜 원금이 늦게 줄까</a></li><li><a href="#s4">원금균등이 더 적어지는 시점</a></li><li><a href="#s5">기간과 거치 기간도 이자를 바꿔요</a></li><li><a href="#s6">자주 묻는 질문</a></li></ol></nav>
+
+  <h2 id="s1">세 가지 방식, 한 줄씩</h2>
+  <div class="keys">
+    <div><b>원리금균등</b><span>원금과 이자를 합친 금액이 매달 같아요</span></div>
+    <div><b>원금균등</b><span>원금을 똑같이 나눠 갚고, 남은 원금의 이자를 더해요. 매달 조금씩 줄어요</span></div>
+    <div><b>만기일시</b><span>매달 이자만 내다가 마지막 달에 원금을 한 번에 갚아요</span></div>
+  </div>
+  <p>어느 방식이든 매달 이자는 <strong>남은 원금 × 연 이율 ÷ 12</strong>로 정해져요. 결국 차이는 하나예요. 원금을 얼마나 빨리 줄이느냐예요. 원금이 빨리 줄수록 이자가 붙는 금액이 작아져서 총 이자가 줄어요.</p>
+
+  <h2 id="s2">첫 달 부담과 총 이자</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>1억 원 · 연 4.5% · 30년</th><th>첫 달</th><th>총 이자</th></tr></thead>
+    <tbody>
+      <tr><td>원금균등</td><td>652,778원</td><td>67,687,447원</td></tr>
+      <tr><td>원리금균등</td><td>506,685원</td><td>82,406,841원</td></tr>
+      <tr><td>만기일시</td><td>375,000원</td><td>135,000,000원</td></tr>
+    </tbody>
+  </table></div>
+  <p>원금균등은 첫 달에 원리금균등보다 146,093원을 더 내지만, 30년 동안의 총 이자는 <strong>1,472만 원</strong> 적어요. 만기일시는 매달 부담이 가장 가볍지만 원금 1억 원이 끝까지 그대로라 이자가 1억 3,500만 원으로 가장 많아요. 만기일시가 주로 1~2년짜리 신용대출이나 전세자금대출에 쓰이는 이유예요.</p>
+
+  <h2 id="s3">원리금균등은 왜 원금이 늦게 줄까</h2>
+  <p>원리금균등의 첫 달 506,685원 가운데 이자가 375,000원이고 원금은 131,685원뿐이에요. 첫 1년 동안 갚는 돈을 나눠 보면 원금 1,613,223원, 이자 4,466,997원으로 <strong>이자가 원금의 세 배 가까이</strong> 돼요.</p>
+  <p>매달 내는 금액이 고정이라, 초반에는 이자가 많은 만큼 원금이 덜 줄어요. 원금이 조금씩 줄어야 이자도 조금씩 줄고, 그만큼 원금 비중이 커져요. 그래서 남은 원금이 절반 아래로 내려가는 건 30년 중 237회차, 약 20년째예요. 같은 기간 원금균등은 첫 1년에만 원금 333만 원을 갚아요.</p>
+
+  <h2 id="s4">원금균등이 더 적어지는 시점</h2>
+  <p>원금균등은 처음이 가장 무겁고 매달 1,000원 남짓씩 가벼워져요. 이 예시에서는 <strong>142회차</strong>, 약 12년째부터 원금균등의 월 상환액이 원리금균등의 506,685원보다 적어져요. 그 뒤로는 계속 원금균등 쪽이 덜 내요.</p>
+  <p>그래서 고르는 기준은 이렇게 정리할 수 있어요.</p>
+  <div class="keys">
+    <div><b>초반 여유가 있다면</b><span>원금균등. 총 이자가 가장 적고 시간이 갈수록 가벼워져요</span></div>
+    <div><b>매달 같은 금액이 편하다면</b><span>원리금균등. 생활비 계획을 세우기 쉬워요</span></div>
+    <div><b>짧게 쓰고 한 번에 갚을 돈이라면</b><span>만기일시. 기간이 짧을 때만 쓰는 게 좋아요</span></div>
+  </div>
+
+  <h2 id="s5">기간과 거치 기간도 이자를 바꿔요</h2>
+  <p>상환 방식만큼 큰 게 기간이에요. 같은 1억 원을 원리금균등으로 20년에 갚으면 매달 632,649원으로 30년보다 125,964원 늘지만, 총 이자는 51,835,927원으로 <strong>3,057만 원</strong> 줄어요.</p>
+  <p>거치 기간도 따져 봐야 해요. 30년 대출에 거치 1년을 두면 첫 1년은 이자 375,000원만 내서 가볍지만, 그 뒤 29년 동안 매달 514,993원을 갚아야 하고 총 이자는 131만 원쯤 늘어나요. 당장 숨 돌릴 틈은 생기지만 공짜는 아니에요.</p>
+  <p>내 대출로 직접 비교해 보고 싶다면 <a href="/loan/">대출 이자 계산기</a>에 대출금과 이자율, 기간을 넣어 보세요. 세 방식의 총 이자를 한 번에 비교하고, 연도별·매달 상환표까지 볼 수 있어요.</p>
+
+  <h2 id="s6">자주 묻는 질문</h2>
+  <p><strong>Q. 중간에 상환 방식을 바꿀 수 있나요?</strong><br>은행과 상품에 따라 다르지만 대부분 대출 중간에 바꾸기는 어려워요. 처음 고를 때 신중하게 정하고, 바꾸고 싶다면 대환대출이나 중도상환을 함께 알아보세요.</p>
+  <p><strong>Q. 여유 돈이 생기면 중도상환하는 게 좋나요?</strong><br>원금을 일찍 갚으면 그만큼 이후 이자가 줄어요. 다만 대출 초기 몇 년은 중도상환수수료가 붙을 수 있으니, 수수료와 줄어드는 이자를 비교해 보세요.</p>
+  <p><strong>Q. 은행 상환표와 금액이 조금 달라요.</strong><br>은행은 이자를 실제 날짜 수로 계산하고 원 단위 처리 방식도 조금씩 달라요. 이 글의 숫자는 매달 같은 기간으로 보고 원 단위로 반올림한 값이라 몇 원에서 몇백 원 차이 날 수 있어요.</p>
+  <p class="meta" style="margin-top:20px">이 글은 2026년 11월 기준이에요. 예시는 고정금리, 매달 같은 기간, 원 단위 반올림으로 계산했어요. 변동금리 대출은 금리가 바뀔 때마다 상환액이 다시 정해져요.</p>
+
+  <!-- more:start -->
+  <nav class="more" aria-label="이 주제의 다른 글"><b>이 주제의 다른 글</b><a href="/blog/pyeong-area/"><span>생활 계산</span>84㎡는 왜 34평일까, 전용면적과 공급면적</a><a href="/blog/discount-rate/"><span>생활 계산</span>20% 할인에 10% 더, 왜 30%가 아닐까?</a><a href="/blog/changes-2027/"><span>생활 계산</span>2027년 달라지는 것, 월급과 달력부터 바뀌어요</a></nav>
+  <!-- more:end -->
+  <nav class="next" aria-label="관련 글과 도구"><a href="/loan/"><span><strong>대출 이자 계산기</strong><span>월 상환액과 총 이자 비교</span></span><i>→</i></a><a href="/blog/savings-interest/"><span><strong>적금 이자는 왜 생각보다 적을까</strong><span>연 5% 적금의 실제 이자</span></span><i>→</i></a></nav>
+  <div data-comments data-kind="comment" data-page="/blog/loan-repayment/"></div>
+</article>
+<section class="cmts" data-page="/blog/loan-repayment/" data-kind="post"></section></div>
+
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
+
+<script src="/assets/firebase-config.js?v=4"></script>
+<script src="/assets/favorites.js?v=18"></script>
+<script type="module" src="/assets/comments.js?v=5"></script>
+<script src="/assets/analytics.js?v=3" defer></script>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+</body>
+</html>

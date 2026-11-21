@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<script>addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__bip=e;});</script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon-192.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F6F7F9">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sonandogu.com/blog/savings-interest/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-savings-interest-post.jpg?v=20261121">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="적금 이자는 왜 생각보다 적을까">
+<meta name="twitter:card" content="summary_large_image">
+<title>적금 이자 계산법: 연 5% 적금이 예금 2.7%인 이유와 세후 이자 | 손안의도구</title>
+<meta name="description" content="매달 100만 원씩 연 5% 적금에 1년 넣으면 세후 이자는 274,950원이에요. 넣은 달마다 이자 기간이 다른 적금 이자 계산법, 이자소득세 15.4%, 특판 10% 적금의 실제 금액과 예금과 고르는 기준을 정리했어요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="적금 이자는 왜 생각보다 적을까">
+<meta property="og:description" content="연 5% 적금은 예금으로 치면 2.7%. 계산법과 세후 이자.">
+<link rel="canonical" href="https://sonandogu.com/blog/savings-interest/">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "적금 이자는 왜 생각보다 적을까", "datePublished": "2026-11-21", "dateModified": "2026-11-21", "author": {"@type": "Organization", "name": "손안의도구"}, "publisher": {"@type": "Organization", "name": "손안의도구"}, "mainEntityOfPage": "https://sonandogu.com/blog/savings-interest/", "image": "https://sonandogu.com/assets/og-savings-interest-post.jpg?v=20261121"}</script>
+<style>:root{
+  --bg:#F6F7F9; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#EFF1F4; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(246,247,249,.8); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.post{max-width:700px; padding:36px 0 0}
+@media (min-width:920px){.post{padding-top:60px}}
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:14px}
+.crumb a{color:var(--muted); text-decoration:none}
+.post h1{font-size:clamp(30px,6vw,46px); font-weight:800; letter-spacing:-.05em; line-height:1.15; margin:0 0 14px}
+.meta{font-size:14px; color:var(--muted); margin:0 0 30px}
+.post h2{font-size:clamp(21px,3.6vw,26px); font-weight:800; letter-spacing:-.04em; line-height:1.3; margin:52px 0 14px}
+.post p{font-size:16.5px; line-height:1.85; margin:0 0 16px}
+.post strong{font-weight:750}
+.formula{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:14px; padding:16px 18px; font-size:17px; font-weight:750; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex{background:rgba(255,90,31,.07); border-radius:14px; padding:14px 18px; font-size:15.5px; line-height:1.8; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex b{color:var(--orange)}
+.tbl{overflow-x:auto; margin:0 0 16px}
+table{width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums}
+th,td{padding:11px 10px; border-bottom:1px solid var(--line); text-align:left}
+th{color:var(--muted); font-weight:700; font-size:13.5px}
+td:last-child,th:last-child{text-align:right}
+.mini{position:relative; overflow:hidden; border-radius:26px; padding:20px; color:#F4F4F1; margin:6px 0 34px;
+  background:radial-gradient(110% 140% at 100% 0%, rgba(255,106,51,.26) 0%, rgba(255,106,51,0) 50%), linear-gradient(160deg,#202126 0%,#121316 100%); box-shadow:var(--shadow)}
+.mini h3{margin:0 0 12px; font-size:15px; font-weight:800}
+.mini .row{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.mini label{display:block; font-size:12px; font-weight:700; color:rgba(244,244,241,.55); margin:0 0 5px 2px}
+.mini input{width:100%; font:inherit; font-size:22px; font-weight:750; color:#F4F4F1; background:rgba(255,255,255,.07); border:1.5px solid rgba(255,255,255,.1); border-radius:14px; padding:10px 12px; outline:none; font-variant-numeric:tabular-nums}
+.mini input:focus{border-color:#FF6A33}
+.mini input::placeholder{color:rgba(244,244,241,.3)}
+.mini .out{margin-top:14px; font-size:15px; color:rgba(244,244,241,.6); min-height:1.5em}
+.mini .out b{font-size:30px; color:#fff; letter-spacing:-.04em; margin:0 4px}
+.mini .out em{font-style:normal; color:#FF8A3D; font-weight:700}
+.mini a{display:inline-block; margin-top:12px; color:#FF8A3D; font-weight:700; font-size:14px; text-decoration:none}
+.next{margin-top:56px; display:grid; gap:10px}
+.next a{display:flex; justify-content:space-between; align-items:center; gap:12px; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:18px 20px; box-shadow:var(--shadow)}
+.next a:hover{border-color:var(--ink)}
+.next strong{display:block; font-size:17px; font-weight:800; letter-spacing:-.03em}
+.next span{font-size:14px; color:var(--muted)}
+.next i{font-style:normal; font-size:20px; color:var(--muted)}
+
+.ill{margin:6px 0 26px; background:var(--surface); border:1px solid var(--line); border-radius:24px; padding:16px 12px 12px; box-shadow:var(--shadow)}
+.ill svg{display:block; width:100%; height:auto}
+.ill figcaption{text-align:center; font-size:13.5px; color:var(--muted); margin-top:6px}
+.ill .tag{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .hole{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .tp{font-size:20px; font-weight:700; fill:var(--muted)}
+.ill .tbig{font-size:46px; font-weight:800; fill:var(--ink); letter-spacing:-2px}
+.ill .strike{stroke:#FF5A1F; stroke-width:5; stroke-linecap:round}
+.ill .st{font-size:30px; font-weight:800; fill:#fff}
+.ill .st2{font-size:26px; font-weight:800; fill:#FF8A3D}
+.ill .q{font-size:80px; font-weight:800; fill:var(--faint)}
+.ill .lbl text{font-size:17px; font-weight:700; fill:var(--muted)}
+.ill .val text{font-size:20px; font-weight:800; fill:var(--ink)}
+.ill .bar0{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .bar1{fill:#FFB48A}
+.ill .bar2{fill:#FF5A1F}
+.ill .ghost{stroke:var(--ink); stroke-width:2; stroke-dasharray:6 6; opacity:.5}
+.ill .arr{fill:none; stroke:var(--faint); stroke-width:3; stroke-linecap:round}
+.ill .arr2{fill:none; stroke:var(--ink); stroke-width:2; opacity:.5}
+.ill .note{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .btl{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .cap{fill:var(--line)}
+.ill .btlf{fill:#FF5A1F}
+.ill .capf{fill:#FF8A3D}
+.ill .bp{font-size:30px; font-weight:800; fill:var(--muted)}
+.ill .free{font-size:22px; font-weight:800; fill:#fff}
+.ill .cap2{font-size:18px; font-weight:800; fill:var(--ink)}
+.quiz{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px 22px; margin:26px 0 8px; box-shadow:var(--shadow)}
+.quiz .qh{font-size:13px; font-weight:800; color:var(--orange); margin:0 0 6px}
+.quiz .qq{font-size:17px; font-weight:750; margin:0 0 12px; line-height:1.6}
+.quiz summary{display:inline-block; cursor:pointer; list-style:none; font-size:14.5px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); padding:9px 16px; border-radius:12px}
+.quiz summary::-webkit-details-marker{display:none}
+.quiz details[open] summary{display:none}
+.quiz details p{margin:0; font-size:16px; line-height:1.75}
+.quiz details b{color:var(--orange)}
+.keys{display:grid; gap:10px; margin:0 0 18px}
+@media (min-width:640px){.keys{grid-template-columns:repeat(3,1fr)}}
+.keys div{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:16px}
+.keys b{display:block; font-size:16px; font-weight:800; color:var(--orange); margin-bottom:4px}
+.keys span{font-size:14.5px; color:var(--muted); line-height:1.6}
+
+.ill .ok{fill:#1FA968}.ill .okt{fill:#1FA968; font-size:16px; font-weight:800}
+.ill .warn{fill:#FF5A1F}.ill .warnt{fill:#FF5A1F; font-size:16px; font-weight:800}
+.ill .axis{stroke:var(--line); stroke-width:3}
+.ill .tick{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .paper{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .ln2{stroke:var(--line); stroke-width:3; stroke-linecap:round}
+.ill .red{fill:#B4232F; font-weight:800}
+.ill .node{fill:var(--field); stroke:var(--faint); stroke-width:2}
+.ill .nodeb{fill:var(--surface); stroke:var(--ink); stroke-width:3}
+.ill .path{stroke:var(--line); stroke-width:4; fill:none}
+.ill .hot{stroke:#FF5A1F; stroke-width:6; fill:none; stroke-linecap:round; stroke-dasharray:2 12}
+.ill .dot{fill:#FF5A1F}
+.ill .p3{stroke:var(--faint); stroke-width:4; fill:none; stroke-linecap:round}
+.ill .p5{stroke:#FF5A1F; stroke-width:5; fill:none; stroke-linecap:round}
+.ill .grid{stroke:var(--line); stroke-width:1.5}
+.tbl th,.tbl td{text-align:left!important}
+.tbl td:nth-child(n+2),.tbl th:nth-child(n+2){white-space:nowrap}
+</style>
+<link rel="stylesheet" href="/assets/comments.css?v=5">
+<meta name="google-adsense-account" content="ca-pub-1007904420767851">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/assets/favorites.css?v=24">
+<link rel="alternate" type="application/rss+xml" title="손안의도구 블로그" href="/blog/rss.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "블로그", "item": "https://sonandogu.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "적금 이자는 왜 생각보다 적을까", "item": "https://sonandogu.com/blog/savings-interest/"}]}</script>
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/"><span class="nw">전체 </span>도구</a></nav></div></header>
+<div class="container"><article class="post">
+  <div class="crumb"><a href="/blog/">블로그</a> / 생활 계산</div>
+  <h1>적금 이자는<br>왜 생각보다 적을까</h1>
+  <p class="meta pub"><time datetime="2026-11-21">2026년 11월 21일</time><span class="rt"> · 5분 읽기</span></p>
+
+  <figure class="ill" aria-label="매달 100만 원씩 넣는 적금에서 첫 달에 넣은 돈은 12개월치 이자를, 마지막 달에 넣은 돈은 1개월치 이자만 받는다">
+    <svg viewBox="0 0 640 250">
+      <rect x="40" y="58" width="34" height="132" rx="6" class="bar2"/><rect x="88" y="69" width="34" height="121" rx="6" class="bar1"/><rect x="136" y="80" width="34" height="110" rx="6" class="bar1"/><rect x="184" y="91" width="34" height="99" rx="6" class="bar1"/><rect x="232" y="102" width="34" height="88" rx="6" class="bar1"/><rect x="280" y="113" width="34" height="77" rx="6" class="bar1"/><rect x="328" y="124" width="34" height="66" rx="6" class="bar1"/><rect x="376" y="135" width="34" height="55" rx="6" class="bar1"/><rect x="424" y="146" width="34" height="44" rx="6" class="bar1"/><rect x="472" y="157" width="34" height="33" rx="6" class="bar1"/><rect x="520" y="168" width="34" height="22" rx="6" class="bar1"/><rect x="568" y="179" width="34" height="11" rx="6" class="bar0"/>
+      <line x1="30" y1="190" x2="618" y2="190" class="axis"/>
+      <g class="lbl"><text x="57" y="212" text-anchor="middle">1월</text><text x="585" y="212" text-anchor="middle">12월</text></g>
+      <g class="val"><text x="57" y="48" text-anchor="middle" style="font-size:15px">5만 원</text></g>
+      <text x="585" y="168" text-anchor="middle" class="st" style="font-size:14px">4,167원</text>
+      <text x="320" y="238" text-anchor="middle" class="note">월 100만 원 · 연 5% · 12개월 적금에서 달마다 넣은 돈이 받는 이자</text>
+    </svg>
+    <figcaption>늦게 넣은 돈일수록 이자가 붙는 기간이 짧아요</figcaption>
+  </figure>
+
+  <div class="quiz">
+    <p class="qh">잠깐, 먼저 맞혀볼까요?</p>
+    <p class="qq">연 5% 적금에 매달 100만 원씩 1년 동안 넣었어요. 원금은 1,200만 원이에요. 만기에 받는 세후 이자는 얼마쯤일까요? ① 약 60만 원 ② 약 51만 원 ③ 약 27만 원</p>
+    <details><summary>정답 보기</summary><p><b>③ 약 27만 원</b>이에요. 세전 이자는 325,000원이고, 이자소득세 15.4%를 떼면 274,950원이 남아요. 1,200만 원의 5%인 60만 원을 생각했다면 절반도 안 되는 셈이에요.</p></details>
+  </div>
+
+  <p>은행 앱에서 "연 5% 적금"을 보면 1년 뒤 꽤 많은 이자가 붙을 것 같아요. 그런데 만기 날 통장을 열어 보면 생각보다 적은 숫자에 고개를 갸웃하게 되죠. 은행이 이자를 덜 준 것도, 계산이 틀린 것도 아니에요. 적금이라는 상품의 구조 때문이에요.</p>
+  <nav class="toc" aria-label="이 글의 차례"><b>이 글의 차례</b><ol><li><a href="#s1">넣은 달마다 이자 기간이 달라요</a></li><li><a href="#s2">적금 연 5%는 예금으로 치면 2.7%</a></li><li><a href="#s3">이자에서 15.4%가 빠져요</a></li><li><a href="#s4">특판 10% 적금, 실제로 받는 돈</a></li><li><a href="#s5">적금과 예금, 언제 무엇을 고를까</a></li><li><a href="#s6">자주 묻는 질문</a></li></ol></nav>
+
+  <h2 id="s1">넣은 달마다 이자 기간이 달라요</h2>
+  <p>적금은 매달 돈을 넣는 상품이라, 1월에 넣은 돈과 12월에 넣은 돈이 은행에 머무는 기간이 달라요. 1월에 넣은 100만 원은 12개월 동안 이자가 붙어 5만 원을 받지만, 12월에 넣은 100만 원은 한 달치인 4,167원만 받아요.</p>
+  <p>12달치를 모두 더하면 100만 원 × 5% ÷ 12 × (12 + 11 + … + 1)이고, 괄호 안이 78이라 세전 이자는 <strong>325,000원</strong>이에요. 식으로 쓰면 이래요.</p>
+  <div class="keys">
+    <div><b>적금 이자 (단리)</b><span>월 납입액 × 연 이율 ÷ 12 × 개월 수 × (개월 수 + 1) ÷ 2</span></div>
+    <div><b>예금 이자 (단리)</b><span>맡긴 돈 × 연 이율 × 개월 수 ÷ 12</span></div>
+  </div>
+
+  <h2 id="s2">적금 연 5%는 예금으로 치면 2.7%</h2>
+  <p>같은 1,200만 원을 처음부터 연 5% 예금에 1년 맡기면 세전 이자는 60만 원이에요. 적금 이자 325,000원은 그 절반을 조금 넘어요. 적금 이자를 원금 1,200만 원 전체에 대한 1년 수익률로 바꾸면 <strong>연 약 2.71%</strong>예요.</p>
+  <p>기간을 늘려도 비슷해요. 월 100만 원, 연 5%로 24개월 적금을 들면 세전 이자는 125만 원이고, 원금 2,400만 원을 2년 맡긴 것으로 치면 연 약 2.60%예요. 그래서 적금 금리와 예금 금리를 숫자 그대로 비교하면 안 돼요. 대략 <strong>적금 금리의 절반을 조금 넘는 수준</strong>이 예금 기준의 실제 효과라고 기억하면 편해요.</p>
+
+  <h2 id="s3">이자에서 15.4%가 빠져요</h2>
+  <p>이자를 받을 때는 이자소득세 14%와 지방소득세 1.4%, 합쳐서 15.4%를 떼요. 은행이 만기에 미리 떼고 넣어 주기 때문에 따로 신고할 필요는 없어요.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>월 100만 원 · 12개월 · 연 5%</th><th>금액</th></tr></thead>
+    <tbody>
+      <tr><td>세전 이자</td><td>325,000원</td></tr>
+      <tr><td>이자소득세 14%</td><td>−45,500원</td></tr>
+      <tr><td>지방소득세 1.4%</td><td>−4,550원</td></tr>
+      <tr><td><b>세후 이자</b></td><td><b>274,950원</b></td></tr>
+      <tr><td>만기 수령액</td><td>12,274,950원</td></tr>
+    </tbody>
+  </table></div>
+  <p>같은 이율이라도 상품 설명에 "월복리"라고 적혀 있다면 조금 더 받아요. 이 예시를 월복리로 계산하면 세전 이자는 330,017원으로, 단리보다 5천 원쯤 많아요. 1년짜리 적금에서는 단리와 복리의 차이가 생각만큼 크지 않아요.</p>
+
+  <h2 id="s4">특판 10% 적금, 실제로 받는 돈</h2>
+  <p>가끔 "연 10% 적금" 같은 특판 소식이 돌아요. 이런 상품은 보통 월 납입 한도가 작아요. 월 30만 원까지만 넣을 수 있는 연 10% 적금에 12개월 꽉 채워 넣으면 세전 이자는 195,000원, 세금을 떼면 <strong>164,970원</strong>이에요.</p>
+  <p>나쁜 상품은 아니에요. 원금 360만 원에 비하면 예금 기준 연 약 5.4% 효과라서 웬만한 예금보다 나아요. 다만 "10%"라는 숫자만 보고 기대했다면 실제 금액은 꽤 작게 느껴질 수 있어요. 우대금리 조건(카드 실적, 자동이체 등)을 다 채워야 10%가 되는 경우도 많으니 기본 금리도 함께 확인하세요.</p>
+
+  <h2 id="s5">적금과 예금, 언제 무엇을 고를까</h2>
+  <p>정리하면 기준은 하나예요. <strong>지금 목돈이 있느냐</strong>예요.</p>
+  <div class="keys">
+    <div><b>목돈이 이미 있다면</b><span>예금이 유리해요. 처음부터 전액에 이자가 붙어요</span></div>
+    <div><b>매달 모아야 한다면</b><span>적금이 맞아요. 강제로 모으는 습관이 가장 큰 효과예요</span></div>
+    <div><b>둘 다라면</b><span>목돈은 예금에, 월급에서 남는 돈은 적금에 나눠 두는 방법도 있어요</span></div>
+  </div>
+  <p>내 조건으로 계산해 보고 싶다면 <a href="/savings/">적금·예금 이자 계산기</a>에 금액과 기간, 이율을 넣어 보세요. 세금을 뗀 이자와 만기 수령액, 그리고 예금 기준으로 치면 몇 %인지 엔도가 함께 알려드려요.</p>
+
+  <h2 id="s6">자주 묻는 질문</h2>
+  <p><strong>Q. 적금을 중간에 깨면 이자는 어떻게 되나요?</strong><br>대부분 약정 금리 대신 훨씬 낮은 중도해지 금리가 적용돼요. 상품마다 기간별 중도해지 이율이 정해져 있으니 가입 전에 설명서를 확인하세요.</p>
+  <p><strong>Q. 납입을 몇 달 빼먹으면요?</strong><br>정액적립식은 늦게 넣은 회차만큼 이자가 줄거나 만기일이 뒤로 밀릴 수 있어요. 자유적립식은 넣은 날부터 만기까지 기간만큼 이자가 붙어요.</p>
+  <p><strong>Q. 이자에 세금을 안 내는 방법은 없나요?</strong><br>ISA나 조건을 갖춘 비과세 저축처럼 법으로 정한 상품만 세금을 줄이거나 면제받을 수 있어요. 가입 자격과 한도가 있으니 은행에서 확인하세요.</p>
+  <p class="meta" style="margin-top:20px">이 글은 2026년 11월 기준이에요. 예시 금액은 단리, 일반과세 15.4%, 세금은 10원 미만 버림으로 계산했어요. 실제 이자는 상품의 이자 계산 방식과 납입일에 따라 조금 달라질 수 있어요.</p>
+
+  <!-- more:start -->
+  <nav class="more" aria-label="이 주제의 다른 글"><b>이 주제의 다른 글</b><a href="/blog/pyeong-area/"><span>생활 계산</span>84㎡는 왜 34평일까, 전용면적과 공급면적</a><a href="/blog/changes-2027/"><span>생활 계산</span>2027년 달라지는 것, 월급과 달력부터 바뀌어요</a><a href="/blog/holiday-2027/"><span>생활 계산</span>2027년 연휴 총정리, 연차 3일로 9일 쉬는 법</a></nav>
+  <!-- more:end -->
+  <nav class="next" aria-label="관련 글과 도구"><a href="/savings/"><span><strong>적금·예금 이자 계산기</strong><span>세후 이자와 만기 수령액</span></span><i>→</i></a><a href="/blog/loan-repayment/"><span><strong>원리금균등과 원금균등, 이자 차이</strong><span>1억 원 30년 대출로 비교</span></span><i>→</i></a></nav>
+  <div data-comments data-kind="comment" data-page="/blog/savings-interest/"></div>
+</article>
+<section class="cmts" data-page="/blog/savings-interest/" data-kind="post"></section></div>
+
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
+
+<script src="/assets/firebase-config.js?v=4"></script>
+<script src="/assets/favorites.js?v=18"></script>
+<script type="module" src="/assets/comments.js?v=5"></script>
+<script src="/assets/analytics.js?v=3" defer></script>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+</body>
+</html>
