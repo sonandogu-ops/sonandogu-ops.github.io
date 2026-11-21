@@ -32,3 +32,10 @@
 
 /* 터치 화면: 비공개 체크를 누르기 쉽게 */
 @media (pointer:coarse){ .cform label.pv{min-height:40px; display:inline-flex; align-items:center; gap:8px} .cform label.pv input{width:22px; height:22px} }
+.c .rbtn{margin-top:8px; font:inherit; font-size:13px; font-weight:800; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:5px 12px; min-height:32px; cursor:pointer}
+.c .rbtn:hover{color:var(--ink); border-color:var(--ink)}
+.rep.u{background:var(--field); border-color:var(--line)}
+.rep.u .ava{width:36px; height:36px; flex:none; border-radius:50%; background:var(--surface); display:grid; place-items:center; font-size:19px}
+.rform{margin-top:10px; padding:12px; border-radius:16px; box-shadow:none}
+.rform textarea{min-height:70px}
+.rform .cancel{font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:none; border:none; padding:8px 6px; cursor:pointer}

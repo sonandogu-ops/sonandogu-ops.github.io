@@ -166,24 +166,24 @@ async function load(){
 }
 let curList=[];
 function render(){
-  const top=all.filter(c=>!c.parent), req=top.filter(c=>c.kind==='request');
-  const groups={pending:top.filter(c=>c.status==='pending'), private:top.filter(c=>c.status==='private'&&c.kind!=='request'), request:req, public:top.filter(c=>c.status==='public'), hidden:top.filter(c=>c.status==='hidden')};
+  const top=all.filter(c=>!c.parent), req=top.filter(c=>c.kind==='request'), vis=all.filter(c=>!c.isDev);
+  const groups={pending:vis.filter(c=>c.status==='pending'), private:top.filter(c=>c.status==='private'&&c.kind!=='request'), request:req, public:top.filter(c=>c.status==='public'), hidden:vis.filter(c=>c.status==='hidden')};
   const names={pending:'검토 대기',private:'비공개 의견',request:'도구 요청',public:'공개됨',hidden:'숨김'};
   $('tabs').innerHTML=Object.keys(groups).map(k=>`<button data-k="${k}" aria-pressed="${k===tab}">${names[k]}<b>${groups[k].length}</b></button>`).join('');
   $('tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{tab=b.dataset.k; render();});
   const L=groups[tab]; curList=L;
-  $('list').innerHTML=L.length? L.map(c=>{ const reps=all.filter(r=>r.parent===c.id);
-    return `<div class="item" data-id="${c.id}"><div class="m"><span class="st ${c.status}">${LBL[c.status]||c.status}</span><a href="${esc(c.page)}" target="_blank">${esc(c.page)}</a><b>${esc(c.nick)}</b><span>${c.createdAt?c.createdAt.toDate().toLocaleString('ko-KR'):''}</span></div>
-    <p>${esc(c.text)}</p>${reps.map(r=>`<div class="reps"><b>내 답글</b> · ${esc(r.text)}</div>`).join('')}
+  $('list').innerHTML=L.length? L.map(c=>{ const reps=all.filter(r=>r.parent===c.id), par=c.parent&&all.find(x=>x.id===c.parent);
+    return `<div class="item" data-id="${c.id}"><div class="m"><span class="st ${c.status}">${LBL[c.status]||c.status}</span><a href="${esc(c.page)}" target="_blank">${esc(c.page)}</a>${c.parent?'<span class="st">↳ 답글</span>':''}<b>${esc(c.nick)}</b><span>${c.createdAt?c.createdAt.toDate().toLocaleString('ko-KR'):''}</span></div>
+    ${c.parent?`<div class="reps" style="opacity:.75"><b>원래 댓글</b> · ${par?esc(par.nick)+': '+esc(par.text):'(지워진 댓글)'}</div>`:''}<p>${esc(c.text)}</p>${reps.map(r=>`<div class="reps"><b>${r.isDev?'내 답글':esc(r.nick)+' 답글'}</b>${r.isDev||r.status==='public'?'':' <span class="st '+r.status+'">'+(LBL[r.status]||r.status)+'</span>'} · ${esc(r.text)}</div>`).join('')}
     <div class="row">${c.status!=='public'&&c.kind!=='request'?'<button class="btn b" data-a="public">공개하기</button>':''}${c.status!=='hidden'?'<button class="btn" data-a="hidden">숨기기</button>':''}<button class="btn r" data-a="del">삭제</button><button class="btn r" data-a="same">같은 내용 모두 삭제</button><button class="btn" data-a="reply">답글 쓰기</button></div>
     <div class="rbox" hidden><textarea placeholder="개발자로 답글을 달아요. 공개 댓글에 단 답글은 모두에게 보여요."></textarea><div class="row" style="margin-top:6px"><button class="btn p" data-a="send">답글 올리기</button></div></div></div>`;}).join('') : '<p class="note">여기엔 아직 아무것도 없어요.</p>';
   $('list').querySelectorAll('.item').forEach(el=>{ const id=el.dataset.id, c=all.find(x=>x.id===id);
     el.querySelectorAll('[data-a]').forEach(b=>b.onclick=async()=>{ const a=b.dataset.a;
       if(a==='public'||a==='hidden'){ await fs.updateDoc(fs.doc(db,'comments',id),{status:a}); c.status=a; render(); }
-      if(a==='del'){ if(!confirm('완전히 지울까요? 되돌릴 수 없어요.')) return; await fs.deleteDoc(fs.doc(db,'comments',id)); all=all.filter(x=>x.id!==id&&x.parent!==id); render(); }
-      if(a==='same'){ const key=(c.text||'').replace(/\s/g,''); const tgt=all.filter(x=>!x.parent&&(x.text||'').replace(/\s/g,'')===key); if(!confirm(`같은 내용 ${tgt.length}개를 모두 지울까요?`)) return; for(const x of tgt) await fs.deleteDoc(fs.doc(db,'comments',x.id)); const ids=new Set(tgt.map(x=>x.id)); all=all.filter(x=>!ids.has(x.id)&&!ids.has(x.parent)); render(); }
+      if(a==='del'){ if(!confirm('완전히 지울까요? 되돌릴 수 없어요. 달린 답글도 함께 지워져요.')) return; for(const r of all.filter(x=>x.parent===id)) await fs.deleteDoc(fs.doc(db,'comments',r.id)); await fs.deleteDoc(fs.doc(db,'comments',id)); all=all.filter(x=>x.id!==id&&x.parent!==id); render(); }
+      if(a==='same'){ const key=(c.text||'').replace(/\s/g,''); const tgt=all.filter(x=>!x.isDev&&(x.text||'').replace(/\s/g,'')===key); if(!confirm(`같은 내용 ${tgt.length}개를 모두 지울까요?`)) return; for(const x of tgt) await fs.deleteDoc(fs.doc(db,'comments',x.id)); const ids=new Set(tgt.map(x=>x.id)); all=all.filter(x=>!ids.has(x.id)&&!ids.has(x.parent)); render(); }
       if(a==='reply'){ el.querySelector('.rbox').hidden=false; el.querySelector('textarea').focus(); }
-      if(a==='send'){ const t=el.querySelector('textarea').value.trim(); if(!t) return; const ref=await fs.addDoc(fs.collection(db,'comments'),{page:c.page,parent:id,nick:'손안의도구',text:t,status:'public',isDev:true,kind:'reply',createdAt:fs.serverTimestamp()}); all.push({id:ref.id,page:c.page,parent:id,text:t,status:'public'}); render(); }
+      if(a==='send'){ const t=el.querySelector('textarea').value.trim(); if(!t) return; const pid=c.parent||id; const ref=await fs.addDoc(fs.collection(db,'comments'),{page:c.page,parent:pid,nick:'손안의도구',text:t,status:'public',isDev:true,kind:'reply',createdAt:fs.serverTimestamp()}); all.push({id:ref.id,page:c.page,parent:pid,nick:'손안의도구',text:t,status:'public',isDev:true}); render(); }
     }); });
 }
 }
