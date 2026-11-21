@@ -1,4 +1,4 @@
-// 손안의도구 자동 검사: 부가세·3.3%·랜덤 뽑기 검산과 화면
+// 손안의도구 자동 검사: 부가세·연말정산·3.3%·랜덤 뽑기 검산과 화면
 // 실행: node .github/tests/tools.test.js (http://localhost:8765 에서 사이트를 띄운 상태)
 const {chromium,devices}=require('playwright');
 const B=process.env.BASE||'http://localhost:8765';
@@ -15,6 +15,20 @@ const out=[]; const ok=(n,g,e)=>{const p=JSON.stringify(g)===JSON.stringify(e); 
  await p.click('button[data-mode="total"]'); await p.fill('#a',''); await p.click('#a'); await p.keyboard.type('55000'); await p.waitForTimeout(200);
  ok('부가세 화면(합계 55,000)',(await p.textContent('#res')).trim(),'50,000원');
  ok('부가세 내역',(await p.textContent('#brk')).replace(/\s/g,''),'공급가액50,000원부가세(10%)5,000원합계55,000원');
+ await p.context().close();
+ // 연말정산 (손계산: 총급여 4천, 1인, 신용 1,200만·체크 600만)
+ p=await page('/year-end-tax/');
+ r=await p.evaluate(()=>{const Y=window.__ye; const c=Y.yeCard(40e6,12e6,6e6,0,0); const b=Y.yeCalc({S:40e6,fam:1,credit:12e6,check:6e6});
+   const w=Y.yeCalc({S:40e6,fam:1,credit:12e6,check:6e6,rent:7.2e6,psav:6e6}); const k=Y.yeCard(60e6,60e6,0,0,2);
+   return {c:[c.th,c.ded],b:[b.wd,b.R.TB,b.R.T,b.R.wc,b.fin,b.back],w:[w.pension,w.rent,w.fin,w.back,w.R.cr-w.R.T],k:k.ded,lim:[30e6,40e6,60e6,80e6,130e6].map(S=>Y.yeWorkCredit(5e6,S)),ch:[1,2,3,4].map(Y.yeChildCredit)};});
+ ok('연말정산 카드 공제(글 예시 210만)',r.c,[10000000,2100000]);
+ ok('연말정산 4천 1인 (근로공제, 과표, 산출, 근로세액공제, 결정, 환급)',r.b,[11250000,21263560,1929534,684000,1245534,18676]);
+ ok('연말정산 월세+연금저축 결정 0원, 남는 공제(글)',r.w,[900000,1224000,0,1388760,878466]);
+ ok('연말정산 카드 한도 자녀 2명 400만',r.k,4000000);
+ ok('근로소득세액공제 한도',r.lim,[740000,684000,660000,500000,200000]);
+ ok('자녀세액공제 1~4명',r.ch,[250000,550000,950000,1350000]);
+ await p.fill('#amt',''); await p.click('#amt'); await p.keyboard.type('40000000'); await p.fill('#credit','12000000'); await p.fill('#check','6000000'); await p.fill('#psav',''); await p.fill('#rent',''); await p.waitForTimeout(200);
+ ok('연말정산 화면 환급액',(await p.textContent('#big')).trim(),'18,676원');
  await p.context().close();
  // 3.3%
  p=await page('/freelance-tax/');

@@ -6,7 +6,15 @@
   <atom:link href="https://sonandogu.com/blog/rss.xml" rel="self" type="application/rss+xml"/>
   <description>계산이 헷갈리는 순간에 꺼내 보는 짧고 쓸모 있는 글</description>
   <language>ko</language>
-  <lastBuildDate>Fri, 20 Nov 2026 09:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Sat, 21 Nov 2026 09:00:00 +0900</lastBuildDate>
+  <item>
+    <title>연말정산 환급, 낸 세금보다 더 돌려받을 순 없어요</title>
+    <link>https://sonandogu.com/blog/year-end-refund-limit/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/year-end-refund-limit/</guid>
+    <category>세금 상식</category>
+    <description>환급은 미리 낸 세금까지만 돌려받아요. 총급여 4,000만 원 예시로 결정세액·기납부세액, 월세와 연금저축이 겹치면 공제가 남는 이유, 12월에 먼저 볼 숫자를 정리했어요.</description>
+    <pubDate>Sat, 21 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
   <item>
     <title>연말정산, 12월에 챙기면 돌려받는 것</title>
     <link>https://sonandogu.com/blog/year-end-tax-preview/</link>
