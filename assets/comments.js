@@ -78,11 +78,12 @@ export async function mount(el){
       cn.textContent=top.length;
       if(!top.length){ list.innerHTML=`<li class="cempty">아직 ${isTool?'후기':'댓글'}가 없어요. 첫 번째로 남겨주세요!</li>`; return; }
       const byT=(a,b)=>(a.createdAt?.toMillis()||0)-(b.createdAt?.toMillis()||0);
-      const repHTML=r=> r.isDev
-        ? `<div class="rep"><img src="/assets/endo/thumbs.webp" alt=""><div><div class="meta2"><b>손안의도구</b><span class="dev">개발자</span><span>${ago(r.createdAt)}</span></div><p class="txt">${esc(r.text)}</p></div></div>`
-        : `<div class="rep u"><span class="ava">${aniOf(r.nick)}</span><div><div class="meta2"><b>${esc(r.nick||'익명')}</b><span>${ago(r.createdAt)}</span></div><p class="txt">${esc(r.text)}</p></div></div>`;
-      list.innerHTML=top.map(c=>`<li class="c" data-id="${esc(c.id)}"><div class="meta2"><b>${esc(c.nick||'익명')}</b><span>${ago(c.createdAt)}</span></div><p class="txt">${esc(c.text)}</p>${
-        reps.filter(r=>r.parent===c.id).sort(byT).map(repHTML).join('')}<button type="button" class="rbtn">답글</button></li>`).join('');
+      const to=c=>`<span class="to">@${esc(c.nick||'익명')}</span> `;
+      const repHTML=(r,c)=> r.isDev
+        ? `<div class="rep"><img src="/assets/endo/thumbs.webp" alt=""><div><div class="meta2"><b>손안의도구</b><span class="dev">개발자</span><span>${ago(r.createdAt)}</span></div><p class="txt">${to(c)}${esc(r.text)}</p></div></div>`
+        : `<div class="rep u"><span class="ava">${aniOf(r.nick)}</span><div><div class="meta2"><b>${esc(r.nick||'익명')}</b><span>${ago(r.createdAt)}</span></div><p class="txt">${to(c)}${esc(r.text)}</p></div></div>`;
+      list.innerHTML=top.map(c=>`<li class="c" data-id="${esc(c.id)}" data-nick="${esc(c.nick||'익명')}"><div class="meta2"><b>${esc(c.nick||'익명')}</b><span>${ago(c.createdAt)}</span></div><p class="txt">${esc(c.text)}</p>${
+        reps.filter(r=>r.parent===c.id).sort(byT).map(r=>repHTML(r,c)).join('')}<button type="button" class="rbtn">답글</button></li>`).join('');
       list.querySelectorAll('.rbtn').forEach(b=>b.onclick=()=>openReply(b.closest('li.c')));
     }catch(e){ list.innerHTML='<li class="cempty">댓글을 불러오지 못했어요. 잠시 뒤 다시 열어주세요.</li>'; }
   }
@@ -90,8 +91,8 @@ export async function mount(el){
     const had=li.querySelector('.rform'); list.querySelectorAll('.rform').forEach(x=>x.remove()); if(had) return;
     const j=Math.floor(Math.random()*ANI.length);
     const rf=document.createElement('form'); rf.className='cform rform'; rf.noValidate=true;
-    rf.innerHTML=`<div class="top"><span class="ava">${ANI_E[j]}</span><input type="text" maxlength="20" placeholder="닉네임 (비워두면 익명의 ${ANI[j]})" aria-label="닉네임"></div>
-      <textarea maxlength="500" placeholder="이 댓글에 답글을 남겨주세요." aria-label="답글"></textarea>
+    rf.innerHTML=`<div class="rto">↳ <b>${esc(li.dataset.nick)}</b>님에게 답글</div><div class="top"><span class="ava">${ANI_E[j]}</span><input type="text" maxlength="20" placeholder="닉네임 (비워두면 익명의 ${ANI[j]})" aria-label="닉네임"></div>
+      <textarea maxlength="500" placeholder="${esc(li.dataset.nick)}님에게 답글을 남겨주세요." aria-label="답글"></textarea>
       <div class="bot"><button type="button" class="cancel">취소</button><span class="cnt2">0/500</span><button class="send" type="submit">답글 올리기</button></div>
       <div class="cmsg" hidden></div>`;
     li.querySelector('.rbtn').after(rf);
