@@ -11,8 +11,12 @@
 var KEY='sonandogu-favs-v1', DKEY='sonandogu-date-saved', HINT='sonandogu-authed', TIPKEY='sonandogu-fav-tip', V='10.12.2';
 var BASE='https://www.gstatic.com/firebasejs/'+V+'/';
 var MAX=30, DMAX=12, LKEY='sonandogu-likes-v1', LMAX=100;
-var TOOLS=['/percent/','/dutch/','/wage/','/salary/','/severance/','/leave/','/worktime/','/holiday/','/date/','/age/','/charcount/','/receipt/','/traditional/yut/','/party/team/','/party/roulette/','/party/ladder/','/party/lots/','/party/manito/','/vat/','/freelance-tax/','/random/','/pyeong/'];
-var NAMES={'/percent/':'퍼센트 계산기','/dutch/':'더치페이 계산기','/wage/':'알바 급여 계산기','/salary/':'연봉 실수령액 계산기','/severance/':'퇴직금 계산기','/leave/':'연차 계산기','/worktime/':'근무시간 계산기','/holiday/':'연휴 계산기','/date/':'날짜 계산기','/age/':'만 나이 계산기','/charcount/':'글자수 세기','/receipt/':'간이영수증 작성기','/traditional/yut/':'온라인 윷놀이','/party/team/':'팀 나누기','/party/roulette/':'룰렛 돌리기','/party/ladder/':'사다리타기','/party/lots/':'제비뽑기','/party/manito/':'마니또 뽑기','/vat/':'부가세 계산기','/freelance-tax/':'3.3% 계산기','/random/':'랜덤 숫자 뽑기','/pyeong/':'평수 계산기'};
+var TOOLS=['/wage/','/salary/','/freelance-tax/','/severance/','/leave/','/worktime/','/vat/','/date/','/age/','/holiday/','/dutch/','/percent/','/pyeong/','/charcount/','/receipt/','/party/team/','/party/roulette/','/party/ladder/','/party/manito/','/party/lots/','/random/','/traditional/yut/'];
+var NAMES={'/wage/':'알바 급여 계산기','/salary/':'연봉 실수령액 계산기','/freelance-tax/':'3.3% 계산기','/severance/':'퇴직금 계산기','/leave/':'연차 계산기','/worktime/':'근무시간 계산기','/vat/':'부가세 계산기','/date/':'날짜 계산기','/age/':'만 나이 계산기','/holiday/':'연휴 계산기','/dutch/':'더치페이 계산기','/percent/':'퍼센트 계산기','/pyeong/':'평수 계산기','/charcount/':'글자수 세기','/receipt/':'간이영수증 작성기','/party/team/':'팀 나누기','/party/roulette/':'룰렛 돌리기','/party/ladder/':'사다리타기','/party/manito/':'마니또 뽑기','/party/lots/':'제비뽑기','/random/':'랜덤 숫자 뽑기','/traditional/yut/':'온라인 윷놀이'};
+var CATS=[{"id":"work","n":"급여·근로","c":"#FF4A12","c1":"#FF8A3D","g":"급","t":["/wage/","/salary/","/freelance-tax/","/severance/","/leave/","/worktime/"]},{"id":"tax","n":"세금·금융","c":"#E08600","c1":"#F7B32B","g":"세","t":["/vat/"]},{"id":"date","n":"날짜·시간","c":"#2F66F0","c1":"#5E9BFF","g":"날","t":["/date/","/age/","/holiday/"]},{"id":"life","n":"생활 계산","c":"#E5485E","c1":"#FF7A8A","g":"생","t":["/dutch/","/percent/","/pyeong/"]},{"id":"doc","n":"글·문서","c":"#6A4FE8","c1":"#9B8AFB","g":"글","t":["/charcount/","/receipt/"]},{"id":"party","n":"모임·뽑기","c":"#12985B","c1":"#3DCB8C","g":"뽑","t":["/party/team/","/party/roulette/","/party/ladder/","/party/manito/","/party/lots/","/random/"]},{"id":"game","n":"게임·놀이","c":"#0E9494","c1":"#2CC5C5","g":"놀","t":["/traditional/yut/"]}];/*cats*/  /* 분류와 도구 목록 (build_tools.py가 채움) */
+var HOLI={"2026-01-01":"신정","2026-02-16":"설날 연휴","2026-02-17":"설날","2026-02-18":"설날 연휴","2026-03-01":"삼일절","2026-03-02":"대체공휴일(삼일절)","2026-05-01":"노동절","2026-05-05":"어린이날","2026-05-24":"부처님오신날","2026-05-25":"대체공휴일(부처님오신날)","2026-06-03":"전국동시지방선거","2026-06-06":"현충일","2026-07-17":"제헌절","2026-08-15":"광복절","2026-08-17":"대체공휴일(광복절)","2026-09-24":"추석 연휴","2026-09-25":"추석","2026-09-26":"추석 연휴","2026-10-03":"개천절","2026-10-05":"대체공휴일(개천절)","2026-10-09":"한글날","2026-12-25":"성탄절","2027-01-01":"신정","2027-02-06":"설날 연휴","2027-02-07":"설날","2027-02-08":"설날 연휴","2027-02-09":"대체공휴일(설날)","2027-03-01":"삼일절","2027-05-01":"노동절","2027-05-03":"대체공휴일(노동절)","2027-05-05":"어린이날","2027-05-13":"부처님오신날","2027-06-06":"현충일","2027-07-17":"제헌절","2027-07-19":"대체공휴일(제헌절)","2027-08-15":"광복절","2027-08-16":"대체공휴일(광복절)","2027-09-14":"추석 연휴","2027-09-15":"추석","2027-09-16":"추석 연휴","2027-10-03":"개천절","2027-10-04":"대체공휴일(개천절)","2027-10-09":"한글날","2027-10-11":"대체공휴일(한글날)","2027-12-25":"성탄절","2027-12-27":"대체공휴일(성탄절)"};/*holi*/  /* 공휴일 (연휴 계산기 데이터, build_tools.py가 채움) */
+var ICONS={"/wage/":"₩","/salary/":"연","/freelance-tax/":"3.3","/severance/":"퇴","/leave/":"휴","/worktime/":"시","/vat/":"부","/date/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"5.5\" width=\"18\" height=\"16\" rx=\"3\"/><path d=\"M4 10.5h18M9 3.5v4M17 3.5v4\"/><path d=\"M9.5 15.5l2.2 2.2 4.3-4.4\"/></svg>","/age/":"만","/holiday/":"공","/dutch/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\"><circle cx=\"8\" cy=\"8\" r=\"3.2\"/><circle cx=\"18\" cy=\"8\" r=\"3.2\"/><path d=\"M3 21c0-3 2.2-5 5-5s5 2 5 5M13 21c0-3 2.2-5 5-5s5 2 5 5\"/></svg>","/percent/":"%","/pyeong/":"평","/charcount/":"가","/receipt/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h14v20l-3.5-2-3.5 2-3.5-2L6 23z\"/><path d=\"M10 9h6M10 13h6\"/></svg>","/party/team/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\"><circle cx=\"7\" cy=\"8\" r=\"2.6\"/><circle cx=\"19\" cy=\"8\" r=\"2.6\"/><path d=\"M2.5 19c0-2.6 2-4.4 4.5-4.4s4.5 1.8 4.5 4.4M14.5 19c0-2.6 2-4.4 4.5-4.4s4.5 1.8 4.5 4.4\"/><path d=\"M13 4v18\" stroke-dasharray=\"2 3\"/></svg>","/party/roulette/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\"><circle cx=\"13\" cy=\"14\" r=\"9\"/><path d=\"M13 5v18M4 14h18M6.6 7.6l12.8 12.8M19.4 7.6L6.6 20.4\" stroke-width=\"1.4\"/><path d=\"M10.5 1.8h5L13 5z\" fill=\"#fff\" stroke=\"none\"/></svg>","/party/ladder/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\"><path d=\"M6 3v20M13 3v20M20 3v20M6 8h7M13 13h7M6 18h7\"/></svg>","/party/manito/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3.5\" y=\"10\" width=\"19\" height=\"5\" rx=\"1.5\"/><path d=\"M5 15v7.5h16V15M13 10v12.5M13 10c-1.6-4.4-6.6-4.2-6.6-1.6 0 1.8 3 1.7 6.6 1.6zM13 10c1.6-4.4 6.6-4.2 6.6-1.6 0 1.8-3 1.7-6.6 1.6z\"/></svg>","/party/lots/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"6\" width=\"10\" height=\"14\" rx=\"2\" transform=\"rotate(-10 8 13)\"/><rect x=\"12\" y=\"5\" width=\"10\" height=\"14\" rx=\"2\" transform=\"rotate(8 17 12)\"/></svg>","/random/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2.2\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"4\" width=\"18\" height=\"18\" rx=\"4\"/><circle cx=\"9.5\" cy=\"9.5\" r=\"1.4\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"16.5\" cy=\"16.5\" r=\"1.4\" fill=\"#fff\" stroke=\"none\"/><circle cx=\"13\" cy=\"13\" r=\"1.4\" fill=\"#fff\" stroke=\"none\"/></svg>","/traditional/yut/":"<svg width=\"26\" height=\"26\" viewBox=\"0 0 28 28\" fill=\"#fff\"><rect x=\"3\" y=\"4\" width=\"4\" height=\"20\" rx=\"2\"/><rect x=\"9.3\" y=\"4\" width=\"4\" height=\"20\" rx=\"2\" opacity=\".75\"/><rect x=\"15.6\" y=\"4\" width=\"4\" height=\"20\" rx=\"2\"/><rect x=\"21.9\" y=\"4\" width=\"4\" height=\"20\" rx=\"2\" opacity=\".75\"/></svg>"};/*icons*/  /* 도구 아이콘 (build_tools.py가 채움) */
+var HOT=[["자소서","자소서 줄바꿈"],["n빵","N빵 계산기"],["팀","팀정하기 룰렛"],["제비","제비뽑기"],["마니또","마니또 뽑기"],["만 나이","만 나이"],["윷놀이","윷놀이 게임"],["조 이름","조 이름 추천"]];/*hot*/  /* 검색창 아래 많이 찾는 검색어 (build_tools.py가 채움) */
 var $=function(id){return document.getElementById(id);};
 function el(tag,cls,text){var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e;}
 function ls(k,v){try{ if(v===undefined) return localStorage.getItem(k); if(v===null) localStorage.removeItem(k); else localStorage.setItem(k,v);}catch(e){} return null;}
@@ -52,6 +56,12 @@ function cleanLikes(a){
 }
 function loadLikes(){try{return cleanLikes(JSON.parse(ls(LKEY)||'[]'));}catch(e){return [];}}
 var likes=loadLikes(), likesOK=true;
+/* 달력 메모: {'2026-11-25':'메모'} */
+var MKEY='sonandogu-memos-v1', memosOK=true;
+function cleanMemos(o){ var r={}, n=0; if(o&&typeof o==='object') Object.keys(o).sort().forEach(function(k){ if(n>=80||!/^\d{4}-\d{2}-\d{2}$/.test(k)) return; var v=String(o[k]==null?'':o[k]).replace(/\s+/g,' ').trim().slice(0,80); if(v){ r[k]=v; n++; } }); return r; }
+function loadMemos(){ try{ return cleanMemos(JSON.parse(ls(MKEY)||'{}')); }catch(e){ return {}; } }
+var memos=loadMemos();
+function setMemos(m){ memos=cleanMemos(m); ls(MKEY,JSON.stringify(memos)); if(typeof drawSidebar==='function'&&sb.isConnected) drawSidebar(); if(user&&pulled) pushCloud(); }
 
 ls('sonandogu-recent',null); /* 예전 '최근 쓴 도구' 기록은 더 쓰지 않으므로 지운다 */
 
@@ -75,21 +85,23 @@ function pushCloud(){
     var ref=fb.fs.doc(fb.db,'users',user.uid);
     var data={favs:favs.slice(),dates:JSON.stringify(loadDates()),updated:fb.fs.serverTimestamp()};
     if(likesOK) data.likes=JSON.stringify(likes);
+    if(memosOK) data.memos=JSON.stringify(memos);
     fb.fs.setDoc(ref,data,{merge:true}).catch(function(e){
       /* 보안 규칙이 likes 필드를 아직 모르면 즐겨찾기만이라도 저장한다 */
-      if(likesOK&&e&&e.code==='permission-denied'){ likesOK=false; delete data.likes; fb.fs.setDoc(ref,data,{merge:true}).catch(function(){}); note('좋아요를 계정에 저장하지 못했어요. 즐겨찾기는 저장됐어요.'); return; }
+      if((likesOK||memosOK)&&e&&e.code==='permission-denied'){ var had=('memos' in data)?'달력 메모':'좋아요'; likesOK=false; memosOK=false; delete data.likes; delete data.memos; fb.fs.setDoc(ref,data,{merge:true}).catch(function(){}); note(had+'를 계정에 저장하지 못했어요. 즐겨찾기는 저장됐어요.'); return; }
       note('클라우드 저장이 늦어지고 있어요. 이 기기에는 저장됐어요.');
     });
   },500);
 }
 async function pull(u){
-  var ref=fb.fs.doc(fb.db,'users',u.uid), cloud=[], cloudD=[], cloudL=[], exists=false;
+  var ref=fb.fs.doc(fb.db,'users',u.uid), cloud=[], cloudD=[], cloudL=[], cloudM={}, exists=false;
   try{
     var snap=await fb.fs.getDoc(ref); exists=snap.exists();
     if(exists){
       var d=snap.data()||{}; cloud=clean(Array.isArray(d.favs)?d.favs:[]);
       try{cloudD=cleanDates(JSON.parse(d.dates||'[]'));}catch(e){}
       try{cloudL=cleanLikes(JSON.parse(d.likes||'[]'));}catch(e){}
+      try{cloudM=cleanMemos(JSON.parse(d.memos||'{}'));}catch(e){}
     }
   }catch(e){ note('즐겨찾기를 불러오지 못했어요. 잠시 뒤 다시 시도해 주세요.'); return; }
   if(user!==u) return;
@@ -98,6 +110,7 @@ async function pull(u){
   var localD=loadDates(), nextD=merge?unionDates(cloudD,localD):cloudD;
   pulled=true; loginFlag=false;
   setLikes(cloudL);
+  var nm=merge?Object.assign({},cloudM,memos):cloudM; memos=cleanMemos(nm); ls(MKEY,JSON.stringify(memos));
   setFavs(next);
   if(!sameDates(nextD,localD)){ ls(DKEY,JSON.stringify(nextD)); datesChanged(); }
   if(merge&&(!same(next,cloud)||!sameDates(nextD,cloudD))) pushCloud();
@@ -120,7 +133,7 @@ function onAuth(u){
   if(user){ wasUser=true; ls(HINT,'1'); drawAcct(); closeModal(); pull(user); }
   else{
     ls(HINT,null); drawAcct(); closePanel();
-    if(wasUser){ wasUser=false; touched=false; favs=[]; persistLocal(); ls(DKEY,null); setLikes([]); emit(); datesChanged(); }
+    if(wasUser){ wasUser=false; touched=false; favs=[]; persistLocal(); ls(DKEY,null); setLikes([]); memos={}; ls(MKEY,null); emit(); datesChanged(); }
   }
 }
 
@@ -172,12 +185,16 @@ async function deleteAccount(msg){
   return true;
 }
 
+/* ---------- 공개 숫자판: 도구 별 수·글 하트 수 (counts/{f_경로|l_경로}.n) ---------- */
+function ckey(kind,path){ return kind+path.replace(/\//g,'_'); }
+function bump(kind,path,d){ if(!user||!fb||!fb.fs.increment) return; try{ fb.fs.setDoc(fb.fs.doc(fb.db,'counts',ckey(kind,path)),{n:fb.fs.increment(d)},{merge:true}).catch(function(){}); }catch(e){} }
+
 /* ---------- 즐겨찾기 토글 ---------- */
 function toggle(h){
   var i=favs.indexOf(h), adding=i<0;
   if(adding){ if(favs.length>=MAX) return; favs=favs.concat([h]); } else favs=favs.filter(function(x){return x!==h;});
   if(!pulled) touched=true;
-  persistLocal(); emit(); if(user) pushCloud();
+  persistLocal(); emit(); if(user){ pushCloud(); bump('f',h,adding?1:-1); }
   if(adding&&!user&&!ls(TIPKEY)){ ls(TIPKEY,'1'); showTip(); }
 }
 
@@ -227,14 +244,14 @@ function liked(){return likes.some(function(x){return x.p===here;});}
 function setLikes(next){
   likes=cleanLikes(next);
   if(user) ls(LKEY,JSON.stringify(likes)); else ls(LKEY,null);
-  paintHearts(); if(!panel.hidden) drawPanel();
+  paintHearts(); if(!panel.hidden) drawPanel(); if(typeof drawSidebar==='function'&&sb.isConnected) drawSidebar();
 }
 function toggleLike(){
   if(!user){ openModal('로그인하면 좋아요한 글을 마이에서 언제든 다시 볼 수 있어요!'); return; }
   if(!pulled){ note('계정 정보를 불러오는 중이에요. 잠시 뒤 다시 눌러 주세요.'); return; }
   var on=liked();
   setLikes(on?likes.filter(function(x){return x.p!==here;}):[{p:here,t:postTitle}].concat(likes));
-  pushCloud();
+  pushCloud(); bump('l',here,on?-1:1);
   if(!on) note('좋아요했어요. 오른쪽 위 마이에서 모아 볼 수 있어요.');
 }
 function paintHearts(){
@@ -433,6 +450,189 @@ function showTip(){ tt.textContent=isHome?'로그인하고 이 도구를 첫 화
 function note(msg){ tt.textContent=msg; tg.hidden=true; tip.hidden=false; clearTimeout(tipT); tipT=setTimeout(hideTip,5000); }
 tg.onclick=function(){openModal(isHome?'로그인하고 이 도구를 첫 화면에 고정해 보세요!':'로그인하면 고정한 도구가 어느 기기에서든 첫 화면에 나와요!');};
 tx.onclick=hideTip;
+
+/* ---------- 검색창을 누르면 아래에 '많이 찾는' 검색어 ---------- */
+(function(){
+  var inp=$('q')||$('hq'); if(!inp||!HOT.length) return;
+  var lab=inp.closest('.hsrch')||inp.parentNode; lab.classList.add('has-hot');
+  var box=el('div','hotdrop'); box.hidden=true; box.setAttribute('role','listbox'); box.setAttribute('aria-label','많이 찾는 검색어');
+  box.appendChild(el('span','hl','많이 찾는'));
+  HOT.forEach(function(h){ var b=el('button',null,h[1]); b.type='button'; b.setAttribute('role','option');
+    b.addEventListener('mousedown',function(e){ e.preventDefault(); });
+    b.addEventListener('click',function(){ box.hidden=true;
+      if(inp.id==='q'){ inp.value=h[0]; inp.dispatchEvent(new Event('input',{bubbles:true})); inp.blur(); }
+      else location.href='/?q='+encodeURIComponent(h[0]); });
+    box.appendChild(b); });
+  lab.appendChild(box);
+  var edge=function(){ box.classList.toggle('more', box.scrollLeft+box.clientWidth < box.scrollWidth-4); };
+  box.addEventListener('scroll',edge,{passive:true});
+  box.addEventListener('wheel',function(e){ if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){ box.scrollLeft+=e.deltaY; e.preventDefault(); } },{passive:false});
+  var show=function(){ box.hidden=!!inp.value.trim(); if(!box.hidden) edge(); };
+  inp.addEventListener('focus',show); inp.addEventListener('input',show);
+  inp.addEventListener('blur',function(){ setTimeout(function(){ box.hidden=true; },120); });
+  inp.addEventListener('keydown',function(e){ if(e.key==='Escape') box.hidden=true; });
+})();
+
+/* ---------- 왼쪽 도구 메뉴 (넓은 화면은 늘 보이고, 좁은 화면은 ☰ 버튼으로 서랍처럼) ---------- */
+var SBKEY='sonandogu-sidebar-off';
+var sb=el('aside','sbar'); sb.id='sbar'; sb.setAttribute('aria-label','도구 메뉴');
+var sbBack=el('div','sbback'); sbBack.hidden=true;
+var sbBtn=el('button','sbtn'); sbBtn.type='button'; sbBtn.setAttribute('aria-label','도구 메뉴 열기'); sbBtn.setAttribute('aria-controls','sbar');
+sbBtn.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>';
+function wide(){ return matchMedia('(min-width:1200px)').matches; }
+var sbTab=ls('sonandogu-sb-tab')==='like'?'like':'fav', sbEdit=false;
+/* ---------- 서랍 달력: 저장한 D-day(파란 점), 메모(주황 점), 공휴일(빨간 글씨) ---------- */
+var calY, calM, calSel=null;
+(function(){ var t=new Date(); calY=t.getFullYear(); calM=t.getMonth(); })();
+function iso(y,m,d){ return y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0'); }
+function dnum(s){ var a=s.split('-').map(Number); return Math.round(Date.UTC(a[0],a[1]-1,a[2])/864e5); }
+function todayIso(){ var t=new Date(); return iso(t.getFullYear(),t.getMonth(),t.getDate()); }
+function drawCal(){
+  var wrap=el('div','sbcal'), saved=loadDates(), T=todayIso();
+  var dset={}; saved.forEach(function(x){ if(x.t==='dday') dset[x.d]=x.n||'D-day'; });
+  var hd=el('div','calhd'), pv=el('button','calnav','‹'), nx=el('button','calnav','›'); pv.type=nx.type='button';
+  pv.setAttribute('aria-label','이전 달'); nx.setAttribute('aria-label','다음 달');
+  pv.onclick=function(){ calM--; if(calM<0){calM=11; calY--;} calSel=null; drawSidebar(); };
+  nx.onclick=function(){ calM++; if(calM>11){calM=0; calY++;} calSel=null; drawSidebar(); };
+  hd.appendChild(pv); hd.appendChild(el('b',null,calY+'년 '+(calM+1)+'월')); hd.appendChild(nx); wrap.appendChild(hd);
+  var g=el('div','calg'); ['일','월','화','수','목','금','토'].forEach(function(w,i){ g.appendChild(el('span','calw'+(i===0?' sun':i===6?' sat':''),w)); });
+  var first=new Date(calY,calM,1).getDay(), days=new Date(calY,calM+1,0).getDate();
+  for(var i=0;i<first;i++) g.appendChild(el('span','calx'));
+  for(var d=1;d<=days;d++){ (function(d){
+    var k=iso(calY,calM,d), wd=(first+d-1)%7, b=el('button','cald',String(d)); b.type='button';
+    if(wd===0||HOLI[k]) b.classList.add('hol'); else if(wd===6) b.classList.add('sat');
+    if(k===T) b.classList.add('today'); if(k===calSel) b.classList.add('sel');
+    var tip=[]; if(HOLI[k]) tip.push(HOLI[k]); if(dset[k]){ b.classList.add('hasd'); tip.push('D-day: '+dset[k]); } if(memos[k]){ b.classList.add('hasm'); tip.push('메모: '+memos[k]); }
+    b.setAttribute('aria-label',(calM+1)+'월 '+d+'일'+(tip.length?' · '+tip.join(' · '):'')); if(tip.length) b.title=tip.join('\n');
+    b.onclick=function(){ calSel=(calSel===k)?null:k; drawSidebar(); var ta=sb.querySelector('.caled textarea'); if(ta) ta.focus(); };
+    g.appendChild(b); })(d); }
+  wrap.appendChild(g);
+  /* 고른 날 메모 */
+  if(calSel){
+    var ed=el('div','caled'), a=calSel.split('-').map(Number), wdn=['일','월','화','수','목','금','토'][new Date(a[0],a[1]-1,a[2]).getDay()];
+    var top=el('div','caledh'); top.appendChild(el('b',null,a[1]+'월 '+a[2]+'일 ('+wdn+')'));
+    var extra=[]; if(HOLI[calSel]) extra.push(HOLI[calSel]); if(dset[calSel]) extra.push('D-day '+dset[calSel]); if(extra.length) top.appendChild(el('span',null,extra.join(' · ')));
+    ed.appendChild(top);
+    var ta=el('textarea'); ta.maxLength=80; ta.rows=2; ta.placeholder='이 날 메모 (예: 엄마 생신, 월세 내는 날)'; ta.value=memos[calSel]||''; ed.appendChild(ta);
+    var bt=el('div','caledb'), sv=el('button','sv','저장'), dl=el('button','dl','지우기'), cl=el('button','cl','닫기'); sv.type=dl.type=cl.type='button';
+    sv.onclick=function(){ var m=Object.assign({},memos); var v=ta.value.trim(); if(v) m[calSel]=v; else delete m[calSel]; setMemos(m); note(v?'메모를 남겼어요':'메모를 지웠어요'); };
+    dl.onclick=function(){ var m=Object.assign({},memos); delete m[calSel]; setMemos(m); };
+    cl.onclick=function(){ calSel=null; drawSidebar(); };
+    ta.addEventListener('keydown',function(e){ if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){ e.preventDefault(); sv.click(); } });
+    bt.appendChild(sv); if(memos[calSel]) bt.appendChild(dl); bt.appendChild(cl); ed.appendChild(bt);
+    if(!user) ed.appendChild(el('p','calnote','메모는 이 기기에 저장돼요. 로그인하면 다른 기기에서도 이어져요.'));
+    wrap.appendChild(ed);
+  }
+  /* 다가오는 날 */
+  var T0=dnum(T), up=[];
+  saved.forEach(function(x){ if(x.t==='dday'){ var k=dnum(x.d)-T0; if(k>=0) up.push({k:k,n:x.n||'D-day',d:x.d,type:'d'}); } else if(x.t==='anniv'){ var c=T0-dnum(x.d)+(x.one?1:0); if(c>0) up.push({k:-1,n:x.n||'기념일',c:c,type:'a'}); } });
+  Object.keys(memos).forEach(function(k){ var n=dnum(k)-T0; if(n>=0) up.push({k:n,n:memos[k],d:k,type:'m'}); });
+  up.sort(function(a,b){ return (a.k<0?1e9:a.k)-(b.k<0?1e9:b.k); });
+  var ul=el('ul','calup');
+  up.slice(0,5).forEach(function(x){ var li=el('li'); var badge=el('b',x.type==='m'?'m':x.type==='a'?'a':'d', x.type==='a'?(x.c+'일째'):(x.k===0?'오늘':'D-'+x.k));
+    li.appendChild(badge); var s2=el('span',null,x.n); li.appendChild(s2);
+    if(x.d){ li.onclick=function(){ var a=x.d.split('-').map(Number); calY=a[0]; calM=a[1]-1; calSel=x.d; drawSidebar(); }; li.tabIndex=0; li.setAttribute('role','button'); }
+    ul.appendChild(li); });
+  if(up.length) wrap.appendChild(ul);
+  else wrap.appendChild(el('p','calnote','날짜를 눌러 메모를 남기거나, 날짜 계산기에서 D-day를 저장해 보세요.'));
+  var lk=el('a','callink','날짜 계산기에서 D-day 저장 →'); lk.href='/date/'; wrap.appendChild(lk);
+  return wrap;
+}
+window.addEventListener('sonandogu-dates-updated',function(){ if(sb.isConnected) drawSidebar(); });
+
+function catOf(h){ for(var i=0;i<CATS.length;i++) if(CATS[i].t.indexOf(h)>=0) return CATS[i]; return null; }
+function toolLink(h){
+  var c=catOf(h), a=el('a','sbi'); a.href=h; if(h===here) a.setAttribute('aria-current','page');
+  a.appendChild(el('span','sbn',NAMES[h]||h)); return a;   /* 도구 이름만 깔끔하게 (아이콘 없이) */
+}
+function drawSidebar(){
+  sb.textContent='';
+  /* 머리: 엔도와 '손안의 서랍' */
+  var hd=el('div','sbhd');
+  var who=el('div','sbwho'); var im=el('img'); im.src='/assets/endo/wave.webp'; im.alt=''; im.width=34; im.height=34; who.appendChild(im);
+  var tt=el('div'); tt.appendChild(el('b',null,'손안의 서랍')); tt.appendChild(el('span',null,'도구 '+CATS.reduce(function(n,c){return n+c.t.length;},0)+'개')); who.appendChild(tt);
+  var close=el('button','sbx'); close.type='button'; close.setAttribute('aria-label','서랍 닫기'); close.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>';
+  close.onclick=function(){ if(wide()){ ls(SBKEY,'1'); document.documentElement.classList.add('sb-off'); } else closeDrawer(); };
+  hd.appendChild(who); hd.appendChild(close); sb.appendChild(hd);
+  sb.appendChild(drawCal());
+  /* 내 것: 즐겨찾기 | 좋아요 탭 */
+  var mine=el('div','sbmine'), tabs=el('div','sbtabs'), pane=el('div','sbpane');
+  [['fav','★ 즐겨찾기',favs.length],['like','♥ 좋아요',likes.length]].forEach(function(x){
+    var b=el('button',null,x[1]+' '); b.type='button'; b.appendChild(el('small',null,String(x[2]))); b.setAttribute('aria-pressed',sbTab===x[0]?'true':'false');
+    b.onclick=function(){ sbTab=x[0]; sbEdit=false; ls('sonandogu-sb-tab',x[0]==='like'?'like':null); drawSidebar(); }; tabs.appendChild(b); });
+  var list=sbTab==='fav'?favs:likes;
+  /* 순서 편집: 항목마다 ↑ ↓ 버튼 */
+  var row=function(a,i,n,mv){
+    if(!sbEdit) return a;
+    var w=el('div','sbrow'); a.classList.add('editing'); w.appendChild(a);
+    [['↑',-1,'위로'],['↓',1,'아래로']].forEach(function(x){ var b=el('button','sbmv',x[0]); b.type='button'; b.setAttribute('aria-label',(a.textContent||'')+' '+x[2]); b.disabled=(x[1]<0&&i===0)||(x[1]>0&&i===n-1); b.onclick=function(){ mv(i,x[1]); }; w.appendChild(b); });
+    return w;
+  };
+  if(sbTab==='fav'){
+    if(favs.length) favs.forEach(function(h,i){ pane.appendChild(row(toolLink(h),i,favs.length,function(k,d){ move(k,d); })); });
+    else pane.appendChild(el('p','sbempty','도구 이름 옆 ☆을 누르면 여기 모여요'));
+  }else{
+    var L=likes.slice(0,20);
+    if(L.length) L.forEach(function(x,i){ var a=el('a','sbi sbpost'); a.href=x.p; if(x.p===here) a.setAttribute('aria-current','page'); a.appendChild(el('span','sbn',x.t));
+      pane.appendChild(row(a,i,L.length,function(k,d){ var j=k+d; if(j<0||j>=likes.length) return; var c=likes.slice(), t=c[k]; c[k]=c[j]; c[j]=t; setLikes(c); if(user&&pulled) pushCloud(); })); });
+    else pane.appendChild(el('p','sbempty',user?'블로그 글의 ♡를 누르면 여기 모여요':'로그인하고 글의 ♡를 누르면 여기 모여요'));
+  }
+  mine.appendChild(tabs); mine.appendChild(pane);
+  if(list.length>1){ var eb=el('button','sbedit',sbEdit?'완료':'순서 편집'); eb.type='button'; eb.setAttribute('aria-pressed',sbEdit?'true':'false'); eb.onclick=function(){ sbEdit=!sbEdit; drawSidebar(); }; mine.appendChild(eb); }
+  sb.appendChild(mine);
+  /* 분류 */
+  sb.appendChild(el('div','sbt','분류'));
+  CATS.forEach(function(c){
+    var d=el('details','sbcat'); if(c.t.indexOf(here)>=0) d.open=true;
+    var sm=el('summary'); var tile=el('span','sbtile',c.g); tile.style.background='linear-gradient(145deg,'+c.c1+','+c.c+')';
+    sm.appendChild(tile); sm.appendChild(el('span','sbcn',c.n)); sm.appendChild(el('small',null,String(c.t.length))); d.appendChild(sm);
+    var box=el('div','sbtools'); c.t.forEach(function(h){ box.appendChild(toolLink(h)); }); d.appendChild(box); sb.appendChild(d);
+  });
+  /* 아래: 블로그 · 모든 도구 */
+  var ft=el('div','sbfoot');
+  [['/blog/','블로그'],['/tools/','모든 도구']].forEach(function(x){ var a=el('a',null,x[1]+' →'); a.href=x[0]; ft.appendChild(a); });
+  sb.appendChild(ft);
+}
+function openDrawer(){ if(wide()){ ls(SBKEY,null); document.documentElement.classList.remove('sb-off'); return; } sb.classList.add('open'); sbBack.hidden=false; sbBtn.setAttribute('aria-expanded','true'); var f=sb.querySelector('a'); if(f) f.focus(); }
+function closeDrawer(){ sb.classList.remove('open'); sbBack.hidden=true; sbBtn.setAttribute('aria-expanded','false'); }
+sbBtn.onclick=function(){ sb.classList.contains('open')?closeDrawer():openDrawer(); };
+sbBack.onclick=closeDrawer;
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&sb.classList.contains('open')) closeDrawer(); });
+if(CATS.length&&!document.querySelector('.admin-page')){
+  var tin=document.querySelector('.top .in'), tb=tin&&tin.querySelector('.brand');
+  if(tin&&tb){ tin.insertBefore(sbBtn,tb); document.body.appendChild(sbBack); document.body.appendChild(sb); document.documentElement.classList.add('has-sb'); if(ls(SBKEY)==='1') document.documentElement.classList.add('sb-off'); drawSidebar(); subs.push(drawSidebar); }
+}
+
+/* ---------- 홈 인기 도구·인기 글: 별·하트 수로 다시 줄 세우기 ---------- */
+function loadCounts(){
+  var boxes=['popT','popP'].map(function(id){return document.getElementById(id);}).filter(Boolean); if(!boxes.length) return;
+  var cfg=window.SONANDOGU_FIREBASE||{}; if(!cfg.apiKey||/^PASTE/.test(cfg.apiKey)) return;
+  Promise.all([import(BASE+'firebase-app.js'),import(BASE+'firebase-firestore-lite.js')]).then(function(m){
+    var app=m[0].getApps().filter(function(a){return a.name==='counts';})[0]||m[0].initializeApp(cfg,'counts');
+    var db=m[1].getFirestore(app);
+    return m[1].getDocs(m[1].collection(db,'counts')).then(function(snap){
+      var C={}; snap.forEach(function(d){ var n=(d.data()||{}).n; if(typeof n==='number'&&n>0) C[d.id]=n; });
+      boxes.forEach(function(box){ rerank(box,C); });
+    });
+  }).catch(function(){});
+}
+function rerank(box,C){
+  var kind=box.id==='popT'?'f':'l', ol=box.querySelector('ol'); if(!ol) return;
+  /* 후보: 상자에 있던 기본 순서 + 숫자판에 있는 다른 항목 */
+  var items=[].slice.call(ol.children).map(function(li,i){ var a=li.querySelector('a'); return {li:li,k:a.dataset.k,i:i}; });
+  var have={}; items.forEach(function(x){have[x.k]=1;});
+  Object.keys(C).forEach(function(k){
+    if(k.charAt(0)!==kind||have[k]) return; var path=k.slice(1).replace(/_/g,'/');
+    var name=kind==='f'?NAMES[path]:null; if(kind==='f'&&!name) return;
+    var li=el('li'), a=el('a'); a.href=path; a.dataset.k=k; a.appendChild(el('b',null,name||path)); var cn=''; if(kind==='f') CATS.forEach(function(c){ if(c.t.indexOf(path)>=0) cn=c.n; }); a.appendChild(el('span',null,kind==='f'?(cn||'도구'):'블로그 글')); li.appendChild(a);
+    if(kind==='l'){ fetch(path).then(function(r){return r.text();}).then(function(t){ var m=t.match(/<h1>([\s\S]*?)<\/h1>/); if(m) a.querySelector('b').textContent=m[1].replace(/<br\s*\/?>/g,' ').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim(); }).catch(function(){}); }
+    items.push({li:li,k:k,i:99});
+  });
+  items.forEach(function(x){ x.n=C[x.k]||0; var em=x.li.querySelector('.cnt'); if(x.n){ if(!em){ em=el('em','cnt'); x.li.querySelector('a').appendChild(em); } em.textContent=(kind==='f'?'★ ':'♥ ')+x.n; } });
+  items.sort(function(a,b){ return (b.n-a.n)||(a.i-b.i); });
+  ol.textContent=''; items.slice(0,5).forEach(function(x){ ol.appendChild(x.li); });
+}
+if(document.getElementById('popT')){ (window.requestIdleCallback||function(f){setTimeout(f,1200);})(loadCounts); }
 
 /* ---------- 바깥에서 쓰는 창구 ---------- */
 window.SonInstall={open:doInstall, available:function(){return !!deferredInstall;}};

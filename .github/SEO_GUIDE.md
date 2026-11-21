@@ -29,6 +29,8 @@ python3 .github/scripts/update_seo.py
 
 ## 손으로 챙길 것
 
+- 사이트를 업데이트할 때마다 검색창의 '많이 찾는' 검색어(`assets/tools.json`의 `hot`)를 서치콘솔 시트(지난 28일, 노출 많은 순)로 갱신하고 `build_tools.py` 실행
+
 - 새 페이지 주소는 구글 서치콘솔과 네이버 서치어드바이저에 수집 요청
 - 네이버 서치어드바이저 → 요청 → RSS 제출에 `https://sonandogu.com/blog/rss.xml` (한 번만)
 - 2~3주마다 서치콘솔의 검색어·노출 수를 보고 제목과 설명을 다듬기
