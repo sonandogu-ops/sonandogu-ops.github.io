@@ -1,4 +1,4 @@
-// 손안의도구 자동 검사: 부가세·연말정산·3.3%·랜덤 뽑기 검산과 화면
+// 손안의도구 자동 검사: 부가세·연말정산·대출·적금·3.3%·랜덤 뽑기 검산과 화면
 // 실행: node .github/tests/tools.test.js (http://localhost:8765 에서 사이트를 띄운 상태)
 const {chromium,devices}=require('playwright');
 const B=process.env.BASE||'http://localhost:8765';
@@ -29,6 +29,22 @@ const out=[]; const ok=(n,g,e)=>{const p=JSON.stringify(g)===JSON.stringify(e); 
  ok('자녀세액공제 1~4명',r.ch,[250000,550000,950000,1350000]);
  await p.fill('#amt',''); await p.click('#amt'); await p.keyboard.type('40000000'); await p.fill('#credit','12000000'); await p.fill('#check','6000000'); await p.fill('#psav',''); await p.fill('#rent',''); await p.waitForTimeout(200);
  ok('연말정산 화면 환급액',(await p.textContent('#big')).trim(),'18,676원');
+ await p.context().close();
+ // 대출 이자 (알려진 값: 1억·연 5%·30년 원리금균등 월 536,822원)
+ p=await page('/loan/');
+ r=await p.evaluate(()=>{const L=window.__loan.loanCalc; const a=L(1e8,5,360,0,'equal'), b=L(1e8,5,360,0,'principal'), c=L(1e8,5,360,0,'bullet'), g=L(3e7,4.5,36,12,'equal'), z=L(12e6,0,12,0,'equal');
+   return {a:[a.firstPay,a.last.bal],b:[b.firstPay,b.last.bal],c:[c.firstPay,c.totI],g:[g.rows[0].pay,g.rows[11].bal,g.last.bal],z:[z.firstPay,z.totI],sum:[a,b,c,g].every(x=>x.rows.reduce((s,r)=>s+r.pr,0)===x.P)};});
+ ok('대출 원리금균등 1억 5% 30년 (월, 마지막 잔액)',r.a,[536822,0]); ok('대출 원금균등 첫 달',r.b,[694445,0]);
+ ok('대출 만기일시 (월 이자, 총 이자)',r.c,[416667,150000120]); ok('대출 거치 12개월 (이자만, 거치 끝 잔액, 마지막 잔액)',r.g,[112500,30000000,0]);
+ ok('대출 0% (월, 이자)',r.z,[1000000,0]); ok('대출 갚은 원금 합계 = 대출금',r.sum,true);
+ await p.context().close();
+ // 적금·예금 이자 (손계산: 월 100만·12개월·5% 단리 이자 325,000원)
+ p=await page('/savings/');
+ r=await p.evaluate(()=>{const C=window.__sav.saveCalc; const a=C('saving',1e6,12,5,'simple','normal'), d=C('deposit',1e7,12,4,'simple','normal'), m=C('deposit',1e7,12,5,'monthly','normal'), q=C('deposit',1e7,12,5,'simple','pref'), f=C('saving',1e6,12,5,'simple','free');
+   return {a:[a.I,a.tx.a,a.tx.b,a.net,a.total],d:[d.I,d.net],m:m.I,q:q.tx.t,f:f.net,eff:+a.eff.toFixed(2)};});
+ ok('적금 100만×12개월 5% (이자, 소득세, 지방세, 세후, 만기)',r.a,[325000,45500,4550,274950,12274950]);
+ ok('예금 1천만 4% 12개월 (이자, 세후)',r.d,[400000,338400]); ok('예금 월복리 1천만 5%',r.m,511618);
+ ok('세금우대 9.5% 50만 이자의 세금',r.q,47500); ok('비과세',r.f,325000); ok('적금 체감 금리',r.eff,2.71);
  await p.context().close();
  // 3.3%
  p=await page('/freelance-tax/');
