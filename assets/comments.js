@@ -19,15 +19,17 @@ export function flood(s){ return /(.)\1{19,}/.test(s.replace(/\s/g,'')) || (s.ma
 export function spam(s){ return /(https?:\/\/|www\.|\.com|\.kr|\.net|open\.kakao)/i.test(s)||/01[016789][-\s]?\d{3,4}[-\s]?\d{4}/.test(s)||/[\w.]+@[\w.]+\.\w+/.test(s); }
 const ANI=['호랑이','토끼','다람쥐','펭귄','판다','여우','고양이','강아지','햄스터','부엉이','수달','코알라'];
 const ANI_E=['🐯','🐰','🐿️','🐧','🐼','🦊','🐱','🐶','🐹','🦉','🦦','🐨'];
+const aniOf=n=>{ const i=ANI.findIndex(a=>String(n||'').endsWith(a)); if(i>=0) return ANI_E[i]; let h=0; for(const ch of String(n||'')) h=(h*31+ch.charCodeAt(0))>>>0; return ANI_E[h%ANI_E.length]; };
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const ago=t=>{ if(!t) return '방금'; const d=(Date.now()-t.toMillis())/1000; if(d<60) return '방금'; if(d<3600) return Math.floor(d/60)+'분 전'; if(d<86400) return Math.floor(d/3600)+'시간 전'; if(d<86400*30) return Math.floor(d/86400)+'일 전'; const x=t.toDate(); return `${x.getFullYear()}.${x.getMonth()+1}.${x.getDate()}`; };
 async function getSettings(){ if(settings) return settings; try{ const s=await fs.getDoc(fs.doc(db,'settings','main')); settings=s.exists()?s.data():{moderation:true}; }catch(e){ settings={moderation:true}; } return settings; }
-export async function submit({page,nick,text,priv,kind}){
+export async function submit({page,nick,text,priv,kind,parent}){
   text=(text||'').trim(); nick=(nick||'').trim().slice(0,20);
   if(text.length<2) return {ok:false,msg:'두 글자 이상 적어주세요.'};
   if(bad(text)||bad(nick)) return {ok:false,msg:'욕설이나 다른 사람을 깎아내리는 표현은 올릴 수 없어요. 고쳐서 다시 적어주세요.'};
   if(spam(text)) return {ok:false,msg:'링크, 전화번호, 이메일은 남길 수 없어요. 개인정보 보호를 위해서예요.'};
   if(ad(text)||ad(nick)) return {ok:false,msg:'홍보나 광고로 보이는 내용은 올릴 수 없어요. 도구나 글에 대한 이야기를 남겨주세요.'};
+  if(/손안의도구|운영자|관리자|개발자/.test(nick.replace(/\s/g,''))) return {ok:false,msg:'닉네임에 손안의도구·운영자·개발자 같은 이름은 쓸 수 없어요.'};
   if(flood(text)) return {ok:false,msg:'같은 글자나 기호를 너무 많이 반복했어요. 내용을 조금만 다듬어주세요.'};
   const L=(()=>{try{return JSON.parse(localStorage.getItem('sonandogu-cmt-log')||'[]');}catch(e){return [];}})().filter(x=>Date.now()-x.t<86400000);
   if(L.length&&Date.now()-L[L.length-1].t<30000) return {ok:false,msg:'조금 전에 글을 남겼어요. 30초 뒤에 다시 올려주세요.'};
@@ -36,8 +38,9 @@ export async function submit({page,nick,text,priv,kind}){
   let okb=false; try{ okb=await boot(); }catch(e){ console.warn('[댓글] Firebase 불러오기 실패',e); return {ok:false,msg:'댓글 서버에 연결하지 못했어요. 광고 차단 프로그램이 켜져 있다면 잠시 꺼주세요.'}; }
   if(!okb){ console.warn('[댓글] 설정값 없음', window.SONANDOGU_FIREBASE); return {ok:false,msg:'댓글 기능을 준비하고 있어요. 조금만 기다려주세요!'}; }
   const st=await getSettings();
-  const status= priv||kind==='request' ? 'private' : (st.moderation?'pending':'public');
-  try{ await fs.addDoc(fs.collection(db,'comments'),{page,nick:nick||'익명',text,status,kind:kind||'comment',createdAt:fs.serverTimestamp()}); }
+  const status= parent ? (st.moderation?'pending':'public') : priv||kind==='request' ? 'private' : (st.moderation?'pending':'public');
+  const doc={page,nick:nick||'익명',text,status,kind:parent?'reply':(kind||'comment'),createdAt:fs.serverTimestamp()}; if(parent) doc.parent=String(parent).slice(0,40);
+  try{ await fs.addDoc(fs.collection(db,'comments'),doc); }
   catch(e){ console.warn('[댓글] 저장 실패',e); return {ok:false,msg:'올리지 못했어요. 홍보나 부적절한 표현이 섞여 있진 않은지 확인하고 잠시 뒤 다시 시도해주세요. ('+(e.code||'error')+')'}; }
   try{ L.push({t:Date.now(),h:text.replace(/\s/g,'')}); localStorage.setItem('sonandogu-cmt-log',JSON.stringify(L.slice(-10))); }catch(e){}
   return {ok:true,status};
@@ -74,9 +77,35 @@ export async function mount(el){
       const reps=all.filter(c=>c.parent);
       cn.textContent=top.length;
       if(!top.length){ list.innerHTML=`<li class="cempty">아직 ${isTool?'후기':'댓글'}가 없어요. 첫 번째로 남겨주세요!</li>`; return; }
-      list.innerHTML=top.map(c=>`<li class="c"><div class="meta2"><b>${esc(c.nick||'익명')}</b><span>${ago(c.createdAt)}</span></div><p class="txt">${esc(c.text)}</p>${
-        reps.filter(r=>r.parent===c.id).sort((a,b)=>(a.createdAt?.toMillis()||0)-(b.createdAt?.toMillis()||0)).map(r=>`<div class="rep"><img src="/assets/endo/thumbs.webp" alt=""><div><div class="meta2"><b>손안의도구</b><span class="dev">개발자</span><span>${ago(r.createdAt)}</span></div><p class="txt">${esc(r.text)}</p></div></div>`).join('')}</li>`).join('');
+      const byT=(a,b)=>(a.createdAt?.toMillis()||0)-(b.createdAt?.toMillis()||0);
+      const to=c=>`<span class="to">@${esc(c.nick||'익명')}</span> `;
+      const repHTML=(r,c)=> r.isDev
+        ? `<div class="rep"><img src="/assets/endo/thumbs.webp" alt=""><div><div class="meta2"><b>손안의도구</b><span class="dev">개발자</span><span>${ago(r.createdAt)}</span></div><p class="txt">${to(c)}${esc(r.text)}</p></div></div>`
+        : `<div class="rep u"><span class="ava">${aniOf(r.nick)}</span><div><div class="meta2"><b>${esc(r.nick||'익명')}</b><span>${ago(r.createdAt)}</span></div><p class="txt">${to(c)}${esc(r.text)}</p></div></div>`;
+      list.innerHTML=top.map(c=>`<li class="c" data-id="${esc(c.id)}" data-nick="${esc(c.nick||'익명')}"><div class="meta2"><b>${esc(c.nick||'익명')}</b><span>${ago(c.createdAt)}</span></div><p class="txt">${esc(c.text)}</p>${
+        reps.filter(r=>r.parent===c.id).sort(byT).map(r=>repHTML(r,c)).join('')}<button type="button" class="rbtn">답글</button></li>`).join('');
+      list.querySelectorAll('.rbtn').forEach(b=>b.onclick=()=>openReply(b.closest('li.c')));
     }catch(e){ list.innerHTML='<li class="cempty">댓글을 불러오지 못했어요. 잠시 뒤 다시 열어주세요.</li>'; }
+  }
+  function openReply(li){
+    const had=li.querySelector('.rform'); list.querySelectorAll('.rform').forEach(x=>x.remove()); if(had) return;
+    const j=Math.floor(Math.random()*ANI.length);
+    const rf=document.createElement('form'); rf.className='cform rform'; rf.noValidate=true;
+    rf.innerHTML=`<div class="rto">↳ <b>${esc(li.dataset.nick)}</b>님에게 답글</div><div class="top"><span class="ava">${ANI_E[j]}</span><input type="text" maxlength="20" placeholder="닉네임 (비워두면 익명의 ${ANI[j]})" aria-label="닉네임"></div>
+      <textarea maxlength="500" placeholder="${esc(li.dataset.nick)}님에게 답글을 남겨주세요." aria-label="답글"></textarea>
+      <div class="bot"><button type="button" class="cancel">취소</button><span class="cnt2">0/500</span><button class="send" type="submit">답글 올리기</button></div>
+      <div class="cmsg" hidden></div>`;
+    li.querySelector('.rbtn').after(rf);
+    const rt=rf.querySelector('textarea'), rn=rf.querySelector('input'), rm=rf.querySelector('.cmsg'), rb=rf.querySelector('.send'), rc=rf.querySelector('.cnt2');
+    const say=(ok,t,img)=>{ rm.hidden=false; rm.className='cmsg '+(ok?'ok':'no'); rm.innerHTML=`<img src="/assets/endo/${img}.webp" alt=""><span>${esc(t)}</span>`; };
+    rt.addEventListener('input',()=>{ rc.textContent=rt.value.length+'/500'; if(!rm.hidden&&rm.classList.contains('no')) rm.hidden=true; });
+    rf.querySelector('.cancel').onclick=()=>rf.remove();
+    rf.addEventListener('submit',async e=>{ e.preventDefault(); rb.disabled=true;
+      const r=await submit({page,nick:rn.value||('익명의 '+ANI[j]),text:rt.value,parent:li.dataset.id}); rb.disabled=false;
+      if(!r.ok){ say(false,r.msg,'oops'); return; }
+      if(r.status==='public'){ load(); return; }
+      rt.value=''; rc.textContent='0/500'; say(true,'고마워요! 확인을 거쳐 곧 답글이 보여요.','thumbs'); });
+    rt.focus();
   }
   const io=new IntersectionObserver(es=>{ if(es.some(x=>x.isIntersecting)){ io.disconnect(); load(); } },{rootMargin:'400px'}); io.observe(el);
 }

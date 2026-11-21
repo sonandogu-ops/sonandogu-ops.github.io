@@ -32,3 +32,22 @@
 
 /* 터치 화면: 비공개 체크를 누르기 쉽게 */
 @media (pointer:coarse){ .cform label.pv{min-height:40px; display:inline-flex; align-items:center; gap:8px} .cform label.pv input{width:22px; height:22px} }
+.c .rbtn{margin-top:8px; font:inherit; font-size:13px; font-weight:800; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:5px 12px; min-height:32px; cursor:pointer}
+.c .rbtn:hover{color:var(--ink); border-color:var(--ink)}
+.rep.u{background:var(--field); border-color:var(--line)}
+.rep.u .ava{width:36px; height:36px; flex:none; border-radius:50%; background:var(--surface); display:grid; place-items:center; font-size:19px}
+.rform{margin-top:10px; padding:12px; border-radius:16px; box-shadow:none}
+.rform textarea{min-height:70px}
+.rform .cancel{font:inherit; font-size:14px; font-weight:700; color:var(--muted); background:none; border:none; padding:8px 6px; cursor:pointer}
+/* 답글: 작게, 화살표로 들여쓰기 */
+.c .rep{position:relative; margin:8px 0 0 24px; padding:8px 12px; gap:8px; border-radius:12px}
+.rep::before{content:'↳'; position:absolute; left:-21px; top:6px; font-size:16px; font-weight:800; color:var(--faint)}
+.c .rep img,.c .rep.u .ava{width:26px; height:26px; font-size:15px}
+.rep .meta2{font-size:12px; margin-bottom:2px}
+.rep .meta2 b{font-size:13px}
+.rep .dev{font-size:10.5px; padding:1px 7px}
+.rep .txt{font-size:14px; line-height:1.6}
+.rep .to{font-weight:800; color:#E0521C}
+.rform{margin-left:24px}
+.rform .rto{font-size:13px; color:var(--muted); margin-bottom:8px}
+.rform .rto b{color:var(--ink)}
