@@ -6,7 +6,15 @@
   <atom:link href="https://sonandogu.com/blog/rss.xml" rel="self" type="application/rss+xml"/>
   <description>계산이 헷갈리는 순간에 꺼내 보는 짧고 쓸모 있는 글</description>
   <language>ko</language>
-  <lastBuildDate>Sat, 21 Nov 2026 09:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Mon, 23 Nov 2026 09:00:00 +0900</lastBuildDate>
+  <item>
+    <title>전세 3억을 월세로 바꾸면 얼마일까</title>
+    <link>https://sonandogu.com/blog/jeonse-to-wolse/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/jeonse-to-wolse/</guid>
+    <category>생활 계산</category>
+    <description>전세 3억을 보증금 1억으로 낮추면 월세는 최대 약 83만 원이에요. 전월세 전환율 계산법, 기준금리 + 2% 법정 상한이 적용되는 때, 전세 대출 이자와 월세 비교를 정리했어요.</description>
+    <pubDate>Mon, 23 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
   <item>
     <title>원리금균등과 원금균등, 30년 이자는 얼마나 다를까</title>
     <link>https://sonandogu.com/blog/loan-repayment/</link>

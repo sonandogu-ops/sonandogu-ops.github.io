@@ -46,6 +46,12 @@ const out=[]; const ok=(n,g,e)=>{const p=JSON.stringify(g)===JSON.stringify(e); 
  ok('예금 1천만 4% 12개월 (이자, 세후)',r.d,[400000,338400]); ok('예금 월복리 1천만 5%',r.m,511618);
  ok('세금우대 9.5% 50만 이자의 세금',r.q,47500); ok('비과세',r.f,325000); ok('적금 체감 금리',r.eff,2.71);
  await p.context().close();
+ // 전월세 전환 (손계산: 3억→보증금 1억, 기준금리 3% → 상한 5%, 월 833,333원)
+ p=await page('/rent-convert/');
+ r=await p.evaluate(()=>{const X=window.__rent; return {cap:[X.rentCap(3,'house'),X.rentCap(9,'house'),X.rentCap(3,'shop'),X.rentCap(2,'shop')],j:X.j2m(3e8,1e8,5),m:X.m2j(5e7,1e6,5),r:X.rentRate(3e8,1e8,1e6)};});
+ ok('전월세 상한 (주택 3%, 주택 9%, 상가 3%, 상가 2%)',r.cap,[5,10,12,9]); ok('전세 3억→보증금 1억 월세',r.j,833333); ok('월세→전세 환산',r.m,290000000); ok('제시 조건 전환율',r.r,6);
+ ok('전월세 화면 기본값',(await p.textContent('#big')).trim(),'833,333원');
+ await p.context().close();
  // 3.3%
  p=await page('/freelance-tax/');
  r=await p.evaluate(()=>{const F=window.__ft; const g=[1000000,500000,123456,333].map(x=>{const y=F.fromGross(x);return [y.it,y.lt,y.net];}); const n=F.fromNet(1000000), n2=F.fromNet(967000);
