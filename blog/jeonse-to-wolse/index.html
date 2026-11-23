@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<script>addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__bip=e;});</script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="손안의도구">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon-192.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F6F7F9">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sonandogu.com/blog/jeonse-to-wolse/">
+<meta property="og:image" content="https://sonandogu.com/assets/og-jeonse-to-wolse-post.jpg?v=20261121">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="전세 3억을 월세로 바꾸면 얼마일까">
+<meta name="twitter:card" content="summary_large_image">
+<title>전월세 전환율 계산법: 전세 3억을 월세로 바꾸면 얼마, 법정 상한까지 | 손안의도구</title>
+<meta name="description" content="전세 3억 원을 보증금 1억 원으로 낮추면 월세는 얼마일까요? 전월세 전환율 계산법과 법정 상한(기준금리 + 2%), 상한이 적용되는 때, 전세 대출 이자와 월세 비교까지 예시로 정리했어요.">
+<meta property="og:site_name" content="손안의도구">
+<meta property="og:title" content="전세 3억을 월세로 바꾸면 얼마일까">
+<meta property="og:description" content="전환율 계산법과 법정 상한, 대출 이자와 비교까지.">
+<link rel="canonical" href="https://sonandogu.com/blog/jeonse-to-wolse/">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "전세 3억을 월세로 바꾸면 얼마일까", "datePublished": "2026-11-23", "dateModified": "2026-11-23", "author": {"@type": "Organization", "name": "손안의도구"}, "publisher": {"@type": "Organization", "name": "손안의도구"}, "mainEntityOfPage": "https://sonandogu.com/blog/jeonse-to-wolse/", "image": "https://sonandogu.com/assets/og-jeonse-to-wolse-post.jpg?v=20261121"}</script>
+<style>:root{
+  --bg:#F6F7F9; --surface:#FFFFFF; --ink:#141518; --muted:#6B6D73; --faint:#A3A5AA;
+  --line:rgba(20,21,24,.08); --field:#EFF1F4; --orange:#FF5A1F; --orange2:#FF8A3D;
+  --shadow:0 1px 2px rgba(20,21,24,.04), 0 18px 40px -18px rgba(20,21,24,.22);
+  --head:rgba(246,247,249,.8); color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --ink:#F2F2EF; --muted:#8E9097; --faint:#5E6066;
+    --line:rgba(255,255,255,.08); --field:#1F2024;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 24px 48px -20px rgba(0,0,0,.6);
+    --head:rgba(14,15,17,.72); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+.top{position:sticky; top:0; z-index:10; background:var(--head); backdrop-filter:saturate(1.6) blur(14px); -webkit-backdrop-filter:saturate(1.6) blur(14px); border-bottom:1px solid var(--line)}
+.top .in{max-width:1040px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between}
+.brand{display:inline-flex; align-items:center; gap:9px; text-decoration:none; color:var(--ink); font-weight:800; font-size:16px; letter-spacing:-.03em}
+.brand svg{display:block}
+.top nav a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:600}
+.top nav a:hover{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange); outline-offset:3px; border-radius:8px}
+.container{max-width:1040px; margin:0 auto; padding:0 20px}
+footer{max-width:1040px; margin:72px auto 0; padding:28px 20px 48px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted)}
+footer b{color:var(--ink); font-weight:800; letter-spacing:-.03em}
+footer .fl{display:flex; gap:16px}
+footer .fl a{color:var(--muted); text-decoration:none; font-weight:600}
+footer .fl a:hover{color:var(--ink)}
+
+.post{max-width:700px; padding:36px 0 0}
+@media (min-width:920px){.post{padding-top:60px}}
+.crumb{font-size:14px; font-weight:600; color:var(--muted); margin-bottom:14px}
+.crumb a{color:var(--muted); text-decoration:none}
+.post h1{font-size:clamp(30px,6vw,46px); font-weight:800; letter-spacing:-.05em; line-height:1.15; margin:0 0 14px}
+.meta{font-size:14px; color:var(--muted); margin:0 0 30px}
+.post h2{font-size:clamp(21px,3.6vw,26px); font-weight:800; letter-spacing:-.04em; line-height:1.3; margin:52px 0 14px}
+.post p{font-size:16.5px; line-height:1.85; margin:0 0 16px}
+.post strong{font-weight:750}
+.formula{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:14px; padding:16px 18px; font-size:17px; font-weight:750; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex{background:rgba(255,90,31,.07); border-radius:14px; padding:14px 18px; font-size:15.5px; line-height:1.8; margin:0 0 16px; font-variant-numeric:tabular-nums}
+.ex b{color:var(--orange)}
+.tbl{overflow-x:auto; margin:0 0 16px}
+table{width:100%; border-collapse:collapse; font-size:15px; font-variant-numeric:tabular-nums}
+th,td{padding:11px 10px; border-bottom:1px solid var(--line); text-align:left}
+th{color:var(--muted); font-weight:700; font-size:13.5px}
+td:last-child,th:last-child{text-align:right}
+.mini{position:relative; overflow:hidden; border-radius:26px; padding:20px; color:#F4F4F1; margin:6px 0 34px;
+  background:radial-gradient(110% 140% at 100% 0%, rgba(255,106,51,.26) 0%, rgba(255,106,51,0) 50%), linear-gradient(160deg,#202126 0%,#121316 100%); box-shadow:var(--shadow)}
+.mini h3{margin:0 0 12px; font-size:15px; font-weight:800}
+.mini .row{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.mini label{display:block; font-size:12px; font-weight:700; color:rgba(244,244,241,.55); margin:0 0 5px 2px}
+.mini input{width:100%; font:inherit; font-size:22px; font-weight:750; color:#F4F4F1; background:rgba(255,255,255,.07); border:1.5px solid rgba(255,255,255,.1); border-radius:14px; padding:10px 12px; outline:none; font-variant-numeric:tabular-nums}
+.mini input:focus{border-color:#FF6A33}
+.mini input::placeholder{color:rgba(244,244,241,.3)}
+.mini .out{margin-top:14px; font-size:15px; color:rgba(244,244,241,.6); min-height:1.5em}
+.mini .out b{font-size:30px; color:#fff; letter-spacing:-.04em; margin:0 4px}
+.mini .out em{font-style:normal; color:#FF8A3D; font-weight:700}
+.mini a{display:inline-block; margin-top:12px; color:#FF8A3D; font-weight:700; font-size:14px; text-decoration:none}
+.next{margin-top:56px; display:grid; gap:10px}
+.next a{display:flex; justify-content:space-between; align-items:center; gap:12px; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:18px 20px; box-shadow:var(--shadow)}
+.next a:hover{border-color:var(--ink)}
+.next strong{display:block; font-size:17px; font-weight:800; letter-spacing:-.03em}
+.next span{font-size:14px; color:var(--muted)}
+.next i{font-style:normal; font-size:20px; color:var(--muted)}
+
+.ill{margin:6px 0 26px; background:var(--surface); border:1px solid var(--line); border-radius:24px; padding:16px 12px 12px; box-shadow:var(--shadow)}
+.ill svg{display:block; width:100%; height:auto}
+.ill figcaption{text-align:center; font-size:13.5px; color:var(--muted); margin-top:6px}
+.ill .tag{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .hole{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .tp{font-size:20px; font-weight:700; fill:var(--muted)}
+.ill .tbig{font-size:46px; font-weight:800; fill:var(--ink); letter-spacing:-2px}
+.ill .strike{stroke:#FF5A1F; stroke-width:5; stroke-linecap:round}
+.ill .st{font-size:30px; font-weight:800; fill:#fff}
+.ill .st2{font-size:26px; font-weight:800; fill:#FF8A3D}
+.ill .q{font-size:80px; font-weight:800; fill:var(--faint)}
+.ill .lbl text{font-size:17px; font-weight:700; fill:var(--muted)}
+.ill .val text{font-size:20px; font-weight:800; fill:var(--ink)}
+.ill .bar0{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .bar1{fill:#FFB48A}
+.ill .bar2{fill:#FF5A1F}
+.ill .ghost{stroke:var(--ink); stroke-width:2; stroke-dasharray:6 6; opacity:.5}
+.ill .arr{fill:none; stroke:var(--faint); stroke-width:3; stroke-linecap:round}
+.ill .arr2{fill:none; stroke:var(--ink); stroke-width:2; opacity:.5}
+.ill .note{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .btl{fill:var(--field); stroke:var(--line); stroke-width:2}
+.ill .cap{fill:var(--line)}
+.ill .btlf{fill:#FF5A1F}
+.ill .capf{fill:#FF8A3D}
+.ill .bp{font-size:30px; font-weight:800; fill:var(--muted)}
+.ill .free{font-size:22px; font-weight:800; fill:#fff}
+.ill .cap2{font-size:18px; font-weight:800; fill:var(--ink)}
+.quiz{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:20px 22px; margin:26px 0 8px; box-shadow:var(--shadow)}
+.quiz .qh{font-size:13px; font-weight:800; color:var(--orange); margin:0 0 6px}
+.quiz .qq{font-size:17px; font-weight:750; margin:0 0 12px; line-height:1.6}
+.quiz summary{display:inline-block; cursor:pointer; list-style:none; font-size:14.5px; font-weight:800; color:#141518; background:linear-gradient(180deg,#FF8A3D,#FF5A1F); padding:9px 16px; border-radius:12px}
+.quiz summary::-webkit-details-marker{display:none}
+.quiz details[open] summary{display:none}
+.quiz details p{margin:0; font-size:16px; line-height:1.75}
+.quiz details b{color:var(--orange)}
+.keys{display:grid; gap:10px; margin:0 0 18px}
+@media (min-width:640px){.keys{grid-template-columns:repeat(3,1fr)}}
+.keys div{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:16px}
+.keys b{display:block; font-size:16px; font-weight:800; color:var(--orange); margin-bottom:4px}
+.keys span{font-size:14.5px; color:var(--muted); line-height:1.6}
+
+.ill .ok{fill:#1FA968}.ill .okt{fill:#1FA968; font-size:16px; font-weight:800}
+.ill .warn{fill:#FF5A1F}.ill .warnt{fill:#FF5A1F; font-size:16px; font-weight:800}
+.ill .axis{stroke:var(--line); stroke-width:3}
+.ill .tick{font-size:15px; font-weight:700; fill:var(--muted)}
+.ill .paper{fill:var(--surface); stroke:var(--line); stroke-width:2}
+.ill .ln2{stroke:var(--line); stroke-width:3; stroke-linecap:round}
+.ill .red{fill:#B4232F; font-weight:800}
+.ill .node{fill:var(--field); stroke:var(--faint); stroke-width:2}
+.ill .nodeb{fill:var(--surface); stroke:var(--ink); stroke-width:3}
+.ill .path{stroke:var(--line); stroke-width:4; fill:none}
+.ill .hot{stroke:#FF5A1F; stroke-width:6; fill:none; stroke-linecap:round; stroke-dasharray:2 12}
+.ill .dot{fill:#FF5A1F}
+.ill .p3{stroke:var(--faint); stroke-width:4; fill:none; stroke-linecap:round}
+.ill .p5{stroke:#FF5A1F; stroke-width:5; fill:none; stroke-linecap:round}
+.ill .grid{stroke:var(--line); stroke-width:1.5}
+.tbl th,.tbl td{text-align:left!important}
+.tbl td:nth-child(n+2),.tbl th:nth-child(n+2){white-space:nowrap}
+</style>
+<link rel="stylesheet" href="/assets/comments.css?v=5">
+<meta name="google-adsense-account" content="ca-pub-1007904420767851">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1007904420767851" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/assets/favorites.css?v=24">
+<link rel="alternate" type="application/rss+xml" title="손안의도구 블로그" href="/blog/rss.xml">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "손안의도구", "item": "https://sonandogu.com/"}, {"@type": "ListItem", "position": 2, "name": "블로그", "item": "https://sonandogu.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "전세 3억을 월세로 바꾸면 얼마일까", "item": "https://sonandogu.com/blog/jeonse-to-wolse/"}]}</script>
+</head>
+<body>
+<header class="top"><div class="in"><a class="brand" href="/"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF4A12"/></linearGradient><radialGradient id="lw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFF6C8" stop-opacity=".9"/><stop offset="1" stop-color="#FFF6C8" stop-opacity="0"/></radialGradient><clipPath id="lc"><rect width="26" height="26" rx="8"/></clipPath></defs> <rect width="26" height="26" rx="8" fill="url(#lg)"/> <g clip-path="url(#lc)"> <circle cx="13.6" cy="9.4" r="6.4" fill="url(#lw)"/> <g stroke="#FFF1B8" stroke-width=".9" stroke-linecap="round" opacity=".9"><path d="M7.4 4.2l1 1.1M19.8 4.2l-1 1.1M5.6 9.6h1.5M20.1 9.6h1.5"/></g> <path transform="translate(13.6 9.3) scale(1.22) translate(-13.6 -9.3)" d="M13.6 4.6l1.45 3 3.3.45-2.4 2.3.6 3.25-2.95-1.6-2.95 1.6.6-3.25-2.4-2.3 3.3-.45z" fill="#FFE07A" stroke="#FFFFFF" stroke-width=".75" stroke-linejoin="round"/> <path d="M1.6 27C3.4 22.4 5.8 19.7 9.4 18.9l6.8-1.5c1.6-.35 3.1-1.4 4.3-2.8.9-1 2.5-.2 1.9 1.1-1.3 2.9-3.8 5.6-6.9 6.6l-4.4 1.2c-1.7.45-2.9 1.9-3.6 3.5z" fill="#FFFFFF"/> <path d="M10.6 20.6l5.2-1.1" stroke="#FFB48A" stroke-width=".7" stroke-linecap="round"/> </g></svg>손안의도구</a><nav style="display:flex;gap:18px"><a href="/blog/">블로그</a><a href="/"><span class="nw">전체 </span>도구</a></nav></div></header>
+<div class="container"><article class="post">
+  <div class="crumb"><a href="/blog/">블로그</a> / 생활 계산</div>
+  <h1>전세 3억을 월세로 바꾸면<br>얼마일까</h1>
+  <p class="meta pub"><time datetime="2026-11-23">2026년 11월 23일</time><span class="rt"> · 5분 읽기</span></p>
+
+  <figure class="ill" aria-label="전세 3억 원을 보증금 1억 원으로 낮추면 남은 2억 원이 월세로 바뀌고, 전환율 5퍼센트면 월 83만 원이다">
+    <svg viewBox="0 0 640 250">
+      <rect x="30" y="70" width="580" height="56" rx="14" class="bar0"/>
+      <rect x="30" y="70" width="193" height="56" rx="14" class="bar1"/>
+      <rect x="223" y="70" width="387" height="56" rx="14" class="bar2"/>
+      <text x="126" y="104" text-anchor="middle" class="st" style="font-size:18px;fill:#7A3A12">보증금 1억</text>
+      <text x="416" y="104" text-anchor="middle" class="st" style="font-size:20px">월세로 바꿀 2억</text>
+      <g class="lbl"><text x="30" y="52">전세 보증금 3억 원</text></g>
+      <path d="M416 134 L416 160" class="arr"/>
+      <g class="val"><text x="416" y="190" text-anchor="middle">2억 × 5% ÷ 12 = 월 833,333원</text></g>
+      <text x="320" y="230" text-anchor="middle" class="note">기준금리 연 3.00% · 주택 법정 전환율 상한 5.00%</text>
+    </svg>
+    <figcaption>보증금에서 빠지는 금액만 월세로 바뀌어요</figcaption>
+  </figure>
+
+  <div class="quiz">
+    <p class="qh">잠깐, 먼저 맞혀볼까요?</p>
+    <p class="qq">전세 3억 원에 살다가 계약을 갱신하면서 집주인이 "보증금 1억 원에 월세로 바꾸자"고 해요. 기준금리가 연 3.00%일 때 법으로 정한 상한에 따른 월세는 최대 얼마일까요? ① 약 50만 원 ② 약 83만 원 ③ 약 125만 원</p>
+    <details><summary>정답 보기</summary><p><b>② 약 83만 원</b>이에요. 주택의 전환율 상한은 기준금리에 2%를 더한 연 5%예요. 월세로 바뀌는 2억 원에 5%를 곱하면 1년 1,000만 원, 12로 나누면 월 833,333원이에요.</p></details>
+  </div>
+
+  <p>전세 계약 만기가 다가오면 집주인에게서 이런 연락을 받기도 해요. "요즘 금리가 올라서 보증금 일부를 월세로 돌렸으면 해요." 이때 얼마가 적당한지 감이 없으면 부르는 대로 받아들이기 쉬워요. 전세와 월세를 바꾸는 계산은 생각보다 간단하고, 법으로 정한 상한도 있어요.</p>
+  <nav class="toc" aria-label="이 글의 차례"><b>이 글의 차례</b><ol><li><a href="#s1">전월세 전환율, 한 줄로 이해하기</a></li><li><a href="#s2">법정 상한은 기준금리 + 2%</a></li><li><a href="#s3">상한이 적용되는 때와 아닌 때</a></li><li><a href="#s4">전세 대출 이자와 월세, 뭐가 덜 들까</a></li><li><a href="#s5">월세를 전세로 바꾸면</a></li><li><a href="#s6">자주 묻는 질문</a></li></ol></nav>
+
+  <h2 id="s1">전월세 전환율, 한 줄로 이해하기</h2>
+  <p>전환율은 보증금을 월세로 바꿀 때 "보증금 1년치 이자를 몇 %로 볼지"를 정한 비율이에요. 보증금에서 빠지는 금액에 전환율을 곱하면 1년 월세가 나오고, 12로 나누면 한 달 월세예요.</p>
+  <div class="keys">
+    <div><b>전세 → 월세</b><span>(전세 보증금 − 바꾼 뒤 보증금) × 전환율 ÷ 12</span></div>
+    <div><b>월세 → 전세</b><span>보증금 + 월세 × 12 ÷ 전환율</span></div>
+    <div><b>전환율 확인</b><span>월세 × 12 ÷ (전세 보증금 − 바꾼 뒤 보증금)</span></div>
+  </div>
+  <p>전세 3억 원을 보증금 1억 원으로 낮추면 2억 원이 월세로 바뀌어요. 전환율 5%면 2억 원 × 5% = 1년 1,000만 원, 한 달에 <strong>833,333원</strong>이에요.</p>
+
+  <h2 id="s2">법정 상한은 기준금리 + 2%</h2>
+  <p>주택임대차보호법 시행령은 전환율에 상한을 둬요. <strong>연 10%와 한국은행 기준금리에 2%를 더한 비율 중 낮은 쪽</strong>이에요. 지금처럼 기준금리가 연 3.00%라면 상한은 5.00%예요. 기준금리가 바뀌면 상한도 따라 움직여서, 같은 2억 원을 바꿔도 월세 상한이 달라져요.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>기준금리</th><th>전환율 상한</th><th>2억 원을 월세로 바꾸면</th></tr></thead>
+    <tbody>
+      <tr><td>연 2.50%</td><td>4.50%</td><td>월 750,000원</td></tr>
+      <tr><td>연 3.00%</td><td>5.00%</td><td>월 833,333원</td></tr>
+      <tr><td>연 3.25%</td><td>5.25%</td><td>월 875,000원</td></tr>
+      <tr><td>연 3.50%</td><td>5.50%</td><td>월 916,667원</td></tr>
+    </tbody>
+  </table></div>
+  <p>상가는 기준이 달라요. 상가건물 임대차보호법 시행령에 따라 연 12%와 기준금리의 4.5배 중 낮은 쪽이라, 기준금리 연 3.00%면 상한은 12%예요.</p>
+
+  <h2 id="s3">상한이 적용되는 때와 아닌 때</h2>
+  <p>이 상한이 모든 계약에 적용되는 건 아니에요. <strong>계약 기간 중이나 계약을 갱신하면서</strong> 보증금의 전부나 일부를 월세로 바꿀 때 적용돼요. 위 퀴즈처럼 살던 집을 갱신하면서 조건을 바꾸는 경우가 대표적이에요.</p>
+  <p>반대로 새집을 구하면서 처음 맺는 계약은 집주인과 세입자가 합의한 조건이 그대로 적용돼요. 그래서 실제 시장에서 거래되는 전환율은 지역에 따라 상한보다 높게 형성되기도 해요. 갱신하면서 상한을 넘는 월세를 제시받았다면, 상한을 넘는 부분은 내지 않아도 된다는 걸 기억해 두세요. 예를 들어 같은 조건에 월세 100만 원을 제시받았다면 전환율은 6%로, 상한보다 매달 166,667원 많아요.</p>
+
+  <h2 id="s4">전세 대출 이자와 월세, 뭐가 덜 들까</h2>
+  <p>월세로 바꿀지 고민될 때는 보증금 차액 2억 원을 대출로 마련하면 이자가 얼마인지 비교해 보면 돼요. 기준은 간단해요. <strong>대출 금리가 전환율보다 낮으면 매달 내는 돈은 전세 쪽이 적어요.</strong></p>
+  <div class="tbl"><table>
+    <thead><tr><th>2억 원을 마련하는 방법</th><th>매달 내는 돈</th></tr></thead>
+    <tbody>
+      <tr><td>월세 (전환율 5%)</td><td>833,333원</td></tr>
+      <tr><td>연 4% 대출 이자</td><td>666,667원</td></tr>
+      <tr><td>연 5.5% 대출 이자</td><td>916,667원</td></tr>
+    </tbody>
+  </table></div>
+  <p>다만 숫자만으로 끝나지 않아요. 전세는 큰 보증금을 맡기는 만큼 돌려받지 못할 위험이 있어서, 전세보증금 반환보증 보증료까지 비용으로 봐야 해요. 월세에는 월세 세액공제가 있어서, 총급여 8,000만 원 이하 무주택 세대주라면 1년 월세 1,000만 원의 최대 17%인 약 170만 원을 세금에서 돌려받을 수 있어요. 세액공제는 <a href="/blog/year-end-refund-limit/">낸 세금까지만 돌려받는다</a>는 점도 함께 따져 보세요.</p>
+
+  <h2 id="s5">월세를 전세로 바꾸면</h2>
+  <p>반대로 월세로 살던 사람이 전세로 옮길 때도 같은 식을 거꾸로 쓰면 돼요. 보증금 5,000만 원에 월세 100만 원인 집은, 전환율 5%로 보면 5,000만 원 + 1,200만 원 ÷ 5% = <strong>2억 9,000만 원</strong> 전세와 같은 조건이에요. 비슷한 동네의 전세 매물과 비교할 때 이 숫자를 기준으로 삼으면 편해요.</p>
+  <p>내 조건으로 바로 계산해 보고 싶다면 <a href="/rent-convert/">전월세 전환 계산기</a>를 써 보세요. 전세↔월세 전환, 제시받은 월세가 상한을 넘는지, 대출 이자와 비교까지 한 화면에서 볼 수 있어요.</p>
+
+  <h2 id="s6">자주 묻는 질문</h2>
+  <p><strong>Q. 우리 동네 실제 전환율은 어디서 보나요?</strong><br>한국부동산원이 매달 지역별 전월세 전환율을 발표해요. 부동산통계정보 사이트(R-ONE)에서 시도와 시군구별로 찾아볼 수 있어요.</p>
+  <p><strong>Q. 갱신할 때 월세로 바꾸면서 보증금도 올릴 수 있나요?</strong><br>계약갱신청구권을 쓴 갱신이라면 임대료 증액은 5%까지예요. 보증금과 월세가 섞여 있으면 전환율로 환산해서 5%를 넘는지 따져 봐야 해요.</p>
+  <p><strong>Q. 기준금리가 오르면 이미 정한 월세도 오르나요?</strong><br>아니요. 계약서에 정한 월세는 계약 기간 동안 그대로예요. 상한은 보증금을 월세로 바꾸는 그 시점의 기준금리로 따져요.</p>
+  <p class="meta" style="margin-top:20px">이 글은 2026년 11월 23일 기준이에요. 이때 한국은행 기준금리는 연 3.00%이고, 11월 26일 금융통화위원회에서 바뀔 수 있어요. 실제 계약 전에는 최신 기준금리와 계약서 내용을 확인하세요.</p>
+
+  <!-- more:start -->
+  <nav class="more" aria-label="이 주제의 다른 글"><b>이 주제의 다른 글</b><a href="/blog/savings-interest/"><span>생활 계산</span>적금 이자는 왜 생각보다 적을까</a><a href="/blog/discount-rate/"><span>생활 계산</span>20% 할인에 10% 더, 왜 30%가 아닐까?</a><a href="/blog/pyeong-area/"><span>생활 계산</span>84㎡는 왜 34평일까, 전용면적과 공급면적</a></nav>
+  <!-- more:end -->
+  <nav class="next" aria-label="관련 글과 도구"><a href="/rent-convert/"><span><strong>전월세 전환 계산기</strong><span>전세↔월세, 법정 상한 확인</span></span><i>→</i></a><a href="/blog/loan-repayment/"><span><strong>원리금균등과 원금균등, 30년 이자는 얼마나 다를까</strong><span>1억 원 30년 대출로 비교</span></span><i>→</i></a></nav>
+  <div data-comments data-kind="comment" data-page="/blog/jeonse-to-wolse/"></div>
+</article>
+<section class="cmts" data-page="/blog/jeonse-to-wolse/" data-kind="post"></section></div>
+
+<footer><span><b>손안의도구</b> · 꺼내서 쓰고, 바로 닫는 생활 도구</span><span class="fl"><a href="/about/">사이트 소개</a><a href="/terms/">이용약관</a><a href="/privacy/">개인정보처리방침</a><a href="/contact/">문의하기</a></span></footer>
+
+<script src="/assets/firebase-config.js?v=4"></script>
+<script src="/assets/favorites.js?v=19"></script>
+<script type="module" src="/assets/comments.js?v=5"></script>
+<script src="/assets/analytics.js?v=3" defer></script>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));}</script>
+</body>
+</html>

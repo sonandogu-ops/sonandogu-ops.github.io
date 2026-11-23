@@ -23,6 +23,7 @@ const COPY_RE=/복사|공유/, RESET_RE=/초기화|지우기|비우기|다시|�
 
 async function fillAll(p,s){
   if(s==='/worktime/'){ await p.fill('#d-s','09:00'); await p.fill('#d-e','18:00'); await p.dispatchEvent('#d-e','input'); await p.dispatchEvent('#d-e','change'); return; }
+  if(s==='/rent-convert/'){ await p.fill('#J','300000000'); await p.dispatchEvent('#J','input'); await p.fill('#D','120000000'); await p.dispatchEvent('#D','input'); await p.fill('#base','3.25'); await p.dispatchEvent('#base','input'); return; }
   if(s==='/wage/'){ await p.click('#minBtn'); await p.click('#qFill').catch(()=>{}); return; }
   const els=await p.$$('main input:visible, .work input:visible, .card input:visible, main textarea:visible');
   for(const el of els){ try{
