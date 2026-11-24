@@ -68,6 +68,10 @@ const out=[]; const ok=(n,g,e)=>{const p=JSON.stringify(g)===JSON.stringify(e); 
    const bad=C.save({t:'',s:'2026-11-01'}).ok;
    return [on('2026-11-14'),on('2026-11-16'),on('2026-11-30'),on('2027-02-28'),on('2026-11-10'),on('2026-11-11'),on('2027-02-28'),on('2028-02-29'),C.lunKey('2026-02-17'),C.lunKey('2026-09-25'),bad];});
  ok('일정 달력 기간·매달 말일·매주·윤년 생일·음력',r,['여행','','월급','생일/월급','수업','','생일/월급','생일/수업/월급','01-01','08-15',false]);
+ r=await p.evaluate(()=>{ const C=window.SonCal; const pat='DDEENNOO', ps=[]; for(let d=1;d<=30;d++) ps.push(['2026-11-'+String(d).padStart(2,'0'),pat[(d-1)%8]]); C.setShifts(ps);
+   const cnt={}; let h=0; for(let d=1;d<=30;d++){ const s=C.shift('2026-11-'+String(d).padStart(2,'0')); cnt[s.c]=(cnt[s.c]||0)+1; if(s.s&&s.e){ let m=(+s.e.slice(0,2)*60+ +s.e.slice(3))-(+s.s.slice(0,2)*60+ +s.s.slice(3)); if(m<=0) m+=1440; h+=m/60; } }
+   C.setShifts([['2026-11-05',null]]); return [cnt.D,cnt.E,cnt.N,cnt.O,h,C.shift('2026-11-05'),C.shift('2026-11-06').c]; });
+ ok('3교대 근무표 패턴·개수·나이트 시간·지우기',r,[8,8,8,6,192,null,'N']);
  await p.context().close();
  // 3.3%
  p=await page('/freelance-tax/');

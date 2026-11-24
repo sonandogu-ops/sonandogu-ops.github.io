@@ -486,3 +486,7 @@ html .cat .ic svg[fill="#fff"],html .nt .nt-i svg[fill="#fff"]{fill:currentColor
 .caled input[type=text]:focus{border-color:var(--orange)}
 .caledb .calbig{align-self:center; font-size:11.5px; font-weight:800; color:var(--muted); text-decoration:none; margin-left:4px}
 .caledb .calbig:hover{color:var(--orange)}
+.calsh{display:flex; gap:10px; margin:0 0 6px; padding:5px 8px; background:var(--field); border-radius:10px; text-decoration:none; color:var(--ink)}
+.calsh span{display:flex; align-items:center; gap:5px}
+.calsh small{font-size:11px; font-weight:800; color:var(--muted)}
+.calsh b{font-size:11px; font-weight:850; color:#fff; border-radius:5px; padding:1px 6px}

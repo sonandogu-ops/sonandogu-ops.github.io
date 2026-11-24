@@ -87,18 +87,30 @@ function legacyToEv(o){
   });
   return out;
 }
+/* 3교대 근무표: sh={t:[{c:'D',n:'데이',s:'07:00',e:'15:00',k:0}], m:{'2026-11':'DDE.N...'}} 한 글자 = 하루, '.'은 비어 있음 */
+var SH_DEF=[{c:'D',n:'데이',s:'07:00',e:'15:00',k:0},{c:'E',n:'이브닝',s:'15:00',e:'23:00',k:1},{c:'N',n:'나이트',s:'23:00',e:'07:00',k:2},{c:'O',n:'오프',s:'',e:'',k:3}];
+function cleanSh(o){
+  o=o&&typeof o==='object'?o:{}; var seen={}, t=[];
+  (Array.isArray(o.t)&&o.t.length?o.t:SH_DEF).forEach(function(x){ if(!x||t.length>=8) return; var c=String(x.c||'').toUpperCase(); if(!/^[A-Z]$/.test(c)||seen[c]) return; seen[c]=1;
+    t.push({c:c,n:String(x.n||c).replace(/\s+/g,' ').trim().slice(0,6)||c,s:TM_RE.test(x.s)?x.s:'',e:TM_RE.test(x.e)?x.e:'',k:Math.max(0,Math.min(7,x.k|0))}); });
+  if(!t.length) t=SH_DEF.slice();
+  var ok={}; t.forEach(function(x){ ok[x.c]=1; }); var m={}, now=new Date(), lo=(now.getFullYear()-1)*12+now.getMonth(), keys=Object.keys(o.m&&typeof o.m==='object'?o.m:{}).sort().reverse();
+  keys.forEach(function(k){ var mm=/^(\d{4})-(\d{2})$/.exec(k); if(!mm) return; var idx=+mm[1]*12+(+mm[2]-1); if(idx<lo||Object.keys(m).length>=26) return; var dim=new Date(+mm[1],+mm[2],0).getDate();
+    var v=String(o.m[k]).slice(0,dim).split('').map(function(ch){ return ok[ch]?ch:'.'; }).join(''); if(/[^.]/.test(v)) m[k]=v.replace(/\.+$/,''); });
+  return {t:t,m:m};
+}
 function cleanMemos(o){
   var list= o&&o.v===2&&Array.isArray(o.ev)? o.ev : (o&&typeof o==='object'? legacyToEv(o) : []);
   var seen={}, ev=[];
   list.forEach(function(x){ var c=cleanEv(x); if(c&&!seen[c.id]&&ev.length<EVMAX){ seen[c.id]=1; ev.push(c); } });
   ev.sort(function(a,b){ return a.s<b.s?-1:a.s>b.s?1:0; });
-  return {v:2,ev:ev};
+  return {v:2,ev:ev,sh:cleanSh(o&&o.v===2?o.sh:null)};
 }
-function loadMemos(){ try{ return cleanMemos(JSON.parse(ls(MKEY)||'{}')); }catch(e){ return {v:2,ev:[]}; } }
+function loadMemos(){ try{ return cleanMemos(JSON.parse(ls(MKEY)||'{}')); }catch(e){ return cleanMemos({}); } }
 var memos=loadMemos(), calSubs=[];
 (function(){ try{ var raw=JSON.parse(ls(MKEY)||'null'); if(raw&&raw.v!==2) ls(MKEY,JSON.stringify(memos)); }catch(e){} })(); /* 예전 메모 형식은 한 번 바꿔서 저장 */
 function setMemos(m){ memos=cleanMemos(m); ls(MKEY,JSON.stringify(memos)); if(typeof drawSidebar==='function'&&sb.isConnected) drawSidebar(); calSubs.forEach(function(f){ try{f();}catch(e){} }); if(user&&pulled) pushCloud(); }
-function mergeMemos(a,b){ var m={}; (a.ev||[]).forEach(function(x){ m[x.id]=x; }); (b.ev||[]).forEach(function(x){ m[x.id]=x; }); return {v:2,ev:Object.keys(m).map(function(k){ return m[k]; })}; }
+function mergeMemos(a,b){ var m={}; (a.ev||[]).forEach(function(x){ m[x.id]=x; }); (b.ev||[]).forEach(function(x){ m[x.id]=x; }); var sa=a.sh||{}, sb2=b.sh||{}; return {v:2,ev:Object.keys(m).map(function(k){ return m[k]; }),sh:{t:(sb2.t&&sb2.t.length?sb2.t:sa.t),m:Object.assign({},sa.m||{},sb2.m||{})}}; }
 /* 어떤 날에 일정이 걸리는지 (반복 포함) */
 var LUNF=(function(){ var cs=['dangi','chinese']; for(var i=0;i<cs.length;i++){ try{ var f=new Intl.DateTimeFormat('ko-KR-u-ca-'+cs[i],{month:'numeric',day:'numeric',timeZone:'UTC'}); if(f.resolvedOptions().calendar===cs[i]) return f; }catch(e){} } return null; })();
 var lunC={};
@@ -121,11 +133,17 @@ function saveEvent(x){
   var c=cleanEv(x); if(!c) return {ok:false,msg:'제목과 날짜를 확인해 주세요'};
   var list=memos.ev.filter(function(y){ return y.id!==c.id; }); list.push(c);
   if(list.length>EVMAX) return {ok:false,msg:'일정은 '+EVMAX+'개까지 저장할 수 있어요. 지난 일정을 정리해 주세요'};
-  var next={v:2,ev:list}; if(JSON.stringify(next).length>EVBYTES) return {ok:false,msg:'저장 공간이 가득 찼어요. 지난 일정을 정리해 주세요'};
+  var next=Object.assign({},memos,{ev:list}); if(JSON.stringify(next).length>EVBYTES) return {ok:false,msg:'저장 공간이 가득 찼어요. 지난 일정을 정리해 주세요'};
   setMemos(next); return {ok:true,ev:c};
 }
-function removeEvent(id){ setMemos({v:2,ev:memos.ev.filter(function(y){ return y.id!==id; })}); }
-function toggleTodo(id){ setMemos({v:2,ev:memos.ev.map(function(y){ if(y.id!==id) return y; var z=Object.assign({},y); if(z.d) delete z.d; else z.d=1; return z; })}); }
+function shiftOf(k){ var v=(memos.sh.m[k.slice(0,7)]||'')[+k.slice(8)-1]; if(!v||v==='.') return null; for(var i=0;i<memos.sh.t.length;i++) if(memos.sh.t[i].c===v) return memos.sh.t[i]; return null; }
+function setShifts(pairs){ /* pairs: [[날짜, 코드|null], ...] */
+  var sh={t:memos.sh.t,m:Object.assign({},memos.sh.m)};
+  pairs.forEach(function(p){ var k=p[0], mk=k.slice(0,7), d=+k.slice(8)-1, cur=(sh.m[mk]||'').split(''); while(cur.length<=d) cur.push('.'); cur[d]=p[1]||'.'; sh.m[mk]=cur.join(''); });
+  var next=Object.assign({},memos,{sh:sh}); if(JSON.stringify(next).length>EVBYTES){ note('저장 공간이 가득 찼어요. 지난 일정을 정리해 주세요'); return false; } setMemos(next); return true; }
+function setShiftTypes(t){ setMemos(Object.assign({},memos,{sh:{t:t,m:memos.sh.m}})); }
+function removeEvent(id){ setMemos(Object.assign({},memos,{ev:memos.ev.filter(function(y){ return y.id!==id; })})); }
+function toggleTodo(id){ setMemos(Object.assign({},memos,{ev:memos.ev.map(function(y){ if(y.id!==id) return y; var z=Object.assign({},y); if(z.d) delete z.d; else z.d=1; return z; })})); }
 
 ls('sonandogu-recent',null); /* 예전 '최근 쓴 도구' 기록은 더 쓰지 않으므로 지운다 */
 
@@ -158,7 +176,7 @@ function pushCloud(){
   },500);
 }
 async function pull(u){
-  var ref=fb.fs.doc(fb.db,'users',u.uid), cloud=[], cloudD=[], cloudL=[], cloudM={v:2,ev:[]}, exists=false;
+  var ref=fb.fs.doc(fb.db,'users',u.uid), cloud=[], cloudD=[], cloudL=[], cloudM=cleanMemos({}), exists=false;
   try{
     var snap=await fb.fs.getDoc(ref); exists=snap.exists();
     if(exists){
@@ -197,7 +215,7 @@ function onAuth(u){
   if(user){ wasUser=true; ls(HINT,'1'); drawAcct(); closeModal(); pull(user); }
   else{
     ls(HINT,null); drawAcct(); closePanel();
-    if(wasUser){ wasUser=false; touched=false; favs=[]; persistLocal(); ls(DKEY,null); setLikes([]); memos={v:2,ev:[]}; ls(MKEY,null); calSubs.forEach(function(f){ try{f();}catch(e){} }); emit(); datesChanged(); }
+    if(wasUser){ wasUser=false; touched=false; favs=[]; persistLocal(); ls(DKEY,null); setLikes([]); memos=cleanMemos({}); ls(MKEY,null); calSubs.forEach(function(f){ try{f();}catch(e){} }); emit(); datesChanged(); }
   }
 }
 
@@ -572,6 +590,9 @@ function drawCal(){
   if(location.pathname!=='/calendar/'){ var bg=el('a','calbigh','큰 달력'); bg.href='/calendar/'; hd.appendChild(bg); }
   var ob=el('button','calmore','⋯'); ob.type='button'; ob.setAttribute('aria-label','달력 보기 설정'); ob.setAttribute('aria-expanded',calOpt); ob.onclick=function(){ calOpt=!calOpt; calPick=false; drawSidebar(); }; hd.appendChild(ob);
   wrap.appendChild(hd);
+  var st0=shiftOf(T), st1=shiftOf(nIso(dnum(T)+1));
+  if(st0||st1){ var shl=el('a','calsh'); shl.href='/calendar/'; var SHCM=['#E5A800','#FF7A1A','#4F46E5','#9AA0A6','#12985B','#E5485E','#2F66F0','#8B5CF6'];
+    [['오늘',st0],['내일',st1]].forEach(function(x){ if(!x[1]) return; var sp=el('span'); sp.appendChild(el('small',null,x[0])); var bd=el('b',null,x[1].n); bd.style.background=SHCM[x[1].k]; sp.appendChild(bd); shl.appendChild(sp); }); wrap.appendChild(shl); }
   if(calOpt){ var op=el('div','calopt');
     function tog(label,keyName,cond){ if(!cond) return; var b=el('button',calPref[keyName]?'on':'',label); b.type='button'; b.setAttribute('aria-pressed',calPref[keyName]); b.onclick=function(){ calPref[keyName]=!calPref[keyName]; if(keyName==='week') calAnchor=null; saveCalPref(); drawSidebar(); }; op.appendChild(b); }
     tog('이번 주만 보기','week',true); tog('음력 보기','lunar',!!LUNF); tog('월요일 시작','mon',true);
@@ -653,7 +674,7 @@ function drawCal(){
   else wrap.appendChild(el('p','calnote','날짜를 눌러 메모를 남겨 보세요. 생일처럼 매년 돌아오는 날은 반복으로 저장하면 돼요.'));
   return wrap;
 }
-window.SonCal={events:function(){ return memos.ev.slice(); },on:eventsOn,save:saveEvent,remove:removeEvent,toggle:toggleTodo,lunar:lunar,lunKey:lunKey,holi:function(){ return HOLI; },colors:EVC,rep:REPN,sub:function(f){ calSubs.push(f); },dates:function(){ return loadDates(); }};
+window.SonCal={shift:shiftOf,setShifts:setShifts,shiftTypes:function(){ return memos.sh.t.map(function(x){ return Object.assign({},x); }); },setShiftTypes:setShiftTypes,shiftDefault:function(){ return SH_DEF.map(function(x){ return Object.assign({},x); }); },events:function(){ return memos.ev.slice(); },on:eventsOn,save:saveEvent,remove:removeEvent,toggle:toggleTodo,lunar:lunar,lunKey:lunKey,holi:function(){ return HOLI; },colors:EVC,rep:REPN,sub:function(f){ calSubs.push(f); },dates:function(){ return loadDates(); }};
 window.addEventListener('sonandogu-dates-updated',function(){ if(sb.isConnected) drawSidebar(); });
 
 function catOf(h){ for(var i=0;i<CATS.length;i++) if(CATS[i].t.indexOf(h)>=0) return CATS[i]; return null; }
