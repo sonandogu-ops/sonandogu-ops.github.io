@@ -456,4 +456,19 @@ html .cat .ic svg[fill="#fff"],html .nt .nt-i svg[fill="#fff"]{fill:currentColor
 .calft button{font:inherit; font-size:11px; font-weight:750; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:3px 8px; cursor:pointer}
 .calft button.on{color:var(--ink); border-color:var(--ink); background:var(--field)}
 .calft .callink{margin:0 2px 0 auto}
-@media (pointer:coarse){ .cald{height:34px} .calg.lun .cald{height:40px} .caledb button{padding:8px 12px} .calrep button,.calft button,.calhol button{padding:6px 10px} .calml li button{padding:6px 8px} }
+.calmore{flex:none; width:28px; height:28px; display:grid; place-items:center; font:inherit; font-size:15px; font-weight:900; color:var(--muted); background:none; border:0; border-radius:8px; cursor:pointer; letter-spacing:-.05em}
+.calmore:hover,.calmore[aria-expanded="true"]{background:var(--field); color:var(--ink)}
+.calopt{display:flex; flex-wrap:wrap; align-items:center; gap:4px; margin:0 0 8px; padding:8px; background:var(--field); border-radius:12px}
+.calopt button{font:inherit; font-size:11.5px; font-weight:750; color:var(--muted); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:4px 9px; cursor:pointer}
+.calopt button.on{color:#fff; background:var(--ink); border-color:var(--ink)}
+.calopt .callink{flex-basis:100%; margin:4px 2px 0}
+.cald.oth i{opacity:.4}
+.calg.lun .cald{height:33px}
+.calup{margin-top:6px; padding-top:4px}
+.calup li{padding:3px 2px}
+.calupm{display:block; margin:2px 0 0 auto; font:inherit; font-size:11px; font-weight:800; color:var(--muted); background:none; border:0; padding:3px 4px; cursor:pointer}
+.calupm:hover{color:var(--orange)}
+.calhol{margin-top:4px}
+@media (pointer:coarse){ .cald{height:34px} .calg.lun .cald{height:38px} .calopt button{padding:7px 11px} .calupm{padding:8px 6px} .caledb button{padding:8px 12px} .calrep button,.calft button,.calhol button{padding:6px 10px} .calml li button{padding:6px 8px} }
+.calg.lun .cald.hasd::after,.calg.lun .cald.hasm::before{bottom:auto; top:3px; left:auto; right:3px}
+.calg.lun .cald.hasd.hasm::after{right:8px}
