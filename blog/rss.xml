@@ -6,7 +6,15 @@
   <atom:link href="https://sonandogu.com/blog/rss.xml" rel="self" type="application/rss+xml"/>
   <description>계산이 헷갈리는 순간에 꺼내 보는 짧고 쓸모 있는 글</description>
   <language>ko</language>
-  <lastBuildDate>Mon, 23 Nov 2026 09:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Tue, 24 Nov 2026 09:00:00 +0900</lastBuildDate>
+  <item>
+    <title>전역일은 왜 입대일 하루 전일까</title>
+    <link>https://sonandogu.com/blog/discharge-date/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/discharge-date/</guid>
+    <category>생활 계산</category>
+    <description>1월 1일 입대 육군의 전역일은 6월 30일이에요. 2026년 군별 복무기간, 전역일이 하루 전인 이유, 말일 규칙, 진급 예정일과 반환점까지 정리했어요.</description>
+    <pubDate>Tue, 24 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
   <item>
     <title>전세 3억을 월세로 바꾸면 얼마일까</title>
     <link>https://sonandogu.com/blog/jeonse-to-wolse/</link>
