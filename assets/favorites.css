@@ -419,4 +419,41 @@ html .cat .ic svg[fill="#fff"],html .nt .nt-i svg[fill="#fff"]{fill:currentColor
 .calup li span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .callink{display:block; margin:6px 2px 0; font-size:11.5px; font-weight:800; color:var(--muted); text-decoration:none}
 .callink:hover{color:var(--orange)}
-@media (pointer:coarse){ .cald{height:34px} .caledb button{padding:8px 12px} }
+.calhd{gap:2px}
+.calti{flex:1; font:inherit; font-size:13.5px; font-weight:850; letter-spacing:-.03em; color:var(--ink); background:none; border:0; border-radius:8px; padding:4px 6px; cursor:pointer}
+.calti::after{content:"▾"; margin-left:4px; font-size:10px; color:var(--faint)}
+.calti:hover{background:var(--field)}
+.caltoday{flex:none; font:inherit; font-size:11px; font-weight:800; color:var(--orange); background:rgba(255,90,31,.08); border:0; border-radius:999px; padding:4px 9px; cursor:pointer}
+.calpick{margin:0 0 8px; padding:8px; background:var(--field); border-radius:12px}
+.calpickh{display:flex; align-items:center; justify-content:space-between; margin-bottom:6px}
+.calpickh b{font-size:13px; font-weight:850}
+.calpickg{display:grid; grid-template-columns:repeat(4,1fr); gap:4px}
+.calpickg button{font:inherit; font-size:12px; font-weight:750; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:7px 0; cursor:pointer}
+.calpickg button.on{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.cald{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; padding:0}
+.cald i{font-style:normal; line-height:1.1}
+.cald small{font-size:8.5px; font-weight:650; line-height:1; color:var(--faint); margin-top:1px; letter-spacing:-.02em}
+.calg.lun .cald{height:36px}
+.cald.sel small{color:var(--bg); opacity:.75}
+.calg.lun .cald.hasd::after,.calg.lun .cald.hasm::before{bottom:2px}
+.calhol{display:flex; flex-wrap:wrap; gap:4px; margin:6px 0 0}
+.calhol button{font:inherit; font-size:11px; font-weight:750; color:#E5485E; background:rgba(229,72,94,.08); border:0; border-radius:999px; padding:3px 8px; cursor:pointer}
+.caledh em{font-style:normal; font-size:11.5px; font-weight:700; color:var(--muted)}
+.calml{list-style:none; margin:0 0 6px; padding:0; display:flex; flex-direction:column; gap:4px}
+.calml li{display:flex; align-items:center; gap:6px; background:var(--surface); border:1px solid var(--line); border-radius:9px; padding:5px 6px 5px 8px; font-size:12.5px}
+.calml li.on{border-color:var(--orange)}
+.calml li b{flex:none; font-size:10px; font-weight:850; color:#12985B; background:rgba(18,152,91,.1); border-radius:5px; padding:1px 5px}
+.calml li span{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.calml li button{flex:none; font:inherit; font-size:11px; font-weight:800; color:var(--muted); background:none; border:0; border-radius:6px; padding:3px 5px; cursor:pointer}
+.calml li button.x{font-size:15px; line-height:1}
+.calml li button:hover{background:var(--field); color:var(--ink)}
+.calrep{display:flex; flex-wrap:wrap; align-items:center; gap:4px; margin-top:6px}
+.calrep span{font-size:11px; font-weight:800; color:var(--muted); margin-right:2px}
+.calrep button{font:inherit; font-size:11px; font-weight:750; color:var(--muted); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:3px 8px; cursor:pointer}
+.calrep button.on{color:#fff; background:#12985B; border-color:#12985B}
+.calup li i{flex:none; margin-left:auto; font-style:normal; font-size:10px; font-weight:800; color:#12985B}
+.calft{display:flex; flex-wrap:wrap; align-items:center; gap:4px; margin:8px 0 0; padding-top:6px; border-top:1px solid var(--line)}
+.calft button{font:inherit; font-size:11px; font-weight:750; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:3px 8px; cursor:pointer}
+.calft button.on{color:var(--ink); border-color:var(--ink); background:var(--field)}
+.calft .callink{margin:0 2px 0 auto}
+@media (pointer:coarse){ .cald{height:34px} .calg.lun .cald{height:40px} .caledb button{padding:8px 12px} .calrep button,.calft button,.calhol button{padding:6px 10px} .calml li button{padding:6px 8px} }

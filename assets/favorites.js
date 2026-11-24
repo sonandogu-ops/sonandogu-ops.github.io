@@ -56,9 +56,9 @@ function cleanLikes(a){
 }
 function loadLikes(){try{return cleanLikes(JSON.parse(ls(LKEY)||'[]'));}catch(e){return [];}}
 var likes=loadLikes(), likesOK=true;
-/* 달력 메모: {'2026-11-25':'메모'} */
+/* 달력 메모: {'2026-11-25':'메모', 'Y:11-25':'매년', 'L:08-15':'매년 음력', 'M:25':'매달'} */
 var MKEY='sonandogu-memos-v1', memosOK=true;
-function cleanMemos(o){ var r={}, n=0; if(o&&typeof o==='object') Object.keys(o).sort().forEach(function(k){ if(n>=80||!/^\d{4}-\d{2}-\d{2}$/.test(k)) return; var v=String(o[k]==null?'':o[k]).replace(/\s+/g,' ').trim().slice(0,80); if(v){ r[k]=v; n++; } }); return r; }
+function cleanMemos(o){ var r={}, n=0; if(o&&typeof o==='object') Object.keys(o).sort().forEach(function(k){ if(n>=80||!/^(\d{4}-\d{2}-\d{2}|[YL]:\d{2}-\d{2}|M:\d{2})$/.test(k)) return; var v=String(o[k]==null?'':o[k]).replace(/\s+/g,' ').trim().slice(0,80); if(v){ r[k]=v; n++; } }); return r; }
 function loadMemos(){ try{ return cleanMemos(JSON.parse(ls(MKEY)||'{}')); }catch(e){ return {}; } }
 var memos=loadMemos();
 function setMemos(m){ memos=cleanMemos(m); ls(MKEY,JSON.stringify(memos)); if(typeof drawSidebar==='function'&&sb.isConnected) drawSidebar(); if(user&&pulled) pushCloud(); }
@@ -482,60 +482,124 @@ sbBtn.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 
 function wide(){ return matchMedia('(min-width:1200px)').matches; }
 var sbTab=ls('sonandogu-sb-tab')==='like'?'like':'fav', sbEdit=false;
 /* ---------- 서랍 달력: 저장한 D-day(파란 점), 메모(주황 점), 공휴일(빨간 글씨) ---------- */
-var calY, calM, calSel=null;
+var calY, calM, calSel=null, calPick=false, calEdit=null;
 (function(){ var t=new Date(); calY=t.getFullYear(); calM=t.getMonth(); })();
+var CPK='sonandogu-cal-prefs';
+var calPref=(function(){ try{ var o=JSON.parse(ls(CPK)||'{}'); return {lunar:!!o.lunar,mon:!!o.mon}; }catch(e){ return {lunar:false,mon:false}; } })();
+function saveCalPref(){ ls(CPK,JSON.stringify(calPref)); }
 function iso(y,m,d){ return y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0'); }
 function dnum(s){ var a=s.split('-').map(Number); return Math.round(Date.UTC(a[0],a[1]-1,a[2])/864e5); }
+function nIso(n){ return new Date(n*864e5).toISOString().slice(0,10); }
 function todayIso(){ var t=new Date(); return iso(t.getFullYear(),t.getMonth(),t.getDate()); }
+/* 음력: 브라우저에 들어 있는 한국 음력(단기력). 지원하지 않으면 음력 기능을 숨긴다 */
+var LUNF=(function(){ var cs=['dangi','chinese']; for(var i=0;i<cs.length;i++){ try{ var f=new Intl.DateTimeFormat('ko-KR-u-ca-'+cs[i],{month:'numeric',day:'numeric',timeZone:'UTC'}); if(f.resolvedOptions().calendar===cs[i]) return f; }catch(e){} } return null; })();
+var lunC={};
+function lunar(k){ if(!LUNF) return null; if(lunC[k]) return lunC[k]; var m=null,d=null,leap=false;
+  try{ LUNF.formatToParts(new Date(k+'T00:00:00Z')).forEach(function(p){ if(p.type==='month'){ leap=/윤|bis|leap/i.test(p.value); m=parseInt(String(p.value).replace(/[^0-9]/g,''),10); } if(p.type==='day') d=parseInt(p.value,10); }); }catch(e){ return null; }
+  if(!m||!d) return null; return (lunC[k]={m:m,d:d,leap:leap}); }
+/* 메모 키: 날짜 'YYYY-MM-DD', 매년 'Y:MM-DD', 매년 음력 'L:MM-DD', 매달 'M:DD' */
+var REPN={'':'안 함',Y:'매년',L:'매년 음력',M:'매달'};
+function memoKeysFor(k){
+  var a=k.split('-'), out=[]; if(memos[k]) out.push(k);
+  if(memos['Y:'+a[1]+'-'+a[2]]) out.push('Y:'+a[1]+'-'+a[2]);
+  var dim=new Date(+a[0],+a[1],0).getDate(), dd=+a[2];
+  Object.keys(memos).forEach(function(x){ if(x.indexOf('M:')===0){ var md=+x.slice(2); if(md===dd||(md>dim&&dd===dim)) out.push(x); } });
+  var l=lunar(k); if(l&&!l.leap){ var lk='L:'+String(l.m).padStart(2,'0')+'-'+String(l.d).padStart(2,'0'); if(memos[lk]) out.push(lk); }
+  return out;
+}
+function repOf(key){ return /^[YLM]:/.test(key)? key[0] : ''; }
+function keyFor(rep,k){ var a=k.split('-'); if(rep==='Y') return 'Y:'+a[1]+'-'+a[2]; if(rep==='M') return 'M:'+a[2]; if(rep==='L'){ var l=lunar(k); if(!l||l.leap) return null; return 'L:'+String(l.m).padStart(2,'0')+'-'+String(l.d).padStart(2,'0'); } return k; }
+function calGo(y,m){ calY=y; calM=m; while(calM<0){calM+=12;calY--;} while(calM>11){calM-=12;calY++;} calSel=null; calEdit=null; calPick=false; drawSidebar(); }
 function drawCal(){
-  var wrap=el('div','sbcal'), saved=loadDates(), T=todayIso();
+  var wrap=el('div','sbcal'), saved=loadDates(), T=todayIso(), now=new Date();
   var dset={}; saved.forEach(function(x){ if(x.t==='dday') dset[x.d]=x.n||'D-day'; });
-  var hd=el('div','calhd'), pv=el('button','calnav','‹'), nx=el('button','calnav','›'); pv.type=nx.type='button';
-  pv.setAttribute('aria-label','이전 달'); nx.setAttribute('aria-label','다음 달');
-  pv.onclick=function(){ calM--; if(calM<0){calM=11; calY--;} calSel=null; drawSidebar(); };
-  nx.onclick=function(){ calM++; if(calM>11){calM=0; calY++;} calSel=null; drawSidebar(); };
-  hd.appendChild(pv); hd.appendChild(el('b',null,calY+'년 '+(calM+1)+'월')); hd.appendChild(nx); wrap.appendChild(hd);
-  var g=el('div','calg'); ['일','월','화','수','목','금','토'].forEach(function(w,i){ g.appendChild(el('span','calw'+(i===0?' sun':i===6?' sat':''),w)); });
-  var first=new Date(calY,calM,1).getDay(), days=new Date(calY,calM+1,0).getDate();
-  for(var i=0;i<first;i++) g.appendChild(el('span','calx'));
+  /* 머리: 이전 · 연월(누르면 고르기) · 다음 · 오늘 */
+  var hd=el('div','calhd'), pv=el('button','calnav','‹'), nx=el('button','calnav','›'), ti=el('button','calti',calY+'년 '+(calM+1)+'월'); pv.type=nx.type=ti.type='button';
+  pv.setAttribute('aria-label','이전 달'); nx.setAttribute('aria-label','다음 달'); ti.setAttribute('aria-expanded',calPick); ti.setAttribute('aria-label',calY+'년 '+(calM+1)+'월, 눌러서 연월 고르기');
+  pv.onclick=function(){ calGo(calY,calM-1); }; nx.onclick=function(){ calGo(calY,calM+1); };
+  ti.onclick=function(){ calPick=!calPick; drawSidebar(); };
+  hd.appendChild(pv); hd.appendChild(ti); hd.appendChild(nx);
+  if(calY!==now.getFullYear()||calM!==now.getMonth()){ var tb=el('button','caltoday','오늘'); tb.type='button'; tb.onclick=function(){ calGo(now.getFullYear(),now.getMonth()); }; hd.appendChild(tb); }
+  wrap.appendChild(hd);
+  if(calPick){
+    var pk=el('div','calpick'), ph=el('div','calpickh'), py=el('button','calnav','‹'), ny=el('button','calnav','›'); py.type=ny.type='button';
+    py.setAttribute('aria-label','이전 해'); ny.setAttribute('aria-label','다음 해');
+    py.onclick=function(){ calY--; drawSidebar(); }; ny.onclick=function(){ calY++; drawSidebar(); };
+    ph.appendChild(py); ph.appendChild(el('b',null,calY+'년')); ph.appendChild(ny); pk.appendChild(ph);
+    var mg=el('div','calpickg'); for(var mi=0;mi<12;mi++){ (function(mi){ var b=el('button',mi===calM?'on':'',(mi+1)+'월'); b.type='button'; b.onclick=function(){ calGo(calY,mi); }; mg.appendChild(b); })(mi); }
+    pk.appendChild(mg); wrap.appendChild(pk);
+  }
+  /* 날짜 칸 */
+  var g=el('div','calg'+(calPref.lunar&&LUNF?' lun':'')), W=['일','월','화','수','목','금','토'], off=calPref.mon?1:0;
+  for(var wi=0;wi<7;wi++){ var w=(wi+off)%7; g.appendChild(el('span','calw'+(w===0?' sun':w===6?' sat':''),W[w])); }
+  var first=new Date(calY,calM,1).getDay(), days=new Date(calY,calM+1,0).getDate(), lead=(first-off+7)%7;
+  for(var i=0;i<lead;i++) g.appendChild(el('span','calx'));
   for(var d=1;d<=days;d++){ (function(d){
-    var k=iso(calY,calM,d), wd=(first+d-1)%7, b=el('button','cald',String(d)); b.type='button';
+    var k=iso(calY,calM,d), wd=(first+d-1)%7, b=el('button','cald'); b.type='button'; b.appendChild(el('i',null,String(d)));
     if(wd===0||HOLI[k]) b.classList.add('hol'); else if(wd===6) b.classList.add('sat');
     if(k===T) b.classList.add('today'); if(k===calSel) b.classList.add('sel');
-    var tip=[]; if(HOLI[k]) tip.push(HOLI[k]); if(dset[k]){ b.classList.add('hasd'); tip.push('D-day: '+dset[k]); } if(memos[k]){ b.classList.add('hasm'); tip.push('메모: '+memos[k]); }
+    var mk=memoKeysFor(k), l=calPref.lunar?lunar(k):null;
+    if(l) b.appendChild(el('small',null,(l.d===1||d===1)?(l.leap?'윤':'')+l.m+'.'+l.d:String(l.d)));
+    var tip=[]; if(HOLI[k]) tip.push(HOLI[k]); if(dset[k]){ b.classList.add('hasd'); tip.push('D-day: '+dset[k]); } if(mk.length){ b.classList.add('hasm'); mk.forEach(function(x){ tip.push('메모: '+memos[x]); }); }
     b.setAttribute('aria-label',(calM+1)+'월 '+d+'일'+(tip.length?' · '+tip.join(' · '):'')); if(tip.length) b.title=tip.join('\n');
-    b.onclick=function(){ calSel=(calSel===k)?null:k; drawSidebar(); var ta=sb.querySelector('.caled textarea'); if(ta) ta.focus(); };
+    b.onclick=function(){ calSel=(calSel===k)?null:k; calEdit=null; drawSidebar(); var ta=sb.querySelector('.caled textarea'); if(ta&&!mk.length) ta.focus(); };
     g.appendChild(b); })(d); }
+  /* 휴대폰에서 좌우로 밀어 달 넘기기 */
+  var sx=null, sy=null;
+  g.addEventListener('touchstart',function(e){ var t=e.touches[0]; sx=t.clientX; sy=t.clientY; },{passive:true});
+  g.addEventListener('touchend',function(e){ if(sx==null) return; var t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy; sx=null; if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5) calGo(calY,calM+(dx<0?1:-1)); },{passive:true});
   wrap.appendChild(g);
-  /* 고른 날 메모 */
+  /* 이번 달 쉬는 날 */
+  var hl=Object.keys(HOLI).filter(function(k){ return k.slice(0,7)===iso(calY,calM,1).slice(0,7); }).sort();
+  if(hl.length){ var hw=el('div','calhol'); hl.forEach(function(k){ var c=el('button',null,(+k.slice(8))+'일 '+HOLI[k].replace(/\(.*\)/,'')); c.type='button'; c.onclick=function(){ calSel=k; calEdit=null; drawSidebar(); }; hw.appendChild(c); }); wrap.appendChild(hw); }
+  /* 고른 날: 메모 목록 + 쓰기 */
   if(calSel){
-    var ed=el('div','caled'), a=calSel.split('-').map(Number), wdn=['일','월','화','수','목','금','토'][new Date(a[0],a[1]-1,a[2]).getDay()];
+    var ed=el('div','caled'), a=calSel.split('-').map(Number), wdn=W[new Date(a[0],a[1]-1,a[2]).getDay()], ls_=lunar(calSel);
     var top=el('div','caledh'); top.appendChild(el('b',null,a[1]+'월 '+a[2]+'일 ('+wdn+')'));
+    if(ls_) top.appendChild(el('em',null,'음력 '+(ls_.leap?'윤':'')+ls_.m+'월 '+ls_.d+'일'));
     var extra=[]; if(HOLI[calSel]) extra.push(HOLI[calSel]); if(dset[calSel]) extra.push('D-day '+dset[calSel]); if(extra.length) top.appendChild(el('span',null,extra.join(' · ')));
     ed.appendChild(top);
-    var ta=el('textarea'); ta.maxLength=80; ta.rows=2; ta.placeholder='이 날 메모 (예: 엄마 생신, 월세 내는 날)'; ta.value=memos[calSel]||''; ed.appendChild(ta);
-    var bt=el('div','caledb'), sv=el('button','sv','저장'), dl=el('button','dl','지우기'), cl=el('button','cl','닫기'); sv.type=dl.type=cl.type='button';
-    sv.onclick=function(){ var m=Object.assign({},memos); var v=ta.value.trim(); if(v) m[calSel]=v; else delete m[calSel]; setMemos(m); note(v?'메모를 남겼어요':'메모를 지웠어요'); };
-    dl.onclick=function(){ var m=Object.assign({},memos); delete m[calSel]; setMemos(m); };
-    cl.onclick=function(){ calSel=null; drawSidebar(); };
+    var mk=memoKeysFor(calSel);
+    if(mk.length){ var ml=el('ul','calml'); mk.forEach(function(x){ var li=el('li'+'',x===calEdit?'on':''); var r=repOf(x); if(r) li.appendChild(el('b',null,REPN[r])); li.appendChild(el('span',null,memos[x]));
+      var e1=el('button','e','✎'), x1=el('button','x','×'); e1.type=x1.type='button'; x1.setAttribute('aria-label','이 메모 지우기'); e1.setAttribute('aria-label','이 메모 고치기'); e1.title='고치기';
+      e1.onclick=function(){ calEdit=x; drawSidebar(); var t=sb.querySelector('.caled textarea'); if(t) t.focus(); };
+      x1.onclick=function(){ var m=Object.assign({},memos); delete m[x]; if(calEdit===x) calEdit=null; setMemos(m); note('메모를 지웠어요'); };
+      li.appendChild(e1); li.appendChild(x1); ml.appendChild(li); }); ed.appendChild(ml); }
+    var ta=el('textarea'); ta.maxLength=80; ta.rows=2; ta.placeholder=mk.length?'메모 하나 더 남기기':'이 날 메모 (예: 엄마 생신, 월급날)'; ta.value=calEdit?memos[calEdit]||'':''; ed.appendChild(ta);
+    var rep=calEdit?repOf(calEdit):'', rs=el('div','calrep'); rs.appendChild(el('span',null,'반복'));
+    Object.keys(REPN).forEach(function(r){ if(r==='L'&&(!ls_||ls_.leap)) return; var b=el('button',r===rep?'on':'',REPN[r]); b.type='button'; b.setAttribute('aria-pressed',r===rep); b.onclick=function(){ rep=r; rs.querySelectorAll('button').forEach(function(z){ var on=z===b; z.classList.toggle('on',on); z.setAttribute('aria-pressed',on); }); }; rs.appendChild(b); });
+    ed.appendChild(rs);
+    var bt=el('div','caledb'), sv=el('button','sv',calEdit?'고친 내용 저장':'저장'), cl=el('button','cl','닫기'); sv.type=cl.type='button';
+    sv.onclick=function(){ var v=ta.value.trim(); if(!v){ ta.focus(); return; } var key=keyFor(rep,calSel); if(!key){ note('윤달은 매년 음력으로 반복할 수 없어요'); return; }
+      var m=Object.assign({},memos); if(calEdit&&calEdit!==key) delete m[calEdit];
+      if(m[key]&&key!==calEdit) m[key]=(m[key]+' · '+v).slice(0,80); else m[key]=v;
+      calEdit=null; setMemos(m); note(rep?REPN[rep]+' 반복 메모를 남겼어요':'메모를 남겼어요'); };
+    cl.onclick=function(){ calSel=null; calEdit=null; drawSidebar(); };
     ta.addEventListener('keydown',function(e){ if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){ e.preventDefault(); sv.click(); } });
-    bt.appendChild(sv); if(memos[calSel]) bt.appendChild(dl); bt.appendChild(cl); ed.appendChild(bt);
+    bt.appendChild(sv); bt.appendChild(cl); ed.appendChild(bt);
     if(!user) ed.appendChild(el('p','calnote','메모는 이 기기에 저장돼요. 로그인하면 다른 기기에서도 이어져요.'));
     wrap.appendChild(ed);
   }
-  /* 다가오는 날 */
+  /* 다가오는 날: D-day, 메모(반복은 다음 날짜로) */
   var T0=dnum(T), up=[];
   saved.forEach(function(x){ if(x.t==='dday'){ var k=dnum(x.d)-T0; if(k>=0) up.push({k:k,n:x.n||'D-day',d:x.d,type:'d'}); } else if(x.t==='anniv'){ var c=T0-dnum(x.d)+(x.one?1:0); if(c>0) up.push({k:-1,n:x.n||'기념일',c:c,type:'a'}); } });
-  Object.keys(memos).forEach(function(k){ var n=dnum(k)-T0; if(n>=0) up.push({k:n,n:memos[k],d:k,type:'m'}); });
+  var reps=Object.keys(memos).filter(function(x){ return /^[YLM]:/.test(x); });
+  Object.keys(memos).forEach(function(k){ if(/^\d/.test(k)){ var n=dnum(k)-T0; if(n>=0) up.push({k:n,n:memos[k],d:k,type:'m'}); } });
+  if(reps.length){ var seen={}; for(var n=0;n<400&&Object.keys(seen).length<reps.length;n++){ var dk=nIso(T0+n); memoKeysFor(dk).forEach(function(x){ if(/^[YLM]:/.test(x)&&!seen[x]){ seen[x]=1; up.push({k:n,n:memos[x],d:dk,type:'m',r:x[0]}); } }); } }
   up.sort(function(a,b){ return (a.k<0?1e9:a.k)-(b.k<0?1e9:b.k); });
   var ul=el('ul','calup');
-  up.slice(0,5).forEach(function(x){ var li=el('li'); var badge=el('b',x.type==='m'?'m':x.type==='a'?'a':'d', x.type==='a'?(x.c+'일째'):(x.k===0?'오늘':'D-'+x.k));
-    li.appendChild(badge); var s2=el('span',null,x.n); li.appendChild(s2);
-    if(x.d){ li.onclick=function(){ var a=x.d.split('-').map(Number); calY=a[0]; calM=a[1]-1; calSel=x.d; drawSidebar(); }; li.tabIndex=0; li.setAttribute('role','button'); }
+  up.slice(0,6).forEach(function(x){ var li=el('li'); var badge=el('b',x.type==='m'?'m':x.type==='a'?'a':'d', x.type==='a'?(x.c+'일째'):(x.k===0?'오늘':'D-'+x.k));
+    li.appendChild(badge); var s2=el('span',null,x.n); li.appendChild(s2); if(x.r) li.appendChild(el('i',null,REPN[x.r]));
+    if(x.d){ li.onclick=function(){ var a=x.d.split('-').map(Number); calY=a[0]; calM=a[1]-1; calSel=x.d; calEdit=null; calPick=false; drawSidebar(); }; li.tabIndex=0; li.setAttribute('role','button'); li.onkeydown=function(e){ if(e.key==='Enter') li.onclick(); }; }
     ul.appendChild(li); });
   if(up.length) wrap.appendChild(ul);
-  else wrap.appendChild(el('p','calnote','날짜를 눌러 메모를 남기거나, 날짜 계산기에서 D-day를 저장해 보세요.'));
-  var lk=el('a','callink','날짜 계산기에서 D-day 저장 →'); lk.href='/date/'; wrap.appendChild(lk);
+  else wrap.appendChild(el('p','calnote','날짜를 눌러 메모를 남겨 보세요. 생일처럼 매년 돌아오는 날은 반복으로 저장하면 돼요.'));
+  /* 아래: 보기 설정 */
+  var ft=el('div','calft');
+  function tog(label,keyName,cond){ if(!cond) return; var b=el('button',calPref[keyName]?'on':'',label); b.type='button'; b.setAttribute('aria-pressed',calPref[keyName]); b.onclick=function(){ calPref[keyName]=!calPref[keyName]; saveCalPref(); drawSidebar(); }; ft.appendChild(b); }
+  tog('음력 보기','lunar',!!LUNF); tog('월요일 시작','mon',true);
+  var lk=el('a','callink','D-day 저장 →'); lk.href='/date/'; ft.appendChild(lk);
+  wrap.appendChild(ft);
   return wrap;
 }
 window.addEventListener('sonandogu-dates-updated',function(){ if(sb.isConnected) drawSidebar(); });
