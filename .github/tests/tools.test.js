@@ -52,6 +52,14 @@ const out=[]; const ok=(n,g,e)=>{const p=JSON.stringify(g)===JSON.stringify(e); 
  ok('전월세 상한 (주택 3%, 주택 9%, 상가 3%, 상가 2%)',r.cap,[5,10,12,9]); ok('전세 3억→보증금 1억 월세',r.j,833333); ok('월세→전세 환산',r.m,290000000); ok('제시 조건 전환율',r.r,6);
  ok('전월세 화면 기본값',(await p.textContent('#big')).trim(),'833,333원');
  await p.context().close();
+ // 전역일 (손계산: 입대일 + 복무 개월의 전날, 말일 규칙)
+ p=await page('/military/');
+ r=await p.evaluate(()=>{const M=window.__mil; const e=(s,m)=>M.milISO(M.milCalc(s,m,s,true).end); const x=M.milCalc('2026-03-10',18,'2026-11-24',true);
+   return {e:[e('2026-01-01',18),e('2026-03-10',18),e('2026-03-10',20),e('2026-03-10',21),e('2025-08-31',18),e('2026-08-31',18)],x:[x.total,x.served,x.left,M.milISO(x.half),M.milISO(x.d100),M.milISO(x.left100)],rk:x.ranks.map(y=>y[0]+M.milISO(y[1]))};});
+ ok('전역일 (1/1 육군, 3/10 육군·해군·공군, 8/31 평년, 8/31 윤년)',r.e,['2027-06-30','2027-09-09','2027-11-09','2027-12-09','2027-02-28','2028-02-29']);
+ ok('복무 일수·남은 날·반환점·100일·D-100',r.x,[549,260,289,'2026-12-09','2026-06-17','2027-06-01']);
+ ok('진급 예정일',r.rk,['일병2026-05-01','상병2026-11-01','병장2027-05-01']);
+ await p.context().close();
  // 3.3%
  p=await page('/freelance-tax/');
  r=await p.evaluate(()=>{const F=window.__ft; const g=[1000000,500000,123456,333].map(x=>{const y=F.fromGross(x);return [y.it,y.lt,y.net];}); const n=F.fromNet(1000000), n2=F.fromNet(967000);
