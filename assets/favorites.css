@@ -398,7 +398,7 @@ html .cat .ic svg[fill="#fff"],html .nt .nt-i svg[fill="#fff"]{fill:currentColor
 .cald.sel{background:var(--ink); color:var(--bg)!important}
 .cald.hasd::after,.cald.hasm::before{content:""; position:absolute; bottom:3px; width:4px; height:4px; border-radius:50%}
 .cald.hasd::after{left:calc(50% - 2px); background:#2F66F0}
-.cald.hasm::before{left:calc(50% - 2px); background:var(--orange)}
+.cald.hasm::before{left:calc(50% - 2px); background:var(--dot,var(--orange))}
 .cald.hasd.hasm::after{left:calc(50% + 1px)} .cald.hasd.hasm::before{left:calc(50% - 5px)}
 .caled{margin:8px 0 2px; padding:8px; background:var(--field); border-radius:12px}
 .caledh{display:flex; flex-wrap:wrap; align-items:baseline; gap:6px; margin:0 0 6px}
@@ -472,3 +472,17 @@ html .cat .ic svg[fill="#fff"],html .nt .nt-i svg[fill="#fff"]{fill:currentColor
 @media (pointer:coarse){ .cald{height:34px} .calg.lun .cald{height:38px} .calopt button{padding:7px 11px} .calupm{padding:8px 6px} .caledb button{padding:8px 12px} .calrep button,.calft button,.calhol button{padding:6px 10px} .calml li button{padding:6px 8px} }
 .calg.lun .cald.hasd::after,.calg.lun .cald.hasm::before{bottom:auto; top:3px; left:auto; right:3px}
 .calg.lun .cald.hasd.hasm::after{right:8px}
+
+.calbigh{flex:none; font-size:11px; font-weight:800; color:var(--muted); text-decoration:none; border:1px solid var(--line); border-radius:999px; padding:3px 8px}
+.calbigh:hover{color:var(--orange); border-color:var(--orange)}
+.calml li .dot{flex:none; width:8px; height:8px; border-radius:50%}
+.calml li em{flex:none; font-style:normal; font-size:11px; font-weight:800; color:var(--muted); font-variant-numeric:tabular-nums}
+.calml li a,.calml li > span{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--ink); text-decoration:none; cursor:pointer}
+.calml li a:hover{color:var(--orange)}
+.calml li .ck{flex:none; width:16px; height:16px; border-radius:50%; border:1.5px solid var(--muted); background:none; font-size:10px; line-height:1; padding:0; color:#fff}
+.calml li.done .ck{background:var(--muted)}
+.calml li.done a,.calml li.done > span{text-decoration:line-through; color:var(--muted)}
+.caled input[type=text]{width:100%; box-sizing:border-box; font:inherit; font-size:13px; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:9px; padding:7px 8px; outline:none}
+.caled input[type=text]:focus{border-color:var(--orange)}
+.caledb .calbig{align-self:center; font-size:11.5px; font-weight:800; color:var(--muted); text-decoration:none; margin-left:4px}
+.caledb .calbig:hover{color:var(--orange)}
