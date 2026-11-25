@@ -680,6 +680,14 @@ function drawCal(){
 }
 window.SonCal={shift:shiftOf,setShifts:setShifts,shiftTypes:function(){ return memos.sh.t.map(function(x){ return Object.assign({},x); }); },setShiftTypes:setShiftTypes,shiftDefault:function(){ return SH_DEF.map(function(x){ return Object.assign({},x); }); },events:function(){ return memos.ev.slice(); },on:eventsOn,save:saveEvent,remove:removeEvent,toggle:toggleTodo,lunar:lunar,lunKey:lunKey,holi:function(){ return HOLI; },colors:EVC,rep:REPN,sub:function(f){ calSubs.push(f); },dates:function(){ return loadDates(); }};
 window.addEventListener('sonandogu-dates-updated',function(){ if(sb.isConnected) drawSidebar(); });
+/* 다른 탭에서 바꾼 내용을 이 탭에도 바로 반영 (같은 기기, 같은 브라우저) */
+window.addEventListener('storage',function(e){
+  if(e.storageArea!==localStorage) return;
+  if(e.key===MKEY||e.key===null){ memos=loadMemos(); if(sb.isConnected) drawSidebar(); calSubs.forEach(function(f){ try{f();}catch(x){} }); }
+  if(e.key===KEY||e.key===null){ favs=loadLocal(); emit(); }
+  if(e.key===DKEY||e.key===null) datesChanged();
+  if(e.key===CPK){ try{ var o=JSON.parse(e.newValue||'{}'); calPref={lunar:!!o.lunar,mon:!!o.mon,week:!!o.week}; }catch(x){} if(sb.isConnected) drawSidebar(); }
+});
 
 function catOf(h){ for(var i=0;i<CATS.length;i++) if(CATS[i].t.indexOf(h)>=0) return CATS[i]; return null; }
 function toolLink(h){

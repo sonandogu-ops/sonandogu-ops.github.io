@@ -493,13 +493,12 @@ html .cat .ic svg[fill="#fff"],html .nt .nt-i svg[fill="#fff"]{fill:currentColor
 /* 서랍 달력 형광펜 */
 .cald.hsh i{position:relative; z-index:0}
 .cald.hsh::after{content:none}
-.cald.hsh{background:color-mix(in srgb, var(--sh) 16%, transparent)}
-.cald.hsh:hover{background:color-mix(in srgb, var(--sh) 26%, transparent)}
-.cald.hsh.sel{background:var(--ink)}
+.cald.hsh i{padding:0 3px; background:linear-gradient(transparent 62%, color-mix(in srgb, var(--sh) 38%, transparent) 62%, color-mix(in srgb, var(--sh) 38%, transparent) 92%, transparent 92%)}
+.cald.hsh.sel i{background:none}
 .cald .shl{position:absolute; top:1px; right:2px; font-style:normal; font-size:7.5px; font-weight:900; line-height:1; color:var(--sh)}
 .cald.sel .shl{color:var(--bg)}
 .cald .evbs{position:absolute; left:2px; right:2px; bottom:2px; display:flex; flex-direction:column; gap:1px; pointer-events:none}
-.cald .evbs i{display:block; height:3px; border-radius:2px; margin:0 1px}
+.cald .evbs i{display:block; height:2px; border-radius:2px; margin:0 1px}
 .cald .evbs i.jl{margin-left:-3px; border-top-left-radius:0; border-bottom-left-radius:0}
 .cald .evbs i.jr{margin-right:-3px; border-top-right-radius:0; border-bottom-right-radius:0}
 .cald .evbs i.dn{opacity:.35}
