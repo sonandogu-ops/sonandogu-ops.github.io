@@ -490,3 +490,23 @@ html .cat .ic svg[fill="#fff"],html .nt .nt-i svg[fill="#fff"]{fill:currentColor
 .calsh span{display:flex; align-items:center; gap:5px}
 .calsh small{font-size:11px; font-weight:800; color:var(--muted)}
 .calsh b{font-size:11px; font-weight:850; color:#fff; border-radius:5px; padding:1px 6px}
+/* 서랍 달력 형광펜 */
+.cald.hsh i{position:relative; z-index:0}
+.cald.hsh::after{content:none}
+.cald.hsh{background:color-mix(in srgb, var(--sh) 16%, transparent)}
+.cald.hsh:hover{background:color-mix(in srgb, var(--sh) 26%, transparent)}
+.cald.hsh.sel{background:var(--ink)}
+.cald .shl{position:absolute; top:1px; right:2px; font-style:normal; font-size:7.5px; font-weight:900; line-height:1; color:var(--sh)}
+.cald.sel .shl{color:var(--bg)}
+.cald .evbs{position:absolute; left:2px; right:2px; bottom:2px; display:flex; flex-direction:column; gap:1px; pointer-events:none}
+.cald .evbs i{display:block; height:3px; border-radius:2px; margin:0 1px}
+.cald .evbs i.jl{margin-left:-3px; border-top-left-radius:0; border-bottom-left-radius:0}
+.cald .evbs i.jr{margin-right:-3px; border-top-right-radius:0; border-bottom-right-radius:0}
+.cald .evbs i.dn{opacity:.35}
+.cald.evmore .evbs::after{content:""; position:absolute; right:-1px; bottom:-1px; width:3px; height:3px; border-radius:50%; background:var(--faint)}
+.calg{gap:1px 0}
+.calopen{display:flex; align-items:center; gap:8px; margin:8px 0 0; padding:9px 12px; border-radius:12px; background:var(--ink); color:var(--bg); text-decoration:none; font-size:13px; font-weight:800}
+.calopen svg{width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round}
+.calopen span{flex:1}
+.calopen i{font-style:normal; font-size:16px; opacity:.7}
+.calopen:hover{background:var(--orange); color:#fff}

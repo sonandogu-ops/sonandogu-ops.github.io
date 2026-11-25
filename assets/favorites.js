@@ -574,6 +574,7 @@ function dnum(s){ var a=s.split('-').map(Number); return Math.round(Date.UTC(a[0
 function nIso(n){ return new Date(n*864e5).toISOString().slice(0,10); }
 function todayIso(){ var t=new Date(); return iso(t.getFullYear(),t.getMonth(),t.getDate()); }
 var REPN={'':'안 함',W:'매주',M:'매달',Y:'매년',L:'매년 음력'};
+var SHCM2=['#E5A800','#FF7A1A','#4F46E5','#9AA0A6','#12985B','#E5485E','#2F66F0','#8B5CF6'];
 var EVC=['#FF5A1F','#2F66F0','#12985B','#8B5CF6','#E5485E','#E08600'];
 function calGo(y,m){ calY=y; calM=m; while(calM<0){calM+=12;calY--;} while(calM>11){calM-=12;calY++;} calSel=null; calEdit=null; calPick=false; calAnchor=null; drawSidebar(); }
 function calStep(dir){ if(!calPref.week) return calGo(calY,calM+dir); var a=(calAnchor!=null?calAnchor:dnum(calSel||todayIso()))+7*dir, k=nIso(a).split('-').map(Number); calAnchor=a; calSel=null; calEdit=null; calPick=false; calY=k[0]; calM=k[1]-1; drawSidebar(); }
@@ -587,7 +588,6 @@ function drawCal(){
   ti.onclick=function(){ calPick=!calPick; calOpt=false; drawSidebar(); };
   hd.appendChild(pv); hd.appendChild(ti); hd.appendChild(nx);
   if(calY!==now.getFullYear()||calM!==now.getMonth()||(calPref.week&&calAnchor!=null&&Math.abs(calAnchor-dnum(T))>=7)){ var tb=el('button','caltoday','오늘'); tb.type='button'; tb.onclick=function(){ calGo(now.getFullYear(),now.getMonth()); }; hd.appendChild(tb); }
-  if(location.pathname!=='/calendar/'){ var bg=el('a','calbigh','큰 달력'); bg.href='/calendar/'; hd.appendChild(bg); }
   var ob=el('button','calmore','⋯'); ob.type='button'; ob.setAttribute('aria-label','달력 보기 설정'); ob.setAttribute('aria-expanded',calOpt); ob.onclick=function(){ calOpt=!calOpt; calPick=false; drawSidebar(); }; hd.appendChild(ob);
   wrap.appendChild(hd);
   var st0=shiftOf(T), st1=shiftOf(nIso(dnum(T)+1));
@@ -617,7 +617,10 @@ function drawCal(){
     if(k===T) b.classList.add('today'); if(k===calSel) b.classList.add('sel');
     var mk=eventsOn(k), l=calPref.lunar?lunar(k):null;
     if(l) b.appendChild(el('small',null,(l.d===1||d===1)?(l.leap?'윤':'')+l.m+'.'+l.d:String(l.d)));
-    var tip=[]; if(HOLI[k]) tip.push(HOLI[k]); if(dset[k]){ b.classList.add('hasd'); tip.push('D-day: '+dset[k]); } if(mk.length){ b.classList.add('hasm'); b.style.setProperty('--dot',EVC[mk[0].c]); mk.forEach(function(x){ tip.push((x.tm?x.tm+' ':'')+x.t); }); }
+    var tip=[]; if(HOLI[k]) tip.push(HOLI[k]); if(dset[k]){ b.classList.add('hasd'); tip.push('D-day: '+dset[k]); } if(mk.length){ mk.forEach(function(x){ tip.push((x.tm?x.tm+' ':'')+x.t); }); }
+    /* 형광펜: 근무는 날짜 뒤를 근무 색으로, 일정은 아래 색 띠로 (여러 날 일정은 이어서) */
+    var sf=shiftOf(k); if(sf){ b.classList.add('hsh'); b.style.setProperty('--sh',SHCM2[sf.k]); var sl=el('em','shl',sf.c); b.appendChild(sl); tip.unshift('근무: '+sf.n); }
+    if(mk.length){ var eb=el('span','evbs'); mk.slice(0,2).forEach(function(x){ var bb=el('i'); bb.style.background=EVC[x.c]; var multi=!x.r&&x.e>x.s; if(multi&&k>x.s&&wd!==(calPref.mon?1:0)) bb.classList.add('jl'); if(multi&&k<x.e&&wd!==(calPref.mon?0:6)) bb.classList.add('jr'); if(x.k==='t'&&x.d) bb.classList.add('dn'); eb.appendChild(bb); }); b.appendChild(eb); if(mk.length>2) b.classList.add('evmore'); }
     b.setAttribute('aria-label',kk[1]+'월 '+d+'일'+(tip.length?' · '+tip.join(' · '):'')); if(tip.length) b.title=tip.join('\n');
     b.onclick=function(){ calSel=(calSel===k)?null:k; calEdit=null; drawSidebar(); var ta=sb.querySelector('.caled input'); if(ta&&!mk.length) ta.focus(); };
     g.appendChild(b); })(); });
@@ -672,6 +675,7 @@ function drawCal(){
     ul.appendChild(li); });
   if(up.length){ wrap.appendChild(ul); if(up.length>3){ var mb=el('button','calupm',calUpAll?'접기':(Math.min(up.length,8)-3)+'개 더 보기'); mb.type='button'; mb.onclick=function(){ calUpAll=!calUpAll; drawSidebar(); }; wrap.appendChild(mb); } }
   else wrap.appendChild(el('p','calnote','날짜를 눌러 메모를 남겨 보세요. 생일처럼 매년 돌아오는 날은 반복으로 저장하면 돼요.'));
+  if(location.pathname!=='/calendar/'){ var big=el('a','calopen'); big.href='/calendar/'+(calSel?'?d='+calSel:''); big.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>일정 달력 크게 보기</span><i aria-hidden="true">›</i>'; wrap.appendChild(big); }
   return wrap;
 }
 window.SonCal={shift:shiftOf,setShifts:setShifts,shiftTypes:function(){ return memos.sh.t.map(function(x){ return Object.assign({},x); }); },setShiftTypes:setShiftTypes,shiftDefault:function(){ return SH_DEF.map(function(x){ return Object.assign({},x); }); },events:function(){ return memos.ev.slice(); },on:eventsOn,save:saveEvent,remove:removeEvent,toggle:toggleTodo,lunar:lunar,lunKey:lunKey,holi:function(){ return HOLI; },colors:EVC,rep:REPN,sub:function(f){ calSubs.push(f); },dates:function(){ return loadDates(); }};
