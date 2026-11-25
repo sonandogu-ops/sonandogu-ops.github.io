@@ -398,7 +398,7 @@ html .cat .ic svg[fill="#fff"],html .nt .nt-i svg[fill="#fff"]{fill:currentColor
 .cald.sel{background:var(--ink); color:var(--bg)!important}
 .cald.hasd::after,.cald.hasm::before{content:""; position:absolute; bottom:3px; width:4px; height:4px; border-radius:50%}
 .cald.hasd::after{left:calc(50% - 2px); background:#2F66F0}
-.cald.hasm::before{left:calc(50% - 2px); background:var(--orange)}
+.cald.hasm::before{left:calc(50% - 2px); background:var(--dot,var(--orange))}
 .cald.hasd.hasm::after{left:calc(50% + 1px)} .cald.hasd.hasm::before{left:calc(50% - 5px)}
 .caled{margin:8px 0 2px; padding:8px; background:var(--field); border-radius:12px}
 .caledh{display:flex; flex-wrap:wrap; align-items:baseline; gap:6px; margin:0 0 6px}
@@ -419,4 +419,93 @@ html .cat .ic svg[fill="#fff"],html .nt .nt-i svg[fill="#fff"]{fill:currentColor
 .calup li span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .callink{display:block; margin:6px 2px 0; font-size:11.5px; font-weight:800; color:var(--muted); text-decoration:none}
 .callink:hover{color:var(--orange)}
-@media (pointer:coarse){ .cald{height:34px} .caledb button{padding:8px 12px} }
+.calhd{gap:2px}
+.calti{flex:1; font:inherit; font-size:13.5px; font-weight:850; letter-spacing:-.03em; color:var(--ink); background:none; border:0; border-radius:8px; padding:4px 6px; cursor:pointer}
+.calti::after{content:"▾"; margin-left:4px; font-size:10px; color:var(--faint)}
+.calti:hover{background:var(--field)}
+.caltoday{flex:none; font:inherit; font-size:11px; font-weight:800; color:var(--orange); background:rgba(255,90,31,.08); border:0; border-radius:999px; padding:4px 9px; cursor:pointer}
+.calpick{margin:0 0 8px; padding:8px; background:var(--field); border-radius:12px}
+.calpickh{display:flex; align-items:center; justify-content:space-between; margin-bottom:6px}
+.calpickh b{font-size:13px; font-weight:850}
+.calpickg{display:grid; grid-template-columns:repeat(4,1fr); gap:4px}
+.calpickg button{font:inherit; font-size:12px; font-weight:750; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:7px 0; cursor:pointer}
+.calpickg button.on{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.cald{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; padding:0}
+.cald i{font-style:normal; line-height:1.1}
+.cald small{font-size:8.5px; font-weight:650; line-height:1; color:var(--faint); margin-top:1px; letter-spacing:-.02em}
+.calg.lun .cald{height:36px}
+.cald.sel small{color:var(--bg); opacity:.75}
+.calg.lun .cald.hasd::after,.calg.lun .cald.hasm::before{bottom:2px}
+.calhol{display:flex; flex-wrap:wrap; gap:4px; margin:6px 0 0}
+.calhol button{font:inherit; font-size:11px; font-weight:750; color:#E5485E; background:rgba(229,72,94,.08); border:0; border-radius:999px; padding:3px 8px; cursor:pointer}
+.caledh em{font-style:normal; font-size:11.5px; font-weight:700; color:var(--muted)}
+.calml{list-style:none; margin:0 0 6px; padding:0; display:flex; flex-direction:column; gap:4px}
+.calml li{display:flex; align-items:center; gap:6px; background:var(--surface); border:1px solid var(--line); border-radius:9px; padding:5px 6px 5px 8px; font-size:12.5px}
+.calml li.on{border-color:var(--orange)}
+.calml li b{flex:none; font-size:10px; font-weight:850; color:#12985B; background:rgba(18,152,91,.1); border-radius:5px; padding:1px 5px}
+.calml li span{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.calml li button{flex:none; font:inherit; font-size:11px; font-weight:800; color:var(--muted); background:none; border:0; border-radius:6px; padding:3px 5px; cursor:pointer}
+.calml li button.x{font-size:15px; line-height:1}
+.calml li button:hover{background:var(--field); color:var(--ink)}
+.calrep{display:flex; flex-wrap:wrap; align-items:center; gap:4px; margin-top:6px}
+.calrep span{font-size:11px; font-weight:800; color:var(--muted); margin-right:2px}
+.calrep button{font:inherit; font-size:11px; font-weight:750; color:var(--muted); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:3px 8px; cursor:pointer}
+.calrep button.on{color:#fff; background:#12985B; border-color:#12985B}
+.calup li i{flex:none; margin-left:auto; font-style:normal; font-size:10px; font-weight:800; color:#12985B}
+.calft{display:flex; flex-wrap:wrap; align-items:center; gap:4px; margin:8px 0 0; padding-top:6px; border-top:1px solid var(--line)}
+.calft button{font:inherit; font-size:11px; font-weight:750; color:var(--muted); background:none; border:1px solid var(--line); border-radius:999px; padding:3px 8px; cursor:pointer}
+.calft button.on{color:var(--ink); border-color:var(--ink); background:var(--field)}
+.calft .callink{margin:0 2px 0 auto}
+.calmore{flex:none; width:28px; height:28px; display:grid; place-items:center; font:inherit; font-size:15px; font-weight:900; color:var(--muted); background:none; border:0; border-radius:8px; cursor:pointer; letter-spacing:-.05em}
+.calmore:hover,.calmore[aria-expanded="true"]{background:var(--field); color:var(--ink)}
+.calopt{display:flex; flex-wrap:wrap; align-items:center; gap:4px; margin:0 0 8px; padding:8px; background:var(--field); border-radius:12px}
+.calopt button{font:inherit; font-size:11.5px; font-weight:750; color:var(--muted); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:4px 9px; cursor:pointer}
+.calopt button.on{color:#fff; background:var(--ink); border-color:var(--ink)}
+.calopt .callink{flex-basis:100%; margin:4px 2px 0}
+.cald.oth i{opacity:.4}
+.calg.lun .cald{height:33px}
+.calup{margin-top:6px; padding-top:4px}
+.calup li{padding:3px 2px}
+.calupm{display:block; margin:2px 0 0 auto; font:inherit; font-size:11px; font-weight:800; color:var(--muted); background:none; border:0; padding:3px 4px; cursor:pointer}
+.calupm:hover{color:var(--orange)}
+.calhol{margin-top:4px}
+@media (pointer:coarse){ .cald{height:34px} .calg.lun .cald{height:38px} .calopt button{padding:7px 11px} .calupm{padding:8px 6px} .caledb button{padding:8px 12px} .calrep button,.calft button,.calhol button{padding:6px 10px} .calml li button{padding:6px 8px} }
+.calg.lun .cald.hasd::after,.calg.lun .cald.hasm::before{bottom:auto; top:3px; left:auto; right:3px}
+.calg.lun .cald.hasd.hasm::after{right:8px}
+
+.calbigh{flex:none; font-size:11px; font-weight:800; color:var(--muted); text-decoration:none; border:1px solid var(--line); border-radius:999px; padding:3px 8px}
+.calbigh:hover{color:var(--orange); border-color:var(--orange)}
+.calml li .dot{flex:none; width:8px; height:8px; border-radius:50%}
+.calml li em{flex:none; font-style:normal; font-size:11px; font-weight:800; color:var(--muted); font-variant-numeric:tabular-nums}
+.calml li a,.calml li > span{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--ink); text-decoration:none; cursor:pointer}
+.calml li a:hover{color:var(--orange)}
+.calml li .ck{flex:none; width:16px; height:16px; border-radius:50%; border:1.5px solid var(--muted); background:none; font-size:10px; line-height:1; padding:0; color:#fff}
+.calml li.done .ck{background:var(--muted)}
+.calml li.done a,.calml li.done > span{text-decoration:line-through; color:var(--muted)}
+.caled input[type=text]{width:100%; box-sizing:border-box; font:inherit; font-size:13px; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:9px; padding:7px 8px; outline:none}
+.caled input[type=text]:focus{border-color:var(--orange)}
+.caledb .calbig{align-self:center; font-size:11.5px; font-weight:800; color:var(--muted); text-decoration:none; margin-left:4px}
+.caledb .calbig:hover{color:var(--orange)}
+.calsh{display:flex; gap:10px; margin:0 0 6px; padding:5px 8px; background:var(--field); border-radius:10px; text-decoration:none; color:var(--ink)}
+.calsh span{display:flex; align-items:center; gap:5px}
+.calsh small{font-size:11px; font-weight:800; color:var(--muted)}
+.calsh b{font-size:11px; font-weight:850; color:#fff; border-radius:5px; padding:1px 6px}
+/* 서랍 달력 형광펜 */
+.cald.hsh i{position:relative; z-index:0}
+.cald.hsh::after{content:none}
+.cald.hsh i{padding:0 3px; background:linear-gradient(transparent 62%, color-mix(in srgb, var(--sh) 38%, transparent) 62%, color-mix(in srgb, var(--sh) 38%, transparent) 92%, transparent 92%)}
+.cald.hsh.sel i{background:none}
+.cald .shl{position:absolute; top:1px; right:2px; font-style:normal; font-size:7.5px; font-weight:900; line-height:1; color:var(--sh)}
+.cald.sel .shl{color:var(--bg)}
+.cald .evbs{position:absolute; left:2px; right:2px; bottom:2px; display:flex; flex-direction:column; gap:1px; pointer-events:none}
+.cald .evbs i{display:block; height:2px; border-radius:2px; margin:0 1px}
+.cald .evbs i.jl{margin-left:-3px; border-top-left-radius:0; border-bottom-left-radius:0}
+.cald .evbs i.jr{margin-right:-3px; border-top-right-radius:0; border-bottom-right-radius:0}
+.cald .evbs i.dn{opacity:.35}
+.cald.evmore .evbs::after{content:""; position:absolute; right:-1px; bottom:-1px; width:3px; height:3px; border-radius:50%; background:var(--faint)}
+.calg{gap:1px 0}
+.calopen{display:flex; align-items:center; gap:8px; margin:8px 0 0; padding:9px 12px; border-radius:12px; background:var(--ink); color:var(--bg); text-decoration:none; font-size:13px; font-weight:800}
+.calopen svg{width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round}
+.calopen span{flex:1}
+.calopen i{font-style:normal; font-size:16px; opacity:.7}
+.calopen:hover{background:var(--orange); color:#fff}
