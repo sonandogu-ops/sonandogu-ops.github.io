@@ -6,7 +6,15 @@
   <atom:link href="https://sonandogu.com/blog/rss.xml" rel="self" type="application/rss+xml"/>
   <description>계산이 헷갈리는 순간에 꺼내 보는 짧고 쓸모 있는 글</description>
   <language>ko</language>
-  <lastBuildDate>Tue, 24 Nov 2026 09:00:00 +0900</lastBuildDate>
+  <lastBuildDate>Fri, 27 Nov 2026 09:00:00 +0900</lastBuildDate>
+  <item>
+    <title>간호사 3교대 근무표, 달력에 한 번에 옮기는 법</title>
+    <link>https://sonandogu.com/blog/shift-schedule/</link>
+    <guid isPermaLink="true">https://sonandogu.com/blog/shift-schedule/</guid>
+    <category>생활 도구</category>
+    <description>3교대 근무표를 날짜마다 일정으로 넣지 마세요. 칠하기로 병원 근무표를 옮기고, DDEENNOO 패턴으로 몇 달 치를 채우고, 근무 개수와 근무 시간까지 보는 방법이에요.</description>
+    <pubDate>Fri, 27 Nov 2026 09:00:00 +0900</pubDate>
+  </item>
   <item>
     <title>전역일은 왜 입대일 하루 전일까</title>
     <link>https://sonandogu.com/blog/discharge-date/</link>
